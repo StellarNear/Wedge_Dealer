@@ -6,14 +6,14 @@
         android:key="magic"
         android:summary="@string/magic_summ"
         android:title="@string/magic" />
-    <EditTextPreference
+    <pathfinder.pathfinder_dealer.EditTextPreference
         android:defaultValue="@string/magic_val_def"
         android:dependency="magic"
         android:key="magic_val"
+        android:title="@string/magic_val"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:summary="@string/magic_val_def_desc"
-        android:title="@string/magic_val" />
+        android:summary="Valeurs : %s"/>
     <SwitchPreference
         android:defaultValue="true"
         android:key="feu"

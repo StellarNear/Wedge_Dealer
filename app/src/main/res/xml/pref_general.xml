@@ -43,8 +43,8 @@
         android:summary="Valeur : %s"
         android:title="@string/prouesse_val" />
     <ListPreference
-        android:dependency="prouesse_val"
         android:defaultValue="@string/attr_prouesse_def"
+        android:dependency="prouesse_val"
         android:entries="@array/choix_prouesse"
         android:entryValues="@array/choix_prouesse_val"
         android:key="prouesse_attrib"
