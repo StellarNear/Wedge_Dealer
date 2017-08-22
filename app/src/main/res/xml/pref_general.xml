@@ -1,13 +1,13 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <EditTextPreference
+    <pathfinder.pathfinder_dealer.EditTextPreference
         android:defaultValue="@string/jet_att_def"
         android:key="jet_att"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:summary="@string/jet_att_def_desc"
-        android:title="Valeur d'attaque de base" />
-    <EditTextPreference
+        android:summary="Valeurs : %s"
+        android:title="@string/jet_att" />
+    <pathfinder.pathfinder_dealer.EditTextPreference
         android:capitalize="none"
         android:defaultValue="@integer/def_mod_dex"
         android:inputType="number"
@@ -15,7 +15,7 @@
         android:maxLines="1"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:summary="@string/def_mod_dex_summary"
+        android:summary="Valeur : +%s"
         android:title="@string/title_mod_dex"
         android:visibility="visible" />
     <SwitchPreference
@@ -28,27 +28,27 @@
         android:key="composite_switch"
         android:summary="@string/composite_summ"
         android:title="@string/composite" />
-    <EditTextPreference
+    <pathfinder.pathfinder_dealer.EditTextPreference
         android:defaultValue="@integer/epic_val_def"
         android:key="epic_val"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:summary="@string/epic_val_def_desc"
-        android:title="Point d'attaque épique" />
-    <EditTextPreference
+        android:summary="Valeur : %s"
+        android:title="@string/epic_val" />
+    <pathfinder.pathfinder_dealer.EditTextPreference
         android:defaultValue="@string/prouesse_def"
         android:key="prouesse_val"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:summary="@string/prouesse_def_desc"
-        android:title="Points de prouesses" />
+        android:summary="Valeur : %s"
+        android:title="@string/prouesse_val" />
     <ListPreference
         android:dependency="prouesse_val"
         android:defaultValue="@string/attr_prouesse_def"
         android:entries="@array/choix_prouesse"
         android:entryValues="@array/choix_prouesse_val"
         android:key="prouesse_attrib"
-        android:summary="@string/attr_prouesse_def_desc"
+        android:summary="Valeur : %s"
         android:title="Assignation de la prouesse" />
 
     <!-- NOTE: EditTextPreference accepts EditText attributes. -->

@@ -1,37 +1,38 @@
 <resources>
 
-
-
     <string name="app_name">Pathfinder_Dealer</string>
     <string name="action_settings">Paramètres</string>
     <string name="title_activity_settings">Paramètres</string>
 
-    <string-array name="multi_select_list_preference_default_value" />
-
-
     <!-- Ressources perso -->
 
-    <integer name="def_mod_dex">10</integer>
-    <string name="def_mod_dex_summary">Valeur par défaut : +10</string>
-    <string name="title_mod_dex">Modificateur de dextérité</string>
+
+    <!-- general  -->
 
     <string name="pref_header_general">Caractéristiques générales</string>
-    <string name="pref_header_combat">Aptitudes de combat</string>
-    <string name="pref_header_enchant">Enchantements actifs</string>
 
+    <string name="jet_att">Valeur d\'attaque de base</string>
+    <string name="jet_att_def">17,12,7,2</string>
+    <integer name="def_mod_dex">10</integer>
+    <string name="title_mod_dex">Modificateur de dextérité</string>
     <string name="thor">Puissance de Thor</string>
     <string name="thor_summ">Enchantement de Thor (altération +3)</string>
-
     <string name="composite">Arc composite +4</string>
     <string name="composite_summ">Avec un bonus de force +4 permet d\'ajouter +4 aux dégâts.</string>
+    <string name="epic_val">Point(s) d\'attaque(s) épique</string>
+    <integer name="epic_val_def">1</integer>
+    <string name="prouesse_def">2</string>
+    <string name="prouesse_val">Point(s) de prouesse</string>
+    <string name="attr_prouesse_def">4</string>
+    <string name="attr_prouesse_def_desc">Valeur par défaut : 4ieme attaque</string>
 
 
+    <string name="pref_header_combat">Aptitudes de combat</string>
+    <string name="pref_header_enchant">Enchantements actifs</string>
 
     <string name="pref_title_new_message_notifications">New message notifications</string>
     <string name="pref_title_vibrate">pref_title_vibrate</string>
 
-    <string name="jet_att_def">17,12,7,2</string>
-    <string name="jet_att_def_desc">Valeurs initiales : 17,12,7,2</string>
 
     <string-array name="choix_prouesse">
         <item>1 ière attaque</item>
@@ -47,14 +48,8 @@
         <item>4</item>
     </string-array>
 
-    <string name="prouesse_def">2</string>
-    <string name="prouesse_def_desc">Valeur par défaut : 2</string>
 
-    <string name="attr_prouesse_def">4</string>
-    <string name="attr_prouesse_def_desc">Valeur par défaut : 4ieme attaque</string>
 
-    <integer name="epic_val_def">1</integer>
-    <string name="epic_val_def_desc">Valeur par défaut : 1</string>
 
     <string name="predil">Arme de prédilection</string>
     <string name="predil_summ">Confère un bonus de +1 aux jets d\'attaque.</string>
@@ -80,6 +75,7 @@
     <string name="magic_val_def">6</string>
     <string name="magic_val_def_desc">Valeur par défaut : +6</string>
     <string name="magic_val">Valeur de l\'altération</string>
+    <integer name="magic_val">6</integer>
 
     <string name="feu">Feu intense</string>
     <string name="feu_summ">+2d6 dégâts de feu. +2d10 en critique</string>
