@@ -1,22 +1,58 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <SwitchPreference
-        android:defaultValue="true"
-        android:key="example_switch"
-        android:summary="@string/pref_description_social_recommendations"
-        android:title="@string/pref_title_social_recommendations" />
-
-    <!-- NOTE: EditTextPreference accepts EditText attributes. -->
-    <!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
     <EditTextPreference
-        android:capitalize="words"
-        android:defaultValue="@string/pref_default_display_name"
-        android:inputType="textCapWords"
-        android:key="example_text"
+        android:defaultValue="@string/jet_att_def"
+        android:key="jet_att"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary="@string/jet_att_def_desc"
+        android:title="Valeur d'attaque de base" />
+    <EditTextPreference
+        android:capitalize="none"
+        android:defaultValue="@integer/def_mod_dex"
+        android:inputType="number"
+        android:key="mod_dex"
         android:maxLines="1"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:title="@string/pref_title_display_name" />
+        android:summary="@string/def_mod_dex_summary"
+        android:title="@string/title_mod_dex"
+        android:visibility="visible" />
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="thor_switch"
+        android:summary="@string/thor_summ"
+        android:title="@string/thor" />
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="composite_switch"
+        android:summary="@string/composite_summ"
+        android:title="@string/composite" />
+    <EditTextPreference
+        android:defaultValue="@integer/epic_val_def"
+        android:key="epic_val"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary="@string/epic_val_def_desc"
+        android:title="Point d'attaque épique" />
+    <EditTextPreference
+        android:defaultValue="@string/prouesse_def"
+        android:key="prouesse_val"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary="@string/prouesse_def_desc"
+        android:title="Points de prouesses" />
+    <ListPreference
+        android:dependency="prouesse_val"
+        android:defaultValue="@string/attr_prouesse_def"
+        android:entries="@array/choix_prouesse"
+        android:entryValues="@array/choix_prouesse_val"
+        android:key="prouesse_attrib"
+        android:summary="@string/attr_prouesse_def_desc"
+        android:title="Assignation de la prouesse" />
+
+    <!-- NOTE: EditTextPreference accepts EditText attributes. -->
+    <!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
 
     <!-- NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
          dismiss it. -->

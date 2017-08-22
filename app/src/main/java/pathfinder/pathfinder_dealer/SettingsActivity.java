@@ -2,9 +2,8 @@ package pathfinder.pathfinder_dealer;
 
 
 import android.annotation.TargetApi;
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.ListPreference;
@@ -58,14 +57,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         }
     };
 
-    /**
-     * Helper method to determine if the device has an extra-large screen. For
-     * example, 10" tablets are extra-large.
-     */
-    private static boolean isXLargeTablet(Context context) {
-        return (context.getResources().getConfiguration().screenLayout
-                & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_XLARGE;
-    }
 
     /**
      * Binds a preference's summary to its value. More specifically, when the
@@ -92,6 +83,12 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        // reset les pref au defaut
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.clear();
+        editor.commit();
 
     }
 
@@ -124,15 +121,17 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     protected boolean isValidFragment(String fragmentName) {
         return PreferenceFragment.class.getName().equals(fragmentName)
                 || GeneralPreferenceFragment.class.getName().equals(fragmentName)
+                || EnchantPreferenceFragment.class.getName().equals(fragmentName)
                 || CombatPreferenceFragment.class.getName().equals(fragmentName);
     }
 
     /**
-     * This fragment shows general preferences only. It is used when the
-     * activity is showing a two-pane settings UI.
+  page générale
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    public static class GeneralPreferenceFragment extends PreferenceFragment {
+    public static class GeneralPreferenceFragment extends PreferenceFragment
+            implements SharedPreferences.OnSharedPreferenceChangeListener{
+
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -144,8 +143,48 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             // updated to reflect the new value, per the Android Design
             // guidelines.
 
-            bindPreferenceSummaryToValue(findPreference("example_text"));
+            //bindPreferenceSummaryToValue(findPreference("example_text"));
 
+        }
+
+        @Override
+        public void onResume() {
+            super.onResume();
+            getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+        }
+
+        @Override
+        public void onPause() {
+            super.onPause();
+            getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
+        }
+
+        @Override
+        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key){
+            if (key.equals("jet_att")) {
+                Preference jet_att = findPreference(key);
+                jet_att.setSummary(sharedPreferences.getString(key, ""));
+            } else if (key.equals("mod_dex")) {
+                Preference mod_dex = findPreference(key);
+                mod_dex.setSummary("+"+sharedPreferences.getString(key, ""));
+            } else if (key.equals("thor_switch")) {
+                //
+            } else if (key.equals("composite_switch")) {
+                //
+            } else if (key.equals("epic_val")) {
+                Preference epic_val = findPreference(key);
+                epic_val.setSummary(sharedPreferences.getString(key, ""));
+            } else if (key.equals("prouesse_val")) {
+                Preference prouesse_val = findPreference(key);
+                prouesse_val.setSummary(sharedPreferences.getString(key, ""));
+            } else if (key.equals("prouesse_attrib")) {
+                Preference prouesse_attrib = findPreference(key);
+                if (sharedPreferences.getString(key, "").equals("1")) {
+                    prouesse_attrib.setSummary(sharedPreferences.getString(key, "") + "ière attaque");
+                } else {
+                    prouesse_attrib.setSummary(sharedPreferences.getString(key, "") + "ième attaque");
+                }
+            }
         }
 
         @Override
@@ -160,11 +199,11 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     }
 
     /**
-     * This fragment shows notification preferences only. It is used when the
-     * activity is showing a two-pane settings UI.
+     page de combat
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    public static class CombatPreferenceFragment extends PreferenceFragment {
+    public static class CombatPreferenceFragment extends PreferenceFragment
+            implements SharedPreferences.OnSharedPreferenceChangeListener{
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -178,6 +217,33 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         }
 
         @Override
+        public void onResume() {
+            super.onResume();
+            getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+        }
+
+        @Override
+        public void onPause() {
+            super.onPause();
+            getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
+        }
+
+        @Override
+        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key){
+            if (key.equals("predil")) {
+                //
+            } else if (key.equals("neuf_m")) {
+                //
+            } else if (key.equals("tir_rapide")) {
+                //
+            } else if (key.equals("viser")) {
+                //
+            } else if (key.equals("feu_nourri")) {
+                //
+            }
+        }
+
+        @Override
         public boolean onOptionsItemSelected(MenuItem item) {
             int id = item.getItemId();
             if (id == android.R.id.home) {
@@ -188,4 +254,60 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         }
     }
 
+    /**
+     page des enchantements
+     */
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public static class EnchantPreferenceFragment extends PreferenceFragment
+            implements SharedPreferences.OnSharedPreferenceChangeListener{
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            addPreferencesFromResource(R.xml.pref_enchant);
+            setHasOptionsMenu(true);
+
+            // Bind the summaries of EditText/List/Dialog/Ringtone preferences
+            // to their values. When their values change, their summaries are
+            // updated to reflect the new value, per the Android Design
+            // guidelines.
+        }
+
+        @Override
+        public void onResume() {
+            super.onResume();
+            getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+        }
+
+        @Override
+        public void onPause() {
+            super.onPause();
+            getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
+        }
+
+        @Override
+        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key){
+            if (key.equals("magic")) {
+                //
+            } else if (key.equals("magic_val")) {
+                Preference magic_val = findPreference(key);
+                magic_val.setSummary("+"+sharedPreferences.getString(key, ""));
+            } else if (key.equals("feu")) {
+                //
+            } else if (key.equals("foudre")) {
+                //
+            } else if (key.equals("froid")) {
+                //
+            }
+        }
+
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+            int id = item.getItemId();
+            if (id == android.R.id.home) {
+                startActivity(new Intent(getActivity(), SettingsActivity.class));
+                return true;
+            }
+            return super.onOptionsItemSelected(item);
+        }
+    }
 }

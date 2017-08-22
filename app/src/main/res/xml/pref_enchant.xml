@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="magic"
+        android:summary="@string/magic_summ"
+        android:title="@string/magic" />
+    <EditTextPreference
+        android:defaultValue="@string/magic_val_def"
+        android:dependency="magic"
+        android:key="magic_val"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary="@string/magic_val_def_desc"
+        android:title="@string/magic_val" />
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="feu"
+        android:summary="@string/feu_summ"
+        android:title="@string/feu" />
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="foudre"
+        android:summary="@string/foudre_summ"
+        android:title="@string/foudre" />
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="froid"
+        android:summary="@string/froid_summ"
+        android:title="@string/froid" />
+</PreferenceScreen>
