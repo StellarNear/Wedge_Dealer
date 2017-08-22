@@ -61,8 +61,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void set_grid() {
-        setContentView(R.layout.grid_map);
-        GridView grid = (GridView) findViewById(R.id.grid_map);
+        //setContentView(R.layout.grid_map);  C'est ca qui efface toute la view
+        GridView grid = (GridView) findViewById(R.id.grid_id);
         grid.setNumColumns(6);
         // Instance of ImageAdapter Class
         grid.setAdapter(new ImageAdapter(this));
