@@ -1,6 +1,5 @@
 package pathfinder.pathfinder_dealer;
 
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,12 +11,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-
-
+import android.widget.GridView;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,22 +27,46 @@ public class MainActivity extends AppCompatActivity {
         editor.commit();
 
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        jet_att_print();
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 Snackbar.make(view, "Replace with your own action "+"lol"+settings.getString("jet_att",getResources().getString(R.string.jet_att_def)), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-            }
-        });
+
+                set_grid();
+
+            }});
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        jet_att_print();
+        //set_grid();
+    }
 
+    private void jet_att_print() {
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        TextView text_curent_att = (TextView) findViewById(R.id.jet_att_textbox);
+        text_curent_att.setText(settings.getString("jet_att",getResources().getString(R.string.jet_att_def)));
+    }
+
+    private void set_grid() {
+        setContentView(R.layout.grid_map);
+        GridView grid = (GridView) findViewById(R.id.grid_map);
+        grid.setNumColumns(6);
+        // Instance of ImageAdapter Class
+        grid.setAdapter(new ImageAdapter(this));
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

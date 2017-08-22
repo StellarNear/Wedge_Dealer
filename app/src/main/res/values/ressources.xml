@@ -6,41 +6,29 @@
 
     <!-- Ressources perso -->
 
-
     <!-- general  -->
-
     <string name="pref_header_general">Caractéristiques générales</string>
 
     <string name="jet_att">Valeur d\'attaque de base</string>
-    <string name="jet_att_def">17,12,7,2</string>
+    <string name="jet_att_def">+17 / +12 / +7 / +2</string>
     <integer name="def_mod_dex">10</integer>
     <string name="title_mod_dex">Modificateur de dextérité</string>
     <string name="thor">Puissance de Thor</string>
     <string name="thor_summ">Enchantement de Thor (altération +3)</string>
     <string name="composite">Arc composite +4</string>
     <string name="composite_summ">Avec un bonus de force +4 permet d\'ajouter +4 aux dégâts.</string>
-    <string name="epic_val">Point(s) d\'attaque(s) épique</string>
+    <string name="epic_val">Point(s) d\'attaque épique</string>
     <integer name="epic_val_def">1</integer>
     <string name="prouesse_def">2</string>
     <string name="prouesse_val">Point(s) de prouesse</string>
     <string name="attr_prouesse_def">4</string>
     <string name="attr_prouesse_def_desc">Valeur par défaut : 4ieme attaque</string>
-
-
-    <string name="pref_header_combat">Aptitudes de combat</string>
-    <string name="pref_header_enchant">Enchantements actifs</string>
-
-    <string name="pref_title_new_message_notifications">New message notifications</string>
-    <string name="pref_title_vibrate">pref_title_vibrate</string>
-
-
     <string-array name="choix_prouesse">
         <item>1 ière attaque</item>
         <item>2 ième attaque</item>
         <item>3 ième attaque</item>
         <item>4 ième attaque</item>
     </string-array>
-
     <string-array name="choix_prouesse_val">
         <item>1</item>
         <item>2</item>
@@ -48,41 +36,34 @@
         <item>4</item>
     </string-array>
 
-
-
+    <!-- dons combats  -->
+    <string name="pref_header_combat">Aptitudes de combat</string>
 
     <string name="predil">Arme de prédilection</string>
     <string name="predil_summ">Confère un bonus de +1 aux jets d\'attaque.</string>
-
     <string name="neuf_m">Tir à bout portant</string>
     <string name="neuf_m_summ">Quand une cible est à moins de 9m \n +1 au jet d\'attaque et de dégât.</string>
-
     <string name="tir_rapide">Tir rapide</string>
     <string name="tir_rapide_summ">Une attaque à distance supplémentaire.\n-2 aux jets d\'attaques du round.</string>
-
     <string name="viser">Viser</string>
     <string name="viser_summ">Malus de -4 aux jets d\'attaques contre un bonus de +8 aux dégâts.</string>
-
     <string name="feu_nourri">Feu nourri amélioré</string>
     <string name="feu_nourri_summ">Chaque attaque envoi deux flêches (seule une peut crit).</string>
 
 
     <!-- ENCHANTS -->
+    <string name="pref_header_enchant">Enchantements actifs</string>
 
     <string name="magic">Flêche magique</string>
     <string name="magic_summ">Chaque flêche tirée par l\'archer sylvestre a un bonus d\'altération magique.</string>
-
     <string name="magic_val_def">6</string>
     <string name="magic_val_def_desc">Valeur par défaut : +6</string>
     <string name="magic_val">Valeur de l\'altération</string>
     <integer name="magic_val">6</integer>
-
     <string name="feu">Feu intense</string>
     <string name="feu_summ">+2d6 dégâts de feu. +2d10 en critique</string>
-
     <string name="foudre">Foudre intense</string>
     <string name="foudre_summ">+2d6 dégâts de foudre. +2d10 en critique</string>
-
     <string name="froid">Froid intense</string>
     <string name="froid_summ">+2d6 dégâts de froid. +2d10 en critique</string>
 
