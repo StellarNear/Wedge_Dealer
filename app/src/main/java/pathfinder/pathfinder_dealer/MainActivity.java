@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.CheckBox;
 import android.widget.GridView;
 import android.widget.TextView;
 
@@ -52,6 +53,21 @@ public class MainActivity extends AppCompatActivity {
 
                 TextView hit_text = (TextView) findViewById(R.id.hit_text);
                 hit_text.setVisibility(View.VISIBLE);
+
+                CheckBox checkBox1 = (CheckBox) findViewById(R.id.checkBox1);
+                CheckBox checkBox2 = (CheckBox) findViewById(R.id.checkBox2);
+                CheckBox checkBox3 = (CheckBox) findViewById(R.id.checkBox3);
+                CheckBox checkBox4 = (CheckBox) findViewById(R.id.checkBox4);
+                CheckBox checkBox5 = (CheckBox) findViewById(R.id.checkBox5);
+                CheckBox checkBox6 = (CheckBox) findViewById(R.id.checkBox6);
+                checkBox1.setVisibility(View.VISIBLE);
+                checkBox2.setVisibility(View.VISIBLE);
+                checkBox3.setVisibility(View.VISIBLE);
+                checkBox4.setVisibility(View.VISIBLE);
+                checkBox5.setVisibility(View.VISIBLE);
+                checkBox6.setVisibility(View.VISIBLE);
+
+
 
             }});
     }
@@ -185,6 +201,7 @@ public class MainActivity extends AppCompatActivity {
         grid.setAdapter(new ImageAdapter(this));
 
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
