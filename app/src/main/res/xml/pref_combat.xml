@@ -29,8 +29,8 @@
         android:singleLine="true"
         android:summary="Valeurs : -%s"/>
     <SwitchPreference
-        android:defaultValue="true"
-        android:key="feu_nourri"
+        android:defaultValue="@bool/feu_nourri_switch_def"
+        android:key="feu_nourri_switch"
         android:summary="@string/feu_nourri_summ"
         android:title="@string/feu_nourri" />
 </PreferenceScreen>

@@ -8,11 +8,13 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Layout;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.CheckBox;
 import android.widget.GridView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -51,6 +53,13 @@ public class MainActivity extends AppCompatActivity {
 
                 jet_att_print("ajout");
 
+
+                if (settings.getBoolean("feu_nourri_switch",getResources().getBoolean(R.bool.feu_nourri_switch_def)))  {
+                    TextView multi_text = (TextView) findViewById(R.id.multishot);
+                    multi_text.setVisibility(View.VISIBLE);
+                }
+
+
                 TextView hit_text = (TextView) findViewById(R.id.hit_text);
                 hit_text.setVisibility(View.VISIBLE);
 
@@ -66,6 +75,8 @@ public class MainActivity extends AppCompatActivity {
                 checkBox4.setVisibility(View.VISIBLE);
                 checkBox5.setVisibility(View.VISIBLE);
                 checkBox6.setVisibility(View.VISIBLE);
+
+
 
 
 

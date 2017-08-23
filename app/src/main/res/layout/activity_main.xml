@@ -49,13 +49,6 @@
         app:backgroundTint="@android:color/darker_gray"
         app:srcCompat="@drawable/ic_play_arrow_black_24dp" />
 
-    <include
-        android:id="@+id/include"
-        layout="@layout/grid_dice"
-        android:layout_width="match_parent"
-        android:layout_height="58dp"
-        android:layout_y="108dp" />
-
     <TextView
         android:id="@+id/jet_att_ajout_textbox"
         android:layout_width="match_parent"
@@ -65,12 +58,18 @@
         android:layout_below="@+id/appBarLayout"
         android:layout_gravity="center"
         android:layout_weight="1"
-        android:layout_x="-1dp"
         android:layout_y="162dp"
         android:text="+33 / +33 / +33 / +28 / +23 / +20"
         android:textAlignment="center"
         android:textSize="22sp"
         android:visibility="invisible" />
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/grid_dice"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_y="95dp" />
 
     <TextView
         android:id="@+id/hit_text"
@@ -80,8 +79,7 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/appBarLayout"
         android:layout_gravity="center"
-        android:layout_x="1dp"
-        android:layout_y="194dp"
+        android:layout_y="187dp"
         android:text="Coups qui touchent :"
         android:textAlignment="center"
         android:textSize="18sp"
@@ -93,6 +91,20 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentStart="true"
-        android:layout_x="0dp"
-        android:layout_y="219dp" />
+        android:layout_y="209dp" />
+
+    <TextView
+        android:id="@+id/multishot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/appBarLayout"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:layout_y="145dp"
+        android:text=" x2        x2         x2         x2         x2         x2"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:visibility="invisible" />
 </AbsoluteLayout>
