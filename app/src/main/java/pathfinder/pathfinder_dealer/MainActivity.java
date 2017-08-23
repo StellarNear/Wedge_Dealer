@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.CheckBox;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 Snackbar.make(view, "Replace with your own action "+"lol"+settings.getString("jet_att",getResources().getString(R.string.jet_att_def)), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
 
-                set_grid();
+                //set_grid();
 
                 jet_att_print("ajout");
 
@@ -63,6 +64,12 @@ public class MainActivity extends AppCompatActivity {
                 TextView hit_text = (TextView) findViewById(R.id.hit_text);
                 hit_text.setVisibility(View.VISIBLE);
 
+
+                LinearLayout check_lin = (LinearLayout) findViewById(R.id.grid_check_id);
+
+                // 6 attaques
+                check_lin.setPadding(50,0,0,0);
+                check_lin.setWeightSum(6);
                 CheckBox checkBox1 = (CheckBox) findViewById(R.id.checkBox1);
                 CheckBox checkBox2 = (CheckBox) findViewById(R.id.checkBox2);
                 CheckBox checkBox3 = (CheckBox) findViewById(R.id.checkBox3);
@@ -76,9 +83,34 @@ public class MainActivity extends AppCompatActivity {
                 checkBox5.setVisibility(View.VISIBLE);
                 checkBox6.setVisibility(View.VISIBLE);
 
+                /* 5 attaques
+                check_lin.setPadding(120,0,0,0);
+                check_lin.setWeightSum(5);
+                CheckBox checkBox1 = (CheckBox) findViewById(R.id.checkBox1);
+                CheckBox checkBox2 = (CheckBox) findViewById(R.id.checkBox2);
+                CheckBox checkBox3 = (CheckBox) findViewById(R.id.checkBox3);
+                CheckBox checkBox4 = (CheckBox) findViewById(R.id.checkBox4);
+                CheckBox checkBox5 = (CheckBox) findViewById(R.id.checkBox5);
 
+                checkBox1.setVisibility(View.VISIBLE);
+                checkBox2.setVisibility(View.VISIBLE);
+                checkBox3.setVisibility(View.VISIBLE);
+                checkBox4.setVisibility(View.VISIBLE);
+                checkBox5.setVisibility(View.VISIBLE);
+                */
+                /*4 attaques
+                check_lin.setPadding(250,0,0,0);
+                check_lin.setWeightSum(4);
+                CheckBox checkBox1 = (CheckBox) findViewById(R.id.checkBox1);
+                CheckBox checkBox2 = (CheckBox) findViewById(R.id.checkBox2);
+                CheckBox checkBox3 = (CheckBox) findViewById(R.id.checkBox3);
+                CheckBox checkBox4 = (CheckBox) findViewById(R.id.checkBox4);
 
-
+                checkBox1.setVisibility(View.VISIBLE);
+                checkBox2.setVisibility(View.VISIBLE);
+                checkBox3.setVisibility(View.VISIBLE);
+                checkBox4.setVisibility(View.VISIBLE);
+                */
 
             }});
     }
