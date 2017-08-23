@@ -2,13 +2,13 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <SwitchPreference
-        android:defaultValue="true"
-        android:key="magic"
+        android:defaultValue="@bool/magic_switch_def"
+        android:key="magic_switch"
         android:summary="@string/magic_summ"
         android:title="@string/magic" />
     <pathfinder.pathfinder_dealer.EditTextPreference
         android:defaultValue="@string/magic_val_def"
-        android:dependency="magic"
+        android:dependency="magic_switch"
         android:key="magic_val"
         android:title="@string/magic_val"
         android:selectAllOnFocus="true"

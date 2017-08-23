@@ -1,25 +1,33 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <SwitchPreference
-        android:defaultValue="true"
-        android:key="predil"
+        android:defaultValue="@bool/predil_switch_def"
+        android:key="predil_switch"
         android:summary="@string/predil_summ"
         android:title="@string/predil" />
     <SwitchPreference
-        android:defaultValue="true"
-        android:key="neuf_m"
+        android:defaultValue="@bool/neuf_m_switch_def"
+        android:key="neuf_m_switch"
         android:summary="@string/neuf_m_summ"
         android:title="@string/neuf_m" />
     <SwitchPreference
-        android:defaultValue="true"
+        android:defaultValue="@bool/tir_rapide_switch_def"
         android:key="tir_rapide"
         android:summary="@string/tir_rapide_summ"
         android:title="@string/tir_rapide" />
     <SwitchPreference
-        android:defaultValue="true"
+        android:defaultValue="@bool/viser_switch_def"
         android:key="viser"
         android:summary="@string/viser_summ"
         android:title="@string/viser" />
+    <pathfinder.pathfinder_dealer.EditTextPreference
+        android:defaultValue="@string/viser_val_def"
+        android:dependency="viser"
+        android:key="viser_val"
+        android:title="@string/viser_val"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary="Valeurs : -%s"/>
     <SwitchPreference
         android:defaultValue="true"
         android:key="feu_nourri"
