@@ -12,11 +12,8 @@ public class ImageAdapter extends BaseAdapter {
 
     // Keep all Images in array
     public Integer[] mThumbIds = {
-            R.mipmap.d6_1,R.mipmap.d20_1,
-            R.mipmap.d20_2,R.mipmap.d20_3,
-            R.mipmap.d20_4,R.mipmap.d20_5,
-            R.mipmap.d20_6,R.mipmap.d20_7,
-            R.mipmap.d20_8,R.mipmap.d20_9
+            R.mipmap.d20_1,R.mipmap.d20_2,R.mipmap.d20_3,R.mipmap.d20_4,R.mipmap.d20_5,
+            R.mipmap.d20_6
     };
 
     // Constructor

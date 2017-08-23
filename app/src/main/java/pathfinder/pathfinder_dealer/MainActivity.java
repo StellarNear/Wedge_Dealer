@@ -66,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
         grid.setNumColumns(6);
         // Instance of ImageAdapter Class
         grid.setAdapter(new ImageAdapter(this));
+
+
     }
 
     @Override
