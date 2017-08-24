@@ -5,14 +5,20 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Layout;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
+import android.widget.AbsoluteLayout;
 import android.widget.CheckBox;
 import android.widget.GridView;
 import android.widget.LinearLayout;
@@ -52,14 +58,21 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+                fab.animate().setDuration(1000).translationX(-400).start();
+
                 SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                Snackbar.make(view, "Lancement des dés en cours... "+"\nVos "+ n_att +" attaques ont été faites.", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
+                Snackbar.make(view, "Lancement des dés en cours... ",Snackbar.LENGTH_LONG).show();
 
                 set_grid();
 
+                TextView multi_text = (TextView) findViewById(R.id.multishot);
+                multi_text.setVisibility(View.INVISIBLE);
+
                 if (settings.getBoolean("feu_nourri_switch",getResources().getBoolean(R.bool.feu_nourri_switch_def)))  {
-                    TextView multi_text = (TextView) findViewById(R.id.multishot);
+                    //TextView multi_text = (TextView) findViewById(R.id.multishot);
                     multi_text.setVisibility(View.VISIBLE);
                 }
 
@@ -72,6 +85,48 @@ public class MainActivity extends AppCompatActivity {
                 hit_text.setVisibility(View.VISIBLE);
 
                 set_checkbox_hit();
+
+                CheckBox checkBox6_crit = (CheckBox) findViewById(R.id.checkBox6_crit);
+                checkBox6_crit.setVisibility(View.INVISIBLE);
+                CheckBox checkBox5_crit = (CheckBox) findViewById(R.id.checkBox5_crit);
+                checkBox5_crit.setVisibility(View.INVISIBLE);
+
+                TextView crit_text = (TextView) findViewById(R.id.crit_text);
+                crit_text.setVisibility(View.VISIBLE);
+
+                set_checkbox_crit();
+
+                View bar_sep = findViewById(R.id.bar_sep);
+                bar_sep.setVisibility(View.VISIBLE);
+
+
+                View fab_damage_view = findViewById(R.id.fab_damage);
+
+                AlphaAnimation anim = new AlphaAnimation(0,1);
+                anim.setDuration(2000);
+                fab_damage_view.startAnimation(anim);
+
+
+            }});
+
+        FloatingActionButton fab_dmg = (FloatingActionButton) findViewById(R.id.fab_damage);
+        fab_dmg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FloatingActionButton fab_dmg = (FloatingActionButton) findViewById(R.id.fab_damage);
+                fab_dmg.animate().setDuration(1000).translationX(+400).start();
+
+                SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+                Snackbar.make(view, "Calcul des dégâts en cours... ",Snackbar.LENGTH_LONG).show();
+
+
+
+                View fab_damage_det_view = findViewById(R.id.fab_damage_detail);
+                fab_damage_det_view.setVisibility(View.VISIBLE);
+                AlphaAnimation anim = new AlphaAnimation(0,1);
+                anim.setDuration(2000);
+                fab_damage_det_view.startAnimation(anim);
 
 
             }});
@@ -377,6 +432,35 @@ public class MainActivity extends AppCompatActivity {
                 CheckBox checkBox2 = (CheckBox) findViewById(R.id.checkBox2);
                 CheckBox checkBox3 = (CheckBox) findViewById(R.id.checkBox3);
                 CheckBox checkBox4 = (CheckBox) findViewById(R.id.checkBox4);
+                checkBox1.setVisibility(View.VISIBLE);
+                checkBox2.setVisibility(View.VISIBLE);
+                checkBox3.setVisibility(View.VISIBLE);
+                checkBox4.setVisibility(View.VISIBLE);
+
+
+        }
+    }
+
+    private void set_checkbox_crit() {
+        LinearLayout check_lin = (LinearLayout) findViewById(R.id.grid_check_crit_id);
+
+        check_lin.setPadding(-100*n_att+650,0,0,0);
+        check_lin.setWeightSum(n_att);
+
+        switch(n_att) {
+            case 6:
+                CheckBox checkBox6 = (CheckBox) findViewById(R.id.checkBox6_crit);
+                checkBox6.setVisibility(View.VISIBLE);
+
+            case 5:
+                CheckBox checkBox5 = (CheckBox) findViewById(R.id.checkBox5_crit);
+                checkBox5.setVisibility(View.VISIBLE);
+
+            case 4:
+                CheckBox checkBox1 = (CheckBox) findViewById(R.id.checkBox1_crit);
+                CheckBox checkBox2 = (CheckBox) findViewById(R.id.checkBox2_crit);
+                CheckBox checkBox3 = (CheckBox) findViewById(R.id.checkBox3_crit);
+                CheckBox checkBox4 = (CheckBox) findViewById(R.id.checkBox4_crit);
                 checkBox1.setVisibility(View.VISIBLE);
                 checkBox2.setVisibility(View.VISIBLE);
                 checkBox3.setVisibility(View.VISIBLE);

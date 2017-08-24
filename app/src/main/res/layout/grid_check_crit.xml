@@ -1,12 +1,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rl"
+    android:id="@+id/rl_check_crit"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:clipToPadding="false"
     android:clipChildren="false">
 
     <LinearLayout
-        android:id="@+id/grid_check_id"
+        android:id="@+id/grid_check_crit_id"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,7 +15,7 @@
         android:clipChildren="false">
 
         <CheckBox
-            android:id="@+id/checkBox1"
+            android:id="@+id/checkBox1_crit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
@@ -24,7 +24,7 @@
 
             />
         <CheckBox
-            android:id="@+id/checkBox2"
+            android:id="@+id/checkBox2_crit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
@@ -32,7 +32,7 @@
             android:visibility="invisible"
             />
         <CheckBox
-            android:id="@+id/checkBox3"
+            android:id="@+id/checkBox3_crit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
@@ -40,7 +40,7 @@
             android:visibility="invisible"
             />
         <CheckBox
-            android:id="@+id/checkBox4"
+            android:id="@+id/checkBox4_crit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
@@ -48,7 +48,7 @@
             android:visibility="invisible"
             />
         <CheckBox
-            android:id="@+id/checkBox5"
+            android:id="@+id/checkBox5_crit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
@@ -56,7 +56,7 @@
             android:visibility="invisible"
             />
         <CheckBox
-            android:id="@+id/checkBox6"
+            android:id="@+id/checkBox6_crit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
