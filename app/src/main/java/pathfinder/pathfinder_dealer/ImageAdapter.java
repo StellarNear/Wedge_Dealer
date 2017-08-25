@@ -13,6 +13,7 @@ import java.util.Map;
 
 public class ImageAdapter  extends BaseAdapter {
     private Context mContext;
+    Integer  size_height;
 
     // Keep all Images in array
     public List<Integer> mThumbIds;
@@ -101,18 +102,25 @@ public class ImageAdapter  extends BaseAdapter {
         dice_map.put("froid_d6_4",R.mipmap.froid_d6_4);
         dice_map.put("froid_d6_5",R.mipmap.froid_d6_5);
         dice_map.put("froid_d6_6",R.mipmap.froid_d6_6);
+        dice_map.put("froid",R.mipmap.froid);
+        dice_map.put("feu",R.mipmap.feu);
+        dice_map.put("foudre",R.mipmap.foudre);
+        dice_map.put("physique",R.mipmap.physique);
 
     }
 
 
     // Constructor
-    public ImageAdapter(Context c,List<String> dice_list ){
+    public ImageAdapter(Context c,List<String> dice_list,Integer size_height_grid){
         mThumbIds = new ArrayList<>();
+
+
         for (String each : dice_list)   {
             mThumbIds.add(dice_map.get(each));
         }
 
         mContext = c;
+        size_height=size_height_grid;
     }
 
     @Override
@@ -136,7 +144,8 @@ public class ImageAdapter  extends BaseAdapter {
         if (convertView == null) {
             imageView = new ImageView(mContext);
             imageView.setScaleType(ImageView.ScaleType.FIT_END);
-            imageView.setLayoutParams(new GridView.LayoutParams(160, 160));
+            imageView.setLayoutParams(new GridView.LayoutParams(GridView.AUTO_FIT, size_height));
+
         } else {
             imageView = (ImageView) convertView;
         }

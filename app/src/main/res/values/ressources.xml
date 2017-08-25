@@ -20,9 +20,12 @@
     <string name="rapid_enchant_summ">Procure une attaque supplémentaire</string>
     <bool name="rapid_enchant_switch_def">true</bool>
     <string name="composite">Arc composite +4</string>
+    <bool name="composite_switch_def">true</bool>
     <string name="composite_summ">+4 aux dégâts (Req. +4 For)</string>
     <string name="epic_val">Point(s) d\'attaque épique</string>
     <string name="epic_val_def">1</string>
+    <string name="epic_dmg_val">Point(s) de dégât épique</string>
+    <string name="epic_dmg_val_def">1</string>
     <string name="prouesse_def">2</string>
     <string name="prouesse_val">Point(s) de prouesse</string>
     <string name="prouesse_attrib_def">4</string>
@@ -59,6 +62,7 @@
     <bool name="feu_nourri_switch_def">true</bool>
     <string name="feu_nourri">Feu nourri amélioré</string>
     <string name="feu_nourri_summ">Chaque attaque envoi deux flêches (seule une peut crit).</string>
+    <string name="multi_value">2</string>
 
 
     <!-- ENCHANTS -->
@@ -71,9 +75,12 @@
     <string name="magic_val">Valeur de l\'altération</string>
     <string name="feu">Feu intense</string>
     <string name="feu_summ">+2d6 dégâts de feu. +2d10 en critique</string>
+    <bool name="feu_intense_switch_def">true</bool>
     <string name="foudre">Foudre intense</string>
     <string name="foudre_summ">+2d6 dégâts de foudre. +2d10 en critique</string>
+    <bool name="foudre_intense_switch_def">true</bool>
     <string name="froid">Froid intense</string>
     <string name="froid_summ">+2d6 dégâts de froid. +2d10 en critique</string>
+    <bool name="froid_intense_switch_def">true</bool>
 
 </resources>

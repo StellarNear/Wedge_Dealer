@@ -46,6 +46,16 @@
         android:summary="Valeur : %s"
         android:title="@string/epic_val"
         />
+
+    <pathfinder.pathfinder_dealer.EditTextPreference
+        android:defaultValue="@string/epic_dmg_val_def"
+        android:key="epic_dmg_val"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary="Valeur : %s"
+        android:title="@string/epic_dmg_val"
+        />
+
     <pathfinder.pathfinder_dealer.EditTextPreference
         android:defaultValue="@string/prouesse_def"
         android:key="prouesse_val"
@@ -54,6 +64,8 @@
         android:summary="Valeur : %s"
         android:title="@string/prouesse_val"
         />
+
+
     <ListPreference
         android:defaultValue="@string/prouesse_attrib_def"
         android:dependency="prouesse_val"

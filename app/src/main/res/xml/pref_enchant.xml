@@ -15,18 +15,18 @@
         android:singleLine="true"
         android:summary="Valeurs : %s"/>
     <SwitchPreference
-        android:defaultValue="true"
-        android:key="feu"
+        android:defaultValue="@bool/feu_intense_switch_def"
+        android:key="feu_intense_switch"
         android:summary="@string/feu_summ"
         android:title="@string/feu" />
     <SwitchPreference
-        android:defaultValue="true"
-        android:key="foudre"
+        android:defaultValue="@bool/foudre_intense_switch_def"
+        android:key="foudre_intense_switch"
         android:summary="@string/foudre_summ"
         android:title="@string/foudre" />
     <SwitchPreference
-        android:defaultValue="true"
-        android:key="froid"
+        android:defaultValue="@bool/froid_intense_switch_def"
+        android:key="froid_intense_switch"
         android:summary="@string/froid_summ"
         android:title="@string/froid" />
 </PreferenceScreen>
