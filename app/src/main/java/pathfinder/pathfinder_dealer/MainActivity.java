@@ -9,12 +9,12 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.animation.AlphaAnimation;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     Integer n_att;
     boolean firstDmgRoll;
+    String all_dices_str="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,6 +110,29 @@ public class MainActivity extends AppCompatActivity {
                 dmg_all_dmg.setVisibility(View.INVISIBLE);
                 dmg_all_range.setVisibility(View.INVISIBLE);
                 dmg_all_percent_view.setVisibility(View.INVISIBLE);
+                all_dices_str="";
+
+                CheckBox hit_1 = (CheckBox) findViewById(R.id.checkBox1) ;
+                CheckBox hit_2 = (CheckBox) findViewById(R.id.checkBox2) ;
+                CheckBox hit_3 = (CheckBox) findViewById(R.id.checkBox3) ;
+                CheckBox hit_4 = (CheckBox) findViewById(R.id.checkBox4) ;
+                CheckBox hit_5 = (CheckBox) findViewById(R.id.checkBox5) ;
+                CheckBox hit_6 = (CheckBox) findViewById(R.id.checkBox6) ;
+                List<CheckBox> all_check_hit = new ArrayList<>(Arrays.asList( hit_1,hit_2,hit_3,hit_4,hit_5,hit_6));
+                for (CheckBox box : all_check_hit )  {
+                    box.setChecked(false);
+                }
+
+                CheckBox hit_1_crit = (CheckBox) findViewById(R.id.checkBox1_crit) ;
+                CheckBox hit_2_crit = (CheckBox) findViewById(R.id.checkBox2_crit) ;
+                CheckBox hit_3_crit = (CheckBox) findViewById(R.id.checkBox3_crit) ;
+                CheckBox hit_4_crit = (CheckBox) findViewById(R.id.checkBox4_crit) ;
+                CheckBox hit_5_crit = (CheckBox) findViewById(R.id.checkBox5_crit) ;
+                CheckBox hit_6_crit = (CheckBox) findViewById(R.id.checkBox6_crit) ;
+                List<CheckBox> all_check_crit = new ArrayList<>(Arrays.asList( hit_1_crit,hit_2_crit,hit_3_crit,hit_4_crit,hit_5_crit,hit_6_crit));
+                for (CheckBox box : all_check_crit )  {
+                    box.setChecked(false);
+                }
 
                 firstDmgRoll=true;
 
@@ -135,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
                 fab_damage_det_view.startAnimation(anim);
 
                 affich_damage();
+
 
 
             }});
@@ -509,18 +534,23 @@ public class MainActivity extends AppCompatActivity {
         grid_element.setVisibility(View.VISIBLE);
         // Instance of ImageAdapter Class
         if (firstDmgRoll) {
-            List<String> list_element = new ArrayList<>(Arrays.asList("physique"));
-
+            //dmg_all_view,dmg_all_range_view,dmg_all_percent_view
+            String[] triple_text_dmg;
             Integer n_type_dmg=1;
-
-            String text_all_dmg="";
-            String text_all_dmg_range="";
-            String text_all_dmg_percent="";
-
-            Integer phy_percent =0;
-            Integer feu_percent =0;
-            Integer foudre_percent =0;
-            Integer froid_percent =0;
+            List<String> list_element = new ArrayList<>(Arrays.asList("physique"));
+            SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            if (settings.getBoolean("feu_intense_switch",getResources().getBoolean(R.bool.feu_intense_switch_def))) {
+                list_element.add("feu");
+                n_type_dmg++;
+            }
+            if (settings.getBoolean("foudre_intense_switch",getResources().getBoolean(R.bool.foudre_intense_switch_def))) {
+                list_element.add("foudre");
+                n_type_dmg++;
+            }
+            if (settings.getBoolean("froid_intense_switch",getResources().getBoolean(R.bool.froid_intense_switch_def))) {
+                list_element.add("froid");
+                n_type_dmg++;
+            }
 
             TextView dmg_all_view = (TextView) findViewById(R.id.all_dmg);
             dmg_all_view.setVisibility(View.VISIBLE);
@@ -528,72 +558,6 @@ public class MainActivity extends AppCompatActivity {
             dmg_all_range_view.setVisibility(View.VISIBLE);
             TextView dmg_all_percent_view = (TextView) findViewById(R.id.all_dmg_percent);
             dmg_all_percent_view.setVisibility(View.VISIBLE);
-
-            Integer jet_phy =  calcul_damage("phy","normal");
-            Integer phy_ecart =  calcul_damage("phy", "max") - calcul_damage("phy", "min");
-            if(!phy_ecart.equals(0)) {
-                phy_percent = 100*(jet_phy - calcul_damage("phy", "min")) / phy_ecart;
-            }
-
-            String sep_html = "&#160&#160";
-            String text_dmg_phy = "<font color=#000000>" + jet_phy + "</font>";
-            text_all_dmg=sep_html+text_dmg_phy;
-
-            String sep_html2 = "&#160&#160&#160";
-            String text_dmg_phy_range = "<font color=#000000>[" + calcul_damage("phy","min")+"-"+calcul_damage("phy","max") + "]</font>";
-            text_all_dmg_range = sep_html2+text_dmg_phy_range ;
-
-            String sep_html3 = "&#160&#160&#160&#160&#160&#160&#160&#160&#160&#160";
-            String text_dmg_phy_percent = "<font color=#000000>" + phy_percent +"%</font>";
-            text_all_dmg_percent = sep_html3+text_dmg_phy_percent;
-
-            SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-            if (settings.getBoolean("feu_intense_switch",getResources().getBoolean(R.bool.feu_intense_switch_def))) {
-                list_element.add("feu");
-                n_type_dmg++;
-                Integer jet_feu =  calcul_damage("feu","normal");
-                String text_dmg_feu = "<font color=#DF0101>" + jet_feu+ "</font>";
-                String text_dmg_feu_range = "<font color=#DF0101>[" + calcul_damage("feu","min")+"-"+calcul_damage("feu","max") + "]</font>";
-                Integer feu_ecart = calcul_damage("feu","max")-calcul_damage("feu","min");
-                if(!feu_ecart.equals(0)) {
-                    feu_percent = 100*(jet_feu - calcul_damage("feu", "min")) / feu_ecart;
-                }
-                String text_dmg_feu_percent = "<font color=#DF0101>" +feu_percent+ "%</font>";
-                text_all_dmg =text_all_dmg + sep_html+text_dmg_feu;
-                text_all_dmg_range= text_all_dmg_range+ sep_html2+ text_dmg_feu_range ;
-                text_all_dmg_percent =text_all_dmg_percent+sep_html3+ text_dmg_feu_percent;
-            }
-            if (settings.getBoolean("foudre_intense_switch",getResources().getBoolean(R.bool.foudre_intense_switch_def))) {
-                list_element.add("foudre");
-                n_type_dmg++;
-                Integer jet_foudre =  calcul_damage("foudre","normal");
-                String text_dmg_foudre = "<font color=#A9D0F5>" + jet_foudre+ "</font>";
-                String text_dmg_foudre_range= "<font color=#A9D0F5>[" + calcul_damage("foudre","min")+"-"+calcul_damage("foudre","max") + "]</font>";
-                Integer foudre_ecart =  calcul_damage("foudre","max")-calcul_damage("foudre","min");
-                if(!foudre_ecart.equals(0)) {
-                    foudre_percent = 100*(jet_foudre - calcul_damage("foudre", "min")) / foudre_ecart;
-                }
-                String text_dmg_foudre_percent= "<font color=#A9D0F5>" + foudre_percent+ "%</font>";
-                text_all_dmg =text_all_dmg+ sep_html+text_dmg_foudre ;
-                text_all_dmg_range= text_all_dmg_range+ sep_html2+ text_dmg_foudre_range ;
-                text_all_dmg_percent =text_all_dmg_percent+sep_html3+ text_dmg_foudre_percent;
-            }
-            if (settings.getBoolean("froid_intense_switch",getResources().getBoolean(R.bool.froid_intense_switch_def))) {
-                list_element.add("froid");
-                n_type_dmg++;
-                Integer jet_froid =  calcul_damage("froid","normal");
-                String text_dmg_froid = "<font color=#0404B4>" + jet_froid + "</font>";
-                String text_dmg_froid_range = "<font color=#0404B4>[" + calcul_damage("froid","min")+"-"+calcul_damage("froid","max") + "]</font>";
-                Integer froid_ecart =    calcul_damage("froid","max")-calcul_damage("froid","min");
-                if(!froid_ecart.equals(0)) {
-                    froid_percent = 100*(jet_froid - calcul_damage("froid", "min")) / froid_ecart;
-                }
-                String text_dmg_froid_percent = "<font color=#0404B4>" + froid_percent + "%</font>";
-                text_all_dmg =text_all_dmg+sep_html+text_dmg_froid;
-                text_all_dmg_range= text_all_dmg_range+ sep_html2+ text_dmg_froid_range ;
-                text_all_dmg_percent =text_all_dmg_percent+ sep_html3+text_dmg_froid_percent;
-            }
-
 
             grid_element.setAdapter(new ImageAdapter(this, list_element, 75));
 
@@ -614,13 +578,10 @@ public class MainActivity extends AppCompatActivity {
                 dmg_all_view.setPadding(0, 0, 0, 0);
                 dmg_all_range_view.setPadding(0, 0, 0, 0);
             }
-
-            text_all_dmg=text_all_dmg.substring(sep_html.length());
-            text_all_dmg_range=text_all_dmg_range.substring(sep_html2.length());
-            text_all_dmg_percent=text_all_dmg_percent.substring(sep_html3.length());
-            dmg_all_view.setText(Html.fromHtml(text_all_dmg));
-            dmg_all_range_view.setText(Html.fromHtml(text_all_dmg_range));
-            dmg_all_percent_view.setText(Html.fromHtml(text_all_dmg_percent));
+            triple_text_dmg = calcul_damage();
+            dmg_all_view.setText(Html.fromHtml(triple_text_dmg[0]));
+            dmg_all_range_view.setText(Html.fromHtml(triple_text_dmg[1]));
+            dmg_all_percent_view.setText(Html.fromHtml(triple_text_dmg[2]));
 
             firstDmgRoll=false;
         }
@@ -629,16 +590,67 @@ public class MainActivity extends AppCompatActivity {
 
     private void display_dmg_detail(){
         Intent intent = new Intent(this, DisplayDamageDetail.class);
+
+        while (all_dices_str.substring(all_dices_str.length() - 1, all_dices_str.length()).equals(",") || all_dices_str.substring(all_dices_str.length() - 1, all_dices_str.length()).equals(";"))
+        {
+            all_dices_str = all_dices_str.substring(0, all_dices_str.length() - 1);
+        }
+
+        Log.d("STATE",all_dices_str );
+        intent.putExtra("all_dices_str",all_dices_str);
+
+
         startActivity(intent);
 
     }
 
 
-    private Integer calcul_damage(String type,String mode) {
+    private String[] calcul_damage() {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        Integer n_hit=0;
-        Integer n_crit=0;
-        Integer sum = 0;
+        Integer multi_val=1;
+        if (settings.getBoolean("feu_nourri_switch",getResources().getBoolean(R.bool.feu_nourri_switch_def)))  {
+            multi_val = Integer.parseInt(getString(R.string.multi_value));
+        }
+
+        /////////// Degat commun attaques phy
+        Integer thor;
+        Integer neuf_m;
+        Integer magic;
+        Integer composi;
+        Integer sumPhy,sumFeu,sumFoudre,sumFroid,minPhy,maxPhy,minFeu,maxFeu,minFoudre,maxFoudre,minFroid,maxFroid;
+        sumPhy=sumFeu=sumFoudre=sumFroid=minPhy=maxPhy=minFeu=maxFeu=minFoudre=maxFoudre=minFroid=maxFroid=0;
+
+
+        if (settings.getBoolean("thor_switch",getResources().getBoolean(R.bool.thor_switch_def))) {
+            thor = 1;
+        }  else { thor = 0; }
+        if (settings.getBoolean("neuf_m_switch",getResources().getBoolean(R.bool.neuf_m_switch_def)))  {
+            neuf_m = 1;
+        }    else { neuf_m = 0; }
+        if (settings.getBoolean("magic_switch",getResources().getBoolean(R.bool.magic_switch_def)))  {
+            magic = 1;
+        }    else { magic = 0; }
+        if (settings.getBoolean("composite_switch",getResources().getBoolean(R.bool.composite_switch_def)))  {
+            composi = 1;
+        }    else { composi = 0; }
+
+
+        String magic_val_str = settings.getString("magic_val",getResources().getString(R.string.magic_val_def));
+        Integer magic_val = Integer.parseInt(magic_val_str);
+
+        String epic_dmg_str = settings.getString("epic_dmg_val",getResources().getString(R.string.epic_dmg_val_def));
+        Integer epic_dmg_val = Integer.parseInt(epic_dmg_str);
+
+        Integer bonus_viser=0;
+        if (settings.getBoolean("viser",getResources().getBoolean(R.bool.viser_switch_def))) {
+            String malus_viser_str = settings.getString("viser_val",getResources().getString(R.string.viser_val_def));
+            bonus_viser = 2*Integer.parseInt(malus_viser_str);
+        }
+
+        Integer ajout_dmg = 3*thor+neuf_m+magic*magic_val+4*composi+epic_dmg_val+bonus_viser;
+
+
+        /////////// Lancement des attaques
 
         CheckBox hit_1 = (CheckBox) findViewById(R.id.checkBox1) ;
         CheckBox hit_2 = (CheckBox) findViewById(R.id.checkBox2) ;
@@ -646,193 +658,239 @@ public class MainActivity extends AppCompatActivity {
         CheckBox hit_4 = (CheckBox) findViewById(R.id.checkBox4) ;
         CheckBox hit_5 = (CheckBox) findViewById(R.id.checkBox5) ;
         CheckBox hit_6 = (CheckBox) findViewById(R.id.checkBox6) ;
+        CheckBox[] all_check_hit = new CheckBox[]{hit_1,hit_2,hit_3,hit_4,hit_5,hit_6};
         CheckBox hit_1_crit = (CheckBox) findViewById(R.id.checkBox1_crit) ;
         CheckBox hit_2_crit = (CheckBox) findViewById(R.id.checkBox2_crit) ;
         CheckBox hit_3_crit = (CheckBox) findViewById(R.id.checkBox3_crit) ;
         CheckBox hit_4_crit = (CheckBox) findViewById(R.id.checkBox4_crit) ;
         CheckBox hit_5_crit = (CheckBox) findViewById(R.id.checkBox5_crit) ;
         CheckBox hit_6_crit = (CheckBox) findViewById(R.id.checkBox6_crit) ;
+        CheckBox[] all_check_crit = new CheckBox[]{hit_1_crit,hit_2_crit,hit_3_crit,hit_4_crit,hit_5_crit,hit_6_crit};
 
-        if(hit_1.isChecked()){
-            n_hit++;
-        }
-        if(hit_2.isChecked()){
-            n_hit++;
-        }
-        if(hit_3.isChecked()){
-            n_hit++;
-        }
-        if(hit_4.isChecked()){
-            n_hit++;
-        }
-        if(hit_5.isChecked()){
-            n_hit++;
-        }
-        if(hit_6.isChecked()){
-            n_hit++;
-        }
-
-        if (settings.getBoolean("feu_nourri_switch",getResources().getBoolean(R.bool.feu_nourri_switch_def)))  {
-            Integer multi_val = Integer.parseInt(getString(R.string.multi_value));
-            n_hit=n_hit* multi_val;
-        }
-
-        if(hit_1_crit.isChecked()){
-            n_hit--;
-            n_crit++;
-        }
-        if(hit_2_crit.isChecked()){
-            n_hit--;
-            n_crit++;
-        }
-        if(hit_3_crit.isChecked()){
-            n_hit--;
-            n_crit++;
-        }
-        if(hit_4_crit.isChecked()){
-            n_hit--;
-            n_crit++;
-        }
-        if(hit_5_crit.isChecked()){
-            n_hit--;
-            n_crit++;
-        }
-        if(hit_6_crit.isChecked()){
-            n_hit--;
-            n_crit++;
-        }
-
-        ///////////////////////////////////
-        // calcul de l'ajout de dégat
-        ///////////////////////////////////
-
-        if (type.equals("phy")){
-
-            Integer thor;
-            Integer neuf_m;
-            Integer magic;
-            Integer composi;
-
-            if (settings.getBoolean("thor_switch",getResources().getBoolean(R.bool.thor_switch_def))) {
-                thor = 1;
-            }  else { thor = 0; }
-            if (settings.getBoolean("neuf_m_switch",getResources().getBoolean(R.bool.neuf_m_switch_def)))  {
-                neuf_m = 1;
-            }    else { neuf_m = 0; }
-            if (settings.getBoolean("magic_switch",getResources().getBoolean(R.bool.magic_switch_def)))  {
-                magic = 1;
-            }    else { magic = 0; }
-            if (settings.getBoolean("composite_switch",getResources().getBoolean(R.bool.composite_switch_def)))  {
-                composi = 1;
-            }    else { composi = 0; }
-
-
-            String magic_val_str = settings.getString("magic_val",getResources().getString(R.string.magic_val_def));
-            Integer magic_val = Integer.parseInt(magic_val_str);
-
-            String epic_dmg_str = settings.getString("epic_dmg_val",getResources().getString(R.string.epic_dmg_val_def));
-            Integer epic_dmg_val = Integer.parseInt(epic_dmg_str);
-
-            Integer bonus_viser=0;
-            if (settings.getBoolean("viser",getResources().getBoolean(R.bool.viser_switch_def))) {
-                String malus_viser_str = settings.getString("viser_val",getResources().getString(R.string.viser_val_def));
-                bonus_viser = 2*Integer.parseInt(malus_viser_str);
+        ///robustesse un crit n'est pas un crit si il n'a pas touché
+        for (int i=0;i<=all_check_hit.length-1;i++) {
+            if (!all_check_hit[i].isChecked() && all_check_crit[i].isChecked()) {
+                all_check_crit[i].setChecked(false);
             }
+        }
 
-            Integer ajout_dmg = 3*thor+neuf_m+magic*magic_val+4*composi+epic_dmg_val+bonus_viser;
+        /// debut des degat des fleches
+        for (int i=0;i<=all_check_hit.length-1;i++)  {
+            if (all_check_hit[i].isChecked() && !all_check_crit[i].isChecked())  /// pour chaque coup non crit
+            {
+                for (int j=0;j<=multi_val-1;j++) {
+                    //////degat phy
+                    Integer jet = rand(8);
+                    all_dices_str += "d8_" + String.valueOf(jet) + ",";
+                    sumPhy += jet + ajout_dmg;
+                    minPhy += 1 + ajout_dmg;
+                    maxPhy += 8 + ajout_dmg;
 
-            for(int i=0; i<n_hit; i++){
-                if(mode.equals("normal")) {
-                    sum = sum + rand(8) + ajout_dmg;
-                } else if (mode.equals("min")) {
-                    sum = sum + 1 + ajout_dmg;
-                }  else if (mode.equals("max")) {
-                    sum = sum + 8 + ajout_dmg;
+                    //////degat feu
+                    if (settings.getBoolean("feu_intense_switch", getResources().getBoolean(R.bool.feu_intense_switch_def))) {
+                        Integer jet_feu = rand(6);
+                        Integer jet2_feu = rand(6);
+                        all_dices_str += "feu_d6_" + String.valueOf(jet_feu) + ",feu_d6_" + String.valueOf(jet2_feu) + ",";
+                        sumFeu += jet_feu + jet2_feu;
+                        minFeu += 1 + 1;
+                        maxFeu += 6 + 6;
+                    }
+
+                    //////degat foudre
+                    if (settings.getBoolean("foudre_intense_switch", getResources().getBoolean(R.bool.foudre_intense_switch_def))) {
+                        Integer jet_foudre = rand(6);
+                        Integer jet2_foudre = rand(6);
+                        all_dices_str += "foudre_d6_" + String.valueOf(jet_foudre) + ",foudre_d6_" + String.valueOf(jet2_foudre) + ",";
+                        sumFoudre += jet_foudre + jet2_foudre;
+                        minFoudre += 1 + 1;
+                        maxFoudre += 6 + 6;
+                    }
+
+                    //////degat froid
+                    if (settings.getBoolean("froid_intense_switch", getResources().getBoolean(R.bool.froid_intense_switch_def))) {
+                        Integer jet_froid = rand(6);
+                        Integer jet2_froid = rand(6);
+                        all_dices_str += "froid_d6_" + String.valueOf(jet_froid) + ",froid_d6_" + String.valueOf(jet2_froid) + ",";
+                        sumFroid += jet_froid + jet2_froid;
+                        minFroid += 1 + 1;
+                        maxFroid += 6 + 6;
+                    }
+                    if (!all_dices_str.substring(all_dices_str.length()-1,all_dices_str.length()).equals(";")) {all_dices_str +=";";}
                 }
 
             }
-            for(int i=0; i<n_crit; i++) {
-                if (mode.equals("normal")) {
-                    sum = sum + (rand(8) + ajout_dmg) * 3;
-                } else if (mode.equals("min")) {
-                    sum = sum + (1+ ajout_dmg) * 3;
-                } else if (mode.equals("max")) {
-                    sum = sum + (8 + ajout_dmg) * 3;
-                }
-            }
+            if (all_check_hit[i].isChecked() && all_check_crit[i].isChecked())  /// pour chaque coup critique
+            {
+                //// degat du crit
+                //////degat phy
+                Integer jet_crit=rand(8);
+                all_dices_str+="d8_"+String.valueOf(jet_crit)+",";
+                sumPhy +=  (jet_crit + ajout_dmg)*3;
+                minPhy+=(1+ ajout_dmg)*3;
+                maxPhy+=(8+ ajout_dmg)*3;
 
-            return sum;
+                //////degat feu
+                if (settings.getBoolean("feu_intense_switch",getResources().getBoolean(R.bool.feu_intense_switch_def))) {
+                    Integer jet_feu=rand(6);
+                    Integer jet2_feu=rand(6);
+                    Integer jet3_feu=rand(10);
+                    Integer jet4_feu=rand(10);
+                    all_dices_str+="feu_d6_"+String.valueOf(jet_feu)+",feu_d6_"+String.valueOf(jet2_feu)+",feu_d10_"+String.valueOf(jet3_feu)+",feu_d10_"+String.valueOf(jet4_feu)+",";
+                    sumFeu+=jet_feu+jet2_feu+jet3_feu+jet4_feu;
+                    minFeu+=1+1+1+1;
+                    maxFeu+=6+6+10+10;
+                }
+
+                //////degat foudre
+                if (settings.getBoolean("foudre_intense_switch",getResources().getBoolean(R.bool.foudre_intense_switch_def))) {
+                    Integer jet_foudre=rand(6);
+                    Integer jet2_foudre=rand(6);
+                    Integer jet3_foudre=rand(10);
+                    Integer jet4_foudre=rand(10);
+                    all_dices_str+="foudre_d6_"+String.valueOf(jet_foudre)+",foudre_d6_"+String.valueOf(jet2_foudre)+",foudre_d10_"+String.valueOf(jet3_foudre)+",foudre_d10_"+String.valueOf(jet4_foudre)+",";
+                    sumFoudre+=jet_foudre+jet2_foudre+jet3_foudre+jet4_foudre;
+                    minFoudre+= 1+1+1+1;
+                    maxFoudre+=6+6+10+10;
+                }
+
+                //////degat froid
+                if (settings.getBoolean("froid_intense_switch",getResources().getBoolean(R.bool.froid_intense_switch_def))) {
+                    Integer jet_froid=rand(6);
+                    Integer jet2_froid=rand(6);
+                    Integer jet3_froid=rand(6);
+                    Integer jet4_froid=rand(6);
+                    all_dices_str+="froid_d6_"+String.valueOf(jet_froid)+",froid_d6_"+String.valueOf(jet2_froid)+",froid_d10_"+String.valueOf(jet3_froid)+",froid_d10_"+String.valueOf(jet4_froid)+",";
+                    sumFroid+=jet_froid+jet2_froid+jet3_froid+jet4_froid;
+                    minFroid+=1+1+1+1;
+                    maxFroid+=6+6+10+10;
+                }
+                if (!all_dices_str.substring(all_dices_str.length()-1,all_dices_str.length()).equals(";")) {all_dices_str +=";";}
+                //// on voit si il reste des fleche normale à tirer (les multishot ne crit pas)
+                if (multi_val > 1) {
+                    for (int j = 0; j <= multi_val - 2; j++) {
+                        //////degat phy
+                        Integer jet = rand(8);
+                        all_dices_str += "d8_" + String.valueOf(jet) + ",";
+                        sumPhy += jet + ajout_dmg;
+                        minPhy += 1 + ajout_dmg;
+                        maxPhy += 8 + ajout_dmg;
+
+                        //////degat feu
+                        if (settings.getBoolean("feu_intense_switch", getResources().getBoolean(R.bool.feu_intense_switch_def))) {
+                            Integer jet_feu = rand(6);
+                            Integer jet2_feu = rand(6);
+                            all_dices_str += "feu_d6_" + String.valueOf(jet_feu) + ",feu_d6_" + String.valueOf(jet2_feu) + ",";
+                            sumFeu += +jet_feu + jet2_feu;
+                            minFeu += 1 + 1;
+                            maxFeu += 6 + 6;
+                        }
+
+                        //////degat foudre
+                        if (settings.getBoolean("foudre_intense_switch", getResources().getBoolean(R.bool.foudre_intense_switch_def))) {
+                            Integer jet_foudre = rand(6);
+                            Integer jet2_foudre = rand(6);
+                            all_dices_str += "foudre_d6_" + String.valueOf(jet_foudre) + ",foudre_d6_" + String.valueOf(jet2_foudre) + ",";
+                            sumFoudre += jet_foudre + jet2_foudre;
+                            minFoudre += 1 + 1;
+                            maxFoudre += 6 + 6;
+                        }
+
+                        //////degat froid
+                        if (settings.getBoolean("froid_intense_switch", getResources().getBoolean(R.bool.froid_intense_switch_def))) {
+                            Integer jet_froid = rand(6);
+                            Integer jet2_froid = rand(6);
+                            all_dices_str += "froid_d6_" + String.valueOf(jet_froid) + ",froid_d6_" + String.valueOf(jet2_froid) + ",";
+                            sumFroid += jet_froid + jet2_froid;
+                            minFroid += 1 + 1;
+                            maxFroid += 6 + 6;
+                        }
+                        if (!all_dices_str.substring(all_dices_str.length()-1,all_dices_str.length()).equals(";")) {all_dices_str +=";";}
+                    }
+
+                }
+
+            }
 
         }
 
-        if (type.equals("feu")){
-            for(int i=0; i<n_hit; i++){
-                if (mode.equals("normal")) {
-                    sum=sum+rand(6)+rand(6);
-                } else if (mode.equals("min")) {
-                    sum=sum+1+1;
-                } else if (mode.equals("max")) {
-                    sum=sum+6+6;
-                }
-            }
-            for(int i=0; i<n_crit; i++){
-                if (mode.equals("normal")) {
-                    sum=sum+rand(6)+rand(6)+rand(10)+rand(10);
-                } else if (mode.equals("min")) {
-                    sum=sum+1+1+1+1;
-                } else if (mode.equals("max")) {
-                    sum=sum+6+6+10+10;
-                }
-            }
-            return sum;
+        ///////////////////////////////////////////////////////////////////////////////////////////
+        //partie à modifié pour s'integer et construire les fleche une a une et au final return la chaine de str html à affihcer
+        ///////////////////////////////////////////////////////////////////////////////////////////
+
+        String text_all_dmg="";
+        String text_all_dmg_range="";
+        String text_all_dmg_percent="";
+
+        Integer phy_percent =0;
+        Integer feu_percent =0;
+        Integer foudre_percent =0;
+        Integer froid_percent =0;
+
+        String sep_html = "&#160&#160";
+        String sep_html2 = "&#160&#160&#160";
+        String sep_html3 = "&#160&#160&#160&#160&#160&#160&#160&#160&#160&#160";
+
+        Integer phy_ecart =  maxPhy - minPhy;
+        if(!phy_ecart.equals(0)) {
+            phy_percent = 100*(sumPhy - minPhy) / phy_ecart;
+        }
+        String text_dmg_phy = "<font color=#000000>"+sumPhy+"</font>";
+        text_all_dmg+=sep_html+text_dmg_phy;
+        String text_dmg_phy_range = "<font color=#000000>["+minPhy+"-"+maxPhy+"]</font>";
+        text_all_dmg_range += sep_html2+text_dmg_phy_range ;
+        String text_dmg_phy_percent = "<font color=#000000>"+phy_percent +"%</font>";
+        text_all_dmg_percent += sep_html3+text_dmg_phy_percent;
+
+        Integer feu_ecart =  maxFeu - minFeu;
+        if(!feu_ecart.equals(0)) {
+            feu_percent = 100*(sumFeu - minFeu) / feu_ecart;
+        }
+        String text_dmg_feu = "<font color=#DF0101>"+sumFeu+"</font>";
+        String text_dmg_feu_range = "<font color=#DF0101>["+minFeu+"-"+maxFeu+"]</font>";
+        String text_dmg_feu_percent = "<font color=#DF0101>"+feu_percent +"%</font>";
+
+
+        Integer Foudre_ecart =  maxFoudre - minFoudre;
+        if(!Foudre_ecart.equals(0)) {
+            foudre_percent = 100*(sumFoudre - minFoudre) / Foudre_ecart;
+        }
+        String text_dmg_Foudre = "<font color=#A9D0F5>"+sumFoudre+"</font>";
+        String text_dmg_Foudre_range = "<font color=#A9D0F5>["+minFoudre+"-"+maxFoudre+"]</font>";
+        String text_dmg_Foudre_percent = "<font color=#A9D0F5>"+foudre_percent +"%</font>";
+
+
+        Integer Froid_ecart =  maxFroid - minFroid;
+        if(!Froid_ecart.equals(0)) {
+            froid_percent = 100*(sumFoudre - minFoudre) / Froid_ecart;
+        }
+        String text_dmg_Froid = "<font color=#0404B4>"+sumFroid+"</font>";
+        String text_dmg_Froid_range = "<font color=#0404B4>["+minFroid+"-"+maxFroid+"]</font>";
+        String text_dmg_Froid_percent = "<font color=#0404B4>"+froid_percent +"%</font>";
+
+
+        if (settings.getBoolean("feu_intense_switch", getResources().getBoolean(R.bool.froid_intense_switch_def))) {
+            text_all_dmg+=sep_html+text_dmg_feu;
+            text_all_dmg_range += sep_html2+text_dmg_feu_range ;
+            text_all_dmg_percent += sep_html3+text_dmg_feu_percent;
+        }
+        if (settings.getBoolean("foudre_intense_switch", getResources().getBoolean(R.bool.foudre_intense_switch_def))) {
+            text_all_dmg+=sep_html+text_dmg_Foudre;
+            text_all_dmg_range += sep_html2+text_dmg_Foudre_range ;
+            text_all_dmg_percent += sep_html3+text_dmg_Foudre_percent;
+        }
+        if (settings.getBoolean("froid_intense_switch", getResources().getBoolean(R.bool.froid_intense_switch_def))) {
+
+            text_all_dmg_percent+= sep_html3+text_dmg_Froid_percent;
+            text_all_dmg_range += sep_html2+text_dmg_Froid_range ;
+            text_all_dmg+=sep_html+text_dmg_Froid;
         }
 
-        if (type.equals("foudre")){
-            for(int i=0; i<n_hit; i++){
-                if (mode.equals("normal")) {
-                    sum=sum+rand(6)+rand(6);
-                } else if (mode.equals("min")) {
-                    sum=sum+1+1;
-                } else if (mode.equals("max")) {
-                    sum=sum+6+6;
-                }
-            }
-            for(int i=0; i<n_crit; i++){
-                if (mode.equals("normal")) {
-                    sum=sum+rand(6)+rand(6)+rand(10)+rand(10);
-                } else if (mode.equals("min")) {
-                    sum=sum+1+1+1+1;
-                } else if (mode.equals("max")) {
-                    sum=sum+6+6+10+10;
-                }
-            }
-            return sum;
-        }
+        text_all_dmg=text_all_dmg.substring(sep_html.length());
+        text_all_dmg_range=text_all_dmg_range.substring(sep_html2.length());
+        text_all_dmg_percent=text_all_dmg_percent.substring(sep_html3.length());
 
-        if (type.equals("froid")){
-            for(int i=0; i<n_hit; i++){
-                if (mode.equals("normal")) {
-                    sum=sum+rand(6)+rand(6);
-                } else if (mode.equals("min")) {
-                    sum=sum+1+1;
-                } else if (mode.equals("max")) {
-                    sum=sum+6+6;
-                }
-            }
-            for(int i=0; i<n_crit; i++){
-                if (mode.equals("normal")) {
-                    sum=sum+rand(6)+rand(6)+rand(10)+rand(10);
-                } else if (mode.equals("min")) {
-                    sum=sum+1+1+1+1;
-                } else if (mode.equals("max")) {
-                    sum=sum+6+6+10+10;
-                }
-            }
-            return sum;
-        }
-        else {
-            return 0;
-        }
+        return new String[] {text_all_dmg, text_all_dmg_range , text_all_dmg_percent};
+
     }
 
 

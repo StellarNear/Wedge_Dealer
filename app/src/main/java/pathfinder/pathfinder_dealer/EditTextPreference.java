@@ -3,6 +3,9 @@ package pathfinder.pathfinder_dealer;
 import android.content.Context;
 import android.util.AttributeSet;
 
+
+// Cette classe est la pour refresh les sumamry dans setting avec les valeurs en cours
+
 public class EditTextPreference extends android.preference.EditTextPreference{
     public EditTextPreference(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
