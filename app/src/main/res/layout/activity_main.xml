@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="pathfinder.pathfinder_dealer.MainActivity">
+    tools:context="pathfinder.pathfinder_dealer.MainActivity"
+    android:fitsSystemWindows="true"
+    android:transitionName="transition">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -23,6 +25,15 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_damage_detail"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="10dp"
+        android:visibility="gone"
+        app:backgroundTint="@android:color/darker_gray"
+        app:srcCompat="@drawable/ic_more_horiz_black_24dp" />
 
     <TextView
         android:id="@+id/jet_att_textbox"
@@ -47,9 +58,7 @@
         app:layout_anchorGravity="bottom"
         android:layout_gravity="bottom"
         android:gravity="center"
-
         />
-
     <TextView
         android:id="@+id/multishot"
         android:layout_width="match_parent"
@@ -61,7 +70,7 @@
         app:layout_anchor="@+id/jet_att_textbox"
         app:layout_anchorGravity="bottom"
         android:layout_gravity="bottom"
-        android:layout_marginTop="155dp"/>
+        android:layout_marginTop="180dp"/>
 
     <TextView
         android:id="@+id/jet_att_ajout_textbox"
@@ -74,7 +83,7 @@
         app:layout_anchor="@+id/include"
         app:layout_anchorGravity="bottom"
         android:layout_gravity="bottom"
-        android:layout_marginTop="175dp"/>
+        android:layout_marginTop="210dp"/>
 
     <TextView
         android:id="@+id/hit_text"
@@ -180,6 +189,7 @@
         android:visibility="invisible"
         app:layout_anchor="@+id/all_dmg"
         app:layout_anchorGravity="bottom"
+        android:layout_marginTop="470dp"
         android:layout_gravity="bottom"
         />
 
@@ -207,17 +217,6 @@
         android:layout_marginBottom="10dp"
         app:backgroundTint="@android:color/holo_red_light"
         app:srcCompat="@drawable/ic_flare_black_24dp" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_damage_detail"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_gravity="bottom|center"
-        android:layout_marginBottom="10dp"
-        android:visibility="gone"
-        app:backgroundTint="@android:color/darker_gray"
-        app:srcCompat="@drawable/ic_more_horiz_black_24dp" />
-
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="match_parent"
@@ -228,6 +227,5 @@
         app:srcCompat="@drawable/ic_filter_center_focus_black_24dp"
 
         />
-
 
 </android.support.design.widget.CoordinatorLayout>

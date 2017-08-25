@@ -146,6 +146,7 @@ public class ImageAdapter  extends BaseAdapter {
             imageView.setScaleType(ImageView.ScaleType.FIT_END);
             imageView.setLayoutParams(new GridView.LayoutParams(GridView.AUTO_FIT, size_height));
 
+
         } else {
             imageView = (ImageView) convertView;
         }

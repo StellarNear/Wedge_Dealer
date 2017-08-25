@@ -3,9 +3,11 @@
     <string name="app_name">Pathfinder_Dealer</string>
     <string name="action_settings">Paramètres</string>
     <string name="title_activity_settings">Paramètres</string>
+    <string name="title_det_dmg">Détail des dégâts</string>
 
     <!-- Ressources perso -->
-
+    <integer name="fullheight">640</integer>
+    <integer name="fullwidth">320</integer>
     <!-- general  -->
     <string name="pref_header_general">Caractéristiques générales</string>
 

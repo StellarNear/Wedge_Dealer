@@ -1,0 +1,31 @@
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="pathfinder.pathfinder_dealer.MainActivity"
+    android:fitsSystemWindows="true"
+    android:transitionName="transition">
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_damage_detail_ondetlay"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="10dp"
+        app:backgroundTint="@android:color/darker_gray"
+        app:srcCompat="@drawable/ic_more_horiz_black_24dp" />
+    <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/GridLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="440dp"
+        android:columnCount="7"
+        android:rowCount="12"
+        android:orientation="horizontal"
+        tools:context=".DisplayDamageDetail" >
+
+    </GridLayout>
+
+
+
+</android.support.design.widget.CoordinatorLayout>

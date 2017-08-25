@@ -4,28 +4,20 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.provider.Settings;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
-import android.text.Layout;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.view.animation.TranslateAnimation;
-import android.widget.AbsoluteLayout;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -145,6 +137,13 @@ public class MainActivity extends AppCompatActivity {
                 affich_damage();
 
 
+            }});
+
+        FloatingActionButton fab_dmg_det = (FloatingActionButton) findViewById(R.id.fab_damage_detail);
+        fab_dmg_det.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                display_dmg_detail();
             }});
     }
 
@@ -625,6 +624,12 @@ public class MainActivity extends AppCompatActivity {
 
             firstDmgRoll=false;
         }
+
+    }
+
+    private void display_dmg_detail(){
+        Intent intent = new Intent(this, DisplayDamageDetail.class);
+        startActivity(intent);
 
     }
 
