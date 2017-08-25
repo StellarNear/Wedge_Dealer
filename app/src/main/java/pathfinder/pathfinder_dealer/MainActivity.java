@@ -535,7 +535,7 @@ public class MainActivity extends AppCompatActivity {
         // Instance of ImageAdapter Class
         if (firstDmgRoll) {
             //dmg_all_view,dmg_all_range_view,dmg_all_percent_view
-            String[] triple_text_dmg;
+            String[] triple_text_dmg= new String[] {"","",""};
             Integer n_type_dmg=1;
             List<String> list_element = new ArrayList<>(Arrays.asList("physique"));
             SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -844,28 +844,31 @@ public class MainActivity extends AppCompatActivity {
         Integer feu_ecart =  maxFeu - minFeu;
         if(!feu_ecart.equals(0)) {
             feu_percent = 100*(sumFeu - minFeu) / feu_ecart;
+            Log.d("STATE feu",String.valueOf(feu_percent) );
         }
         String text_dmg_feu = "<font color=#DF0101>"+sumFeu+"</font>";
         String text_dmg_feu_range = "<font color=#DF0101>["+minFeu+"-"+maxFeu+"]</font>";
         String text_dmg_feu_percent = "<font color=#DF0101>"+feu_percent +"%</font>";
 
 
-        Integer Foudre_ecart =  maxFoudre - minFoudre;
-        if(!Foudre_ecart.equals(0)) {
-            foudre_percent = 100*(sumFoudre - minFoudre) / Foudre_ecart;
+        Integer foudre_ecart =  maxFoudre - minFoudre;
+        if(!foudre_ecart.equals(0)) {
+            foudre_percent = 100*(sumFoudre - minFoudre) / foudre_ecart;
+            Log.d("STATE foudre",String.valueOf(foudre_percent) );
         }
-        String text_dmg_Foudre = "<font color=#A9D0F5>"+sumFoudre+"</font>";
-        String text_dmg_Foudre_range = "<font color=#A9D0F5>["+minFoudre+"-"+maxFoudre+"]</font>";
-        String text_dmg_Foudre_percent = "<font color=#A9D0F5>"+foudre_percent +"%</font>";
+        String text_dmg_foudre = "<font color=#A9D0F5>"+sumFoudre+"</font>";
+        String text_dmg_foudre_range = "<font color=#A9D0F5>["+minFoudre+"-"+maxFoudre+"]</font>";
+        String text_dmg_foudre_percent = "<font color=#A9D0F5>"+foudre_percent +"%</font>";
 
 
-        Integer Froid_ecart =  maxFroid - minFroid;
-        if(!Froid_ecart.equals(0)) {
-            froid_percent = 100*(sumFoudre - minFoudre) / Froid_ecart;
+        Integer froid_ecart =  maxFroid - minFroid;
+        if(!froid_ecart.equals(0)) {
+            froid_percent = 100*(sumFroid - minFroid) / froid_ecart;
+            Log.d("STATE froid",String.valueOf(froid_percent) );
         }
-        String text_dmg_Froid = "<font color=#0404B4>"+sumFroid+"</font>";
-        String text_dmg_Froid_range = "<font color=#0404B4>["+minFroid+"-"+maxFroid+"]</font>";
-        String text_dmg_Froid_percent = "<font color=#0404B4>"+froid_percent +"%</font>";
+        String text_dmg_froid = "<font color=#0404B4>"+sumFroid+"</font>";
+        String text_dmg_froid_range = "<font color=#0404B4>["+minFroid+"-"+maxFroid+"]</font>";
+        String text_dmg_froid_percent = "<font color=#0404B4>"+froid_percent +"%</font>";
 
 
         if (settings.getBoolean("feu_intense_switch", getResources().getBoolean(R.bool.froid_intense_switch_def))) {
@@ -874,20 +877,25 @@ public class MainActivity extends AppCompatActivity {
             text_all_dmg_percent += sep_html3+text_dmg_feu_percent;
         }
         if (settings.getBoolean("foudre_intense_switch", getResources().getBoolean(R.bool.foudre_intense_switch_def))) {
-            text_all_dmg+=sep_html+text_dmg_Foudre;
-            text_all_dmg_range += sep_html2+text_dmg_Foudre_range ;
-            text_all_dmg_percent += sep_html3+text_dmg_Foudre_percent;
+            text_all_dmg+=sep_html+text_dmg_foudre;
+            text_all_dmg_range += sep_html2+text_dmg_foudre_range ;
+            text_all_dmg_percent += sep_html3+text_dmg_foudre_percent;
         }
         if (settings.getBoolean("froid_intense_switch", getResources().getBoolean(R.bool.froid_intense_switch_def))) {
 
-            text_all_dmg_percent+= sep_html3+text_dmg_Froid_percent;
-            text_all_dmg_range += sep_html2+text_dmg_Froid_range ;
-            text_all_dmg+=sep_html+text_dmg_Froid;
+            text_all_dmg_percent+= sep_html3+text_dmg_froid_percent;
+            text_all_dmg_range += sep_html2+text_dmg_froid_range ;
+            text_all_dmg+=sep_html+text_dmg_froid;
         }
 
         text_all_dmg=text_all_dmg.substring(sep_html.length());
         text_all_dmg_range=text_all_dmg_range.substring(sep_html2.length());
         text_all_dmg_percent=text_all_dmg_percent.substring(sep_html3.length());
+
+        Log.d("STATE text_all_dmg",text_all_dmg );
+        Log.d("STATE text_all_dmg_range",text_all_dmg_range );
+        Log.d("STATE text_all_dmg_percent",text_all_dmg_percent );
+
 
         return new String[] {text_all_dmg, text_all_dmg_range , text_all_dmg_percent};
 
