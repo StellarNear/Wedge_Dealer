@@ -123,6 +123,9 @@ public class MainActivity extends AppCompatActivity {
                     box.setChecked(false);
                 }
 
+                FloatingActionButton fab_dmg_det = (FloatingActionButton) findViewById(R.id.fab_damage_detail);
+                if (all_dices_str.equals("")){fab_dmg_det.setEnabled(false);} else {fab_dmg_det.setEnabled(true);}
+
                 CheckBox hit_1_crit = (CheckBox) findViewById(R.id.checkBox1_crit) ;
                 CheckBox hit_2_crit = (CheckBox) findViewById(R.id.checkBox2_crit) ;
                 CheckBox hit_3_crit = (CheckBox) findViewById(R.id.checkBox3_crit) ;
@@ -160,6 +163,8 @@ public class MainActivity extends AppCompatActivity {
 
                 affich_damage();
 
+                FloatingActionButton fab_dmg_det = (FloatingActionButton) findViewById(R.id.fab_damage_detail);
+                if (all_dices_str.equals("")){fab_dmg_det.setEnabled(false);} else {fab_dmg_det.setEnabled(true);}
 
 
             }});
@@ -168,6 +173,7 @@ public class MainActivity extends AppCompatActivity {
         fab_dmg_det.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 display_dmg_detail();
             }});
     }
@@ -846,9 +852,9 @@ public class MainActivity extends AppCompatActivity {
             feu_percent = 100*(sumFeu - minFeu) / feu_ecart;
             Log.d("STATE feu",String.valueOf(feu_percent) );
         }
-        String text_dmg_feu = "<font color=#DF0101>"+sumFeu+"</font>";
-        String text_dmg_feu_range = "<font color=#DF0101>["+minFeu+"-"+maxFeu+"]</font>";
-        String text_dmg_feu_percent = "<font color=#DF0101>"+feu_percent +"%</font>";
+        String text_dmg_feu = "<font color=#FF4000>"+sumFeu+"</font>";
+        String text_dmg_feu_range = "<font color=#FF4000>["+minFeu+"-"+maxFeu+"]</font>";
+        String text_dmg_feu_percent = "<font color=#FF4000>"+feu_percent +"%</font>";
 
 
         Integer foudre_ecart =  maxFoudre - minFoudre;
