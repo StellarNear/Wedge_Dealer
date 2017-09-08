@@ -285,8 +285,11 @@ public class MainActivity extends AppCompatActivity {
 
         list_att.set(prouesse_attrib-1,prouesse+list_att.get(prouesse_attrib-1));
 
+        String temp_att_str = settings.getString("att_buff",getResources().getString(R.string.att_buff_def));
+        Integer temp_att = to_int(temp_att_str,"Augmentation d'attaque");
+
         //calcul du jet max d'attaque
-        int max_att_jet = list_att_base.get(0) + 3*thor + predi  + val_dex + magic*magic_val + neuf_m + epic_val;
+        int max_att_jet = list_att_base.get(0) + 3*thor + predi  + val_dex + magic*magic_val + neuf_m + epic_val + temp_att;
 
 
         //calcul du nobmre d'attaque de base
@@ -295,7 +298,7 @@ public class MainActivity extends AppCompatActivity {
 
         // ajout du bonus attaque à toute les attaque
         for(int i=0; i<n_att; i++){
-            list_att.set(i,list_att.get(i) + 3*thor + 1*predi  + val_dex + magic*magic_val + neuf_m + epic_val);
+            list_att.set(i,list_att.get(i) + 3*thor + 1*predi  + val_dex + magic*magic_val + neuf_m + epic_val + temp_att);
         }
 
 
@@ -394,14 +397,17 @@ public class MainActivity extends AppCompatActivity {
 
         list_att.set(prouesse_attrib-1,prouesse+list_att.get(prouesse_attrib-1));
 
-        int max_att_jet = list_att_base.get(0) + 3*thor + predi  + val_dex + magic*magic_val + neuf_m + epic_val;
+        String temp_att_str = settings.getString("att_buff",getResources().getString(R.string.att_buff_def));
+        Integer temp_att = to_int(temp_att_str,"Augmentation d'attaque");
+
+        int max_att_jet = list_att_base.get(0) + 3*thor + predi  + val_dex + magic*magic_val + neuf_m + epic_val +temp_att;
 
 
         int length = list_att.size();
         n_att = length;
 
         for(int i=0; i<n_att; i++){
-            list_att.set(i,list_att.get(i) + 3*thor + 1*predi  + val_dex + magic*magic_val + neuf_m + epic_val);
+            list_att.set(i,list_att.get(i) + 3*thor + 1*predi  + val_dex + magic*magic_val + neuf_m + epic_val+temp_att);
         }
 
 
@@ -690,7 +696,10 @@ public class MainActivity extends AppCompatActivity {
             bonus_viser = 2*to_int(malus_viser_str,"Valeur du malus");
         }
 
-        Integer ajout_dmg = 3*thor+neuf_m+magic*magic_val+4*composi+epic_dmg_val+bonus_viser;
+        String temp_dmg_str = settings.getString("dmg_buff",getResources().getString(R.string.dmg_buff_def));
+        Integer temp_dmg = to_int(temp_dmg_str,"Augmentation de dégat");
+
+        Integer ajout_dmg = 3*thor+neuf_m+magic*magic_val+4*composi+epic_dmg_val+bonus_viser+temp_dmg;
 
 
         /////////// Lancement des attaques

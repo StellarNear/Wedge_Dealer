@@ -17,4 +17,10 @@
         android:icon="@drawable/ic_whatshot_black_24dp"
         android:title="@string/pref_header_enchant" />
 
+    <header
+        android:fragment="pathfinder.pathfinder_dealer.SettingsActivity$TempPreferenceFragment"
+        android:icon="@drawable/ic_timelapse_black_24dp"
+        android:title="@string/pref_header_temp" />
+
+
 </preference-headers>

@@ -13,7 +13,7 @@
         android:title="@string/magic_val"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:summary="Valeurs : %s"/>
+        android:summary="Valeur : %s"/>
     <SwitchPreference
         android:defaultValue="@bool/feu_intense_switch_def"
         android:key="feu_intense_switch"

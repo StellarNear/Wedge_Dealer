@@ -27,7 +27,7 @@
         android:title="@string/viser_val"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:summary="Valeurs : -%s"/>
+        android:summary="Valeur : -%s"/>
     <SwitchPreference
         android:defaultValue="@bool/feu_nourri_switch_def"
         android:key="feu_nourri_switch"

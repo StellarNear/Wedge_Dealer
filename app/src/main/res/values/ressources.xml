@@ -85,4 +85,11 @@
     <string name="froid_summ">+2d6 dégâts de froid. +2d10 en critique</string>
     <bool name="froid_intense_switch_def">true</bool>
 
+    <!-- BUFF -->
+    <string name="pref_header_temp">Augmentations temporaires</string>
+    <string name="att_buff_def">0</string>
+    <string name="att_buff">Augmentation d\'attaque</string>
+    <string name="dmg_buff_def">0</string>
+    <string name="dmg_buff">Augmentation de dégât</string>
+
 </resources>
