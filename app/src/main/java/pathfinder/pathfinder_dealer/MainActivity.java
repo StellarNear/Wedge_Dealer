@@ -1,15 +1,18 @@
 package pathfinder.pathfinder_dealer;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,22 +21,25 @@ import android.widget.CheckBox;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
-    boolean shouldExecuteOnResume;
+    //boolean shouldExecuteOnResume;    //permet de setup que certaine chose lors de la premeire execuution
 
-    Integer n_att;
-    boolean firstDmgRoll;
-    String all_dices_str="";
+    Integer n_att;                        //nombre d'attaque
+    boolean firstDmgRoll;                 // premiere fois qu'on lance les degats ?
+    String all_dices_str="";              // tout les dés lancé pour les degats
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        shouldExecuteOnResume = false;
+        //shouldExecuteOnResume = false;
+
         // reset les pref au defaut
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = prefs.edit();
@@ -45,22 +51,24 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        jet_att_print();
+        jet_att_print();  // affichage premier de la base d'attaque calcul aussi n_att
 
-
+        //premier bouton (jet d'attaque)
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                jet_att_print();  //refresh quand le bouton est cliquer pour le cas de modif setting et relance
+
                 FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-                fab.animate().setDuration(1000).translationX(-400).start();
+                fab.animate().setDuration(1000).translationX(-400).start();       //decale le bouton à gauche pour l'apparition du suivant
 
                 SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
                 Snackbar.make(view, "Lancement des dés en cours... ",Snackbar.LENGTH_LONG).show();
 
-                set_grid();
+                set_grid();                        //affiche les dés d'attaque   et lance dans un second temps les calcul et affichage des valeurs apres rand
 
                 TextView multi_text = (TextView) findViewById(R.id.multishot);
                 multi_text.setVisibility(View.INVISIBLE);
@@ -77,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 TextView hit_text = (TextView) findViewById(R.id.hit_text);
                 hit_text.setVisibility(View.VISIBLE);
 
-                set_checkbox_hit();
+                set_checkbox_hit();      //affiches les boites de hit
 
                 CheckBox checkBox6_crit = (CheckBox) findViewById(R.id.checkBox6_crit);
                 checkBox6_crit.setVisibility(View.INVISIBLE);
@@ -87,13 +95,13 @@ public class MainActivity extends AppCompatActivity {
                 TextView crit_text = (TextView) findViewById(R.id.crit_text);
                 crit_text.setVisibility(View.VISIBLE);
 
-                set_checkbox_crit();
+                set_checkbox_crit();      //affiches les boites de crit
 
-                View bar_sep = findViewById(R.id.bar_sep);
+                View bar_sep = findViewById(R.id.bar_sep);                //affiche une séparation
                 bar_sep.setVisibility(View.VISIBLE);
 
 
-                View fab_damage_view = findViewById(R.id.fab_damage);
+                View fab_damage_view = findViewById(R.id.fab_damage);          //bouton de degat
 
                 AlphaAnimation anim = new AlphaAnimation(0,1);
                 anim.setDuration(2000);
@@ -112,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
                 dmg_all_percent_view.setVisibility(View.INVISIBLE);
                 all_dices_str="";
 
+                //decouche toutes les boites apres clic du bouton attaque
                 CheckBox hit_1 = (CheckBox) findViewById(R.id.checkBox1) ;
                 CheckBox hit_2 = (CheckBox) findViewById(R.id.checkBox2) ;
                 CheckBox hit_3 = (CheckBox) findViewById(R.id.checkBox3) ;
@@ -122,9 +131,6 @@ public class MainActivity extends AppCompatActivity {
                 for (CheckBox box : all_check_hit )  {
                     box.setChecked(false);
                 }
-
-                FloatingActionButton fab_dmg_det = (FloatingActionButton) findViewById(R.id.fab_damage_detail);
-                if (all_dices_str.equals("")){fab_dmg_det.setEnabled(false);} else {fab_dmg_det.setEnabled(true);}
 
                 CheckBox hit_1_crit = (CheckBox) findViewById(R.id.checkBox1_crit) ;
                 CheckBox hit_2_crit = (CheckBox) findViewById(R.id.checkBox2_crit) ;
@@ -137,11 +143,12 @@ public class MainActivity extends AppCompatActivity {
                     box.setChecked(false);
                 }
 
-                firstDmgRoll=true;
+                firstDmgRoll=true;  //premiere fois qu'on lance les degats
 
 
             }});
 
+        //bouton de degat
         FloatingActionButton fab_dmg = (FloatingActionButton) findViewById(R.id.fab_damage);
         fab_dmg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,11 +168,26 @@ public class MainActivity extends AppCompatActivity {
                 anim.setDuration(2000);
                 fab_damage_det_view.startAnimation(anim);
 
-                affich_damage();
+                //si c'est pas la premeire fois qu'on lance les degat on demande confirmation
+                if (firstDmgRoll) {
+                    affich_damage();   //calcul et affiche les degats
+                } else {
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setTitle("Demande de confirmation")
+                            .setMessage("Voulez vous relancer des jets de dégâts pour l'attaque en cours ?")
+                            .setIcon(android.R.drawable.ic_menu_help)
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    affich_damage();
+                                }})
+                            .setNegativeButton(android.R.string.no, null).show();
+
+                }
+
+                //bouton detail des degats
 
                 FloatingActionButton fab_dmg_det = (FloatingActionButton) findViewById(R.id.fab_damage_detail);
                 if (all_dices_str.equals("")){fab_dmg_det.setEnabled(false);} else {fab_dmg_det.setEnabled(true);}
-
 
             }});
 
@@ -183,11 +205,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(shouldExecuteOnResume){
-            jet_att_print();
-        } else {
-            shouldExecuteOnResume = true;
-        }
+        //pour l'instant rien de spécial en resume (on reecrit pas apre ssorti de smenu settings)
+        //if shouldExecuteOnResume = false pour faire qu'une fois et pas au refresh
     }
 
 
@@ -214,20 +233,21 @@ public class MainActivity extends AppCompatActivity {
 
         //calcul des valeurs d'attaque
 
-        String att_base = settings.getString("jet_att",getResources().getString(R.string.jet_att_def));
+        String att_base = settings.getString("jet_att",getResources().getString(R.string.jet_att_def));     //cherche la clef     jet_att dans les setting sinon valeur def (xml)
         String delim = ",";
 
         String[] list_att_base_string = att_base.split(delim);
 
         List<Integer> list_att_base = new ArrayList<Integer>();
 
-
         for (String each : list_att_base_string) {
-            list_att_base.add(Integer.parseInt(each));
+            list_att_base.add(to_int(each,"Valeur d'attaque de base"));
         }
 
         List<Integer> list_att = new ArrayList<Integer>(list_att_base);
 
+
+        //calcul des ajouts en attaque
         Integer thor;
         Integer predi;
         Integer neuf_m;
@@ -248,30 +268,32 @@ public class MainActivity extends AppCompatActivity {
 
 
         String val_dex_str = settings.getString("mod_dex",getResources().getString(R.string.mod_dex_def));
-        Integer val_dex = Integer.parseInt(val_dex_str);
+        Integer val_dex = to_int(val_dex_str,"Modificateur de déxtérité");
 
         String magic_val_str = settings.getString("magic_val",getResources().getString(R.string.magic_val_def));
-        Integer magic_val = Integer.parseInt(magic_val_str);
+        Integer magic_val = to_int(magic_val_str,"Valeur de l'altération");
 
         String epic_str = settings.getString("epic_val",getResources().getString(R.string.epic_val_def));
-        Integer epic_val = Integer.parseInt(epic_str);
+        Integer epic_val = to_int(epic_str,"Point d'attaque épique");
 
 
         String prouesse_str = settings.getString("prouesse_val",getResources().getString(R.string.prouesse_def));
-        Integer prouesse = Integer.parseInt(prouesse_str);
+        Integer prouesse = to_int(prouesse_str,"Point de prouesse");
 
         String prouesse_attrib_str = settings.getString("prouesse_attrib",getResources().getString(R.string.prouesse_attrib_def));
-        Integer prouesse_attrib = Integer.parseInt(prouesse_attrib_str);
+        Integer prouesse_attrib = Integer.parseInt(prouesse_attrib_str);      //pas besoin de to_int car la valeur est indexée
 
         list_att.set(prouesse_attrib-1,prouesse+list_att.get(prouesse_attrib-1));
 
+        //calcul du jet max d'attaque
         int max_att_jet = list_att_base.get(0) + 3*thor + predi  + val_dex + magic*magic_val + neuf_m + epic_val;
 
 
-
+        //calcul du nobmre d'attaque de base
         int length = list_att.size();
         n_att = length;
 
+        // ajout du bonus attaque à toute les attaque
         for(int i=0; i<n_att; i++){
             list_att.set(i,list_att.get(i) + 3*thor + 1*predi  + val_dex + magic*magic_val + neuf_m + epic_val);
         }
@@ -281,7 +303,6 @@ public class MainActivity extends AppCompatActivity {
             n_att=n_att+1;
             list_att.add(0,max_att_jet);
         }
-
 
 
         if (settings.getBoolean("tir_rapide",getResources().getBoolean(R.bool.tir_rapide_switch_def))) {
@@ -295,7 +316,7 @@ public class MainActivity extends AppCompatActivity {
         if (settings.getBoolean("viser",getResources().getBoolean(R.bool.viser_switch_def))) {
             for(int i=0; i<n_att; i++){
                 String malus_viser_str = settings.getString("viser_val",getResources().getString(R.string.viser_val_def));
-                Integer malus_viser = Integer.parseInt(malus_viser_str);
+                Integer malus_viser = to_int(malus_viser_str,"Valeur du malus");
                 list_att.set(i,list_att.get(i) -malus_viser);
             }
         }
@@ -331,7 +352,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         for (String each : list_att_base_string) {
-            list_att_base.add(Integer.parseInt(each));
+            list_att_base.add(to_int(each,"Valeur d'attaque de base"));
         }
 
         List<Integer> list_att = new ArrayList<Integer>(list_att_base);
@@ -356,20 +377,20 @@ public class MainActivity extends AppCompatActivity {
 
 
         String val_dex_str = settings.getString("mod_dex",getResources().getString(R.string.mod_dex_def));
-        Integer val_dex = Integer.parseInt(val_dex_str);
+        Integer val_dex = to_int(val_dex_str,"Modificateur de déxtérité");
 
         String magic_val_str = settings.getString("magic_val",getResources().getString(R.string.magic_val_def));
-        Integer magic_val = Integer.parseInt(magic_val_str);
+        Integer magic_val = to_int(magic_val_str,"Valeur de l'altération");
 
         String epic_str = settings.getString("epic_val",getResources().getString(R.string.epic_val_def));
-        Integer epic_val = Integer.parseInt(epic_str);
+        Integer epic_val = to_int(epic_str,"Point d'attaque épique");
 
 
         String prouesse_str = settings.getString("prouesse_val",getResources().getString(R.string.prouesse_def));
-        Integer prouesse = Integer.parseInt(prouesse_str);
+        Integer prouesse = to_int(prouesse_str,"Point de prouesse");
 
         String prouesse_attrib_str = settings.getString("prouesse_attrib",getResources().getString(R.string.prouesse_attrib_def));
-        Integer prouesse_attrib = Integer.parseInt(prouesse_attrib_str);
+        Integer prouesse_attrib = Integer.parseInt(prouesse_attrib_str);      //pas besoin de to_int car la valeur est indexée
 
         list_att.set(prouesse_attrib-1,prouesse+list_att.get(prouesse_attrib-1));
 
@@ -402,7 +423,7 @@ public class MainActivity extends AppCompatActivity {
         if (settings.getBoolean("viser",getResources().getBoolean(R.bool.viser_switch_def))) {
             for(int i=0; i<n_att; i++){
                 String malus_viser_str = settings.getString("viser_val",getResources().getString(R.string.viser_val_def));
-                Integer malus_viser = Integer.parseInt(malus_viser_str);
+                Integer malus_viser = to_int(malus_viser_str,"Valeur du malus");
                 list_att.set(i,list_att.get(i) -malus_viser);
             }
         }
@@ -427,12 +448,12 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void set_grid() {
-        //setContentView(R.layout.grid_map);  C'est ca qui efface toute la view
+
         GridView grid = (GridView) findViewById(R.id.grid_dice_id);
 
         // Instance of ImageAdapter Class
 
-        Integer jet1= rand(20),jet2= rand(20),jet3= rand(20),jet4= rand(20),jet5 = rand(20) ,jet6 = rand(20);
+        Integer jet1= rand(20),jet2= rand(20),jet3= rand(20),jet4= rand(20),jet5 = rand(20) ,jet6 = rand(20);   //lancement de 6 jet d'attaque
         String jet1_str=String.valueOf(jet1),jet2_str=String.valueOf(jet2),jet3_str=String.valueOf(jet3),
                 jet4_str=String.valueOf(jet4),jet5_str=String.valueOf(jet5),jet6_str=String.valueOf(jet6);
 
@@ -539,83 +560,99 @@ public class MainActivity extends AppCompatActivity {
         GridView grid_element = (GridView) findViewById(R.id.grid_element);
         grid_element.setVisibility(View.VISIBLE);
         // Instance of ImageAdapter Class
-        if (firstDmgRoll) {
-            //dmg_all_view,dmg_all_range_view,dmg_all_percent_view
-            String[] triple_text_dmg= new String[] {"","",""};
-            Integer n_type_dmg=1;
-            List<String> list_element = new ArrayList<>(Arrays.asList("physique"));
-            SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-            if (settings.getBoolean("feu_intense_switch",getResources().getBoolean(R.bool.feu_intense_switch_def))) {
-                list_element.add("feu");
-                n_type_dmg++;
-            }
-            if (settings.getBoolean("foudre_intense_switch",getResources().getBoolean(R.bool.foudre_intense_switch_def))) {
-                list_element.add("foudre");
-                n_type_dmg++;
-            }
-            if (settings.getBoolean("froid_intense_switch",getResources().getBoolean(R.bool.froid_intense_switch_def))) {
-                list_element.add("froid");
-                n_type_dmg++;
-            }
-
-            TextView dmg_all_view = (TextView) findViewById(R.id.all_dmg);
-            dmg_all_view.setVisibility(View.VISIBLE);
-            TextView dmg_all_range_view = (TextView) findViewById(R.id.all_dmg_range);
-            dmg_all_range_view.setVisibility(View.VISIBLE);
-            TextView dmg_all_percent_view = (TextView) findViewById(R.id.all_dmg_percent);
-            dmg_all_percent_view.setVisibility(View.VISIBLE);
-
-            grid_element.setAdapter(new ImageAdapter(this, list_element, 75));
-
-            if (n_type_dmg.equals(3)){
-                grid_element.setPadding(240, 0, 0, 0);
-                dmg_all_view.setPadding(-25, 0, 0, 0);
-                dmg_all_range_view.setPadding(-25, 0, 0, 0);
-            }  else if (n_type_dmg.equals(2)) {
-                grid_element.setPadding(370, 0, 0, 0);
-                dmg_all_view.setPadding(-50, 0, 0, 0);
-                dmg_all_range_view.setPadding(-50, 0, 0, 0);
-            } else if (n_type_dmg.equals(1)) {
-                grid_element.setPadding(470, 0, 0, 0);
-                dmg_all_view.setPadding(0, 0, 0, 0);
-                dmg_all_range_view.setPadding(0, 0, 0, 0);
-            }  else  {
-                grid_element.setPadding(0,0,0,0);
-                dmg_all_view.setPadding(0, 0, 0, 0);
-                dmg_all_range_view.setPadding(0, 0, 0, 0);
-            }
-            triple_text_dmg = calcul_damage();
-            dmg_all_view.setText(Html.fromHtml(triple_text_dmg[0]));
-            dmg_all_range_view.setText(Html.fromHtml(triple_text_dmg[1]));
-            dmg_all_percent_view.setText(Html.fromHtml(triple_text_dmg[2]));
-
-            firstDmgRoll=false;
+        //dmg_all_view,dmg_all_range_view,dmg_all_percent_view
+        all_dices_str="";
+        String[] triple_text_dmg= new String[] {"","",""};
+        Integer n_type_dmg=1;
+        List<String> list_element = new ArrayList<>(Arrays.asList("physique"));
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        if (settings.getBoolean("feu_intense_switch",getResources().getBoolean(R.bool.feu_intense_switch_def))) {
+            list_element.add("feu");
+            n_type_dmg++;
+        }
+        if (settings.getBoolean("foudre_intense_switch",getResources().getBoolean(R.bool.foudre_intense_switch_def))) {
+            list_element.add("foudre");
+            n_type_dmg++;
+        }
+        if (settings.getBoolean("froid_intense_switch",getResources().getBoolean(R.bool.froid_intense_switch_def))) {
+            list_element.add("froid");
+            n_type_dmg++;
         }
 
+        TextView dmg_all_view = (TextView) findViewById(R.id.all_dmg);
+        dmg_all_view.setVisibility(View.VISIBLE);
+        TextView dmg_all_range_view = (TextView) findViewById(R.id.all_dmg_range);
+        dmg_all_range_view.setVisibility(View.VISIBLE);
+        TextView dmg_all_percent_view = (TextView) findViewById(R.id.all_dmg_percent);
+        dmg_all_percent_view.setVisibility(View.VISIBLE);
+
+        grid_element.setAdapter(new ImageAdapter(this, list_element, 75));
+
+        if (n_type_dmg.equals(3)){
+            grid_element.setPadding(240, 0, 0, 0);
+            dmg_all_view.setPadding(-25, 0, 0, 0);
+            dmg_all_range_view.setPadding(-25, 0, 0, 0);
+        }  else if (n_type_dmg.equals(2)) {
+            grid_element.setPadding(370, 0, 0, 0);
+            dmg_all_view.setPadding(-50, 0, 0, 0);
+            dmg_all_range_view.setPadding(-50, 0, 0, 0);
+        } else if (n_type_dmg.equals(1)) {
+            grid_element.setPadding(470, 0, 0, 0);
+            dmg_all_view.setPadding(0, 0, 0, 0);
+            dmg_all_range_view.setPadding(0, 0, 0, 0);
+        }  else  {
+            grid_element.setPadding(0,0,0,0);
+            dmg_all_view.setPadding(0, 0, 0, 0);
+            dmg_all_range_view.setPadding(0, 0, 0, 0);
+        }
+
+        triple_text_dmg = calcul_damage(); //calcul les degats
+
+        dmg_all_view.setText(Html.fromHtml(triple_text_dmg[0]));
+        dmg_all_range_view.setText(Html.fromHtml(triple_text_dmg[1]));
+        dmg_all_percent_view.setText(Html.fromHtml(triple_text_dmg[2]));
+
+        //desactive le detail button si y a rien à afficher
+        FloatingActionButton fab_dmg_det = (FloatingActionButton) findViewById(R.id.fab_damage_detail);
+        if (all_dices_str.equals("")){fab_dmg_det.setEnabled(false);} else {fab_dmg_det.setEnabled(true);}
+        firstDmgRoll=false;
     }
 
     private void display_dmg_detail(){
         Intent intent = new Intent(this, DisplayDamageDetail.class);
 
+        //on enlève les derneir , et ; en fin de chaine
         while (all_dices_str.substring(all_dices_str.length() - 1, all_dices_str.length()).equals(",") || all_dices_str.substring(all_dices_str.length() - 1, all_dices_str.length()).equals(";"))
         {
             all_dices_str = all_dices_str.substring(0, all_dices_str.length() - 1);
         }
 
-        Log.d("STATE",all_dices_str );
-        intent.putExtra("all_dices_str",all_dices_str);
+        Log.d("STATE b4 display detail",all_dices_str );   //sorti debug
+        intent.putExtra("all_dices_str",all_dices_str);    //transmet la variable à l'autre activité
 
 
-        startActivity(intent);
+        startActivity(intent);      //lance l'affichage des detail
 
     }
 
+    private Integer to_int(String key,String field){
+        Integer value;
+        try {
+            value = Integer.parseInt(key);
+        } catch (Exception e){
+            Toast toast = Toast.makeText(MainActivity.this, "Attention la valeur : "+key+"\nDu champ : "+field+"\nEst incorrecte, valeur mise à 0.", Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.CENTER|Gravity.CENTER_HORIZONTAL,0,0);
+            toast.show();
+            value=0;
+        }
+        return value;
+    }
 
     private String[] calcul_damage() {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         Integer multi_val=1;
         if (settings.getBoolean("feu_nourri_switch",getResources().getBoolean(R.bool.feu_nourri_switch_def)))  {
-            multi_val = Integer.parseInt(getString(R.string.multi_value));
+            multi_val = to_int(getString(R.string.multi_value),"Valeur de multishot #interne XML#");
         }
 
         /////////// Degat commun attaques phy
@@ -642,15 +679,15 @@ public class MainActivity extends AppCompatActivity {
 
 
         String magic_val_str = settings.getString("magic_val",getResources().getString(R.string.magic_val_def));
-        Integer magic_val = Integer.parseInt(magic_val_str);
+        Integer magic_val = to_int(magic_val_str,"Valeur de l'altération");
 
         String epic_dmg_str = settings.getString("epic_dmg_val",getResources().getString(R.string.epic_dmg_val_def));
-        Integer epic_dmg_val = Integer.parseInt(epic_dmg_str);
+        Integer epic_dmg_val = to_int(epic_dmg_str,"Point de dégât épique");
 
         Integer bonus_viser=0;
         if (settings.getBoolean("viser",getResources().getBoolean(R.bool.viser_switch_def))) {
             String malus_viser_str = settings.getString("viser_val",getResources().getString(R.string.viser_val_def));
-            bonus_viser = 2*Integer.parseInt(malus_viser_str);
+            bonus_viser = 2*to_int(malus_viser_str,"Valeur du malus");
         }
 
         Integer ajout_dmg = 3*thor+neuf_m+magic*magic_val+4*composi+epic_dmg_val+bonus_viser;
@@ -721,7 +758,7 @@ public class MainActivity extends AppCompatActivity {
                         minFroid += 1 + 1;
                         maxFroid += 6 + 6;
                     }
-                    if (!all_dices_str.substring(all_dices_str.length()-1,all_dices_str.length()).equals(";")) {all_dices_str +=";";}
+                    if (!all_dices_str.substring(all_dices_str.length()-1,all_dices_str.length()).equals(";")) {all_dices_str +=";";} //si le derneir character n'est pas une fin de fleche (;) on rajoute la fin
                 }
 
             }
@@ -763,8 +800,8 @@ public class MainActivity extends AppCompatActivity {
                 if (settings.getBoolean("froid_intense_switch",getResources().getBoolean(R.bool.froid_intense_switch_def))) {
                     Integer jet_froid=rand(6);
                     Integer jet2_froid=rand(6);
-                    Integer jet3_froid=rand(6);
-                    Integer jet4_froid=rand(6);
+                    Integer jet3_froid=rand(10);
+                    Integer jet4_froid=rand(10);
                     all_dices_str+="froid_d6_"+String.valueOf(jet_froid)+",froid_d6_"+String.valueOf(jet2_froid)+",froid_d10_"+String.valueOf(jet3_froid)+",froid_d10_"+String.valueOf(jet4_froid)+",";
                     sumFroid+=jet_froid+jet2_froid+jet3_froid+jet4_froid;
                     minFroid+=1+1+1+1;
@@ -819,9 +856,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        ///////////////////////////////////////////////////////////////////////////////////////////
-        //partie à modifié pour s'integer et construire les fleche une a une et au final return la chaine de str html à affihcer
-        ///////////////////////////////////////////////////////////////////////////////////////////
+        // affichage des texte degat et range et pourcent
 
         String text_all_dmg="";
         String text_all_dmg_range="";
@@ -899,8 +934,8 @@ public class MainActivity extends AppCompatActivity {
         text_all_dmg_percent=text_all_dmg_percent.substring(sep_html3.length());
 
         Log.d("STATE text_all_dmg",text_all_dmg );
-        Log.d("STATE text_all_dmg_range",text_all_dmg_range );
-        Log.d("STATE text_all_dmg_percent",text_all_dmg_percent );
+        Log.d("STATE txt_dmg_range",text_all_dmg_range );
+        Log.d("STATE txt_dmg_percent",text_all_dmg_percent );
 
 
         return new String[] {text_all_dmg, text_all_dmg_range , text_all_dmg_percent};
