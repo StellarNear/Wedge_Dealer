@@ -211,7 +211,7 @@
         android:id="@+id/proba_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Probabilité de dépacement (>=) :"
+        android:text="Probabilité de dépacement (>) :"
         android:textAlignment="center"
         android:textSize="18sp"
         android:visibility="invisible"

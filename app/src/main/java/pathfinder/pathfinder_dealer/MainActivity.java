@@ -23,6 +23,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -677,14 +680,20 @@ public class MainActivity extends AppCompatActivity {
         Integer magic;
         Integer composi;
 
-        Integer sumPhy,sumPhyprob,minPhyprob,sumFeu,sumFoudre,sumFroid,minPhy,maxPhy,minFeu,maxFeu,minFoudre,maxFoudre,minFroid,maxFroid;
-        sumPhy=sumPhyprob=minPhyprob=sumFeu=sumFoudre=sumFroid=minPhy=maxPhy=minFeu=maxFeu=minFoudre=maxFoudre=minFroid=maxFroid=0;
+        Integer sumPhy,sumPhyprob,sumFeu,sumFoudre,sumFroid,minPhy,maxPhy,minFeu,maxFeu,minFoudre,maxFoudre,minFroid,maxFroid,nd8Phy,nd6Feu,nd10Feu,nd6Foudre,nd10Foudre,nd6Froid,nd10Froid;
+        sumPhy=sumPhyprob=sumFeu=sumFoudre=sumFroid=minPhy=maxPhy=minFeu=maxFeu=minFoudre=maxFoudre=minFroid=maxFroid=nd8Phy=nd6Feu=nd10Feu=nd6Foudre=nd10Foudre=nd6Froid=nd10Froid=0;
+        Double probPhy2,probFeu2,probFoudre2,probFroid2;
 
-        Double probPhy,probFeu,probFoudre,probFroid;
-        Double variPhy,variFeu,variFoudre,variFroid;
-        Double moyPhy,moyFeu,moyFoudre,moyFroid;
-        variPhy=variFeu=variFoudre=variFroid=0.0;
-        moyPhy=moyFeu=moyFoudre=moyFroid=0.0;
+
+        // ancienne declaration pour la métode intégrade de proba gaussiene
+
+        //Integer minPhyprob;
+        //minPhyprob=0;
+        //Double probPhy,probFeu,probFoudre,probFroid
+        //Double variPhy,variFeu,variFoudre,variFroid;
+        //Double moyPhy,moyFeu,moyFoudre,moyFroid;
+        //variPhy=variFeu=variFoudre=variFroid=0.0;
+        //moyPhy=moyFeu=moyFoudre=moyFroid=0.0;
 
         if (settings.getBoolean("thor_switch",getResources().getBoolean(R.bool.thor_switch_def))) {
             thor = 1;
@@ -754,9 +763,10 @@ public class MainActivity extends AppCompatActivity {
                     minPhy += 1 + ajout_dmg;
                     maxPhy += 8 + ajout_dmg;
                     sumPhyprob+=jet;
-                    minPhyprob+=1;
-                    variPhy+=63.0/12.0;
-                    moyPhy+=4.5;
+                    //minPhyprob+=1;
+                    //variPhy+=63.0/12.0;
+                    //moyPhy+=4.5;
+                    nd8Phy+=1;
 
                     //////degat feu
                     if (settings.getBoolean("feu_intense_switch", getResources().getBoolean(R.bool.feu_intense_switch_def))) {
@@ -766,8 +776,9 @@ public class MainActivity extends AppCompatActivity {
                         sumFeu += jet_feu + jet2_feu;
                         minFeu += 1 + 1;
                         maxFeu += 6 + 6;
-                        variFeu += 2.0*(35.0/12.0);
-                        moyFeu += 3.5+3.5;
+                        //variFeu += 2.0*(35.0/12.0);
+                        //moyFeu += 3.5+3.5;
+                        nd6Feu+=2;
                     }
 
                     //////degat foudre
@@ -778,8 +789,9 @@ public class MainActivity extends AppCompatActivity {
                         sumFoudre += jet_foudre + jet2_foudre;
                         minFoudre += 1 + 1;
                         maxFoudre += 6 + 6;
-                        variFoudre+= 2.0*(35.0/12.0);
-                        moyFoudre+= 3.5+3.5;
+                        //variFoudre+= 2.0*(35.0/12.0);
+                        //moyFoudre+= 3.5+3.5;
+                        nd6Foudre+=2;
                     }
 
                     //////degat froid
@@ -790,8 +802,9 @@ public class MainActivity extends AppCompatActivity {
                         sumFroid += jet_froid + jet2_froid;
                         minFroid += 1 + 1;
                         maxFroid += 6 + 6;
-                        variFroid+= 2.0*(35.0/12.0);
-                        moyFroid+= 3.5+3.5;
+                        //variFroid+= 2.0*(35.0/12.0);
+                        //moyFroid+= 3.5+3.5;
+                        nd6Froid+=2;
                     }
                     if (!all_dices_str.substring(all_dices_str.length()-1,all_dices_str.length()).equals(";")) {all_dices_str +=";";} //si le derneir character n'est pas une fin de fleche (;) on rajoute la fin
                 }
@@ -807,9 +820,10 @@ public class MainActivity extends AppCompatActivity {
                 minPhy+=(1+ ajout_dmg)*3;
                 maxPhy+=(8+ ajout_dmg)*3;
                 sumPhyprob+=jet_crit;
-                minPhyprob+=1;
-                variPhy+=63.0/12.0;
-                moyPhy+=4.5;
+                //minPhyprob+=1;
+                //variPhy+=63.0/12.0;
+                //moyPhy+=4.5;
+                nd8Phy+=1;
 
                 //////degat feu
                 if (settings.getBoolean("feu_intense_switch",getResources().getBoolean(R.bool.feu_intense_switch_def))) {
@@ -821,8 +835,10 @@ public class MainActivity extends AppCompatActivity {
                     sumFeu+=jet_feu+jet2_feu+jet3_feu+jet4_feu;
                     minFeu+=1+1+1+1;
                     maxFeu+=6+6+10+10;
-                    variFeu+= 2.0*(35.0/12.0)+2.0*(99.0/12.0);
-                    moyFeu+= 3.5+3.5+5.5+5.5;
+                    //variFeu+= 2.0*(35.0/12.0)+2.0*(99.0/12.0);
+                    //moyFeu+= 3.5+3.5+5.5+5.5;
+                    nd6Feu+=2;
+                    nd10Feu+=2;
                 }
 
                 //////degat foudre
@@ -835,8 +851,10 @@ public class MainActivity extends AppCompatActivity {
                     sumFoudre+=jet_foudre+jet2_foudre+jet3_foudre+jet4_foudre;
                     minFoudre+= 1+1+1+1;
                     maxFoudre+=6+6+10+10;
-                    variFoudre+= 2.0*(35.0/12.0)+2.0*(99.0/12.0);
-                    moyFoudre+= 3.5+3.5+5.5+5.5;
+                    //variFoudre+= 2.0*(35.0/12.0)+2.0*(99.0/12.0);
+                    //moyFoudre+= 3.5+3.5+5.5+5.5;
+                    nd6Foudre+=2;
+                    nd10Foudre+=2;
                 }
 
                 //////degat froid
@@ -849,8 +867,10 @@ public class MainActivity extends AppCompatActivity {
                     sumFroid+=jet_froid+jet2_froid+jet3_froid+jet4_froid;
                     minFroid+=1+1+1+1;
                     maxFroid+=6+6+10+10;
-                    variFroid+= 2.0*(35.0/12.0)+2.0*(99.0/12.0);
-                    moyFroid+= 3.5+3.5+5.5+5.5;
+                    //variFroid+= 2.0*(35.0/12.0)+2.0*(99.0/12.0);
+                    //moyFroid+= 3.5+3.5+5.5+5.5;
+                    nd6Froid+=2;
+                    nd10Froid+=2;
                 }
                 if (!all_dices_str.substring(all_dices_str.length()-1,all_dices_str.length()).equals(";")) {all_dices_str +=";";}
                 //// on voit si il reste des fleche normale à tirer (les multishot ne crit pas)
@@ -863,9 +883,10 @@ public class MainActivity extends AppCompatActivity {
                         minPhy += 1 + ajout_dmg;
                         maxPhy += 8 + ajout_dmg;
                         sumPhyprob+=jet;
-                        minPhyprob+=1;
-                        variPhy+=63.0/12.0;
-                        moyPhy+=4.5;
+                        //minPhyprob+=1;
+                        //variPhy+=63.0/12.0;
+                        //moyPhy+=4.5;
+                        nd8Phy+=1;
 
                         //////degat feu
                         if (settings.getBoolean("feu_intense_switch", getResources().getBoolean(R.bool.feu_intense_switch_def))) {
@@ -875,8 +896,9 @@ public class MainActivity extends AppCompatActivity {
                             sumFeu += +jet_feu + jet2_feu;
                             minFeu += 1 + 1;
                             maxFeu += 6 + 6;
-                            variFeu+= 2.0*(35.0/12.0);
-                            moyFeu+= 3.5+3.5;
+                            //variFeu+= 2.0*(35.0/12.0);
+                            //moyFeu+= 3.5+3.5;
+                            nd6Feu+=2;
                         }
 
                         //////degat foudre
@@ -887,8 +909,9 @@ public class MainActivity extends AppCompatActivity {
                             sumFoudre += jet_foudre + jet2_foudre;
                             minFoudre += 1 + 1;
                             maxFoudre += 6 + 6;
-                            variFoudre+= 2.0*(35.0/12.0);
-                            moyFoudre+= 3.5+3.5;
+                            //variFoudre+= 2.0*(35.0/12.0);
+                            //moyFoudre+= 3.5+3.5;
+                            nd6Foudre+=2;
                         }
 
                         //////degat froid
@@ -899,8 +922,9 @@ public class MainActivity extends AppCompatActivity {
                             sumFroid += jet_froid + jet2_froid;
                             minFroid += 1 + 1;
                             maxFroid += 6 + 6;
-                            variFroid+= 2.0*(35.0/12.0);
-                            moyFroid+= 3.5+3.5;
+                            //variFroid+= 2.0*(35.0/12.0);
+                            //moyFroid+= 3.5+3.5;
+                            nd6Froid+=2;
                         }
                         if (!all_dices_str.substring(all_dices_str.length()-1,all_dices_str.length()).equals(";")) {all_dices_str +=";";}
                     }
@@ -912,21 +936,36 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //calcul les proba
-        Log.d("STATE","Calcul cumul phy");
-        probPhy=100.0-100.0*cumulProba(moyPhy,variPhy,minPhyprob,sumPhyprob);  //on enleve le bonus degat pour comparer uniquement els lancé de dès
-        Log.d("STATE cumulPhy",String.valueOf(probPhy) );
 
-        Log.d("STATE","Calcul cumul feu");
-        probFeu=100.0-100.0*cumulProba(moyFeu,variFeu,minFeu,sumFeu);
-        Log.d("STATE cumulfeu",String.valueOf(probFeu) );
+        //ANCIENNE METHODE INTEGRALE GAUSSIENE
+        //probPhy=100.0-100.0*cumulProba(moyPhy,variPhy,minPhyprob,sumPhyprob);  //on enleve le bonus degat pour comparer uniquement els lancé de dès
+        //Log.d("STATE PROB]cumulPhy",String.valueOf(probPhy) );
+        //probFeu=100.0-100.0*cumulProba(moyFeu,variFeu,minFeu,sumFeu);
+        //Log.d("STATE PROB]cumulfeu",String.valueOf(probFeu) );
+        //probFoudre=100.0-100.0*cumulProba(moyFoudre,variFoudre,minFoudre,sumFoudre);
+        //Log.d("STATE PROB]cumulfoudre",String.valueOf(probFoudre) );
+        //probFroid=100.0-100.0*cumulProba(moyFroid,variFroid,minFroid,sumFroid);
+        //Log.d("STATE PROB]cumulfroid",String.valueOf(probFroid));
 
-        Log.d("STATE","Calcul cumul foudre");
-        probFoudre=100.0-100.0*cumulProba(moyFoudre,variFoudre,minFoudre,sumFoudre);
-        Log.d("STATE cumulfoudre",String.valueOf(probFoudre) );
+        Log.d("STATE","Calcul phy");
 
-        Log.d("STATE","Calcul cumul froid");
-        probFroid=100.0-100.0*cumulProba(moyFroid,variFroid,minFroid,sumFroid);
-        Log.d("STATE cumulfroid",String.valueOf(probFroid) );
+        probPhy2=100.0-100.0*tableProba(0,nd8Phy,0,sumPhyprob);
+        Log.d("STATE PROB]tablePhy",String.valueOf(probPhy2) );
+
+        Log.d("STATE","Calcul feu");
+
+        probFeu2=100.0-100.0*tableProba(nd6Feu,0,nd10Feu,sumFeu);
+        Log.d("STATE PROB]tablefeu",String.valueOf(probFeu2) );
+
+        Log.d("STATE","Calcul foudre");
+
+        probFoudre2=100.0-100.0*tableProba(nd6Foudre,0,nd10Foudre,sumFoudre);
+        Log.d("STATE PROB]tablefoudre",String.valueOf(probFoudre2) );
+
+        Log.d("STATE","Calcul  froid");
+
+        probFroid2=100.0-100.0*tableProba(nd6Froid,0,nd10Froid,sumFroid);
+        Log.d("STATE PROB]tablefroid",String.valueOf(probFroid2));
 
         // affichage des texte degat et range et pourcents
 
@@ -955,7 +994,7 @@ public class MainActivity extends AppCompatActivity {
         text_all_dmg_range += sep_html2+text_dmg_phy_range ;
         String text_dmg_phy_percent = "<font color=#000000>"+phy_percent +"%</font>";
         text_all_dmg_percent += sep_html3+text_dmg_phy_percent;
-        String text_all_phy_proba="<font color=#000000>"+String.format("%.02f", probPhy) +"%</font>";
+        String text_all_phy_proba="<font color=#000000>"+String.format("%.02f", probPhy2) +"%</font>";
         text_all_dmg_proba+=sep_html4+text_all_phy_proba;
 
         Integer feu_ecart =  maxFeu - minFeu;
@@ -966,7 +1005,7 @@ public class MainActivity extends AppCompatActivity {
         String text_dmg_feu = "<font color=#FF4000>"+sumFeu+"</font>";
         String text_dmg_feu_range = "<font color=#FF4000>["+minFeu+"-"+maxFeu+"]</font>";
         String text_dmg_feu_percent = "<font color=#FF4000>"+feu_percent +"%</font>";
-        String text_all_feu_proba="<font color=#FF4000>"+String.format("%.02f", probFeu) +"%</font>";
+        String text_all_feu_proba="<font color=#FF4000>"+String.format("%.02f", probFeu2) +"%</font>";
 
         Integer foudre_ecart =  maxFoudre - minFoudre;
         if(!foudre_ecart.equals(0)) {
@@ -976,7 +1015,7 @@ public class MainActivity extends AppCompatActivity {
         String text_dmg_foudre = "<font color=#A9D0F5>"+sumFoudre+"</font>";
         String text_dmg_foudre_range = "<font color=#A9D0F5>["+minFoudre+"-"+maxFoudre+"]</font>";
         String text_dmg_foudre_percent = "<font color=#A9D0F5>"+foudre_percent +"%</font>";
-        String text_all_foudre_proba="<font color=#A9D0F5>"+String.format("%.02f", probFoudre) +"%</font>";
+        String text_all_foudre_proba="<font color=#A9D0F5>"+String.format("%.02f", probFoudre2) +"%</font>";
 
         Integer froid_ecart =  maxFroid - minFroid;
         if(!froid_ecart.equals(0)) {
@@ -986,7 +1025,7 @@ public class MainActivity extends AppCompatActivity {
         String text_dmg_froid = "<font color=#0404B4>"+sumFroid+"</font>";
         String text_dmg_froid_range = "<font color=#0404B4>["+minFroid+"-"+maxFroid+"]</font>";
         String text_dmg_froid_percent = "<font color=#0404B4>"+froid_percent +"%</font>";
-        String text_all_froid_proba="<font color=#0404B4>"+String.format("%.02f", probFroid) +"%</font>";
+        String text_all_froid_proba="<font color=#0404B4>"+String.format("%.02f", probFroid2) +"%</font>";
 
         if (settings.getBoolean("feu_intense_switch", getResources().getBoolean(R.bool.froid_intense_switch_def))) {
             text_all_dmg+=sep_html+text_dmg_feu;
@@ -1021,6 +1060,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // old method calcul de proba loi normale puis some valeur individuel
     private Double cumulProba(Double moy,Double vari,Integer min,Integer sum) {
         Log.d("STATE (cumul)moy",String.valueOf(moy) );
         Log.d("STATE (cumul)vari",String.valueOf(vari) );
@@ -1032,12 +1072,128 @@ public class MainActivity extends AppCompatActivity {
         deno = 2.0*vari;
         Double cumulProba=0.0;
 
-        for (int i=min; i<=sum;i++) {
+        for (int i=min; i<=sum;i++) {              //intégration de chaque proba de chaque valeur somme jusqu'à la notre
             numCumul= Math.pow(i-moy,2.0);
             cumulProba+=(1.0/p1)*Math.exp(-(numCumul/deno));
         }
         Log.d("STATE (cumul)result",String.valueOf(cumulProba) );
         return cumulProba;
+    }
+
+    private Double tableProba(Integer nd6,Integer nd8,Integer nd10,Integer sum) {
+        Log.d("STATE (table)nd6", String.valueOf(nd6));
+        Log.d("STATE (table)nd8", String.valueOf(nd8));
+        Log.d("STATE (table)nd10", String.valueOf(nd10));
+        Log.d("STATE (table)sum", String.valueOf(sum));
+
+        Integer total = nd6*6+nd8*8+nd10*10;
+        Log.d("STATE (table)total", String.valueOf(total));
+        BigInteger[] combi_old = new BigInteger[total];          // table du nombre de combinaison pour chaque valeur somme
+        BigInteger[] combi_new = new BigInteger[total];
+
+        for (int i=1;i<=total;i++){
+            combi_old[i-1]=BigInteger.ZERO;
+            combi_new[i-1]=BigInteger.ZERO;
+        }
+
+        if (!nd8.equals(0)) {
+            for (int i=1;i<=8;i++) {                     //on rempli la premiere itération
+                combi_old[i-1]=BigInteger.ONE;
+            }
+            nd8-=1;
+        } else if (!nd6.equals(0)) {                      //on rempli la premiere itération
+            for (int i=1;i<=6;i++) {
+                combi_old[i-1]=BigInteger.ONE;
+            }
+            nd6-=1;
+        } else {
+            return 1.0;
+        }
+
+        for (int i=1;i<=nd6;i++) {       //pour chaque nouveau dès on ajoute la somme(cf https://wizardofodds.com/gambling/dice/2/)
+            Log.d("STATE table_prob","traitement d6:"+String.valueOf(i));
+            for (int j=1;j<=total;j++) {
+                //Log.d("STATE table_prob","traitement ligne:"+String.valueOf(j));
+                for (int k = 6; k >= 1; k--) {
+                    //Log.d("STATE table_prob","traitement somme k:"+String.valueOf(k));
+                    if (j-1-k>=0) {
+                        //Log.d("STATE table_prob","combi_new[j-1]:"+String.valueOf(combi_new[j-1]));
+                        //Log.d("STATE table_prob","combi_old[j-1-k]:"+String.valueOf(combi_old[j-1-k]));
+                        combi_new[j-1]=combi_new[j-1].add(combi_old[j-1-k]);
+                    }
+                }
+            }
+            for (int l=1;l<=total;l++){
+                combi_old[l-1]=combi_new[l-1];
+                combi_new[l-1]=BigInteger.ZERO;
+            }
+        }
+
+        for (int i=1;i<=nd8;i++) {                            //pour chaque nouveau dès on ajoute la somme(cf https://wizardofodds.com/gambling/dice/2/)
+            Log.d("STATE table_prob","traitement d8:"+String.valueOf(i));
+            for (int j=1;j<=total;j++) {
+                //Log.d("STATE table_prob","traitement ligne:"+String.valueOf(j));
+                for (int k = 8; k >= 1; k--) {
+                    //Log.d("STATE table_prob","traitement somme k:"+String.valueOf(k));
+                    if (j-1-k>=0) {
+                        //Log.d("STATE table_prob","combi_new[j-1]:"+String.valueOf(combi_new[j-1]));
+                        //Log.d("STATE table_prob","combi_old[j-1-k]:"+String.valueOf(combi_old[j-1-k]));
+                        combi_new[j-1]=combi_new[j-1].add(combi_old[j-1-k]);
+                    }
+                }
+            }
+            for (int l=1;l<=total;l++){
+                combi_old[l-1]=combi_new[l-1];
+                combi_new[l-1]=BigInteger.ZERO;
+            }
+        }
+
+        for (int i=1;i<=nd10;i++) {              //pour chaque nouveau dès on ajoute la somme(cf https://wizardofodds.com/gambling/dice/2/)
+            Log.d("STATE table_prob","traitement d10:"+String.valueOf(i));
+            for (int j=1;j<=total;j++) {
+                //Log.d("STATE table_prob","traitement ligne:"+String.valueOf(j));
+                for (int k = 10; k >= 1; k--) {
+                    //Log.d("STATE table_prob","traitement somme k:"+String.valueOf(k));
+                    if (j-1-k>=0) {
+                        //Log.d("STATE table_prob","combi_new[j-1]:"+String.valueOf(combi_new[j-1]));
+                        //Log.d("STATE table_prob","combi_old[j-1-k]:"+String.valueOf(combi_old[j-1-k]));
+                        combi_new[j-1]=combi_new[j-1].add(combi_old[j-1-k]);
+                    }
+                }
+            }
+            for (int l=1;l<=total;l++){
+                combi_old[l-1]=combi_new[l-1];
+                combi_new[l-1]=BigInteger.ZERO;
+            }
+        }
+
+        /* Sortie debug de toute la table
+        Log.d("STATE combi_prob_all","toutes les valeurs sum:n_comb");
+        for (int i=1;i<=total;i++){
+            Log.d("STATE combi_prob_all",String.valueOf(i)+":"+String.valueOf(combi_old[i-1]));
+        }
+        Log.d("STATE combi_sum",String.valueOf(sum));
+        Log.d("STATE combi_res",String.valueOf(combi_old[sum-1]));
+        */
+
+        BigInteger sum_combi,sum_combi_tot;
+        sum_combi=BigInteger.ZERO;
+        sum_combi_tot=BigInteger.ZERO;
+        for (int i=1;i<=total;i++){
+            sum_combi_tot=sum_combi_tot.add(combi_old[i-1]);
+            if (i==sum) {
+                sum_combi=sum_combi_tot;
+            }
+        }
+
+        BigDecimal temp_sum = new BigDecimal(sum_combi);
+        BigDecimal temp_sum_tot = new BigDecimal(sum_combi_tot);
+        BigDecimal result_percent;
+        result_percent= temp_sum.divide(temp_sum_tot,4, RoundingMode.HALF_UP);
+
+        Log.d("STATE combi_res_prob",String.valueOf(result_percent));
+
+        return result_percent.doubleValue();
     }
 
 
