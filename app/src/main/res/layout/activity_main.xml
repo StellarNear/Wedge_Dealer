@@ -174,9 +174,10 @@
         android:textAlignment="center"
         android:textSize="35sp"
         android:visibility="invisible"
-        app:layout_anchor="@+id/include_element"
+        app:layout_anchor="@+id/dmg_text"
         app:layout_anchorGravity="bottom"
         android:layout_gravity="bottom"
+        android:layout_marginTop="400dp"/>
         />
 
     <TextView
@@ -189,7 +190,6 @@
         android:visibility="invisible"
         app:layout_anchor="@+id/all_dmg"
         app:layout_anchorGravity="bottom"
-        android:layout_marginTop="470dp"
         android:layout_gravity="bottom"
         />
 
@@ -202,6 +202,33 @@
         android:textSize="20sp"
         android:visibility="invisible"
         app:layout_anchor="@+id/all_dmg_range"
+        app:layout_anchorGravity="bottom"
+        android:layout_gravity="bottom"
+        />
+
+
+    <TextView
+        android:id="@+id/proba_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Probabilité de dépacement (>=) :"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:visibility="invisible"
+        app:layout_anchor="@+id/all_dmg_percent"
+        app:layout_anchorGravity="bottom"
+        android:layout_gravity="bottom"
+        />
+
+    <TextView
+        android:id="@+id/all_dmg_proba"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0%      0%      0%      0%"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        app:layout_anchor="@+id/proba_text"
         app:layout_anchorGravity="bottom"
         android:layout_gravity="bottom"
         />

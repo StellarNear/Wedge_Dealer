@@ -112,12 +112,17 @@ public class MainActivity extends AppCompatActivity {
                 View dmg_all_dmg = findViewById(R.id.all_dmg);
                 View dmg_all_range = findViewById(R.id.all_dmg_range);
                 View dmg_all_percent_view =  findViewById(R.id.all_dmg_percent);
+                View proba_text_view =  findViewById(R.id.proba_text);
+                View dmg_all_proba_view =  findViewById(R.id.all_dmg_proba);
 
                 dmg_text.setVisibility(View.INVISIBLE);
                 dmg_elem.setVisibility(View.INVISIBLE);
                 dmg_all_dmg.setVisibility(View.INVISIBLE);
                 dmg_all_range.setVisibility(View.INVISIBLE);
                 dmg_all_percent_view.setVisibility(View.INVISIBLE);
+                proba_text_view.setVisibility(View.INVISIBLE);
+                dmg_all_proba_view.setVisibility(View.INVISIBLE);
+
                 all_dices_str="";
 
                 //decouche toutes les boites apres clic du bouton attaque
@@ -568,7 +573,7 @@ public class MainActivity extends AppCompatActivity {
         // Instance of ImageAdapter Class
         //dmg_all_view,dmg_all_range_view,dmg_all_percent_view
         all_dices_str="";
-        String[] triple_text_dmg= new String[] {"","",""};
+        String[] quadruple_text_dmg= new String[] {"","",""};
         Integer n_type_dmg=1;
         List<String> list_element = new ArrayList<>(Arrays.asList("physique"));
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -591,6 +596,10 @@ public class MainActivity extends AppCompatActivity {
         dmg_all_range_view.setVisibility(View.VISIBLE);
         TextView dmg_all_percent_view = (TextView) findViewById(R.id.all_dmg_percent);
         dmg_all_percent_view.setVisibility(View.VISIBLE);
+        TextView proba_text_view = (TextView) findViewById(R.id.proba_text);
+        proba_text_view.setVisibility(View.VISIBLE);
+        TextView dmg_all_proba_view = (TextView) findViewById(R.id.all_dmg_proba);
+        dmg_all_proba_view.setVisibility(View.VISIBLE);
 
         grid_element.setAdapter(new ImageAdapter(this, list_element, 75));
 
@@ -612,11 +621,12 @@ public class MainActivity extends AppCompatActivity {
             dmg_all_range_view.setPadding(0, 0, 0, 0);
         }
 
-        triple_text_dmg = calcul_damage(); //calcul les degats
+        quadruple_text_dmg = calcul_damage(); //calcul les degats
 
-        dmg_all_view.setText(Html.fromHtml(triple_text_dmg[0]));
-        dmg_all_range_view.setText(Html.fromHtml(triple_text_dmg[1]));
-        dmg_all_percent_view.setText(Html.fromHtml(triple_text_dmg[2]));
+        dmg_all_view.setText(Html.fromHtml(quadruple_text_dmg[0]));
+        dmg_all_range_view.setText(Html.fromHtml(quadruple_text_dmg[1]));
+        dmg_all_percent_view.setText(Html.fromHtml(quadruple_text_dmg[2]));
+        dmg_all_proba_view.setText(Html.fromHtml(quadruple_text_dmg[3]));
 
         //desactive le detail button si y a rien à afficher
         FloatingActionButton fab_dmg_det = (FloatingActionButton) findViewById(R.id.fab_damage_detail);
@@ -666,9 +676,15 @@ public class MainActivity extends AppCompatActivity {
         Integer neuf_m;
         Integer magic;
         Integer composi;
-        Integer sumPhy,sumFeu,sumFoudre,sumFroid,minPhy,maxPhy,minFeu,maxFeu,minFoudre,maxFoudre,minFroid,maxFroid;
-        sumPhy=sumFeu=sumFoudre=sumFroid=minPhy=maxPhy=minFeu=maxFeu=minFoudre=maxFoudre=minFroid=maxFroid=0;
 
+        Integer sumPhy,sumPhyprob,minPhyprob,sumFeu,sumFoudre,sumFroid,minPhy,maxPhy,minFeu,maxFeu,minFoudre,maxFoudre,minFroid,maxFroid;
+        sumPhy=sumPhyprob=minPhyprob=sumFeu=sumFoudre=sumFroid=minPhy=maxPhy=minFeu=maxFeu=minFoudre=maxFoudre=minFroid=maxFroid=0;
+
+        Double probPhy,probFeu,probFoudre,probFroid;
+        Double variPhy,variFeu,variFoudre,variFroid;
+        Double moyPhy,moyFeu,moyFoudre,moyFroid;
+        variPhy=variFeu=variFoudre=variFroid=0.0;
+        moyPhy=moyFeu=moyFoudre=moyFroid=0.0;
 
         if (settings.getBoolean("thor_switch",getResources().getBoolean(R.bool.thor_switch_def))) {
             thor = 1;
@@ -737,6 +753,10 @@ public class MainActivity extends AppCompatActivity {
                     sumPhy += jet + ajout_dmg;
                     minPhy += 1 + ajout_dmg;
                     maxPhy += 8 + ajout_dmg;
+                    sumPhyprob+=jet;
+                    minPhyprob+=1;
+                    variPhy+=63.0/12.0;
+                    moyPhy+=4.5;
 
                     //////degat feu
                     if (settings.getBoolean("feu_intense_switch", getResources().getBoolean(R.bool.feu_intense_switch_def))) {
@@ -746,6 +766,8 @@ public class MainActivity extends AppCompatActivity {
                         sumFeu += jet_feu + jet2_feu;
                         minFeu += 1 + 1;
                         maxFeu += 6 + 6;
+                        variFeu += 2.0*(35.0/12.0);
+                        moyFeu += 3.5+3.5;
                     }
 
                     //////degat foudre
@@ -756,6 +778,8 @@ public class MainActivity extends AppCompatActivity {
                         sumFoudre += jet_foudre + jet2_foudre;
                         minFoudre += 1 + 1;
                         maxFoudre += 6 + 6;
+                        variFoudre+= 2.0*(35.0/12.0);
+                        moyFoudre+= 3.5+3.5;
                     }
 
                     //////degat froid
@@ -766,6 +790,8 @@ public class MainActivity extends AppCompatActivity {
                         sumFroid += jet_froid + jet2_froid;
                         minFroid += 1 + 1;
                         maxFroid += 6 + 6;
+                        variFroid+= 2.0*(35.0/12.0);
+                        moyFroid+= 3.5+3.5;
                     }
                     if (!all_dices_str.substring(all_dices_str.length()-1,all_dices_str.length()).equals(";")) {all_dices_str +=";";} //si le derneir character n'est pas une fin de fleche (;) on rajoute la fin
                 }
@@ -780,6 +806,10 @@ public class MainActivity extends AppCompatActivity {
                 sumPhy +=  (jet_crit + ajout_dmg)*3;
                 minPhy+=(1+ ajout_dmg)*3;
                 maxPhy+=(8+ ajout_dmg)*3;
+                sumPhyprob+=jet_crit;
+                minPhyprob+=1;
+                variPhy+=63.0/12.0;
+                moyPhy+=4.5;
 
                 //////degat feu
                 if (settings.getBoolean("feu_intense_switch",getResources().getBoolean(R.bool.feu_intense_switch_def))) {
@@ -791,6 +821,8 @@ public class MainActivity extends AppCompatActivity {
                     sumFeu+=jet_feu+jet2_feu+jet3_feu+jet4_feu;
                     minFeu+=1+1+1+1;
                     maxFeu+=6+6+10+10;
+                    variFeu+= 2.0*(35.0/12.0)+2.0*(99.0/12.0);
+                    moyFeu+= 3.5+3.5+5.5+5.5;
                 }
 
                 //////degat foudre
@@ -803,6 +835,8 @@ public class MainActivity extends AppCompatActivity {
                     sumFoudre+=jet_foudre+jet2_foudre+jet3_foudre+jet4_foudre;
                     minFoudre+= 1+1+1+1;
                     maxFoudre+=6+6+10+10;
+                    variFoudre+= 2.0*(35.0/12.0)+2.0*(99.0/12.0);
+                    moyFoudre+= 3.5+3.5+5.5+5.5;
                 }
 
                 //////degat froid
@@ -815,6 +849,8 @@ public class MainActivity extends AppCompatActivity {
                     sumFroid+=jet_froid+jet2_froid+jet3_froid+jet4_froid;
                     minFroid+=1+1+1+1;
                     maxFroid+=6+6+10+10;
+                    variFroid+= 2.0*(35.0/12.0)+2.0*(99.0/12.0);
+                    moyFroid+= 3.5+3.5+5.5+5.5;
                 }
                 if (!all_dices_str.substring(all_dices_str.length()-1,all_dices_str.length()).equals(";")) {all_dices_str +=";";}
                 //// on voit si il reste des fleche normale à tirer (les multishot ne crit pas)
@@ -826,6 +862,10 @@ public class MainActivity extends AppCompatActivity {
                         sumPhy += jet + ajout_dmg;
                         minPhy += 1 + ajout_dmg;
                         maxPhy += 8 + ajout_dmg;
+                        sumPhyprob+=jet;
+                        minPhyprob+=1;
+                        variPhy+=63.0/12.0;
+                        moyPhy+=4.5;
 
                         //////degat feu
                         if (settings.getBoolean("feu_intense_switch", getResources().getBoolean(R.bool.feu_intense_switch_def))) {
@@ -835,6 +875,8 @@ public class MainActivity extends AppCompatActivity {
                             sumFeu += +jet_feu + jet2_feu;
                             minFeu += 1 + 1;
                             maxFeu += 6 + 6;
+                            variFeu+= 2.0*(35.0/12.0);
+                            moyFeu+= 3.5+3.5;
                         }
 
                         //////degat foudre
@@ -845,6 +887,8 @@ public class MainActivity extends AppCompatActivity {
                             sumFoudre += jet_foudre + jet2_foudre;
                             minFoudre += 1 + 1;
                             maxFoudre += 6 + 6;
+                            variFoudre+= 2.0*(35.0/12.0);
+                            moyFoudre+= 3.5+3.5;
                         }
 
                         //////degat froid
@@ -855,6 +899,8 @@ public class MainActivity extends AppCompatActivity {
                             sumFroid += jet_froid + jet2_froid;
                             minFroid += 1 + 1;
                             maxFroid += 6 + 6;
+                            variFroid+= 2.0*(35.0/12.0);
+                            moyFroid+= 3.5+3.5;
                         }
                         if (!all_dices_str.substring(all_dices_str.length()-1,all_dices_str.length()).equals(";")) {all_dices_str +=";";}
                     }
@@ -865,11 +911,29 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        // affichage des texte degat et range et pourcent
+        //calcul les proba
+        Log.d("STATE","Calcul cumul phy");
+        probPhy=100.0-100.0*cumulProba(moyPhy,variPhy,minPhyprob,sumPhyprob);  //on enleve le bonus degat pour comparer uniquement els lancé de dès
+        Log.d("STATE cumulPhy",String.valueOf(probPhy) );
+
+        Log.d("STATE","Calcul cumul feu");
+        probFeu=100.0-100.0*cumulProba(moyFeu,variFeu,minFeu,sumFeu);
+        Log.d("STATE cumulfeu",String.valueOf(probFeu) );
+
+        Log.d("STATE","Calcul cumul foudre");
+        probFoudre=100.0-100.0*cumulProba(moyFoudre,variFoudre,minFoudre,sumFoudre);
+        Log.d("STATE cumulfoudre",String.valueOf(probFoudre) );
+
+        Log.d("STATE","Calcul cumul froid");
+        probFroid=100.0-100.0*cumulProba(moyFroid,variFroid,minFroid,sumFroid);
+        Log.d("STATE cumulfroid",String.valueOf(probFroid) );
+
+        // affichage des texte degat et range et pourcents
 
         String text_all_dmg="";
         String text_all_dmg_range="";
         String text_all_dmg_percent="";
+        String text_all_dmg_proba="";
 
         Integer phy_percent =0;
         Integer feu_percent =0;
@@ -879,6 +943,7 @@ public class MainActivity extends AppCompatActivity {
         String sep_html = "&#160&#160";
         String sep_html2 = "&#160&#160&#160";
         String sep_html3 = "&#160&#160&#160&#160&#160&#160&#160&#160&#160&#160";
+        String sep_html4 = "&#160&#160&#160&#160&#160&#160";
 
         Integer phy_ecart =  maxPhy - minPhy;
         if(!phy_ecart.equals(0)) {
@@ -890,6 +955,8 @@ public class MainActivity extends AppCompatActivity {
         text_all_dmg_range += sep_html2+text_dmg_phy_range ;
         String text_dmg_phy_percent = "<font color=#000000>"+phy_percent +"%</font>";
         text_all_dmg_percent += sep_html3+text_dmg_phy_percent;
+        String text_all_phy_proba="<font color=#000000>"+String.format("%.02f", probPhy) +"%</font>";
+        text_all_dmg_proba+=sep_html4+text_all_phy_proba;
 
         Integer feu_ecart =  maxFeu - minFeu;
         if(!feu_ecart.equals(0)) {
@@ -899,7 +966,7 @@ public class MainActivity extends AppCompatActivity {
         String text_dmg_feu = "<font color=#FF4000>"+sumFeu+"</font>";
         String text_dmg_feu_range = "<font color=#FF4000>["+minFeu+"-"+maxFeu+"]</font>";
         String text_dmg_feu_percent = "<font color=#FF4000>"+feu_percent +"%</font>";
-
+        String text_all_feu_proba="<font color=#FF4000>"+String.format("%.02f", probFeu) +"%</font>";
 
         Integer foudre_ecart =  maxFoudre - minFoudre;
         if(!foudre_ecart.equals(0)) {
@@ -909,7 +976,7 @@ public class MainActivity extends AppCompatActivity {
         String text_dmg_foudre = "<font color=#A9D0F5>"+sumFoudre+"</font>";
         String text_dmg_foudre_range = "<font color=#A9D0F5>["+minFoudre+"-"+maxFoudre+"]</font>";
         String text_dmg_foudre_percent = "<font color=#A9D0F5>"+foudre_percent +"%</font>";
-
+        String text_all_foudre_proba="<font color=#A9D0F5>"+String.format("%.02f", probFoudre) +"%</font>";
 
         Integer froid_ecart =  maxFroid - minFroid;
         if(!froid_ecart.equals(0)) {
@@ -919,36 +986,58 @@ public class MainActivity extends AppCompatActivity {
         String text_dmg_froid = "<font color=#0404B4>"+sumFroid+"</font>";
         String text_dmg_froid_range = "<font color=#0404B4>["+minFroid+"-"+maxFroid+"]</font>";
         String text_dmg_froid_percent = "<font color=#0404B4>"+froid_percent +"%</font>";
-
+        String text_all_froid_proba="<font color=#0404B4>"+String.format("%.02f", probFroid) +"%</font>";
 
         if (settings.getBoolean("feu_intense_switch", getResources().getBoolean(R.bool.froid_intense_switch_def))) {
             text_all_dmg+=sep_html+text_dmg_feu;
             text_all_dmg_range += sep_html2+text_dmg_feu_range ;
             text_all_dmg_percent += sep_html3+text_dmg_feu_percent;
+            text_all_dmg_proba+=sep_html4+text_all_feu_proba;
         }
         if (settings.getBoolean("foudre_intense_switch", getResources().getBoolean(R.bool.foudre_intense_switch_def))) {
             text_all_dmg+=sep_html+text_dmg_foudre;
             text_all_dmg_range += sep_html2+text_dmg_foudre_range ;
             text_all_dmg_percent += sep_html3+text_dmg_foudre_percent;
+            text_all_dmg_proba+=sep_html4+text_all_foudre_proba;
         }
         if (settings.getBoolean("froid_intense_switch", getResources().getBoolean(R.bool.froid_intense_switch_def))) {
-
-            text_all_dmg_percent+= sep_html3+text_dmg_froid_percent;
-            text_all_dmg_range += sep_html2+text_dmg_froid_range ;
             text_all_dmg+=sep_html+text_dmg_froid;
+            text_all_dmg_range += sep_html2+text_dmg_froid_range ;
+            text_all_dmg_percent+= sep_html3+text_dmg_froid_percent;
+            text_all_dmg_proba+=sep_html4+text_all_froid_proba;
         }
 
         text_all_dmg=text_all_dmg.substring(sep_html.length());
         text_all_dmg_range=text_all_dmg_range.substring(sep_html2.length());
         text_all_dmg_percent=text_all_dmg_percent.substring(sep_html3.length());
+        text_all_dmg_proba=text_all_dmg_proba.substring(sep_html4.length());
 
         Log.d("STATE text_all_dmg",text_all_dmg );
         Log.d("STATE txt_dmg_range",text_all_dmg_range );
         Log.d("STATE txt_dmg_percent",text_all_dmg_percent );
+        Log.d("STATE txt_dmg_proba",text_all_dmg_proba );
 
+        return new String[] {text_all_dmg, text_all_dmg_range , text_all_dmg_percent,text_all_dmg_proba};
 
-        return new String[] {text_all_dmg, text_all_dmg_range , text_all_dmg_percent};
+    }
 
+    private Double cumulProba(Double moy,Double vari,Integer min,Integer sum) {
+        Log.d("STATE (cumul)moy",String.valueOf(moy) );
+        Log.d("STATE (cumul)vari",String.valueOf(vari) );
+        Log.d("STATE (cumul)min",String.valueOf(min) );
+        Log.d("STATE (cumul)sum",String.valueOf(sum) );
+
+        Double p1,deno,numCumul;
+        p1= Math.sqrt(vari*2.0*Math.PI);
+        deno = 2.0*vari;
+        Double cumulProba=0.0;
+
+        for (int i=min; i<=sum;i++) {
+            numCumul= Math.pow(i-moy,2.0);
+            cumulProba+=(1.0/p1)*Math.exp(-(numCumul/deno));
+        }
+        Log.d("STATE (cumul)result",String.valueOf(cumulProba) );
+        return cumulProba;
     }
 
 
