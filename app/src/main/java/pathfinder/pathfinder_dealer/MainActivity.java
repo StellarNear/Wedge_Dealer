@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
                 SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-                Snackbar.make(view, "Lancement des dés en cours... ",Snackbar.LENGTH_LONG).show();
+                Snackbar.make(view, "Lancement des dés en cours... ",Snackbar.LENGTH_SHORT).show();
 
                 set_grid();                        //affiche les dés d'attaque   et lance dans un second temps les calcul et affichage des valeurs apres rand
 
@@ -86,6 +86,10 @@ public class MainActivity extends AppCompatActivity {
                 checkBox5.setVisibility(View.INVISIBLE);
 
                 TextView hit_text = (TextView) findViewById(R.id.hit_text);
+
+                AlphaAnimation anim_text = new AlphaAnimation(0,1);
+                anim_text.setDuration(1000);
+                hit_text.startAnimation(anim_text);
                 hit_text.setVisibility(View.VISIBLE);
 
                 set_checkbox_hit();      //affiches les boites de hit
@@ -96,19 +100,21 @@ public class MainActivity extends AppCompatActivity {
                 checkBox5_crit.setVisibility(View.INVISIBLE);
 
                 TextView crit_text = (TextView) findViewById(R.id.crit_text);
+                crit_text.startAnimation(anim_text);
                 crit_text.setVisibility(View.VISIBLE);
 
                 set_checkbox_crit();      //affiches les boites de crit
 
                 View bar_sep = findViewById(R.id.bar_sep);                //affiche une séparation
+                bar_sep.startAnimation(anim_text);
                 bar_sep.setVisibility(View.VISIBLE);
 
 
                 View fab_damage_view = findViewById(R.id.fab_damage);          //bouton de degat
 
-                AlphaAnimation anim = new AlphaAnimation(0,1);
-                anim.setDuration(2000);
-                fab_damage_view.startAnimation(anim);
+                AlphaAnimation anim_button = new AlphaAnimation(0,1);
+                anim_button.setDuration(2000);
+                fab_damage_view.startAnimation(anim_button);
 
                 View dmg_text = findViewById(R.id.dmg_text);
                 View dmg_elem = findViewById(R.id.grid_element);
@@ -166,15 +172,13 @@ public class MainActivity extends AppCompatActivity {
 
                 SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-                Snackbar.make(view, "Calcul des dégâts en cours... ",Snackbar.LENGTH_LONG).show();
-
-
+                Snackbar.make(view, "Calcul des dégâts en cours... ",Snackbar.LENGTH_SHORT).show();
 
                 View fab_damage_det_view = findViewById(R.id.fab_damage_detail);
-                fab_damage_det_view.setVisibility(View.VISIBLE);
                 AlphaAnimation anim = new AlphaAnimation(0,1);
                 anim.setDuration(2000);
                 fab_damage_det_view.startAnimation(anim);
+                fab_damage_det_view.setVisibility(View.VISIBLE);
 
                 //si c'est pas la premeire fois qu'on lance les degat on demande confirmation
                 if (firstDmgRoll) {
@@ -513,14 +517,18 @@ public class MainActivity extends AppCompatActivity {
 
         check_lin.setPadding(-100*n_att+650,0,0,0);
         check_lin.setWeightSum(n_att);
+        AlphaAnimation anim_box = new AlphaAnimation(0,1);
+        anim_box.setDuration(2000);
 
         switch(n_att) {
             case 6:
                 CheckBox checkBox6 = (CheckBox) findViewById(R.id.checkBox6);
+                checkBox6.startAnimation(anim_box);
                 checkBox6.setVisibility(View.VISIBLE);
 
             case 5:
                 CheckBox checkBox5 = (CheckBox) findViewById(R.id.checkBox5);
+                checkBox5.startAnimation(anim_box);
                 checkBox5.setVisibility(View.VISIBLE);
 
             case 4:
@@ -528,6 +536,10 @@ public class MainActivity extends AppCompatActivity {
                 CheckBox checkBox2 = (CheckBox) findViewById(R.id.checkBox2);
                 CheckBox checkBox3 = (CheckBox) findViewById(R.id.checkBox3);
                 CheckBox checkBox4 = (CheckBox) findViewById(R.id.checkBox4);
+                checkBox1.startAnimation(anim_box);
+                checkBox2.startAnimation(anim_box);
+                checkBox3.startAnimation(anim_box);
+                checkBox4.startAnimation(anim_box);
                 checkBox1.setVisibility(View.VISIBLE);
                 checkBox2.setVisibility(View.VISIBLE);
                 checkBox3.setVisibility(View.VISIBLE);
@@ -542,14 +554,19 @@ public class MainActivity extends AppCompatActivity {
 
         check_lin.setPadding(-100*n_att+650,0,0,0);
         check_lin.setWeightSum(n_att);
+        check_lin.setWeightSum(n_att);
+        AlphaAnimation anim_box = new AlphaAnimation(0,1);
+        anim_box.setDuration(2000);
 
         switch(n_att) {
             case 6:
                 CheckBox checkBox6 = (CheckBox) findViewById(R.id.checkBox6_crit);
+                checkBox6.startAnimation(anim_box);
                 checkBox6.setVisibility(View.VISIBLE);
 
             case 5:
                 CheckBox checkBox5 = (CheckBox) findViewById(R.id.checkBox5_crit);
+                checkBox5.startAnimation(anim_box);
                 checkBox5.setVisibility(View.VISIBLE);
 
             case 4:
@@ -557,6 +574,10 @@ public class MainActivity extends AppCompatActivity {
                 CheckBox checkBox2 = (CheckBox) findViewById(R.id.checkBox2_crit);
                 CheckBox checkBox3 = (CheckBox) findViewById(R.id.checkBox3_crit);
                 CheckBox checkBox4 = (CheckBox) findViewById(R.id.checkBox4_crit);
+                checkBox1.startAnimation(anim_box);
+                checkBox2.startAnimation(anim_box);
+                checkBox3.startAnimation(anim_box);
+                checkBox4.startAnimation(anim_box);
                 checkBox1.setVisibility(View.VISIBLE);
                 checkBox2.setVisibility(View.VISIBLE);
                 checkBox3.setVisibility(View.VISIBLE);
@@ -573,8 +594,6 @@ public class MainActivity extends AppCompatActivity {
 
         GridView grid_element = (GridView) findViewById(R.id.grid_element);
         grid_element.setVisibility(View.VISIBLE);
-        // Instance of ImageAdapter Class
-        //dmg_all_view,dmg_all_range_view,dmg_all_percent_view
         all_dices_str="";
         String[] quadruple_text_dmg= new String[] {"","",""};
         Integer n_type_dmg=1;
@@ -599,9 +618,16 @@ public class MainActivity extends AppCompatActivity {
         dmg_all_range_view.setVisibility(View.VISIBLE);
         TextView dmg_all_percent_view = (TextView) findViewById(R.id.all_dmg_percent);
         dmg_all_percent_view.setVisibility(View.VISIBLE);
+
+        AlphaAnimation anim_text = new AlphaAnimation(0,1);
+        anim_text.setDuration(4000);
+        AlphaAnimation anim_text_fast = new AlphaAnimation(0,1);
+        anim_text_fast.setDuration(2000);
         TextView proba_text_view = (TextView) findViewById(R.id.proba_text);
+        proba_text_view.startAnimation(anim_text_fast);
         proba_text_view.setVisibility(View.VISIBLE);
         TextView dmg_all_proba_view = (TextView) findViewById(R.id.all_dmg_proba);
+        dmg_all_proba_view.startAnimation(anim_text);
         dmg_all_proba_view.setVisibility(View.VISIBLE);
 
         grid_element.setAdapter(new ImageAdapter(this, list_element, 75));
