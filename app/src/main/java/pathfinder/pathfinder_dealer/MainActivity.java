@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Snackbar.make(view, "Lancement des dés en cours... ",Snackbar.LENGTH_SHORT).show();
 
-                set_grid();                        //affiche les dés d'attaque   et lance dans un second temps les calcul et affichage des valeurs apres rand
+                set_grid();    //affiche les dés d'attaque   et lance dans un second temps les calcul et affichage des valeurs apres rand
 
                 TextView multi_text = (TextView) findViewById(R.id.multishot);
                 multi_text.setVisibility(View.INVISIBLE);
@@ -288,7 +288,6 @@ public class MainActivity extends AppCompatActivity {
         String epic_str = settings.getString("epic_val",getResources().getString(R.string.epic_val_def));
         Integer epic_val = to_int(epic_str,"Point d'attaque épique");
 
-
         String prouesse_str = settings.getString("prouesse_val",getResources().getString(R.string.prouesse_def));
         Integer prouesse = to_int(prouesse_str,"Point de prouesse");
 
@@ -344,7 +343,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         String affichage_att_str = affichage_att.substring(delim2.length());
-
 
         TextView text_curent_att = (TextView) findViewById(R.id.jet_att_textbox);
         text_curent_att.setText( n_att + " attaques\n" +affichage_att_str);
@@ -674,7 +672,6 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d("STATE b4 display detail",all_dices_str );   //sorti debug
         intent.putExtra("all_dices_str",all_dices_str);    //transmet la variable à l'autre activité
-
 
         startActivity(intent);      //lance l'affichage des detail
 
