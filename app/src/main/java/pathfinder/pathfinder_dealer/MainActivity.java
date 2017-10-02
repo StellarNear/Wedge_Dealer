@@ -123,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
                 View dmg_all_percent_view =  findViewById(R.id.all_dmg_percent);
                 View proba_text_view =  findViewById(R.id.proba_text);
                 View dmg_all_proba_view =  findViewById(R.id.all_dmg_proba);
+                View dmg_phy_crit_proba_view =  findViewById(R.id.all_dmg_phy_crit_proba);
 
                 dmg_text.setVisibility(View.INVISIBLE);
                 dmg_elem.setVisibility(View.INVISIBLE);
@@ -131,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
                 dmg_all_percent_view.setVisibility(View.INVISIBLE);
                 proba_text_view.setVisibility(View.INVISIBLE);
                 dmg_all_proba_view.setVisibility(View.INVISIBLE);
+                dmg_phy_crit_proba_view.setVisibility(View.INVISIBLE);
 
                 all_dices_str="";
 
@@ -225,12 +227,14 @@ public class MainActivity extends AppCompatActivity {
     private void set_multishot_text() {
         StringBuilder affichage_multi = new StringBuilder();
         String delim = "         ";
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String multi_val_str = settings.getString("multi_val",getResources().getString(R.string.multi_value_def));
+        Integer multi_val = to_int(multi_val_str,"Valeur de feu nourri");
         for (int i=0; i<n_att; i++) {
-            affichage_multi.append(delim+"x"+getString(R.string.multi_value));
+            affichage_multi.append(delim+"x"+String.valueOf(multi_val));
         }
 
         String affichage_multi_str = affichage_multi.substring(delim.length());
-
 
         TextView multishot_view = (TextView) findViewById(R.id.multishot);
         multishot_view.setText(affichage_multi_str);
@@ -593,7 +597,7 @@ public class MainActivity extends AppCompatActivity {
         GridView grid_element = (GridView) findViewById(R.id.grid_element);
         grid_element.setVisibility(View.VISIBLE);
         all_dices_str="";
-        String[] quadruple_text_dmg= new String[] {"","",""};
+        String[] all_text_dmg= new String[] {"","",""};
         Integer n_type_dmg=1;
         List<String> list_element = new ArrayList<>(Arrays.asList("physique"));
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -648,12 +652,19 @@ public class MainActivity extends AppCompatActivity {
             dmg_all_range_view.setPadding(0, 0, 0, 0);
         }
 
-        quadruple_text_dmg = calcul_damage(); //calcul les degats
+        all_text_dmg = calcul_damage(); //calcul les degats
 
-        dmg_all_view.setText(Html.fromHtml(quadruple_text_dmg[0]));
-        dmg_all_range_view.setText(Html.fromHtml(quadruple_text_dmg[1]));
-        dmg_all_percent_view.setText(Html.fromHtml(quadruple_text_dmg[2]));
-        dmg_all_proba_view.setText(Html.fromHtml(quadruple_text_dmg[3]));
+        dmg_all_view.setText(Html.fromHtml(all_text_dmg[0]));
+        dmg_all_range_view.setText(Html.fromHtml(all_text_dmg[1]));
+        dmg_all_percent_view.setText(Html.fromHtml(all_text_dmg[2]));
+        dmg_all_proba_view.setText(Html.fromHtml(all_text_dmg[3]));
+        if (all_text_dmg.length==5) {
+
+            TextView dmg_phy_crit_proba_view = (TextView) findViewById(R.id.all_dmg_phy_crit_proba);
+            dmg_phy_crit_proba_view.startAnimation(anim_text);
+            dmg_phy_crit_proba_view.setVisibility(View.VISIBLE);
+            dmg_phy_crit_proba_view.setText(Html.fromHtml(all_text_dmg[4]));
+        }
 
         //desactive le detail button si y a rien à afficher
         FloatingActionButton fab_dmg_det = (FloatingActionButton) findViewById(R.id.fab_damage_detail);
@@ -694,7 +705,8 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         Integer multi_val=1;
         if (settings.getBoolean("feu_nourri_switch",getResources().getBoolean(R.bool.feu_nourri_switch_def)))  {
-            multi_val = to_int(getString(R.string.multi_value),"Valeur de multishot #interne XML#");
+            String multi_val_str = settings.getString("multi_val",getResources().getString(R.string.multi_value_def));
+            multi_val = to_int(multi_val_str,"Valeur de feu nourri");
         }
 
         /////////// Degat commun attaques phy
@@ -703,9 +715,9 @@ public class MainActivity extends AppCompatActivity {
         Integer magic;
         Integer composi;
 
-        Integer sumPhy,sumPhyprob,sumFeu,sumFoudre,sumFroid,minPhy,maxPhy,minFeu,maxFeu,minFoudre,maxFoudre,minFroid,maxFroid,nd8Phy,nd6Feu,nd10Feu,nd6Foudre,nd10Foudre,nd6Froid,nd10Froid;
-        sumPhy=sumPhyprob=sumFeu=sumFoudre=sumFroid=minPhy=maxPhy=minFeu=maxFeu=minFoudre=maxFoudre=minFroid=maxFroid=nd8Phy=nd6Feu=nd10Feu=nd6Foudre=nd10Foudre=nd6Froid=nd10Froid=0;
-        Double probPhy2,probFeu2,probFoudre2,probFroid2;
+        Integer sumPhy,sumPhyprob,sumPhyprob_crit,sumFeu,sumFoudre,sumFroid,minPhy,maxPhy,minFeu,maxFeu,minFoudre,maxFoudre,minFroid,maxFroid,nd8Phy,nd8Phy_crit,nd6Feu,nd10Feu,nd6Foudre,nd10Foudre,nd6Froid,nd10Froid;
+        sumPhy=sumPhyprob=sumPhyprob_crit=sumFeu=sumFoudre=sumFroid=minPhy=maxPhy=minFeu=maxFeu=minFoudre=maxFoudre=minFroid=maxFroid=nd8Phy=nd8Phy_crit=nd6Feu=nd10Feu=nd6Foudre=nd10Foudre=nd6Froid=nd10Froid=0;
+        Double probPhy2,probPhy2_crit,probFeu2,probFoudre2,probFroid2;
 
 
         // ancienne declaration pour la métode intégrade de proba gaussiene
@@ -842,11 +854,11 @@ public class MainActivity extends AppCompatActivity {
                 sumPhy +=  (jet_crit + ajout_dmg)*3;
                 minPhy+=(1+ ajout_dmg)*3;
                 maxPhy+=(8+ ajout_dmg)*3;
-                sumPhyprob+=jet_crit;
+                sumPhyprob_crit+=jet_crit;
                 //minPhyprob+=1;
                 //variPhy+=63.0/12.0;
                 //moyPhy+=4.5;
-                nd8Phy+=1;
+                nd8Phy_crit+=1;
 
                 //////degat feu
                 if (settings.getBoolean("feu_intense_switch",getResources().getBoolean(R.bool.feu_intense_switch_def))) {
@@ -975,6 +987,11 @@ public class MainActivity extends AppCompatActivity {
         probPhy2=100.0-100.0*tableProba(0,nd8Phy,0,sumPhyprob);
         Log.d("STATE PROB]tablePhy",String.valueOf(probPhy2) );
 
+        Log.d("STATE","Calcul phy crit");
+
+        probPhy2_crit=100.0-100.0*tableProba(0,nd8Phy_crit,0,sumPhyprob_crit);
+        Log.d("STATE PROB]tablePhy_crit",String.valueOf(probPhy2_crit) );
+
         Log.d("STATE","Calcul feu");
 
         probFeu2=100.0-100.0*tableProba(nd6Feu,0,nd10Feu,sumFeu);
@@ -996,6 +1013,7 @@ public class MainActivity extends AppCompatActivity {
         String text_all_dmg_range="";
         String text_all_dmg_percent="";
         String text_all_dmg_proba="";
+        String text_phy_dmg_crit_proba="";
 
         Integer phy_percent =0;
         Integer feu_percent =0;
@@ -1019,6 +1037,7 @@ public class MainActivity extends AppCompatActivity {
         text_all_dmg_percent += sep_html3+text_dmg_phy_percent;
         String text_all_phy_proba="<font color=#000000>"+String.format("%.02f", probPhy2) +"%</font>";
         text_all_dmg_proba+=sep_html4+text_all_phy_proba;
+        text_phy_dmg_crit_proba+=sep_html4+"<font color=#000000>"+String.format("%.02f", probPhy2_crit) +"% (crit)</font>";
 
         Integer feu_ecart =  maxFeu - minFeu;
         if(!feu_ecart.equals(0)) {
@@ -1055,31 +1074,40 @@ public class MainActivity extends AppCompatActivity {
             text_all_dmg_range += sep_html2+text_dmg_feu_range ;
             text_all_dmg_percent += sep_html3+text_dmg_feu_percent;
             text_all_dmg_proba+=sep_html4+text_all_feu_proba;
+            text_phy_dmg_crit_proba+=sep_html4+sep_html3;
         }
         if (settings.getBoolean("foudre_intense_switch", getResources().getBoolean(R.bool.foudre_intense_switch_def))) {
             text_all_dmg+=sep_html+text_dmg_foudre;
             text_all_dmg_range += sep_html2+text_dmg_foudre_range ;
             text_all_dmg_percent += sep_html3+text_dmg_foudre_percent;
             text_all_dmg_proba+=sep_html4+text_all_foudre_proba;
+            text_phy_dmg_crit_proba+=sep_html4+sep_html3;
         }
         if (settings.getBoolean("froid_intense_switch", getResources().getBoolean(R.bool.froid_intense_switch_def))) {
             text_all_dmg+=sep_html+text_dmg_froid;
             text_all_dmg_range += sep_html2+text_dmg_froid_range ;
             text_all_dmg_percent+= sep_html3+text_dmg_froid_percent;
             text_all_dmg_proba+=sep_html4+text_all_froid_proba;
+            text_phy_dmg_crit_proba+=sep_html4+sep_html3;
         }
 
         text_all_dmg=text_all_dmg.substring(sep_html.length());
         text_all_dmg_range=text_all_dmg_range.substring(sep_html2.length());
         text_all_dmg_percent=text_all_dmg_percent.substring(sep_html3.length());
         text_all_dmg_proba=text_all_dmg_proba.substring(sep_html4.length());
+        text_phy_dmg_crit_proba=text_phy_dmg_crit_proba.substring(sep_html4.length());
 
         Log.d("STATE text_all_dmg",text_all_dmg );
         Log.d("STATE txt_dmg_range",text_all_dmg_range );
         Log.d("STATE txt_dmg_percent",text_all_dmg_percent );
         Log.d("STATE txt_dmg_proba",text_all_dmg_proba );
+        Log.d("STATE txt_phy_crit_prob",text_phy_dmg_crit_proba);
 
-        return new String[] {text_all_dmg, text_all_dmg_range , text_all_dmg_percent,text_all_dmg_proba};
+        if (nd8Phy_crit > 0) {
+            return new String[]{text_all_dmg, text_all_dmg_range, text_all_dmg_percent, text_all_dmg_proba, text_phy_dmg_crit_proba};
+        } else {
+            return new String[]{text_all_dmg, text_all_dmg_range, text_all_dmg_percent, text_all_dmg_proba};
+        }
 
     }
 
@@ -1134,7 +1162,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         for (int i=1;i<=nd6;i++) {       //pour chaque nouveau dès on ajoute la somme(cf https://wizardofodds.com/gambling/dice/2/)
-            Log.d("STATE table_prob","traitement d6:"+String.valueOf(i));
+            //Log.d("STATE table_prob","traitement d6:"+String.valueOf(i));
             for (int j=1;j<=total;j++) {
                 //Log.d("STATE table_prob","traitement ligne:"+String.valueOf(j));
                 for (int k = 6; k >= 1; k--) {
@@ -1153,7 +1181,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         for (int i=1;i<=nd8;i++) {                            //pour chaque nouveau dès on ajoute la somme(cf https://wizardofodds.com/gambling/dice/2/)
-            Log.d("STATE table_prob","traitement d8:"+String.valueOf(i));
+            //Log.d("STATE table_prob","traitement d8:"+String.valueOf(i));
             for (int j=1;j<=total;j++) {
                 //Log.d("STATE table_prob","traitement ligne:"+String.valueOf(j));
                 for (int k = 8; k >= 1; k--) {
@@ -1172,7 +1200,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         for (int i=1;i<=nd10;i++) {              //pour chaque nouveau dès on ajoute la somme(cf https://wizardofodds.com/gambling/dice/2/)
-            Log.d("STATE table_prob","traitement d10:"+String.valueOf(i));
+            //Log.d("STATE table_prob","traitement d10:"+String.valueOf(i));
             for (int j=1;j<=total;j++) {
                 //Log.d("STATE table_prob","traitement ligne:"+String.valueOf(j));
                 for (int k = 10; k >= 1; k--) {

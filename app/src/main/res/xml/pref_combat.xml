@@ -33,4 +33,12 @@
         android:key="feu_nourri_switch"
         android:summary="@string/feu_nourri_summ"
         android:title="@string/feu_nourri" />
+    <pathfinder.pathfinder_dealer.EditTextPreference
+        android:defaultValue="@string/multi_value_def"
+        android:dependency="feu_nourri_switch"
+        android:key="multi_val"
+        android:title="@string/multi_value"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary="Valeur : %s"/>
 </PreferenceScreen>
