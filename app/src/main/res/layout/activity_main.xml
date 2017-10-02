@@ -89,7 +89,7 @@
         android:id="@+id/hit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Coups qui touchent :"
+        android:text="Coup(s) qui touche(nt) :"
         android:textAlignment="center"
         android:textSize="18sp"
         android:visibility="invisible"
