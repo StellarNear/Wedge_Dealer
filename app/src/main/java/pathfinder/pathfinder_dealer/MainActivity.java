@@ -680,7 +680,6 @@ public class MainActivity extends AppCompatActivity {
         {
             all_dices_str = all_dices_str.substring(0, all_dices_str.length() - 1);
         }
-
         Log.d("STATE b4 display detail",all_dices_str );   //sorti debug
         intent.putExtra("all_dices_str",all_dices_str);    //transmet la variable à l'autre activité
 
