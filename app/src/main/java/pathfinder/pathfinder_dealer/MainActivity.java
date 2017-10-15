@@ -192,6 +192,8 @@ public class MainActivity extends AppCompatActivity {
                             .setIcon(android.R.drawable.ic_menu_help)
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int whichButton) {
+                                    View proba_text_crit = findViewById(R.id.all_dmg_phy_crit_proba);
+                                    proba_text_crit.setVisibility(View.INVISIBLE);
                                     affich_damage();
                                 }})
                             .setNegativeButton(android.R.string.no, null).show();
