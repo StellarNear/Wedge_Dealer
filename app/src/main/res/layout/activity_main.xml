@@ -1,29 +1,12 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainPage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="pathfinder.pathfinder_dealer.MainActivity"
     android:fitsSystemWindows="true"
     android:transitionName="transition">
-
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appBarLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        >
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
-            />
-
-
-    </android.support.design.widget.AppBarLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_damage_detail"
@@ -44,6 +27,7 @@
         android:text="6 attaques\n+33 / +33 / +33 / +28 / +23 / +20"
         android:textAlignment="center"
         android:textSize="22sp"
+        android:visibility="invisible"
         app:layout_anchor="@+id/toolbar"
         app:layout_anchorGravity="bottom"
         android:layout_gravity="bottom"
@@ -267,5 +251,21 @@
         app:srcCompat="@drawable/ic_filter_center_focus_black_24dp"
 
         />
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+
+    </android.support.design.widget.AppBarLayout>
 
 </android.support.design.widget.CoordinatorLayout>

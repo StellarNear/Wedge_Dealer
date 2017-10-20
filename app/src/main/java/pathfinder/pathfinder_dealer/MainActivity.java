@@ -1,8 +1,12 @@
 package pathfinder.pathfinder_dealer;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
@@ -13,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -37,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
     Integer n_att;                        //nombre d'attaque
     boolean firstDmgRoll;                 // premiere fois qu'on lance les degats ?
     String all_dices_str="";              // tout les dés lancé pour les degats
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,17 +54,38 @@ public class MainActivity extends AppCompatActivity {
         editor.commit();
 
         setContentView(R.layout.activity_main);
+        final android.support.design.widget.CoordinatorLayout mainPage=(android.support.design.widget.CoordinatorLayout) findViewById(R.id.mainPage);
+        final Drawable ori_background = mainPage.getBackground();
+        mainPage.setBackgroundResource(R.drawable.background);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setBackgroundResource(R.drawable.background_banner);
         setSupportActionBar(toolbar);
 
-        jet_att_print();  // affichage premier de la base d'attaque calcul aussi n_att
+
+        mainPage.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View arg0, MotionEvent arg1) {
+                    mainPage.setBackground(ori_background);
+
+                    TextView text_priamry = (TextView) findViewById(R.id.jet_att_textbox);
+                    text_priamry.setVisibility(View.VISIBLE);
+                    jet_att_print();
+                return true;//always return true to consume event
+            }
+        });
+
+
+          // affichage premier de la base d'attaque calcul aussi n_att
 
         //premier bouton (jet d'attaque)
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                TextView text_priamry = (TextView) findViewById(R.id.jet_att_textbox);
+                text_priamry.setVisibility(View.VISIBLE);
+                if(mainPage.getBackground()!=ori_background){mainPage.setBackground(ori_background);}
 
                 jet_att_print();  //refresh quand le bouton est cliquer pour le cas de modif setting et relance
 
