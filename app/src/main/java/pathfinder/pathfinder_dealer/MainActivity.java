@@ -185,6 +185,8 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 firstDmgRoll=true;  //premiere fois qu'on lance les degats
+                FloatingActionButton fab_dmg_det = (FloatingActionButton) findViewById(R.id.fab_damage_detail);
+                if (all_dices_str.equals("")){fab_dmg_det.setEnabled(false);} else {fab_dmg_det.setEnabled(true);}
 
 
             }});

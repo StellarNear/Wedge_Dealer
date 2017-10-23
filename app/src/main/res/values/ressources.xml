@@ -27,8 +27,8 @@
     <string name="epic_val">Point(s) d\'attaque épique</string>
     <string name="epic_val_def">1</string>
     <string name="epic_dmg_val">Point(s) de dégât épique</string>
-    <string name="epic_dmg_val_def">1</string>
-    <string name="prouesse_def">2</string>
+    <string name="epic_dmg_val_def">2</string>
+    <string name="prouesse_def">3</string>
     <string name="prouesse_val">Point(s) de prouesse</string>
     <string name="prouesse_attrib_def">4</string>
     <string-array name="choix_prouesse">
@@ -62,10 +62,10 @@
     <string name="viser_val">Valeur du malus</string>
     <string name="viser_val_def">4</string>
     <bool name="feu_nourri_switch_def">true</bool>
-    <string name="feu_nourri">Feu nourri amélioré</string>
+    <string name="feu_nourri">Feu nourri suprême</string>
     <string name="feu_nourri_summ">x flêches par attaque (une seule crit).</string>
     <string name="multi_value">Nombre de flêches par attaque</string>
-    <string name="multi_value_def">2</string>
+    <string name="multi_value_def">3</string>
 
 
     <!-- ENCHANTS -->
