@@ -1,4 +1,5 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Caractéristiques de base du personnage">
     <pathfinder.pathfinder_dealer.EditTextPreference
         android:defaultValue="@string/jet_att_def"
         android:key="jet_att"
@@ -18,27 +19,10 @@
         android:title="@string/title_mod_dex"
         android:visibility="visible"
         />
-    <SwitchPreference
-        android:defaultValue="@bool/thor_switch_def"
-        android:key="thor_switch"
-        android:summary="@string/thor_summ"
-        android:title="@string/thor"
-        />
-    <SwitchPreference
-        android:defaultValue="@bool/rapid_enchant_switch_def"
-        android:elegantTextHeight="false"
-        android:fadeScrollbars="false"
-        android:key="rapid_enchant_switch"
-        android:summary="@string/rapid_enchant_summ"
-        android:title="@string/rapid_enchant"
-        />
-    <SwitchPreference
-        android:defaultValue="true"
-        android:key="composite_switch"
-        android:summary="@string/composite_summ"
-        android:title="@string/composite"
-        />
-    <pathfinder.pathfinder_dealer.EditTextPreference
+    </PreferenceCategory>
+    
+    <PreferenceCategory android:title="Caractéristiques épiques du personnage">
+            <pathfinder.pathfinder_dealer.EditTextPreference
         android:defaultValue="@string/epic_val_def"
         android:key="epic_val"
         android:selectAllOnFocus="true"
@@ -75,6 +59,33 @@
         android:summary="Valeur : %s"
         android:title="Assignation de la prouesse"
         />
+    </PreferenceCategory>
+    
+    <PreferenceCategory android:title="Propriétés d'Heimdall">
+    <SwitchPreference
+        android:defaultValue="@bool/thor_switch_def"
+        android:key="thor_switch"
+        android:summary="@string/thor_summ"
+        android:title="@string/thor"
+        />
+    <SwitchPreference
+        android:defaultValue="@bool/rapid_enchant_switch_def"
+        android:elegantTextHeight="false"
+        android:fadeScrollbars="false"
+        android:key="rapid_enchant_switch"
+        android:summary="@string/rapid_enchant_summ"
+        android:title="@string/rapid_enchant"
+        />
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="composite_switch"
+        android:summary="@string/composite_summ"
+        android:title="@string/composite"
+        />
+        
+    </PreferenceCategory>
+    
+
 
     <!-- NOTE: EditTextPreference accepts EditText attributes. -->
     <!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
