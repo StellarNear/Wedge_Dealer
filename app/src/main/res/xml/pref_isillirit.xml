@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <pathfinder.pathfinder_dealer.EditTextPreference
+        android:key="kill_isi"
+        android:defaultValue="@string/isillirit_kill_summ"
+        android:title="Ennemis tués"
+        android:selectAllOnFocus="true"
+        android:summary="%s"/>
+    <pathfinder.pathfinder_dealer.EditTextPreference
+        android:key="crit_isi"
+        android:defaultValue="@string/isillirit_crit_summ"
+        android:title="Critiques confirmés"
+        android:selectAllOnFocus="true"
+        android:summary="%s"/>
+
+</PreferenceScreen>

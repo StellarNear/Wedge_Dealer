@@ -18,6 +18,11 @@
         android:title="@string/pref_header_enchant" />
 
     <header
+        android:fragment="pathfinder.pathfinder_dealer.SettingsActivity$IsilliritPreferenceFragment"
+        android:icon="@drawable/ic_quiver"
+        android:title="@string/isillirit" />
+
+    <header
         android:fragment="pathfinder.pathfinder_dealer.SettingsActivity$TempPreferenceFragment"
         android:icon="@drawable/ic_timelapse_black_24dp"
         android:title="@string/pref_header_temp" />

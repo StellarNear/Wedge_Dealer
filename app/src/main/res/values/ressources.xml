@@ -13,11 +13,17 @@
 
     <string name="jet_att">Valeur d\'attaque de base</string>
     <string name="jet_att_def">17,12,7,2</string>
-    <string name="mod_dex_def">10</string>
+    <string name="mod_dex_def">11</string>
     <string name="title_mod_dex">Modificateur de dextérité</string>
     <bool name="thor_switch_def">true</bool>
     <string name="thor">Puissance de Thor</string>
     <string name="thor_summ">Enchantement de Thor (altération +3)</string>
+    <bool name="isillirit_switch_def">true</bool>
+    <string name="isillirit">Isillirit (le chant de la Lune)</string>
+    <string name="isillirit_summ">+1 BBA</string>
+    <string name="isillirit_kill_summ">ArchiLiche Aenarion\n</string>
+    <string name="isillirit_crit_summ">ArchiLiche Aenarion(2)\n</string>
+
     <string name="rapid_enchant">Enchantement rapidité</string>
     <string name="rapid_enchant_summ">Procure une attaque supplémentaire</string>
     <bool name="rapid_enchant_switch_def">true</bool>

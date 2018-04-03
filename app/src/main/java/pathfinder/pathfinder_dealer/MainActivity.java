@@ -294,6 +294,7 @@ public class MainActivity extends AppCompatActivity {
 
         //calcul des ajouts en attaque
         Integer thor;
+        Integer isillirit;
         Integer predi;
         Integer neuf_m;
         Integer magic;
@@ -301,6 +302,9 @@ public class MainActivity extends AppCompatActivity {
         if (settings.getBoolean("thor_switch",getResources().getBoolean(R.bool.thor_switch_def))) {
             thor = 1;
         }  else { thor = 0; }
+        if (settings.getBoolean("isillirit_switch",getResources().getBoolean(R.bool.isillirit_switch_def))) {
+            isillirit = 1;
+        }  else { isillirit = 0; }
         if (settings.getBoolean("predil_switch",getResources().getBoolean(R.bool.predil_switch_def)))  {
             predi = 1;
         }    else { predi = 0; }
@@ -333,7 +337,7 @@ public class MainActivity extends AppCompatActivity {
         Integer temp_att = to_int(temp_att_str,"Augmentation d'attaque");
 
         //calcul du jet max d'attaque
-        int max_att_jet = list_att_base.get(0) + 3*thor + predi  + val_dex + magic*magic_val + neuf_m + epic_val + temp_att;
+        int max_att_jet = list_att_base.get(0) + 3*thor + isillirit + predi  + val_dex + magic*magic_val + neuf_m + epic_val + temp_att;
 
 
         //calcul du nobmre d'attaque de base
@@ -342,7 +346,7 @@ public class MainActivity extends AppCompatActivity {
 
         // ajout du bonus attaque à toute les attaque
         for(int i=0; i<n_att; i++){
-            list_att.set(i,list_att.get(i) + 3*thor + 1*predi  + val_dex + magic*magic_val + neuf_m + epic_val + temp_att);
+            list_att.set(i,list_att.get(i) + 3*thor + isillirit + predi  + val_dex + magic*magic_val + neuf_m + epic_val + temp_att);
         }
 
 
@@ -404,6 +408,7 @@ public class MainActivity extends AppCompatActivity {
         List<Integer> list_att = new ArrayList<Integer>(list_att_base);
 
         Integer thor;
+        Integer isillirit;
         Integer predi;
         Integer neuf_m;
         Integer magic;
@@ -411,6 +416,9 @@ public class MainActivity extends AppCompatActivity {
         if (settings.getBoolean("thor_switch",getResources().getBoolean(R.bool.thor_switch_def))) {
             thor = 1;
         }  else { thor = 0; }
+        if (settings.getBoolean("isillirit_switch",getResources().getBoolean(R.bool.isillirit_switch_def))) {
+            isillirit = 1;
+        }  else { isillirit = 0; }
         if (settings.getBoolean("predil_switch",getResources().getBoolean(R.bool.predil_switch_def)))  {
             predi = 1;
         }    else { predi = 0; }
@@ -431,7 +439,6 @@ public class MainActivity extends AppCompatActivity {
         String epic_str = settings.getString("epic_val",getResources().getString(R.string.epic_val_def));
         Integer epic_val = to_int(epic_str,"Point d'attaque épique");
 
-
         String prouesse_str = settings.getString("prouesse_val",getResources().getString(R.string.prouesse_def));
         Integer prouesse = to_int(prouesse_str,"Point de prouesse");
 
@@ -443,14 +450,14 @@ public class MainActivity extends AppCompatActivity {
         String temp_att_str = settings.getString("att_buff",getResources().getString(R.string.att_buff_def));
         Integer temp_att = to_int(temp_att_str,"Augmentation d'attaque");
 
-        int max_att_jet = list_att_base.get(0) + 3*thor + predi  + val_dex + magic*magic_val + neuf_m + epic_val +temp_att;
+        int max_att_jet = list_att_base.get(0) + 3*thor + isillirit + predi  + val_dex + magic*magic_val + neuf_m + epic_val +temp_att;
 
 
         int length = list_att.size();
         n_att = length;
 
         for(int i=0; i<n_att; i++){
-            list_att.set(i,list_att.get(i) + 3*thor + 1*predi  + val_dex + magic*magic_val + neuf_m + epic_val+temp_att);
+            list_att.set(i,list_att.get(i) + 3*thor + isillirit + predi  + val_dex + magic*magic_val + neuf_m + epic_val+temp_att);
         }
 
 
@@ -1013,27 +1020,27 @@ public class MainActivity extends AppCompatActivity {
         Log.d("STATE","Calcul phy");
 
         probPhy2=100.0-100.0*tableProba(0,nd8Phy,0,sumPhyprob);
-        Log.d("STATE PROB]tablePhy",String.valueOf(probPhy2) );
+        Log.d("STATE PROBtablePhy",String.valueOf(probPhy2) );
 
         Log.d("STATE","Calcul phy crit");
 
         probPhy2_crit=100.0-100.0*tableProba(0,nd8Phy_crit,0,sumPhyprob_crit);
-        Log.d("STATE PROB]tablePhy_crit",String.valueOf(probPhy2_crit) );
+        Log.d("STATE PROBtablePhy_crit",String.valueOf(probPhy2_crit) );
 
         Log.d("STATE","Calcul feu");
 
         probFeu2=100.0-100.0*tableProba(nd6Feu,0,nd10Feu,sumFeu);
-        Log.d("STATE PROB]tablefeu",String.valueOf(probFeu2) );
+        Log.d("STATE PROBtablefeu",String.valueOf(probFeu2) );
 
         Log.d("STATE","Calcul foudre");
 
         probFoudre2=100.0-100.0*tableProba(nd6Foudre,0,nd10Foudre,sumFoudre);
-        Log.d("STATE PROB]tablefoudre",String.valueOf(probFoudre2) );
+        Log.d("STATE PROBtablefoudre",String.valueOf(probFoudre2) );
 
         Log.d("STATE","Calcul  froid");
 
         probFroid2=100.0-100.0*tableProba(nd6Froid,0,nd10Froid,sumFroid);
-        Log.d("STATE PROB]tablefroid",String.valueOf(probFroid2));
+        Log.d("STATE PROBtablefroid",String.valueOf(probFroid2));
 
         // affichage des texte degat et range et pourcents
 
