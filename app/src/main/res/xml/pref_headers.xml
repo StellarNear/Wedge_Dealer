@@ -23,6 +23,11 @@
         android:title="@string/isillirit" />
 
     <header
+        android:fragment="pathfinder.pathfinder_dealer.SettingsActivity$RazPreferenceFragment"
+        android:icon="@drawable/ic_undo_black_24dp"
+        android:title="Reset des paramètres" />
+
+    <header
         android:fragment="pathfinder.pathfinder_dealer.SettingsActivity$TempPreferenceFragment"
         android:icon="@drawable/ic_timelapse_black_24dp"
         android:title="@string/pref_header_temp" />

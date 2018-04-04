@@ -47,12 +47,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //shouldExecuteOnResume = false;
 
-        // reset les pref au defaut
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.clear();
-        editor.commit();
-
         setContentView(R.layout.activity_main);
         final android.support.design.widget.CoordinatorLayout mainPage=(android.support.design.widget.CoordinatorLayout) findViewById(R.id.mainPage);
         final Drawable ori_background = mainPage.getBackground();
@@ -198,8 +192,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 FloatingActionButton fab_dmg = (FloatingActionButton) findViewById(R.id.fab_damage);
                 fab_dmg.animate().setDuration(1000).translationX(+400).start();
-
-                SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
                 Snackbar.make(view, "Calcul des dégâts en cours... ",Snackbar.LENGTH_SHORT).show();
 

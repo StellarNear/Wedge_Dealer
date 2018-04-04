@@ -2,12 +2,18 @@ package pathfinder.pathfinder_dealer;
 
 
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
 import android.view.MenuItem;
+import android.view.View;
 
 import java.util.List;
 
@@ -72,6 +78,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 || EnchantPreferenceFragment.class.getName().equals(fragmentName)
                 || CombatPreferenceFragment.class.getName().equals(fragmentName)
                 || IsilliritPreferenceFragment.class.getName().equals(fragmentName)
+                || RazPreferenceFragment.class.getName().equals(fragmentName)
                 || TempPreferenceFragment.class.getName().equals(fragmentName);
     }
 
@@ -176,6 +183,71 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 return true;
             }
             return super.onOptionsItemSelected(item);
+        }
+    }
+
+    /**
+     page de reset settings
+     */
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public static class RazPreferenceFragment extends PreferenceFragment {
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+
+            View window = getActivity().findViewById(android.R.id.content);
+            window.setBackgroundResource(R.drawable.reset_background);
+        }
+
+        @Override
+        public void onResume(){
+            super.onResume();
+            new AlertDialog.Builder(getContext())
+                    .setIcon(R.drawable.ic_warning_black_24dp)
+                    .setTitle("Remise à zéro des paramètres")
+                    .setMessage("Es-tu sûre de vouloir réinitialiser ?")
+                    .setPositiveButton("Oui", new DialogInterface.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            clearSettings();
+                        }
+
+                    })
+                    .setNegativeButton("Non", new DialogInterface.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(getActivity(), MainActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                            startActivity(intent);
+                        }
+
+                    })
+                    .show();
+        }
+
+        private void clearSettings() {
+            int time=1500; // in milliseconds
+
+            Handler h=new Handler();
+
+            h.postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+
+                    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.clear();
+                    editor.commit();
+                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    startActivity(intent);
+                }
+
+            },time);
         }
     }
 
