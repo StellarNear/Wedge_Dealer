@@ -33,8 +33,8 @@
     <string name="epic_val">Point(s) d\'attaque épique</string>
     <string name="epic_val_def">1</string>
     <string name="epic_dmg_val">Point(s) de dégât épique</string>
-    <string name="epic_dmg_val_def">2</string>
-    <string name="prouesse_def">3</string>
+    <string name="epic_dmg_val_def">0</string>
+    <string name="prouesse_def">0</string>
     <string name="prouesse_val">Point(s) de prouesse</string>
     <string name="prouesse_attrib_def">4</string>
     <string-array name="choix_prouesse">
@@ -55,6 +55,8 @@
 
     <bool name="predil_switch_def">true</bool>
     <string name="predil">Arme de prédilection</string>
+    <bool name="predil_sup_switch_def">true</bool>
+    <string name="predil_sup">Arme de prédilection sup.</string>
     <string name="predil_summ">Confère un bonus de +1 aux jets d\'attaque.</string>
     <string name="neuf_m">Tir à bout portant</string>
     <bool name="neuf_m_switch_def">true</bool>

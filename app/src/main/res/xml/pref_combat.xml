@@ -6,6 +6,11 @@
         android:summary="@string/predil_summ"
         android:title="@string/predil" />
     <SwitchPreference
+        android:defaultValue="@bool/predil_sup_switch_def"
+        android:key="predil_sup_switch"
+        android:summary="@string/predil_summ"
+        android:title="@string/predil_sup" />
+    <SwitchPreference
         android:defaultValue="@bool/neuf_m_switch_def"
         android:key="neuf_m_switch"
         android:summary="@string/neuf_m_summ"

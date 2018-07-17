@@ -288,6 +288,7 @@ public class MainActivity extends AppCompatActivity {
         Integer thor;
         Integer isillirit;
         Integer predi;
+        Integer predi_sup;
         Integer neuf_m;
         Integer magic;
 
@@ -300,6 +301,9 @@ public class MainActivity extends AppCompatActivity {
         if (settings.getBoolean("predil_switch",getResources().getBoolean(R.bool.predil_switch_def)))  {
             predi = 1;
         }    else { predi = 0; }
+        if (settings.getBoolean("predil_sup_switch",getResources().getBoolean(R.bool.predil_sup_switch_def)))  {
+            predi_sup = 1;
+        }    else { predi_sup = 0; }
         if (settings.getBoolean("neuf_m_switch",getResources().getBoolean(R.bool.neuf_m_switch_def)))  {
             neuf_m = 1;
         }    else { neuf_m = 0; }
@@ -329,7 +333,7 @@ public class MainActivity extends AppCompatActivity {
         Integer temp_att = to_int(temp_att_str,"Augmentation d'attaque");
 
         //calcul du jet max d'attaque
-        int max_att_jet = list_att_base.get(0) + 3*thor + isillirit + predi  + val_dex + magic*magic_val + neuf_m + epic_val + temp_att;
+        int max_att_jet = list_att_base.get(0) + 3*thor + isillirit + predi + predi_sup + val_dex + magic*magic_val + neuf_m + epic_val + temp_att;
 
 
         //calcul du nobmre d'attaque de base
@@ -338,7 +342,7 @@ public class MainActivity extends AppCompatActivity {
 
         // ajout du bonus attaque à toute les attaque
         for(int i=0; i<n_att; i++){
-            list_att.set(i,list_att.get(i) + 3*thor + isillirit + predi  + val_dex + magic*magic_val + neuf_m + epic_val + temp_att);
+            list_att.set(i,list_att.get(i) + 3*thor + isillirit + predi + predi_sup + val_dex + magic*magic_val + neuf_m + epic_val + temp_att);
         }
 
 
@@ -402,6 +406,7 @@ public class MainActivity extends AppCompatActivity {
         Integer thor;
         Integer isillirit;
         Integer predi;
+        Integer predi_sup;
         Integer neuf_m;
         Integer magic;
 
@@ -414,6 +419,9 @@ public class MainActivity extends AppCompatActivity {
         if (settings.getBoolean("predil_switch",getResources().getBoolean(R.bool.predil_switch_def)))  {
             predi = 1;
         }    else { predi = 0; }
+        if (settings.getBoolean("predil_sup_switch",getResources().getBoolean(R.bool.predil_sup_switch_def)))  {
+            predi_sup = 1;
+        }    else { predi_sup = 0; }
         if (settings.getBoolean("neuf_m_switch",getResources().getBoolean(R.bool.neuf_m_switch_def)))  {
             neuf_m = 1;
         }    else { neuf_m = 0; }
@@ -442,14 +450,14 @@ public class MainActivity extends AppCompatActivity {
         String temp_att_str = settings.getString("att_buff",getResources().getString(R.string.att_buff_def));
         Integer temp_att = to_int(temp_att_str,"Augmentation d'attaque");
 
-        int max_att_jet = list_att_base.get(0) + 3*thor + isillirit + predi  + val_dex + magic*magic_val + neuf_m + epic_val +temp_att;
+        int max_att_jet = list_att_base.get(0) + 3*thor + isillirit + predi +predi_sup + val_dex + magic*magic_val + neuf_m + epic_val +temp_att;
 
 
         int length = list_att.size();
         n_att = length;
 
         for(int i=0; i<n_att; i++){
-            list_att.set(i,list_att.get(i) + 3*thor + isillirit + predi  + val_dex + magic*magic_val + neuf_m + epic_val+temp_att);
+            list_att.set(i,list_att.get(i) + 3*thor + isillirit + predi +predi_sup + val_dex + magic*magic_val + neuf_m + epic_val+temp_att);
         }
 
 
