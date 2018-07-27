@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceScreen
+        android:key="pref_character_general"
+        android:icon="@drawable/ic_person_pin_black_24dp"
+        android:title="Caractéristiques générales"
+        android:summary="Caractéristiques provenant du personnage"/>
+
+    <PreferenceScreen
+        android:key="pref_character_combat"
+        android:icon="@drawable/ic_filter_center_focus_black_24dp"
+        android:title="Caractéristiques de combat"
+        android:summary="Caractéristiques et dons relatifs au combat"/>
+
+    <PreferenceScreen
+        android:key="pref_character_enchant"
+        android:icon="@drawable/ic_whatshot_black_24dp"
+        android:title="@string/pref_header_enchant"
+        android:summary="Enchantements actif"/>
+
+    <PreferenceScreen
+        android:key="pref_character_xp"
+        android:icon="@drawable/ic_upgrade"
+        android:title="Experience"
+        android:summary="Gestion des points d'experience du personnage"
+        />
+</PreferenceScreen>

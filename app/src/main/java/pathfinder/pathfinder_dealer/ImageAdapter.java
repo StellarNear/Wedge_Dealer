@@ -124,6 +124,16 @@ public class ImageAdapter  extends BaseAdapter {
     }
 
     @Override
+    public boolean areAllItemsEnabled() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled(int position) {
+        return false;
+    }
+
+    @Override
     public int getCount() {
         return mThumbIds.size();
     }
@@ -141,16 +151,19 @@ public class ImageAdapter  extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ImageView imageView;
+
         if (convertView == null) {
             imageView = new ImageView(mContext);
             imageView.setScaleType(ImageView.ScaleType.FIT_END);
             imageView.setLayoutParams(new GridView.LayoutParams(GridView.AUTO_FIT, size_height));
-
-
         } else {
+            convertView.setClickable(false);
+            convertView.setFocusable(false);
             imageView = (ImageView) convertView;
         }
         imageView.setImageResource(mThumbIds.get(position));
+        imageView.setClickable(false);
+        imageView.setFocusable(false);
         return imageView;
     }
 

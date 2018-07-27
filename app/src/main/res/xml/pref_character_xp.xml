@@ -1,0 +1,53 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <Preference
+        android:key="xp_bar"
+    android:layout="@layout/xp_bar"
+        android:selectable="false"
+        />
+
+    <pathfinder.pathfinder_dealer.EditTextPreference
+        android:defaultValue="@integer/ability_lvl_def"
+        android:key="ability_lvl"
+        android:title="Niveau de moine"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:inputType="number"
+        android:summary="Valeur : %s"/>
+
+    <pathfinder.pathfinder_dealer.EditTextPreference
+        android:defaultValue="@integer/current_xp_def"
+        android:key="current_xp"
+        android:title="Points d'experience actuels"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:inputType="number"
+        android:summary="Valeur : %s xp"/>
+
+    <EditTextPreference
+        android:defaultValue="@integer/add_current_xp_def"
+        android:key="add_current_xp"
+        android:title="Ajout d'expérience"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:inputType="number" />
+
+    <pathfinder.pathfinder_dealer.EditTextPreference
+        android:defaultValue="@integer/previous_level_def"
+        android:key="previous_level"
+        android:title="Points pour le niveau précédant"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:inputType="number"
+        android:summary="Valeur : %s xp"/>
+
+    <pathfinder.pathfinder_dealer.EditTextPreference
+        android:defaultValue="@integer/next_level_def"
+        android:key="next_level"
+        android:title="Points pour le prochain niveau"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:inputType="number"
+        android:summary="Valeur : %s xp"/>
+
+</PreferenceScreen>

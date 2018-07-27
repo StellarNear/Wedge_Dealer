@@ -1,0 +1,42 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- These settings pref are only used on tablets. -->
+
+    <PreferenceScreen
+        android:key="pref_character"
+        android:icon="@drawable/ic_person_black_24dp"
+        android:title="Personnage"
+        android:summary="Statistiques de base du personnage"/>
+
+
+    <PreferenceScreen
+        android:key="pref_inventory"
+        android:icon="@drawable/ic_locked_chest"
+        android:summary="Equipement et trésorerie"
+        android:title="Inventaire" />
+
+    <PreferenceScreen
+        android:key="pref_appli"
+        android:title="Gestion de l'application"
+        android:summary="Paramètres et informations de l'application"
+        android:icon="@drawable/ic_smartphone" />
+
+    <PreferenceScreen
+        android:key="pref_temp"
+        android:icon="@drawable/ic_timelapse_black_24dp"
+        android:summary="Améliorations non permanentes"
+        android:title="Bonus temporaires" />
+
+    <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+
+    <pathfinder.pathfinder_dealer.EditTextPreference
+        android:icon="@drawable/ic_trophy_cup"
+        android:defaultValue="0"
+        android:key="highscore"
+        android:title="Record actuel"
+        android:selectAllOnFocus="false"
+        android:selectable="false"
+        android:singleLine="true"
+        android:summary="Valeur : %s"/>
+    <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+</PreferenceScreen>

@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <SwitchPreference
+        android:defaultValue="@bool/isillirit_switch_def"
+        android:key="isillirit_switch"
+        android:summary="@string/isillirit_summ"
+        android:title="@string/isillirit" />
 
     <pathfinder.pathfinder_dealer.EditTextPreference
         android:key="kill_isi"

@@ -4,4 +4,22 @@
     <color name="colorPrimaryDark">#003A17</color>
     <color name="colorAccent">#FF4081</color>
     <color name="white">#FFFFFF</color>
+
+    <color name="end_gradient_button_ok">@color/colorPrimaryDark</color>
+    <color name="start_gradient_button_ok">@color/colorPrimary</color>
+
+    <color name="start_gradient_button_cancel">#822616</color>
+    <color name="end_gradient_button_cancel">#bd3e1e</color>
+
+    <color name="colorBackground">#f9f9f9</color>
+    <color name="validation">#0FBD40</color>
+    <color name="cancel">#FF0000</color>
+    <color name="information">#81BEF7</color>
+    <color name="information_light">#d4e9ff</color>
+
+    <color name="start_gradient_money_inventory">@android:color/darker_gray</color>
+    <color name="end_gradient_money_inventory">#000000</color>
+
+    <color name="gold">#FFD700</color>
+    <color name="divider_pref">#e6e6e6</color>
 </resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceScreen
+        android:key="pref_appli_para"
+        android:summary="Options de application"
+        android:icon="@drawable/ic_build_black_24dp"
+        android:title="Paramètres de l'application" />
+
+    <PreferenceScreen
+        android:key="reset_para"
+        android:summary="Réinitialise tout les paramètres"
+        android:icon="@drawable/ic_undo_black_24dp"
+        android:title="Reset des paramètres" />
+</PreferenceScreen>

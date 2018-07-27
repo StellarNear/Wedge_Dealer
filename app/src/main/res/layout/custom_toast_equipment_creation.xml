@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:id="@+id/toast_RelativeLayout_equipment_creation"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_border_creation_item"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/general_margin">
+
+    <FrameLayout
+        android:id="@+id/toast__equipment_creation_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/toast_equipment_creation_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Création d'objet"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@android:color/black" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clipChildren="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/general_margin">
+
+        <EditText
+            android:id="@+id/name_equipment_creation"
+            android:layout_width="wrap_content"
+            android:hint="Nom de l'objet"
+            android:inputType="text"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/value_equipment_creation"
+            android:hint="Valeur de l'objet (en po)"
+            android:inputType="number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/descr_equipment_creation"
+            android:hint="Description de l'objet"
+            android:inputType="textMultiLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</LinearLayout>

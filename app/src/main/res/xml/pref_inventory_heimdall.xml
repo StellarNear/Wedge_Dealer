@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <SwitchPreference
+            android:defaultValue="@bool/thor_switch_def"
+            android:key="thor_switch"
+            android:summary="@string/thor_summ"
+            android:title="@string/thor" />
+
+        <SwitchPreference
+            android:defaultValue="@bool/rapid_enchant_switch_def"
+            android:elegantTextHeight="false"
+            android:fadeScrollbars="false"
+            android:key="rapid_enchant_switch"
+            android:summary="@string/rapid_enchant_summ"
+            android:title="@string/rapid_enchant" />
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="composite_switch"
+            android:summary="@string/composite_summ"
+            android:title="@string/composite" />
+
+
+
+</PreferenceScreen>

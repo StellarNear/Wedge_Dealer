@@ -1,3 +1,6 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="general_margin">5dp</dimen>
+    <dimen name="custom_toast_icon_size">150dp</dimen>
+    <dimen name="divider_pref_height">1dp</dimen>
 </resources>

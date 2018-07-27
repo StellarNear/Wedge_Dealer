@@ -19,7 +19,7 @@
     <string name="thor">Puissance de Thor</string>
     <string name="thor_summ">Enchantement de Thor (altération +3)</string>
     <bool name="isillirit_switch_def">true</bool>
-    <string name="isillirit">Isillirit (le chant de la Lune)</string>
+    <string name="isillirit">Isillirit</string>
     <string name="isillirit_summ">+1 BBA</string>
     <string name="isillirit_kill_summ">ArchiLiche Aenarion\n</string>
     <string name="isillirit_crit_summ">ArchiLiche Aenarion(2)\n</string>
@@ -77,7 +77,7 @@
 
 
     <!-- ENCHANTS -->
-    <string name="pref_header_enchant">Enchantements actifs</string>
+    <string name="pref_header_enchant">Enchantements</string>
 
     <bool name="magic_switch_def">true</bool>
     <string name="magic">Flêche magique</string>
@@ -100,5 +100,60 @@
     <string name="att_buff">Augmentation d\'attaque</string>
     <string name="dmg_buff_def">0</string>
     <string name="dmg_buff">Augmentation de dégât</string>
+
+
+
+    <!-- autre -->
+    <bool name="switch_autoclose_dialog_DEF">true</bool>
+    <integer name="custom_alert_long_duration_DEF">10000</integer>
+
+    <string-array name="slot_choice_val">
+        <item>eyes_slot</item>
+        <item>shoulder_slot</item>
+        <item>hand_slot</item>
+        <item>ring1_slot</item>
+        <item>mainhand_slot</item>
+        <item>helm_slot</item>
+        <item>neck_slot</item>
+        <item>armor_slot</item>
+        <item>belt_slot</item>
+        <item>feet_slot</item>
+        <item>face_slot</item>
+        <item>chest_slot</item>
+        <item>wrist_slot</item>
+        <item>ring2_slot</item>
+        <item>offhand_slot</item>
+        <item>other_slot</item>
+    </string-array>
+    <string-array name="slot_choice_name">
+        <item>Yeux</item>
+        <item>Epaules</item>
+        <item>Mains</item>
+        <item>Anneau 1</item>
+        <item>Main principale</item>
+        <item>Casque</item>
+        <item>Cou</item>
+        <item>Armure</item>
+        <item>Ceinture</item>
+        <item>Pieds</item>
+        <item>Visage</item>
+        <item>Corps</item>
+        <item>Poignets</item>
+        <item>Anneau 2</item>
+        <item>Main secondaire</item>
+        <item>Hors emplacement</item>
+    </string-array>
+
+    <!-- def values -->
+    <integer name="ability_lvl_def">22</integer>
+    <integer name="current_xp_def">6625294</integer>
+    <integer name="previous_level_def">4800000</integer>
+    <integer name="next_level_def">6830000</integer>
+    <integer name="add_current_xp_def">0</integer>
+    <integer name="add_gold_def">0</integer>
+    <integer name="money_plat_def">0</integer>
+    <integer name="money_gold_def">0</integer>
+    <integer name="money_silver_def">0</integer>
+    <integer name="money_copper_def">0</integer>
 
 </resources>
