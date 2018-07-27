@@ -1,5 +1,6 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory android:title="Caractéristiques de base du personnage">
+        <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
         <pathfinder.pathfinder_dealer.EditTextPreference
             android:defaultValue="@string/jet_att_def"
             android:key="jet_att"
@@ -17,9 +18,11 @@
             android:summary="Valeur : +%s"
             android:title="@string/title_mod_dex"
             android:visibility="visible" />
+        <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
     </PreferenceCategory>
 
     <PreferenceCategory android:title="Caractéristiques épiques du personnage">
+        <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
         <pathfinder.pathfinder_dealer.EditTextPreference
             android:defaultValue="@string/epic_val_def"
             android:key="epic_val"

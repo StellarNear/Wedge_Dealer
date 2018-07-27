@@ -18,11 +18,7 @@
     <bool name="thor_switch_def">true</bool>
     <string name="thor">Puissance de Thor</string>
     <string name="thor_summ">Enchantement de Thor (altération +3)</string>
-    <bool name="isillirit_switch_def">true</bool>
-    <string name="isillirit">Isillirit</string>
-    <string name="isillirit_summ">+1 BBA</string>
-    <string name="isillirit_kill_summ">ArchiLiche Aenarion\n</string>
-    <string name="isillirit_crit_summ">ArchiLiche Aenarion(2)\n</string>
+
 
     <string name="rapid_enchant">Enchantement rapidité</string>
     <string name="rapid_enchant_summ">Procure une attaque supplémentaire</string>
@@ -145,15 +141,28 @@
     </string-array>
 
     <!-- def values -->
-    <integer name="ability_lvl_def">22</integer>
-    <integer name="current_xp_def">6625294</integer>
-    <integer name="previous_level_def">4800000</integer>
-    <integer name="next_level_def">6830000</integer>
+    <integer name="ability_lvl_def">24</integer>
+    <integer name="current_xp_def">9976803</integer>
+    <integer name="previous_level_def">9570000</integer>
+    <integer name="next_level_def">13600000</integer>
     <integer name="add_current_xp_def">0</integer>
     <integer name="add_gold_def">0</integer>
-    <integer name="money_plat_def">0</integer>
-    <integer name="money_gold_def">0</integer>
+    <integer name="money_plat_def">22</integer>
+    <integer name="money_gold_def">113153</integer>
     <integer name="money_silver_def">0</integer>
-    <integer name="money_copper_def">0</integer>
+    <integer name="money_copper_def">91</integer>
+
+    <bool name="isillirit_switch_def">true</bool>
+    <string name="isillirit">Isillirit</string>
+    <string name="isillirit_summ">+1 BBA</string>
+<string name="isillirit_kill_summ">ArchiLiche Aenarion
+8 Gorilles Behemots
+4 Aigles Behemots
+Liane Corrompue</string>
+
+    <string name="isillirit_crit_summ">2 ArchiLiche Aenarion
+6 Gorilles Behemots
+4 Aigles Behemots
+2 Liane Corrompue</string>
 
 </resources>

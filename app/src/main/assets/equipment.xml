@@ -1,0 +1,166 @@
+<?xml version="1.0"?>
+<records>
+
+    <!-- SLOTS Equipped -->
+    <equipment>
+        <name>Anneau de la nouvelle chance/Caméléon</name>
+        <descr>Permet à son porteur de relancer un jet de dés une fois par jour Caméléon : Par une action libre le porteur de cet anneau peut se fondre dans son environnement, ce qui se traduit par +10 à son jet de discrétion.
+Par une action simple, l'anneau permet également de modifié ses traits comme à l'aide du sort déguisement sans limite d'utilisation</descr>
+        <imgId>equipped_ring1</imgId>
+        <value>95000po</value>
+        <slotId>ring1_slot</slotId>
+        <equipped>true</equipped>
+    </equipment>
+    <equipment>
+        <name>Anneau de résistance prismatique suprême</name>
+        <descr>+30 résistance au energie destructives prisma (all elements)</descr>
+        <imgId>equipped_ring2</imgId>
+        <slotId>ring2_slot</slotId>
+        <value>44000po</value>
+        <equipped>true</equipped>
+    </equipment>
+    <equipment>
+        <name>Bottes de lévitation</name>
+        <descr>2 CA, vol à 6 mètres par round</descr>
+        <imgId>equipped_feet</imgId>
+        <slotId>feet_slot</slotId>
+        <equipped>true</equipped>
+    </equipment>
+    <equipment>
+        <name>Amulette de négation</name>
+        <descr>+30 de résistance magique</descr>
+        <imgId>equipped_neck</imgId>
+        <value>190000po</value>
+        <slotId>neck_slot</slotId>
+        <equipped>true</equipped>
+    </equipment>
+    <equipment>
+        <name>Chemise du veilleur</name>
+        <descr>6 CA (2 cuir + 5 enchant + 2 sombrefeuille -1 agile)
+(+10 max Dex à la CA)
++5 en discretion (ombre)
+
+Cette armure en sombrefeuille est un signe distictif des membres du conseil druidique, Wedge l'a reçu de son père Aldaronn en prenant sa relève</descr>
+        <imgId>equipped_armor</imgId>
+        <slotId>armor_slot</slotId>
+        <equipped>true</equipped>
+    </equipment>
+    <equipment>
+        <name>Brassard de rapidité supérieure</name>
+        <descr>Action passer un round à se concentrer pour stocker un round utilisable à tout moment pendant une minute.
+Mot d'activation : "esprit du vent" en druidique "Sylphe"</descr>
+        <imgId>equipped_wrist</imgId>
+        <slotId>wrist_slot</slotId>
+        <equipped>true</equipped>
+    </equipment>
+    <equipment>
+        <name>Gants</name>
+        <descr>2 CA + (2 const)</descr>
+        <imgId>equipped_hand</imgId>
+        <slotId>hand_slot</slotId>
+        <equipped>true</equipped>
+    </equipment>
+    <equipment>
+        <name>Robe de vision totale</name>
+        <descr>Rend capable de voir dans toutes les directions à la fois, grâce aux dizaines d’yeux magiques qui ornent la robe. Il bénéficie également de vision dans le noir (jusqu’à 36 m (24 c) de portée) et voit les créatures et objets invisibles ou éthérés à la même distance (36 m/24 c)).
+
+ La robe de vision totale confère également un bonus d’aptitude de +10 aux tests de Perception. Son porteur conserve son bonus de Dextérité à la CAmême quand il est pris au dépourvu, et il est impossible de le prendre en tenaille. Par contre, il est incapable de se protéger des attaques de regarden détournant ou en fermant les yeux</descr>
+        <imgId>equipped_shoulder</imgId>
+        <slotId>shoulder_slot</slotId>
+        <value>120000po</value>
+        <equipped>true</equipped>
+    </equipment>
+    <equipment>
+        <name>Diadème du veilleur</name>
+        <descr>2 CA +10 résistance aux énergie destructives prismatique (all elements)</descr>
+        <imgId>equipped_face</imgId>
+        <slotId>face_slot</slotId>
+        <equipped>true</equipped>
+    </equipment>
+    <equipment>
+        <name>Ceinture de la perfection physique</name>
+        <descr>+6 Force +6 const +6 dext</descr>
+        <imgId>equipped_belt</imgId>
+        <slotId>belt_slot</slotId>
+        <value>144000po</value>
+        <equipped>true</equipped>
+    </equipment>
+    <equipment>
+        <name>Heimdall</name>
+        <descr>+3 altération + feu intense (rune démon : forge lunaire) + foudre intense + froid intense + composite (+4) + rapide</descr>
+        <imgId>equipped_mainhand</imgId>
+        <slotId>mainhand_slot</slotId>
+        <equipped>true</equipped>
+        <value>288000po</value>
+    </equipment>
+    <equipment>
+        <name>Isillirit (Chant de Lune)</name>
+        <descr>Premier éveil : +2 dex, +1 BBA</descr>
+        <imgId>equipped_offhand</imgId>
+        <slotId>offhand_slot</slotId>
+        <equipped>true</equipped>
+    </equipment>
+
+    <!-- Hors slot -->
+    <equipment>
+        <name>L'orbe de Pooka</name>
+        <descr>*Permets à un Archer Sylvestre de se transformer en Vermine (araignée, serpents, rats etc...)
+*L'Archer Sylvestre peut se transformer autant de fois qu'il le souhaite du moment qu'il n'est pas combat,  il lui faut alors une minute de concentration afin de rentrer en comunication avec l'orbe. Rentrer en combat alors qu'il est sous une forme animale, l'oblige à garder cette forme pendant tout
+le combat ou à perdre 2 rounds pour redevenir un humain (Ceci déclenchant des attaques d'opportunité). Encaisser des dégâts pendant cette transformation l'annule.
+*L'Archer Sylvestre gagne une transformation par jour tous les 3 niveaux d'Archer-Sylvestre.
+*Augmente d'un niveau le sort de transformation du druide (Forme Animale et Corps Elementaire)</descr>
+        <imgId>equipped_pooka</imgId>
+        <slotId>other_slot</slotId>
+        <equipped>true</equipped>
+    </equipment>
+
+
+
+    <!-- Spare -->
+
+
+    <equipment>
+        <name>Bague Empathie Sauvage + Invisibilité</name>
+        <descr>+1 au test d'empathie sauvage
+Invisibilité 3 fois par jour</descr>
+        <imgId>equipment_ring1_slot_def</imgId>
+        <slotId>ring1_slot</slotId>
+        <equipped>false</equipped>
+    </equipment>
+
+    <equipment>
+        <name>Anneau d'amitié avec les vermines</name>
+        <descr>Sur commande, cet anneau affecte la vermine désignée comme si le personnage venait de lancer le sort charme-animal</descr>
+        <imgId>equipment_ring1_slot_def</imgId>
+        <slotId>ring1_slot</slotId>
+        <equipped>false</equipped>
+        <value>10800po</value>
+    </equipment>
+
+    <equipment>
+        <name>Brassards</name>
+        <descr>+1 force +2 const</descr>
+        <imgId>equipment_wrist_slot_def</imgId>
+        <slotId>wrist_slot</slotId>
+        <equipped>false</equipped>
+    </equipment>
+
+    <equipment>
+        <name>Cape d'invisibilité</name>
+        <descr>3minute / jour divisable par morceau de 1m</descr>
+        <imgId>equipment_shoulder_slot_def</imgId>
+        <slotId>shoulder_slot</slotId>
+        <equipped>false</equipped>
+    </equipment>
+
+    <!-- BAG -->
+    <bag>Pierre de contrôle des élémentaire de Terre[100000po](En prononcant la phrase de commande, un round d'incantation, fait apparaitre un élémentaire de taille TG si il y a de la roche, taille G sinon. Il apparait au bout de 1d4 rounds on ne peut en appeler un autre tant que le premier est toujours la/en vie.  L'invocation transforme 0,1m^3 du sol)
+        Tapis Volant(Charge 400 Kg / 800 Kg vitesse 12m/9m)[60000po]
+        Jeu de cartes fantasmagoriques[8100po](Un jeu complet comprend trente-quatre cartes. Chaque fois qu’une carte est tirée au hasard et jetée au sol, une image accomplie se forme. Celle-ci représente la créature associée à la carte. L’illusion est incapable de s’éloigner de plus de neuf mètres de l’endroit où la carte a touché le sol, mais, cette restriction exceptée, elle se comporte comme une créature de chair et d’os, obéissant en tout point aux ordres de son créateur)
+        Lien mystique de Billaro[26000po](Boule de fer de 7,5 cm de diametre. 1 fois par jour Quand la boule est jetée sur un adversaire en prononcant le mot de commande elle se deploie et se referme sur la cible en cas d'attaque à distance réussi. Elle permet de capturer et d'immobiliser une créature de taille G ou moins le prisonnier ne pouvant rien faire tant que le personnage ne pronnonce pas une seconde fois le mot d ecommande ce qui ramene la sphere à son etat d'origine. La créature à l'interieur peut s'echapper avec un jet d'evasion DD 30 ou détruire la sphere avec un jet de Force DD 30)
+        Baguette de Suggestion(6 fois par jour lance le sort suggestion)
+        Symbol de la nature(+1 aux dégats du compagnon animal une fois par jour durant trois rounds)
+        Grapin +20m corde caméléon
+        2 Sceptres inamovible[10000po](Peut etre rendu immobile par pression d'un bouton situé sur celui-ci. Un sceptre inamovible peut supporter un total de quatre tonnes avant de tomber au sol. Si une créature tente de le pousser après qu’il a été arrimé, elle doit réussir un test de Force (DD 30) pour le déplacer de trois mètres en 1 round)
+        Oeuf bleu de dragon</bag>
+</records>
