@@ -6,14 +6,7 @@
         android:selectable="false"
         />
 
-    <pathfinder.pathfinder_dealer.EditTextPreference
-        android:defaultValue="@integer/ability_lvl_def"
-        android:key="ability_lvl"
-        android:title="Niveau de moine"
-        android:selectAllOnFocus="true"
-        android:singleLine="true"
-        android:inputType="number"
-        android:summary="Valeur : %s"/>
+
 
     <pathfinder.pathfinder_dealer.EditTextPreference
         android:defaultValue="@integer/current_xp_def"
@@ -32,22 +25,43 @@
         android:singleLine="true"
         android:inputType="number" />
 
+    <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+
+
+    <PreferenceCategory android:title="Informations sur le niveau"/>
+    <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+
+    <pathfinder.pathfinder_dealer.EditTextPreference
+    android:defaultValue="@integer/ability_lvl_def"
+    android:key="ability_lvl"
+    android:selectable="false"
+    android:title="Niveau de moine"
+    android:singleLine="true"
+    android:inputType="number"
+    android:summary="Valeur : %s"/>
+
+    <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+
     <pathfinder.pathfinder_dealer.EditTextPreference
         android:defaultValue="@integer/previous_level_def"
         android:key="previous_level"
+        android:selectable="false"
         android:title="Points pour le niveau précédant"
-        android:selectAllOnFocus="true"
         android:singleLine="true"
         android:inputType="number"
         android:summary="Valeur : %s xp"/>
 
+    <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+
     <pathfinder.pathfinder_dealer.EditTextPreference
         android:defaultValue="@integer/next_level_def"
         android:key="next_level"
+        android:selectable="false"
         android:title="Points pour le prochain niveau"
-        android:selectAllOnFocus="true"
         android:singleLine="true"
         android:inputType="number"
         android:summary="Valeur : %s xp"/>
+
+    <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
 
 </PreferenceScreen>

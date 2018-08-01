@@ -38,5 +38,7 @@
         android:selectable="false"
         android:singleLine="true"
         android:summary="Valeur : %s"/>
+
     <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+
 </PreferenceScreen>

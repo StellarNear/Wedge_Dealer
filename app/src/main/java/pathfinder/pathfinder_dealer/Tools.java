@@ -1,13 +1,20 @@
 package pathfinder.pathfinder_dealer;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +45,15 @@ public class Tools {
         Long value = 0L;
         try {
             value = Long.parseLong(key);
+        } catch (Exception e) {
+        }
+        return value;
+    }
+
+    public BigInteger toBigInt(String key) {
+        BigInteger value = BigInteger.ZERO;
+        try {
+            value = new BigInteger(key);
         } catch (Exception e) {
         }
         return value;
@@ -79,5 +95,27 @@ public class Tools {
         mToastToShow.show();
 
     }
+
+    public void playVideo(Activity activity,Context context, String rawPath) {
+        LayoutInflater inflater = activity.getLayoutInflater();
+        final View layoutRecordVideo = inflater.inflate(R.layout.video_full_screen, null);
+        final CustomAlertDialog customVideo = new CustomAlertDialog(activity, context, layoutRecordVideo);
+        customVideo.setPermanent(true);
+        final VideoView video = (VideoView) layoutRecordVideo.findViewById(R.id.fullscreen_video);
+        video.setVisibility(View.VISIBLE);
+        String fileName = "android.resource://" + activity.getPackageName() + rawPath;
+        video.setMediaController(null);
+        video.setVideoURI(Uri.parse(fileName));
+        video.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                video.stopPlayback();
+                customVideo.dismissAlert();
+            }
+        });
+        video.start();
+        customVideo.showAlert();
+    }
+
 
 }

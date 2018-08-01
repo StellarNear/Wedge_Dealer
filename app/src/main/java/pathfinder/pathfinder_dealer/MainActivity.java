@@ -1210,25 +1210,9 @@ resetScreen();
         int currentHigh = new Tools().toInt(settings.getString("highscore", "0"));
         if (currentHigh < sumDmg) {
             settings.edit().putString("highscore",String.valueOf(sumDmg)).apply();
-            LayoutInflater inflater = MainActivity.this.getLayoutInflater();
-            final View layoutRecordVideo = inflater.inflate(R.layout.highscore, null);
-            final CustomAlertDialog customVideo = new CustomAlertDialog(MainActivity.this, getApplicationContext(), layoutRecordVideo);
-            customVideo.setPermanent(true);
-            final VideoView video = (VideoView) layoutRecordVideo.findViewById(R.id.highscore_video);
-            video.setVisibility(View.VISIBLE);
-            String fileName = "android.resource://" + MainActivity.this.getPackageName() + "/raw/explosion";
-            video.setMediaController(null);
-            video.setVideoURI(Uri.parse(fileName));
-            customVideo.showAlert();
-            video.start();
-            new Tools().customToast(getApplication(), String.valueOf(sumDmg) + " dégats !\nC'est un nouveau record !", "center");
-            video.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mp) {
-                    video.stopPlayback();
-                    customVideo.dismissAlert();
-                }
-            });
+            Tools tools = new Tools();
+            tools.playVideo(MainActivity.this,getApplicationContext(),"/raw/explosion");
+            tools.customToast(getApplication(), String.valueOf(sumDmg) + " dégats !\nC'est un nouveau record !", "center");
         }
     }
 

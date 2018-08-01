@@ -21,5 +21,7 @@
     <color name="end_gradient_money_inventory">#000000</color>
 
     <color name="gold">#FFD700</color>
+    <color name="gold_light">#fff7cc</color>
     <color name="divider_pref">#e0e0e0</color>
+
 </resources>

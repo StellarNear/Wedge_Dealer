@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="xp_lvl_needed">
+        <item>1:0</item>
+        <item>2:1300</item>
+        <item>3:3300</item>
+        <item>4:6000</item>
+        <item>5:10000</item>
+        <item>6:15000</item>
+        <item>7:23000</item>
+        <item>8:34000</item>
+        <item>9:50000</item>
+        <item>10:71000</item>
+        <item>11:105000</item>
+        <item>12:145000</item>
+        <item>13:210000</item>
+        <item>14:295000</item>
+        <item>15:425000</item>
+        <item>16:600000</item>
+        <item>17:850000</item>
+        <item>18:1200000</item>
+        <item>19:1700000</item>
+        <item>20:2400000</item>
+        <item>21:3430000</item>
+        <item>22:4800000</item>
+        <item>23:6830000</item>
+        <item>24:9570000</item>
+        <item>25:13600000</item>
+        <item>26:18900000</item>
+        <item>27:27200000</item>
+        <item>28:38200000</item>
+        <item>29:54600000</item>
+        <item>30:76600000</item>
+        <item>31:109000000</item>
+        <item>32:153000000</item>
+        <item>33:220000000</item>
+        <item>34:306000000</item>
+        <item>35:436000000</item>
+        <item>36:610000000</item>
+        <item>37:873000000</item>
+        <item>38:1220000000</item>
+        <item>39:1760000000</item>
+        <item>40:2460000000</item>
+    </string-array>
+</resources>
