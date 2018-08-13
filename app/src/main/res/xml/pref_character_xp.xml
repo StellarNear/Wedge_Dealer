@@ -35,7 +35,7 @@
     android:defaultValue="@integer/ability_lvl_def"
     android:key="ability_lvl"
     android:selectable="false"
-    android:title="Niveau de moine"
+    android:title="Niveau de Wedge"
     android:singleLine="true"
     android:inputType="number"
     android:summary="Valeur : %s"/>
