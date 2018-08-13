@@ -92,6 +92,8 @@ public class SettingsFragment extends PreferenceFragment {
                     addBagList();
                     break;
                 case "pref_character_xp":
+                    BigInteger xp = tools.toBigInt(settings.getString("current_xp", String.valueOf(getContext().getResources().getInteger(R.integer.current_xp_def))));
+                    checkLevel(xp);
                     refreshXpBar();
                     break;
             }
