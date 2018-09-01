@@ -669,7 +669,7 @@ resetScreen();
 
     private void affich_damage() {
 
-        View dmg_view = findViewById(R.id.dmg_text);
+        TextView dmg_view = findViewById(R.id.dmg_text);
         dmg_view.setVisibility(View.VISIBLE);
 
         GridView grid_element = (GridView) findViewById(R.id.grid_element);
@@ -732,16 +732,19 @@ resetScreen();
 
         all_text_dmg = calcul_damage(); //calcul les degats
 
-        dmg_all_view.setText(Html.fromHtml(all_text_dmg[0]));
-        dmg_all_range_view.setText(Html.fromHtml(all_text_dmg[1]));
-        dmg_all_percent_view.setText(Html.fromHtml(all_text_dmg[2]));
-        dmg_all_proba_view.setText(Html.fromHtml(all_text_dmg[3]));
-        if (all_text_dmg.length == 5) {
+        String damageTxtTotal= "Dégâts : "+all_text_dmg[0];
+        dmg_view.setText(damageTxtTotal);
+
+        dmg_all_view.setText(Html.fromHtml(all_text_dmg[1]));
+        dmg_all_range_view.setText(Html.fromHtml(all_text_dmg[2]));
+        dmg_all_percent_view.setText(Html.fromHtml(all_text_dmg[3]));
+        dmg_all_proba_view.setText(Html.fromHtml(all_text_dmg[4]));
+        if (all_text_dmg.length == 6) {
 
             TextView dmg_phy_crit_proba_view = (TextView) findViewById(R.id.all_dmg_phy_crit_proba);
             dmg_phy_crit_proba_view.startAnimation(anim_text);
             dmg_phy_crit_proba_view.setVisibility(View.VISIBLE);
-            dmg_phy_crit_proba_view.setText(Html.fromHtml(all_text_dmg[4]));
+            dmg_phy_crit_proba_view.setText(Html.fromHtml(all_text_dmg[5]));
         }
 
         //desactive le detail button si y a rien à afficher
@@ -1197,11 +1200,14 @@ resetScreen();
         Log.d("STATE txt_dmg_proba", text_all_dmg_proba);
         Log.d("STATE txt_phy_crit_prob", text_phy_dmg_crit_proba);
 
-        checkHighscore(sumPhy + sumFeu + sumFoudre + sumFroid);
+        int totalSum=sumPhy + sumFeu + sumFoudre + sumFroid;
+        checkHighscore(totalSum);
+
+
         if (nd8Phy_crit > 0) {
-            return new String[]{text_all_dmg, text_all_dmg_range, text_all_dmg_percent, text_all_dmg_proba, text_phy_dmg_crit_proba};
+            return new String[]{String.valueOf(totalSum),text_all_dmg, text_all_dmg_range, text_all_dmg_percent, text_all_dmg_proba, text_phy_dmg_crit_proba};
         } else {
-            return new String[]{text_all_dmg, text_all_dmg_range, text_all_dmg_percent, text_all_dmg_proba};
+            return new String[]{String.valueOf(totalSum),text_all_dmg, text_all_dmg_range, text_all_dmg_percent, text_all_dmg_proba};
         }
     }
 
