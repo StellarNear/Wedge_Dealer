@@ -25,6 +25,7 @@ import stellarnear.wedge_dealer.Rolls.Roll;
 import stellarnear.wedge_dealer.Rolls.RollList;
 import stellarnear.wedge_dealer.TextFilling.PostRandValues;
 import stellarnear.wedge_dealer.TextFilling.PreRandValues;
+import stellarnear.wedge_dealer.TextFilling.SetupCheckboxes;
 
 public class MainActivity extends AppCompatActivity {
     //boolean shouldExecuteOnResume;    //permet de setup que certaine chose lors de la premeire execuution
@@ -89,34 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
         //bouton detail degat
         fabDmgDet = (FloatingActionButton) findViewById(R.id.fab_damage_detail);
-        setFabDmgDet();
-    }
-
-    private void startPreRand() {
-        setRollList();
-        new PreRandValues(mC,mainPage,rollList);
-    }
-
-    private void setRollList() {
-        this.rollList = new RollList(mC);
-        String baseAtksTxt = settings.getString("jet_att", mC.getResources().getString(R.string.jet_att_def));     //cherche la clef     jet_att dans les setting sinon valeur def (xml)
-        String delim = ",";
-
-        List<Integer> baseAtks=tools.toInt(Arrays.asList(baseAtksTxt.split(delim)));
-        List<Integer> allAtks=new ArrayList<>(baseAtks);
-        Integer prouesse = tools.toInt(settings.getString("prouesse_val", mC.getResources().getString(R.string.prouesse_def)));
-        Integer prouesseAttrib = tools.toInt(settings.getString("prouesse_attrib", mC.getResources().getString(R.string.prouesse_attrib_def)));
-        allAtks.set(prouesseAttrib - 1, prouesse + baseAtks.get(prouesseAttrib - 1));
-
-        if (settings.getBoolean("rapid_enchant_switch", mC.getResources().getBoolean(R.bool.rapid_enchant_switch_def))) {
-            allAtks.add(0,allAtks.get(0));
-        }
-        if (settings.getBoolean("tir_rapide", mC.getResources().getBoolean(R.bool.tir_rapide_switch_def))) {
-            allAtks.add(0,allAtks.get(0));
-        }
-        for(Integer atk:allAtks){
-            this.rollList.add(new Roll(mC,atk));
-        }
+        setListenerFabDmgDet();
     }
 
     private void setListenerFabAtk() {
@@ -127,12 +101,18 @@ public class MainActivity extends AppCompatActivity {
                     mainPage.setBackground(ori_background);
                 }
                 startPreRand();
+                mainPage.setOnTouchListener(null);
                 new PostRandValues(mC,mainPage,rollList);
-
+                new SetupCheckboxes(mC,mainPage,rollList);
+                showDivider();
                 fabAtk.animate().setDuration(1000).translationX(-400).start();       //decale le bouton à gauche pour l'apparition du suivant
                 Snackbar.make(view, "Lancement des dés en cours... ", Snackbar.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void showDivider() {
+        mainPage.findViewById(R.id.bar_sep).setVisibility(View.VISIBLE);
     }
 
     private void setListenerFabDmg() {
@@ -180,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void setFabDmgDet() {
+    private void setListenerFabDmgDet() {
         fabDmgDet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -188,6 +168,35 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void startPreRand() {
+        setRollList();
+        new PreRandValues(mC,mainPage,rollList);
+    }
+
+    private void setRollList() {
+        this.rollList = new RollList(mC);
+        String baseAtksTxt = settings.getString("jet_att", mC.getResources().getString(R.string.jet_att_def));     //cherche la clef     jet_att dans les setting sinon valeur def (xml)
+        String delim = ",";
+
+        List<Integer> baseAtks=tools.toInt(Arrays.asList(baseAtksTxt.split(delim)));
+        List<Integer> allAtks=new ArrayList<>(baseAtks);
+        Integer prouesse = tools.toInt(settings.getString("prouesse_val", mC.getResources().getString(R.string.prouesse_def)));
+        Integer prouesseAttrib = tools.toInt(settings.getString("prouesse_attrib", mC.getResources().getString(R.string.prouesse_attrib_def)));
+        allAtks.set(prouesseAttrib - 1, prouesse + baseAtks.get(prouesseAttrib - 1));
+
+        if (settings.getBoolean("rapid_enchant_switch", mC.getResources().getBoolean(R.bool.rapid_enchant_switch_def))) {
+            allAtks.add(0,allAtks.get(0));
+        }
+        if (settings.getBoolean("tir_rapide", mC.getResources().getBoolean(R.bool.tir_rapide_switch_def))) {
+            allAtks.add(0,allAtks.get(0));
+        }
+        for(Integer atk:allAtks){
+            this.rollList.add(new Roll(mC,atk));
+        }
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

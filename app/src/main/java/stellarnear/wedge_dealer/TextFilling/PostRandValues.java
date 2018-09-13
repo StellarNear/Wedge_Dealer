@@ -1,7 +1,9 @@
 package stellarnear.wedge_dealer.TextFilling;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.preference.PreferenceManager;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,11 +19,15 @@ public class PostRandValues {
     private Context mC;
     private View mainView;
     private RollList rollList;
+    private SharedPreferences settings;
+    private LinearLayout mainAtkLin;
 
     public PostRandValues(Context mC, View mainView, RollList rollList) {
         this.mC = mC;
         this.mainView = mainView;
         this.rollList = rollList;
+        settings = PreferenceManager.getDefaultSharedPreferences(mC);
+        mainAtkLin = mainView.findViewById(R.id.mainLinearAtk);
         addRandDices();
         addPostRandValues();
     }
@@ -31,9 +37,6 @@ public class PostRandValues {
         line.setOrientation(LinearLayout.HORIZONTAL);
         line.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         line.setGravity(Gravity.CENTER);
-        line.removeAllViews();
-        line.setVisibility(View.VISIBLE);
-        LinearLayout mainAtkLin = mainView.findViewById(R.id.mainLinearAtk);
         Boolean fail = false;
         for (Roll roll : rollList.getList()) {
             ImageView diceImg = roll.getImgAtk();
@@ -54,6 +57,27 @@ public class PostRandValues {
             line.addView(diceBox);
         }
         mainAtkLin.addView(line);
+        checkForMultipleArrows();
+    }
+
+    private void checkForMultipleArrows() {
+        if (settings.getBoolean("feu_nourri_switch", mC.getResources().getBoolean(R.bool.feu_nourri_switch_def))) {
+            String multi_val_str = settings.getString("multi_val", mC.getResources().getString(R.string.multi_value_def));
+            LinearLayout line = new LinearLayout(mC);
+            line.setOrientation(LinearLayout.HORIZONTAL);
+            line.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            line.setGravity(Gravity.CENTER);
+            for (Roll roll : rollList.getList()) {
+                TextView multiple = new TextView(mC);
+                multiple.setGravity(Gravity.CENTER);
+                multiple.setTextColor(Color.DKGRAY);
+                multiple.setTextSize(15);
+                multiple.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1));
+                multiple.setText("x"+multi_val_str);
+                line.addView(multiple);
+            }
+            mainAtkLin.addView(line);
+        }
     }
 
     private void addPostRandValues() {
@@ -61,7 +85,6 @@ public class PostRandValues {
         line.setOrientation(LinearLayout.HORIZONTAL);
         line.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         line.setGravity(Gravity.CENTER);
-        LinearLayout mainAtkLin = mainView.findViewById(R.id.mainLinearAtk);
         int allRollSet = 0;
         for (Roll roll : rollList.getList()) {
             TextView atkTxt = new TextView(mC);

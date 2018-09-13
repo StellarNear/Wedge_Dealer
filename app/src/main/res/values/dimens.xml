@@ -9,4 +9,5 @@
     <dimen name="icon_dices_wheel_size">40dp</dimen>
     <dimen name="icon_main_dices_wheel_size">60dp</dimen>
     <dimen name="margin_wheel_text">15dp</dimen>
+    <dimen name="activity_main_padding">2dp</dimen>
 </resources>
