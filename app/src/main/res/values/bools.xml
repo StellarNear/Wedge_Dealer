@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Arme -->
+    <bool name="thor_switch_def">true</bool>
+    <bool name="rapid_enchant_switch_def">true</bool>
+    <bool name="composite_switch_def">true</bool>
+    <bool name="isillirit_switch_def">true</bool>
+
+    <!-- Enchants -->
+    <bool name="feu_intense_switch_def">true</bool>
+    <bool name="foudre_intense_switch_def">true</bool>
+    <bool name="froid_intense_switch_def">true</bool>
+    <bool name="magic_switch_def">true</bool>
+
+    <!-- Dons -->
+    <bool name="predil_switch_def">true</bool>
+    <bool name="predil_sup_switch_def">true</bool>
+    <bool name="neuf_m_switch_def">true</bool>
+    <bool name="tir_rapide_switch_def">true</bool>
+    <bool name="viser_switch_def">true</bool>
+    <bool name="feu_nourri_switch_def">true</bool>
+    <bool name="improved_crit_switch_def">true</bool>
+
+    <!-- Autre -->
+    <bool name="switch_autoclose_dialog_DEF">true</bool>
+</resources>

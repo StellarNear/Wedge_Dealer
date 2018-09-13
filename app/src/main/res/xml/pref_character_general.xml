@@ -1,14 +1,14 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory android:title="Caractéristiques de base du personnage">
         <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
-        <pathfinder.pathfinder_dealer.EditTextPreference
+        <stellarnear.wedge_dealer.EditTextPreference
             android:defaultValue="@string/jet_att_def"
             android:key="jet_att"
             android:selectAllOnFocus="true"
             android:singleLine="true"
             android:summary="Valeurs : %s"
             android:title="@string/jet_att" />
-        <pathfinder.pathfinder_dealer.EditTextPreference
+        <stellarnear.wedge_dealer.EditTextPreference
             android:capitalize="none"
             android:defaultValue="@string/mod_dex_def"
             android:key="mod_dex"
@@ -23,7 +23,7 @@
 
     <PreferenceCategory android:title="Caractéristiques épiques du personnage">
         <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
-        <pathfinder.pathfinder_dealer.EditTextPreference
+        <stellarnear.wedge_dealer.EditTextPreference
             android:defaultValue="@string/epic_val_def"
             android:key="epic_val"
             android:selectAllOnFocus="true"
@@ -31,7 +31,7 @@
             android:summary="Valeur : %s"
             android:title="@string/epic_val" />
 
-        <pathfinder.pathfinder_dealer.EditTextPreference
+        <stellarnear.wedge_dealer.EditTextPreference
             android:defaultValue="@string/epic_dmg_val_def"
             android:key="epic_dmg_val"
             android:selectAllOnFocus="true"
@@ -39,7 +39,7 @@
             android:summary="Valeur : %s"
             android:title="@string/epic_dmg_val" />
 
-        <pathfinder.pathfinder_dealer.EditTextPreference
+        <stellarnear.wedge_dealer.EditTextPreference
             android:defaultValue="@string/prouesse_def"
             android:key="prouesse_val"
             android:selectAllOnFocus="true"

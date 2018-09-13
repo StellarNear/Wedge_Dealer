@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="pathfinder.pathfinder_dealer.MainActivity"
+    tools:context="stellarnear.stellarnear.pathfinder.wedge_dealer.MainActivity"
     android:fitsSystemWindows="true"
     android:transitionName="transition">
     <android.support.design.widget.FloatingActionButton

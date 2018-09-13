@@ -29,7 +29,7 @@
 
     <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
 
-    <pathfinder.pathfinder_dealer.EditTextPreference
+    <stellarnear.wedge_dealer.EditTextPreference
         android:icon="@drawable/ic_trophy_cup"
         android:defaultValue="0"
         android:key="highscore"

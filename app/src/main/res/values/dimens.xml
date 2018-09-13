@@ -3,4 +3,10 @@
     <dimen name="general_margin">5dp</dimen>
     <dimen name="custom_toast_icon_size">150dp</dimen>
     <dimen name="divider_pref_height">1dp</dimen>
+    <dimen name="icon_main_dices_combat_launcher_size">50dp</dimen>
+
+    <dimen name="distance_dice_wheel">140dp</dimen>
+    <dimen name="icon_dices_wheel_size">40dp</dimen>
+    <dimen name="icon_main_dices_wheel_size">60dp</dimen>
+    <dimen name="margin_wheel_text">15dp</dimen>
 </resources>

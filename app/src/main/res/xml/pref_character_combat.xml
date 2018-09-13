@@ -8,8 +8,13 @@
     <SwitchPreference
         android:defaultValue="@bool/predil_sup_switch_def"
         android:key="predil_sup_switch"
-        android:summary="@string/predil_summ"
+        android:summary="@string/predil_sup_summ"
         android:title="@string/predil_sup" />
+    <SwitchPreference
+        android:defaultValue="@bool/improved_crit_switch_def"
+        android:key="improved_crit_switch"
+        android:summary="@string/improved_crit_summ"
+        android:title="@string/improved_crit" />
     <SwitchPreference
         android:defaultValue="@bool/neuf_m_switch_def"
         android:key="neuf_m_switch"
@@ -25,7 +30,7 @@
         android:key="viser"
         android:summary="@string/viser_summ"
         android:title="@string/viser" />
-    <pathfinder.pathfinder_dealer.EditTextPreference
+    <stellarnear.wedge_dealer.EditTextPreference
         android:defaultValue="@string/viser_val_def"
         android:dependency="viser"
         android:key="viser_val"
@@ -38,7 +43,7 @@
         android:key="feu_nourri_switch"
         android:summary="@string/feu_nourri_summ"
         android:title="@string/feu_nourri" />
-    <pathfinder.pathfinder_dealer.EditTextPreference
+    <stellarnear.wedge_dealer.EditTextPreference
         android:defaultValue="@string/multi_value_def"
         android:dependency="feu_nourri_switch"
         android:key="multi_val"

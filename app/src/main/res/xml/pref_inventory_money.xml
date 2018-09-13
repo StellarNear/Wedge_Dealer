@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-   <pathfinder.pathfinder_dealer.EditTextPreference
+   <stellarnear.wedge_dealer.EditTextPreference
         android:defaultValue="@integer/money_plat_def"
         android:key="money_plat"
         android:title="Nombre de pièces de platine"
@@ -8,7 +8,7 @@
         android:singleLine="true"
         android:inputType="number"
         android:summary="Valeur : %s"/>
-   <pathfinder.pathfinder_dealer.EditTextPreference
+   <stellarnear.wedge_dealer.EditTextPreference
         android:defaultValue="@integer/money_gold_def"
         android:key="money_gold"
         android:title="Nombre de pièces d'or"
@@ -16,7 +16,7 @@
         android:singleLine="true"
         android:inputType="number"
         android:summary="Valeur : %s"/>
-   <pathfinder.pathfinder_dealer.EditTextPreference
+   <stellarnear.wedge_dealer.EditTextPreference
         android:defaultValue="@integer/money_silver_def"
         android:key="money_silver"
         android:title="Nombre de pièces d'argent"
@@ -24,7 +24,7 @@
         android:singleLine="true"
         android:inputType="number"
         android:summary="Valeur : %s"/>
-   <pathfinder.pathfinder_dealer.EditTextPreference
+   <stellarnear.wedge_dealer.EditTextPreference
         android:defaultValue="@integer/money_copper_def"
         android:key="money_copper"
         android:title="Nombre de pièces de cuivre"
