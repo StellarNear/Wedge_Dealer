@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import stellarnear.stellarnear.R;
 import stellarnear.wedge_dealer.Tools;
 
 public class DmgRoll {
@@ -24,23 +25,34 @@ public class DmgRoll {
         this.critConfirmed = critConfirmed;
         settings = PreferenceManager.getDefaultSharedPreferences(mC);
 
-//        manualDiceDmg = settings.getBoolean("switch_manual_diceroll_damage", mC.getResources().getBoolean(R.bool.switch_manual_diceroll_damage_DEF));
-//        aldrassil = settings.getBoolean("switch_aldrassil", mC.getResources().getBoolean(R.bool.switch_aldrassil_DEF));
-//        if (aldrassil) {
-//            allDiceList.add(new Dice(mC, 8));
-//        }
-//        amulette = settings.getBoolean("switch_amulette", mC.getResources().getBoolean(R.bool.switch_amulette_DEF));
-//        if (amulette) {
-//            allDiceList.add(new Dice(mC, 6,"fire"));
-//        }
-//        int nHandDices = tools.toInt(settings.getString("number_main_dice_dmg", String.valueOf(mC.getResources().getInteger(R.integer.number_main_dice_dmg_DEF))));
-//        int handDiceType = tools.toInt(settings.getString("main_dice_dmg_type", String.valueOf(mC.getResources().getInteger(R.integer.main_dice_dmg_type_DEF))));
-//        for (int i = 1; i <= nHandDices; i++) {
-//            Dice hand = new Dice(mC, handDiceType);
-//            hand.makeCritable();
-//            allDiceList.add(hand);
-//        }
+        Dice dice = new Dice(mC,8);
+        dice.makeCritable();
+        allDiceList.add(dice);
 
+        if (settings.getBoolean("feu_intense_switch", mC.getResources().getBoolean(R.bool.feu_intense_switch_def))) {
+            allDiceList.add(new Dice(mC,6,"fire"));
+            allDiceList.add(new Dice(mC,6,"fire"));
+            if(critConfirmed){
+                allDiceList.add(new Dice(mC,10,"fire"));
+                allDiceList.add(new Dice(mC,10,"fire"));
+            }
+        }
+        if (settings.getBoolean("foudre_intense_switch", mC.getResources().getBoolean(R.bool.foudre_intense_switch_def))) {
+            allDiceList.add(new Dice(mC,6,"shock"));
+            allDiceList.add(new Dice(mC,6,"shock"));
+            if(critConfirmed){
+                allDiceList.add(new Dice(mC,10,"shock"));
+                allDiceList.add(new Dice(mC,10,"shock"));
+            }
+        }
+        if (settings.getBoolean("froid_intense_switch", mC.getResources().getBoolean(R.bool.froid_intense_switch_def))) {
+            allDiceList.add(new Dice(mC,6,"frost"));
+            allDiceList.add(new Dice(mC,6,"frost"));
+            if(critConfirmed){
+                allDiceList.add(new Dice(mC,10,"frost"));
+                allDiceList.add(new Dice(mC,10,"frost"));
+            }
+        }
         bonusDmg = getBonusDmg();
     }
 
@@ -53,16 +65,23 @@ public class DmgRoll {
 
     private int getBonusDmg() {
         int calcBonusDmg = 0;
-//        calcBonusDmg += tools.toInt(settings.getString("bonus_temp_jet_dmg", String.valueOf(mC.getResources().getInteger(R.integer.bonus_temp_jet_dmg_DEF))));
-//        calcBonusDmg += tools.toInt(settings.getString("attack_dmg_epic", String.valueOf(mC.getResources().getInteger(R.integer.attack_dmg_epic_DEF))));
-
-
-//        if (aldrassil) {
-//            calcBonusDmg += 2;
-//        }
-//        if (amulette) {
-//            calcBonusDmg += 5;
-//        }
+        if (settings.getBoolean("viser", mC.getResources().getBoolean(R.bool.viser_switch_def))) {
+            calcBonusDmg+=2*tools.toInt(settings.getString("viser_val", mC.getResources().getString(R.string.viser_val_def)));
+        }
+        if (settings.getBoolean("thor_switch", mC.getResources().getBoolean(R.bool.thor_switch_def))) {
+            calcBonusDmg += 3;
+        }
+        if (settings.getBoolean("neuf_m_switch", mC.getResources().getBoolean(R.bool.neuf_m_switch_def))) {
+            calcBonusDmg += 1;
+        }
+        if (settings.getBoolean("magic_switch", mC.getResources().getBoolean(R.bool.magic_switch_def))) {
+            calcBonusDmg += tools.toInt(settings.getString("magic_val", mC.getResources().getString(R.string.magic_val_def)));
+        }
+        if (settings.getBoolean("composite_switch", mC.getResources().getBoolean(R.bool.composite_switch_def))) {
+            calcBonusDmg += 4;
+        }
+        calcBonusDmg += tools.toInt(settings.getString("epic_dmg_val", mC.getResources().getString(R.string.epic_dmg_val_def)));
+        calcBonusDmg += tools.toInt(settings.getString("dmg_buff", mC.getResources().getString(R.string.dmg_buff_def)));
         return calcBonusDmg;
     }
 

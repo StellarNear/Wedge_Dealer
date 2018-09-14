@@ -1,16 +1,28 @@
 package stellarnear.wedge_dealer.Rolls;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import stellarnear.stellarnear.R;
+import stellarnear.wedge_dealer.Tools;
+
 public class Roll {
     private AtkRoll atkRoll;
-    private DmgRoll dmgRoll;
+    private List<DmgRoll> dmgRollList; //on peut avoir plusieurs fleches de degat par jet d'attaque
     private Context mC;
+    private SharedPreferences settings;
+    private Tools tools=new Tools();
     public Roll(Context mC,Integer atkBase) {
         this.mC=mC;
         this.atkRoll=new AtkRoll(mC,atkBase);
+        this.dmgRollList=new ArrayList<>();
+        settings = PreferenceManager.getDefaultSharedPreferences(mC);
     }
 
     public AtkRoll getAtkRoll(){
@@ -18,13 +30,22 @@ public class Roll {
     }
 
     public void setDmgRand() {
-        if (this.dmgRoll==null){
-            this.dmgRoll=new DmgRoll(mC,atkRoll.isCritConfirmed());
+        if (this.dmgRollList.isEmpty()){
+            this.dmgRollList.add(new DmgRoll(mC,atkRoll.isCritConfirmed()));
+            if (settings.getBoolean("feu_nourri_switch", mC.getResources().getBoolean(R.bool.feu_nourri_switch_def))) {
+                int multiVal = tools.toInt(settings.getString("multi_val", mC.getResources().getString(R.string.multi_value_def)));
+                for(int i=1;i<=multiVal;i++){
+                    this.dmgRollList.add(new DmgRoll(mC,false));
+                }
+            }
+
+            for(DmgRoll dmgRoll:this.dmgRollList){
+                dmgRoll.setDmgRand();
+            }
         }
-        this.dmgRoll.setDmgRand();
     }
-    public DmgRoll getDmgRoll(){
-        return this.dmgRoll;
+    public List<DmgRoll> getDmgRollList(){
+        return this.dmgRollList;
     }
 
 
@@ -74,33 +95,50 @@ public class Roll {
     //partie dégat
 
     public DiceList getDmgDiceListFromNface(int nFace) {
-        return dmgRoll.getDmgDiceList().filterWithNface(nFace);
+        DiceList diceList=new DiceList();
+        for(DmgRoll dmgRoll:this.dmgRollList){
+            diceList.add(dmgRoll.getDmgDiceList().filterWithNface(nFace));
+        }
+
+        return diceList;
     }
 
     public DiceList getDmgDiceList() {
-        return dmgRoll.getDmgDiceList();
+        DiceList diceList=new DiceList();
+        for(DmgRoll dmgRoll:this.dmgRollList){
+            diceList.add(dmgRoll.getDmgDiceList());
+        }
+        return diceList;
     }
 
     public int getDmgBonus() {
-        return dmgRoll.getDmgBonus();
+        return this.dmgRollList.get(0).getDmgBonus();
     }
 
     public int getDmgSum(String... elementArg) {
         String element = elementArg.length > 0 ? elementArg[0] : "";
-        return dmgRoll.getSumDmg(element);
+        Integer sum=0;
+        for(DmgRoll dmgRoll:this.dmgRollList){
+            sum+=dmgRoll.getSumDmg(element);
+        }
+        return sum;
     }
 
     public int getMaxDmg(String... elementArg) {
         String element = elementArg.length > 0 ? elementArg[0] : "";
-        return dmgRoll.getMaxDmg(element);
+        Integer sum=0;
+        for(DmgRoll dmgRoll:this.dmgRollList){
+            sum+=dmgRoll.getMaxDmg(element);
+        }
+        return sum;
     }
 
     public int getMinDmg(String... elementArg) {
         String element = elementArg.length > 0 ? elementArg[0] : "";
-        return dmgRoll.getMinDmg(element);
-    }
-
-    public Integer getCritMultiplier(){
-        return dmgRoll.getCritMultiplier();
+        Integer sum=0;
+        for(DmgRoll dmgRoll:this.dmgRollList){
+            sum+=dmgRoll.getMinDmg(element);
+        }
+        return sum;
     }
 }

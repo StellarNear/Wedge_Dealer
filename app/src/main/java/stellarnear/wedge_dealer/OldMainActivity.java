@@ -266,7 +266,7 @@
 //        String delim = "         ";
 //        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 //        String multi_val_str = settings.getString("multi_val", getResources().getString(R.string.multi_value_def));
-//        Integer multi_val = to_int(multi_val_str, "Valeur de feu nourri");
+//        Integer multi_val = to_int(multi_val_str, "Valeur de fire_logo nourri");
 //        for (int i = 0; i < n_att; i++) {
 //            affichage_multi.append(delim + "x" + String.valueOf(multi_val));
 //        }
@@ -658,18 +658,18 @@
 //        all_dices_str = "";
 //        String[] all_text_dmg = new String[]{"", "", ""};
 //        Integer n_type_dmg = 1;
-//        List<String> list_element = new ArrayList<>(Arrays.asList("physique"));
+//        List<String> list_element = new ArrayList<>(Arrays.asList("phy_logo"));
 //        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 //        if (settings.getBoolean("feu_intense_switch", getResources().getBoolean(R.bool.feu_intense_switch_def))) {
-//            list_element.add("feu");
+//            list_element.add("fire_logo");
 //            n_type_dmg++;
 //        }
 //        if (settings.getBoolean("foudre_intense_switch", getResources().getBoolean(R.bool.foudre_intense_switch_def))) {
-//            list_element.add("foudre");
+//            list_element.add("shock_logo");
 //            n_type_dmg++;
 //        }
 //        if (settings.getBoolean("froid_intense_switch", getResources().getBoolean(R.bool.froid_intense_switch_def))) {
-//            list_element.add("froid");
+//            list_element.add("frost_logo");
 //            n_type_dmg++;
 //        }
 //
@@ -770,7 +770,7 @@
 //        Integer multi_val = 1;
 //        if (settings.getBoolean("feu_nourri_switch", getResources().getBoolean(R.bool.feu_nourri_switch_def))) {
 //            String multi_val_str = settings.getString("multi_val", getResources().getString(R.string.multi_value_def));
-//            multi_val = to_int(multi_val_str, "Valeur de feu nourri");
+//            multi_val = to_int(multi_val_str, "Valeur de fire_logo nourri");
 //        }
 //
 //        /////////// Degat commun attaques phy
@@ -875,7 +875,7 @@
 //                    //moyPhy+=4.5;
 //                    nd8Phy += 1;
 //
-//                    //////degat feu
+//                    //////degat fire_logo
 //                    if (settings.getBoolean("feu_intense_switch", getResources().getBoolean(R.bool.feu_intense_switch_def))) {
 //                        Integer jet_feu = rand(6);
 //                        Integer jet2_feu = rand(6);
@@ -888,7 +888,7 @@
 //                        nd6Feu += 2;
 //                    }
 //
-//                    //////degat foudre
+//                    //////degat shock_logo
 //                    if (settings.getBoolean("foudre_intense_switch", getResources().getBoolean(R.bool.foudre_intense_switch_def))) {
 //                        Integer jet_foudre = rand(6);
 //                        Integer jet2_foudre = rand(6);
@@ -901,7 +901,7 @@
 //                        nd6Foudre += 2;
 //                    }
 //
-//                    //////degat froid
+//                    //////degat frost_logo
 //                    if (settings.getBoolean("froid_intense_switch", getResources().getBoolean(R.bool.froid_intense_switch_def))) {
 //                        Integer jet_froid = rand(6);
 //                        Integer jet2_froid = rand(6);
@@ -934,7 +934,7 @@
 //                //moyPhy+=4.5;
 //                nd8Phy_crit += 1;
 //
-//                //////degat feu
+//                //////degat fire_logo
 //                if (settings.getBoolean("feu_intense_switch", getResources().getBoolean(R.bool.feu_intense_switch_def))) {
 //                    Integer jet_feu = rand(6);
 //                    Integer jet2_feu = rand(6);
@@ -950,7 +950,7 @@
 //                    nd10Feu += 2;
 //                }
 //
-//                //////degat foudre
+//                //////degat shock_logo
 //                if (settings.getBoolean("foudre_intense_switch", getResources().getBoolean(R.bool.foudre_intense_switch_def))) {
 //                    Integer jet_foudre = rand(6);
 //                    Integer jet2_foudre = rand(6);
@@ -966,7 +966,7 @@
 //                    nd10Foudre += 2;
 //                }
 //
-//                //////degat froid
+//                //////degat frost_logo
 //                if (settings.getBoolean("froid_intense_switch", getResources().getBoolean(R.bool.froid_intense_switch_def))) {
 //                    Integer jet_froid = rand(6);
 //                    Integer jet2_froid = rand(6);
@@ -999,7 +999,7 @@
 //                        //moyPhy+=4.5;
 //                        nd8Phy += 1;
 //
-//                        //////degat feu
+//                        //////degat fire_logo
 //                        if (settings.getBoolean("feu_intense_switch", getResources().getBoolean(R.bool.feu_intense_switch_def))) {
 //                            Integer jet_feu = rand(6);
 //                            Integer jet2_feu = rand(6);
@@ -1012,7 +1012,7 @@
 //                            nd6Feu += 2;
 //                        }
 //
-//                        //////degat foudre
+//                        //////degat shock_logo
 //                        if (settings.getBoolean("foudre_intense_switch", getResources().getBoolean(R.bool.foudre_intense_switch_def))) {
 //                            Integer jet_foudre = rand(6);
 //                            Integer jet2_foudre = rand(6);
@@ -1025,7 +1025,7 @@
 //                            nd6Foudre += 2;
 //                        }
 //
-//                        //////degat froid
+//                        //////degat frost_logo
 //                        if (settings.getBoolean("froid_intense_switch", getResources().getBoolean(R.bool.froid_intense_switch_def))) {
 //                            Integer jet_froid = rand(6);
 //                            Integer jet2_froid = rand(6);
@@ -1070,17 +1070,17 @@
 //        probPhy2_crit = 100.0 - 100.0 * tableProba(0, nd8Phy_crit, 0, sumPhyprob_crit);
 //        Log.d("STATE PROBtablePhy_crit", String.valueOf(probPhy2_crit));
 //
-//        Log.d("STATE", "Calcul feu");
+//        Log.d("STATE", "Calcul fire_logo");
 //
 //        probFeu2 = 100.0 - 100.0 * tableProba(nd6Feu, 0, nd10Feu, sumFeu);
 //        Log.d("STATE PROBtablefeu", String.valueOf(probFeu2));
 //
-//        Log.d("STATE", "Calcul foudre");
+//        Log.d("STATE", "Calcul shock_logo");
 //
 //        probFoudre2 = 100.0 - 100.0 * tableProba(nd6Foudre, 0, nd10Foudre, sumFoudre);
 //        Log.d("STATE PROBtablefoudre", String.valueOf(probFoudre2));
 //
-//        Log.d("STATE", "Calcul  froid");
+//        Log.d("STATE", "Calcul  frost_logo");
 //
 //        probFroid2 = 100.0 - 100.0 * tableProba(nd6Froid, 0, nd10Froid, sumFroid);
 //        Log.d("STATE PROBtablefroid", String.valueOf(probFroid2));
@@ -1120,7 +1120,7 @@
 //        Integer feu_ecart = maxFeu - minFeu;
 //        if (!feu_ecart.equals(0)) {
 //            feu_percent = 100 * (sumFeu - minFeu) / feu_ecart;
-//            Log.d("STATE feu", String.valueOf(feu_percent));
+//            Log.d("STATE fire_logo", String.valueOf(feu_percent));
 //        }
 //        String text_dmg_feu = "<font color=#FF4000>" + sumFeu + "</font>";
 //        String text_dmg_feu_range = "<font color=#FF4000>[" + minFeu + "-" + maxFeu + "]</font>";
@@ -1130,7 +1130,7 @@
 //        Integer foudre_ecart = maxFoudre - minFoudre;
 //        if (!foudre_ecart.equals(0)) {
 //            foudre_percent = 100 * (sumFoudre - minFoudre) / foudre_ecart;
-//            Log.d("STATE foudre", String.valueOf(foudre_percent));
+//            Log.d("STATE shock_logo", String.valueOf(foudre_percent));
 //        }
 //        String text_dmg_foudre = "<font color=#A9D0F5>" + sumFoudre + "</font>";
 //        String text_dmg_foudre_range = "<font color=#A9D0F5>[" + minFoudre + "-" + maxFoudre + "]</font>";
@@ -1140,7 +1140,7 @@
 //        Integer froid_ecart = maxFroid - minFroid;
 //        if (!froid_ecart.equals(0)) {
 //            froid_percent = 100 * (sumFroid - minFroid) / froid_ecart;
-//            Log.d("STATE froid", String.valueOf(froid_percent));
+//            Log.d("STATE frost_logo", String.valueOf(froid_percent));
 //        }
 //        String text_dmg_froid = "<font color=#0404B4>" + sumFroid + "</font>";
 //        String text_dmg_froid_range = "<font color=#0404B4>[" + minFroid + "-" + maxFroid + "]</font>";

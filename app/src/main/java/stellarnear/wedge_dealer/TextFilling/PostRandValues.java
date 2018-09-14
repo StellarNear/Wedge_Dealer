@@ -26,8 +26,8 @@ public class PostRandValues {
         this.mC = mC;
         this.mainView = mainView;
         this.rollList = rollList;
-        settings = PreferenceManager.getDefaultSharedPreferences(mC);
-        mainAtkLin = mainView.findViewById(R.id.mainLinearAtk);
+        this.settings = PreferenceManager.getDefaultSharedPreferences(mC);
+        this.mainAtkLin = mainView.findViewById(R.id.mainLinearAtk);
         addRandDices();
         addPostRandValues();
     }
@@ -65,16 +65,20 @@ public class PostRandValues {
             String multi_val_str = settings.getString("multi_val", mC.getResources().getString(R.string.multi_value_def));
             LinearLayout line = new LinearLayout(mC);
             line.setOrientation(LinearLayout.HORIZONTAL);
-            line.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            line.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
             line.setGravity(Gravity.CENTER);
             for (Roll roll : rollList.getList()) {
+                LinearLayout txtBox = new LinearLayout(mC);
+                txtBox.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
+                txtBox.setGravity(Gravity.CENTER);
                 TextView multiple = new TextView(mC);
                 multiple.setGravity(Gravity.CENTER);
                 multiple.setTextColor(Color.DKGRAY);
                 multiple.setTextSize(15);
-                multiple.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1));
+                multiple.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
                 multiple.setText("x"+multi_val_str);
-                line.addView(multiple);
+                txtBox.addView(multiple);
+                line.addView(txtBox);
             }
             mainAtkLin.addView(line);
         }
@@ -83,15 +87,18 @@ public class PostRandValues {
     private void addPostRandValues() {
         LinearLayout line = new LinearLayout(mC);
         line.setOrientation(LinearLayout.HORIZONTAL);
-        line.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        line.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         line.setGravity(Gravity.CENTER);
         int allRollSet = 0;
         for (Roll roll : rollList.getList()) {
+            LinearLayout txtBox = new LinearLayout(mC);
+            txtBox.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
+            txtBox.setGravity(Gravity.CENTER);
             TextView atkTxt = new TextView(mC);
             atkTxt.setGravity(Gravity.CENTER);
             atkTxt.setTextColor(Color.DKGRAY);
             atkTxt.setTextSize(22);
-            atkTxt.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1));
+            atkTxt.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
             atkTxt.setText("?");
             if (roll.isInvalid()) {
                 atkTxt.setText("-");
@@ -103,13 +110,11 @@ public class PostRandValues {
                 }
             }
             atkTxt.setGravity(Gravity.CENTER);
-            atkTxt.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
-            line.addView(atkTxt);
+            atkTxt.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            txtBox.addView(atkTxt);
+            line.addView(txtBox);
         }
 
         mainAtkLin.addView(line);
-        if (allRollSet == rollList.getList().size()) {
-            //getHitAndCritLines();
-        }
     }
 }

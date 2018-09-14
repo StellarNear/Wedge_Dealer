@@ -26,4 +26,8 @@
 
     <color name="transparent">#00000000</color>
 
+    <color name="phy">#333333</color>
+    <color name="fire">@android:color/holo_red_light</color>
+    <color name="shock">@android:color/holo_blue_bright</color>
+    <color name="frost">#002db3</color>
 </resources>

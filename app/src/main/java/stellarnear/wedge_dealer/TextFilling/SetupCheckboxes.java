@@ -24,19 +24,20 @@ public class SetupCheckboxes {
     private RollList rollList;
     private SharedPreferences settings;
     private LinearLayout mainAtkLin;
+
     public SetupCheckboxes(Context mC, View mainView, RollList rollList) {
         this.mC = mC;
         this.mainView = mainView;
         this.rollList = rollList;
-        settings = PreferenceManager.getDefaultSharedPreferences(mC);
-        mainAtkLin = mainView.findViewById(R.id.mainLinearAtk);
+        this.settings = PreferenceManager.getDefaultSharedPreferences(mC);
+        this.mainAtkLin = mainView.findViewById(R.id.mainLinearAtk);
         addCheckboxes();
     }
 
     private void addCheckboxes() {
 
         TextView hitTxt = new TextView(mC);
-        hitTxt.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT,1));
+        hitTxt.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1));
         hitTxt.setGravity(Gravity.CENTER);
         hitTxt.setTextColor(Color.GRAY);
         hitTxt.setTextSize(18);
@@ -47,7 +48,6 @@ public class SetupCheckboxes {
         line.setOrientation(LinearLayout.HORIZONTAL);
         line.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         line.setGravity(Gravity.CENTER);
-        Boolean fail = false;
 
         for (Roll roll : rollList.getList()) {
             LinearLayout frame = new LinearLayout(mC);
@@ -62,30 +62,31 @@ public class SetupCheckboxes {
         mainAtkLin.addView(line);
 
 
-        TextView critTxt = new TextView(mC);
-        critTxt.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT,1));
-        critTxt.setGravity(Gravity.CENTER);
-        critTxt.setTextColor(Color.GRAY);
-        critTxt.setTextSize(18);
-        critTxt.setText("Coups critiques confirmés :");
-        mainAtkLin.addView(critTxt);
-
-        LinearLayout lineCrit = new LinearLayout(mC);
-        lineCrit.setOrientation(LinearLayout.HORIZONTAL);
-        lineCrit.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        lineCrit.setGravity(Gravity.CENTER);
-        for (final Roll roll : rollList.getList()) {
-            LinearLayout frame = new LinearLayout(mC);
-            frame.setGravity(Gravity.CENTER);
-            frame.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
-            if (!roll.isInvalid() && !roll.isFailed() && roll.isCrit()) {
-                CheckBox check = roll.getCritCheckbox();
-                frame.addView(check);
-                Animation animCheck = AnimationUtils.loadAnimation(mC,R.anim.zoomin);
-                check.startAnimation(animCheck);
+        if (rollList.haveAnyCrit()) {
+            TextView critTxt = new TextView(mC);
+            critTxt.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1));
+            critTxt.setGravity(Gravity.CENTER);
+            critTxt.setTextColor(Color.GRAY);
+            critTxt.setTextSize(18);
+            critTxt.setText("Coups critiques confirmés :");
+            mainAtkLin.addView(critTxt);
+            LinearLayout lineCrit = new LinearLayout(mC);
+            lineCrit.setOrientation(LinearLayout.HORIZONTAL);
+            lineCrit.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            lineCrit.setGravity(Gravity.CENTER);
+            for (final Roll roll : rollList.getList()) {
+                LinearLayout frame = new LinearLayout(mC);
+                frame.setGravity(Gravity.CENTER);
+                frame.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
+                if (!roll.isInvalid() && !roll.isFailed() && roll.isCrit()) {
+                    CheckBox check = roll.getCritCheckbox();
+                    frame.addView(check);
+                    Animation animCheck = AnimationUtils.loadAnimation(mC, R.anim.zoomin);
+                    check.startAnimation(animCheck);
+                }
+                lineCrit.addView(frame);
             }
-            lineCrit.addView(frame);
+            mainAtkLin.addView(lineCrit);
         }
-        mainAtkLin.addView(lineCrit);
     }
 }

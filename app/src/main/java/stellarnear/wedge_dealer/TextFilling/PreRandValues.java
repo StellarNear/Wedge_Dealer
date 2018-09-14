@@ -30,9 +30,8 @@ public class PreRandValues {
         nAtt.setGravity(Gravity.CENTER);
         nAtt.setTextColor(Color.DKGRAY);
         nAtt.setTextSize(22);
-        nAtt.setText(String.valueOf(rollList.getList().size()+" attaques"));
+        nAtt.setText(String.valueOf(rollList.getList().size()+" attaques :"));
         LinearLayout mainAtkLin = mainView.findViewById(R.id.mainLinearAtk);
-        mainAtkLin.removeAllViews();
         mainAtkLin.addView(nAtt);
 
         LinearLayout preRandValues=new LinearLayout(mC);
@@ -41,13 +40,17 @@ public class PreRandValues {
         preRandValues.setGravity(Gravity.CENTER);
 
         for(Roll roll : rollList.getList()){
+            LinearLayout scoreBox = new LinearLayout(mC);
+            scoreBox.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
+            scoreBox.setGravity(Gravity.CENTER);
             TextView score = new TextView(mC);
-            score.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT,1));
+            score.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             score.setGravity(Gravity.CENTER);
             score.setTextColor(Color.DKGRAY);
             score.setTextSize(22);
             score.setText("+"+String.valueOf(roll.getPreRandValue()));
-            preRandValues.addView(score);
+            scoreBox.addView(score);
+            preRandValues.addView(scoreBox);
         }
 
         mainAtkLin.addView(preRandValues);

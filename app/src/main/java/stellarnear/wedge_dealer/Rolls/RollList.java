@@ -14,13 +14,9 @@ import stellarnear.wedge_dealer.Tools;
 
 public class RollList {
     private List<Roll> rollList;
-    private Context mC;
-    private SharedPreferences settings;
     private Tools tools=new Tools();
-    public RollList(Context mC) {
-        this.mC=mC;
+    public RollList() {
         this.rollList= new ArrayList<>();
-        this.settings= PreferenceManager.getDefaultSharedPreferences(mC);
     }
 
     public void add(Roll roll){
@@ -84,4 +80,13 @@ public class RollList {
         return diceList;
     }
 
+    public boolean haveAnyCrit() {
+        boolean b=false;
+        for (Roll roll:rollList){
+            if (roll.isCrit()){
+                b=true;
+            }
+        }
+        return b;
+    }
 }

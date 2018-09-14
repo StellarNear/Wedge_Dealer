@@ -77,7 +77,14 @@ public class Tools {
     }
 
     public Drawable resize(Context mC, int imageId, int pixel_size_icon) {
-        Drawable image = mC.getDrawable(imageId);
+        Drawable image = null;
+        try {
+            image = mC.getDrawable(imageId);
+        } catch (Exception e) {
+            int drawableId = mC.getResources().getIdentifier("mire_test", "drawable", mC.getPackageName());
+            image = mC.getDrawable(drawableId);
+            e.printStackTrace();
+        }
         Bitmap b = ((BitmapDrawable) image).getBitmap();
         Bitmap bitmapResized = Bitmap.createScaledBitmap(b, pixel_size_icon, pixel_size_icon, false);
         return new BitmapDrawable(mC.getResources(), bitmapResized);
