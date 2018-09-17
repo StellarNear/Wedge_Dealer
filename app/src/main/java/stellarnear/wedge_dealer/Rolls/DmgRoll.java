@@ -12,7 +12,7 @@ public class DmgRoll {
     private Context mC;
     private SharedPreferences settings;
     private Boolean critConfirmed;
-    private Integer critMultiplier = 2;
+    private Integer critMultiplier = 3;
 
     private int bonusDmg = 0;
 
@@ -26,7 +26,7 @@ public class DmgRoll {
         settings = PreferenceManager.getDefaultSharedPreferences(mC);
 
         Dice dice = new Dice(mC,8);
-        dice.makeCritable();
+        if(critConfirmed){dice.makeCritable();}
         allDiceList.add(dice);
 
         if (settings.getBoolean("feu_intense_switch", mC.getResources().getBoolean(R.bool.feu_intense_switch_def))) {
@@ -62,11 +62,10 @@ public class DmgRoll {
         }
     }
 
-
     private int getBonusDmg() {
         int calcBonusDmg = 0;
         if (settings.getBoolean("viser", mC.getResources().getBoolean(R.bool.viser_switch_def))) {
-            calcBonusDmg+=2*tools.toInt(settings.getString("viser_val", mC.getResources().getString(R.string.viser_val_def)));
+            calcBonusDmg+=2*tools.toInt(settings.getString("viser_val", String.valueOf(mC.getResources().getInteger(R.integer.viser_val_def))));
         }
         if (settings.getBoolean("thor_switch", mC.getResources().getBoolean(R.bool.thor_switch_def))) {
             calcBonusDmg += 3;
@@ -75,13 +74,13 @@ public class DmgRoll {
             calcBonusDmg += 1;
         }
         if (settings.getBoolean("magic_switch", mC.getResources().getBoolean(R.bool.magic_switch_def))) {
-            calcBonusDmg += tools.toInt(settings.getString("magic_val", mC.getResources().getString(R.string.magic_val_def)));
+            calcBonusDmg += tools.toInt(settings.getString("magic_val", String.valueOf(mC.getResources().getInteger(R.integer.magic_val_def))));
         }
         if (settings.getBoolean("composite_switch", mC.getResources().getBoolean(R.bool.composite_switch_def))) {
             calcBonusDmg += 4;
         }
-        calcBonusDmg += tools.toInt(settings.getString("epic_dmg_val", mC.getResources().getString(R.string.epic_dmg_val_def)));
-        calcBonusDmg += tools.toInt(settings.getString("dmg_buff", mC.getResources().getString(R.string.dmg_buff_def)));
+        calcBonusDmg += tools.toInt(settings.getString("epic_dmg_val", String.valueOf(mC.getResources().getInteger(R.integer.epic_dmg_val_def))));
+        calcBonusDmg += tools.toInt(settings.getString("dmg_buff", String.valueOf(mC.getResources().getInteger(R.integer.dmg_buff_def))));
         return calcBonusDmg;
     }
 
@@ -90,10 +89,6 @@ public class DmgRoll {
 
     public DiceList getDmgDiceList() {
         return allDiceList;
-    }
-
-    public int getDmgBonus() {
-        return getBonusDmg();
     }
 
     public int getSumDmg(String... elementArg) {

@@ -8,6 +8,7 @@
     <dimen name="icon_dices_wheel_size">40dp</dimen>
     <dimen name="icon_main_dices_wheel_size">60dp</dimen>
     <dimen name="margin_wheel_text">15dp</dimen>
-    <dimen name="activity_main_padding">2dp</dimen>
+    <dimen name="activity_main_padding">1dp</dimen>
     <dimen name="logo_element">30dp</dimen>
+    <dimen name="general_margin_display_det">8dp</dimen>
 </resources>

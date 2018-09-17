@@ -10,8 +10,9 @@
             android:title="@string/jet_att" />
         <stellarnear.wedge_dealer.EditTextPreference
             android:capitalize="none"
-            android:defaultValue="@string/mod_dex_def"
+            android:defaultValue="@integer/mod_dex_def"
             android:key="mod_dex"
+            android:inputType="number"
             android:maxLines="1"
             android:selectAllOnFocus="true"
             android:singleLine="true"
@@ -24,33 +25,37 @@
     <PreferenceCategory android:title="Caractéristiques épiques du personnage">
         <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
         <stellarnear.wedge_dealer.EditTextPreference
-            android:defaultValue="@string/epic_val_def"
+            android:defaultValue="@integer/epic_val_def"
             android:key="epic_val"
+            android:inputType="number"
             android:selectAllOnFocus="true"
             android:singleLine="true"
             android:summary="Valeur : %s"
             android:title="@string/epic_val" />
 
         <stellarnear.wedge_dealer.EditTextPreference
-            android:defaultValue="@string/epic_dmg_val_def"
+            android:defaultValue="@integer/epic_dmg_val_def"
             android:key="epic_dmg_val"
+            android:inputType="number"
             android:selectAllOnFocus="true"
             android:singleLine="true"
             android:summary="Valeur : %s"
             android:title="@string/epic_dmg_val" />
 
         <stellarnear.wedge_dealer.EditTextPreference
-            android:defaultValue="@string/prouesse_def"
+            android:defaultValue="@integer/prouesse_def"
             android:key="prouesse_val"
             android:selectAllOnFocus="true"
+            android:inputType="number"
             android:singleLine="true"
             android:summary="Valeur : %s"
             android:title="@string/prouesse_val" />
 
 
         <ListPreference
-            android:defaultValue="@string/prouesse_attrib_def"
+            android:defaultValue="@integer/prouesse_attrib_def"
             android:dependency="prouesse_val"
+            android:inputType="number"
             android:entries="@array/choix_prouesse"
             android:entryValues="@array/choix_prouesse_val"
             android:key="prouesse_attrib"

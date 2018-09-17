@@ -75,9 +75,19 @@ public class RollList {
     public DiceList getCritDmgDiceList(){ //le controle du crit doit se faire au niveau du roll pas pendant le dice
         DiceList diceList = new DiceList();
         for (Roll roll : this.rollList){
-            if(roll.isCritConfirmed()){diceList.add(roll.getDmgDiceList());}
+            if(roll.isCritConfirmed()){diceList.add(roll.getDmgDiceList().filterCritable());}
         }
         return diceList;
+    }
+
+    public boolean haveAnyCritValid() {
+        boolean b=false;
+        for (Roll roll:rollList){
+            if (roll.isCrit() && !roll.isInvalid()){
+                b=true;
+            }
+        }
+        return b;
     }
 
     public boolean haveAnyCrit() {

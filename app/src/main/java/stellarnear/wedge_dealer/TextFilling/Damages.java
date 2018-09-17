@@ -1,8 +1,8 @@
 package stellarnear.wedge_dealer.TextFilling;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.preference.PreferenceManager;
 import android.view.Gravity;
@@ -18,83 +18,106 @@ import java.util.List;
 import java.util.Map;
 
 import stellarnear.stellarnear.R;
+import stellarnear.wedge_dealer.MainActivity;
+import stellarnear.wedge_dealer.Rolls.Roll;
 import stellarnear.wedge_dealer.Rolls.RollList;
 import stellarnear.wedge_dealer.Tools;
 
 public class Damages {
+    private Activity mA;
     private Context mC;
     private View mainView;
     private RollList selectedRolls;
-    private SharedPreferences settings;
-    private LinearLayout mainDmgLin;
     private List<String> elements;
-    private Map<String,Integer> mapElemColor=new HashMap<>();
+    private Map<String, Integer> mapElemColor = new HashMap<>();
 
-    private Tools tools=new Tools();
+    private Tools tools = new Tools();
 
-    public Damages(Context mC, View mainView, RollList selectedRolls) {
+    public Damages(Activity mA,Context mC, View mainView, RollList selectedRolls) {
+        this.mA = mA;
         this.mC = mC;
         this.mainView = mainView;
         this.selectedRolls = selectedRolls;
-        this.settings = PreferenceManager.getDefaultSharedPreferences(mC);
-        this.mainDmgLin = mainView.findViewById(R.id.mainLinearDmg);
-        this.elements = Arrays.asList("","fire","shock","frost");
-        this.mapElemColor.put("",R.color.phy);
-        this.mapElemColor.put("fire",R.color.fire);
-        this.mapElemColor.put("shock",R.color.shock);
-        this.mapElemColor.put("frost",R.color.frost);
+        this.elements = Arrays.asList("", "fire", "shock", "frost");
+        this.mapElemColor.put("", R.color.phy);
+        this.mapElemColor.put("fire", R.color.fire);
+        this.mapElemColor.put("shock", R.color.shock);
+        this.mapElemColor.put("frost", R.color.frost);
 
-        TextView dmgTitle = new TextView(mC);
-        dmgTitle.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT,1));
-        dmgTitle.setGravity(Gravity.CENTER);
-        dmgTitle.setTextColor(Color.DKGRAY);
-        dmgTitle.setTextSize(22);
-        dmgTitle.setText("Dégâts :");
-        mainDmgLin.addView(dmgTitle);
 
+        clearAllViews();
         addDamage();
+        for (Roll roll : selectedRolls.getList()) {
+            roll.isDelt();
+        }
+    }
+
+    public void hideViews() {
+        ((View) mainView.findViewById(R.id.bar_sep)).setVisibility(View.GONE);
+        ((TextView) mainView.findViewById(R.id.mainLinearDmgTitle)).setVisibility(View.GONE);
+        ((LinearLayout) mainView.findViewById(R.id.mainLinearLogoDmg)).setVisibility(View.GONE);
+        ((LinearLayout) mainView.findViewById(R.id.mainLinearSumDmg)).setVisibility(View.GONE);
+    }
+
+    private void showViews() {
+        ((View) mainView.findViewById(R.id.bar_sep)).setVisibility(View.VISIBLE);
+        ((TextView) mainView.findViewById(R.id.mainLinearDmgTitle)).setVisibility(View.VISIBLE);
+        ((LinearLayout) mainView.findViewById(R.id.mainLinearLogoDmg)).setVisibility(View.VISIBLE);
+        ((LinearLayout) mainView.findViewById(R.id.mainLinearSumDmg)).setVisibility(View.VISIBLE);
+    }
+
+    private void clearAllViews() {
+        ((LinearLayout) mainView.findViewById(R.id.mainLinearLogoDmg)).removeAllViews();
+        ((LinearLayout) mainView.findViewById(R.id.mainLinearSumDmg)).removeAllViews();
     }
 
     private void addDamage() {
-        LinearLayout lineLogos = new LinearLayout(mC);
-        lineLogos.setOrientation(LinearLayout.HORIZONTAL);
-        lineLogos.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-        lineLogos.setGravity(Gravity.CENTER);
-        LinearLayout lineSums = new LinearLayout(mC);
-        lineSums.setOrientation(LinearLayout.HORIZONTAL);
-        lineSums.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-        lineSums.setGravity(Gravity.CENTER);
-        for (String elem : elements){
-            addElementDamage(elem,lineLogos,lineSums);
+        int totalSum = 0;
+        for (String elem : elements) {
+            for (Roll roll : selectedRolls.getList()) {
+                roll.setDmgRand();
+            }
+            int sumElem = selectedRolls.getDmgSumFromType(elem);
+            if (sumElem > 0) {
+                totalSum+=sumElem;
+                addElementDamage(elem);
+            }
         }
-        mainDmgLin.addView(lineLogos);
-        mainDmgLin.addView(lineSums);
+
+        if (totalSum>0){
+            showViews();
+            ((TextView) mainView.findViewById(R.id.mainLinearDmgTitle)).setText("Dégâts : "+String.valueOf(totalSum));
+            checkHighscore(totalSum);
+        } else {
+            ((View) mainView.findViewById(R.id.bar_sep)).setVisibility(View.VISIBLE);
+            ((TextView) mainView.findViewById(R.id.mainLinearDmgTitle)).setVisibility(View.VISIBLE);
+            ((TextView) mainView.findViewById(R.id.mainLinearDmgTitle)).setText("Aucun dégât");
+        }
     }
 
-    private void addElementDamage(String elem,LinearLayout lineLogos,LinearLayout lineSums) {
-        int sum = selectedRolls.getDmgSumFromType(elem);
-        if (sum>0){
-            addElementLogo(elem,lineLogos);
-            addElementSum(elem,lineSums);
-        }
+    private void addElementDamage(String elem) {
+        addElementLogo(elem);
+        addElementSum(elem);
     }
 
-    private void addElementLogo(String elem,LinearLayout line) {
+    private void addElementLogo(String elem) {
         LinearLayout logoBox = new LinearLayout(mC);
         logoBox.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
         logoBox.setGravity(Gravity.CENTER);
         ImageView logo = new ImageView(mC);
-        if(elem.equalsIgnoreCase("")){elem="phy";}
-        int drawableId = mC.getResources().getIdentifier(elem+"_logo", "drawable", mC.getPackageName());
+        if (elem.equalsIgnoreCase("")) {
+            elem = "phy";
+        }
+        int drawableId = mC.getResources().getIdentifier(elem + "_logo", "drawable", mC.getPackageName());
         logo.setImageDrawable(tools.resize(mC, drawableId, mC.getResources().getDimensionPixelSize(R.dimen.logo_element)));
         if (logo.getParent() != null) {
             ((ViewGroup) logo.getParent()).removeView(logo);
         }
         logoBox.addView(logo);
-        line.addView(logoBox);
+        ((LinearLayout) mainView.findViewById(R.id.mainLinearLogoDmg)).addView(logoBox);
     }
 
-    private void addElementSum(String elem,LinearLayout line) {
+    private void addElementSum(String elem) {
         LinearLayout sumBox = new LinearLayout(mC);
         sumBox.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
         sumBox.setGravity(Gravity.CENTER);
@@ -103,9 +126,20 @@ public class Damages {
         sumTxt.setGravity(Gravity.CENTER);
         sumTxt.setTypeface(null, Typeface.BOLD);
         sumTxt.setTextColor(mC.getResources().getColor(mapElemColor.get(elem)));
-        sumTxt.setTextSize(30);
+        sumTxt.setTextSize(35);
         sumTxt.setText(String.valueOf(selectedRolls.getDmgSumFromType(elem)));
         sumBox.addView(sumTxt);
-        line.addView(sumBox);
+        ((LinearLayout) mainView.findViewById(R.id.mainLinearSumDmg)).addView(sumBox);
+    }
+
+    private void checkHighscore(int sumDmg) {
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
+        int currentHigh = new Tools().toInt(settings.getString("highscore", "0"));
+        if (currentHigh < sumDmg) {
+            settings.edit().putString("highscore",String.valueOf(sumDmg)).apply();
+            Tools tools = new Tools();
+            tools.playVideo(mA,mC,"/raw/explosion");
+            tools.customToast(mC, String.valueOf(sumDmg) + " dégats !\nC'est un nouveau record !", "center");
+        }
     }
 }

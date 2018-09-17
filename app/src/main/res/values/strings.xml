@@ -9,7 +9,6 @@
 
     <string name="jet_att">Valeur d\'attaque de base</string>
     <string name="jet_att_def">17,12,7,2</string>
-    <string name="mod_dex_def">11</string>
     <string name="title_mod_dex">Modificateur de dextérité</string>
 
     <!-- arme  -->
@@ -21,12 +20,9 @@
     <string name="composite">Arc composite +4</string>
     <string name="composite_summ">+4 aux dégâts (Req. +4 For)</string>
     <string name="epic_val">Point(s) d\'attaque épique</string>
-    <string name="epic_val_def">1</string>
     <string name="epic_dmg_val">Point(s) de dégât épique</string>
-    <string name="epic_dmg_val_def">0</string>
-    <string name="prouesse_def">0</string>
     <string name="prouesse_val">Point(s) de prouesse</string>
-    <string name="prouesse_attrib_def">4</string>
+
     <string-array name="choix_prouesse">
         <item>1 ière attaque</item>
         <item>2 ième attaque</item>
@@ -55,11 +51,9 @@
     <string name="viser">Viser</string>
     <string name="viser_summ">-x aux jets d\'attaques / +2x aux dégâts</string>
     <string name="viser_val">Valeur du malus</string>
-    <string name="viser_val_def">4</string>
     <string name="feu_nourri">Feu nourri suprême</string>
     <string name="feu_nourri_summ">x flêches par attaque (une seule crit).</string>
     <string name="multi_value">Nombre de flêches par attaque</string>
-    <string name="multi_value_def">3</string>
 
 
     <!-- ENCHANTS -->
@@ -68,7 +62,6 @@
 
     <string name="magic">Flêche magique</string>
     <string name="magic_summ">Chaque flêche tirée par l\'archer sylvestre a un bonus d\'altération magique.</string>
-    <string name="magic_val_def">6</string>
     <string name="magic_val">Valeur de l\'altération</string>
     <string name="feu">Feu intense</string>
     <string name="feu_summ">+2d6 dégâts de feu. +2d10 en critique</string>
@@ -80,9 +73,7 @@
 
     <!-- BUFF -->
     <string name="pref_header_temp">Augmentations temporaires</string>
-    <string name="att_buff_def">0</string>
     <string name="att_buff">Augmentation d\'attaque</string>
-    <string name="dmg_buff_def">0</string>
     <string name="dmg_buff">Augmentation de dégât</string>
 
 

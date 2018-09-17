@@ -7,11 +7,12 @@
         android:summary="@string/magic_summ"
         android:title="@string/magic" />
     <stellarnear.wedge_dealer.EditTextPreference
-        android:defaultValue="@string/magic_val_def"
+        android:defaultValue="@integer/magic_val_def"
         android:dependency="magic_switch"
         android:key="magic_val"
         android:title="@string/magic_val"
         android:selectAllOnFocus="true"
+        android:inputType="number"
         android:singleLine="true"
         android:summary="Valeur : %s"/>
     <SwitchPreference

@@ -28,10 +28,11 @@ public class CustomAlertDialog {
         this.mC=mC;
         dialogBuilder  = new AlertDialog.Builder(mA, R.style.CustomDialog);
         dialogBuilder.setView(view);
+        alert = dialogBuilder.create();
     }
 
     public void showAlert() {
-        alert = dialogBuilder.create();
+
         alert.show();
         if(positiveButton){applyStyleToOkButton();}
         if(cancelButton){applyStyleToCancelButton();}

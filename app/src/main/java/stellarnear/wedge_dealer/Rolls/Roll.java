@@ -33,8 +33,8 @@ public class Roll {
         if (this.dmgRollList.isEmpty()){
             this.dmgRollList.add(new DmgRoll(mC,atkRoll.isCritConfirmed()));
             if (settings.getBoolean("feu_nourri_switch", mC.getResources().getBoolean(R.bool.feu_nourri_switch_def))) {
-                int multiVal = tools.toInt(settings.getString("multi_val", mC.getResources().getString(R.string.multi_value_def)));
-                for(int i=1;i<=multiVal;i++){
+                int multiVal = tools.toInt(settings.getString("multi_val", String.valueOf(mC.getResources().getInteger(R.integer.multi_value_def))));
+                for(int i=1;i<multiVal;i++){
                     this.dmgRollList.add(new DmgRoll(mC,false));
                 }
             }
@@ -44,6 +44,8 @@ public class Roll {
             }
         }
     }
+
+
     public List<DmgRoll> getDmgRollList(){
         return this.dmgRollList;
     }
@@ -111,10 +113,6 @@ public class Roll {
         return diceList;
     }
 
-    public int getDmgBonus() {
-        return this.dmgRollList.get(0).getDmgBonus();
-    }
-
     public int getDmgSum(String... elementArg) {
         String element = elementArg.length > 0 ? elementArg[0] : "";
         Integer sum=0;
@@ -141,4 +139,6 @@ public class Roll {
         }
         return sum;
     }
+
+
 }

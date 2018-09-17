@@ -90,4 +90,5 @@ public class DiceList {
     public Integer size(){
         return diceList.size();
     }
+
 }

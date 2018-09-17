@@ -1,16 +1,11 @@
 package stellarnear.wedge_dealer.TextFilling;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.preference.PreferenceManager;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.CheckBox;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -22,33 +17,30 @@ public class SetupCheckboxes {
     private Context mC;
     private View mainView;
     private RollList rollList;
-    private SharedPreferences settings;
-    private LinearLayout mainAtkLin;
 
     public SetupCheckboxes(Context mC, View mainView, RollList rollList) {
         this.mC = mC;
         this.mainView = mainView;
         this.rollList = rollList;
-        this.settings = PreferenceManager.getDefaultSharedPreferences(mC);
-        this.mainAtkLin = mainView.findViewById(R.id.mainLinearAtk);
+        showViews();
         addCheckboxes();
     }
 
+    public void hideViews(){
+        ((TextView)mainView.findViewById(R.id.mainLinearCheckboxCritTitle)).setVisibility(View.GONE);
+        ((TextView)mainView.findViewById(R.id.mainLinearCheckboxHitTitle)).setVisibility(View.GONE);
+        ((LinearLayout)mainView.findViewById(R.id.mainLinearHitCheckbox)).setVisibility(View.GONE);
+        ((LinearLayout)mainView.findViewById(R.id.mainLinearCritCheckbox)).setVisibility(View.GONE);
+    }
+
+    private void showViews(){
+        ((TextView)mainView.findViewById(R.id.mainLinearCheckboxHitTitle)).setVisibility(View.VISIBLE);
+        ((LinearLayout)mainView.findViewById(R.id.mainLinearHitCheckbox)).setVisibility(View.VISIBLE);
+        ((LinearLayout)mainView.findViewById(R.id.mainLinearCritCheckbox)).setVisibility(View.VISIBLE);
+    }
+
     private void addCheckboxes() {
-
-        TextView hitTxt = new TextView(mC);
-        hitTxt.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1));
-        hitTxt.setGravity(Gravity.CENTER);
-        hitTxt.setTextColor(Color.GRAY);
-        hitTxt.setTextSize(18);
-        hitTxt.setText("Coups qui touchent :");
-        mainAtkLin.addView(hitTxt);
-
-        LinearLayout line = new LinearLayout(mC);
-        line.setOrientation(LinearLayout.HORIZONTAL);
-        line.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        line.setGravity(Gravity.CENTER);
-
+        ((LinearLayout)mainView.findViewById(R.id.mainLinearHitCheckbox)).removeAllViews();
         for (Roll roll : rollList.getList()) {
             LinearLayout frame = new LinearLayout(mC);
             frame.setGravity(Gravity.CENTER);
@@ -57,23 +49,12 @@ public class SetupCheckboxes {
             if (!roll.isInvalid() && !roll.isFailed()) {
                 frame.addView(roll.getHitCheckbox());
             }
-            line.addView(frame);
+            ((LinearLayout)mainView.findViewById(R.id.mainLinearHitCheckbox)).addView(frame);
         }
-        mainAtkLin.addView(line);
 
-
-        if (rollList.haveAnyCrit()) {
-            TextView critTxt = new TextView(mC);
-            critTxt.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1));
-            critTxt.setGravity(Gravity.CENTER);
-            critTxt.setTextColor(Color.GRAY);
-            critTxt.setTextSize(18);
-            critTxt.setText("Coups critiques confirmés :");
-            mainAtkLin.addView(critTxt);
-            LinearLayout lineCrit = new LinearLayout(mC);
-            lineCrit.setOrientation(LinearLayout.HORIZONTAL);
-            lineCrit.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            lineCrit.setGravity(Gravity.CENTER);
+        ((LinearLayout)mainView.findViewById(R.id.mainLinearCritCheckbox)).removeAllViews();
+        if (rollList.haveAnyCritValid()) {
+            ((TextView)mainView.findViewById(R.id.mainLinearCheckboxCritTitle)).setVisibility(View.VISIBLE);
             for (final Roll roll : rollList.getList()) {
                 LinearLayout frame = new LinearLayout(mC);
                 frame.setGravity(Gravity.CENTER);
@@ -84,9 +65,8 @@ public class SetupCheckboxes {
                     Animation animCheck = AnimationUtils.loadAnimation(mC, R.anim.zoomin);
                     check.startAnimation(animCheck);
                 }
-                lineCrit.addView(frame);
+                ((LinearLayout)mainView.findViewById(R.id.mainLinearCritCheckbox)).addView(frame);
             }
-            mainAtkLin.addView(lineCrit);
         }
     }
 }

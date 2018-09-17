@@ -65,7 +65,79 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="@dimen/activity_main_padding"/>
+            android:padding="@dimen/activity_main_padding">
+
+            <TextView
+                android:id="@+id/mainLinearNAtk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="N attaques :"
+                android:textAlignment="center"
+                android:textSize="20dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:visibility="gone"/>
+
+
+            <LinearLayout
+                android:id="@+id/mainLinearPreRand"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"/>
+            <LinearLayout
+                android:id="@+id/mainLinearAtkDices"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"/>
+
+            <LinearLayout
+                android:id="@+id/mainLinearMultishot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"/>
+            <LinearLayout
+                android:id="@+id/mainLinearPostRand"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/mainLinearCheckboxHitTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="Coups qui touchent :"
+                android:textSize="18dp"
+                android:textColor="@android:color/darker_gray"
+                android:visibility="gone"/>
+
+            <LinearLayout
+                android:id="@+id/mainLinearHitCheckbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/mainLinearCheckboxCritTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="Coups critiques :"
+                android:textSize="18dp"
+                android:textColor="@android:color/darker_gray"
+                android:visibility="gone"/>
+
+            <LinearLayout
+                android:id="@+id/mainLinearCritCheckbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"/>
+        </LinearLayout>
 
         <View
             android:id="@+id/bar_sep"
@@ -73,21 +145,59 @@
             android:layout_height="3dp"
             android:layout_gravity="bottom"
             android:background="#90909090"
-            android:visibility="invisible"
+            android:visibility="gone"
             app:layout_anchor="@+id/include_box_crit"
             app:layout_anchorGravity="bottom" />
+
+        <TextView
+            android:id="@+id/mainLinearDmgTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="Dégâts :"
+            android:textSize="20dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:visibility="gone"/>
 
         <LinearLayout
             android:id="@+id/mainLinearDmg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="@dimen/activity_main_padding"/>
-
+            android:padding="@dimen/activity_main_padding">
+            <LinearLayout
+                android:id="@+id/mainLinearLogoDmg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"/>
+            <LinearLayout
+                android:id="@+id/mainLinearSumDmg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"/>
+            <LinearLayout
+                android:id="@+id/mainLinearRangeDmg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"/>
+            <TextView
+                android:id="@+id/mainLinearProbaTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="Probabilité de dépassement (>) :"
+                android:textSize="18dp"
+                android:textColor="@android:color/darker_gray"
+                android:visibility="gone"/>
+            <LinearLayout
+                android:id="@+id/mainLinearProbaDmg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"/>
+        </LinearLayout>
     </LinearLayout>
-
-
-
-
-
 </android.support.design.widget.CoordinatorLayout>

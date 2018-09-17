@@ -80,7 +80,7 @@ public class AtkRoll {
             bonusAtk+= 1;
         }
         if (settings.getBoolean("magic_switch", mC.getResources().getBoolean(R.bool.magic_switch_def))) {
-            bonusAtk+= tools.toInt(settings.getString("magic_val", mC.getResources().getString(R.string.magic_val_def)));
+            bonusAtk+= tools.toInt(settings.getString("magic_val", String.valueOf(mC.getResources().getInteger(R.integer.magic_val_def))));
         }
 
         if (settings.getBoolean("tir_rapide", mC.getResources().getBoolean(R.bool.tir_rapide_switch_def))) {
@@ -88,14 +88,14 @@ public class AtkRoll {
         }
 
         if (settings.getBoolean("viser", mC.getResources().getBoolean(R.bool.viser_switch_def))) {
-            bonusAtk-=tools.toInt(settings.getString("viser_val", mC.getResources().getString(R.string.viser_val_def)));
+            bonusAtk-=tools.toInt(settings.getString("viser_val", String.valueOf(mC.getResources().getInteger(R.integer.viser_val_def))));
         }
 
-        bonusAtk+= tools.toInt(settings.getString("mod_dex", mC.getResources().getString(R.string.mod_dex_def)));
+        bonusAtk+= tools.toInt(settings.getString("mod_dex", String.valueOf(mC.getResources().getInteger(R.integer.mod_dex_def))));
 
-        bonusAtk+= tools.toInt(settings.getString("epic_val", mC.getResources().getString(R.string.epic_val_def)));
+        bonusAtk+= tools.toInt(settings.getString("epic_val", String.valueOf(mC.getResources().getInteger(R.integer.epic_val_def))));
 
-        bonusAtk+= tools.toInt(settings.getString("att_buff", mC.getResources().getString(R.string.att_buff_def)));
+        bonusAtk+= tools.toInt(settings.getString("att_buff", String.valueOf(mC.getResources().getInteger(R.integer.att_buff_def))));
 
         return bonusAtk;
     }

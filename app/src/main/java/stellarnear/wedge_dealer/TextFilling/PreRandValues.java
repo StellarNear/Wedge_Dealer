@@ -24,21 +24,17 @@ public class PreRandValues {
         addPreRandValues();
     }
 
+    public void hideViews(){
+        ((TextView)mainView.findViewById(R.id.mainLinearNAtk)).setVisibility(View.GONE);
+        ((LinearLayout)mainView.findViewById(R.id.mainLinearPreRand)).setVisibility(View.GONE);
+    }
+
     private void addPreRandValues() {
-        TextView nAtt = new TextView(mC);
-        nAtt.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT,1));
-        nAtt.setGravity(Gravity.CENTER);
-        nAtt.setTextColor(Color.DKGRAY);
-        nAtt.setTextSize(22);
+        TextView nAtt = (TextView) mainView.findViewById(R.id.mainLinearNAtk);
         nAtt.setText(String.valueOf(rollList.getList().size()+" attaques :"));
-        LinearLayout mainAtkLin = mainView.findViewById(R.id.mainLinearAtk);
-        mainAtkLin.addView(nAtt);
-
-        LinearLayout preRandValues=new LinearLayout(mC);
-        preRandValues.setOrientation(LinearLayout.HORIZONTAL);
-        preRandValues.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        preRandValues.setGravity(Gravity.CENTER);
-
+        ((LinearLayout)mainView.findViewById(R.id.mainLinearPreRand)).setVisibility(View.VISIBLE);
+        ((TextView)mainView.findViewById(R.id.mainLinearNAtk)).setVisibility(View.VISIBLE);
+        ((LinearLayout)mainView.findViewById(R.id.mainLinearPreRand)).removeAllViews();
         for(Roll roll : rollList.getList()){
             LinearLayout scoreBox = new LinearLayout(mC);
             scoreBox.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
@@ -50,10 +46,7 @@ public class PreRandValues {
             score.setTextSize(22);
             score.setText("+"+String.valueOf(roll.getPreRandValue()));
             scoreBox.addView(score);
-            preRandValues.addView(scoreBox);
+            ((LinearLayout)mainView.findViewById(R.id.mainLinearPreRand)).addView(scoreBox);
         }
-
-        mainAtkLin.addView(preRandValues);
     }
-
 }

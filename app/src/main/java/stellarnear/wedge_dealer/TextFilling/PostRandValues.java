@@ -20,23 +20,37 @@ public class PostRandValues {
     private View mainView;
     private RollList rollList;
     private SharedPreferences settings;
-    private LinearLayout mainAtkLin;
 
     public PostRandValues(Context mC, View mainView, RollList rollList) {
         this.mC = mC;
         this.mainView = mainView;
         this.rollList = rollList;
         this.settings = PreferenceManager.getDefaultSharedPreferences(mC);
-        this.mainAtkLin = mainView.findViewById(R.id.mainLinearAtk);
+        showViews();
+        clearAllView();
         addRandDices();
         addPostRandValues();
     }
 
+    private void clearAllView() {
+        ((LinearLayout)mainView.findViewById(R.id.mainLinearAtkDices)).removeAllViews();
+        ((LinearLayout)mainView.findViewById(R.id.mainLinearMultishot)).removeAllViews();
+        ((LinearLayout)mainView.findViewById(R.id.mainLinearPostRand)).removeAllViews();
+    }
+
+    private void showViews() {
+        ((LinearLayout)mainView.findViewById(R.id.mainLinearAtkDices)).setVisibility(View.VISIBLE);
+        ((LinearLayout)mainView.findViewById(R.id.mainLinearMultishot)).setVisibility(View.VISIBLE);
+        ((LinearLayout)mainView.findViewById(R.id.mainLinearPostRand)).setVisibility(View.VISIBLE);
+    }
+
+    public void hideViews() {
+        ((LinearLayout)mainView.findViewById(R.id.mainLinearAtkDices)).setVisibility(View.GONE);
+        ((LinearLayout)mainView.findViewById(R.id.mainLinearMultishot)).setVisibility(View.GONE);
+        ((LinearLayout)mainView.findViewById(R.id.mainLinearPostRand)).setVisibility(View.GONE);
+    }
+
     private void addRandDices() {
-        LinearLayout line = new LinearLayout(mC);
-        line.setOrientation(LinearLayout.HORIZONTAL);
-        line.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        line.setGravity(Gravity.CENTER);
         Boolean fail = false;
         for (Roll roll : rollList.getList()) {
             ImageView diceImg = roll.getImgAtk();
@@ -54,19 +68,15 @@ public class PostRandValues {
                ((ViewGroup) diceImg.getParent()).removeView(diceImg);
             }
             diceBox.addView(diceImg);
-            line.addView(diceBox);
+            ((LinearLayout)mainView.findViewById(R.id.mainLinearAtkDices)).addView(diceBox);
         }
-        mainAtkLin.addView(line);
         checkForMultipleArrows();
     }
 
     private void checkForMultipleArrows() {
         if (settings.getBoolean("feu_nourri_switch", mC.getResources().getBoolean(R.bool.feu_nourri_switch_def))) {
-            String multi_val_str = settings.getString("multi_val", mC.getResources().getString(R.string.multi_value_def));
-            LinearLayout line = new LinearLayout(mC);
-            line.setOrientation(LinearLayout.HORIZONTAL);
-            line.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-            line.setGravity(Gravity.CENTER);
+            String multi_val_str = settings.getString("multi_val", String.valueOf(mC.getResources().getInteger(R.integer.multi_value_def)));
+
             for (Roll roll : rollList.getList()) {
                 LinearLayout txtBox = new LinearLayout(mC);
                 txtBox.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
@@ -78,18 +88,12 @@ public class PostRandValues {
                 multiple.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
                 multiple.setText("x"+multi_val_str);
                 txtBox.addView(multiple);
-                line.addView(txtBox);
+                ((LinearLayout)mainView.findViewById(R.id.mainLinearMultishot)).addView(txtBox);
             }
-            mainAtkLin.addView(line);
         }
     }
 
     private void addPostRandValues() {
-        LinearLayout line = new LinearLayout(mC);
-        line.setOrientation(LinearLayout.HORIZONTAL);
-        line.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-        line.setGravity(Gravity.CENTER);
-        int allRollSet = 0;
         for (Roll roll : rollList.getList()) {
             LinearLayout txtBox = new LinearLayout(mC);
             txtBox.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
@@ -102,19 +106,15 @@ public class PostRandValues {
             atkTxt.setText("?");
             if (roll.isInvalid()) {
                 atkTxt.setText("-");
-                allRollSet += 1;
             } else {
                 if ((roll.getAtkValue() != 0)) {
                     atkTxt.setText(String.valueOf(roll.getAtkValue()));
-                    allRollSet += 1;
                 }
             }
             atkTxt.setGravity(Gravity.CENTER);
             atkTxt.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
             txtBox.addView(atkTxt);
-            line.addView(txtBox);
+            ((LinearLayout)mainView.findViewById(R.id.mainLinearPostRand)).addView(txtBox);
         }
-
-        mainAtkLin.addView(line);
     }
 }

@@ -161,6 +161,11 @@ public class SettingsFragment extends PreferenceFragment {
                 case "create_equipment":
                     createEquipment();
                     break;
+                case "reset_temp":
+                    resetTemp();
+                    getPreferenceScreen().removeAll();
+                    addPreferencesFromResource(R.xml.pref_temp); //pour refresh le current
+                    break;
             }
         }
         /*
@@ -457,6 +462,14 @@ public class SettingsFragment extends PreferenceFragment {
                 lManager.showSoftInput(editName, InputMethodManager.SHOW_IMPLICIT);
             }
         });
+    }
+
+    private void resetTemp() {
+        List<String> allTempList = Arrays.asList("dmg_buff","att_buff");
+        for (String temp : allTempList){
+            settings.edit().putString(temp, "0").apply();
+        }
+        settings.edit().putBoolean("switch_temp_rapid", false).apply();
     }
 
 
