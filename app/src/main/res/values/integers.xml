@@ -8,8 +8,6 @@
 
     <integer name="ability_lvl_def">24</integer>
     <integer name="current_xp_def">9976803</integer>
-    <integer name="previous_level_def">9570000</integer>
-    <integer name="next_level_def">13600000</integer>
     <integer name="add_current_xp_def">0</integer>
 
     <integer name="add_gold_def">0</integer>

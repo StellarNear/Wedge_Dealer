@@ -48,6 +48,7 @@ public class SettingsFragment extends PreferenceFragment {
         histoXML.add(R.xml.pref);
         histoTitle.add(getResources().getString(R.string.action_settings));
         inventory = new Inventory(getActivity());
+        checkLevel(tools.toBigInt(settings.getString("current_xp", String.valueOf(getContext().getResources().getInteger(R.integer.current_xp_def)))));
     }
 
     public void changePrefScreen(int xmlId, String title) {
@@ -489,8 +490,8 @@ public class SettingsFragment extends PreferenceFragment {
                         int oriWidth = overlayBar.getMeasuredWidth();
                         int oriHeight = overlayBar.getMeasuredHeight();
                         int currentXp = tools.toInt(settings.getString("current_xp", String.valueOf(getContext().getResources().getInteger(R.integer.current_xp_def))));
-                        int nextLvlXp = tools.toInt(settings.getString("next_level", String.valueOf(getContext().getResources().getInteger(R.integer.next_level_def))));
-                        int previousLvlXp = tools.toInt(settings.getString("previous_level", String.valueOf(getContext().getResources().getInteger(R.integer.previous_level_def))));
+                        int nextLvlXp = tools.toInt(settings.getString("next_level", ""));
+                        int previousLvlXp = tools.toInt(settings.getString("previous_level", ""));
                         Double coef = (double) (currentXp - previousLvlXp) / (nextLvlXp - previousLvlXp);
                         if (coef < 0d) {
                             coef = 0d;
@@ -527,7 +528,7 @@ public class SettingsFragment extends PreferenceFragment {
         }
 
         Integer currentLvl = tools.toInt(settings.getString("ability_lvl", String.valueOf(getContext().getResources().getInteger(R.integer.ability_lvl_def))));
-        if (currentLvl != newLvl) {
+
             SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getContext());
             BigInteger previousLvlXp = listXp.get(listLvl.indexOf(newLvl));
             BigInteger nextLvlXp = listXp.get(listLvl.indexOf(newLvl+1));
@@ -535,6 +536,8 @@ public class SettingsFragment extends PreferenceFragment {
             settings.edit().putString("previous_level", previousLvlXp.toString()).apply();
             settings.edit().putString("next_level", nextLvlXp.toString()).apply();
             settings.edit().putString("ability_lvl", String.valueOf(newLvl)).apply();
+
+        if (currentLvl != newLvl) {
             tools.playVideo(getActivity(),getContext(),"/raw/saiyan");
             tools.customToast(getContext(), "Bravo tu as atteint le niveau "+String.valueOf(newLvl));
         }
