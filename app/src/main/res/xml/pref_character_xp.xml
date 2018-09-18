@@ -1,12 +1,8 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <Preference
-        android:key="xp_bar"
-    android:layout="@layout/xp_bar"
+    <stellarnear.wedge_dealer.XpBarPreference
         android:selectable="false"
         />
-
-
 
     <stellarnear.wedge_dealer.EditTextPreference
         android:defaultValue="@integer/current_xp_def"

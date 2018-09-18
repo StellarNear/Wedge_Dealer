@@ -1,9 +1,7 @@
 package stellarnear.wedge_dealer;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -131,7 +129,7 @@ public class SettingsFragment extends PreferenceFragment {
                 case "pref_character_xp":
                     BigInteger xp = tools.toBigInt(settings.getString("current_xp", String.valueOf(getContext().getResources().getInteger(R.integer.current_xp_def))));
                     prefXpFragment.checkLevel(xp);
-                    prefXpFragment.refreshXpBar();
+                    //prefXpFragment.addXpBar();
                     break;
             }
         }
@@ -180,7 +178,7 @@ public class SettingsFragment extends PreferenceFragment {
                         settings.edit().putString("add_current_xp", String.valueOf(0)).apply();
                         prefXpFragment.checkLevel(xp, addXp);
                         navigate();
-                        prefXpFragment.refreshXpBar();
+                        //prefXpFragment.addXpBar(xpCat);
                         return true;
                     }
                 });
@@ -192,7 +190,7 @@ public class SettingsFragment extends PreferenceFragment {
                         settings.edit().putString(preference.getKey(), o.toString()).apply();
                         prefXpFragment.checkLevel(tools.toBigInt(o.toString()));
                         navigate();
-                        prefXpFragment.refreshXpBar();
+                        //prefXpFragment.addXpBar();
                         return true;
                     }
                 });

@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Handler;
+import android.preference.Preference;
+import android.preference.PreferenceCategory;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.ContentFrameLayout;
 import android.view.View;
@@ -61,41 +63,5 @@ public class PrefXpFragment {
             tools.playVideo(mA, mC, "/raw/saiyan");
             tools.customToast(mC, "Bravo tu as atteint le niveau " + String.valueOf(newLvl));
         }
-    }
-
-    public void refreshXpBar() {
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                final View mainView = ((ContentFrameLayout) mA.findViewById(android.R.id.content));
-                mainView.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        TextView percent = mainView.findViewById(R.id.xp_bar_percent);
-                        ImageView backgroundBar = mainView.findViewById(R.id.xp_bar_background);
-                        ViewGroup.LayoutParams para = (ViewGroup.LayoutParams) backgroundBar.getLayoutParams();
-                        ImageView overlayBar = mainView.findViewById(R.id.xp_bar_overlay);
-                        int oriWidth = overlayBar.getMeasuredWidth();
-                        int oriHeight = overlayBar.getMeasuredHeight();
-                        int currentXp = tools.toInt(settings.getString("current_xp", String.valueOf(mC.getResources().getInteger(R.integer.current_xp_def))));
-                        int nextLvlXp = tools.toInt(settings.getString("next_level", ""));
-                        int previousLvlXp = tools.toInt(settings.getString("previous_level", ""));
-                        Double coef = (double) (currentXp - previousLvlXp) / (nextLvlXp - previousLvlXp);
-                        if (coef < 0d) {
-                            coef = 0d;
-                        }
-                        if (coef > 1d) {
-                            coef = 1d;
-                        }
-                        percent.setText(String.valueOf((int) (100 * coef)) + "%");
-                        para.width = (int) (coef * oriWidth);
-                        para.height = oriHeight;
-                        backgroundBar.setLayoutParams(para);
-                    }
-                });
-
-            }
-        }, 250); //pour attendre le changement de preference visiblement ce n'est pas instantané
     }
 }

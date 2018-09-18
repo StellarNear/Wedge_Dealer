@@ -64,8 +64,7 @@
             android:id="@+id/mainLinearAtk"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/activity_main_padding">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/mainLinearNAtk"
@@ -73,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:text="N attaques :"
                 android:textAlignment="center"
-                android:textSize="20dp"
+                android:textSize="15dp"
                 android:textColor="@color/colorPrimaryDark"
                 android:visibility="gone"/>
 
@@ -110,7 +109,7 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:text="Coups qui touchent :"
-                android:textSize="18dp"
+                android:textSize="15dp"
                 android:textColor="@android:color/darker_gray"
                 android:visibility="gone"/>
 
@@ -127,7 +126,7 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:text="Coups critiques :"
-                android:textSize="18dp"
+                android:textSize="15dp"
                 android:textColor="@android:color/darker_gray"
                 android:visibility="gone"/>
 
@@ -163,8 +162,7 @@
             android:id="@+id/mainLinearDmg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/activity_main_padding">
+            android:orientation="vertical">
             <LinearLayout
                 android:id="@+id/mainLinearLogoDmg"
                 android:layout_width="match_parent"
@@ -189,7 +187,7 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:text="Probabilité de dépassement (>) :"
-                android:textSize="18dp"
+                android:textSize="15dp"
                 android:textColor="@android:color/darker_gray"
                 android:visibility="gone"/>
             <LinearLayout

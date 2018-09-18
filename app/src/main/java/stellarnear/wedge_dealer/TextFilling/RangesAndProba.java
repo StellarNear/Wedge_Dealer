@@ -63,7 +63,7 @@ public class RangesAndProba {
                 rangeTxt.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                 rangeTxt.setGravity(Gravity.CENTER);
                 rangeTxt.setTextColor(mC.getResources().getColor(mapElemColor.get(elem)));
-                rangeTxt.setTextSize(20);
+                rangeTxt.setTextSize(15);
                 rangeTxt.setText(probaForRolls.getRange(elem));
                 sumBox.addView(rangeTxt);
                 ((LinearLayout) mainPage.findViewById(R.id.mainLinearRangeDmg)).addView(sumBox);
@@ -84,7 +84,7 @@ public class RangesAndProba {
                 probaTextview.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                 probaTextview.setGravity(Gravity.CENTER);
                 probaTextview.setTextColor(mC.getResources().getColor(mapElemColor.get(elem)));
-                probaTextview.setTextSize(20);
+                probaTextview.setTextSize(15);
                 String probaTxt=probaForRolls.getProba(elem);
                 if (elem.equalsIgnoreCase("") && selectedRolls.haveAnyCrit()){
                     probaTxt+="\ncrit:\n"+probaForRolls.getProba("",true);
