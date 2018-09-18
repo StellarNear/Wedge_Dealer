@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="stellarnear.stellarnear">
+    package="stellarnear.wedge_dealer">
 
     <application
         android:allowBackup="true"
@@ -24,7 +24,6 @@
             android:name="stellarnear.wedge_dealer.SettingsActivity"
             android:screenOrientation="portrait"
             android:label="@string/title_activity_settings"></activity>
-        <activity android:label="@string/title_det_dmg" android:name="stellarnear.wedge_dealer.DisplayDamageDetail"/>
     </application>
 
 </manifest>

@@ -24,7 +24,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import stellarnear.wedge_dealer.CustomAlertDialog;
-import stellarnear.stellarnear.R;
+import stellarnear.wedge_dealer.R;
 import stellarnear.wedge_dealer.TinyDB;
 import stellarnear.wedge_dealer.Tools;
 

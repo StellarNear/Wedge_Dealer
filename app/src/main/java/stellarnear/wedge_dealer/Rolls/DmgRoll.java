@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import stellarnear.stellarnear.R;
+import stellarnear.wedge_dealer.R;
 import stellarnear.wedge_dealer.Tools;
 
 public class DmgRoll {

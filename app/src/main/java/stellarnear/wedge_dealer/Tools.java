@@ -18,8 +18,6 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
-import stellarnear.stellarnear.R;
-
 /**
  * Created by jchatron on 16/02/2018.
  */

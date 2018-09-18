@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import stellarnear.wedge_dealer.CustomAlertDialog;
-import stellarnear.stellarnear.R;
+import stellarnear.wedge_dealer.R;
 
 
 /**

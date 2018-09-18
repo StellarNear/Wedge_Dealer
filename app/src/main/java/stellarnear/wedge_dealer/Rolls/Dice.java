@@ -1,12 +1,11 @@
 package stellarnear.wedge_dealer.Rolls;
 
 import android.content.Context;
-import android.view.View;
 import android.widget.ImageView;
 
 import java.util.Random;
 
-import stellarnear.stellarnear.R;
+import stellarnear.wedge_dealer.R;
 import stellarnear.wedge_dealer.Tools;
 
 public class Dice {

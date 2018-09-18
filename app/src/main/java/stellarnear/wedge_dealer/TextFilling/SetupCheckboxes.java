@@ -9,7 +9,7 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import stellarnear.stellarnear.R;
+import stellarnear.wedge_dealer.R;
 import stellarnear.wedge_dealer.Rolls.Roll;
 import stellarnear.wedge_dealer.Rolls.RollList;
 

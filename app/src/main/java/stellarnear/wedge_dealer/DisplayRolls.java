@@ -2,17 +2,10 @@ package stellarnear.wedge_dealer;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.v4.view.ScrollingView;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.LinearLayout;
 
-import java.util.HashMap;
-import java.util.List;
-
-import stellarnear.stellarnear.R;
 import stellarnear.wedge_dealer.Rolls.Dice;
 import stellarnear.wedge_dealer.Rolls.DmgRoll;
 import stellarnear.wedge_dealer.Rolls.Roll;

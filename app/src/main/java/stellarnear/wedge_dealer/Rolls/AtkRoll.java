@@ -7,7 +7,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 
-import stellarnear.stellarnear.R;
+import stellarnear.wedge_dealer.R;
 import stellarnear.wedge_dealer.Tools;
 
 public class AtkRoll {

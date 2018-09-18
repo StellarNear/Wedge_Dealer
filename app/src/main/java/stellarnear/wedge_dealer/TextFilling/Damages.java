@@ -17,8 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import stellarnear.stellarnear.R;
-import stellarnear.wedge_dealer.MainActivity;
+import stellarnear.wedge_dealer.R;
 import stellarnear.wedge_dealer.Rolls.Roll;
 import stellarnear.wedge_dealer.Rolls.RollList;
 import stellarnear.wedge_dealer.Tools;
