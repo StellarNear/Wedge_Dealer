@@ -19,7 +19,6 @@ public class PrefResetScreenFragment {
     private Inventory inventory;
     private Activity mA;
     private Context mC;
-    private PrefAllInventoryFragment.OnRefreshEventListener mListener;
 
     public void addResetScreen(Activity mA, Context mC) {
         this.mA=mA;

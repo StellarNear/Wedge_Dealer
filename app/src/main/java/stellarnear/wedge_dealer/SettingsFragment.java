@@ -32,9 +32,6 @@ public class SettingsFragment extends PreferenceFragment {
 
     private String currentPageKey;
     private String currentPageTitle;
-    private String currentKey;
-    private String currentTitle;
-    private Preference currentPref;
 
     private Tools tools = new Tools();
     private SharedPreferences settings;
@@ -74,8 +71,8 @@ public class SettingsFragment extends PreferenceFragment {
             mA.startActivity(intent);
         } else // in sub-level
         {
-            currentPageKey =histoPrefKeys.get(histoPrefKeys.size() - 2);
-            currentPageTitle =histoTitle.get(histoTitle.size() - 2);
+            currentPageKey=histoPrefKeys.get(histoPrefKeys.size() - 2);
+            currentPageTitle=histoTitle.get(histoTitle.size() - 2);
             navigate();
             histoPrefKeys.remove(histoPrefKeys.size() - 1);
             histoTitle.remove(histoTitle.size() - 1);
@@ -89,15 +86,12 @@ public class SettingsFragment extends PreferenceFragment {
             histoTitle.add(preference.getTitle().toString());
         }
 
-        this.currentPref=preference;
         if (preference.getKey().startsWith("pref")) {
             this.currentPageKey =preference.getKey();
             this.currentPageTitle =preference.getTitle().toString();
             navigate();
         } else {
-            this.currentKey =preference.getKey();
-            this.currentTitle =preference.getTitle().toString();
-            action();
+            action(preference);
         }
 
         /*
@@ -129,7 +123,6 @@ public class SettingsFragment extends PreferenceFragment {
                 case "pref_character_xp":
                     BigInteger xp = tools.toBigInt(settings.getString("current_xp", String.valueOf(getContext().getResources().getInteger(R.integer.current_xp_def))));
                     prefXpFragment.checkLevel(xp);
-                    //prefXpFragment.addXpBar();
                     break;
             }
         }
@@ -142,10 +135,10 @@ public class SettingsFragment extends PreferenceFragment {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(currentPageTitle);
     }
 
-    private void action() {
-        switch (currentKey) {
+    private void action(Preference preference) {
+        switch (preference.getKey()) {
             case "reset_para":
-                ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(currentTitle);
+                ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(preference.getTitle());
                 ((ContentFrameLayout) getActivity().findViewById(android.R.id.content)).removeAllViews();
                 PrefResetScreenFragment prefResetScreenFragment = new PrefResetScreenFragment();
                 prefResetScreenFragment.addResetScreen(mA,mC);
@@ -154,7 +147,7 @@ public class SettingsFragment extends PreferenceFragment {
                 inventory.showEquipment(getActivity(), true);
                 break;
             case "add_gold":
-                currentPref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                preference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                     @Override
                     public boolean onPreferenceChange(Preference preference, Object o) {
                         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getContext());
@@ -168,7 +161,7 @@ public class SettingsFragment extends PreferenceFragment {
                 });
                 break;
             case "add_current_xp":
-                currentPref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                preference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                     @Override
                     public boolean onPreferenceChange(Preference preference, Object o) {
                         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getContext());
@@ -178,19 +171,17 @@ public class SettingsFragment extends PreferenceFragment {
                         settings.edit().putString("add_current_xp", String.valueOf(0)).apply();
                         prefXpFragment.checkLevel(xp, addXp);
                         navigate();
-                        //prefXpFragment.addXpBar(xpCat);
                         return true;
                     }
                 });
                 break;
             case "current_xp":
-                currentPref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                preference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                     @Override
                     public boolean onPreferenceChange(Preference preference, Object o) {
                         settings.edit().putString(preference.getKey(), o.toString()).apply();
                         prefXpFragment.checkLevel(tools.toBigInt(o.toString()));
                         navigate();
-                        //prefXpFragment.addXpBar();
                         return true;
                     }
                 });
@@ -213,6 +204,5 @@ public class SettingsFragment extends PreferenceFragment {
         for (String temp : allTempList) {
             settings.edit().putString(temp, "0").apply();
         }
-        settings.edit().putBoolean("switch_temp_rapid", false).apply();
     }
 }

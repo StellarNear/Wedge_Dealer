@@ -56,7 +56,7 @@ public class PrefAllInventoryFragment {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
                     new AlertDialog.Builder(mC)
-                            .setIcon(stellarnear.wedge_dealer.R.drawable.ic_warning_black_24dp)
+                            .setIcon(R.drawable.ic_warning_black_24dp)
                             .setTitle("Suppression de l'équipement")
                             .setMessage("Es-tu sûre de vouloir jeter cet équipement ?")
                             .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
@@ -96,7 +96,7 @@ public class PrefAllInventoryFragment {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
                     new AlertDialog.Builder(mC)
-                            .setIcon(stellarnear.wedge_dealer.R.drawable.ic_warning_black_24dp)
+                            .setIcon(R.drawable.ic_warning_black_24dp)
                             .setTitle("Suppression de l'équipement")
                             .setMessage("Es-tu sûre de vouloir jeter cet équipement ?")
                             .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
@@ -121,8 +121,8 @@ public class PrefAllInventoryFragment {
 
     private String translateSlotName(String slotId) {
         String val = "";
-        String[] vals = mC.getResources().getStringArray(stellarnear.wedge_dealer.R.array.slot_choice_val);
-        String[] name = mC.getResources().getStringArray(stellarnear.wedge_dealer.R.array.slot_choice_name);
+        String[] vals = mC.getResources().getStringArray(R.array.slot_choice_val);
+        String[] name = mC.getResources().getStringArray(R.array.slot_choice_name);
 
         for (int i = 0; i < vals.length; i++) {
             if (vals[i].equalsIgnoreCase(slotId)) {
