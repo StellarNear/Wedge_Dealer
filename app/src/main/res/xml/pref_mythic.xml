@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceScreen
+        android:key="pref_mythic_feat"
+        android:icon="@drawable/ic_playlist_add_check_black_24dp"
+        android:title="Dons mythique actifs"
+        android:summary="Ensemble des dons mythiques connus et/ou actifs"
+         />
+
+    <PreferenceScreen
+        android:key="pref_mythic_tier"
+        android:icon="@drawable/ic_upgrade"
+        android:title="Grade"
+        android:summary="Grade du personnage mythique"
+        />
+
+</PreferenceScreen>

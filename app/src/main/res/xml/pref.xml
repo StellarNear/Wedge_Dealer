@@ -8,6 +8,11 @@
         android:title="Personnage"
         android:summary="Statistiques de base du personnage"/>
 
+    <PreferenceScreen
+        android:key="pref_mythic"
+        android:icon="@drawable/ic_embrassed_energy"
+        android:title="Mythique"
+        android:summary="Statistiques mythique du personnage"/>
 
     <PreferenceScreen
         android:key="pref_inventory"

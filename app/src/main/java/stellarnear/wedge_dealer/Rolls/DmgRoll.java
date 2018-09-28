@@ -1,5 +1,6 @@
 package stellarnear.wedge_dealer.Rolls;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -20,37 +21,37 @@ public class DmgRoll {
 
     private Tools tools = new Tools();
 
-    public DmgRoll(Context mC, Boolean critConfirmed) {
+    public DmgRoll(Activity mA,Context mC, Boolean critConfirmed) {
         this.mC = mC;
         this.critConfirmed = critConfirmed;
         settings = PreferenceManager.getDefaultSharedPreferences(mC);
 
-        Dice dice = new Dice(mC,8);
+        Dice dice = new Dice(mA,mC,8);
         if(critConfirmed){dice.makeCritable();}
         allDiceList.add(dice);
 
         if (settings.getBoolean("feu_intense_switch", mC.getResources().getBoolean(R.bool.feu_intense_switch_def))) {
-            allDiceList.add(new Dice(mC,6,"fire"));
-            allDiceList.add(new Dice(mC,6,"fire"));
+            allDiceList.add(new Dice(mA,mC,6,"fire"));
+            allDiceList.add(new Dice(mA,mC,6,"fire"));
             if(critConfirmed){
-                allDiceList.add(new Dice(mC,10,"fire"));
-                allDiceList.add(new Dice(mC,10,"fire"));
+                allDiceList.add(new Dice(mA,mC,10,"fire"));
+                allDiceList.add(new Dice(mA,mC,10,"fire"));
             }
         }
         if (settings.getBoolean("foudre_intense_switch", mC.getResources().getBoolean(R.bool.foudre_intense_switch_def))) {
-            allDiceList.add(new Dice(mC,6,"shock"));
-            allDiceList.add(new Dice(mC,6,"shock"));
+            allDiceList.add(new Dice(mA,mC,6,"shock"));
+            allDiceList.add(new Dice(mA,mC,6,"shock"));
             if(critConfirmed){
-                allDiceList.add(new Dice(mC,10,"shock"));
-                allDiceList.add(new Dice(mC,10,"shock"));
+                allDiceList.add(new Dice(mA,mC,10,"shock"));
+                allDiceList.add(new Dice(mA,mC,10,"shock"));
             }
         }
         if (settings.getBoolean("froid_intense_switch", mC.getResources().getBoolean(R.bool.froid_intense_switch_def))) {
-            allDiceList.add(new Dice(mC,6,"frost"));
-            allDiceList.add(new Dice(mC,6,"frost"));
+            allDiceList.add(new Dice(mA,mC,6,"frost"));
+            allDiceList.add(new Dice(mA,mC,6,"frost"));
             if(critConfirmed){
-                allDiceList.add(new Dice(mC,10,"frost"));
-                allDiceList.add(new Dice(mC,10,"frost"));
+                allDiceList.add(new Dice(mA,mC,10,"frost"));
+                allDiceList.add(new Dice(mA,mC,10,"frost"));
             }
         }
         bonusDmg = getBonusDmg();

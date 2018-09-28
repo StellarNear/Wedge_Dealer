@@ -1,10 +1,28 @@
 package stellarnear.wedge_dealer.Rolls;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.preference.PreferenceManager;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
+import stellarnear.wedge_dealer.CustomAlertDialog;
+import stellarnear.wedge_dealer.MainActivity;
 import stellarnear.wedge_dealer.R;
 import stellarnear.wedge_dealer.Tools;
 
@@ -14,14 +32,16 @@ public class Dice {
     private String element;
     private ImageView img = null;
     private Context mC;
+    private Activity mA;
     private boolean rolled=false;
     private boolean canCrit=false;
     private Tools tools=new Tools();
 
-    public Dice(Context mC, Integer nFace,String... elementArg) {
+    public Dice(Activity mA, Context mC, Integer nFace, String... elementArg) {
         this.nFace=nFace;
         this.element = elementArg.length > 0 ? elementArg[0] : "";
         this.mC=mC;
+        this.mA=mA;
     }
 
     public void rand(){
@@ -48,6 +68,10 @@ public class Dice {
             }
             this.img = new ImageView(mC);
             this.img.setImageDrawable(tools.resize(mC, drawableId, mC.getResources().getDimensionPixelSize(R.dimen.icon_main_dices_combat_launcher_size)));
+
+            if(this.nFace==20){
+                setMythicSurge();
+            }
         }
         return this.img;
     }
@@ -66,5 +90,80 @@ public class Dice {
 
     public boolean canCrit(){
         return this.canCrit;
+    }
+
+
+    /*
+
+    Partie Mythique !
+
+     */
+
+    private void setMythicSurge() {
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
+        int mythicPoints = tools.toInt(settings.getString("mythic_points", mC.getString(R.integer.mythic_points_per_day_def)));
+
+        if(mythicPoints>0){
+            this.img.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    new AlertDialog.Builder(mA)
+                            .setIcon(R.drawable.ic_warning_black_24dp)
+                            .setTitle("Montée en puissance mythique")
+                            .setMessage("Es-tu sûre de vouloir utiliser un point mythique ?")
+                            .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                   launchingMythicDice();
+                                }
+                            })
+                            .setNegativeButton("Non", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                }
+                            }).show();
+
+
+                }
+            });
+        }
+    }
+
+    private void launchingMythicDice() {
+
+        LinearLayout linear = new LinearLayout(mC);
+        linear.setBackground(mC.getDrawable(R.drawable.background_border_infos));
+        linear.setOrientation(LinearLayout.VERTICAL);
+
+        TextView text = new TextView(mC);
+        text.setText("Résultat du dès mythique :");
+
+        linear.addView(text);
+
+        Dice mythicDice = new Dice(mA,mC,6);
+        mythicDice.rand();
+
+        linear.addView(mythicDice.getImg());
+
+        Toast toast = new Toast(mC);
+        toast.setView(linear);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+
+        //toast.show();
+
+        LayoutInflater inflater = mA.getLayoutInflater();
+        View mainView = inflater.inflate(R.layout.double_dice, null);
+
+        ((ImageView)mainView.findViewById(R.id.double_dice_main)).setImageDrawable(this.img.getDrawable());
+        ((ImageView)mainView.findViewById(R.id.double_dice_sub)).setImageDrawable(mythicDice.getImg().getDrawable());
+        Toast toast2 = new Toast(mC);
+        toast2.setView(mainView);
+        toast2.setGravity(Gravity.CENTER, 0, 0);
+
+        toast2.show();
+
+        Drawable drawable = new BitmapDrawable(mainView.getDrawingCache());
+        this.img.setImageDrawable(drawable);
+        this.img.setOnClickListener(null);
     }
 }

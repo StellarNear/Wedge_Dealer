@@ -1,8 +1,10 @@
 package stellarnear.wedge_dealer.Rolls;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 
@@ -15,12 +17,14 @@ import stellarnear.wedge_dealer.Tools;
 public class Roll {
     private AtkRoll atkRoll;
     private List<DmgRoll> dmgRollList; //on peut avoir plusieurs fleches de degat par jet d'attaque
+    private Activity mA;
     private Context mC;
     private SharedPreferences settings;
     private Tools tools=new Tools();
-    public Roll(Context mC,Integer atkBase) {
+    public Roll(Activity mA, Context mC, Integer atkBase) {
+        this.mA=mA;
         this.mC=mC;
-        this.atkRoll=new AtkRoll(mC,atkBase);
+        this.atkRoll=new AtkRoll(mA,mC,atkBase);
         this.dmgRollList=new ArrayList<>();
         settings = PreferenceManager.getDefaultSharedPreferences(mC);
     }
@@ -31,11 +35,11 @@ public class Roll {
 
     public void setDmgRand() {
         if (this.dmgRollList.isEmpty()){
-            this.dmgRollList.add(new DmgRoll(mC,atkRoll.isCritConfirmed()));
+            this.dmgRollList.add(new DmgRoll(mA,mC,atkRoll.isCritConfirmed()));
             if (settings.getBoolean("feu_nourri_switch", mC.getResources().getBoolean(R.bool.feu_nourri_switch_def))) {
                 int multiVal = tools.toInt(settings.getString("multi_val", String.valueOf(mC.getResources().getInteger(R.integer.multi_value_def))));
                 for(int i=1;i<multiVal;i++){
-                    this.dmgRollList.add(new DmgRoll(mC,false));
+                    this.dmgRollList.add(new DmgRoll(mA,mC,false));
                 }
             }
 

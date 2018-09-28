@@ -1,5 +1,6 @@
 package stellarnear.wedge_dealer.Rolls;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -29,9 +30,9 @@ public class AtkRoll {
     private CheckBox critCheckbox;
     private Tools tools=new Tools();
 
-    public AtkRoll(Context mC, Integer base) {
+    public AtkRoll(Activity mA,Context mC, Integer base) {
         this.mC = mC;
-        this.atkDice = new Dice(mC,20);
+        this.atkDice = new Dice(mA,mC,20);
         settings = PreferenceManager.getDefaultSharedPreferences(mC);
         this.preRandValue = base + getBonusAtk();
         constructCheckboxes();

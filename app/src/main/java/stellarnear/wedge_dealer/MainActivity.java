@@ -204,7 +204,7 @@ public class MainActivity extends AppCompatActivity {
             allAtks.add(0, allAtks.get(0));
         }
         for (Integer atk : allAtks) {
-            this.rollList.add(new Roll(mC, atk));
+            this.rollList.add(new Roll(MainActivity.this,mC, atk));
         }
     }
 
