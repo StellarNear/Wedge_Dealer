@@ -4,8 +4,8 @@
     <dimen name="custom_toast_icon_size">150dp</dimen>
     <dimen name="divider_pref_height">1dp</dimen>
     <dimen name="icon_main_dices_combat_launcher_size">50dp</dimen>
-    <dimen name="icon_main_dices_combat_launcher_size_main">35dp</dimen>
-    <dimen name="icon_main_dices_combat_launcher_size_sub">35dp</dimen>
+    <dimen name="icon_main_dices_combat_launcher_size_double_dice_sub">35dp</dimen>
+    <dimen name="icon_main_dices_combat_launcher_size_double_dice_split">15dp</dimen>
 
     <dimen name="distance_dice_wheel">140dp</dimen>
     <dimen name="icon_dices_wheel_size">40dp</dimen>
@@ -14,4 +14,5 @@
     <dimen name="activity_main_padding">1dp</dimen>
     <dimen name="logo_element">30dp</dimen>
     <dimen name="general_margin_display_det">8dp</dimen>
+
 </resources>

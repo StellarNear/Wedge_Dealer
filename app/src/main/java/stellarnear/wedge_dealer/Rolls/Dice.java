@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.preference.PreferenceManager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -130,7 +131,6 @@ public class Dice {
     }
 
     private void launchingMythicDice() {
-
         LinearLayout linear = new LinearLayout(mC);
         linear.setBackground(mC.getDrawable(R.drawable.background_border_infos));
         linear.setOrientation(LinearLayout.VERTICAL);
@@ -149,21 +149,18 @@ public class Dice {
         toast.setView(linear);
         toast.setGravity(Gravity.CENTER, 0, 0);
 
-        //toast.show();
+        toast.show();
 
-        LayoutInflater inflater = mA.getLayoutInflater();
-        View mainView = inflater.inflate(R.layout.double_dice, null);
+        int subSize = mC.getResources().getDimensionPixelSize(R.dimen.icon_main_dices_combat_launcher_size_double_dice_sub);
+        LayerDrawable finalDrawable = new LayerDrawable(new Drawable[] {tools.resize(mC,this.img.getDrawable(),subSize), tools.resize(mC,mythicDice.getImg().getDrawable(),subSize)});
 
-        ((ImageView)mainView.findViewById(R.id.double_dice_main)).setImageDrawable(this.img.getDrawable());
-        ((ImageView)mainView.findViewById(R.id.double_dice_sub)).setImageDrawable(mythicDice.getImg().getDrawable());
-        Toast toast2 = new Toast(mC);
-        toast2.setView(mainView);
-        toast2.setGravity(Gravity.CENTER, 0, 0);
+        int splitSize = mC.getResources().getDimensionPixelSize(R.dimen.icon_main_dices_combat_launcher_size_double_dice_split);
+        finalDrawable.setLayerInsetTop(1,splitSize);
+        finalDrawable.setLayerInsetStart(1,splitSize);
+        finalDrawable.setLayerGravity(0, Gravity.START | Gravity.TOP);
+        finalDrawable.setLayerGravity(1, Gravity.END | Gravity.BOTTOM);
 
-        toast2.show();
-
-        Drawable drawable = new BitmapDrawable(mainView.getDrawingCache());
-        this.img.setImageDrawable(drawable);
+        this.img.setImageDrawable(finalDrawable);
         this.img.setOnClickListener(null);
     }
 }
