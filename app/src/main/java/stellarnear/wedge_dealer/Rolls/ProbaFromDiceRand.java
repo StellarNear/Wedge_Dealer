@@ -1,7 +1,5 @@
 package stellarnear.wedge_dealer.Rolls;
 
-import android.util.Log;
-
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;

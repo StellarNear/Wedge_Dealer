@@ -83,37 +83,45 @@ public class ImgForDice {
     }
 
     private void launchingMythicDice() {
-        LinearLayout linear = new LinearLayout(mC);
-        int marge = 2*mC.getResources().getDimensionPixelSize(R.dimen.general_margin);
-        linear.setPadding(marge,marge,marge,marge);
-        linear.setBackground(mC.getDrawable(R.drawable.background_border_infos));
-        linear.setOrientation(LinearLayout.VERTICAL);
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
+        int mythicPoints = tools.toInt(settings.getString("mythic_points",String.valueOf(mC.getResources().getInteger(R.integer.mythic_points_per_day_def))));
+        if(mythicPoints>0) {
+            LinearLayout linear = new LinearLayout(mC);
+            int marge = 2 * mC.getResources().getDimensionPixelSize(R.dimen.general_margin);
+            linear.setPadding(marge, marge, marge, marge);
+            linear.setBackground(mC.getDrawable(R.drawable.background_border_infos));
+            linear.setOrientation(LinearLayout.VERTICAL);
 
-        TextView text = new TextView(mC);
-        text.setText("Résultat du dès mythique :");
-        linear.addView(text);
+            TextView text = new TextView(mC);
+            text.setText("Résultat du dès mythique :");
+            linear.addView(text);
 
-        Dice mythicDice = new Dice(mA,mC,6);
-        mythicDice.rand();
-        dice.setMythicDice(mythicDice);
+            Dice mythicDice = new Dice(mA, mC, 6);
+            mythicDice.rand();
+            dice.setMythicDice(mythicDice);
+            settings.edit().putString("mythic_points",String.valueOf(mythicPoints-1)).apply();
 
-        linear.addView(mythicDice.getImg());
-        Toast toast = new Toast(mC);
-        toast.setView(linear);
-        toast.setGravity(Gravity.CENTER, 0, 0);
+            linear.addView(mythicDice.getImg());
+            Toast toast = new Toast(mC);
+            toast.setView(linear);
+            toast.setGravity(Gravity.CENTER, 0, 0);
 
-        toast.show();
+            toast.show();
 
-        int subSize = mC.getResources().getDimensionPixelSize(R.dimen.icon_main_dices_combat_launcher_size_double_dice_sub);
-        LayerDrawable finalDrawable = new LayerDrawable(new Drawable[] {tools.resize(mC,this.img.getDrawable(),subSize), tools.resize(mC,mythicDice.getImg().getDrawable(),subSize)});
+            int subSize = mC.getResources().getDimensionPixelSize(R.dimen.icon_main_dices_combat_launcher_size_double_dice_sub);
+            LayerDrawable finalDrawable = new LayerDrawable(new Drawable[]{tools.resize(mC, this.img.getDrawable(), subSize), tools.resize(mC, mythicDice.getImg().getDrawable(), subSize)});
 
-        int splitSize = mC.getResources().getDimensionPixelSize(R.dimen.icon_main_dices_combat_launcher_size_double_dice_split);
-        finalDrawable.setLayerInsetTop(1,splitSize);
-        finalDrawable.setLayerInsetStart(1,splitSize);
-        finalDrawable.setLayerGravity(0, Gravity.START | Gravity.TOP);
-        finalDrawable.setLayerGravity(1, Gravity.END | Gravity.BOTTOM);
+            int splitSize = mC.getResources().getDimensionPixelSize(R.dimen.icon_main_dices_combat_launcher_size_double_dice_split);
+            finalDrawable.setLayerInsetTop(1, splitSize);
+            finalDrawable.setLayerInsetStart(1, splitSize);
+            finalDrawable.setLayerGravity(0, Gravity.START | Gravity.TOP);
+            finalDrawable.setLayerGravity(1, Gravity.END | Gravity.BOTTOM);
 
-        this.img.setImageDrawable(finalDrawable);
+            this.img.setImageDrawable(finalDrawable);
+
+        } else {
+            tools.customToast(mC,"Tu n'as plus de point mythique","center");
+        }
         this.img.setOnClickListener(null);
     }
 }

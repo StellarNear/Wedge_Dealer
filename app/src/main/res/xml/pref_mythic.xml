@@ -15,4 +15,7 @@
         android:summary="Grade du personnage mythique"
         />
 
+
+
+
 </PreferenceScreen>

@@ -1,24 +1,10 @@
 package stellarnear.wedge_dealer.Rolls.Dices;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
-import android.preference.PreferenceManager;
-import android.view.Gravity;
-import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Random;
-
-import stellarnear.wedge_dealer.R;
-import stellarnear.wedge_dealer.Tools;
 
 public class Dice {
     private int nFace;
@@ -34,8 +20,6 @@ public class Dice {
     private Dice mythicDice;
 
     private OnMythicEventListener mListener;
-
-    private Tools tools=new Tools();
 
     public Dice(Activity mA, Context mC, Integer nFace, String... elementArg) {
         this.nFace=nFace;
