@@ -9,6 +9,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 
 import stellarnear.wedge_dealer.R;
+import stellarnear.wedge_dealer.Rolls.Dices.Dice;
 import stellarnear.wedge_dealer.Tools;
 
 public class AtkRoll {
@@ -101,6 +102,9 @@ public class AtkRoll {
         return bonusAtk;
     }
     //getters
+    public Dice getAtkDice(){
+        return this.atkDice;
+    }
 
     public ImageView getImgAtk() {
         return atkDice.getImg();
@@ -112,11 +116,15 @@ public class AtkRoll {
     }
     private void setAtkRand() {
         atkDice.rand();
-        calculAtk();
     }
 
     private void calculAtk() {
         this.atk = this.preRandValue + atkDice.getRandValue();
+
+        if(this.atkDice.getMythicDice()!=null){
+            this.atk+=this.atkDice.getMythicDice().getRandValue();
+        }
+
         if (atkDice.getRandValue() == 1) {
             this.fail = true;
         }
@@ -133,6 +141,7 @@ public class AtkRoll {
     }
 
     public Integer getValue() {
+        calculAtk();
         return atk;
     }
 
@@ -158,6 +167,7 @@ public class AtkRoll {
         invalid = true;
         hitCheckbox.setEnabled(false);
         critCheckbox.setEnabled(false);
+        atkDice.delt();
     }
 
     public boolean isHitConfirmed() {

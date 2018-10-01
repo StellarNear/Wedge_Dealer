@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import stellarnear.wedge_dealer.R;
+import stellarnear.wedge_dealer.Rolls.Dices.Dice;
 import stellarnear.wedge_dealer.Tools;
 
 public class DmgRoll {

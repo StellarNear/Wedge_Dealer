@@ -69,7 +69,7 @@ public class ProbaFromDiceRand {
 
         if (total==0){return 0d;}
 
-        Log.d("STATE (table)total", String.valueOf(total));
+        //Log.d("STATE (table)total", String.valueOf(total));
         BigInteger[] combi_old = new BigInteger[total];          // table du nombre de combinaison pour chaque valeur somme
         BigInteger[] combi_new = new BigInteger[total];
         for (int i = 1; i <= total; i++) {

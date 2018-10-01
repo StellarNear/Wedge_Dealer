@@ -3,6 +3,8 @@ package stellarnear.wedge_dealer.Rolls;
 import java.util.ArrayList;
 import java.util.List;
 
+import stellarnear.wedge_dealer.Rolls.Dices.Dice;
+
 public class DiceList {
 
     private List<Dice> diceList;

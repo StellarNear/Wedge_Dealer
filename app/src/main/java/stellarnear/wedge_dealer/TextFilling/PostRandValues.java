@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import stellarnear.wedge_dealer.R;
+import stellarnear.wedge_dealer.Rolls.Dices.Dice;
 import stellarnear.wedge_dealer.Rolls.Roll;
 import stellarnear.wedge_dealer.Rolls.RollList;
 
@@ -69,8 +70,20 @@ public class PostRandValues {
             }
             diceBox.addView(diceImg);
             ((LinearLayout)mainView.findViewById(R.id.mainLinearAtkDices)).addView(diceBox);
+
+            roll.getAtkRoll().getAtkDice().setMythicEventListener(new Dice.OnMythicEventListener() {
+                @Override
+                public void onEvent() {
+                    refreshPostRandValues();
+                }
+            });
         }
         checkForMultipleArrows();
+    }
+
+    private void refreshPostRandValues() {
+        ((LinearLayout)mainView.findViewById(R.id.mainLinearPostRand)).removeAllViews();
+        addPostRandValues();
     }
 
     private void checkForMultipleArrows() {
