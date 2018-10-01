@@ -86,7 +86,7 @@ public class RangesAndProba {
                 probaTextview.setTextColor(mC.getResources().getColor(mapElemColor.get(elem)));
                 probaTextview.setTextSize(15);
                 String probaTxt=probaForRolls.getProba(elem);
-                if (elem.equalsIgnoreCase("") && selectedRolls.haveAnyCrit()){
+                if (elem.equalsIgnoreCase("") && selectedRolls.haveAnyCritConfirmed()){
                     probaTxt+="\ncrit:\n"+probaForRolls.getProba("",true);
                 }
                 probaTextview.setText(probaTxt);

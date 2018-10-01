@@ -84,10 +84,10 @@ public class RollList {
         return b;
     }
 
-    public boolean haveAnyCrit() {
+    public boolean haveAnyCritConfirmed() {
         boolean b=false;
         for (Roll roll:rollList){
-            if (roll.isCrit()){
+            if (roll.isCrit() && roll.isCritConfirmed()){
                 b=true;
             }
         }

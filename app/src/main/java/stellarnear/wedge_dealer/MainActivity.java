@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import stellarnear.wedge_dealer.Perso.Inventory;
+import stellarnear.wedge_dealer.Perso.Perso;
 import stellarnear.wedge_dealer.Rolls.Roll;
 import stellarnear.wedge_dealer.Rolls.RollList;
 import stellarnear.wedge_dealer.TextFilling.Damages;
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private Context mC;
     private View mainPage;
     private Drawable ori_background;
-    public static Inventory inventory;
+    public static Perso wedge;
 
     private FloatingActionButton fabAtk;
     private FloatingActionButton fabDmg;
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);     //shouldExecuteOnResume = false;
         this.mC = getApplicationContext();
         this.settings = PreferenceManager.getDefaultSharedPreferences(mC);
-        this.inventory = new Inventory(mC);
+        wedge = new Perso(mC);
     }
 
     @Override

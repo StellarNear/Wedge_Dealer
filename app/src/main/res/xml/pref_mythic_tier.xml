@@ -19,10 +19,9 @@
     <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
 
     <stellarnear.wedge_dealer.EditTextPreference
-        android:defaultValue="@integer/mythic_points_per_day_def"
-        android:key="mythic_points"
+        android:defaultValue="@integer/mythic_points_def"
         android:selectable="false"
-        android:title="Points mythique restants"
+        android:title="Points mythique par jour"
         android:singleLine="true"
         android:inputType="number"
         android:summary="Valeur : %s"/>

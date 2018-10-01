@@ -31,7 +31,7 @@ public class PrefAllInventoryFragment {
     public PrefAllInventoryFragment(Activity mA,Context mC){
         this.mA=mA;
         this.mC=mC;
-        this.inventory = MainActivity.inventory;
+        this.inventory = MainActivity.wedge.getInventory();
     }
 
     public void addEditableEquipment(PreferenceCategory otherList, PreferenceCategory spareList) {

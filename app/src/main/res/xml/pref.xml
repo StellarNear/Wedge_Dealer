@@ -32,6 +32,12 @@
         android:summary="Améliorations non permanentes"
         android:title="Bonus temporaires" />
 
+    <PreferenceScreen
+        android:key="sleep"
+        android:icon="@drawable/ic_brightness_3_black_24dp"
+        android:title="Repos"
+        android:summary="Une bonne nuit de sommeil"/>
+
     <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
 
     <stellarnear.wedge_dealer.EditTextPreference

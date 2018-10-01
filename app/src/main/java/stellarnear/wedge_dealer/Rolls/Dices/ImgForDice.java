@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import stellarnear.wedge_dealer.MainActivity;
 import stellarnear.wedge_dealer.R;
 import stellarnear.wedge_dealer.Tools;
 
@@ -55,9 +56,7 @@ public class ImgForDice {
      */
 
     private void setMythicSurge() {
-        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
-        int mythicPoints = tools.toInt(settings.getString("mythic_points",String.valueOf(mC.getResources().getInteger(R.integer.mythic_points_per_day_def))));
-
+        int mythicPoints = MainActivity.wedge.getResourceValue("mythic_points");
         if(mythicPoints>0){
             this.img.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -84,7 +83,7 @@ public class ImgForDice {
 
     private void launchingMythicDice() {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
-        int mythicPoints = tools.toInt(settings.getString("mythic_points",String.valueOf(mC.getResources().getInteger(R.integer.mythic_points_per_day_def))));
+        int mythicPoints = MainActivity.wedge.getResourceValue("mythic_points");
         if(mythicPoints>0) {
             LinearLayout linear = new LinearLayout(mC);
             int marge = 2 * mC.getResources().getDimensionPixelSize(R.dimen.general_margin);
@@ -99,13 +98,14 @@ public class ImgForDice {
             Dice mythicDice = new Dice(mA, mC, 6);
             mythicDice.rand();
             dice.setMythicDice(mythicDice);
+            MainActivity.wedge.getAllResources().getResource("mythic_points").spend(1);
+
             settings.edit().putString("mythic_points",String.valueOf(mythicPoints-1)).apply();
 
             linear.addView(mythicDice.getImg());
             Toast toast = new Toast(mC);
             toast.setView(linear);
             toast.setGravity(Gravity.CENTER, 0, 0);
-
             toast.show();
 
             int subSize = mC.getResources().getDimensionPixelSize(R.dimen.icon_main_dices_combat_launcher_size_double_dice_sub);

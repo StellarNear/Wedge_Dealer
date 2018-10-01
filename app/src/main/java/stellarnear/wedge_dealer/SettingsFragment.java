@@ -18,13 +18,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import stellarnear.wedge_dealer.Perso.Inventory;
+import stellarnear.wedge_dealer.Perso.Perso;
 import stellarnear.wedge_dealer.SettingsFraments.PrefAllInventoryFragment;
 import stellarnear.wedge_dealer.SettingsFraments.PrefResetScreenFragment;
+import stellarnear.wedge_dealer.SettingsFraments.PrefSleepScreenFragment;
 import stellarnear.wedge_dealer.SettingsFraments.PrefXpFragment;
 
 
 public class SettingsFragment extends PreferenceFragment {
+    private Perso wedge=MainActivity.wedge;
     private Activity mA;
     private Context mC;
     private List<String> histoPrefKeys = new ArrayList<>();
@@ -35,7 +37,7 @@ public class SettingsFragment extends PreferenceFragment {
 
     private Tools tools = new Tools();
     private SharedPreferences settings;
-    private Inventory inventory;
+
     private PrefAllInventoryFragment prefAllInventoryFragment;
     private PrefXpFragment prefXpFragment;
 
@@ -48,7 +50,6 @@ public class SettingsFragment extends PreferenceFragment {
         addPreferencesFromResource(R.xml.pref);
         this.histoPrefKeys.add("pref");
         this.histoTitle.add(getResources().getString(R.string.action_settings));
-        this.inventory = MainActivity.inventory;
         this.prefAllInventoryFragment =new PrefAllInventoryFragment(mA,mC);
         this.prefAllInventoryFragment.setRefreshEventListener(new PrefAllInventoryFragment.OnRefreshEventListener() {
             @Override
@@ -140,11 +141,10 @@ public class SettingsFragment extends PreferenceFragment {
             case "reset_para":
                 ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(preference.getTitle());
                 ((ContentFrameLayout) getActivity().findViewById(android.R.id.content)).removeAllViews();
-                PrefResetScreenFragment prefResetScreenFragment = new PrefResetScreenFragment();
-                prefResetScreenFragment.addResetScreen(mA,mC);
+                new PrefResetScreenFragment(mA,mC).addResetScreen();
                 break;
             case "show_equipment":
-                inventory.showEquipment(getActivity(), true);
+                wedge.getInventory().showEquipment(getActivity(), true);
                 break;
             case "add_gold":
                 preference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
@@ -195,6 +195,11 @@ public class SettingsFragment extends PreferenceFragment {
             case "reset_temp":
                 resetTemp();
                 navigate();
+                break;
+            case "sleep":
+                ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(preference.getTitle().toString());
+                ((ContentFrameLayout) getActivity().findViewById(android.R.id.content)).removeAllViews();
+                new PrefSleepScreenFragment(mA,mC).addSleepScreen();
                 break;
         }
     }
