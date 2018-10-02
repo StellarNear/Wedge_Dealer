@@ -71,7 +71,6 @@ public class RangesAndProba {
         }
     }
 
-
     private void addProbas() {
         ((LinearLayout) mainPage.findViewById(R.id.mainLinearProbaDmg)).removeAllViews();
         for (String elem : elements) {
