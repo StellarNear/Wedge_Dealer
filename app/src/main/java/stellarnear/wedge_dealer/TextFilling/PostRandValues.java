@@ -81,7 +81,7 @@ public class PostRandValues {
         checkForMultipleArrows();
     }
 
-    private void refreshPostRandValues() {
+    public void refreshPostRandValues() {
         ((LinearLayout)mainView.findViewById(R.id.mainLinearPostRand)).removeAllViews();
         addPostRandValues();
     }

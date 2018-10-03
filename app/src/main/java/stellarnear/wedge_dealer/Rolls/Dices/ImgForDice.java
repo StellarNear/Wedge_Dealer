@@ -24,15 +24,16 @@ public class ImgForDice {
     private Context mC;
     private Dice dice;
     private ImageView img;
-    private Tools tools=new Tools();
-    public ImgForDice(Dice dice, Activity mA, Context mC){
-        this.mA=mA;
-        this.mC=mC;
-        this.dice=dice;
+    private Tools tools = new Tools();
+
+    public ImgForDice(Dice dice, Activity mA, Context mC) {
+        this.mA = mA;
+        this.mC = mC;
+        this.dice = dice;
     }
 
     public ImageView getImg() {
-        if(this.img==null) {
+        if (this.img == null) {
             int drawableId;
             if (dice.getRandValue() > 0) {
                 drawableId = mC.getResources().getIdentifier("d" + dice.getnFace() + "_" + String.valueOf(dice.getRandValue()) + dice.getElement(), "drawable", mC.getPackageName());
@@ -42,7 +43,7 @@ public class ImgForDice {
             this.img = new ImageView(mC);
             this.img.setImageDrawable(tools.resize(mC, drawableId, mC.getResources().getDimensionPixelSize(R.dimen.icon_main_dices_combat_launcher_size)));
 
-            if(dice.getnFace()==20){
+            if (dice.getnFace() == 20) {
                 setMythicSurge();
             }
         }
@@ -56,35 +57,32 @@ public class ImgForDice {
      */
 
     private void setMythicSurge() {
-        int mythicPoints = MainActivity.wedge.getResourceValue("mythic_points");
-        if(mythicPoints>0){
-            this.img.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    new AlertDialog.Builder(mA)
-                            .setIcon(R.drawable.ic_warning_black_24dp)
-                            .setTitle("Montée en puissance mythique")
-                            .setMessage("Es-tu sûre de vouloir utiliser un point mythique ?")
-                            .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    launchingMythicDice();
-                                }
-                            })
-                            .setNegativeButton("Non", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                }
-                            }).show();
-                }
-            });
-        }
+        this.img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AlertDialog.Builder(mA)
+                        .setIcon(R.drawable.ic_warning_black_24dp)
+                        .setTitle("Montée en puissance mythique")
+                        .setMessage("Es-tu sûre de vouloir utiliser un point mythique ?")
+                        .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                launchingMythicDice();
+                            }
+                        })
+                        .setNegativeButton("Non", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        }).show();
+            }
+        });
     }
 
     private void launchingMythicDice() {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
         int mythicPoints = MainActivity.wedge.getResourceValue("mythic_points");
-        if(mythicPoints>0) {
+        if (mythicPoints > 0 && dice.getMythicDice()==null) {
             LinearLayout linear = new LinearLayout(mC);
             int marge = 2 * mC.getResources().getDimensionPixelSize(R.dimen.general_margin);
             linear.setPadding(marge, marge, marge, marge);
@@ -100,7 +98,7 @@ public class ImgForDice {
             dice.setMythicDice(mythicDice);
             MainActivity.wedge.getAllResources().getResource("mythic_points").spend(1);
 
-            settings.edit().putString("mythic_points",String.valueOf(mythicPoints-1)).apply();
+            settings.edit().putString("mythic_points", String.valueOf(mythicPoints - 1)).apply();
 
             linear.addView(mythicDice.getImg());
             Toast toast = new Toast(mC);
@@ -119,9 +117,10 @@ public class ImgForDice {
 
             this.img.setImageDrawable(finalDrawable);
 
+        } else if (dice.getMythicDice()!=null) {
+            tools.customToast(mC, "Tu déjà fais une montée en puissance sur ce dès", "center");
         } else {
-            tools.customToast(mC,"Tu n'as plus de point mythique","center");
+            tools.customToast(mC, "Tu n'as plus de point mythique", "center");
         }
-        this.img.setOnClickListener(null);
     }
 }

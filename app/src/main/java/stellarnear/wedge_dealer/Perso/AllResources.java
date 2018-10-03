@@ -56,7 +56,7 @@ public class AllResources {
 
     public void refreshMaxs() {
         //partie from setting
-        getResource("mythic_points").setMax(readResource("mythic_points"));
+        getResource("mythic_points").setMax(readResource("mythic_points_per_day"));
     }
 
     private void loadCurrent() {

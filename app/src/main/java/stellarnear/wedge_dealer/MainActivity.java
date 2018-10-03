@@ -252,6 +252,7 @@ public class MainActivity extends AppCompatActivity {
             fabDmgDet.setVisibility(View.VISIBLE);
             fabDmgDet.setEnabled(true);
         }
+        postRandValues.refreshPostRandValues();
     }
 
     private void checkSelectedRolls() {

@@ -29,5 +29,5 @@
     <integer name="att_buff_def">0</integer>
 
     <integer name="mythic_tier_def">1</integer>
-    <integer name="mythic_points_def">3</integer>
+    <integer name="mythic_points_per_day_def">3</integer>
 </resources>
