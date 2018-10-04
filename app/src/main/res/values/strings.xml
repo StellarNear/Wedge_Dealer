@@ -39,9 +39,11 @@
     <!-- dons combats  -->
     <string name="pref_header_combat">Aptitudes de combat</string>
     <string name="predil">Arme de prédilection</string>
-    <string name="predil_summ">Confère un bonus de +1 aux jets d\'attaque.</string>
+    <string name="predil_summ">+1 à tous ses jets d\'attaque avec l\'arme choisie.</string>
     <string name="predil_sup">Arme de prédilection sup.</string>
     <string name="predil_sup_summ">+1 à tous ses jets d\'attaque avec l\'arme choisie.</string>
+    <string name="predil_epic">Arme de prédilection épique</string>
+    <string name="predil_epic_summ">+1 à tous ses jets d\'attaque avec l\'arme choisie.</string>
     <string name="improved_crit_summ">La zone de critique de l’arme choisie est doublée.</string>
     <string name="improved_crit">Science du critique</string>
     <string name="neuf_m">Tir à bout portant</string>
@@ -54,6 +56,12 @@
     <string name="feu_nourri">Feu nourri suprême</string>
     <string name="feu_nourri_summ">x flêches par attaque (une seule crit).</string>
     <string name="multi_value">Nombre de flêches par attaque</string>
+
+    <!-- Mythic -->
+    <string name="chance">Il y a toujours une chance</string>
+    <string name="chance_summ">Le personnage ne rate plus automatiquement lorsqu’il obtient un 1 aux jets d’attaque.</string>
+    <string name="crit_science_myth">Science du critique (mythique)</string>
+    <string name="crit_science_myth_summ">Le multiplicateur de critique que le personnage applique lorsqu’il manipule l’arme choisie augmente de 1</string>
 
 
     <!-- ENCHANTS -->
@@ -131,5 +139,7 @@ Liane Corrompue</string>
 6 Gorilles Behemots
 4 Aigles Behemots
 2 Liane Corrompue</string>
+
+
 
 </resources>

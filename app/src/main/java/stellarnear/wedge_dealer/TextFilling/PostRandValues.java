@@ -54,6 +54,7 @@ public class PostRandValues {
     private void addRandDices() {
         Boolean fail = false;
         for (Roll roll : rollList.getList()) {
+            roll.getAtkRoll().setAtkRand();
             ImageView diceImg = roll.getImgAtk();
             if (fail) {
                 roll.invalidated();

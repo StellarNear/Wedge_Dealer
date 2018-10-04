@@ -4,8 +4,8 @@
     <PreferenceScreen
         android:key="pref_mythic_feat"
         android:icon="@drawable/ic_playlist_add_check_black_24dp"
-        android:title="Dons mythique actifs"
-        android:summary="Ensemble des dons mythiques connus et/ou actifs"
+        android:title="Dons et apts mythique actifs"
+        android:summary="Ensemble des dons et aptitudes mythiques"
          />
 
     <PreferenceScreen

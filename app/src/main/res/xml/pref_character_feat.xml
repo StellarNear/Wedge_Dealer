@@ -11,6 +11,11 @@
         android:summary="@string/predil_sup_summ"
         android:title="@string/predil_sup" />
     <SwitchPreference
+        android:defaultValue="@bool/predil_epic_switch_def"
+        android:key="predil_epic_switch"
+        android:summary="@string/predil_epic_summ"
+        android:title="@string/predil_epic" />
+    <SwitchPreference
         android:defaultValue="@bool/improved_crit_switch_def"
         android:key="improved_crit_switch"
         android:summary="@string/improved_crit_summ"

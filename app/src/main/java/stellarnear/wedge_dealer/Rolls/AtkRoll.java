@@ -78,6 +78,9 @@ public class AtkRoll {
         if (settings.getBoolean("predil_sup_switch", mC.getResources().getBoolean(R.bool.predil_sup_switch_def))) {
             bonusAtk+= 1;
         }
+        if (settings.getBoolean("predil_epic_switch", mC.getResources().getBoolean(R.bool.predil_epic_switch_def))) {
+            bonusAtk+= 1;
+        }
         if (settings.getBoolean("neuf_m_switch", mC.getResources().getBoolean(R.bool.neuf_m_switch_def))) {
             bonusAtk+= 1;
         }
@@ -111,24 +114,22 @@ public class AtkRoll {
     }
 
     public Integer getPreRandValue() {
-        setAtkRand();
         return preRandValue;
     }
-    private void setAtkRand() {
+    public void setAtkRand() {
         atkDice.rand();
+        calculAtk();
     }
 
     private void calculAtk() {
         this.atk = this.preRandValue + atkDice.getRandValue();
-
         if(this.atkDice.getMythicDice()!=null){
             this.atk+=this.atkDice.getMythicDice().getRandValue();
         }
-
-        if (atkDice.getRandValue() == 1) {
+        if (atkDice.getRandValue() == 1 && !settings.getBoolean("chance_switch", mC.getResources().getBoolean(R.bool.chance_switch_def))) {
             this.fail = true;
+            atkDice.getImg().setOnClickListener(null);
         }
-
         int critMin;
         if (settings.getBoolean("improved_crit_switch", mC.getResources().getBoolean(R.bool.improved_crit_switch_def))) {
             critMin = 18;
@@ -141,7 +142,6 @@ public class AtkRoll {
     }
 
     public Integer getValue() {
-        calculAtk();
         return atk;
     }
 

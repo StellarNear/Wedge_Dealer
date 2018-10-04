@@ -14,7 +14,7 @@ public class DmgRoll {
     private Context mC;
     private SharedPreferences settings;
     private Boolean critConfirmed;
-    private Integer critMultiplier = 3;
+    private Integer critMultiplier;
 
     private int bonusDmg = 0;
 
@@ -22,40 +22,62 @@ public class DmgRoll {
 
     private Tools tools = new Tools();
 
-    public DmgRoll(Activity mA,Context mC, Boolean critConfirmed) {
+    public DmgRoll(Activity mA, Context mC, Boolean critConfirmed) {
         this.mC = mC;
         this.critConfirmed = critConfirmed;
-        settings = PreferenceManager.getDefaultSharedPreferences(mC);
+        this.settings = PreferenceManager.getDefaultSharedPreferences(mC);
+        if (settings.getBoolean("crit_science_myth_switch", mC.getResources().getBoolean(R.bool.crit_science_myth_switch_def))) {
+            critMultiplier = 4;
+        } else {
+            critMultiplier = 3;
+        }
 
-        Dice dice = new Dice(mA,mC,8);
-        if(critConfirmed){dice.makeCritable();}
+        Dice dice = new Dice(mA, mC, 8);
+        if (critConfirmed) {
+            dice.makeCritable();
+        }
         allDiceList.add(dice);
 
         if (settings.getBoolean("feu_intense_switch", mC.getResources().getBoolean(R.bool.feu_intense_switch_def))) {
-            allDiceList.add(new Dice(mA,mC,6,"fire"));
-            allDiceList.add(new Dice(mA,mC,6,"fire"));
-            if(critConfirmed){
-                allDiceList.add(new Dice(mA,mC,10,"fire"));
-                allDiceList.add(new Dice(mA,mC,10,"fire"));
+            allDiceList.add(new Dice(mA, mC, 6, "fire"));
+            allDiceList.add(new Dice(mA, mC, 6, "fire"));
+            if (critConfirmed) {
+                switch (critMultiplier) {
+                    case 4:
+                        allDiceList.add(new Dice(mA, mC, 10, "fire"));
+                    case 3:
+                        allDiceList.add(new Dice(mA, mC, 10, "fire"));
+                        allDiceList.add(new Dice(mA, mC, 10, "fire"));
+                }
             }
         }
         if (settings.getBoolean("foudre_intense_switch", mC.getResources().getBoolean(R.bool.foudre_intense_switch_def))) {
-            allDiceList.add(new Dice(mA,mC,6,"shock"));
-            allDiceList.add(new Dice(mA,mC,6,"shock"));
-            if(critConfirmed){
-                allDiceList.add(new Dice(mA,mC,10,"shock"));
-                allDiceList.add(new Dice(mA,mC,10,"shock"));
+            allDiceList.add(new Dice(mA, mC, 6, "shock"));
+            allDiceList.add(new Dice(mA, mC, 6, "shock"));
+            if (critConfirmed) {
+                switch (critMultiplier) {
+                    case 4:
+                        allDiceList.add(new Dice(mA, mC, 10, "shock"));
+                    case 3:
+                        allDiceList.add(new Dice(mA, mC, 10, "shock"));
+                        allDiceList.add(new Dice(mA, mC, 10, "shock"));
+                }
             }
         }
         if (settings.getBoolean("froid_intense_switch", mC.getResources().getBoolean(R.bool.froid_intense_switch_def))) {
-            allDiceList.add(new Dice(mA,mC,6,"frost"));
-            allDiceList.add(new Dice(mA,mC,6,"frost"));
-            if(critConfirmed){
-                allDiceList.add(new Dice(mA,mC,10,"frost"));
-                allDiceList.add(new Dice(mA,mC,10,"frost"));
+            allDiceList.add(new Dice(mA, mC, 6, "frost"));
+            allDiceList.add(new Dice(mA, mC, 6, "frost"));
+            if (critConfirmed) {
+                switch (critMultiplier) {
+                    case 4:
+                        allDiceList.add(new Dice(mA, mC, 10, "frost"));
+                    case 3:
+                        allDiceList.add(new Dice(mA, mC, 10, "frost"));
+                        allDiceList.add(new Dice(mA, mC, 10, "frost"));
+                }
             }
         }
-        bonusDmg = getBonusDmg();
+        this.bonusDmg = getBonusDmg();
     }
 
     public void setDmgRand() {
@@ -67,7 +89,7 @@ public class DmgRoll {
     private int getBonusDmg() {
         int calcBonusDmg = 0;
         if (settings.getBoolean("viser", mC.getResources().getBoolean(R.bool.viser_switch_def))) {
-            calcBonusDmg+=2*tools.toInt(settings.getString("viser_val", String.valueOf(mC.getResources().getInteger(R.integer.viser_val_def))));
+            calcBonusDmg += 2 * tools.toInt(settings.getString("viser_val", String.valueOf(mC.getResources().getInteger(R.integer.viser_val_def))));
         }
         if (settings.getBoolean("thor_switch", mC.getResources().getBoolean(R.bool.thor_switch_def))) {
             calcBonusDmg += 3;
@@ -98,7 +120,7 @@ public class DmgRoll {
         int sumDmg = 0;
         for (Dice dice : allDiceList.getList()) {
             if (dice.getElement().equalsIgnoreCase(element)) {
-                if(dice.canCrit() && critConfirmed) {
+                if (dice.canCrit() && critConfirmed) {
                     sumDmg += dice.getRandValue() * critMultiplier;
                 } else {
                     sumDmg += dice.getRandValue();
@@ -119,7 +141,7 @@ public class DmgRoll {
         int maxDmg = 0;
         for (Dice dice : allDiceList.getList()) {
             if (dice.getElement().equalsIgnoreCase(element)) {
-                if(dice.canCrit() && critConfirmed) {
+                if (dice.canCrit() && critConfirmed) {
                     maxDmg += dice.getnFace() * critMultiplier;
                 } else {
                     maxDmg += dice.getnFace();
@@ -140,7 +162,7 @@ public class DmgRoll {
         int minDmg = 0;
         for (Dice dice : allDiceList.getList()) {
             if (dice.getElement().equalsIgnoreCase(element)) {
-                if(dice.canCrit() && critConfirmed) {
+                if (dice.canCrit() && critConfirmed) {
                     minDmg += 1 * critMultiplier;
                 } else {
                     minDmg += 1;
