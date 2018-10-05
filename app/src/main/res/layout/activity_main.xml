@@ -24,7 +24,7 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_damage_detail"
-        android:layout_width="match_parent"
+        android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_gravity="bottom|center"
         android:layout_marginBottom="10dp"
@@ -34,7 +34,7 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_damage"
-        android:layout_width="match_parent"
+        android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_gravity="bottom|center"
         android:layout_marginBottom="10dp"
@@ -43,14 +43,35 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabAtk"
-        android:layout_width="match_parent"
+        android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_gravity="bottom|center"
         android:layout_marginBottom="10dp"
         app:backgroundTint="@android:color/white"
-        app:srcCompat="@drawable/ic_filter_center_focus_black_24dp"
+        app:srcCompat="@drawable/ic_filter_center_focus_black_24dp" />
 
-        />
+    <ImageButton
+        android:id="@+id/button_simple_atk"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_gravity="bottom|start"
+        android:adjustViewBounds="true"
+        android:backgroundTint="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/simple_atk"
+        tools:ignore="ContentDescription" />
+
+    <ImageButton
+        android:id="@+id/button_barrage_shot"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_gravity="bottom|end"
+        android:adjustViewBounds="true"
+        android:backgroundTint="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/barrage_shot"
+        tools:ignore="ContentDescription" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -65,18 +86,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
             <TextView
                 android:id="@+id/mainLinearNAtk"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="N attaques :"
                 android:textAlignment="center"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:textColor="@color/colorPrimaryDark"
                 android:visibility="gone"/>
-
-
             <LinearLayout
                 android:id="@+id/mainLinearPreRand"
                 android:layout_width="match_parent"
@@ -109,7 +127,7 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:text="Coups qui touchent :"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:textColor="@android:color/darker_gray"
                 android:visibility="gone"/>
 
@@ -126,7 +144,7 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:text="Coups critiques :"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:textColor="@android:color/darker_gray"
                 android:visibility="gone"/>
 
@@ -144,9 +162,7 @@
             android:layout_height="3dp"
             android:layout_gravity="bottom"
             android:background="#90909090"
-            android:visibility="gone"
-            app:layout_anchor="@+id/include_box_crit"
-            app:layout_anchorGravity="bottom" />
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/mainLinearDmgTitle"
@@ -154,7 +170,7 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:text="Dégâts :"
-            android:textSize="20dp"
+            android:textSize="15sp"
             android:textColor="@color/colorPrimaryDark"
             android:visibility="gone"/>
 
@@ -187,7 +203,7 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:text="Probabilité de dépassement (>) :"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:textColor="@android:color/darker_gray"
                 android:visibility="gone"/>
             <LinearLayout

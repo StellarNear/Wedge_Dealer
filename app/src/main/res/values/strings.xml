@@ -61,7 +61,9 @@
     <string name="chance">Il y a toujours une chance</string>
     <string name="chance_summ">Le personnage ne rate plus automatiquement lorsqu’il obtient un 1 aux jets d’attaque.</string>
     <string name="crit_science_myth">Science du critique (mythique)</string>
-    <string name="crit_science_myth_summ">Le multiplicateur de critique que le personnage applique lorsqu’il manipule l’arme choisie augmente de 1</string>
+    <string name="crit_science_myth_summ">Le multiplicateur de critique que le personnage applique lorsqu’il manipule l’arme choisie augmente de 1.</string>
+    <string name="barrage_shot">Tir de barrage</string>
+    <string name="barrage_shot_summ">En dépenssant un point mythique par une action rapide effectue une attaque à distance. Cette attaque vient en plus de celles effectuées au cours du même round. Lorsqu’il effectue cette attaque, le personnage ignore l’abri et le camouflage dont bénéficie la cible et il ajoute son grade au jet d’attaque. Les dégâts de cette attaque ignorent toutes les réductions de dégâts.</string>
 
 
     <!-- ENCHANTS -->
@@ -139,7 +141,6 @@ Liane Corrompue</string>
 6 Gorilles Behemots
 4 Aigles Behemots
 2 Liane Corrompue</string>
-
 
 
 </resources>

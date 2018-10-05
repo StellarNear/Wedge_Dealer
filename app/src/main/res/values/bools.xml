@@ -23,7 +23,10 @@
 
     <!-- Autre -->
     <bool name="switch_autoclose_dialog_DEF">true</bool>
+
+    <!-- Mythic -->
     <bool name="predil_epic_switch_def">true</bool>
     <bool name="chance_switch_def">true</bool>
     <bool name="crit_science_myth_switch_def">true</bool>
+    <bool name="barrage_shot_switch_def">true</bool>
 </resources>

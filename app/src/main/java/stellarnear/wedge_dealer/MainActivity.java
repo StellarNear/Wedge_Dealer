@@ -3,10 +3,8 @@ package stellarnear.wedge_dealer;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
@@ -17,13 +15,10 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
+import android.widget.ImageButton;
 import stellarnear.wedge_dealer.Perso.Perso;
 import stellarnear.wedge_dealer.Rolls.Roll;
+import stellarnear.wedge_dealer.Rolls.RollFactory;
 import stellarnear.wedge_dealer.Rolls.RollList;
 import stellarnear.wedge_dealer.TextFilling.Damages;
 import stellarnear.wedge_dealer.TextFilling.PostRandValues;
@@ -40,11 +35,14 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton fabAtk;
     private FloatingActionButton fabDmg;
     private FloatingActionButton fabDmgDet;
+    private ImageButton simpleAtk;
+    private ImageButton barrageShot;
+
     private RollList rollList;
     private RollList selectedRolls;
-    private Tools tools = new Tools();
     private boolean firstDmgRoll = true;
     private boolean firstAtkRoll = true;
+    private String mode;
 
     private PreRandValues preRandValues;
     private PostRandValues postRandValues;
@@ -53,13 +51,12 @@ public class MainActivity extends AppCompatActivity {
     private RangesAndProba rangesAndProba;
     private DisplayRolls displayRolls;
 
-    private SharedPreferences settings;
+    private Tools tools = new Tools();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);     //shouldExecuteOnResume = false;
         this.mC = getApplicationContext();
-        this.settings = PreferenceManager.getDefaultSharedPreferences(mC);
         wedge = new Perso(mC);
     }
 
@@ -70,33 +67,60 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void resetScreen() {
+        mode="fullround";
         firstDmgRoll = true;
         firstAtkRoll = true;
         setContentView(R.layout.activity_main);
         mainPage = findViewById(R.id.mainPage);
         ori_background = mainPage.getBackground();
         mainPage.setBackgroundResource(R.drawable.background);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setBackgroundResource(R.drawable.background_banner);
         setSupportActionBar(toolbar);
+        toolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resetScreen();
+            }
+        });
 
         mainPage.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View arg0, MotionEvent arg1) {
                 mainPage.setBackground(ori_background);
+                hideButtons(0);
                 startPreRand();
                 mainPage.setOnTouchListener(null);
                 return true;//always return true to consume event
             }
         });
 
+        simpleAtk = findViewById(R.id.button_simple_atk);
+        simpleAtk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mode="simple";
+                hideButtons(1);
+                startPreRand();
+            }
+        });
+        barrageShot = findViewById(R.id.button_barrage_shot);
+        barrageShot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(wedge.getAllResources().getResource("mythic_points").getCurrent()>=1) {
+                    mode = "simple";
+                    hideButtons(2);
+                    wedge.getAllResources().getResource("mythic_points").spend(1);
+                    startPreRand();
+                } else { tools.customToast(mC,"Tu n'as pas assez de points mythiques","center"); }
+            }
+        });
+
         fabAtk = (FloatingActionButton) findViewById(R.id.fabAtk);
         setListenerFabAtk();
-
         fabDmg = (FloatingActionButton) findViewById(R.id.fab_damage);
         setListenerFabDmg();
-
         fabDmgDet = (FloatingActionButton) findViewById(R.id.fab_damage_detail);
         setListenerFabDmgDet();
     }
@@ -105,12 +129,9 @@ public class MainActivity extends AppCompatActivity {
         fabAtk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mainPage.getBackground() != ori_background) {
-                    mainPage.setBackground(ori_background);
-                }
-
-                mainPage.setOnTouchListener(null);
+                if(mode.equalsIgnoreCase("")){mode="fullround";}
                 if (firstAtkRoll) {
+                    hideButtons(0);
                     startRandAtk();
                 } else {
                     new AlertDialog.Builder(MainActivity.this)
@@ -124,7 +145,6 @@ public class MainActivity extends AppCompatActivity {
                             })
                             .setNegativeButton(android.R.string.no, null).show();
                 }
-
             }
         });
     }
@@ -132,6 +152,10 @@ public class MainActivity extends AppCompatActivity {
     private void clearStep(Integer step) {
         switch (step) {
             case 0:
+                if (mainPage.getBackground() != ori_background) {
+                    mainPage.setBackground(ori_background);
+                }
+                mainPage.setOnTouchListener(null);
                 if (preRandValues != null) {
                     preRandValues.hideViews();
                 }
@@ -158,13 +182,31 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     private void startPreRand() {
         clearStep(0);
         setRollList();
         preRandValues = new PreRandValues(mC, mainPage, rollList);
         if (damages != null) {
             damages.hideViews();
+        }
+    }
+
+    private void hideButtons(int buttonClicked) {
+        simpleAtk.setOnClickListener(null);
+        barrageShot.setOnClickListener(null);
+        switch (buttonClicked){
+            case 0:
+                simpleAtk.animate().translationXBy(-200).setDuration(1000).start();
+                barrageShot.animate().translationXBy(200).setDuration(1000).start();
+                break;
+            case 1:
+                simpleAtk.animate().scaleXBy(2).scaleYBy(2).alpha(0).setDuration(1000).start();
+                barrageShot.animate().translationXBy(200).setDuration(1000).start();
+                break;
+            case 2:
+                simpleAtk.animate().translationXBy(-200).setDuration(1000).start();
+                barrageShot.animate().scaleX(2).scaleY(2).alpha(0).setDuration(1000).start();
+                break;
         }
     }
 
@@ -186,25 +228,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setRollList() {
-        this.rollList = new RollList();
-        String baseAtksTxt = settings.getString("jet_att", mC.getResources().getString(R.string.jet_att_def));     //cherche la clef     jet_att dans les setting sinon valeur def (xml)
-        String delim = ",";
-
-        List<Integer> baseAtks = tools.toInt(Arrays.asList(baseAtksTxt.split(delim)));
-        List<Integer> allAtks = new ArrayList<>(baseAtks);
-        Integer prouesse = tools.toInt(settings.getString("prouesse_val", String.valueOf(mC.getResources().getInteger(R.integer.prouesse_def))));
-        Integer prouesseAttrib = tools.toInt(settings.getString("prouesse_attrib", String.valueOf(mC.getResources().getInteger(R.integer.prouesse_attrib_def))));
-        allAtks.set(prouesseAttrib - 1, prouesse + baseAtks.get(prouesseAttrib - 1));
-
-        if (settings.getBoolean("rapid_enchant_switch", mC.getResources().getBoolean(R.bool.rapid_enchant_switch_def))) {
-            allAtks.add(0, allAtks.get(0));
-        }
-        if (settings.getBoolean("tir_rapide", mC.getResources().getBoolean(R.bool.tir_rapide_switch_def))) {
-            allAtks.add(0, allAtks.get(0));
-        }
-        for (Integer atk : allAtks) {
-            this.rollList.add(new Roll(MainActivity.this,mC, atk));
-        }
+        this.rollList = new RollFactory(MainActivity.this,mC,mode).getRollList();
     }
 
     private void showDivider() {
@@ -274,7 +298,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -288,7 +311,6 @@ public class MainActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             startActivity(new Intent(this, SettingsActivity.class));

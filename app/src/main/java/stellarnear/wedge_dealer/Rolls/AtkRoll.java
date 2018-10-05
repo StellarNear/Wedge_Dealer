@@ -17,6 +17,9 @@ public class AtkRoll {
 
     private Integer preRandValue = 0;
     private Integer atk = 0;
+    private Integer base = 0;
+
+    private String mode;
 
     private Boolean hitConfirmed = false;
     private Boolean crit = false;
@@ -33,9 +36,9 @@ public class AtkRoll {
 
     public AtkRoll(Activity mA,Context mC, Integer base) {
         this.mC = mC;
+        this.base=base;
         this.atkDice = new Dice(mA,mC,20);
         settings = PreferenceManager.getDefaultSharedPreferences(mC);
-        this.preRandValue = base + getBonusAtk();
         constructCheckboxes();
     }
 
@@ -65,7 +68,6 @@ public class AtkRoll {
 
     private int getBonusAtk() {
        int bonusAtk=0;
-
         if (settings.getBoolean("thor_switch", mC.getResources().getBoolean(R.bool.thor_switch_def))) {
             bonusAtk+= 3;
         }
@@ -87,15 +89,12 @@ public class AtkRoll {
         if (settings.getBoolean("magic_switch", mC.getResources().getBoolean(R.bool.magic_switch_def))) {
             bonusAtk+= tools.toInt(settings.getString("magic_val", String.valueOf(mC.getResources().getInteger(R.integer.magic_val_def))));
         }
-
-        if (settings.getBoolean("tir_rapide", mC.getResources().getBoolean(R.bool.tir_rapide_switch_def))) {
+        if (this.mode.equalsIgnoreCase("fullround") && settings.getBoolean("tir_rapide", mC.getResources().getBoolean(R.bool.tir_rapide_switch_def))) {
             bonusAtk-=2;
         }
-
         if (settings.getBoolean("viser", mC.getResources().getBoolean(R.bool.viser_switch_def))) {
             bonusAtk-=tools.toInt(settings.getString("viser_val", String.valueOf(mC.getResources().getInteger(R.integer.viser_val_def))));
         }
-
         bonusAtk+= tools.toInt(settings.getString("mod_dex", String.valueOf(mC.getResources().getInteger(R.integer.mod_dex_def))));
 
         bonusAtk+= tools.toInt(settings.getString("epic_val", String.valueOf(mC.getResources().getInteger(R.integer.epic_val_def))));
@@ -104,6 +103,11 @@ public class AtkRoll {
 
         return bonusAtk;
     }
+    //setters
+    public void setMode(String mode){
+        this.mode=mode;
+    }
+
     //getters
     public Dice getAtkDice(){
         return this.atkDice;
@@ -114,18 +118,15 @@ public class AtkRoll {
     }
 
     public Integer getPreRandValue() {
+        this.preRandValue = this.base + getBonusAtk();
         return preRandValue;
     }
     public void setAtkRand() {
         atkDice.rand();
-        calculAtk();
+        setCritAndFail();
     }
 
-    private void calculAtk() {
-        this.atk = this.preRandValue + atkDice.getRandValue();
-        if(this.atkDice.getMythicDice()!=null){
-            this.atk+=this.atkDice.getMythicDice().getRandValue();
-        }
+    private void setCritAndFail() {
         if (atkDice.getRandValue() == 1 && !settings.getBoolean("chance_switch", mC.getResources().getBoolean(R.bool.chance_switch_def))) {
             this.fail = true;
             atkDice.getImg().setOnClickListener(null);
@@ -141,7 +142,15 @@ public class AtkRoll {
         }
     }
 
+    private void calculAtk() {
+        this.atk = this.preRandValue + atkDice.getRandValue();
+        if(this.atkDice.getMythicDice()!=null){
+            this.atk+=this.atkDice.getMythicDice().getRandValue();
+        }
+    }
+
     public Integer getValue() {
+        calculAtk();
         return atk;
     }
 
