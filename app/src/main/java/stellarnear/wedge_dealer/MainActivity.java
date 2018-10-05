@@ -200,7 +200,7 @@ public class MainActivity extends AppCompatActivity {
                 barrageShot.animate().translationXBy(200).setDuration(1000).start();
                 break;
             case 1:
-                simpleAtk.animate().scaleXBy(2).scaleYBy(2).alpha(0).setDuration(1000).start();
+                simpleAtk.animate().scaleX(2).scaleY(2).alpha(0).setDuration(1000).start();
                 barrageShot.animate().translationXBy(200).setDuration(1000).start();
                 break;
             case 2:
