@@ -101,6 +101,10 @@ public class AtkRoll {
 
         bonusAtk+= tools.toInt(settings.getString("att_buff", String.valueOf(mC.getResources().getInteger(R.integer.att_buff_def))));
 
+        if(mode.equalsIgnoreCase("barrage_shot")){
+            bonusAtk+=tools.toInt(settings.getString("mythic_tier", String.valueOf(mC.getResources().getInteger(R.integer.mythic_tier_def))));
+        }
+
         return bonusAtk;
     }
     //setters

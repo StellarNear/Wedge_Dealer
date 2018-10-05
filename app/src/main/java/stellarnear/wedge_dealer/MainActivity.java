@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(wedge.getAllResources().getResource("mythic_points").getCurrent()>=1) {
-                    mode = "simple";
+                    mode = "barrage_shot";
                     hideButtons(2);
                     wedge.getAllResources().getResource("mythic_points").spend(1);
                     startPreRand();
@@ -184,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void startPreRand() {
         clearStep(0);
-        setRollList();
+        this.rollList = new RollFactory(MainActivity.this,mC,mode).getRollList();
         preRandValues = new PreRandValues(mC, mainPage, rollList);
         if (damages != null) {
             damages.hideViews();
@@ -225,10 +225,6 @@ public class MainActivity extends AppCompatActivity {
         }
         postRandValues = new PostRandValues(mC, mainPage, rollList);
         setupCheckboxes = new SetupCheckboxes(mC, mainPage, rollList);
-    }
-
-    private void setRollList() {
-        this.rollList = new RollFactory(MainActivity.this,mC,mode).getRollList();
     }
 
     private void showDivider() {

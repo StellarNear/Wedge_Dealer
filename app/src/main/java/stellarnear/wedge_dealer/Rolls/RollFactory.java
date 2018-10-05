@@ -56,7 +56,7 @@ public class RollFactory {
             }
         } else {
             Roll roll = new Roll(mA, mC, allAtks.get(0));
-            roll.getAtkRoll().setMode("simple");
+            roll.getAtkRoll().setMode(this.mode);
             this.rollList.add(roll);
         }
     }
