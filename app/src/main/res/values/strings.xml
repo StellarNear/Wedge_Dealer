@@ -44,6 +44,10 @@
     <string name="predil_sup_summ">+1 à tous ses jets d\'attaque avec l\'arme choisie.</string>
     <string name="predil_epic">Arme de prédilection épique</string>
     <string name="predil_epic_summ">+1 à tous ses jets d\'attaque avec l\'arme choisie.</string>
+    <string name="weapon_spe">Spécialisation martiale</string>
+    <string name="weapon_spe_summ">Le personnage obtient un bonus de +2 sur les jets de dégâts de l’arme choisie.</string>
+    <string name="weapon_spe_sup">Spécialisation martiale supérieure</string>
+    <string name="weapon_spe_sup_summ">Le personnage obtient un bonus de +2 sur les jets de dégâts de l’arme choisie.</string>
     <string name="improved_crit_summ">La zone de critique de l’arme choisie est doublée.</string>
     <string name="improved_crit">Science du critique</string>
     <string name="neuf_m">Tir à bout portant</string>
@@ -141,6 +145,4 @@ Liane Corrompue</string>
 6 Gorilles Behemots
 4 Aigles Behemots
 2 Liane Corrompue</string>
-
-
 </resources>

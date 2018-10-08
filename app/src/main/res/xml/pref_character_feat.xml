@@ -11,10 +11,16 @@
         android:summary="@string/predil_sup_summ"
         android:title="@string/predil_sup" />
     <SwitchPreference
-        android:defaultValue="@bool/predil_epic_switch_def"
-        android:key="predil_epic_switch"
-        android:summary="@string/predil_epic_summ"
-        android:title="@string/predil_epic" />
+        android:defaultValue="@bool/weapon_spe_switch_def"
+        android:key="weapon_spe_switch"
+        android:summary="@string/weapon_spe_summ"
+        android:title="@string/weapon_spe" />
+    <SwitchPreference
+        android:defaultValue="@bool/weapon_spe_sup_switch_def"
+        android:key="weapon_spe_sup_switch"
+        android:summary="@string/weapon_spe_sup_summ"
+        android:title="@string/weapon_spe_sup" />
+
     <SwitchPreference
         android:defaultValue="@bool/improved_crit_switch_def"
         android:key="improved_crit_switch"
@@ -44,18 +50,30 @@
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:summary="Valeur : -%s"/>
-    <SwitchPreference
-        android:defaultValue="@bool/feu_nourri_switch_def"
-        android:key="feu_nourri_switch"
-        android:summary="@string/feu_nourri_summ"
-        android:title="@string/feu_nourri" />
-    <stellarnear.wedge_dealer.EditTextPreference
-        android:defaultValue="@integer/multi_value_def"
-        android:dependency="feu_nourri_switch"
-        android:key="multi_val"
-        android:inputType="number"
-        android:title="@string/multi_value"
-        android:selectAllOnFocus="true"
-        android:singleLine="true"
-        android:summary="Valeur : %s"/>
+    <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+
+    <PreferenceCategory
+        android:title="Epique">
+        <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+        <SwitchPreference
+            android:defaultValue="@bool/feu_nourri_switch_def"
+            android:key="feu_nourri_switch"
+            android:summary="@string/feu_nourri_summ"
+            android:title="@string/feu_nourri" />
+        <stellarnear.wedge_dealer.EditTextPreference
+            android:defaultValue="@integer/multi_value_def"
+            android:dependency="feu_nourri_switch"
+            android:key="multi_val"
+            android:inputType="number"
+            android:title="@string/multi_value"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:summary="Valeur : %s"/>
+
+        <SwitchPreference
+            android:defaultValue="@bool/predil_epic_switch_def"
+            android:key="predil_epic_switch"
+            android:summary="@string/predil_epic_summ"
+            android:title="@string/predil_epic" />
+        </PreferenceCategory>
 </PreferenceScreen>

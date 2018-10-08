@@ -103,6 +103,13 @@ public class DmgRoll {
         if (settings.getBoolean("composite_switch", mC.getResources().getBoolean(R.bool.composite_switch_def))) {
             calcBonusDmg += 4;
         }
+        if (settings.getBoolean("weapon_spe_switch", mC.getResources().getBoolean(R.bool.composite_switch_def))) {
+            calcBonusDmg += 2;
+        }
+        if (settings.getBoolean("weapon_spe_sup_switch", mC.getResources().getBoolean(R.bool.composite_switch_def))) {
+            calcBonusDmg += 2;
+        }
+
         calcBonusDmg += tools.toInt(settings.getString("epic_dmg_val", String.valueOf(mC.getResources().getInteger(R.integer.epic_dmg_val_def))));
         calcBonusDmg += tools.toInt(settings.getString("dmg_buff", String.valueOf(mC.getResources().getInteger(R.integer.dmg_buff_def))));
         return calcBonusDmg;

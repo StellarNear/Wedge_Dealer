@@ -15,6 +15,8 @@
     <!-- Dons -->
     <bool name="predil_switch_def">true</bool>
     <bool name="predil_sup_switch_def">true</bool>
+    <bool name="weapon_spe_switch_def">true</bool>
+    <bool name="weapon_spe_sup_switch_def">true</bool>
     <bool name="neuf_m_switch_def">true</bool>
     <bool name="tir_rapide_switch_def">true</bool>
     <bool name="viser_switch_def">true</bool>
@@ -29,4 +31,5 @@
     <bool name="chance_switch_def">true</bool>
     <bool name="crit_science_myth_switch_def">true</bool>
     <bool name="barrage_shot_switch_def">true</bool>
+
 </resources>
