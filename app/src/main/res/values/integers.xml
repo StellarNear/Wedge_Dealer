@@ -6,15 +6,15 @@
     <integer name="custom_alert_long_duration_DEF">10000</integer>
     <integer name="percent_fullscreen_combat_launcher_dialog">95</integer>
 
-    <integer name="ability_lvl_def">24</integer>
-    <integer name="current_xp_def">9976803</integer>
+    <integer name="ability_lvl_def">25</integer>
+    <integer name="current_xp_def">15913888</integer>
     <integer name="add_current_xp_def">0</integer>
 
     <integer name="add_gold_def">0</integer>
-    <integer name="money_plat_def">22</integer>
-    <integer name="money_gold_def">113153</integer>
+    <integer name="money_plat_def">142</integer>
+    <integer name="money_gold_def">252724</integer>
     <integer name="money_silver_def">0</integer>
-    <integer name="money_copper_def">91</integer>
+    <integer name="money_copper_def">81</integer>
 
 
     <integer name="multi_value_def">3</integer>
