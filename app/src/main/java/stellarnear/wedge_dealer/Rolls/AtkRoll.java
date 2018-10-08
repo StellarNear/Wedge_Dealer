@@ -81,7 +81,7 @@ public class AtkRoll {
             bonusAtk+= 1;
         }
         if (settings.getBoolean("predil_epic_switch", mC.getResources().getBoolean(R.bool.predil_epic_switch_def))) {
-            bonusAtk+= 1;
+            bonusAtk+= 2;
         }
         if (settings.getBoolean("neuf_m_switch", mC.getResources().getBoolean(R.bool.neuf_m_switch_def))) {
             bonusAtk+= 1;
