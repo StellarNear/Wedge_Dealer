@@ -1,0 +1,19 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <SwitchPreference
+        android:defaultValue="@bool/barrage_shot_switch_def"
+        android:key="barrage_shot_switch"
+        android:summary="@string/barrage_shot_summ"
+        android:title="@string/barrage_shot" />
+    <SwitchPreference
+        android:defaultValue="@bool/chance_switch_def"
+        android:key="chance_switch"
+        android:summary="@string/chance_summ"
+        android:title="@string/chance" />
+    <SwitchPreference
+        android:defaultValue="@bool/crit_science_myth_switch_def"
+        android:key="crit_science_myth_switch"
+        android:summary="@string/crit_science_myth_summ"
+        android:title="@string/crit_science_myth" />
+
+
+</PreferenceScreen>

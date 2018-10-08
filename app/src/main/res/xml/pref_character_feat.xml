@@ -1,0 +1,79 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreference
+        android:defaultValue="@bool/predil_switch_def"
+        android:key="predil_switch"
+        android:summary="@string/predil_summ"
+        android:title="@string/predil" />
+    <SwitchPreference
+        android:defaultValue="@bool/predil_sup_switch_def"
+        android:key="predil_sup_switch"
+        android:summary="@string/predil_sup_summ"
+        android:title="@string/predil_sup" />
+    <SwitchPreference
+        android:defaultValue="@bool/weapon_spe_switch_def"
+        android:key="weapon_spe_switch"
+        android:summary="@string/weapon_spe_summ"
+        android:title="@string/weapon_spe" />
+    <SwitchPreference
+        android:defaultValue="@bool/weapon_spe_sup_switch_def"
+        android:key="weapon_spe_sup_switch"
+        android:summary="@string/weapon_spe_sup_summ"
+        android:title="@string/weapon_spe_sup" />
+
+    <SwitchPreference
+        android:defaultValue="@bool/improved_crit_switch_def"
+        android:key="improved_crit_switch"
+        android:summary="@string/improved_crit_summ"
+        android:title="@string/improved_crit" />
+    <SwitchPreference
+        android:defaultValue="@bool/neuf_m_switch_def"
+        android:key="neuf_m_switch"
+        android:summary="@string/neuf_m_summ"
+        android:title="@string/neuf_m" />
+    <SwitchPreference
+        android:defaultValue="@bool/tir_rapide_switch_def"
+        android:key="tir_rapide"
+        android:summary="@string/tir_rapide_summ"
+        android:title="@string/tir_rapide" />
+    <SwitchPreference
+        android:defaultValue="@bool/viser_switch_def"
+        android:key="viser"
+        android:summary="@string/viser_summ"
+        android:title="@string/viser" />
+    <stellarnear.wedge_dealer.EditTextPreference
+        android:defaultValue="@integer/viser_val_def"
+        android:dependency="viser"
+        android:inputType="number"
+        android:key="viser_val"
+        android:title="@string/viser_val"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary="Valeur : -%s"/>
+    <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+
+    <PreferenceCategory
+        android:title="Epique">
+        <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+        <SwitchPreference
+            android:defaultValue="@bool/feu_nourri_switch_def"
+            android:key="feu_nourri_switch"
+            android:summary="@string/feu_nourri_summ"
+            android:title="@string/feu_nourri" />
+        <stellarnear.wedge_dealer.EditTextPreference
+            android:defaultValue="@integer/multi_value_def"
+            android:dependency="feu_nourri_switch"
+            android:key="multi_val"
+            android:inputType="number"
+            android:title="@string/multi_value"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:summary="Valeur : %s"/>
+
+        <SwitchPreference
+            android:defaultValue="@bool/predil_epic_switch_def"
+            android:key="predil_epic_switch"
+            android:summary="@string/predil_epic_summ"
+            android:title="@string/predil_epic" />
+        </PreferenceCategory>
+</PreferenceScreen>

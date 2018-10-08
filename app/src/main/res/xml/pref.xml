@@ -8,6 +8,11 @@
         android:title="Personnage"
         android:summary="Statistiques de base du personnage"/>
 
+    <PreferenceScreen
+        android:key="pref_mythic"
+        android:icon="@drawable/ic_embrassed_energy"
+        android:title="Mythique"
+        android:summary="Statistiques mythique du personnage"/>
 
     <PreferenceScreen
         android:key="pref_inventory"
@@ -27,9 +32,15 @@
         android:summary="Améliorations non permanentes"
         android:title="Bonus temporaires" />
 
+    <PreferenceScreen
+        android:key="sleep"
+        android:icon="@drawable/ic_brightness_3_black_24dp"
+        android:title="Repos"
+        android:summary="Une bonne nuit de sommeil"/>
+
     <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
 
-    <pathfinder.pathfinder_dealer.EditTextPreference
+    <stellarnear.wedge_dealer.EditTextPreference
         android:icon="@drawable/ic_trophy_cup"
         android:defaultValue="0"
         android:key="highscore"

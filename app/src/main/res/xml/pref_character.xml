@@ -7,7 +7,7 @@
         android:summary="Caractéristiques provenant du personnage"/>
 
     <PreferenceScreen
-        android:key="pref_character_combat"
+        android:key="pref_character_feat"
         android:icon="@drawable/ic_filter_center_focus_black_24dp"
         android:title="Caractéristiques de combat"
         android:summary="Caractéristiques et dons relatifs au combat"/>

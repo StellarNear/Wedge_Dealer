@@ -1,0 +1,33 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <stellarnear.wedge_dealer.MythicBarPreference
+        android:selectable="false"
+        />
+
+    <PreferenceCategory android:title="Informations sur le grade mythique"/>
+    <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+
+    <stellarnear.wedge_dealer.EditTextPreference
+        android:defaultValue="@integer/mythic_tier_def"
+        android:key="mythic_tier"
+        android:selectable="false"
+        android:title="Grade Mythique"
+        android:singleLine="true"
+        android:inputType="number"
+        android:summary="Valeur : %s"/>
+
+    <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+
+    <stellarnear.wedge_dealer.EditTextPreference
+        android:defaultValue="@integer/mythic_points_per_day_def"
+        android:key="mythic_points_per_day"
+        android:selectable="false"
+        android:title="Points mythique par jour"
+        android:singleLine="true"
+        android:inputType="number"
+        android:summary="Valeur : %s"/>
+
+    <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+
+
+</PreferenceScreen>

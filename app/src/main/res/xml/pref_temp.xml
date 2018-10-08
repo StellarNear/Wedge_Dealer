@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <pathfinder.pathfinder_dealer.EditTextPreference
-        android:defaultValue="@string/att_buff_def"
+    <stellarnear.wedge_dealer.EditTextPreference
+        android:defaultValue="@integer/att_buff_def"
         android:key="att_buff"
         android:title="@string/att_buff"
         android:selectAllOnFocus="true"
         android:singleLine="true"
+        android:inputType="number"
         android:summary="Valeur : %s"/>
-    <pathfinder.pathfinder_dealer.EditTextPreference
-        android:defaultValue="@string/dmg_buff_def"
+    <stellarnear.wedge_dealer.EditTextPreference
+        android:defaultValue="@integer/dmg_buff_def"
         android:key="dmg_buff"
         android:title="@string/dmg_buff"
+        android:inputType="number"
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:summary="Valeur : %s"/>
+
+    <PreferenceScreen
+        android:key="reset_temp"
+        android:summary="Réinitialise à zéro les valeurs temporaires"
+        android:icon="@drawable/ic_undo_black_24dp"
+        android:title="Reset des bonus" />
 
 </PreferenceScreen>

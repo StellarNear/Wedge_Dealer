@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="fullheight">640</integer>
+    <integer name="fullwidth">320</integer>
+
+    <integer name="custom_alert_long_duration_DEF">10000</integer>
+    <integer name="percent_fullscreen_combat_launcher_dialog">95</integer>
+
+    <integer name="ability_lvl_def">24</integer>
+    <integer name="current_xp_def">9976803</integer>
+    <integer name="add_current_xp_def">0</integer>
+
+    <integer name="add_gold_def">0</integer>
+    <integer name="money_plat_def">22</integer>
+    <integer name="money_gold_def">113153</integer>
+    <integer name="money_silver_def">0</integer>
+    <integer name="money_copper_def">91</integer>
+
+
+    <integer name="multi_value_def">3</integer>
+    <integer name="viser_val_def">4</integer>
+    <integer name="magic_val_def">6</integer>
+    <integer name="mod_dex_def">11</integer>
+    <integer name="epic_val_def">1</integer>
+    <integer name="epic_dmg_val_def">0</integer>
+    <integer name="prouesse_def">0</integer>
+    <integer name="prouesse_attrib_def">4</integer>
+    <integer name="dmg_buff_def">0</integer>
+    <integer name="att_buff_def">0</integer>
+
+    <integer name="mythic_tier_def">1</integer>
+    <integer name="mythic_points_per_day_def">3</integer>
+</resources>

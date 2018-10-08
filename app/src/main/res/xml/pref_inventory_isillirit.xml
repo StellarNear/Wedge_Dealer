@@ -6,13 +6,13 @@
         android:summary="@string/isillirit_summ"
         android:title="@string/isillirit" />
 
-    <pathfinder.pathfinder_dealer.EditTextPreference
+    <stellarnear.wedge_dealer.EditTextPreference
         android:key="kill_isi"
         android:defaultValue="@string/isillirit_kill_summ"
         android:title="Ennemis tués"
         android:selectAllOnFocus="true"
         android:summary="%s"/>
-    <pathfinder.pathfinder_dealer.EditTextPreference
+    <stellarnear.wedge_dealer.EditTextPreference
         android:key="crit_isi"
         android:defaultValue="@string/isillirit_crit_summ"
         android:title="Critiques confirmés"
