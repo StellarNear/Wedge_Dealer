@@ -78,6 +78,16 @@ Mot d'activation : "esprit du vent" en druidique "Sylphe"</descr>
         <equipped>true</equipped>
     </equipment>
     <equipment>
+        <name>Couronne d’étoiles</name>
+        <descr>Immunise aux dégats de froids et tout leurs effets annexes et aussi aux effets d'etre piégé dans l'espace ou dans le vide.
+
+Dispense le porteur du besoin de manger boire et respirer.</descr>
+        <imgId>star_crown</imgId>
+        <slotId>helm_slot</slotId>
+        <value>360000po</value>
+        <equipped>true</equipped>
+    </equipment>
+    <equipment>
         <name>Ceinture de la perfection physique</name>
         <descr>+6 Force +6 const +6 dext</descr>
         <imgId>equipped_belt</imgId>
