@@ -46,7 +46,7 @@ public class AllEquipments {
         refreshEquipment();
     }
 
-    public void refreshEquipment() {
+    public void refreshEquipment() { //lecture de la DB locale ou initialisation
         tinyDB = new TinyDB(mC);
         List<Equipment> listDB = tinyDB.getListEquipments("localSaveListEquipments");
         if (listDB.size() == 0) {
@@ -61,7 +61,7 @@ public class AllEquipments {
         tinyDB.putListEquipments("localSaveListEquipments", listEquipments);
     }
 
-    private void buildList() {
+    private void buildList() {  //initialisation depuis asset equipment.xml
         listEquipments = new ArrayList<>();
         try {
             InputStream is = mC.getAssets().open("equipment.xml");
@@ -101,7 +101,7 @@ public class AllEquipments {
         }
     }
 
-    public List<Equipment> getSlotListEquipment(String slot) {
+    public List<Equipment> getSlotListEquipment(String slot) { //objet par slot
         List<Equipment> list = new ArrayList<>();
         for (Equipment equipment : listEquipments) {
             if (equipment.getSlotId().equalsIgnoreCase(slot)) {
@@ -111,7 +111,7 @@ public class AllEquipments {
         return list;
     }
 
-    public List<Equipment> getAllSpareEquipment() {
+    public List<Equipment> getAllSpareEquipment() { //objet d'equipement pas équipé
         List<Equipment> list = new ArrayList<>();
         for (Equipment equipment : listEquipments) {
             if (!equipment.isEquiped()) {
@@ -121,7 +121,7 @@ public class AllEquipments {
         return list;
     }
 
-    public List<Equipment> getSpareEquipment(String slot) {
+    public List<Equipment> getSpareEquipment(String slot) {  //objet d'equipement pas équipé sur un slot
         List<Equipment> list = new ArrayList<>();
         for (Equipment equipment : listEquipments) {
             if (equipment.getSlotId().equalsIgnoreCase(slot) && !equipment.isEquiped()) {
@@ -155,7 +155,7 @@ public class AllEquipments {
         return equiFind;
     }
 
-    public void equip(Equipment equiToPut) {
+    public void equip(Equipment equiToPut) { //equipe un objet
         for (Equipment equi: getSlotListEquipment(equiToPut.getSlotId())){
             if(equi!=equiToPut){
                 equi.setEquiped(false);
@@ -165,18 +165,18 @@ public class AllEquipments {
         saveLocalAllEquipments();
     }
 
-    public void showSlot(Activity mA, String slotId, Boolean editable) {
+    public void showSlot(Activity mA, String slotId, Boolean editable) { //affiche un objet
         this.mA=mA;
         this.editable=editable;
         if (slotId.equalsIgnoreCase("other_slot")){
-            customInfo(getSlotListEquipment("other_slot"));
+            customInfo(getSlotListEquipment("other_slot")); //affiche la liste des other
         } else {
-            customInfo(getEquipmentsEquiped(slotId));
+            customInfo(getEquipmentsEquiped(slotId)); //affiche l'objet du slot
         }
 
     }
 
-    private void customInfo(Equipment equi) {
+    private void customInfo(Equipment equi) { //creation de la popup d'affichage
         LayoutInflater inflater = mA.getLayoutInflater();
         View view = inflater.inflate(R.layout.custom_toast_info, (ViewGroup) mA.findViewById(R.id.toast_RelativeLayout));
         CustomAlertDialog ct = new CustomAlertDialog(mA, mC, view);
@@ -202,10 +202,10 @@ public class AllEquipments {
             List<Equipment> spareEquipments = getSpareEquipment(equi.getSlotId());
             if (spareEquipments.size() > 0) {
                 ImageView swap = view.findViewById(R.id.toast_info_swap);
-                setButtonToSwap(swap, spareEquipments, ct);
+                setButtonToSwap(swap, spareEquipments, ct); //bouton pour echanger si y a des rechanges sur le slot
             } else {
                 ImageView unequip = view.findViewById(R.id.toast_info_unequip);
-                setButtonToUnequip(unequip, equi, ct);
+                setButtonToUnequip(unequip, equi, ct); //bouton pour desequip sinon
             }
         }
         ct.showAlert();
@@ -308,17 +308,17 @@ public class AllEquipments {
         ca.showAlert();
     }
 
-    public void createEquipment(Equipment equi) {
+    public void createEquipment(Equipment equi) { //ajout d'un objet
         listEquipments.add(equi);
         saveLocalAllEquipments();
     }
 
-    public void remove(Equipment equi) {
+    public void remove(Equipment equi) { //suppression
         listEquipments.remove(equi);
         saveLocalAllEquipments();
     }
 
-    public interface OnRefreshEventListener {
+    public interface OnRefreshEventListener { //event de refresh pour raffraichir les fenetres affichées
         void onEvent();
     }
 

@@ -31,7 +31,7 @@ public class AllResources {
     }
 
     private void buildResourcesList() {
-        Resource res = new Resource("Points mythiques","mythic_points",mC);
+        Resource res = new Resource("Points mythiques","mythic_points",mC); //wedge n'a qu'une ressource
         listResources.add(res);
         mapIDRes.put(res.getId(), res);
     }

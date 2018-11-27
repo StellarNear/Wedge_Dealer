@@ -19,7 +19,7 @@ public class AtkRoll {
     private Integer atk = 0;
     private Integer base = 0;
 
-    private String mode;
+    private String mode; //le type d'attauqe fullround,barrrage,simple
 
     private Boolean hitConfirmed = false;
     private Boolean crit = false;
@@ -131,7 +131,7 @@ public class AtkRoll {
     }
 
     private void setCritAndFail() {
-        if (atkDice.getRandValue() == 1 && !settings.getBoolean("chance_switch", mC.getResources().getBoolean(R.bool.chance_switch_def))) {
+        if (atkDice.getRandValue() == 1 && !settings.getBoolean("chance_switch", mC.getResources().getBoolean(R.bool.chance_switch_def))) { //si c'est un 1 et qu'on a pas le dons antifail
             this.fail = true;
             atkDice.getImg().setOnClickListener(null);
         }
@@ -141,7 +141,7 @@ public class AtkRoll {
         } else {
             critMin = 20;
         }
-        if (atkDice.getRandValue() >= critMin) {
+        if (atkDice.getRandValue() >= critMin) { //c'est possiblement un crit
             this.crit = true;
         }
     }

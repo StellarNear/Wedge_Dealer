@@ -58,7 +58,7 @@ public class Roll {
         return atkRoll.isInvalid();
     }
 
-    public void invalidated() {
+    public void invalidated() { //roll invalidé par un fail précédent
         atkRoll.invalidated();
     }
 

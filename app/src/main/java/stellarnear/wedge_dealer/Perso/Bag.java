@@ -47,11 +47,11 @@ public class Bag {
         refreshBag();
     }
 
-    private void saveLocalBag() {
+    private void saveLocalBag() { //sauvegarde dans local DB
         tinyDB.putListEquipments("localSaveListBag", listBag);
     }
 
-    public void refreshBag(){
+    public void refreshBag(){ //Initialisation ou lecture depuis DB
         tinyDB = new TinyDB(mC);
         List<Equipment> listDB = tinyDB.getListEquipments("localSaveListBag");
         if (listDB.size() == 0) {

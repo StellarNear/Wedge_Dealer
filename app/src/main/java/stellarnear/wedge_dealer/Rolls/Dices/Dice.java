@@ -17,7 +17,7 @@ public class Dice {
     private boolean delt=false;
     private boolean canCrit=false;
 
-    private Dice mythicDice;
+    private Dice mythicDice; //si c'est un d20 il a un dés mythic attaché
 
     private OnMythicEventListener mListener;
 

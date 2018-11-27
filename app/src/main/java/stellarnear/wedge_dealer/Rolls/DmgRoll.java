@@ -125,13 +125,11 @@ public class DmgRoll {
     public int getSumDmg(String... elementArg) {
         String element = elementArg.length > 0 ? elementArg[0] : "";
         int sumDmg = 0;
-        for (Dice dice : allDiceList.getList()) {
-            if (dice.getElement().equalsIgnoreCase(element)) {
-                if (dice.canCrit() && critConfirmed) {
-                    sumDmg += dice.getRandValue() * critMultiplier;
-                } else {
-                    sumDmg += dice.getRandValue();
-                }
+        for (Dice dice : allDiceList.filterWithElement(element).getList()) {
+            if (dice.canCrit() && critConfirmed) {
+                sumDmg += dice.getRandValue() * critMultiplier;
+            } else {
+                sumDmg += dice.getRandValue();
             }
         }
 
@@ -146,13 +144,11 @@ public class DmgRoll {
     public int getMaxDmg(String... elementArg) {
         String element = elementArg.length > 0 ? elementArg[0] : "";
         int maxDmg = 0;
-        for (Dice dice : allDiceList.getList()) {
-            if (dice.getElement().equalsIgnoreCase(element)) {
-                if (dice.canCrit() && critConfirmed) {
-                    maxDmg += dice.getnFace() * critMultiplier;
-                } else {
-                    maxDmg += dice.getnFace();
-                }
+        for (Dice dice : allDiceList.filterWithElement(element).getList()) {
+            if (dice.canCrit() && critConfirmed) {
+                maxDmg += dice.getnFace() * critMultiplier;
+            } else {
+                maxDmg += dice.getnFace();
             }
         }
 
@@ -167,13 +163,11 @@ public class DmgRoll {
     public int getMinDmg(String... elementArg) {
         String element = elementArg.length > 0 ? elementArg[0] : "";
         int minDmg = 0;
-        for (Dice dice : allDiceList.getList()) {
-            if (dice.getElement().equalsIgnoreCase(element)) {
-                if (dice.canCrit() && critConfirmed) {
-                    minDmg += 1 * critMultiplier;
-                } else {
-                    minDmg += 1;
-                }
+        for (Dice dice : allDiceList.filterWithElement(element).getList()) {
+            if (dice.canCrit() && critConfirmed) {
+                minDmg += 1 * critMultiplier;
+            } else {
+                minDmg += 1;
             }
         }
 

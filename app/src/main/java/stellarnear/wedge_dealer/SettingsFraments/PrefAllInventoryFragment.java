@@ -119,7 +119,7 @@ public class PrefAllInventoryFragment {
         }
     }
 
-    private String translateSlotName(String slotId) {
+    private String translateSlotName(String slotId) { //prend l'id et renvoi le nom de slot
         String val = "";
         String[] vals = mC.getResources().getStringArray(R.array.slot_choice_val);
         String[] name = mC.getResources().getStringArray(R.array.slot_choice_name);

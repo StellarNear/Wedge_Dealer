@@ -4,10 +4,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
-import android.preference.PreferenceManager;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
@@ -44,7 +42,7 @@ public class ImgForDice {
             this.img.setImageDrawable(tools.resize(mC, drawableId, mC.getResources().getDimensionPixelSize(R.dimen.icon_main_dices_combat_launcher_size)));
 
             if (dice.getnFace() == 20) {
-                setMythicSurge();
+                setMythicSurge(); //on assigne un lsitener pour creer le des mythique si clic sur l'image du dès
             }
         }
         return this.img;
@@ -80,7 +78,6 @@ public class ImgForDice {
     }
 
     private void launchingMythicDice() {
-        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
         int mythicPoints = MainActivity.wedge.getResourceValue("mythic_points");
         if (mythicPoints > 0 && dice.getMythicDice()==null) {
             LinearLayout linear = new LinearLayout(mC);
@@ -97,8 +94,6 @@ public class ImgForDice {
             mythicDice.rand();
             dice.setMythicDice(mythicDice);
             MainActivity.wedge.getAllResources().getResource("mythic_points").spend(1);
-
-            settings.edit().putString("mythic_points", String.valueOf(mythicPoints - 1)).apply();
 
             linear.addView(mythicDice.getImg());
             Toast toast = new Toast(mC);

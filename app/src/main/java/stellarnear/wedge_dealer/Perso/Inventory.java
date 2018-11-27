@@ -119,10 +119,8 @@ public class Inventory {
                                         showEquipment(mA, editable);
                                     }
                                 });
-
                             }
                         });
-
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
