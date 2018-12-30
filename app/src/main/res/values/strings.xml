@@ -134,17 +134,5 @@
         <item>Hors emplacement</item>
     </string-array>
 
-    <!-- def values -->
 
-    <string name="isillirit">Isillirit</string>
-    <string name="isillirit_summ">+1 BBA</string>
-    <string name="isillirit_kill_summ">ArchiLiche Aenarion
-8 Gorilles Behemots
-4 Aigles Behemots
-Liane Corrompue</string>
-
-    <string name="isillirit_crit_summ">2 ArchiLiche Aenarion
-6 Gorilles Behemots
-4 Aigles Behemots
-2 Liane Corrompue</string>
 </resources>

@@ -34,11 +34,11 @@ public class Roll {
 
     public void setDmgRand() {
         if (this.dmgRollList.isEmpty()){
-            this.dmgRollList.add(new DmgRoll(mA,mC,atkRoll.isCritConfirmed()));
+            this.dmgRollList.add(new DmgRoll(mA,mC,atkRoll.isCritConfirmed(),atkRoll.getAtkDice().getRandValue()==20));
             if (settings.getBoolean("feu_nourri_switch", mC.getResources().getBoolean(R.bool.feu_nourri_switch_def))) {
                 int multiVal = tools.toInt(settings.getString("multi_val", String.valueOf(mC.getResources().getInteger(R.integer.multi_value_def))));
                 for(int i=1;i<multiVal;i++){
-                    this.dmgRollList.add(new DmgRoll(mA,mC,false));
+                    this.dmgRollList.add(new DmgRoll(mA,mC,false,false)); //seul l'attaque principale peut crit
                 }
             }
 

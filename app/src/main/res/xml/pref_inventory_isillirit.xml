@@ -3,20 +3,33 @@
     <SwitchPreference
         android:defaultValue="@bool/isillirit_switch_def"
         android:key="isillirit_switch"
-        android:summary="@string/isillirit_summ"
-        android:title="@string/isillirit" />
+        android:summary="Carquois actif"
+        android:title="Isillirit - Chant de Lune" />
 
-    <stellarnear.wedge_dealer.EditTextPreference
-        android:key="kill_isi"
-        android:defaultValue="@string/isillirit_kill_summ"
-        android:title="Ennemis tués"
-        android:selectAllOnFocus="true"
-        android:summary="%s"/>
-    <stellarnear.wedge_dealer.EditTextPreference
-        android:key="crit_isi"
-        android:defaultValue="@string/isillirit_crit_summ"
-        android:title="Critiques confirmés"
-        android:selectAllOnFocus="true"
-        android:summary="%s"/>
+    <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+    <EditTextPreference
+        android:defaultValue="true"
+        android:key="atk_isillirit"
+        android:selectable="false"
+        android:dependency="isillirit_switch"
+        android:summary="+2 aux jets d'attaque" />
+    <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+
+    <EditTextPreference
+        android:defaultValue="true"
+        android:key="dex_isillirit"
+        android:selectable="false"
+        android:dependency="isillirit_switch"
+        android:summary="+2 dexterité"/>
+    <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+
+    <EditTextPreference
+        android:defaultValue="true"
+        android:key="natcrit_isillirit"
+        android:selectable="false"
+        android:dependency="isillirit_switch"
+        android:summary="En cas de 20 naturel, +1 au modificateur de dégat critique"/>
+    <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+
 
 </PreferenceScreen>

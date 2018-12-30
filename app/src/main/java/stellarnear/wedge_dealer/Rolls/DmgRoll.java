@@ -22,7 +22,7 @@ public class DmgRoll {
 
     private Tools tools = new Tools();
 
-    public DmgRoll(Activity mA, Context mC, Boolean critConfirmed) {
+    public DmgRoll(Activity mA, Context mC, Boolean critConfirmed, Boolean naturalCrit) {
         this.mC = mC;
         this.critConfirmed = critConfirmed;
         this.settings = PreferenceManager.getDefaultSharedPreferences(mC);
@@ -30,6 +30,9 @@ public class DmgRoll {
             critMultiplier = 4;
         } else {
             critMultiplier = 3;
+        }
+        if (naturalCrit && settings.getBoolean("isillirit_switch", mC.getResources().getBoolean(R.bool.isillirit_switch_def))) {
+            critMultiplier += 1;
         }
 
         Dice dice = new Dice(mA, mC, 8);
@@ -43,6 +46,8 @@ public class DmgRoll {
             allDiceList.add(new Dice(mA, mC, 6, "fire"));
             if (critConfirmed) {
                 switch (critMultiplier) {
+                    case 5:
+                        allDiceList.add(new Dice(mA, mC, 10, "fire"));
                     case 4:
                         allDiceList.add(new Dice(mA, mC, 10, "fire"));
                     case 3:
@@ -56,6 +61,8 @@ public class DmgRoll {
             allDiceList.add(new Dice(mA, mC, 6, "shock"));
             if (critConfirmed) {
                 switch (critMultiplier) {
+                    case 5:
+                        allDiceList.add(new Dice(mA, mC, 10, "shock"));
                     case 4:
                         allDiceList.add(new Dice(mA, mC, 10, "shock"));
                     case 3:
@@ -69,6 +76,8 @@ public class DmgRoll {
             allDiceList.add(new Dice(mA, mC, 6, "frost"));
             if (critConfirmed) {
                 switch (critMultiplier) {
+                    case 5:
+                        allDiceList.add(new Dice(mA, mC, 10, "frost"));
                     case 4:
                         allDiceList.add(new Dice(mA, mC, 10, "frost"));
                     case 3:

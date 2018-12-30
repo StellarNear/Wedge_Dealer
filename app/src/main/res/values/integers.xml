@@ -17,7 +17,7 @@
     <integer name="multi_value_def">3</integer>
     <integer name="viser_val_def">4</integer>
     <integer name="magic_val_def">6</integer>
-    <integer name="mod_dex_def">11</integer>
+    <integer name="mod_dex_def">12</integer>
     <integer name="epic_val_def">1</integer>
     <integer name="epic_dmg_val_def">0</integer>
     <integer name="prouesse_def">0</integer>

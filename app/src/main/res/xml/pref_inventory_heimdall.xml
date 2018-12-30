@@ -34,8 +34,6 @@
             android:summary="Valeur : %s"/>
 
         <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
-
-        <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
         <stellarnear.wedge_dealer.EditTextPreference
             android:defaultValue="@integer/legendary_dice_def"
             android:key="legendary_dice"

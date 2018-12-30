@@ -23,8 +23,8 @@
     <PreferenceScreen
         android:key="pref_inventory_isillirit"
         android:icon="@drawable/ic_quiver"
-        android:title="@string/isillirit"
-        android:summary="(le chant de la Lune)"/>
+        android:title="Isillirit"
+        android:summary="(Chant de Lune)"/>
 
     <PreferenceScreen
         android:key="pref_inventory_money"
