@@ -2,6 +2,7 @@ package stellarnear.wedge_dealer;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ContentFrameLayout;
 
@@ -203,8 +205,17 @@ public class SettingsFragment extends PreferenceFragment {
                 break;
             case "spend_myth_point":
                 if( wedge.getResourceValue("mythic_points")>0) {
-                    wedge.getAllResources().getResource("mythic_points").spend(1);
-                    tools.customToast(mC,"Il te reste "+wedge.getResourceValue("mythic_points")+" point(s) mythique(s)","center");
+                    new AlertDialog.Builder(mC)
+                            .setTitle("Demande de confirmation")
+                            .setMessage("Confirmes-tu la dépense d'un point mythique ?")
+                            .setIcon(android.R.drawable.ic_menu_help)
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    wedge.getAllResources().getResource("mythic_points").spend(1);
+                                    tools.customToast(mC,"Il te reste "+wedge.getResourceValue("mythic_points")+" point(s) mythique(s)","center");
+                                }
+                            })
+                            .setNegativeButton(android.R.string.no, null).show();
                 } else {
                     tools.customToast(mC,"Tu n'as plus de point mythique","center");
                 }

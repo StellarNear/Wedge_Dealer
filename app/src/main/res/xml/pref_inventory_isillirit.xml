@@ -28,7 +28,7 @@
         android:key="natcrit_isillirit"
         android:selectable="false"
         android:dependency="isillirit_switch"
-        android:summary="En cas de 20 naturel, +1 au modificateur de dégat critique"/>
+        android:summary="Lors d'un 20 naturel, +1 mod. de dégat critique"/>
     <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
 
 

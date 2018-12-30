@@ -10,22 +10,18 @@
     <stellarnear.wedge_dealer.EditTextPreference
         android:defaultValue="@integer/mythic_tier_def"
         android:key="mythic_tier"
-        android:selectable="false"
         android:title="Grade Mythique"
         android:singleLine="true"
         android:inputType="number"
         android:summary="Valeur : %s"/>
 
-    <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
     <stellarnear.wedge_dealer.EditTextPreference
         android:defaultValue="@integer/mythic_dice_def"
         android:key="mythic_dice"
-        android:selectable="false"
         android:title="Dès de montée en puissance"
         android:singleLine="true"
         android:inputType="number"
         android:summary="Valeur : d%s"/>
 
-    <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
 
 </PreferenceScreen>
