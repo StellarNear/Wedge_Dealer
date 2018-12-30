@@ -201,6 +201,14 @@ public class SettingsFragment extends PreferenceFragment {
                 ((ContentFrameLayout) getActivity().findViewById(android.R.id.content)).removeAllViews();
                 new PrefSleepScreenFragment(mA,mC).addSleepScreen();
                 break;
+            case "spend_myth_point":
+                if( wedge.getResourceValue("mythic_points")>0) {
+                    wedge.getAllResources().getResource("mythic_points").spend(1);
+                    tools.customToast(mC,"Il te reste "+wedge.getResourceValue("mythic_points")+" point(s) mythique(s)","center");
+                } else {
+                    tools.customToast(mC,"Tu n'as plus de point mythique","center");
+                }
+                break;
         }
     }
 

@@ -17,17 +17,15 @@
         android:summary="Valeur : %s"/>
 
     <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
-
     <stellarnear.wedge_dealer.EditTextPreference
-        android:defaultValue="@integer/mythic_points_per_day_def"
-        android:key="mythic_points_per_day"
+        android:defaultValue="@integer/mythic_dice_def"
+        android:key="mythic_dice"
         android:selectable="false"
-        android:title="Points mythique par jour"
+        android:title="Dès de montée en puissance"
         android:singleLine="true"
         android:inputType="number"
-        android:summary="Valeur : %s"/>
+        android:summary="Valeur : d%s"/>
 
     <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
-
 
 </PreferenceScreen>

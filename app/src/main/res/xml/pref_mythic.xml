@@ -14,7 +14,12 @@
         android:title="Grade"
         android:summary="Grade du personnage mythique"
         />
-
+    <PreferenceScreen
+        android:key="spend_myth_point"
+        android:icon="@drawable/ic_exposure_neg_1_black_24dp"
+        android:title="Dépense hors attaque"
+        android:summary="Dépenser un point mythique"
+        />
 
 
 

@@ -19,6 +19,33 @@
             android:key="composite_switch"
             android:summary="@string/composite_summ"
             android:title="@string/composite" />
+        <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+
+        <PreferenceCategory android:title="Objet légendaire"/>
+        <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+
+        <stellarnear.wedge_dealer.EditTextPreference
+            android:defaultValue="@integer/legendary_points_def"
+            android:key="legendary_points"
+            android:selectable="false"
+            android:title="Points légendaires"
+            android:singleLine="true"
+            android:inputType="number"
+            android:summary="Valeur : %s"/>
+
+        <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+
+        <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+        <stellarnear.wedge_dealer.EditTextPreference
+            android:defaultValue="@integer/legendary_dice_def"
+            android:key="legendary_dice"
+            android:selectable="false"
+            android:title="Dès de montée en puissance"
+            android:singleLine="true"
+            android:inputType="number"
+            android:summary="Valeur : d%s"/>
+
+        <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
 
 
 

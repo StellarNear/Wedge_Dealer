@@ -31,9 +31,12 @@ public class AllResources {
     }
 
     private void buildResourcesList() {
-        Resource res = new Resource("Points mythiques","mythic_points",mC); //wedge n'a qu'une ressource
-        listResources.add(res);
-        mapIDRes.put(res.getId(), res);
+        Resource resMyth = new Resource("Points mythiques","mythic_points",mC);
+        listResources.add(resMyth);
+        mapIDRes.put(resMyth.getId(), resMyth);
+        Resource resLeg = new Resource("Points légendaire (Heimdall)","legendary_points",mC);
+        listResources.add(resLeg);
+        mapIDRes.put(resLeg.getId(), resLeg);
     }
 
     public List<Resource> getResourcesList() {
@@ -56,7 +59,8 @@ public class AllResources {
 
     public void refreshMaxs() {
         //partie from setting
-        getResource("mythic_points").setMax(readResource("mythic_points_per_day"));
+        getResource("mythic_points").setMax(3+2*readResource("mythic_tier"));
+        getResource("legendary_points").setMax(readResource("legendary_points"));
     }
 
     private void loadCurrent() {
