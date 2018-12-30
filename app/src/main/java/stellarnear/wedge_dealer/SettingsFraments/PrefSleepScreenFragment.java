@@ -61,6 +61,7 @@ public class PrefSleepScreenFragment {
         h.postDelayed(new Runnable() {
             @Override
             public void run() {
+                wedge.getAllResources().refreshMaxs();
                 wedge.getAllResources().sleepReset();
                 resetTemp();
                 tools.customToast(mC, "Une nouvelle journée pleine de coups critiques t'attends.", "center");
