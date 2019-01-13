@@ -49,10 +49,10 @@ public class RollFactory {
             }
             for (Integer atk : allAtks) {
                 Roll roll = new Roll(mA, mC, atk);
-                if (settings.getBoolean("tir_rapide", mC.getResources().getBoolean(R.bool.tir_rapide_switch_def))) {
-                    roll.getAtkRoll().setMode(this.mode);
-                }
                 this.rollList.add(roll);
+            }
+            for (Roll roll : this.rollList.getList()){
+                roll.getAtkRoll().setMode(this.mode);
             }
         } else {
             Roll roll = new Roll(mA, mC, allAtks.get(0));

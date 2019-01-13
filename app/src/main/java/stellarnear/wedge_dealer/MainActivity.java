@@ -114,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
                     mode = "barrage_shot";
                     hideButtons(2);
                     wedge.getAllResources().getResource("mythic_points").spend(1);
+                    tools.customToast(mC,"Il te reste "+wedge.getResourceValue("mythic_points")+" points mythiques","center");
                     startPreRand();
                 } else { tools.customToast(mC,"Tu n'as pas assez de points mythiques","center"); }
             }
