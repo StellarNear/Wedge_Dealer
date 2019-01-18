@@ -72,7 +72,7 @@ public class AtkRoll {
             bonusAtk+= 3;
         }
         if (settings.getBoolean("isillirit_switch", mC.getResources().getBoolean(R.bool.isillirit_switch_def))) {
-            bonusAtk+= 1;
+            bonusAtk+= 2;
         }
         if (settings.getBoolean("predil_switch", mC.getResources().getBoolean(R.bool.predil_switch_def))) {
             bonusAtk+= 1;

@@ -3,8 +3,8 @@
     <integer name="custom_alert_long_duration_DEF">10000</integer>
     <integer name="percent_fullscreen_combat_launcher_dialog">95</integer>
 
-    <integer name="ability_lvl_def">25</integer>
-    <integer name="current_xp_def">15913888</integer>
+    <integer name="ability_lvl_def">26</integer>
+    <integer name="current_xp_def">19816032</integer>
     <integer name="add_current_xp_def">0</integer>
 
     <integer name="add_gold_def">0</integer>
@@ -15,10 +15,10 @@
 
 
     <integer name="multi_value_def">3</integer>
-    <integer name="viser_val_def">4</integer>
+    <integer name="viser_val_def">5</integer>
     <integer name="magic_val_def">6</integer>
-    <integer name="mod_dex_def">12</integer>
-    <integer name="epic_val_def">1</integer>
+    <integer name="mod_dex_def">11</integer>
+    <integer name="epic_val_def">2</integer>
     <integer name="epic_dmg_val_def">0</integer>
     <integer name="prouesse_def">0</integer>
     <integer name="prouesse_attrib_def">4</integer>
