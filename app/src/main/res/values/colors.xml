@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#003A17</color>
     <color name="colorAccent">#FF4081</color>
     <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
 
     <color name="end_gradient_button_ok">@color/colorPrimaryDark</color>
     <color name="start_gradient_button_ok">@color/colorPrimary</color>

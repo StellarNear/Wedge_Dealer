@@ -15,7 +15,9 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import stellarnear.wedge_dealer.Perso.Perso;
 import stellarnear.wedge_dealer.Rolls.Roll;
@@ -126,6 +128,9 @@ public class MainActivity extends AppCompatActivity {
         setListenerFabDmg();
         fabDmgDet = (FloatingActionButton) findViewById(R.id.fab_damage_detail);
         setListenerFabDmgDet();
+
+        ((TextView) findViewById(R.id.leg_pts_txt)).setText(String.valueOf(wedge.getResourceValue("legendary_points")));
+        ((TextView) findViewById(R.id.mythic_pts_txt)).setText(String.valueOf(wedge.getResourceValue("mythic_points")));
     }
 
     private void setListenerFabAtk() {
@@ -197,6 +202,11 @@ public class MainActivity extends AppCompatActivity {
     private void hideButtons(int buttonClicked) {
         simpleAtk.setOnClickListener(null);
         barrageShot.setOnClickListener(null);
+        FrameLayout frame = findViewById(R.id.leg_pts);
+        frame.animate().translationXBy(200).setDuration(1000).start();
+        FrameLayout frame2 = findViewById(R.id.mythic_pts);
+        frame2.animate().translationXBy(-200).setDuration(1000).start();
+
         switch (buttonClicked){
             case 0:
                 simpleAtk.animate().translationXBy(-200).setDuration(1000).start();
