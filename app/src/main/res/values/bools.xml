@@ -20,16 +20,21 @@
     <bool name="neuf_m_switch_def">true</bool>
     <bool name="tir_rapide_switch_def">true</bool>
     <bool name="viser_switch_def">true</bool>
-    <bool name="feu_nourri_switch_def">true</bool>
     <bool name="improved_crit_switch_def">true</bool>
+
+    <!-- Dons epic -->
+    <bool name="feu_nourri_switch_def">true</bool>
+    <bool name="predil_epic_switch_def">true</bool>
+    <bool name="weapon_spe_epic_switch_def">true</bool>
 
     <!-- Autre -->
     <bool name="switch_autoclose_dialog_DEF">true</bool>
 
     <!-- Mythic -->
-    <bool name="predil_epic_switch_def">true</bool>
+
     <bool name="chance_switch_def">true</bool>
     <bool name="crit_science_myth_switch_def">true</bool>
     <bool name="barrage_shot_switch_def">true</bool>
+
 
 </resources>

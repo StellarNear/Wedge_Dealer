@@ -20,7 +20,6 @@
         android:key="weapon_spe_sup_switch"
         android:summary="@string/weapon_spe_sup_summ"
         android:title="@string/weapon_spe_sup" />
-
     <SwitchPreference
         android:defaultValue="@bool/improved_crit_switch_def"
         android:key="improved_crit_switch"
@@ -75,5 +74,12 @@
             android:key="predil_epic_switch"
             android:summary="@string/predil_epic_summ"
             android:title="@string/predil_epic" />
+
+        <SwitchPreference
+            android:defaultValue="@bool/weapon_spe_epic_switch_def"
+            android:key="weapon_spe_epic_switch"
+            android:summary="@string/weapon_spe_epic_summ"
+            android:title="@string/weapon_spe_epic" />
+
         </PreferenceCategory>
 </PreferenceScreen>

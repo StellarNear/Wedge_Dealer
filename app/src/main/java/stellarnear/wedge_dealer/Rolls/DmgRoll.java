@@ -95,7 +95,7 @@ public class DmgRoll {
         }
     }
 
-    private int getBonusDmg() {
+    public int getBonusDmg() {
         int calcBonusDmg = 0;
         if (settings.getBoolean("viser", mC.getResources().getBoolean(R.bool.viser_switch_def))) {
             calcBonusDmg += 2 * tools.toInt(settings.getString("viser_val", String.valueOf(mC.getResources().getInteger(R.integer.viser_val_def))));
@@ -112,11 +112,14 @@ public class DmgRoll {
         if (settings.getBoolean("composite_switch", mC.getResources().getBoolean(R.bool.composite_switch_def))) {
             calcBonusDmg += 4;
         }
-        if (settings.getBoolean("weapon_spe_switch", mC.getResources().getBoolean(R.bool.composite_switch_def))) {
+        if (settings.getBoolean("weapon_spe_switch", mC.getResources().getBoolean(R.bool.weapon_spe_switch_def))) {
             calcBonusDmg += 2;
         }
-        if (settings.getBoolean("weapon_spe_sup_switch", mC.getResources().getBoolean(R.bool.composite_switch_def))) {
+        if (settings.getBoolean("weapon_spe_sup_switch", mC.getResources().getBoolean(R.bool.weapon_spe_sup_switch_def))) {
             calcBonusDmg += 2;
+        }
+        if (settings.getBoolean("weapon_spe_epic_switch", mC.getResources().getBoolean(R.bool.weapon_spe_epic_switch_def))) {
+            calcBonusDmg += 4;
         }
 
         calcBonusDmg += tools.toInt(settings.getString("epic_dmg_val", String.valueOf(mC.getResources().getInteger(R.integer.epic_dmg_val_def))));

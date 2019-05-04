@@ -2,9 +2,12 @@ package stellarnear.wedge_dealer;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import stellarnear.wedge_dealer.Rolls.Dices.Dice;
 import stellarnear.wedge_dealer.Rolls.DmgRoll;
@@ -41,6 +44,20 @@ class DisplayRolls {
             for (DmgRoll dmgRoll : roll.getDmgRollList()){
                 LinearLayout line = new LinearLayout(mC);
                 line.setOrientation(LinearLayout.HORIZONTAL);
+                line.setGravity(Gravity.CENTER_VERTICAL);
+
+                TextView flatDamage = new TextView(mC);
+                flatDamage.setTextSize(20);
+                flatDamage.setTextColor(Color.DKGRAY);
+                flatDamage.setText(String.valueOf(dmgRoll.getBonusDmg()));
+                line.addView(flatDamage);
+
+                TextView plus = new TextView(mC);
+                plus.setTextSize(16);
+                plus.setTextColor(Color.DKGRAY);
+                plus.setText("+");
+                line.addView(plus);
+
                 for (Dice dice : dmgRoll.getDmgDiceList().getList()){
                     line.addView(dice.getImg());
                 }

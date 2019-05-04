@@ -63,6 +63,9 @@
     <string name="feu_nourri_summ">x flêches par attaque (une seule crit).</string>
     <string name="multi_value">Nombre de flêches par attaque</string>
 
+    <string name="weapon_spe_epic_summ">Le personnage obtient un bonus de +4 sur les jets de dégâts de l’arme choisie.</string>
+    <string name="weapon_spe_epic">Spécialisation martiale épique</string>
+
     <!-- Mythic -->
     <string name="chance">Il y a toujours une chance</string>
     <string name="chance_summ">Le personnage ne rate plus automatiquement lorsqu’il obtient un 1 aux jets d’attaque.</string>
@@ -91,6 +94,7 @@
     <string name="pref_header_temp">Augmentations temporaires</string>
     <string name="att_buff">Augmentation d\'attaque</string>
     <string name="dmg_buff">Augmentation de dégât</string>
+
 
 
     <!-- autre -->
