@@ -63,6 +63,7 @@ public class PrefResetScreenFragment {
                 wedge.refresh();
                 wedge.getAllResources().sleepReset();
                 wedge.getInventory().resetInventory();
+                wedge.getStats().resetStats();
                 tools.customToast(mC, "Remise à zero des paramètres de l'application", "center");
                 Intent intent = new Intent(mA, MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);

@@ -17,6 +17,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import stellarnear.wedge_dealer.MainActivity;
+import stellarnear.wedge_dealer.Perso.Perso;
 import stellarnear.wedge_dealer.R;
 import stellarnear.wedge_dealer.Rolls.Roll;
 import stellarnear.wedge_dealer.Rolls.RollList;
@@ -29,6 +31,7 @@ public class Damages {
     private RollList selectedRolls;
     private List<String> elements;
     private Map<String, Integer> mapElemColor = new HashMap<>();
+    private Perso wedge= MainActivity.wedge;
 
     private Tools tools = new Tools();
 
@@ -82,6 +85,9 @@ public class Damages {
                 addElementDamage(elem);
             }
         }
+
+        //storing results
+        wedge.getStats().storeStatsFromRolls(selectedRolls);
 
         if (totalSum>0){
             showViews();
