@@ -1,6 +1,7 @@
 package stellarnear.wedge_dealer.Stats;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ public class Stat {
     private Integer nAtk=0;
     private Integer nCrit=0;
     private Integer nCritNat=0;
+    private Date date=null;
 
     public Stat(){
 
@@ -37,6 +39,7 @@ public class Stat {
             }
 
         }
+        this.date=new Date();
     }
 
     public Integer getnAtk() {
@@ -53,5 +56,9 @@ public class Stat {
 
     public Map<String, Integer> getElemSumDmg() {
         return elemSumDmg;
+    }
+
+    public Date getDate() {
+        return date;
     }
 }

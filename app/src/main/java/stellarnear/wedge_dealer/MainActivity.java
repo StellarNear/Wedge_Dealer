@@ -18,7 +18,6 @@ import android.view.animation.AlphaAnimation;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
 import stellarnear.wedge_dealer.Perso.Perso;
 import stellarnear.wedge_dealer.Rolls.Roll;
 import stellarnear.wedge_dealer.Rolls.RollFactory;
@@ -305,6 +304,7 @@ public class MainActivity extends AppCompatActivity {
                 displayRolls.showPopup();
             }
         });
+
     }
 
     @Override
