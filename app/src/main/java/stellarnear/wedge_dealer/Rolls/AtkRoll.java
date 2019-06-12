@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
@@ -21,6 +22,7 @@ public class AtkRoll {
 
     private String mode; //le type d'attauqe fullround,barrrage,simple
 
+    private Boolean miss = false;
     private Boolean hitConfirmed = false;
     private Boolean crit = false;
     private Boolean critConfirmed = false;
@@ -53,6 +55,19 @@ public class AtkRoll {
                 }
             }
         });
+
+        hitCheckbox.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                miss=true;
+                hitCheckbox.setChecked(false);
+                critCheckbox.setChecked(false);
+                hitCheckbox.setEnabled(false);
+                critCheckbox.setEnabled(false);
+                return false;
+            }
+        });
+
         critCheckbox = new CheckBox(mC);
         critCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -181,6 +196,10 @@ public class AtkRoll {
         hitCheckbox.setEnabled(false);
         critCheckbox.setEnabled(false);
         atkDice.delt();
+    }
+
+    public boolean isMissed(){
+        return this.miss;
     }
 
     public boolean isHitConfirmed() {

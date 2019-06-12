@@ -290,7 +290,7 @@ public class MainActivity extends AppCompatActivity {
     private void checkSelectedRolls() {
         selectedRolls = new RollList();
         for (Roll roll : rollList.getList()) {
-            if (!roll.isHitConfirmed() || roll.isInvalid()) {
+            if (roll.isInvalid() || (!roll.isHitConfirmed() && !roll.isMissed() )) {
                 continue;
             }
             selectedRolls.add(roll);

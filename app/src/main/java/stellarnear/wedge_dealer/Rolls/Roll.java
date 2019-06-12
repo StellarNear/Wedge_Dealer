@@ -20,6 +20,8 @@ public class Roll {
     private Context mC;
     private SharedPreferences settings;
     private Tools tools=new Tools();
+    private int nthRoll;
+
     public Roll(Activity mA, Context mC, Integer atkBase) {
         this.mA=mA;
         this.mC=mC;
@@ -33,7 +35,7 @@ public class Roll {
     }
 
     public void setDmgRand() {
-        if (this.dmgRollList.isEmpty()){
+        if (this.dmgRollList.isEmpty() && !isMissed()){
             this.dmgRollList.add(new DmgRoll(mA,mC,atkRoll.isCritConfirmed(),atkRoll.getAtkDice().getRandValue()==20));
             if (settings.getBoolean("feu_nourri_switch", mC.getResources().getBoolean(R.bool.feu_nourri_switch_def))) {
                 int multiVal = tools.toInt(settings.getString("multi_val", String.valueOf(mC.getResources().getInteger(R.integer.multi_value_def))));
@@ -140,8 +142,20 @@ public class Roll {
         for(DmgRoll dmgRoll:this.dmgRollList){
             sum+=dmgRoll.getMinDmg(element);
         }
+
         return sum;
     }
 
 
+    public void setNthRoll(int nthRoll) {
+        this.nthRoll = nthRoll;
+    }
+
+    public int getNthRoll() {
+        return nthRoll;
+    }
+
+    public boolean isMissed() {
+        return atkRoll.isMissed();
+    }
 }
