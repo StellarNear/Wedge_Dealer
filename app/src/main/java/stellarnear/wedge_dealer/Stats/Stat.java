@@ -56,4 +56,12 @@ public class Stat {
     public Date getDate() {
         return date;
     }
+
+    public List<Integer> getNthAtksHit() {
+        return nthAtksHit;
+    }
+
+    public List<Integer> getNthAtksMiss() {
+        return nthAtksMiss;
+    }
 }

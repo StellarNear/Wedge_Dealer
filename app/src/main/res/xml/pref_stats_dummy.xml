@@ -1,0 +1,10 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <stellarnear.wedge_dealer.StatsDummy
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+
+</PreferenceScreen>

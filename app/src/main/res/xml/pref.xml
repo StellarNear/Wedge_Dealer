@@ -40,15 +40,11 @@
 
     <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
 
-    <stellarnear.wedge_dealer.EditTextPreference
+    <PreferenceScreen
         android:icon="@drawable/ic_trophy_cup"
-        android:defaultValue="0"
-        android:key="highscore"
+        android:key="pref_stats_dummy"
         android:title="Record actuel"
-        android:selectAllOnFocus="false"
-        android:selectable="false"
-        android:singleLine="true"
-        android:summary="Valeur : %s"/>
+        android:summary="Valeur "/>
 
     <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
 
