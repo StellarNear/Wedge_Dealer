@@ -42,9 +42,9 @@
 
     <PreferenceScreen
         android:icon="@drawable/ic_trophy_cup"
-        android:key="pref_stats_dummy"
-        android:title="Record actuel"
-        android:summary="Valeur "/>
+        android:key="display_stats"
+        android:title="Statistiques"
+        android:summary="Record actuel : XXXX"/>
 
     <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
 

@@ -4,7 +4,7 @@
     <integer name="percent_fullscreen_combat_launcher_dialog">95</integer>
 
     <integer name="ability_lvl_def">27</integer>
-    <integer name="current_xp_def">27948080</integer>
+    <integer name="current_xp_def">29874952</integer>
     <integer name="add_current_xp_def">0</integer>
 
     <integer name="add_gold_def">0</integer>

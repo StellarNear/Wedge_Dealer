@@ -14,8 +14,8 @@ public class Stat {
     private Map<String,Integer> elemSumDmg=new HashMap<>();
     private List<Integer> nthAtksHit =new ArrayList<>();
     private List<Integer> nthAtksMiss =new ArrayList<>();
-    private Integer nCrit=0;
-    private Integer nCritNat=0;
+    private List<Integer> nthAtksCrit =new ArrayList<>();
+    private List<Integer> nthAtksCritNat =new ArrayList<>();
     private Date date=null;
 
     public Stat(){  }
@@ -27,9 +27,9 @@ public class Stat {
         }
         for (Roll roll:rolls.getList()){
             if(roll.isCritConfirmed()){
-                nCrit++;
+                nthAtksCrit.add(roll.getNthRoll());
                 if(roll.getAtkRoll().getAtkDice().getRandValue()==20){
-                    nCritNat++;
+                    nthAtksCritNat.add(roll.getNthRoll());
                 }
             }
             if( roll.isHitConfirmed()){
@@ -41,12 +41,12 @@ public class Stat {
         this.date=new Date();
     }
 
-    public Integer getnCrit() {
-        return nCrit;
+    public Integer getNCrit() {
+        return nthAtksCrit.size();
     }
 
-    public Integer getnCritNat() {
-        return nCritNat;
+    public Integer getNCritNat() {
+        return nthAtksCritNat.size();
     }
 
     public Map<String, Integer> getElemSumDmg() {
@@ -57,11 +57,23 @@ public class Stat {
         return date;
     }
 
-    public List<Integer> getNthAtksHit() {
+    public List<Integer> getListNthAtksHit() {
         return nthAtksHit;
     }
 
-    public List<Integer> getNthAtksMiss() {
+    public List<Integer> getListNthAtksMiss() {
         return nthAtksMiss;
+    }
+
+    public Integer getNAtksTot() {
+        return nthAtksMiss.size()+nthAtksHit.size();
+    }
+
+    public List<Integer> getListNthAtksCrit() {
+        return nthAtksCrit;
+    }
+
+    public List<Integer> getListNthAtksCritNat() {
+        return nthAtksCritNat;
     }
 }

@@ -58,4 +58,92 @@ public class Stats {
         this.listStats=new ArrayList<>();
         saveLocalStats();
     }
+
+    public Integer getNAtksTot() {
+        int tot=0;
+        for (Stat stat : listStats){
+            tot+=stat.getNAtksTot();
+        }
+        return tot;
+    }
+
+    public int getNAtksHit() {
+        int tot=0;
+        for (Stat stat : listStats){
+            tot+=stat.getListNthAtksHit().size();
+        }
+        return tot;
+    }
+
+    public int getNAtksMiss() {
+        int tot=0;
+        for (Stat stat : listStats){
+            tot+=stat.getListNthAtksMiss().size();
+        }
+        return tot;
+    }
+
+    public int getNAtksHitNthAtk(int nthAtkSelectedForPieChart) {
+        int tot=0;
+        for (Stat stat : listStats){
+            for (int nthAtk : stat.getListNthAtksHit()){
+                if(nthAtk==nthAtkSelectedForPieChart){
+                    tot++;
+                }
+            }
+        }
+        return tot;
+    }
+
+    public int getNAtksMissNthAtk(int nthAtkSelectedForPieChart) {
+        int tot=0;
+        for (Stat stat : listStats){
+            for (int nthAtk : stat.getListNthAtksMiss()){
+                if(nthAtk==nthAtkSelectedForPieChart){
+                    tot++;
+                }
+            }
+        }
+        return tot;
+    }
+
+    public int getNCrit() {
+        int tot=0;
+        for (Stat stat : listStats){
+            tot+=stat.getNCrit();
+        }
+        return tot;
+    }
+
+    public int getNCritNat() {
+        int tot=0;
+        for (Stat stat : listStats){
+            tot+=stat.getNCritNat();
+        }
+        return tot;
+    }
+
+    public int getNCritNth(int nthAtkSelectedForPieChart) {
+        int tot=0;
+        for (Stat stat : listStats){
+            for (int nthAtk : stat.getListNthAtksCrit()){
+                if(nthAtk==nthAtkSelectedForPieChart){
+                    tot++;
+                }
+            }
+        }
+        return tot;
+    }
+
+    public int getNCritNatNth(int nthAtkSelectedForPieChart) {
+        int tot=0;
+        for (Stat stat : listStats){
+            for (int nthAtk : stat.getListNthAtksCritNat()){
+                if(nthAtk==nthAtkSelectedForPieChart){
+                    tot++;
+                }
+            }
+        }
+        return tot;
+    }
 }

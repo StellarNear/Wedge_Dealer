@@ -21,6 +21,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import stellarnear.wedge_dealer.Perso.Perso;
+import stellarnear.wedge_dealer.SettingsFraments.DisplayStatsScreenFragment;
 import stellarnear.wedge_dealer.SettingsFraments.PrefAllInventoryFragment;
 import stellarnear.wedge_dealer.SettingsFraments.PrefResetScreenFragment;
 import stellarnear.wedge_dealer.SettingsFraments.PrefSleepScreenFragment;
@@ -50,6 +51,7 @@ public class SettingsFragment extends PreferenceFragment {
         this.mA=getActivity();
         this.mC=getContext();
         addPreferencesFromResource(R.xml.pref);
+        findPreference("display_stats").setSummary("Record actuel : "+settings.getString("highscore", "0"));
         this.histoPrefKeys.add("pref");
         this.histoTitle.add(getResources().getString(R.string.action_settings));
         this.prefAllInventoryFragment =new PrefAllInventoryFragment(mA,mC);
@@ -96,7 +98,6 @@ public class SettingsFragment extends PreferenceFragment {
         } else {
             action(preference);
         }
-
         /*
         // Top level PreferenceScreen
         if (key.equals("top_key_0")) {         changePrefScreen(R.xml.pref_general, preference.getTitle().toString()); // descend into second level    }
@@ -111,6 +112,7 @@ public class SettingsFragment extends PreferenceFragment {
             getPreferenceScreen().removeAll();
             addPreferencesFromResource(R.xml.pref);
             ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(currentPageTitle);
+            findPreference("pref_stats").setSummary("Record actuel : "+settings.getString("highscore", "0"));
         } else if (currentPageKey.contains("pref_")) {
             loadPage();
             switch (currentPageKey) {
@@ -219,6 +221,11 @@ public class SettingsFragment extends PreferenceFragment {
                 } else {
                     tools.customToast(mC,"Tu n'as plus de point mythique","center");
                 }
+                break;
+            case "display_stats":
+                ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(preference.getTitle().toString());
+                ((ContentFrameLayout) getActivity().findViewById(android.R.id.content)).removeAllViews();
+                new DisplayStatsScreenFragment(mA,mC).addStatsScreen();
                 break;
         }
     }
