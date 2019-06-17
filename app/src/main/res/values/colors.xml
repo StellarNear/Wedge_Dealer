@@ -38,4 +38,7 @@
     <color name="hit_stat">#66ccff</color>
     <color name="crit_stat">#00e600</color>
     <color name="crit_nat_stat">#009900</color>
+
+    <color name="dmg_stat">#66ccff</color>
+    <color name="recent_stat">#00cc99</color>
 </resources>

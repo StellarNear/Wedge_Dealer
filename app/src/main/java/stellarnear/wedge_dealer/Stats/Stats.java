@@ -59,6 +59,8 @@ public class Stats {
         saveLocalStats();
     }
 
+    //Atk part
+
     public Integer getNAtksTot() {
         int tot=0;
         for (Stat stat : listStats){
@@ -145,5 +147,65 @@ public class Stats {
             }
         }
         return tot;
+    }
+
+    // Dmg part
+
+    public int getNDmgTot() {
+        return listStats.size();
+    }
+
+    public int getMinDmgTot() {
+        int res=0;
+        for (Stat stat:listStats){
+            int sumDmg=stat.getSumDmg();
+            if(res==0 && sumDmg!=0 ){
+                res=sumDmg;
+            }
+            if (sumDmg!=0 && sumDmg<res){
+                res=sumDmg;
+            }
+        }
+        return res;
+    }
+
+    public int getMaxDmgTot() {
+        int res=0;
+        for (Stat stat:listStats){
+            int sumDmg=stat.getSumDmg();
+            if(res==0 && sumDmg!=0 ){
+                res=sumDmg;
+            }
+            if (sumDmg!=0 && sumDmg>res){
+                res=sumDmg;
+            }
+        }
+        return res;
+    }
+
+    public int getMinDmgElem(String elem) {
+        int res=0;
+        for (Stat stat:listStats){
+            if(res==0 && stat.getElemSumDmg().get(elem)!=null ){
+                res=stat.getElemSumDmg().get(elem);
+            }
+            if (stat.getElemSumDmg().get(elem)!=null && stat.getElemSumDmg().get(elem)<res){
+                res=stat.getElemSumDmg().get(elem);
+            }
+        }
+        return res;
+    }
+
+    public int getMaxDmgElem(String elem) {
+        int res=0;
+        for (Stat stat:listStats){
+            if(res==0 && stat.getElemSumDmg().get(elem)!=null ){
+                res=stat.getElemSumDmg().get(elem);
+            }
+            if (stat.getElemSumDmg().get(elem)!=null && stat.getElemSumDmg().get(elem)>res){
+                res=stat.getElemSumDmg().get(elem);
+            }
+        }
+        return res;
     }
 }

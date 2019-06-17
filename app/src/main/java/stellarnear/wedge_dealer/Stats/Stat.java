@@ -53,6 +53,15 @@ public class Stat {
         return elemSumDmg;
     }
 
+    public int getSumDmg() {
+        int sum=0;
+        List<String> elems = Arrays.asList("", "fire", "shock", "frost");
+        for (String elem : elems){
+            sum+=elemSumDmg.get(elem);
+        }
+        return sum;
+    }
+
     public Date getDate() {
         return date;
     }
@@ -76,4 +85,6 @@ public class Stat {
     public List<Integer> getListNthAtksCritNat() {
         return nthAtksCritNat;
     }
+
+
 }

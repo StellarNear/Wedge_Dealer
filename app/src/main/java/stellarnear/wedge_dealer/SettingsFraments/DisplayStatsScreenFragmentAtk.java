@@ -1,14 +1,9 @@
 package stellarnear.wedge_dealer.SettingsFraments;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
-import android.support.design.widget.FloatingActionButton;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.ViewSwitcher;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
@@ -36,7 +31,6 @@ import stellarnear.wedge_dealer.MainActivity;
 import stellarnear.wedge_dealer.Perso.Perso;
 import stellarnear.wedge_dealer.R;
 import stellarnear.wedge_dealer.Stats.Stat;
-import stellarnear.wedge_dealer.Tools;
 
 public class DisplayStatsScreenFragmentAtk {
     private Perso wedge= MainActivity.wedge;
@@ -52,16 +46,22 @@ public class DisplayStatsScreenFragmentAtk {
     public DisplayStatsScreenFragmentAtk(View mainView,Context mC) {
         this.mainView=mainView;
         this.mC=mC;
+
+        TextView nAtkTxt = mainView.findViewById(R.id.nAtkTxt);
+        nAtkTxt.setText(wedge.getStats().getNAtksTot()+ " attaques");
+
         buildChart();
         buildPieChart();
         buildPieChartCrit();
     }
 
     private void buildChart() {
-        chart = mainView.findViewById(R.id.bar_chart);
+        chart = mainView.findViewById(R.id.bar_chart_atk);
         chart.getDescription().setEnabled(false);
         chart.setDrawGridBackground(false);
         chart.setDrawBarShadow(false);
+        chart.setPinchZoom(false);
+        chart.setScaleEnabled(false);
         chart.getLegend().setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
         chart.getLegend().setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
         chart.getAxisLeft().setDrawGridLines(false);
@@ -83,6 +83,7 @@ public class DisplayStatsScreenFragmentAtk {
         xAxis.setGranularityEnabled(true);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
 
+        chart.animateXY(500, 1000);
         chart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
@@ -148,7 +149,7 @@ public class DisplayStatsScreenFragmentAtk {
 
 
     private void buildPieChart() {
-        pieChart = mainView.findViewById(R.id.pie_chart);
+        pieChart = mainView.findViewById(R.id.pie_chart_atk_hit);
         pieChart.setUsePercentValues(true);
         pieChart.getDescription().setEnabled(false);
         pieChart.getLegend().setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
@@ -157,6 +158,7 @@ public class DisplayStatsScreenFragmentAtk {
         data.setValueFormatter(new PercentFormatter(pieChart));
         pieChart.setData(data);
         pieChart.getLegend().setEnabled(false);
+        pieChart.animateXY(100,1000);
         pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
@@ -200,7 +202,7 @@ public class DisplayStatsScreenFragmentAtk {
     }
 
     private void buildPieChartCrit() {
-        pieChartCrit = mainView.findViewById(R.id.pie_chart_crit);
+        pieChartCrit = mainView.findViewById(R.id.pie_chart_atk_crit);
         pieChartCrit.setUsePercentValues(true);
         pieChartCrit.getDescription().setEnabled(false);
         pieChartCrit.getLegend().setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
@@ -211,6 +213,7 @@ public class DisplayStatsScreenFragmentAtk {
         pieChartCrit.setEntryLabelColor(Color.BLACK);
         pieChartCrit.setData(data);
         pieChartCrit.getLegend().setEnabled(false);
+        pieChartCrit.animateXY(100,1000);
         pieChartCrit.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
