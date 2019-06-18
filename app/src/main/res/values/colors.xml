@@ -39,6 +39,13 @@
     <color name="crit_stat">#00e600</color>
     <color name="crit_nat_stat">#009900</color>
 
-    <color name="dmg_stat">#66ccff</color>
-    <color name="recent_stat">#00cc99</color>
+    <color name="dmg_stat">#13823E</color>
+    <color name="recent_stat">#003A17</color>
+
+    <color name="recent_phy">#1a1a1a</color>
+    <color name="recent_fire">#cc0000</color>
+    <color name="recent_shock">#008599</color>
+    <color name="recent_frost">#001a66</color>
+
+
 </resources>
