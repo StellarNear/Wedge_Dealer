@@ -169,6 +169,17 @@ public class StatsList {
         return res;
     }
 
+    public int getMoyDmgElem(String elem) {
+        int res=0;
+        for (Stat stat:listStats){
+            res+=stat.getElemSumDmg().get(elem);
+        }
+        if(listStats.size()>=1){
+            res=(int)(res/listStats.size());
+        } else { res=0; }
+        return res;
+    }
+
     public int getMaxDmgElem(String elem) {
         int res=0;
         for (Stat stat:listStats){
@@ -198,4 +209,12 @@ public class StatsList {
         return res;
     }
 
+
+    public Stat getLastStat() {
+        Stat res=null;
+        if (listStats.size()>1){
+            res=listStats.get(listStats.size()-1);
+        }
+        return res;
+    }
 }

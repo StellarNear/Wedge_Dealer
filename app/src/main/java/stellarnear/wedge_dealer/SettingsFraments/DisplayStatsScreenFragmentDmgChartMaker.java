@@ -34,6 +34,7 @@ import stellarnear.wedge_dealer.MainActivity;
 import stellarnear.wedge_dealer.Perso.Perso;
 import stellarnear.wedge_dealer.R;
 import stellarnear.wedge_dealer.Stats.Stat;
+import stellarnear.wedge_dealer.Stats.StatsList;
 import stellarnear.wedge_dealer.Tools;
 
 public class DisplayStatsScreenFragmentDmgChartMaker {
@@ -48,7 +49,7 @@ public class DisplayStatsScreenFragmentDmgChartMaker {
     private Map<String,CheckBox> mapElemCheckbox=new HashMap<>();
     private List<String> elemsSelected;
     private Boolean barGroupMode=false;
-    private Map<Integer,List<Stat>> mapIStepSelectedListStat=new HashMap<>();
+    private Map<Integer, StatsList> mapIStepSelectedListStat=new HashMap<>();
     private ArrayList<String> listLabels;
     private int infoTxtSize = 12;
 
@@ -84,12 +85,17 @@ public class DisplayStatsScreenFragmentDmgChartMaker {
     public void buildChart() {
         calculateElemToShow();
         calculateMinMaxRound();
-
         addDataChart();
-
         computeBarDataSetLabel();
         formatAxisChart();
-        addLimitsChart();
+        if(wedge.getStats().getStatsList().size()>=1)addLimitsChart();
+        Handler h = new Handler();
+        h.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                adjustScreen();
+            }
+        }, 50);
     }
 
     private void calculateElemToShow() {
@@ -100,6 +106,7 @@ public class DisplayStatsScreenFragmentDmgChartMaker {
             }
         }
         barGroupMode=(elemsSelected.size()>1 && elemsSelected.size()!=4);
+        if(barGroupMode){chart.setFocusable(false);}else{chart.setFocusable(true);}
     }
 
     private void calculateMinMaxRound() {
@@ -176,7 +183,7 @@ public class DisplayStatsScreenFragmentDmgChartMaker {
             }
             int iStep = (int)((sumDmg - minRound) / sizeStep);
             if(mapIStepSelectedListStat.get(iStep)==null){
-                mapIStepSelectedListStat.put(iStep,new ArrayList<Stat>());
+                mapIStepSelectedListStat.put(iStep,new StatsList());
             }
             mapIStepSelectedListStat.get(iStep).add(stat);
             if (histo.get(iStep) == null) {
@@ -255,15 +262,14 @@ public class DisplayStatsScreenFragmentDmgChartMaker {
     }
 
     private void addLimitLine(String elem) {
-
         XAxis leftAxis = chart.getXAxis();
         int sumDmg = 0;
         String label="récent";
         if(barGroupMode){label="";}
         if(elem.equalsIgnoreCase("all")){
-            sumDmg = wedge.getStats().getStatsList().asList().get(wedge.getStats().getStatsList().asList().size()-1).getSumDmg();
+            sumDmg = wedge.getStats().getStatsList().getLastStat().getSumDmg();
         } else {
-            sumDmg = wedge.getStats().getStatsList().asList().get(wedge.getStats().getStatsList().asList().size()-1).getElemSumDmg().get(elem);
+            sumDmg = wedge.getStats().getStatsList().getLastStat().getElemSumDmg().get(elem);
         }
 
         int lineColor;
@@ -328,13 +334,18 @@ public class DisplayStatsScreenFragmentDmgChartMaker {
         return chart;
     }
 
-    public void adjustScreen() {
+    private void adjustScreen() {
         chart.fitScreen();
         chart.invalidate();
     }
 
-    public Map<Integer, List<Stat>> getMapIStepSelectedListStat() {
+    public Map<Integer, StatsList> getMapIStepSelectedListStat() {
         return mapIStepSelectedListStat;
     }
+
+    public List<String> getLabels() {
+        return listLabels;
+    }
+
 }
 

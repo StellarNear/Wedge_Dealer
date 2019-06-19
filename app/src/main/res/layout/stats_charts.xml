@@ -21,8 +21,15 @@
             android:id="@+id/first_panel"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
 
             <TextView
                 android:id="@+id/nAtkTxt"
@@ -51,6 +58,14 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
             </android.support.constraint.ConstraintLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
 
             <TextView
                 android:id="@+id/legend_bar_chart_atk"
@@ -101,12 +116,25 @@
             </android.support.constraint.ConstraintLayout>
         </LinearLayout>
 
+        </LinearLayout>
+
         <LinearLayout
             android:id="@+id/second_panel"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:clipChildren="false"
+            android:clipToPadding="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:clipChildren="false"
+            android:clipToPadding="false">
 
             <TextView
                 android:id="@+id/nDmgTxt"
@@ -120,7 +148,9 @@
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center">
+                android:gravity="center"
+                android:clipChildren="false"
+                android:clipToPadding="false">
 
                 <com.github.mikephil.charting.charts.BarChart
                     android:id="@+id/bar_chart_dmg"
@@ -145,65 +175,92 @@
                 android:textColor="@color/black"
                 android:textSize="14sp" />
 
-            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center"
-                android:layout_gravity="center_horizontal">
+                android:layout_gravity="center_horizontal"
+                android:clipChildren="false"
+                android:clipToPadding="false">
 
                 <FrameLayout
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:clipChildren="false"
+                    android:clipToPadding="false">
                     <CheckBox android:id="@+id/dmg_type_phy"
                         android:checked="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:buttonTint="@color/phy"
+                        android:clipChildren="false"
+                        android:clipToPadding="false"
                         />
                 </FrameLayout>
 
                 <FrameLayout
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:clipChildren="false"
+                    android:clipToPadding="false">
                     <CheckBox android:id="@+id/dmg_type_fire"
                         android:checked="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:buttonTint="@color/fire"
+                        android:clipChildren="false"
+                        android:clipToPadding="false"
                         />
                 </FrameLayout>
 
                 <FrameLayout
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:clipChildren="false"
+                    android:clipToPadding="false">
                     <CheckBox android:id="@+id/dmg_type_shock"
                         android:checked="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:buttonTint="@color/shock"
+                        android:clipChildren="false"
+                        android:clipToPadding="false"
                         />
                 </FrameLayout>
 
                 <FrameLayout
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:clipChildren="false"
+                    android:clipToPadding="false">
                     <CheckBox android:id="@+id/dmg_type_frost"
                         android:checked="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:buttonTint="@color/frost"
+                        android:clipChildren="false"
+                        android:clipToPadding="false"
                         />
                 </FrameLayout>
-            </RadioGroup>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
@@ -258,7 +315,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
-                                android:gravity="center"/>
+                                android:gravity="center"
+                                android:padding="@dimen/general_margin"
+                                android:layout_margin="@dimen/general_margin"
+                                android:background="@drawable/background_border_infos"/>
 
                             <com.github.mikephil.charting.charts.LineChart
                                 android:id="@+id/chart_dmg_sub_graph"
@@ -299,6 +359,8 @@
 
                 </android.support.constraint.ConstraintLayout>
             </android.support.constraint.ConstraintLayout>
+
+        </LinearLayout>
 
         </LinearLayout>
 

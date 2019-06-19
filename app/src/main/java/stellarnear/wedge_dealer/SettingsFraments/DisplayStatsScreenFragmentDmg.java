@@ -43,7 +43,7 @@ public class DisplayStatsScreenFragmentDmg {
     private View mainView;
     private List<String> listElems= Arrays.asList("","fire","shock","frost");
     private Map<String,CheckBox> mapElemCheckbox=new HashMap<>();
-    private List<Stat> selectedStats=new ArrayList<>();
+    private StatsList selectedStats=new StatsList();
     private int infoTxtSize = 12;
 
 
@@ -99,13 +99,6 @@ public class DisplayStatsScreenFragmentDmg {
             public void onClick(View view) {
                 chartMaker.resetChart();
                 chartMaker.buildChart();
-                Handler h = new Handler();
-                h.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        chartMaker.adjustScreen();
-                    }
-                }, 50);
             }
         });
     }
@@ -117,13 +110,18 @@ public class DisplayStatsScreenFragmentDmg {
                 resetPieChart();
                 selectedStats=chartMaker.getMapIStepSelectedListStat().get((int)e.getX());
                 buildPieChart();
+                subManager.setSubSelectionBracket(chartMaker.getLabels().get((int)e.getX()));
+                subManager.addInfos(selectedStats,null);
             }
 
             @Override
             public void onNothingSelected() {
-                resetPieChart();
-                //nthAtkSelectedForPieChart=0;
-                buildPieChart();
+                if(chartMaker.getChart().isFocusable()) {
+                    reset();
+                    resetPieChart();
+                    subManager.addInfos(null, null);
+                    buildPieChart();
+                }
             }
         });
     }
@@ -166,7 +164,7 @@ public class DisplayStatsScreenFragmentDmg {
 
         StatsList list;
         if(selectedStats!=null && selectedStats.size()!=0){
-            list= new StatsList(selectedStats);
+            list=selectedStats;
         } else {
             list=wedge.getStats().getStatsList();
         }
@@ -206,8 +204,6 @@ public class DisplayStatsScreenFragmentDmg {
         return dataset;
     }
 
-
-
     // Resets
 
     public void reset() {
@@ -223,7 +219,7 @@ public class DisplayStatsScreenFragmentDmg {
 
 
     private void resetPieChart() {
-        selectedStats=new ArrayList<>();
+        selectedStats=new StatsList();
         pieChart.invalidate();
         pieChart.setCenterText("");
         pieChart.highlightValue(null);
