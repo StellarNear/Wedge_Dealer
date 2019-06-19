@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,6 +18,7 @@ import com.github.mikephil.charting.charts.PieChart;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import stellarnear.wedge_dealer.MainActivity;
 import stellarnear.wedge_dealer.Perso.Perso;
@@ -35,7 +37,8 @@ public class DisplayStatsScreenFragmentDmgSubManager {
     private View mainView;
     private ViewSwitcher panel;
     private boolean page2=false;
-    private List<String> listElems=new ArrayList<>();
+    private List<String> listElems= Arrays.asList("","fire","shock","frost");
+    private Map<String, CheckBox> mapElemCheckbox;
     private StatsList selectedStats=new StatsList();
     private String selectedBracket;
     private boolean allStats;
@@ -45,8 +48,9 @@ public class DisplayStatsScreenFragmentDmgSubManager {
     private Tools tools=new Tools();
 
 
-    public DisplayStatsScreenFragmentDmgSubManager(View mainView, Context mC) {
+    public DisplayStatsScreenFragmentDmgSubManager(View mainView,Map<String,CheckBox> mapElemCheckbox, Context mC) {
         this.mainView = mainView;
+        this.mapElemCheckbox=mapElemCheckbox;
         this.mC = mC;
         initSubdetails();
     }
@@ -77,7 +81,7 @@ public class DisplayStatsScreenFragmentDmgSubManager {
             }
         });
 
-        addInfos(null,null);
+        addInfos(null);
         panel.animate().alpha(0).setStartDelay(0).setDuration(0).scaleX(0.5f).scaleY(0.5f).start();
         //175 ms de transition du panneau
         panel.animate().alpha(1).setStartDelay(175).scaleX(1f).scaleY(1f).setDuration(1000).setInterpolator(new DecelerateInterpolator()).start();
@@ -125,16 +129,11 @@ public class DisplayStatsScreenFragmentDmgSubManager {
         this.selectedBracket=s;
     }
 
-    public void addInfos(StatsList selectedStats,List<String> listElems){
+    public void addInfos(StatsList selectedStats){
         if(selectedStats==null){
             this.selectedStats=wedge.getStats().getStatsList();
             this.allStats=true;
         } else { this.selectedStats=selectedStats; this.allStats=false;}
-
-        if(listElems==null){
-            this.listElems= Arrays.asList("","fire","shock","frost");
-        } else { this.listElems=listElems; }
-
         addInfos();
     }
 
@@ -149,7 +148,6 @@ public class DisplayStatsScreenFragmentDmgSubManager {
 
         addInfosSelection(bloc1);
         if(allStats){addInfosRecent(bloc2);}else{addInfosDetails(bloc2);}
-
     }
 
     private void addInfosSelection(LinearLayout bloc1) {
@@ -176,32 +174,33 @@ public class DisplayStatsScreenFragmentDmgSubManager {
         TextView titleMax = createTextElement("max");
         lineMax.addView(titleMax);
 
-        for (String elem : listElems){
-
-            int colorInt=0;
-            switch (elem) {
-                case "":
-                    colorInt=mC.getColor(R.color.phy);
-                    break;
-                case "fire":
-                    colorInt=mC.getColor(R.color.fire);
-                    break;
-                case "shock":
-                    colorInt=mC.getColor(R.color.shock);
-                    break;
-                case "frost":
-                    colorInt=mC.getColor(R.color.frost);
-                    break;
+        for (String elem : listElems) {
+            if (mapElemCheckbox.get(elem).isChecked()) {
+                int colorInt = 0;
+                switch (elem) {
+                    case "":
+                        colorInt = mC.getColor(R.color.phy);
+                        break;
+                    case "fire":
+                        colorInt = mC.getColor(R.color.fire);
+                        break;
+                    case "shock":
+                        colorInt = mC.getColor(R.color.shock);
+                        break;
+                    case "frost":
+                        colorInt = mC.getColor(R.color.frost);
+                        break;
+                }
+                TextView telemMin = createTextElement(String.valueOf(selectedStats.getMinDmgElem(elem)));
+                telemMin.setTextColor(colorInt);
+                lineMin.addView(telemMin);
+                TextView telemMoy = createTextElement(String.valueOf(selectedStats.getMoyDmgElem(elem)));
+                telemMoy.setTextColor(colorInt);
+                lineMoy.addView(telemMoy);
+                TextView telemMax = createTextElement(String.valueOf(selectedStats.getMaxDmgElem(elem)));
+                telemMax.setTextColor(colorInt);
+                lineMax.addView(telemMax);
             }
-            TextView telemMin = createTextElement(String.valueOf(selectedStats.getMinDmgElem(elem)));
-            telemMin.setTextColor(colorInt);
-            lineMin.addView(telemMin);
-            TextView telemMoy = createTextElement(String.valueOf(selectedStats.getMoyDmgElem(elem)));
-            telemMoy.setTextColor(colorInt);
-            lineMoy.addView(telemMoy);
-            TextView telemMax = createTextElement(String.valueOf(selectedStats.getMaxDmgElem(elem)));
-            telemMax.setTextColor(colorInt);
-            lineMax.addView(telemMax);
         }
     }
 
@@ -223,28 +222,30 @@ public class DisplayStatsScreenFragmentDmgSubManager {
         TextView titlePercent = createTextElement(">=%");
         linePercent.addView(titlePercent);
 
-        for (String elem : listElems){
-            int colorInt=0;
-            switch (elem) {
-                case "":
-                    colorInt=mC.getColor(R.color.phy);
-                    break;
-                case "fire":
-                    colorInt=mC.getColor(R.color.fire);
-                    break;
-                case "shock":
-                    colorInt=mC.getColor(R.color.shock);
-                    break;
-                case "frost":
-                    colorInt=mC.getColor(R.color.frost);
-                    break;
+        for (String elem : listElems) {
+            if (mapElemCheckbox.get(elem).isChecked()) {
+                int colorInt = 0;
+                switch (elem) {
+                    case "":
+                        colorInt = mC.getColor(R.color.phy);
+                        break;
+                    case "fire":
+                        colorInt = mC.getColor(R.color.fire);
+                        break;
+                    case "shock":
+                        colorInt = mC.getColor(R.color.shock);
+                        break;
+                    case "frost":
+                        colorInt = mC.getColor(R.color.frost);
+                        break;
+                }
+                TextView telemScore = createTextElement(String.valueOf(selectedStats.getLastStat().getElemSumDmg().get(elem)));
+                telemScore.setTextColor(colorInt);
+                lineScore.addView(telemScore);
+                TextView telemPercent = createTextElement(calculateAbovePercentage(selectedStats, elem));
+                telemPercent.setTextColor(colorInt);
+                linePercent.addView(telemPercent);
             }
-            TextView telemScore = createTextElement(String.valueOf(selectedStats.getLastStat().getElemSumDmg().get(elem)));
-            telemScore.setTextColor(colorInt);
-            lineScore.addView(telemScore);
-            TextView telemPercent = createTextElement(calculateAbovePercentage(selectedStats,elem));
-            telemPercent.setTextColor(colorInt);
-            linePercent.addView(telemPercent);
         }
     }
 

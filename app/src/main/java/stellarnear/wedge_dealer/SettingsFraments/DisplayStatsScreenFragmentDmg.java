@@ -70,7 +70,7 @@ public class DisplayStatsScreenFragmentDmg {
         setCheckboxListeners();
         initChartSelectEvent();
         initPieChart();
-        subManager=new DisplayStatsScreenFragmentDmgSubManager(mainView,mC);
+        subManager=new DisplayStatsScreenFragmentDmgSubManager(mainView,mapElemCheckbox,mC);
     }
 
     private void setCheckboxListeners() {
@@ -99,6 +99,9 @@ public class DisplayStatsScreenFragmentDmg {
             public void onClick(View view) {
                 chartMaker.resetChart();
                 chartMaker.buildChart();
+                resetPieChart();
+                buildPieChart();
+                subManager.addInfos(null);
             }
         });
     }
@@ -111,7 +114,7 @@ public class DisplayStatsScreenFragmentDmg {
                 selectedStats=chartMaker.getMapIStepSelectedListStat().get((int)e.getX());
                 buildPieChart();
                 subManager.setSubSelectionBracket(chartMaker.getLabels().get((int)e.getX()));
-                subManager.addInfos(selectedStats,null);
+                subManager.addInfos(selectedStats);
             }
 
             @Override
@@ -119,7 +122,7 @@ public class DisplayStatsScreenFragmentDmg {
                 if(chartMaker.getChart().isFocusable()) {
                     reset();
                     resetPieChart();
-                    subManager.addInfos(null, null);
+                    subManager.addInfos(null);
                     buildPieChart();
                 }
             }
@@ -169,32 +172,34 @@ public class DisplayStatsScreenFragmentDmg {
             list=wedge.getStats().getStatsList();
         }
         int totalDmg=list.getSumDmgTot();
-        for(String elem : listElems){
-            float percent= 100f*(list.getSumDmgTotElem(elem)/(float)totalDmg);
-            int colorInt=0;
-            String appendix="";
-            switch (elem) {
-                case "":
-                    appendix="physique";
-                    colorInt=mC.getColor(R.color.phy);
-                    break;
-                case "fire":
-                    appendix="feu";
-                    colorInt=mC.getColor(R.color.fire);
-                    break;
-                case "shock":
-                    appendix="foudre";
-                    colorInt=mC.getColor(R.color.shock);
-                    break;
-                case "frost":
-                    appendix="froid";
-                    colorInt=mC.getColor(R.color.frost);
-                    break;
-            }
+        for(String elem : listElems) {
+            if (mapElemCheckbox.get(elem).isChecked()) {
+                float percent = 100f * (list.getSumDmgTotElem(elem) / (float) totalDmg);
+                int colorInt = 0;
+                String appendix = "";
+                switch (elem) {
+                    case "":
+                        appendix = "physique";
+                        colorInt = mC.getColor(R.color.phy);
+                        break;
+                    case "fire":
+                        appendix = "feu";
+                        colorInt = mC.getColor(R.color.fire);
+                        break;
+                    case "shock":
+                        appendix = "foudre";
+                        colorInt = mC.getColor(R.color.shock);
+                        break;
+                    case "frost":
+                        appendix = "froid";
+                        colorInt = mC.getColor(R.color.frost);
+                        break;
+                }
 
-            if(percent>0f) {
-                entries.add(new PieEntry(percent, "", (int) list.getSumDmgTotElem(elem) + " dégats "+appendix));
-                colorList.add(colorInt);
+                if (percent > 0f) {
+                    entries.add(new PieEntry(percent, "", (int) list.getSumDmgTotElem(elem) + " dégats " + appendix));
+                    colorList.add(colorInt);
+                }
             }
         }
         PieDataSet dataset = new PieDataSet(entries,"");
