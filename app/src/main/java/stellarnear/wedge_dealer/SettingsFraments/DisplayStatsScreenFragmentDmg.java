@@ -135,13 +135,8 @@ public class DisplayStatsScreenFragmentDmg {
         pieChart.setUsePercentValues(true);
         pieChart.getDescription().setEnabled(false);
         pieChart.getLegend().setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
-    }
 
-    private void buildPieChart() {
-        PieData data = new PieData();
-        data.addDataSet(computePieDataSet());
-        data.setValueFormatter(new PercentFormatter(pieChart));
-        pieChart.setData(data);
+        buildPieChart();
         pieChart.animateXY(100,1000);
         pieChart.getLegend().setEnabled(false);
         pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
@@ -156,6 +151,13 @@ public class DisplayStatsScreenFragmentDmg {
                 resetPieChart();
             }
         });
+    }
+
+    private void buildPieChart() {
+        PieData data = new PieData();
+        data.addDataSet(computePieDataSet());
+        data.setValueFormatter(new PercentFormatter(pieChart));
+        pieChart.setData(data);
     }
 
     private PieDataSet computePieDataSet() {
@@ -225,10 +227,6 @@ public class DisplayStatsScreenFragmentDmg {
         pieChart.invalidate();
         pieChart.setCenterText("");
         pieChart.highlightValue(null);
-    }
-
-    public void initSubs() {
-        subManager.initSubdetails();
     }
 }
 

@@ -62,7 +62,14 @@ public class DisplayStatsScreenFragmentDmgChartMaker {
         this.chart=chart;
         this.mapElemCheckbox=mapElemCheckbox;
         this.mC=mC;
+
+        initChart();
+    }
+
+    private void initChart() {
         formatChart();
+        buildChart();
+        chart.animateXY(500, 1000);
     }
 
     private void formatChart() {
@@ -82,7 +89,6 @@ public class DisplayStatsScreenFragmentDmgChartMaker {
 
         computeBarDataSetLabel();
         formatAxisChart();
-
         addLimitsChart();
     }
 
@@ -149,7 +155,6 @@ public class DisplayStatsScreenFragmentDmgChartMaker {
         }
 
         chart.setData(data);
-        chart.animateXY(500, 1000);
         chart.getXAxis().setAxisMinimum(0-barWidth/2);
         if(barGroupMode) {
             chart.groupBars(0, groupSpace, barSpace);

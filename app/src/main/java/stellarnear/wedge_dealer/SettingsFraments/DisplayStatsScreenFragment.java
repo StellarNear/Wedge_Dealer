@@ -35,10 +35,7 @@ public class DisplayStatsScreenFragment {
         ViewGroup window = mA.findViewById(android.R.id.content);
         LayoutInflater inflater = LayoutInflater.from(mC);
         mainView = inflater.inflate(R.layout.stats_charts, null);
-
         fragAtk = new DisplayStatsScreenFragmentAtk(mainView,mC);
-        fragDmg = new DisplayStatsScreenFragmentDmg(mainView,mC);
-
         buttonSetup();
         window.addView(mainView);
     }
@@ -64,6 +61,7 @@ public class DisplayStatsScreenFragment {
         fabDmg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(fragDmg==null){  fragDmg = new DisplayStatsScreenFragmentDmg(mainView,mC);}
                 movePanelTo("dmg");
                 popIn(fabDmg);
                 fragDmg.reset();
@@ -103,7 +101,6 @@ public class DisplayStatsScreenFragment {
                     panel.setInAnimation(in);
                     panel.setOutAnimation(out);
                     panel.showNext();
-                    fragDmg.initSubs();
                     break;
                 }
         }

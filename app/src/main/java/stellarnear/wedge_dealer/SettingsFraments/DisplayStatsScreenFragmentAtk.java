@@ -50,12 +50,15 @@ public class DisplayStatsScreenFragmentAtk {
         TextView nAtkTxt = mainView.findViewById(R.id.nAtkTxt);
         nAtkTxt.setText(wedge.getStats().getStatsList().getNAtksTot()+ " attaques");
 
+        initChart();
         buildChart();
+        initPieChart();
         buildPieChart();
+        initPieChartCrit();
         buildPieChartCrit();
     }
 
-    private void buildChart() {
+    private void initChart() {
         chart = mainView.findViewById(R.id.bar_chart_atk);
         chart.getDescription().setEnabled(false);
         chart.setDrawGridBackground(false);
@@ -67,10 +70,8 @@ public class DisplayStatsScreenFragmentAtk {
         chart.getAxisLeft().setDrawGridLines(false);
         chart.getXAxis().setDrawGridLines(false);
         chart.setFitBars(true);
-        BarData data = new BarData();
-        data.addDataSet(computeBarDataSet("hit"));
-        data.addDataSet(computeBarDataSet("miss"));
-        chart.setData(data);
+
+        buildChart();
 
         YAxis leftAxis = chart.getAxisLeft();
         leftAxis.setGranularity(1.0f);
@@ -103,6 +104,13 @@ public class DisplayStatsScreenFragmentAtk {
                 buildPieChartCrit();
             }
         });
+    }
+
+    private void buildChart() {
+        BarData data = new BarData();
+        data.addDataSet(computeBarDataSet("hit"));
+        data.addDataSet(computeBarDataSet("miss"));
+        chart.setData(data);
     }
 
     private BarDataSet computeBarDataSet(String mode) {
@@ -148,15 +156,14 @@ public class DisplayStatsScreenFragmentAtk {
     }
 
 
-    private void buildPieChart() {
+    private void initPieChart() {
         pieChart = mainView.findViewById(R.id.pie_chart_atk_hit);
         pieChart.setUsePercentValues(true);
         pieChart.getDescription().setEnabled(false);
         pieChart.getLegend().setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
-        PieData data = new PieData();
-        data.addDataSet(computePieDataSet());
-        data.setValueFormatter(new PercentFormatter(pieChart));
-        pieChart.setData(data);
+
+        buildPieChart();
+
         pieChart.getLegend().setEnabled(false);
         pieChart.animateXY(100,1000);
         pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
@@ -171,6 +178,13 @@ public class DisplayStatsScreenFragmentAtk {
                 resetPieChart();
             }
         });
+    }
+
+    private void buildPieChart() {
+        PieData data = new PieData();
+        data.addDataSet(computePieDataSet());
+        data.setValueFormatter(new PercentFormatter(pieChart));
+        pieChart.setData(data);
     }
 
     private PieDataSet computePieDataSet() {
@@ -201,17 +215,14 @@ public class DisplayStatsScreenFragmentAtk {
         return dataset;
     }
 
-    private void buildPieChartCrit() {
+    private void initPieChartCrit() {
         pieChartCrit = mainView.findViewById(R.id.pie_chart_atk_crit);
         pieChartCrit.setUsePercentValues(true);
         pieChartCrit.getDescription().setEnabled(false);
         pieChartCrit.getLegend().setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
-        PieData data = new PieData();
-        data.addDataSet(computePieDataSetCrit());
-        data.setValueFormatter(new PercentFormatter(pieChartCrit));
+        buildPieChartCrit();
         pieChartCrit.setEntryLabelTextSize(infoTxtSize/1.33f);
         pieChartCrit.setEntryLabelColor(Color.BLACK);
-        pieChartCrit.setData(data);
         pieChartCrit.getLegend().setEnabled(false);
         pieChartCrit.animateXY(100,1000);
         pieChartCrit.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
@@ -226,6 +237,13 @@ public class DisplayStatsScreenFragmentAtk {
                 resetPieChartCrit();
             }
         });
+    }
+
+    private void buildPieChartCrit() {
+        PieData data = new PieData();
+        data.addDataSet(computePieDataSetCrit());
+        data.setValueFormatter(new PercentFormatter(pieChartCrit));
+        pieChartCrit.setData(data);
     }
 
     private PieDataSet computePieDataSetCrit() {

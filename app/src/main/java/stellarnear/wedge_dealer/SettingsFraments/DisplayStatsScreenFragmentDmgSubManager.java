@@ -54,6 +54,7 @@ public class DisplayStatsScreenFragmentDmgSubManager {
     public DisplayStatsScreenFragmentDmgSubManager(View mainView, Context mC) {
         this.mainView = mainView;
         this.mC = mC;
+        initSubdetails();
     }
 
     public void initSubdetails() {
