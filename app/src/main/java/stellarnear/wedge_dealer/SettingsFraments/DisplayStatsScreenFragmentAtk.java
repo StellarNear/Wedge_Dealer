@@ -48,7 +48,7 @@ public class DisplayStatsScreenFragmentAtk {
         this.mC=mC;
 
         TextView nAtkTxt = mainView.findViewById(R.id.nAtkTxt);
-        nAtkTxt.setText(wedge.getStats().getNAtksTot()+ " attaques");
+        nAtkTxt.setText(wedge.getStats().getStatsList().getNAtksTot()+ " attaques");
 
         buildChart();
         buildPieChart();
@@ -108,7 +108,7 @@ public class DisplayStatsScreenFragmentAtk {
     private BarDataSet computeBarDataSet(String mode) {
         Map<Integer,Integer> nthAtkCountHit = new HashMap<>();
         int nAtkMax=0;
-        for (Stat stat : wedge.getStats().getListStats()){
+        for (Stat stat : wedge.getStats().getStatsList().asList()){
             List<Integer> listNatk = new ArrayList<>();
             if (mode.equalsIgnoreCase("hit")){
                 listNatk=stat.getListNthAtksHit();
@@ -178,12 +178,12 @@ public class DisplayStatsScreenFragmentAtk {
         List<Integer> colorList= new ArrayList<>();
         float hitVal,missVal,percent;
         if(nthAtkSelectedForPieChart==0){
-            hitVal=wedge.getStats().getNAtksHit();
-            missVal=wedge.getStats().getNAtksMiss();
+            hitVal=wedge.getStats().getStatsList().getNAtksHit();
+            missVal=wedge.getStats().getStatsList().getNAtksMiss();
             percent = 100f*(hitVal/(hitVal+missVal));
         } else {
-            hitVal=wedge.getStats().getNAtksHitNthAtk(nthAtkSelectedForPieChart);
-            missVal=wedge.getStats().getNAtksMissNthAtk(nthAtkSelectedForPieChart);
+            hitVal=wedge.getStats().getStatsList().getNAtksHitNthAtk(nthAtkSelectedForPieChart);
+            missVal=wedge.getStats().getStatsList().getNAtksMissNthAtk(nthAtkSelectedForPieChart);
             percent = 100f*(hitVal/(hitVal+missVal));
         }
         if(percent>0f) {
@@ -231,13 +231,13 @@ public class DisplayStatsScreenFragmentAtk {
     private PieDataSet computePieDataSetCrit() {
         float nHit,nCrit,nCritNat;
         if(nthAtkSelectedForPieChart==0){
-            nHit=wedge.getStats().getNAtksHit();
-            nCrit=wedge.getStats().getNCrit();
-            nCritNat=wedge.getStats().getNCritNat();
+            nHit=wedge.getStats().getStatsList().getNAtksHit();
+            nCrit=wedge.getStats().getStatsList().getNCrit();
+            nCritNat=wedge.getStats().getStatsList().getNCritNat();
         } else {
-            nHit=wedge.getStats().getNAtksHitNthAtk(nthAtkSelectedForPieChart);
-            nCrit=wedge.getStats().getNCritNth(nthAtkSelectedForPieChart);
-            nCritNat=wedge.getStats().getNCritNatNth(nthAtkSelectedForPieChart);
+            nHit=wedge.getStats().getStatsList().getNAtksHitNthAtk(nthAtkSelectedForPieChart);
+            nCrit=wedge.getStats().getStatsList().getNCritNth(nthAtkSelectedForPieChart);
+            nCritNat=wedge.getStats().getStatsList().getNCritNatNth(nthAtkSelectedForPieChart);
         }
         float normalPercent=100f*(nHit-nCrit)/nHit;
         float critPercent=100f*(nCrit-nCritNat)/nHit;

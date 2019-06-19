@@ -3,6 +3,7 @@ package stellarnear.wedge_dealer.Perso;
 import android.content.Context;
 
 import stellarnear.wedge_dealer.Stats.Stats;
+import stellarnear.wedge_dealer.Stats.StatsList;
 
 
 /**

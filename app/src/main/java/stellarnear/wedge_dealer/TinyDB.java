@@ -42,6 +42,7 @@ import java.util.Map;
 
 import stellarnear.wedge_dealer.Perso.Equipment;
 import stellarnear.wedge_dealer.Stats.Stat;
+import stellarnear.wedge_dealer.Stats.StatsList;
 
 
 public class TinyDB {
@@ -609,11 +610,11 @@ public class TinyDB {
         }
     }
 
-    public ArrayList<Stat> getStats(String key) {
+    public StatsList getStats(String key) {
         Gson gson = new Gson();
 
         ArrayList<String> objStrings = getListString(key);
-        ArrayList<Stat> objects = new ArrayList<Stat>();
+        StatsList objects = new StatsList();
 
         for (String jObjString : objStrings) {
             Stat value = gson.fromJson(jObjString, Stat.class);
@@ -622,11 +623,11 @@ public class TinyDB {
         return objects;
     }
 
-    public void putStats(String key, List<Stat> objArray) {
+    public void putStats(String key, StatsList objArray) {
         checkForNullKey(key);
         Gson gson = new Gson();
         ArrayList<String> objStrings = new ArrayList<String>();
-        for (Stat obj : objArray) {
+        for (Stat obj : objArray.asList()) {
             objStrings.add(gson.toJson(obj));
         }
         putListString(key, objStrings);
