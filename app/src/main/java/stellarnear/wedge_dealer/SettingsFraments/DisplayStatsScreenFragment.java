@@ -2,45 +2,16 @@ package stellarnear.wedge_dealer.SettingsFraments;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
-import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.ViewFlipper;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ViewSwitcher;
 
-import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.components.YAxis;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.formatter.LargeValueFormatter;
-import com.github.mikephil.charting.formatter.PercentFormatter;
-import com.github.mikephil.charting.highlight.Highlight;
-import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import stellarnear.wedge_dealer.MainActivity;
-import stellarnear.wedge_dealer.Perso.Perso;
 import stellarnear.wedge_dealer.R;
-import stellarnear.wedge_dealer.Stats.Stat;
 import stellarnear.wedge_dealer.Tools;
 
 public class DisplayStatsScreenFragment {
@@ -74,21 +45,37 @@ public class DisplayStatsScreenFragment {
 
     private void buttonSetup() {
         panel = mainView.findViewById(R.id.stats_switcher);
+        final FloatingActionButton fabAtk = mainView.findViewById(R.id.fab_stat_atk);
+        final FloatingActionButton fabDmg = mainView.findViewById(R.id.fab_stat_dmg);
 
-        FloatingActionButton fabAtk = mainView.findViewById(R.id.fab_stat_atk);
+        fabAtk.animate().alpha(0).setDuration(0).scaleX(2f).scaleY(2f).start();
+        fabAtk.animate().alpha(1).scaleX(1f).scaleY(1f).setDuration(1000).setInterpolator(new DecelerateInterpolator()).start();
+        fabDmg.animate().alpha(0).setDuration(0).translationY(100).start();
+        fabDmg.animate().setStartDelay(1000).setDuration(500).alpha(1).translationY(0).setInterpolator(new DecelerateInterpolator()).start();
         fabAtk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 movePanelTo("atk");
+                popIn(fabAtk);
                 fragAtk.reset();
             }
         });
-        FloatingActionButton fabDmg = mainView.findViewById(R.id.fab_stat_dmg);
+
         fabDmg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 movePanelTo("dmg");
+                popIn(fabDmg);
                 fragDmg.reset();
+            }
+        });
+    }
+
+    private void popIn(final FloatingActionButton fab) {
+        fab.animate().setStartDelay(0).scaleX(1.5f).scaleY(1.5f).setDuration(100).withEndAction(new Runnable() {
+            @Override
+            public void run() {
+                fab.animate().setStartDelay(0).scaleX(1f).scaleY(1f).setDuration(400);
             }
         });
     }
@@ -116,6 +103,7 @@ public class DisplayStatsScreenFragment {
                     panel.setInAnimation(in);
                     panel.setOutAnimation(out);
                     panel.showNext();
+                    fragDmg.initSubs();
                     break;
                 }
         }

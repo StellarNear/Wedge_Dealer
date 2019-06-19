@@ -3,23 +3,18 @@ package stellarnear.wedge_dealer.SettingsFraments;
 import android.content.Context;
 import android.os.Handler;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.LimitLine;
-import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.components.YAxis;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
@@ -40,6 +35,7 @@ import stellarnear.wedge_dealer.Tools;
 public class DisplayStatsScreenFragmentDmg {
     private Perso wedge = MainActivity.wedge;
     private DisplayStatsScreenFragmentDmgChartMaker chartMaker;
+    private DisplayStatsScreenFragmentDmgSubManager subManager;
     private PieChart pieChart;
 
 
@@ -73,8 +69,8 @@ public class DisplayStatsScreenFragmentDmg {
         chartMaker = new DisplayStatsScreenFragmentDmgChartMaker((BarChart)mainView.findViewById(R.id.bar_chart_dmg),mapElemCheckbox,mC);
         setCheckboxListeners();
         initChartSelectEvent();
-
         initPieChart();
+        subManager=new DisplayStatsScreenFragmentDmgSubManager(mainView,mC);
     }
 
     private void setCheckboxListeners() {
@@ -208,6 +204,10 @@ public class DisplayStatsScreenFragmentDmg {
         return dataset;
     }
 
+
+
+    // Resets
+
     public void reset() {
         for(String elem : listElems){
             mapElemCheckbox.get(elem).setChecked(true);
@@ -227,7 +227,8 @@ public class DisplayStatsScreenFragmentDmg {
         pieChart.highlightValue(null);
     }
 
-
-
+    public void initSubs() {
+        subManager.initSubdetails();
+    }
 }
 

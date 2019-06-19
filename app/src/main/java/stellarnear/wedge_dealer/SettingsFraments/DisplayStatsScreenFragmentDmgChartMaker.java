@@ -254,7 +254,7 @@ public class DisplayStatsScreenFragmentDmgChartMaker {
         XAxis leftAxis = chart.getXAxis();
         int sumDmg = 0;
         String label="récent";
-        if(elemsSelected.size()>1){label="";}
+        if(barGroupMode){label="";}
         if(elem.equalsIgnoreCase("all")){
             sumDmg = wedge.getStats().getStatsList().asList().get(wedge.getStats().getStatsList().asList().size()-1).getSumDmg();
         } else {
