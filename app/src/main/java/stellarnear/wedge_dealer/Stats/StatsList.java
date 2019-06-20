@@ -1,15 +1,7 @@
 package stellarnear.wedge_dealer.Stats;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import stellarnear.wedge_dealer.Rolls.RollList;
-import stellarnear.wedge_dealer.TinyDB;
-import stellarnear.wedge_dealer.Tools;
 
 public class StatsList {
     private List<Stat> listStats = new ArrayList<>();
@@ -169,6 +161,18 @@ public class StatsList {
         return res;
     }
 
+
+    public int getMoyDmg() {
+        int res=0;
+        for (Stat stat:listStats){
+            res+=stat.getSumDmg();
+        }
+        if(listStats.size()>=1){
+            res=(int)(res/listStats.size());
+        } else { res=0; }
+        return res;
+    }
+
     public int getMoyDmgElem(String elem) {
         int res=0;
         for (Stat stat:listStats){
@@ -217,4 +221,5 @@ public class StatsList {
         }
         return res;
     }
+
 }

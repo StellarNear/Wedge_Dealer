@@ -1,11 +1,8 @@
-package stellarnear.wedge_dealer.SettingsFraments;
+package stellarnear.wedge_dealer.SettingsFraments.DisplayStatsScreenFragment;
 
 import android.content.Context;
-import android.os.Handler;
 import android.view.View;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.CheckBox;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -28,14 +25,13 @@ import java.util.Map;
 import stellarnear.wedge_dealer.MainActivity;
 import stellarnear.wedge_dealer.Perso.Perso;
 import stellarnear.wedge_dealer.R;
-import stellarnear.wedge_dealer.Stats.Stat;
 import stellarnear.wedge_dealer.Stats.StatsList;
 import stellarnear.wedge_dealer.Tools;
 
-public class DisplayStatsScreenFragmentDmg {
+public class DSSFDmg {
     private Perso wedge = MainActivity.wedge;
-    private DisplayStatsScreenFragmentDmgChartMaker chartMaker;
-    private DisplayStatsScreenFragmentDmgSubManager subManager;
+    private DSSFDmgChartMaker chartMaker;
+    private DSSFDmgInfoManager subManager;
     private PieChart pieChart;
 
 
@@ -50,7 +46,7 @@ public class DisplayStatsScreenFragmentDmg {
     private Tools tools=new Tools();
 
 
-    public DisplayStatsScreenFragmentDmg(View mainView, Context mC) {
+    public DSSFDmg(View mainView, Context mC) {
         this.mainView = mainView;
         this.mC = mC;
 
@@ -66,11 +62,11 @@ public class DisplayStatsScreenFragmentDmg {
         mapElemCheckbox.put("shock",checkShock);
         mapElemCheckbox.put("frost",checkFrost);
 
-        chartMaker = new DisplayStatsScreenFragmentDmgChartMaker((BarChart)mainView.findViewById(R.id.bar_chart_dmg),mapElemCheckbox,mC);
+        chartMaker = new DSSFDmgChartMaker((BarChart)mainView.findViewById(R.id.bar_chart_dmg),mapElemCheckbox,mC);
         setCheckboxListeners();
         initChartSelectEvent();
         initPieChart();
-        subManager=new DisplayStatsScreenFragmentDmgSubManager(mainView,mapElemCheckbox,mC);
+        subManager=new DSSFDmgInfoManager(mainView,mapElemCheckbox,mC);
     }
 
     private void setCheckboxListeners() {
@@ -79,7 +75,7 @@ public class DisplayStatsScreenFragmentDmg {
         }
     }
 
-    public void onCheckboxClicked(CheckBox view) {
+    private void onCheckboxClicked(CheckBox view) {
         switch(view.getId()) {
             case R.id.dmg_type_phy:
                 view.setCompoundDrawablesWithIntrinsicBounds(tools.resize(mC,R.drawable.phy_logo,75),null,null,null);

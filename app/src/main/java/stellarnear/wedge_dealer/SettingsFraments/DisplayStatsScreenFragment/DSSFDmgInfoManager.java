@@ -1,4 +1,4 @@
-package stellarnear.wedge_dealer.SettingsFraments;
+package stellarnear.wedge_dealer.SettingsFraments.DisplayStatsScreenFragment;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -6,7 +6,6 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -15,7 +14,6 @@ import android.widget.ViewSwitcher;
 
 import com.github.mikephil.charting.charts.PieChart;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -27,9 +25,9 @@ import stellarnear.wedge_dealer.Stats.Stat;
 import stellarnear.wedge_dealer.Stats.StatsList;
 import stellarnear.wedge_dealer.Tools;
 
-public class DisplayStatsScreenFragmentDmgSubManager {
+public class DSSFDmgInfoManager {
     private Perso wedge = MainActivity.wedge;
-    private DisplayStatsScreenFragmentDmgChartMaker chartMaker;
+    private DSSFDmgChartMaker chartMaker;
     private PieChart pieChart;
 
 
@@ -48,17 +46,16 @@ public class DisplayStatsScreenFragmentDmgSubManager {
     private Tools tools=new Tools();
 
 
-    public DisplayStatsScreenFragmentDmgSubManager(View mainView,Map<String,CheckBox> mapElemCheckbox, Context mC) {
+    public DSSFDmgInfoManager(View mainView, Map<String,CheckBox> mapElemCheckbox, Context mC) {
         this.mainView = mainView;
         this.mapElemCheckbox=mapElemCheckbox;
         this.mC = mC;
-        initSubdetails();
+
+        addInfos(null);
     }
 
-    public void initSubdetails() {
-        final ImageView text = mainView.findViewById(R.id.button_chart_dmg_sub_text);
-        final ImageView graph = mainView.findViewById(R.id.button_chart_dmg_sub_graph);
-        panel=mainView.findViewById(R.id.stat_sub_switcher);
+    private void initSubdetails() {
+        /* BUTTON OLD ANIMS
         text.animate().alpha(0).setStartDelay(0).setDuration(0).scaleX(0.5f).scaleY(0.5f).start();
         //175 ms de transition du panneau
         text.animate().alpha(1).setStartDelay(175).scaleX(1f).scaleY(1f).setDuration(1000).setInterpolator(new DecelerateInterpolator()).start();
@@ -81,10 +78,14 @@ public class DisplayStatsScreenFragmentDmgSubManager {
             }
         });
 
-        addInfos(null);
+
+
+
         panel.animate().alpha(0).setStartDelay(0).setDuration(0).scaleX(0.5f).scaleY(0.5f).start();
         //175 ms de transition du panneau
         panel.animate().alpha(1).setStartDelay(175).scaleX(1f).scaleY(1f).setDuration(1000).setInterpolator(new DecelerateInterpolator()).start();
+        */
+
     }
 
     private void popIn(final ImageView fab) {
@@ -138,7 +139,7 @@ public class DisplayStatsScreenFragmentDmgSubManager {
     }
 
     private void addInfos(){
-        final LinearLayout mainLin = mainView.findViewById(R.id.chart_dmg_sub_text);
+        final LinearLayout mainLin = mainView.findViewById(R.id.chart_dmg_info_text);
         mainLin.removeAllViews();
 
         LinearLayout bloc1 = setBlock();
@@ -264,7 +265,7 @@ public class DisplayStatsScreenFragmentDmgSubManager {
 
     private void addInfosDetails(LinearLayout bloc2) {
         TextView t = new TextView(mC);
-        t.setText("Détails");
+        t.setText("Détails (moy)");
         t.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         t.setTextSize(20);
         t.setTextColor(Color.BLACK);
@@ -283,27 +284,30 @@ public class DisplayStatsScreenFragmentDmgSubManager {
         int hitVal=selectedStats.getNAtksHit();
         int missVal=selectedStats.getNAtksMiss();
         int percent =Math.round(100f*((1f*hitVal)/(1f*hitVal+missVal)));
-        TextView percentText = createTextElement(percent+"%");
+        float hitValMoy = selectedStats.size()>1 ?(1f*hitVal)/selectedStats.size() : 0;
+        TextView percentText = createTextElement(percent+"%" + " ("+String.format ("%,.1f", hitValMoy)+")");
         percentText.setTextColor(mC.getColor(R.color.hit_stat));
         lineHit.addView(percentText);
 
         int nHit=selectedStats.getNAtksHit();
         int nCrit=selectedStats.getNCrit();
         int nCritNat=selectedStats.getNCritNat();
+        float nCritMoy = selectedStats.size()>1 ? (1f*(nCrit-nCritNat))/selectedStats.size() : 0;
+        float nCritNatMoy = selectedStats.size()>1 ? (1f*nCritNat)/selectedStats.size() : 0;
 
         int critPercent=Math.round(100f*(nCrit-nCritNat)/(1f*nHit));
         int critNatPercent=Math.round(100f*(nCritNat/(1f*nHit)));
         TextView titleCrit = createTextElement("crit");
         titleCrit.setTextColor(mC.getColor(R.color.crit_stat));
         lineCrit.addView(titleCrit);
-        TextView percentCritText = createTextElement(critPercent+"%");
+        TextView percentCritText = createTextElement(critPercent+"%" +" ("+String.format ("%,.1f",nCritMoy)+")");
         percentCritText.setTextColor(mC.getColor(R.color.crit_stat));
         lineCrit.addView(percentCritText);
 
         TextView titleCritNat = createTextElement("critNat");
         titleCritNat.setTextColor(mC.getColor(R.color.crit_nat_stat));
         lineCritNat.addView(titleCritNat);
-        TextView percentCritNatText = createTextElement(critNatPercent+"%");
+        TextView percentCritNatText = createTextElement(critNatPercent+"%" +" ("+String.format ("%,.1f",nCritNatMoy)+")");
         percentCritNatText.setTextColor(mC.getColor(R.color.crit_nat_stat));
         lineCritNat.addView(percentCritNatText);
     }

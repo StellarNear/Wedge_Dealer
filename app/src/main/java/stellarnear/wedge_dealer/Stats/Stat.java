@@ -78,6 +78,10 @@ public class Stat {
         return nthAtksMiss.size()+nthAtksHit.size();
     }
 
+    public int getNAtksHit() {
+        return nthAtksHit.size();
+    }
+
     public List<Integer> getListNthAtksCrit() {
         return nthAtksCrit;
     }
@@ -85,6 +89,7 @@ public class Stat {
     public List<Integer> getListNthAtksCritNat() {
         return nthAtksCritNat;
     }
+
 
 
 }

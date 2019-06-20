@@ -21,7 +21,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import stellarnear.wedge_dealer.Perso.Perso;
-import stellarnear.wedge_dealer.SettingsFraments.DisplayStatsScreenFragment;
+import stellarnear.wedge_dealer.SettingsFraments.DisplayStatsScreenFragment.DSSF;
 import stellarnear.wedge_dealer.SettingsFraments.PrefAllInventoryFragment;
 import stellarnear.wedge_dealer.SettingsFraments.PrefResetScreenFragment;
 import stellarnear.wedge_dealer.SettingsFraments.PrefSleepScreenFragment;
@@ -225,7 +225,7 @@ public class SettingsFragment extends PreferenceFragment {
             case "display_stats":
                 ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(preference.getTitle().toString());
                 ((ContentFrameLayout) getActivity().findViewById(android.R.id.content)).removeAllViews();
-                new DisplayStatsScreenFragment(mA,mC).addStatsScreen();
+                new DSSF(mA,mC).addStatsScreen();
                 break;
         }
     }

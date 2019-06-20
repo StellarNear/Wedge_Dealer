@@ -8,13 +8,12 @@
     android:clipChildren="false"
     android:orientation="vertical">
 
-    <ViewSwitcher
-        android:id="@+id/stats_switcher"
+    <ViewFlipper
+        android:id="@+id/stats_flipper"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:focusableInTouchMode="false"
         android:layout_weight="9">
-
 
 
         <LinearLayout
@@ -31,33 +30,41 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/nAtkTxt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="n attaques"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/nAtkTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="n attaques"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
-            <android.support.constraint.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
 
-                <com.github.mikephil.charting.charts.BarChart
-                    android:id="@+id/bar_chart_atk"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginLeft="@dimen/general_margin"
-                    android:layout_marginRight="@dimen/general_margin"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="1:0.5"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <com.github.mikephil.charting.charts.BarChart
+                        android:id="@+id/bar_chart_atk"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="@dimen/general_margin"
+                        android:layout_marginRight="@dimen/general_margin"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:0.5"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-            </android.support.constraint.ConstraintLayout>
+                </android.support.constraint.ConstraintLayout>
+                <TextView
+                    android:id="@+id/legend_bar_chart_atk"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="x ième attaque"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
             </LinearLayout>
             <LinearLayout
@@ -67,54 +74,45 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/legend_bar_chart_atk"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="x ième attaque"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
-
-            <android.support.constraint.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
                 <android.support.constraint.ConstraintLayout
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_margin="@dimen/general_margin"
-                    android:orientation="horizontal"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="1:0.5"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
 
-                    <com.github.mikephil.charting.charts.PieChart
-                        android:id="@+id/pie_chart_atk_hit"
+                    <android.support.constraint.ConstraintLayout
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:layout_weight="1"
+                        android:layout_margin="@dimen/general_margin"
+                        android:orientation="horizontal"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintDimensionRatio="1:1"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <com.github.mikephil.charting.charts.PieChart
-                        android:id="@+id/pie_chart_atk_crit"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintDimensionRatio="1:0.5"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
+                        <com.github.mikephil.charting.charts.PieChart
+                            android:id="@+id/pie_chart_atk_hit"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <com.github.mikephil.charting.charts.PieChart
+                            android:id="@+id/pie_chart_atk_crit"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </android.support.constraint.ConstraintLayout>
                 </android.support.constraint.ConstraintLayout>
-            </android.support.constraint.ConstraintLayout>
-        </LinearLayout>
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -127,244 +125,372 @@
             android:clipChildren="false"
             android:clipToPadding="false">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:clipChildren="false"
-            android:clipToPadding="false">
-
-            <TextView
-                android:id="@+id/nDmgTxt"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="n dégats"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-            <android.support.constraint.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:gravity="center"
+                android:orientation="vertical"
                 android:clipChildren="false"
                 android:clipToPadding="false">
 
-                <com.github.mikephil.charting.charts.BarChart
-                    android:id="@+id/bar_chart_dmg"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginLeft="@dimen/general_margin"
-                    android:layout_marginRight="@dimen/general_margin"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="1:0.5"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="dmgMoy"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:layout_marginLeft="@dimen/general_margin"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        />
 
-            </android.support.constraint.ConstraintLayout>
+                    <com.github.mikephil.charting.charts.LineChart
+                        android:id="@+id/line_chart_dmg_atk"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="@dimen/general_margin"
+                        android:layout_marginRight="@dimen/general_margin"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:0.5"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/legend_bar_chart_dmg"
+                </android.support.constraint.ConstraintLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="nombre d'attaques"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="somme de dégats"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:layout_gravity="center_horizontal"
-                android:clipChildren="false"
-                android:clipToPadding="false">
+                android:orientation="vertical">
 
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center">
+
+                    <com.github.mikephil.charting.charts.LineChart
+                        android:id="@+id/line_chart_crit_elem"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="@dimen/general_margin"
+                        android:layout_marginRight="@dimen/general_margin"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:0.5"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </android.support.constraint.ConstraintLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="legend chart 2"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_gravity="center_horizontal"
                     android:clipChildren="false"
                     android:clipToPadding="false">
-                    <CheckBox android:id="@+id/dmg_type_phy"
-                        android:checked="true"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:buttonTint="@color/phy"
-                        android:clipChildren="false"
-                        android:clipToPadding="false"
-                        />
-                </FrameLayout>
 
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:clipChildren="false"
-                    android:clipToPadding="false">
-                    <CheckBox android:id="@+id/dmg_type_fire"
-                        android:checked="true"
-                        android:layout_width="wrap_content"
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:buttonTint="@color/fire"
                         android:clipChildren="false"
-                        android:clipToPadding="false"
-                        />
-                </FrameLayout>
+                        android:clipToPadding="false">
+                        <CheckBox android:id="@+id/line_type_phy"
+                            android:checked="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:buttonTint="@color/phy"
+                            android:clipChildren="false"
+                            android:clipToPadding="false"
+                            />
+                    </FrameLayout>
 
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:clipChildren="false"
-                    android:clipToPadding="false">
-                    <CheckBox android:id="@+id/dmg_type_shock"
-                        android:checked="true"
-                        android:layout_width="wrap_content"
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:buttonTint="@color/shock"
                         android:clipChildren="false"
-                        android:clipToPadding="false"
-                        />
-                </FrameLayout>
+                        android:clipToPadding="false">
+                        <CheckBox android:id="@+id/line_type_fire"
+                            android:checked="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:buttonTint="@color/fire"
+                            android:clipChildren="false"
+                            android:clipToPadding="false"
+                            />
+                    </FrameLayout>
 
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:clipChildren="false"
-                    android:clipToPadding="false">
-                    <CheckBox android:id="@+id/dmg_type_frost"
-                        android:checked="true"
-                        android:layout_width="wrap_content"
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:buttonTint="@color/frost"
                         android:clipChildren="false"
-                        android:clipToPadding="false"
-                        />
-                </FrameLayout>
+                        android:clipToPadding="false">
+                        <CheckBox android:id="@+id/line_type_shock"
+                            android:checked="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:buttonTint="@color/shock"
+                            android:clipChildren="false"
+                            android:clipToPadding="false"
+                            />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:clipChildren="false"
+                        android:clipToPadding="false">
+                        <CheckBox android:id="@+id/line_type_frost"
+                            android:checked="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:buttonTint="@color/frost"
+                            android:clipChildren="false"
+                            android:clipToPadding="false"
+                            />
+                    </FrameLayout>
+                </LinearLayout>
+
+
             </LinearLayout>
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/third_panel"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
             android:gravity="center"
-            android:orientation="vertical">
+            android:clipChildren="false"
+            android:clipToPadding="false">
 
-            <android.support.constraint.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="6"
                 android:gravity="center"
+                android:orientation="vertical"
                 android:clipChildren="false"
-                android:clipToPadding="false" >
+                android:clipToPadding="false">
+
+                <TextView
+                    android:id="@+id/nDmgTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="n dégats"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
                 <android.support.constraint.ConstraintLayout
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_margin="@dimen/general_margin"
-                    android:orientation="horizontal"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="1:0.5"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:clipChildren="false"
-                    android:clipToPadding="false" >
+                    android:clipToPadding="false">
 
-                    <com.github.mikephil.charting.charts.PieChart
-                        android:id="@+id/pie_chart_dmg_percent"
+                    <com.github.mikephil.charting.charts.BarChart
+                        android:id="@+id/bar_chart_dmg"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:layout_weight="1"
+                        android:layout_marginLeft="@dimen/general_margin"
+                        android:layout_marginRight="@dimen/general_margin"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintDimensionRatio="1:0.5"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <LinearLayout
+                </android.support.constraint.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/legend_bar_chart_dmg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="somme de dégats"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_gravity="center_horizontal"
+                    android:clipChildren="false"
+                    android:clipToPadding="false">
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:clipChildren="false"
+                        android:clipToPadding="false">
+                        <CheckBox android:id="@+id/dmg_type_phy"
+                            android:checked="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:buttonTint="@color/phy"
+                            android:clipChildren="false"
+                            android:clipToPadding="false"
+                            />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:clipChildren="false"
+                        android:clipToPadding="false">
+                        <CheckBox android:id="@+id/dmg_type_fire"
+                            android:checked="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:buttonTint="@color/fire"
+                            android:clipChildren="false"
+                            android:clipToPadding="false"
+                            />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:clipChildren="false"
+                        android:clipToPadding="false">
+                        <CheckBox android:id="@+id/dmg_type_shock"
+                            android:checked="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:buttonTint="@color/shock"
+                            android:clipChildren="false"
+                            android:clipToPadding="false"
+                            />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:clipChildren="false"
+                        android:clipToPadding="false">
+                        <CheckBox android:id="@+id/dmg_type_frost"
+                            android:checked="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:buttonTint="@color/frost"
+                            android:clipChildren="false"
+                            android:clipToPadding="false"
+                            />
+                    </FrameLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="4"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:clipChildren="false"
+                    android:clipToPadding="false" >
+
+                    <android.support.constraint.ConstraintLayout
                         android:layout_width="0dp"
                         android:layout_height="0dp"
+                        android:layout_margin="@dimen/general_margin"
                         android:orientation="horizontal"
-                        android:layout_weight="1"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintDimensionRatio="1:0.5"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         android:clipChildren="false"
                         android:clipToPadding="false" >
 
-                        <ViewSwitcher
-                            android:id="@+id/stat_sub_switcher"
-                            android:layout_height="match_parent"
+                        <com.github.mikephil.charting.charts.PieChart
+                            android:id="@+id/pie_chart_dmg_percent"
                             android:layout_width="0dp"
-                            android:layout_weight="9">
-
-                            <LinearLayout
-                                android:id="@+id/chart_dmg_sub_text"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical"
-                                android:gravity="center"
-                                android:padding="@dimen/general_margin"
-                                android:layout_margin="@dimen/general_margin"
-                                android:background="@drawable/background_border_infos"/>
-
-                            <com.github.mikephil.charting.charts.LineChart
-                                android:id="@+id/chart_dmg_sub_graph"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                />
-
-                        </ViewSwitcher>
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
+                            android:layout_height="0dp"
                             android:layout_weight="1"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <LinearLayout
+                            android:id="@+id/chart_dmg_info_text"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
                             android:clipChildren="false"
-                            android:clipToPadding="false" >
+                            android:clipToPadding="false"
+                            android:padding="@dimen/general_margin"
+                            android:background="@drawable/background_border_infos"/>
 
-                            <ImageView
-                                android:id="@+id/button_chart_dmg_sub_text"
-                                android:layout_width="match_parent"
-                                android:layout_weight="1"
-                                android:layout_height="0dp"
-                                android:src="@drawable/ic_menu_black_24dp"
-                                android:clipChildren="false"
-                                android:clipToPadding="false" />
 
-                            <ImageView
-                                android:id="@+id/button_chart_dmg_sub_graph"
-                                android:layout_width="match_parent"
-                                android:layout_weight="1"
-                                android:layout_height="0dp"
-                                android:src="@drawable/ic_timeline_black_24dp"
-                                android:clipChildren="false"
-                                android:clipToPadding="false" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
+                    </android.support.constraint.ConstraintLayout>
                 </android.support.constraint.ConstraintLayout>
-            </android.support.constraint.ConstraintLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
 
-        </LinearLayout>
 
-    </ViewSwitcher>
+
+    </ViewFlipper>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -380,13 +506,26 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center">
-
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/fab_stat_atk"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 app:backgroundTint="@android:color/white"
                 app:srcCompat="@drawable/ic_filter_center_focus_black_24dp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab_stat_graph"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:backgroundTint="@android:color/darker_gray"
+                app:srcCompat="@drawable/ic_timeline_black_24dp" />
         </LinearLayout>
 
         <LinearLayout

@@ -1,10 +1,9 @@
-package stellarnear.wedge_dealer.SettingsFraments;
+package stellarnear.wedge_dealer.SettingsFraments.DisplayStatsScreenFragment;
 
 import android.content.Context;
 import android.os.Handler;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
@@ -15,14 +14,7 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
-import com.github.mikephil.charting.formatter.PercentFormatter;
-import com.github.mikephil.charting.highlight.Highlight;
-import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,7 +29,7 @@ import stellarnear.wedge_dealer.Stats.Stat;
 import stellarnear.wedge_dealer.Stats.StatsList;
 import stellarnear.wedge_dealer.Tools;
 
-public class DisplayStatsScreenFragmentDmgChartMaker {
+public class DSSFDmgChartMaker {
     private Perso wedge = MainActivity.wedge;
     private BarChart chart;
     private PieChart pieChart;
@@ -59,7 +51,7 @@ public class DisplayStatsScreenFragmentDmgChartMaker {
     private Tools tools=new Tools();
 
 
-    public DisplayStatsScreenFragmentDmgChartMaker(BarChart chart,Map<String,CheckBox> mapElemCheckbox,Context mC) {
+    public DSSFDmgChartMaker(BarChart chart, Map<String,CheckBox> mapElemCheckbox, Context mC) {
         this.chart=chart;
         this.mapElemCheckbox=mapElemCheckbox;
         this.mC=mC;

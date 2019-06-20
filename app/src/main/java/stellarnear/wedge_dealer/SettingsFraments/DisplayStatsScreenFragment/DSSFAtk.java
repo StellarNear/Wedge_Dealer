@@ -1,4 +1,4 @@
-package stellarnear.wedge_dealer.SettingsFraments;
+package stellarnear.wedge_dealer.SettingsFraments.DisplayStatsScreenFragment;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -32,7 +32,7 @@ import stellarnear.wedge_dealer.Perso.Perso;
 import stellarnear.wedge_dealer.R;
 import stellarnear.wedge_dealer.Stats.Stat;
 
-public class DisplayStatsScreenFragmentAtk {
+public class DSSFAtk {
     private Perso wedge= MainActivity.wedge;
     private BarChart chart;
     private PieChart pieChart;
@@ -43,7 +43,7 @@ public class DisplayStatsScreenFragmentAtk {
     private int infoTxtSize=12;
     private int nthAtkSelectedForPieChart=0;
 
-    public DisplayStatsScreenFragmentAtk(View mainView,Context mC) {
+    public DSSFAtk(View mainView, Context mC) {
         this.mainView=mainView;
         this.mC=mC;
 
