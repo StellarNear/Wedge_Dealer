@@ -185,6 +185,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="dmgMoy"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:layout_marginLeft="@dimen/general_margin"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        />
 
                     <com.github.mikephil.charting.charts.LineChart
                         android:id="@+id/line_chart_crit_elem"
@@ -202,7 +213,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="legend chart 2"
+                    android:text="nombre de crits (crit+critNat)"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="14sp" />

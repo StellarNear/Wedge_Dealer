@@ -32,11 +32,7 @@ import stellarnear.wedge_dealer.Tools;
 public class DSSFDmgChartMaker {
     private Perso wedge = MainActivity.wedge;
     private BarChart chart;
-    private PieChart pieChart;
-
-
     private Context mC;
-    private View mainView;
     private List<String> listElems= Arrays.asList("","fire","shock","frost");
     private Map<String,CheckBox> mapElemCheckbox=new HashMap<>();
     private List<String> elemsSelected;
@@ -49,7 +45,6 @@ public class DSSFDmgChartMaker {
     private int sizeStep=50;
 
     private Tools tools=new Tools();
-
 
     public DSSFDmgChartMaker(BarChart chart, Map<String,CheckBox> mapElemCheckbox, Context mC) {
         this.chart=chart;

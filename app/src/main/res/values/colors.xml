@@ -32,8 +32,6 @@
     <color name="shock">@android:color/holo_blue_bright</color>
     <color name="frost">#002db3</color>
 
-
-
     <color name="miss_stat">#ff6666</color>
     <color name="hit_stat">#66ccff</color>
     <color name="crit_stat">#00e600</color>

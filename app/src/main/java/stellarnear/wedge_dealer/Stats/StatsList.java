@@ -151,10 +151,10 @@ public class StatsList {
     public int getMinDmgElem(String elem) {
         int res=0;
         for (Stat stat:listStats){
-            if(res==0 && stat.getElemSumDmg().get(elem)!=null ){
+            if(res==0 && stat.getElemSumDmg().get(elem)!=null && stat.getElemSumDmg().get(elem)!=0 ){
                 res=stat.getElemSumDmg().get(elem);
             }
-            if (stat.getElemSumDmg().get(elem)!=null && stat.getElemSumDmg().get(elem)<res){
+            if (stat.getElemSumDmg().get(elem)!=null && stat.getElemSumDmg().get(elem)!=0 && stat.getElemSumDmg().get(elem)<res){
                 res=stat.getElemSumDmg().get(elem);
             }
         }
