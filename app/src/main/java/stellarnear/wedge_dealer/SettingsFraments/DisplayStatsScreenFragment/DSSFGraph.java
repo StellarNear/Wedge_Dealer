@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.view.View;
 import android.widget.CheckBox;
 
+import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
@@ -85,11 +86,10 @@ public class DSSFGraph {
         xAxis.setGranularityEnabled(true);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
 
-        chartDmgNAtk.animateXY(500, 1000);
         chartDmgNAtk.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
-                //
+                tools.customToast(mC,e.getData().toString(),"center");
             }
 
             @Override
@@ -99,6 +99,7 @@ public class DSSFGraph {
         });
 
         buildChart();
+        chartDmgNAtk.animateXY(750, 1000);
     }
 
     private void buildChart() {
@@ -146,15 +147,15 @@ public class DSSFGraph {
         for (int i=0;i<=nthAtkMax;i++){
             if (mapNHitStats.get(i) != null ) {
                 int dmgMoy=mapNHitStats.get(i).getMoyDmg();
-                listValHit.add(new Entry((int) i, (int) dmgMoy));
+                listValHit.add(new Entry((int) i, (int) dmgMoy,dmgMoy+" dégâts en moyenne\nlorsque on a "+i+" coups touchent"));
             }
             if (mapNCritStats.get(i) != null ) {
                 int dmgMoyCrit=mapNCritStats.get(i).getMoyDmg();
-                listValCrit.add(new Entry((int) i, (int) dmgMoyCrit));
+                listValCrit.add(new Entry((int) i, (int) dmgMoyCrit,dmgMoyCrit+" dégâts en moyenne\nlorsque on a "+i+" coups critiques"));
             }
             if (mapNCritNatStats.get(i) != null ) {
                 int dmgMoyCritNat=mapNCritNatStats.get(i).getMoyDmg();
-                listValCritNat.add(new Entry((int) i, (int) dmgMoyCritNat));
+                listValCritNat.add(new Entry((int) i, (int) dmgMoyCritNat,dmgMoyCritNat+" dégâts en moyenne\nlorsque on a "+i+" coups critiques naturels"));
             }
         }
 
