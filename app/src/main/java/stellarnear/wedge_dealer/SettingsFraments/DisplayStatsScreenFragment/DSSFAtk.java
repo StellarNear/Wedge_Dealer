@@ -201,11 +201,11 @@ public class DSSFAtk {
             percent = 100f*(hitVal/(hitVal+missVal));
         }
         if(percent>0f) {
-            entries.add(new PieEntry(percent, "", (int) hitVal + " coups touchés"));
+            entries.add(new PieEntry(percent, "",  new LargeValueFormatter().getFormattedValue(1f*hitVal) + " coups touchés"));
             colorList.add(mC.getColor(R.color.hit_stat));
         }
         if(percent<100f){
-            entries.add(new PieEntry(100f-percent,"",(int)missVal+" coups ratés"));
+            entries.add(new PieEntry(100f-percent,"",new LargeValueFormatter().getFormattedValue(1f*missVal)+" coups ratés"));
             colorList.add(mC.getColor(R.color.miss_stat));
         }
         PieDataSet dataset = new PieDataSet(entries,"");
@@ -263,15 +263,15 @@ public class DSSFAtk {
         ArrayList<PieEntry> entries = new ArrayList<>();
         List<Integer> colorList= new ArrayList<>();
         if(normalPercent>0f){
-            entries.add(new PieEntry(normalPercent,"normal",((int)(nHit-nCrit))+" coups normaux"));
+            entries.add(new PieEntry(normalPercent,"normal",new LargeValueFormatter().getFormattedValue(((int)(nHit-nCrit)))+" coups normaux"));
             colorList.add(mC.getColor(R.color.hit_stat));
         }
         if(critPercent>0f){
-            entries.add(new PieEntry(critPercent,"crit",((int)(nCrit-nCritNat))+" coups critiques"));
+            entries.add(new PieEntry(critPercent,"crit",new LargeValueFormatter().getFormattedValue(((int)(nCrit-nCritNat)))+" coups critiques"));
             colorList.add(mC.getColor(R.color.crit_stat));
         }
         if(critNatPercent>0f){
-            entries.add(new PieEntry(critNatPercent,"critNat",(int)nCritNat+" coups critiques naturels"));
+            entries.add(new PieEntry(critNatPercent,"critNat",new LargeValueFormatter().getFormattedValue((int)nCritNat)+" coups critiques naturels"));
             colorList.add(mC.getColor(R.color.crit_nat_stat));
         }
         PieDataSet dataset = new PieDataSet(entries,"");

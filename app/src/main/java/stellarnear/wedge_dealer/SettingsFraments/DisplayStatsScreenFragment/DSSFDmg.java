@@ -12,6 +12,7 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.LargeValueFormatter;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
@@ -153,7 +154,7 @@ public class DSSFDmg {
             if (mapElemCheckbox.get(elem).isChecked()) {
                 float percent = 100f * (list.getSumDmgTotElem(elem) / (float) totalDmg);
                 if (percent > 0f) {
-                    entries.add(new PieEntry(percent, "", (int) list.getSumDmgTotElem(elem) + " dégats " + elems.getName(elem)));
+                    entries.add(new PieEntry(percent, "", new LargeValueFormatter().getFormattedValue((int) list.getSumDmgTotElem(elem)) + " dégats " + elems.getName(elem)));
                     colorList.add(elems.getColorId(elem));
                 }
             }

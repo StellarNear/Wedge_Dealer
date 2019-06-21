@@ -39,7 +39,7 @@ public class DSSFDmgChartMaker {
     private int infoTxtSize = 12;
 
     private int minRound,maxRound,nSteps;
-    private int sizeStep=50;
+    private int sizeStep=10;
 
     public DSSFDmgChartMaker(BarChart chart, Map<String,CheckBox> mapElemCheckbox, Context mC) {
         this.chart=chart;
@@ -128,7 +128,7 @@ public class DSSFDmgChartMaker {
         float barSpace = 0.0f; //(barwidth+barspace)*nbBar +groupsspace = 1  si on veut que les label soit alignés
         float groupSpace = 0.1f;
 
-        float barWidth = 0.8f;
+        float barWidth = 1f;
         if(barGroupMode){
             barWidth=((1f-groupSpace)/(1f*elemsSelected.size()))-barSpace;
         }

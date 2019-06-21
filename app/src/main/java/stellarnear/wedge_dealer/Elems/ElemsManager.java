@@ -15,10 +15,10 @@ public class ElemsManager {
 
     public ElemsManager(Context mC){
         listElems=new ArrayList<>();
-        listElems.add(new Elem("","physique",mC.getColor(R.color.phy),mC.getColor(R.color.phy),R.drawable.phy_logo));
-        listElems.add(new Elem("fire","feu",mC.getColor(R.color.fire),mC.getColor(R.color.fire),R.drawable.fire_logo));
-        listElems.add(new Elem("shock","foudre",mC.getColor(R.color.shock),mC.getColor(R.color.shock),R.drawable.shock_logo));
-        listElems.add(new Elem("frost","froid",mC.getColor(R.color.frost),mC.getColor(R.color.frost),R.drawable.frost_logo));
+        listElems.add(new Elem("","physique",mC.getColor(R.color.phy),mC.getColor(R.color.recent_phy),R.drawable.phy_logo));
+        listElems.add(new Elem("fire","feu",mC.getColor(R.color.fire),mC.getColor(R.color.recent_fire),R.drawable.fire_logo));
+        listElems.add(new Elem("shock","foudre",mC.getColor(R.color.shock),mC.getColor(R.color.recent_shock),R.drawable.shock_logo));
+        listElems.add(new Elem("frost","froid",mC.getColor(R.color.frost),mC.getColor(R.color.recent_frost),R.drawable.frost_logo));
     }
 
     public static ElemsManager getInstance(Context context) {
