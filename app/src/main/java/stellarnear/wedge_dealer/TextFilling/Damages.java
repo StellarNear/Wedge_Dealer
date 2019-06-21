@@ -12,11 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import stellarnear.wedge_dealer.Elems.ElemsManager;
 import stellarnear.wedge_dealer.MainActivity;
 import stellarnear.wedge_dealer.Perso.Perso;
 import stellarnear.wedge_dealer.R;
@@ -29,8 +25,7 @@ public class Damages {
     private Context mC;
     private View mainView;
     private RollList selectedRolls;
-    private List<String> elements;
-    private Map<String, Integer> mapElemColor = new HashMap<>();
+    private ElemsManager elems;
     private Perso wedge= MainActivity.wedge;
 
     private Tools tools = new Tools();
@@ -40,12 +35,7 @@ public class Damages {
         this.mC = mC;
         this.mainView = mainView;
         this.selectedRolls = selectedRolls;
-        this.elements = Arrays.asList("", "fire", "shock", "frost");
-        this.mapElemColor.put("", R.color.phy);
-        this.mapElemColor.put("fire", R.color.fire);
-        this.mapElemColor.put("shock", R.color.shock);
-        this.mapElemColor.put("frost", R.color.frost);
-
+        this.elems=ElemsManager.getInstance(mC);
 
         clearAllViews();
         addDamage();
@@ -75,13 +65,13 @@ public class Damages {
 
     private void addDamage() {
         int totalSum = 0;
-        for (String elem : elements) {
+        for (String elem : elems.getListKeys()) {
             for (Roll roll : selectedRolls.getList()) {
                 roll.setDmgRand();
             }
             int sumElem = selectedRolls.getDmgSumFromType(elem);
             if (sumElem > 0) {
-                totalSum+=sumElem;
+                totalSum += sumElem;
                 addElementDamage(elem);
             }
         }
@@ -110,11 +100,7 @@ public class Damages {
         logoBox.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
         logoBox.setGravity(Gravity.CENTER);
         ImageView logo = new ImageView(mC);
-        if (elem.equalsIgnoreCase("")) {
-            elem = "phy";
-        }
-        int drawableId = mC.getResources().getIdentifier(elem + "_logo", "drawable", mC.getPackageName());
-        logo.setImageDrawable(tools.resize(mC, drawableId, mC.getResources().getDimensionPixelSize(R.dimen.logo_element)));
+        logo.setImageDrawable(tools.resize(mC, elems.getDrawableId(elem), mC.getResources().getDimensionPixelSize(R.dimen.logo_element)));
         if (logo.getParent() != null) {
             ((ViewGroup) logo.getParent()).removeView(logo);
         }
@@ -130,7 +116,7 @@ public class Damages {
         sumTxt.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         sumTxt.setGravity(Gravity.CENTER);
         sumTxt.setTypeface(null, Typeface.BOLD);
-        sumTxt.setTextColor(mC.getResources().getColor(mapElemColor.get(elem)));
+        sumTxt.setTextColor(elems.getColorId(elem));
         sumTxt.setTextSize(35);
         sumTxt.setText(String.valueOf(selectedRolls.getDmgSumFromType(elem)));
         sumBox.addView(sumTxt);

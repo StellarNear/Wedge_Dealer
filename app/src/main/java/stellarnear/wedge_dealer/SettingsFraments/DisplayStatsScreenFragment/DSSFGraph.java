@@ -3,6 +3,7 @@ package stellarnear.wedge_dealer.SettingsFraments.DisplayStatsScreenFragment;
 import android.content.Context;
 import android.view.View;
 import android.widget.CheckBox;
+
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
@@ -15,7 +16,6 @@ import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,33 +60,16 @@ public class DSSFGraph {
 
     private void setCheckboxListeners() {
         for(String elem : elems.getListKeys()){
-            onCheckboxClicked(mapElemCheckbox.get(elem));
+            mapElemCheckbox.get(elem).setCompoundDrawablesWithIntrinsicBounds(tools.resize(mC,elems.getDrawableId(elem),75),null,null,null);
+            mapElemCheckbox.get(elem).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    calculateElemToShow();
+                    resetChartElemDmgNcrit();
+                    setElemData();
+                }
+            });
         }
-    }
-
-    private void onCheckboxClicked(CheckBox view) {
-        switch(view.getId()) {
-            case R.id.line_type_phy:
-                view.setCompoundDrawablesWithIntrinsicBounds(tools.resize(mC,R.drawable.phy_logo,75),null,null,null);
-                break;
-            case R.id.line_type_fire:
-                view.setCompoundDrawablesWithIntrinsicBounds(tools.resize(mC,R.drawable.fire_logo,75),null,null,null);
-                break;
-            case R.id.line_type_shock:
-                view.setCompoundDrawablesWithIntrinsicBounds(tools.resize(mC,R.drawable.shock_logo,75),null,null,null);
-                break;
-            case R.id.line_type_frost:
-                view.setCompoundDrawablesWithIntrinsicBounds(tools.resize(mC,R.drawable.frost_logo,75),null,null,null);
-                break;
-        }
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                calculateElemToShow();
-                resetChartElemDmgNcrit();
-                setElemData();
-            }
-        });
     }
 
     private void initLineCharts() {

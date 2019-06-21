@@ -2,11 +2,9 @@ package stellarnear.wedge_dealer.SettingsFraments.DisplayStatsScreenFragment;
 
 import android.content.Context;
 import android.os.Handler;
-import android.view.View;
 import android.widget.CheckBox;
 
 import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
@@ -17,23 +15,22 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import stellarnear.wedge_dealer.Elems.ElemsManager;
 import stellarnear.wedge_dealer.MainActivity;
 import stellarnear.wedge_dealer.Perso.Perso;
 import stellarnear.wedge_dealer.R;
 import stellarnear.wedge_dealer.Stats.Stat;
 import stellarnear.wedge_dealer.Stats.StatsList;
-import stellarnear.wedge_dealer.Tools;
 
 public class DSSFDmgChartMaker {
     private Perso wedge = MainActivity.wedge;
     private BarChart chart;
     private Context mC;
-    private List<String> listElems= Arrays.asList("","fire","shock","frost");
+    private ElemsManager elems;
     private Map<String,CheckBox> mapElemCheckbox=new HashMap<>();
     private List<String> elemsSelected;
     private Boolean barGroupMode=false;
@@ -44,11 +41,10 @@ public class DSSFDmgChartMaker {
     private int minRound,maxRound,nSteps;
     private int sizeStep=50;
 
-    private Tools tools=new Tools();
-
     public DSSFDmgChartMaker(BarChart chart, Map<String,CheckBox> mapElemCheckbox, Context mC) {
         this.chart=chart;
         this.mapElemCheckbox=mapElemCheckbox;
+        this.elems=ElemsManager.getInstance(mC);
         this.mC=mC;
 
         initChart();
@@ -87,7 +83,7 @@ public class DSSFDmgChartMaker {
 
     private void calculateElemToShow() {
         elemsSelected=new ArrayList<>();
-        for(String elem : listElems){
+        for(String elem : elems.getListKeys()){
             if(mapElemCheckbox.get(elem).isChecked()){
                 elemsSelected.add(elem);
             }
@@ -129,9 +125,7 @@ public class DSSFDmgChartMaker {
 
     private void addDataChart() {
         BarData data = new BarData();
-        //(barwidth+barspace)*nbBar +groupsspace = 1
-
-        float barSpace = 0.0f; // x2 dataset
+        float barSpace = 0.0f; //(barwidth+barspace)*nbBar +groupsspace = 1  si on veut que les label soit alignés
         float groupSpace = 0.1f;
 
         float barWidth = 0.8f;
@@ -189,22 +183,10 @@ public class DSSFDmgChartMaker {
         }
 
         BarDataSet set = new BarDataSet(listVal, "");
-        switch (elemsSelected){
-            case "":
-                set.setColor(mC.getColor(R.color.phy));
-                break;
-            case "fire":
-                set.setColor(mC.getColor(R.color.fire));
-                break;
-            case "shock":
-                set.setColor(mC.getColor(R.color.shock));
-                break;
-            case "frost":
-                set.setColor(mC.getColor(R.color.frost));
-                break;
-            case "all":
-                set.setColor(mC.getColor(R.color.dmg_stat));
-                break;
+        if(elemsSelected.equalsIgnoreCase("all")){
+            set.setColor(mC.getColor(R.color.dmg_stat));
+        } else {
+            set.setColor(elems.getColorId(elemsSelected));
         }
         set.setDrawValues(false);
         return set;
@@ -218,14 +200,12 @@ public class DSSFDmgChartMaker {
     }
 
     private void formatAxisChart() {
-
         YAxis leftAxis = chart.getAxisLeft();
         leftAxis.setGranularity(1.0f);
         leftAxis.setGranularityEnabled(true);
         leftAxis.setAxisMinimum(0); // this replaces setStartAtZero(true)
 
         chart.getAxisRight().setEnabled(false);
-
         XAxis xAxis = chart.getXAxis();
         xAxis.setDrawGridLines(false);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -260,24 +240,11 @@ public class DSSFDmgChartMaker {
         }
 
         int lineColor;
-        switch (elem){
-            case "":
-                lineColor=mC.getColor(R.color.recent_phy);
-                break;
-            case "fire":
-                lineColor=mC.getColor(R.color.recent_fire);
-                break;
-            case "shock":
-                lineColor=mC.getColor(R.color.recent_shock);
-                break;
-            case "frost":
-                lineColor=mC.getColor(R.color.recent_frost);
-                break;
-            default:
-                lineColor=mC.getColor(R.color.recent_stat);
-                break;
+        if(elem.equalsIgnoreCase("all")){
+            lineColor=mC.getColor(R.color.recent_stat);
+        } else {
+            lineColor=elems.getColorIdRecent(elem);
         }
-
 
         int iStep=((sumDmg - minRound) / sizeStep);
         float fStepAdjust =iStep;
@@ -304,9 +271,6 @@ public class DSSFDmgChartMaker {
         ll.setLineWidth(2f);
         ll.setLineColor(lineColor);
         ll.setTextColor(lineColor);
-
-// .. and more styling options
-
         leftAxis.addLimitLine(ll);
     }
 

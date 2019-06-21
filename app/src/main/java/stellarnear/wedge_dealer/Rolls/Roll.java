@@ -158,4 +158,5 @@ public class Roll {
     public boolean isMissed() {
         return atkRoll.isMissed();
     }
+
 }

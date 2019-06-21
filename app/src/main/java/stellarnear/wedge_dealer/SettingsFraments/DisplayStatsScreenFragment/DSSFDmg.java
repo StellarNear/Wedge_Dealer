@@ -17,11 +17,11 @@ import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import stellarnear.wedge_dealer.Elems.ElemsManager;
 import stellarnear.wedge_dealer.MainActivity;
 import stellarnear.wedge_dealer.Perso.Perso;
 import stellarnear.wedge_dealer.R;
@@ -34,21 +34,19 @@ public class DSSFDmg {
     private DSSFDmgInfoManager subManager;
     private PieChart pieChart;
 
-
     private Context mC;
     private View mainView;
-    private List<String> listElems= Arrays.asList("","fire","shock","frost");
+    private ElemsManager elems;
     private Map<String,CheckBox> mapElemCheckbox=new HashMap<>();
     private StatsList selectedStats=new StatsList();
     private int infoTxtSize = 12;
 
-
     private Tools tools=new Tools();
-
 
     public DSSFDmg(View mainView, Context mC) {
         this.mainView = mainView;
         this.mC = mC;
+        this.elems=ElemsManager.getInstance(mC);
 
         TextView nAtkTxt = mainView.findViewById(R.id.nDmgTxt);
         nAtkTxt.setText(wedge.getStats().getStatsList().getNDmgTot() + " jets de dégâts");
@@ -70,36 +68,19 @@ public class DSSFDmg {
     }
 
     private void setCheckboxListeners() {
-        for(String elem : listElems){
-            onCheckboxClicked(mapElemCheckbox.get(elem));
+        for(String elem : elems.getListKeys()){
+            mapElemCheckbox.get(elem).setCompoundDrawablesWithIntrinsicBounds(tools.resize(mC,elems.getDrawableId(elem),75),null,null,null);
+            mapElemCheckbox.get(elem).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    chartMaker.resetChart();
+                    chartMaker.buildChart();
+                    resetPieChart();
+                    buildPieChart();
+                    subManager.addInfos(null);
+                }
+            });
         }
-    }
-
-    private void onCheckboxClicked(CheckBox view) {
-        switch(view.getId()) {
-            case R.id.dmg_type_phy:
-                view.setCompoundDrawablesWithIntrinsicBounds(tools.resize(mC,R.drawable.phy_logo,75),null,null,null);
-                break;
-            case R.id.dmg_type_fire:
-                view.setCompoundDrawablesWithIntrinsicBounds(tools.resize(mC,R.drawable.fire_logo,75),null,null,null);
-                break;
-            case R.id.dmg_type_shock:
-                view.setCompoundDrawablesWithIntrinsicBounds(tools.resize(mC,R.drawable.shock_logo,75),null,null,null);
-                break;
-            case R.id.dmg_type_frost:
-                view.setCompoundDrawablesWithIntrinsicBounds(tools.resize(mC,R.drawable.frost_logo,75),null,null,null);
-                break;
-        }
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                chartMaker.resetChart();
-                chartMaker.buildChart();
-                resetPieChart();
-                buildPieChart();
-                subManager.addInfos(null);
-            }
-        });
     }
 
     private void initChartSelectEvent() {
@@ -168,33 +149,12 @@ public class DSSFDmg {
             list=wedge.getStats().getStatsList();
         }
         int totalDmg=list.getSumDmgTot();
-        for(String elem : listElems) {
+        for(String elem : elems.getListKeys()) {
             if (mapElemCheckbox.get(elem).isChecked()) {
                 float percent = 100f * (list.getSumDmgTotElem(elem) / (float) totalDmg);
-                int colorInt = 0;
-                String appendix = "";
-                switch (elem) {
-                    case "":
-                        appendix = "physique";
-                        colorInt = mC.getColor(R.color.phy);
-                        break;
-                    case "fire":
-                        appendix = "feu";
-                        colorInt = mC.getColor(R.color.fire);
-                        break;
-                    case "shock":
-                        appendix = "foudre";
-                        colorInt = mC.getColor(R.color.shock);
-                        break;
-                    case "frost":
-                        appendix = "froid";
-                        colorInt = mC.getColor(R.color.frost);
-                        break;
-                }
-
                 if (percent > 0f) {
-                    entries.add(new PieEntry(percent, "", (int) list.getSumDmgTotElem(elem) + " dégats " + appendix));
-                    colorList.add(colorInt);
+                    entries.add(new PieEntry(percent, "", (int) list.getSumDmgTotElem(elem) + " dégats " + elems.getName(elem)));
+                    colorList.add(elems.getColorId(elem));
                 }
             }
         }
@@ -208,7 +168,7 @@ public class DSSFDmg {
     // Resets
 
     public void reset() {
-        for(String elem : listElems){
+        for(String elem : elems.getListKeys()){
             mapElemCheckbox.get(elem).setChecked(true);
         }
         chartMaker.resetChart();

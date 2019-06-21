@@ -15,10 +15,10 @@ public class ElemsManager {
 
     public ElemsManager(Context mC){
         listElems=new ArrayList<>();
-        listElems.add(new Elem("","physique",mC.getColor(R.color.phy)));
-        listElems.add(new Elem("fire","feu",mC.getColor(R.color.fire)));
-        listElems.add(new Elem("shock","foudre",mC.getColor(R.color.shock)));
-        listElems.add(new Elem("frost","froid",mC.getColor(R.color.frost)));
+        listElems.add(new Elem("","physique",mC.getColor(R.color.phy),mC.getColor(R.color.phy),R.drawable.phy_logo));
+        listElems.add(new Elem("fire","feu",mC.getColor(R.color.fire),mC.getColor(R.color.fire),R.drawable.fire_logo));
+        listElems.add(new Elem("shock","foudre",mC.getColor(R.color.shock),mC.getColor(R.color.shock),R.drawable.shock_logo));
+        listElems.add(new Elem("frost","froid",mC.getColor(R.color.frost),mC.getColor(R.color.frost),R.drawable.frost_logo));
     }
 
     public static ElemsManager getInstance(Context context) {
@@ -46,6 +46,10 @@ public class ElemsManager {
         return getElementByKey(elemKey).getColorId();
     }
 
+    public int getColorIdRecent(String elemKey){
+        return getElementByKey(elemKey).getColorIdRecent();
+    }
+
     private Elem getElementByKey(String elemKey) {
         Elem res=null;
         for (Elem elem : listElems){
@@ -54,5 +58,9 @@ public class ElemsManager {
             }
         }
         return res;
+    }
+
+    public int getDrawableId(String key) {
+        return getElementByKey(key).getDrawableId();
     }
 }
