@@ -54,7 +54,7 @@ public class RollFactory {
             int nCount=1;
             for (Roll roll : this.rollList.getList()){
                 roll.getAtkRoll().setMode(this.mode);
-                roll.setNthRoll(nCount);
+                roll.setNthAtkRoll(nCount);
                 nCount++;
             }
         } else {

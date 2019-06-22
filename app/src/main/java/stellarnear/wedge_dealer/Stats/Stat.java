@@ -27,15 +27,15 @@ public class Stat {
         }
         for (Roll roll:rolls.getList()){
             if(roll.isCritConfirmed()){
-                nthAtksCrit.add(roll.getNthRoll());
+                nthAtksCrit.add(roll.getNthAtkRoll());
                 if(roll.getAtkRoll().getAtkDice().getRandValue()==20){
-                    nthAtksCritNat.add(roll.getNthRoll());
+                    nthAtksCritNat.add(roll.getNthAtkRoll());
                 }
             }
             if( roll.isHitConfirmed()){
-                nthAtksHit.add(roll.getNthRoll());
+                nthAtksHit.add(roll.getNthAtkRoll());
             } else if (roll.isMissed()){
-                nthAtksMiss.add(roll.getNthRoll());
+                nthAtksMiss.add(roll.getNthAtkRoll());
             }
         }
         this.date=new Date();

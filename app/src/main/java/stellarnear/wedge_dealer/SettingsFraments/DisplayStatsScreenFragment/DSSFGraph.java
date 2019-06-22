@@ -229,11 +229,14 @@ public class DSSFGraph {
 
     private void setElemData() {
         LineData data = new LineData();
+        int minAxis=0;
         for(String elem : elemsSelected) {
             ArrayList<Entry> listValElem = new ArrayList<>();
             for (int i=0;i<=nthAtkMax;i++){
                 if (mapNAllCritStats.get(i) != null ) {
                     int dmgMoyElem=mapNAllCritStats.get(i).getMoyDmgElem(elem);
+                    if(minAxis==0){ minAxis=dmgMoyElem; }
+                    if(minAxis>dmgMoyElem){ minAxis=dmgMoyElem; }
                     listValElem.add(new Entry((int) i, (int) dmgMoyElem,dmgMoyElem+" dégâts "+elems.getName(elem)+" en moyenne\nlorsque on a "+i+" coups critiques (crit+critNat)"));
                 }
             }
@@ -242,7 +245,6 @@ public class DSSFGraph {
             data.addDataSet(setElem);
 
             if(elem.equalsIgnoreCase("")){
-
                 ArrayList<Entry> listValElemCritNat = new ArrayList<>();
                 for (int i=0;i<=nthAtkMax;i++){
                     if (mapNCritNatStats.get(i) != null ) {
@@ -258,6 +260,7 @@ public class DSSFGraph {
             }
         }
         data.setValueTextSize(infoTxtSize);
+        chartElemDmgNCrit.getAxisLeft().setAxisMinimum(1f*minAxis);
         chartElemDmgNCrit.setData(data);
     }
 

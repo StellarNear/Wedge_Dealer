@@ -82,4 +82,15 @@
             android:title="@string/weapon_spe_epic" />
 
         </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Autre 'soon'">
+    <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+    <SwitchPreference
+        android:defaultValue="@bool/hammer_gap_switch_def"
+        android:key="hammer_gap_switch"
+        android:summary="@string/hammer_gap_summ"
+        android:title="@string/hammer_gap" />
+    </PreferenceCategory>
+
 </PreferenceScreen>

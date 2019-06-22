@@ -17,14 +17,19 @@ public class DmgRoll {
     private Integer critMultiplier;
 
     private int bonusDmg = 0;
+    private int nthAtkRoll=0;
+    private int nthDmgRoll=0;
 
     private DiceList allDiceList = new DiceList();
 
     private Tools tools = new Tools();
 
-    public DmgRoll(Activity mA, Context mC, Boolean critConfirmed, Boolean naturalCrit) {
+    public DmgRoll(Activity mA, Context mC, Boolean critConfirmed, Boolean naturalCrit,int nthAtkRoll,int nthDmgRoll) {
         this.mC = mC;
         this.critConfirmed = critConfirmed;
+        this.nthAtkRoll=nthAtkRoll;
+        this.nthDmgRoll=nthDmgRoll;
+
         this.settings = PreferenceManager.getDefaultSharedPreferences(mC);
         if (settings.getBoolean("crit_science_myth_switch", mC.getResources().getBoolean(R.bool.crit_science_myth_switch_def))) {
             critMultiplier = 4;
@@ -120,6 +125,10 @@ public class DmgRoll {
         }
         if (settings.getBoolean("weapon_spe_epic_switch", mC.getResources().getBoolean(R.bool.weapon_spe_epic_switch_def))) {
             calcBonusDmg += 4;
+        }
+        if (settings.getBoolean("hammer_gap_switch", mC.getResources().getBoolean(R.bool.hammer_gap_switch_def))) {
+            int multiVal = tools.toInt(settings.getString("multi_val", String.valueOf(mC.getResources().getInteger(R.integer.multi_value_def))));
+            calcBonusDmg += ((nthAtkRoll-1)*multiVal)+nthDmgRoll-1;
         }
 
         calcBonusDmg += tools.toInt(settings.getString("epic_dmg_val", String.valueOf(mC.getResources().getInteger(R.integer.epic_dmg_val_def))));

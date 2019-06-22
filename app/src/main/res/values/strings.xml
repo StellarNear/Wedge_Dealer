@@ -56,6 +56,10 @@
     <string name="viser_summ">-x aux jets d\'attaques / +2x aux dégâts</string>
     <string name="viser_val">Valeur du malus</string>
 
+    <!-- Feat autre soon  -->
+    <string name="hammer_gap_summ">Chaque coup successif augemente les dégats</string>
+    <string name="hammer_gap">Marteler la faille</string>
+
     <!--Epic  -->
     <string name="predil_epic">Arme de prédilection épique</string>
     <string name="predil_epic_summ">+2 à tous ses jets d\'attaque avec l\'arme choisie.</string>
@@ -73,6 +77,7 @@
     <string name="crit_science_myth_summ">Le multiplicateur de critique que le personnage applique lorsqu’il manipule l’arme choisie augmente de 1.</string>
     <string name="barrage_shot">Tir de barrage</string>
     <string name="barrage_shot_summ">En dépenssant un point mythique par une action rapide effectue une attaque à distance. Cette attaque vient en plus de celles effectuées au cours du même round. Lorsqu’il effectue cette attaque, le personnage ignore l’abri et le camouflage dont bénéficie la cible et il ajoute son grade au jet d’attaque. Les dégâts de cette attaque ignorent toutes les réductions de dégâts.</string>
+
 
 
     <!-- ENCHANTS -->
@@ -94,7 +99,6 @@
     <string name="pref_header_temp">Augmentations temporaires</string>
     <string name="att_buff">Augmentation d\'attaque</string>
     <string name="dmg_buff">Augmentation de dégât</string>
-
 
 
     <!-- autre -->

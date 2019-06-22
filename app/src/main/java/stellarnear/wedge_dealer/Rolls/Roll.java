@@ -20,7 +20,7 @@ public class Roll {
     private Context mC;
     private SharedPreferences settings;
     private Tools tools=new Tools();
-    private int nthRoll;
+    private int nthAtkRoll;
 
     public Roll(Activity mA, Context mC, Integer atkBase) {
         this.mA=mA;
@@ -36,11 +36,13 @@ public class Roll {
 
     public void setDmgRand() {
         if (this.dmgRollList.isEmpty() && !isMissed()){
-            this.dmgRollList.add(new DmgRoll(mA,mC,atkRoll.isCritConfirmed(),atkRoll.getAtkDice().getRandValue()==20));
+            int nthDmgRoll=1;
+            this.dmgRollList.add(new DmgRoll(mA,mC,atkRoll.isCritConfirmed(),atkRoll.getAtkDice().getRandValue()==20,this.nthAtkRoll,nthDmgRoll));
             if (settings.getBoolean("feu_nourri_switch", mC.getResources().getBoolean(R.bool.feu_nourri_switch_def))) {
                 int multiVal = tools.toInt(settings.getString("multi_val", String.valueOf(mC.getResources().getInteger(R.integer.multi_value_def))));
                 for(int i=1;i<multiVal;i++){
-                    this.dmgRollList.add(new DmgRoll(mA,mC,false,false)); //seul l'attaque principale peut crit
+                    nthDmgRoll++;
+                    this.dmgRollList.add(new DmgRoll(mA,mC,false,false,this.nthAtkRoll,nthDmgRoll)); //seul l'attaque principale peut crit
                 }
             }
 
@@ -147,12 +149,12 @@ public class Roll {
     }
 
 
-    public void setNthRoll(int nthRoll) {
-        this.nthRoll = nthRoll;
+    public void setNthAtkRoll(int nthAtkRoll) {
+        this.nthAtkRoll = nthAtkRoll;
     }
 
-    public int getNthRoll() {
-        return nthRoll;
+    public int getNthAtkRoll() {
+        return nthAtkRoll;
     }
 
     public boolean isMissed() {
