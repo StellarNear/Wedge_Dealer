@@ -1,6 +1,5 @@
 package stellarnear.wedge_dealer.SettingsFraments;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -10,7 +9,6 @@ import android.os.Handler;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -20,7 +18,6 @@ import java.util.List;
 import stellarnear.wedge_dealer.MainActivity;
 import stellarnear.wedge_dealer.Perso.Perso;
 import stellarnear.wedge_dealer.R;
-import stellarnear.wedge_dealer.SettingsFraments.DisplayStatsScreenFragment.DSSFAtk;
 import stellarnear.wedge_dealer.Tools;
 
 public class PrefSleepScreenFragment extends Preference {

@@ -281,7 +281,6 @@ public class MainActivity extends AppCompatActivity {
         damages = new Damages(MainActivity.this,mC, mainPage, selectedRolls);  //calcul et affiche les degats
         if (selectedRolls.getDmgDiceList().getList().size() > 0) {
             rangesAndProba = new RangesAndProba(mC, mainPage, selectedRolls);
-            displayRolls = new DisplayRolls(MainActivity.this, mC, selectedRolls);
             fabDmgDet.setVisibility(View.VISIBLE);
             fabDmgDet.setEnabled(true);
         }
@@ -302,6 +301,7 @@ public class MainActivity extends AppCompatActivity {
         fabDmgDet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                displayRolls = new DisplayRolls(MainActivity.this, mC, selectedRolls);
                 displayRolls.showPopup();
             }
         });

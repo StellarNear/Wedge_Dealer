@@ -633,4 +633,26 @@ public class TinyDB {
         putListString(key, objStrings);
     }
 
+    public List<FameEntry> getHallOfFame(String key) {
+        Gson gson = new Gson();
+
+        ArrayList<String> objStrings = getListString(key);
+        List<FameEntry> objects = new ArrayList<>();
+
+        for (String jObjString : objStrings) {
+            FameEntry value = gson.fromJson(jObjString, FameEntry.class);
+            objects.add(value);
+        }
+        return objects;
+    }
+
+    public void putHallOfFame(String key, List<FameEntry> objArray) {
+        checkForNullKey(key);
+        Gson gson = new Gson();
+        ArrayList<String> objStrings = new ArrayList<String>();
+        for (FameEntry obj : objArray) {
+            objStrings.add(gson.toJson(obj));
+        }
+        putListString(key, objStrings);
+    }
 }

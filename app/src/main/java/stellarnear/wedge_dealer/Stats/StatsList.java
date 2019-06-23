@@ -216,7 +216,7 @@ public class StatsList {
 
     public Stat getLastStat() {
         Stat res=null;
-        if (listStats.size()>1){
+        if (listStats.size()>0){
             res=listStats.get(listStats.size()-1);
         }
         return res;

@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import stellarnear.wedge_dealer.Rolls.Roll;
 import stellarnear.wedge_dealer.Rolls.RollList;
@@ -17,6 +18,7 @@ public class Stat {
     private List<Integer> nthAtksCrit =new ArrayList<>();
     private List<Integer> nthAtksCritNat =new ArrayList<>();
     private Date date=null;
+    private UUID uuid;
 
     public Stat(){  }
 
@@ -39,6 +41,7 @@ public class Stat {
             }
         }
         this.date=new Date();
+        this.uuid=UUID.randomUUID();
     }
 
     public Integer getNCrit() {
@@ -90,6 +93,7 @@ public class Stat {
         return nthAtksCritNat;
     }
 
-
-
+    public UUID getUuid() {
+        return this.uuid;
+    }
 }

@@ -1,6 +1,5 @@
 package stellarnear.wedge_dealer.SettingsFraments.DisplayStatsScreenFragment;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.Preference;
@@ -13,14 +12,9 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import stellarnear.wedge_dealer.R;
-import stellarnear.wedge_dealer.SettingsActivity;
-import stellarnear.wedge_dealer.SettingsFragment;
 import stellarnear.wedge_dealer.Tools;
 
 

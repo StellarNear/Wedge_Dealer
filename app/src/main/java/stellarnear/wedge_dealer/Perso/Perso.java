@@ -2,6 +2,7 @@ package stellarnear.wedge_dealer.Perso;
 
 import android.content.Context;
 
+import stellarnear.wedge_dealer.HallOfFame;
 import stellarnear.wedge_dealer.Stats.Stats;
 
 
@@ -14,11 +15,13 @@ public class Perso {
     private Inventory inventory;
     private AllResources allResources;
     private Stats stats;
+    private HallOfFame hallOfFame;
 
     public Perso(Context mC) {
         inventory = new Inventory(mC);
         allResources = new AllResources(mC);
         stats = new Stats(mC);
+        hallOfFame=new HallOfFame(mC);
     }
 
     public void refresh() {
@@ -44,5 +47,9 @@ public class Perso {
 
     public Stats getStats() {
         return stats;
+    }
+
+    public HallOfFame getHallOfFame() {
+        return hallOfFame;
     }
 }

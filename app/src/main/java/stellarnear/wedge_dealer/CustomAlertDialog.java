@@ -24,7 +24,8 @@ public class CustomAlertDialog {
     public CustomAlertDialog(Activity mA, Context mC, View view) {
         // Set the toast and duration
         this.mC=mC;
-        dialogBuilder  = new AlertDialog.Builder(mA, R.style.CustomDialog);
+        if(mA!=null){ dialogBuilder  = new AlertDialog.Builder(mA, R.style.CustomDialog); }
+        else { dialogBuilder  = new AlertDialog.Builder(mC, R.style.CustomDialog);  }
         dialogBuilder.setView(view);
     }
 

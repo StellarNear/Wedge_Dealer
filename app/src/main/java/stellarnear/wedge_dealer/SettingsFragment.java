@@ -13,7 +13,6 @@ import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.ContentFrameLayout;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -22,8 +21,6 @@ import java.util.List;
 
 import stellarnear.wedge_dealer.Perso.Perso;
 import stellarnear.wedge_dealer.SettingsFraments.PrefAllInventoryFragment;
-import stellarnear.wedge_dealer.SettingsFraments.PrefResetScreenFragment;
-import stellarnear.wedge_dealer.SettingsFraments.PrefSleepScreenFragment;
 import stellarnear.wedge_dealer.SettingsFraments.PrefXpFragment;
 
 
