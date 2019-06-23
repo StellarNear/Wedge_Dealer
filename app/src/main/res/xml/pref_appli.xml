@@ -8,7 +8,7 @@
         android:title="Paramètres de l'application" />
 
     <PreferenceScreen
-        android:key="reset_para"
+        android:key="pref_appli_reset"
         android:summary="Réinitialise tout les paramètres"
         android:icon="@drawable/ic_undo_black_24dp"
         android:title="Reset des paramètres" />

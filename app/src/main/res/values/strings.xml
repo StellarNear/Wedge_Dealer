@@ -143,4 +143,13 @@
     </string-array>
 
 
+    <!-- Stats -->
+    <string-array name="stat_bin">
+        <item>10</item>
+        <item>25</item>
+        <item>50</item>
+        <item>100</item>
+    </string-array>
+
+
 </resources>

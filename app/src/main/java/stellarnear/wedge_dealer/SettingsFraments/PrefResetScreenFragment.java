@@ -7,27 +7,51 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
+import android.preference.Preference;
 import android.preference.PreferenceManager;
+import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import stellarnear.wedge_dealer.MainActivity;
 import stellarnear.wedge_dealer.Perso.Perso;
 import stellarnear.wedge_dealer.R;
 import stellarnear.wedge_dealer.Tools;
 
-public class PrefResetScreenFragment {
-    private Activity mA;
+public class PrefResetScreenFragment extends Preference {
     private Context mC;
     private Perso wedge=MainActivity.wedge;
+    private View mainView;
 
-    public PrefResetScreenFragment(Activity mA, Context mC) {
-        this.mA=mA;
-        this.mC=mC;
+    public PrefResetScreenFragment(Context context, AttributeSet attrs) {
+        super(context, attrs);
+
+    }
+
+    public PrefResetScreenFragment(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+
+    }
+    public PrefResetScreenFragment(Context context) {
+        super(context);
+    }
+
+    @Override
+    protected View onCreateView(ViewGroup parent)
+    {
+        super.onCreateView(parent);
+        this.mC=getContext();
+
+        mainView = new View(getContext());
+        final ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(parent.getWidth(), parent.getHeight());  //pour full screen
+        mainView.setLayoutParams(params);
+        addResetScreen();
+        return mainView;
     }
 
     public void addResetScreen() {
-        View window = mA.findViewById(android.R.id.content);
-        window.setBackgroundResource(R.drawable.reset_background);
+        mainView.setBackgroundResource(R.drawable.reset_background);
         new AlertDialog.Builder(mC)
                 .setIcon(R.drawable.ic_warning_black_24dp)
                 .setTitle("Remise à zéro des paramètres")
@@ -41,9 +65,6 @@ public class PrefResetScreenFragment {
                 .setNegativeButton("Non", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(mA, MainActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                        mA.startActivity(intent);
                     }
                 })
                 .show();
@@ -65,9 +86,9 @@ public class PrefResetScreenFragment {
                 wedge.getInventory().resetInventory();
                 wedge.getStats().resetStats();
                 tools.customToast(mC, "Remise à zero des paramètres de l'application", "center");
-                Intent intent = new Intent(mA, MainActivity.class);
+                Intent intent = new Intent(mC, MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                mA.startActivity(intent);
+                mC.startActivity(intent);
             }
         }, time);
     }

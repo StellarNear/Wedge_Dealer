@@ -2,6 +2,7 @@ package stellarnear.wedge_dealer.SettingsFraments.DisplayStatsScreenFragment;
 
 import android.content.Context;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.widget.CheckBox;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -25,6 +26,7 @@ import stellarnear.wedge_dealer.Perso.Perso;
 import stellarnear.wedge_dealer.R;
 import stellarnear.wedge_dealer.Stats.Stat;
 import stellarnear.wedge_dealer.Stats.StatsList;
+import stellarnear.wedge_dealer.Tools;
 
 public class DSSFDmgChartMaker {
     private Perso wedge = MainActivity.wedge;
@@ -39,7 +41,8 @@ public class DSSFDmgChartMaker {
     private int infoTxtSize = 12;
 
     private int minRound,maxRound,nSteps;
-    private int sizeStep=10;
+    private int sizeStep;
+    private Tools tools=new Tools();
 
     public DSSFDmgChartMaker(BarChart chart, Map<String,CheckBox> mapElemCheckbox, Context mC) {
         this.chart=chart;
@@ -47,6 +50,7 @@ public class DSSFDmgChartMaker {
         this.elems=ElemsManager.getInstance(mC);
         this.mC=mC;
 
+        this.sizeStep=tools.toInt(PreferenceManager.getDefaultSharedPreferences(mC).getString("display_stats_bin", String.valueOf(mC.getResources().getInteger(R.integer.display_stats_bin_def))));
         initChart();
     }
 

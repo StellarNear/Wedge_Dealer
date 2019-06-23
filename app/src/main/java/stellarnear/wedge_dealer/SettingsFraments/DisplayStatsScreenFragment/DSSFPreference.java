@@ -2,23 +2,31 @@ package stellarnear.wedge_dealer.SettingsFraments.DisplayStatsScreenFragment;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.Preference;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
+import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import stellarnear.wedge_dealer.R;
+import stellarnear.wedge_dealer.SettingsActivity;
+import stellarnear.wedge_dealer.SettingsFragment;
 import stellarnear.wedge_dealer.Tools;
 
-public class DSSF {
-    private Activity mA;
-    private Context mC;
 
+public class DSSFPreference extends Preference {
     private Tools tools=new Tools();
+    private Context mC;
     private View mainView;
     private ViewFlipper panel;
 
@@ -28,18 +36,32 @@ public class DSSF {
     private String position="atk";
 
 
-    public DSSF(Activity mA, Context mC) {
-        this.mA=mA;
-        this.mC=mC;
+    public DSSFPreference(Context context, AttributeSet attrs) {
+        super(context, attrs);
+
     }
 
-    public void addStatsScreen() {
-        ViewGroup window = mA.findViewById(android.R.id.content);
-        LayoutInflater inflater = LayoutInflater.from(mC);
+    public DSSFPreference(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+
+    }
+    public DSSFPreference(Context context) {
+        super(context);
+    }
+
+    @Override
+    protected View onCreateView(ViewGroup parent)
+    {
+        super.onCreateView(parent);
+        final SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getContext());
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        this.mC=getContext();
         mainView = inflater.inflate(R.layout.stats_charts, null);
         fragAtk = new DSSFAtk(mainView,mC);
         buttonSetup();
-        window.addView(mainView);
+        final ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(parent.getWidth(), parent.getHeight());  //pour full screen
+        mainView.setLayoutParams(params);
+        return mainView;
     }
 
     private void buttonSetup() {
@@ -136,5 +158,4 @@ public class DSSF {
             this.position = toPosition;
         }
     }
-
 }

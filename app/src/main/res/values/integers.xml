@@ -29,4 +29,6 @@
     <integer name="legendary_points_def">4</integer>
     <integer name="mythic_dice_def">6</integer>
     <integer name="legendary_dice_def">8</integer>
+
+    <integer name="display_stats_bin_def">50</integer>
 </resources>

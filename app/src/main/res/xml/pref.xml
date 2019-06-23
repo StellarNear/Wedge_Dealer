@@ -33,7 +33,7 @@
         android:title="Bonus temporaires" />
 
     <PreferenceScreen
-        android:key="sleep"
+        android:key="pref_sleep"
         android:icon="@drawable/ic_brightness_3_black_24dp"
         android:title="Repos"
         android:summary="Une bonne nuit de sommeil"/>
@@ -42,7 +42,7 @@
 
     <PreferenceScreen
         android:icon="@drawable/ic_trophy_cup"
-        android:key="display_stats"
+        android:key="pref_stats"
         android:title="Statistiques"
         android:summary="Record actuel : XXXX"/>
 

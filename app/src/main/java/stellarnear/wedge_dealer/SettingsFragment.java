@@ -21,7 +21,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import stellarnear.wedge_dealer.Perso.Perso;
-import stellarnear.wedge_dealer.SettingsFraments.DisplayStatsScreenFragment.DSSF;
 import stellarnear.wedge_dealer.SettingsFraments.PrefAllInventoryFragment;
 import stellarnear.wedge_dealer.SettingsFraments.PrefResetScreenFragment;
 import stellarnear.wedge_dealer.SettingsFraments.PrefSleepScreenFragment;
@@ -51,7 +50,7 @@ public class SettingsFragment extends PreferenceFragment {
         this.mA=getActivity();
         this.mC=getContext();
         addPreferencesFromResource(R.xml.pref);
-        findPreference("display_stats").setSummary("Record actuel : "+settings.getString("highscore", "0"));
+        findPreference("pref_stats").setSummary("Record actuel : "+settings.getString("highscore", "0"));
         this.histoPrefKeys.add("pref");
         this.histoTitle.add(getResources().getString(R.string.action_settings));
         this.prefAllInventoryFragment =new PrefAllInventoryFragment(mA,mC);
@@ -112,7 +111,7 @@ public class SettingsFragment extends PreferenceFragment {
             getPreferenceScreen().removeAll();
             addPreferencesFromResource(R.xml.pref);
             ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(currentPageTitle);
-            findPreference("display_stats").setSummary("Record actuel : "+settings.getString("highscore", "0"));
+            findPreference("pref_stats").setSummary("Record actuel : "+settings.getString("highscore", "0"));
         } else if (currentPageKey.contains("pref_")) {
             loadPage();
             switch (currentPageKey) {
@@ -142,11 +141,6 @@ public class SettingsFragment extends PreferenceFragment {
 
     private void action(Preference preference) {
         switch (preference.getKey()) {
-            case "reset_para":
-                ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(preference.getTitle());
-                ((ContentFrameLayout) getActivity().findViewById(android.R.id.content)).removeAllViews();
-                new PrefResetScreenFragment(mA,mC).addResetScreen();
-                break;
             case "show_equipment":
                 wedge.getInventory().showEquipment(getActivity(), true);
                 break;
@@ -200,11 +194,6 @@ public class SettingsFragment extends PreferenceFragment {
                 resetTemp();
                 navigate();
                 break;
-            case "sleep":
-                ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(preference.getTitle().toString());
-                ((ContentFrameLayout) getActivity().findViewById(android.R.id.content)).removeAllViews();
-                new PrefSleepScreenFragment(mA,mC).addSleepScreen();
-                break;
             case "spend_myth_point":
                 if( wedge.getResourceValue("mythic_points")>0) {
                     new AlertDialog.Builder(mC)
@@ -221,11 +210,6 @@ public class SettingsFragment extends PreferenceFragment {
                 } else {
                     tools.customToast(mC,"Tu n'as plus de point mythique","center");
                 }
-                break;
-            case "display_stats":
-                ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(preference.getTitle().toString());
-                ((ContentFrameLayout) getActivity().findViewById(android.R.id.content)).removeAllViews();
-                new DSSF(mA,mC).addStatsScreen();
                 break;
         }
     }
