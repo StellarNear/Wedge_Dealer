@@ -144,10 +144,14 @@ public class PrefHallOfFameFragment extends Preference {
 
     private void saveLast() {
         Stat lastStat = wedge.getStats().getStatsList().getLastStat();
-        if(lastStat!=null && wedge.getHallOfFame().containsStat(lastStat)){
-            tools.customToast(mC,"Entrée déjà présente","center");
+        if(lastStat==null){
+            tools.customToast(mC, "Aucune attaque à enregistrer...", "center");
         } else {
-            addFameEntry(lastStat);
+            if (wedge.getHallOfFame().containsStat(lastStat)) {
+                tools.customToast(mC, "Entrée déjà présente", "center");
+            } else {
+                addFameEntry(lastStat);
+            }
         }
     }
 
