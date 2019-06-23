@@ -222,4 +222,7 @@ public class StatsList {
         return res;
     }
 
+    public boolean contains(Stat lastStat) {
+        return listStats.contains(lastStat);
+    }
 }

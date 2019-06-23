@@ -10,15 +10,13 @@ import stellarnear.wedge_dealer.Tools;
 
 public class Stats {
     private StatsList statsList = new StatsList();
-    private SharedPreferences settings;
-    private Context mC;
-    private Tools tools=new Tools();
+    private StatsList hallOfFameList = new StatsList();
     private TinyDB tinyDB;
 
     public Stats(Context mC){
-        this.mC = mC;
-        settings = PreferenceManager.getDefaultSharedPreferences(mC);
+        tinyDB = new TinyDB(mC);
         refreshStats();
+        refreshAllOfFame();
     }
 
     private void saveLocalStats() { //sauvegarde dans local DB
@@ -26,7 +24,6 @@ public class Stats {
     }
 
     public void refreshStats(){ //Initialisation ou lecture depuis DB
-        tinyDB = new TinyDB(mC);
         StatsList listDB = tinyDB.getStats("localSaveStats");
         if (listDB.size() == 0) {
             initStats();
@@ -54,5 +51,33 @@ public class Stats {
     public void resetStats() {
         this.statsList =new StatsList();
         saveLocalStats();
+    }
+
+    // hall of frame
+
+    private void refreshAllOfFame() {
+        StatsList listDB = tinyDB.getStats("localSaveHallOfFame");
+        if (listDB.size() == 0) {
+            initAllOfFame();
+            saveLocalHallOfFame();
+        } else {
+            hallOfFameList = listDB;
+        }
+    }
+    private void initAllOfFame(){
+        this.hallOfFameList =new StatsList();
+    }
+
+    private void saveLocalHallOfFame() { //sauvegarde dans local DB
+        tinyDB.putStats("localSaveHallOfFame", hallOfFameList);
+    }
+
+    public StatsList getHallOfFameList() {
+        return hallOfFameList;
+    }
+
+    public void addToHallOfFame(Stat lastStat) {
+        hallOfFameList.add(lastStat);
+        saveLocalHallOfFame();
     }
 }

@@ -3,14 +3,13 @@
     <!--android:key="display_stats"-->
     <PreferenceScreen
         android:icon="@drawable/ic_insert_chart_black_24dp"
-
-android:key="pref_stats_display"
+        android:key="pref_stats_display"
         android:title="Analyse"
         android:summary="Affiche les analyses des statistiques"/>
 
     <PreferenceScreen
         android:icon="@drawable/ic_format_list_numbered_black_24dp"
-        android:key="display_hall_of_fame"
+        android:key="pref_stats_hall_of_fame"
         android:title="Panthéon"
         android:summary="Sauvegarde des rounds importants"/>
 
