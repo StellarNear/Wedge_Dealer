@@ -46,7 +46,7 @@ public class HallOfFame {
 
     public boolean containsStat(Stat lastStat) {
         boolean val=false;
-            if (hallOfFameList.size()>0 && hallOfFameList.get(hallOfFameList.size()-1).getStat().getUuid().equals(lastStat.getUuid())){
+            if (hallOfFameList.size()>0 && hallOfFameList.get(hallOfFameList.size()-1).getStat().equals(lastStat)){
                 val=true;
             }
         return val;

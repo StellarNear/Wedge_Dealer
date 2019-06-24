@@ -222,78 +222,75 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:gravity="center"
-                    android:layout_gravity="center_horizontal"
-                    android:clipChildren="false"
-                    android:clipToPadding="false">
+                    android:gravity="center">
 
-                    <FrameLayout
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:clipChildren="false"
-                        android:clipToPadding="false">
+                        android:gravity="center">
                         <CheckBox android:id="@+id/line_type_phy"
                             android:checked="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
                             android:buttonTint="@color/phy"
-                            android:clipChildren="false"
-                            android:clipToPadding="false"
                             />
-                    </FrameLayout>
+                        <ImageView
+                            android:layout_width="@dimen/logo_element_stats"
+                            android:layout_height="@dimen/logo_element_stats"
+                            android:src="@drawable/phy_logo"/>
+                    </LinearLayout>
 
-                    <FrameLayout
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:clipChildren="false"
-                        android:clipToPadding="false">
+                        android:gravity="center"
+                        android:layout_height="wrap_content">
                         <CheckBox android:id="@+id/line_type_fire"
                             android:checked="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
                             android:buttonTint="@color/fire"
-                            android:clipChildren="false"
-                            android:clipToPadding="false"
                             />
-                    </FrameLayout>
+                        <ImageView
+                            android:layout_width="@dimen/logo_element_stats"
+                            android:layout_height="@dimen/logo_element_stats"
+                            android:src="@drawable/fire_logo"/>
+                    </LinearLayout>
 
-                    <FrameLayout
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:clipChildren="false"
-                        android:clipToPadding="false">
+                        android:gravity="center"
+                        android:layout_height="wrap_content">
                         <CheckBox android:id="@+id/line_type_shock"
                             android:checked="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
                             android:buttonTint="@color/shock"
-                            android:clipChildren="false"
-                            android:clipToPadding="false"
                             />
-                    </FrameLayout>
+                        <ImageView
+                            android:layout_width="@dimen/logo_element_stats"
+                            android:layout_height="@dimen/logo_element_stats"
+                            android:src="@drawable/shock_logo"/>
+                    </LinearLayout>
 
-                    <FrameLayout
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:clipChildren="false"
-                        android:clipToPadding="false">
+                        android:gravity="center">
                         <CheckBox android:id="@+id/line_type_frost"
                             android:checked="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
                             android:buttonTint="@color/frost"
-                            android:clipChildren="false"
-                            android:clipToPadding="false"
                             />
-                    </FrameLayout>
+                        <ImageView
+                            android:layout_width="@dimen/logo_element_stats"
+                            android:layout_height="@dimen/logo_element_stats"
+                            android:src="@drawable/frost_logo"/>
+                    </LinearLayout>
                 </LinearLayout>
 
 
@@ -303,6 +300,188 @@
 
         <LinearLayout
             android:id="@+id/third_panel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clipChildren="false"
+            android:clipToPadding="false">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:clipChildren="false"
+                android:clipToPadding="false">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="%"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:layout_marginLeft="@dimen/general_margin"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        />
+
+                    <com.github.mikephil.charting.charts.LineChart
+                        android:id="@+id/line_chart_time"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="@dimen/general_margin"
+                        android:layout_marginRight="@dimen/general_margin"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:0.5"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </android.support.constraint.ConstraintLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="date"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="dmgMoy"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:layout_marginLeft="@dimen/general_margin"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        />
+
+                    <com.github.mikephil.charting.charts.LineChart
+                        android:id="@+id/line_chart_time_dmg"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="@dimen/general_margin"
+                        android:layout_marginRight="@dimen/general_margin"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:0.5"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </android.support.constraint.ConstraintLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="date"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+                        <CheckBox android:id="@+id/line_type_time_phy"
+                            android:checked="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="@color/phy"
+                            />
+                        <ImageView
+                            android:layout_width="@dimen/logo_element_stats"
+                            android:layout_height="@dimen/logo_element_stats"
+                            android:src="@drawable/phy_logo"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_height="wrap_content">
+                        <CheckBox android:id="@+id/line_type_time_fire"
+                            android:checked="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="@color/fire"
+                            />
+                        <ImageView
+                            android:layout_width="@dimen/logo_element_stats"
+                            android:layout_height="@dimen/logo_element_stats"
+                            android:src="@drawable/fire_logo"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_height="wrap_content">
+                        <CheckBox android:id="@+id/line_type_time_shock"
+                            android:checked="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="@color/shock"
+                            />
+                        <ImageView
+                            android:layout_width="@dimen/logo_element_stats"
+                            android:layout_height="@dimen/logo_element_stats"
+                            android:src="@drawable/shock_logo"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+                        <CheckBox android:id="@+id/line_type_time_frost"
+                            android:checked="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="@color/frost"
+                            />
+                        <ImageView
+                            android:layout_width="@dimen/logo_element_stats"
+                            android:layout_height="@dimen/logo_element_stats"
+                            android:src="@drawable/frost_logo"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fourth_panel"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -362,78 +541,75 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:gravity="center"
-                    android:layout_gravity="center_horizontal"
-                    android:clipChildren="false"
-                    android:clipToPadding="false">
+                    android:gravity="center">
 
-                    <FrameLayout
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:clipChildren="false"
-                        android:clipToPadding="false">
+                        android:gravity="center">
                         <CheckBox android:id="@+id/dmg_type_phy"
                             android:checked="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
                             android:buttonTint="@color/phy"
-                            android:clipChildren="false"
-                            android:clipToPadding="false"
                             />
-                    </FrameLayout>
+                        <ImageView
+                            android:layout_width="@dimen/logo_element_stats"
+                            android:layout_height="@dimen/logo_element_stats"
+                            android:src="@drawable/phy_logo"/>
+                    </LinearLayout>
 
-                    <FrameLayout
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:clipChildren="false"
-                        android:clipToPadding="false">
+                        android:gravity="center"
+                        android:layout_height="wrap_content">
                         <CheckBox android:id="@+id/dmg_type_fire"
                             android:checked="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
                             android:buttonTint="@color/fire"
-                            android:clipChildren="false"
-                            android:clipToPadding="false"
                             />
-                    </FrameLayout>
+                        <ImageView
+                            android:layout_width="@dimen/logo_element_stats"
+                            android:layout_height="@dimen/logo_element_stats"
+                            android:src="@drawable/fire_logo"/>
+                    </LinearLayout>
 
-                    <FrameLayout
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:clipChildren="false"
-                        android:clipToPadding="false">
+                        android:gravity="center"
+                        android:layout_height="wrap_content">
                         <CheckBox android:id="@+id/dmg_type_shock"
                             android:checked="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
                             android:buttonTint="@color/shock"
-                            android:clipChildren="false"
-                            android:clipToPadding="false"
                             />
-                    </FrameLayout>
+                        <ImageView
+                            android:layout_width="@dimen/logo_element_stats"
+                            android:layout_height="@dimen/logo_element_stats"
+                            android:src="@drawable/shock_logo"/>
+                    </LinearLayout>
 
-                    <FrameLayout
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:clipChildren="false"
-                        android:clipToPadding="false">
+                        android:gravity="center">
                         <CheckBox android:id="@+id/dmg_type_frost"
                             android:checked="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
                             android:buttonTint="@color/frost"
-                            android:clipChildren="false"
-                            android:clipToPadding="false"
                             />
-                    </FrameLayout>
+                        <ImageView
+                            android:layout_width="@dimen/logo_element_stats"
+                            android:layout_height="@dimen/logo_element_stats"
+                            android:src="@drawable/frost_logo"/>
+                    </LinearLayout>
                 </LinearLayout>
 
             </LinearLayout>
@@ -537,6 +713,20 @@
                 android:layout_height="50dp"
                 app:backgroundTint="@android:color/darker_gray"
                 app:srcCompat="@drawable/ic_timeline_black_24dp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab_stat_time"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:backgroundTint="@color/information"
+                app:srcCompat="@drawable/ic_date_range_black_24dp" />
         </LinearLayout>
 
         <LinearLayout

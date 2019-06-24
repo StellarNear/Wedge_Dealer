@@ -60,7 +60,6 @@ public class DSSFGraph {
 
     private void setCheckboxListeners() {
         for(String elem : elems.getListKeys()){
-            mapElemCheckbox.get(elem).setCompoundDrawablesWithIntrinsicBounds(tools.resize(mC,elems.getDrawableId(elem),75),null,null,null);
             mapElemCheckbox.get(elem).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

@@ -26,6 +26,7 @@ public class DSSFPreference extends Preference {
 
     private DSSFAtk fragAtk;
     private DSSFGraph fragGraph;
+    private DSSFTime fragTime;
     private DSSFDmg fragDmg;
     private String position="atk";
 
@@ -62,6 +63,7 @@ public class DSSFPreference extends Preference {
         panel = mainView.findViewById(R.id.stats_flipper);
         final FloatingActionButton fabAtk = mainView.findViewById(R.id.fab_stat_atk);
         final FloatingActionButton fabGraph= mainView.findViewById(R.id.fab_stat_graph);
+        final FloatingActionButton fabTime= mainView.findViewById(R.id.fab_stat_time);
         final FloatingActionButton fabDmg = mainView.findViewById(R.id.fab_stat_dmg);
 
         fabAtk.animate().alpha(0).setDuration(0).scaleX(2f).scaleY(2f).start();
@@ -80,22 +82,31 @@ public class DSSFPreference extends Preference {
         fabGraph.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(fragGraph==null){fragGraph=new DSSFGraph(mainView,mC);}
+                if(fragGraph==null){fragGraph=new DSSFGraph(mainView,mC);}else {  fragGraph.reset();}
                 movePanelTo("graph");
                 popIn(fabGraph);
-                fragGraph.reset();
+            }
+        });
+
+        fabTime.animate().alpha(0).setDuration(0).translationY(100).start();
+        fabTime.animate().setStartDelay(1500).setDuration(500).alpha(1).translationY(0).setInterpolator(new DecelerateInterpolator()).start();
+        fabTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(fragTime==null){fragTime=new DSSFTime(mainView,mC);} else {  fragTime.reset();}
+                movePanelTo("time");
+                popIn(fabTime);
             }
         });
 
         fabDmg.animate().alpha(0).setDuration(0).translationX(100).start();
-        fabDmg.animate().setStartDelay(1000).setDuration(500).alpha(1).translationX(0).setInterpolator(new DecelerateInterpolator()).start();
+        fabDmg.animate().setStartDelay(2000).setDuration(500).alpha(1).translationX(0).setInterpolator(new DecelerateInterpolator()).start();
         fabDmg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(fragDmg==null){  fragDmg = new DSSFDmg(mainView,mC);}
+                if(fragDmg==null){  fragDmg = new DSSFDmg(mainView,mC);}else {   fragDmg.reset();}
                 movePanelTo("dmg");
                 popIn(fabDmg);
-                fragDmg.reset();
             }
         });
     }
@@ -117,7 +128,7 @@ public class DSSFPreference extends Preference {
                 case "atk":
                     out = AnimationUtils.loadAnimation(mC, R.anim.outtoleft);
                     break;
-
+                case "time":
                 case "graph":
                     out = AnimationUtils.loadAnimation(mC, R.anim.outtobot);
                     break;
@@ -126,25 +137,25 @@ public class DSSFPreference extends Preference {
                     out = AnimationUtils.loadAnimation(mC, R.anim.outtoright);
                     break;
             }
-
             switch (toPosition) {
                 case "atk":
                     in = AnimationUtils.loadAnimation(mC, R.anim.infromleft);
                     indexChild=0;
-
                     break;
-
                 case "graph":
                     in = AnimationUtils.loadAnimation(mC, R.anim.infrombot);
                     indexChild=1;
                     break;
+                case  "time":
+                    in = AnimationUtils.loadAnimation(mC, R.anim.infrombot);
+                    indexChild=2;
+                    break;
 
                 case "dmg":
                     in = AnimationUtils.loadAnimation(mC, R.anim.infromright);
-                    indexChild=2;
+                    indexChild=3;
                     break;
             }
-
             panel.clearAnimation();
             panel.setInAnimation(in);
             panel.setOutAnimation(out);

@@ -15,4 +15,6 @@
     <dimen name="logo_element">30dp</dimen>
     <dimen name="general_margin_display_det">8dp</dimen>
 
+    <dimen name="logo_element_stats">25dp</dimen>
+
 </resources>

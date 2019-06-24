@@ -93,7 +93,22 @@ public class Stat {
         return nthAtksCritNat;
     }
 
-    public UUID getUuid() {
-        return this.uuid;
+    @Override
+    public boolean equals(Object obj) {
+        boolean returnValue=false;
+        if (obj != null) {
+            if(Stat.class.isAssignableFrom(obj.getClass())){
+                Stat obStat=(Stat)obj;
+                if((obStat.uuid!=null && this.uuid!=null) && (this.uuid.equals(obStat.uuid))){
+                    returnValue=true;
+                }
+            }
+        }
+        return returnValue;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.uuid != null ? this.uuid.hashCode() : 0;
     }
 }
