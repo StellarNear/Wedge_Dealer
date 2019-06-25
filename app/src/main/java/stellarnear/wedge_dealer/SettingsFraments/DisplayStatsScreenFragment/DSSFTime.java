@@ -2,9 +2,7 @@ package stellarnear.wedge_dealer.SettingsFraments.DisplayStatsScreenFragment;
 
 import android.content.Context;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.LinearLayout;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
@@ -25,7 +23,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.TreeMap;
 
 import stellarnear.wedge_dealer.Elems.ElemsManager;
 import stellarnear.wedge_dealer.MainActivity;
@@ -47,7 +44,6 @@ public class DSSFTime {
     private int infoTxtSize=10;
     private LineChart chartAtk;
     private LineChart chartDmg;
-    private int nthAtkMax=0;
     private Tools tools=new Tools();
 
     public DSSFTime(View mainView, Context mC) {
@@ -91,6 +87,7 @@ public class DSSFTime {
         chartAtk.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
+                tools.customToast(mC,e.getData().toString(),"center");
             }
 
             @Override
@@ -163,7 +160,6 @@ public class DSSFTime {
         xAxis.setLabelRotationAngle(-90);
         xAxis.setGranularity(1);
         xAxis.setGranularityEnabled(true);
-        chart.getLegend().setEnabled(false);
     }
 
     private void computeHashmaps() {
@@ -179,7 +175,6 @@ public class DSSFTime {
     }
 
     private void setAtkData() {
-
         labelList=new ArrayList<>();
         ArrayList<Entry> listValHit = new ArrayList<>();
         ArrayList<Entry> listValCrit = new ArrayList<>();
@@ -191,9 +186,9 @@ public class DSSFTime {
             int nCrit = mapDatetxtStatslist.get(key).getNCrit();
             int nCritNat = mapDatetxtStatslist.get(key).getNCritNat();
 
-            listValHit.add(new Entry((int) index, (int) (100f*sumHit/nTot)));
-            listValCrit.add(new Entry((int) index, (int) (100f*(nCrit-nCritNat)/nTot)));
-            listValCritNat.add(new Entry((int) index, (int) (100f*nCritNat/nTot)));
+            listValHit.add(new Entry((int) index, (int) (100f*sumHit/nTot),(int) (100f*sumHit/nTot)+"% touché en moyenne le "+key));
+            listValCrit.add(new Entry((int) index, (int) (100f*(nCrit-nCritNat)/nTot),(int) (100f*(nCrit-nCritNat)/nTot)+"% critique en moyenne le "+key));
+            listValCritNat.add(new Entry((int) index, (int) (100f*nCritNat/nTot),(int) (100f*nCritNat/nTot)+"% critique naturel en moyenne le "+key));
             labelList.add(key);
             index++;
         }
@@ -216,7 +211,46 @@ public class DSSFTime {
 
 
     private void setDmgData() {
+        LineData data;
+        if(elemsSelected.size()==4){
+            data=getDmgDataSolo();
+        } else {
+            data=getDmgDataElems();
+        }
+        data.setValueTextSize(infoTxtSize);
+        chartDmg.setData(data);
+    }
 
+    private LineData getDmgDataSolo() {
+        ArrayList<Entry> listValDmgMoy = new ArrayList<>();
+        int index=0;
+        for (String key : mapDatetxtStatslist.keySet()){
+            int dmgMoy=mapDatetxtStatslist.get(key).getMoyDmg();
+            listValDmgMoy.add(new Entry((int) index, dmgMoy,dmgMoy+" dégâts en moyenne le "+key));
+            index++;
+        }
+        LineDataSet setHit = new LineDataSet(listValDmgMoy,"tout");
+        setLinePara(setHit,mC.getColor(R.color.dmg_stat));
+        LineData data = new LineData();
+        data.addDataSet(setHit);
+        return data;
+    }
+
+    private LineData getDmgDataElems() {
+        LineData data = new LineData();
+        for(String elem : elemsSelected) {
+            ArrayList<Entry> listDmgMoy = new ArrayList<>();
+            int index = 0;
+            for (String key : mapDatetxtStatslist.keySet()) {
+                int dmgMoy = mapDatetxtStatslist.get(key).getMoyDmgElem(elem);
+                listDmgMoy.add(new Entry((int) index, dmgMoy,dmgMoy+" dégâts de "+elems.getName(elem)+" en moyenne le "+key));
+                index++;
+            }
+            LineDataSet setVal = new LineDataSet(listDmgMoy, elems.getName(elem));
+            setLinePara(setVal, elems.getColorId(elem));
+            data.addDataSet(setVal);
+        }
+        return data;
     }
 
     private void setLinePara(LineDataSet set,int color) {

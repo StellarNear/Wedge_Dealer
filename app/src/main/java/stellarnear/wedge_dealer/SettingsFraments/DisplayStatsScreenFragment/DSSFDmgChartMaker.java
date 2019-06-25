@@ -185,8 +185,8 @@ public class DSSFDmgChartMaker {
                 listVal.add(new BarEntry(i, 0));
             }
         }
-
-        BarDataSet set = new BarDataSet(listVal, "");
+        String labelSet= elemsSelected.equalsIgnoreCase("all")? "tout" : elems.getName(elemsSelected);
+        BarDataSet set = new BarDataSet(listVal, labelSet);
         if(elemsSelected.equalsIgnoreCase("all")){
             set.setColor(mC.getColor(R.color.dmg_stat));
         } else {
@@ -219,7 +219,7 @@ public class DSSFDmgChartMaker {
         xAxis.setGranularityEnabled(true);
 
         if(barGroupMode){xAxis.setCenterAxisLabels(true);}else{xAxis.setCenterAxisLabels(false);}
-        chart.getLegend().setEnabled(false);
+        //chart.getLegend().setEnabled(false);
     }
 
     private void addLimitsChart() {
