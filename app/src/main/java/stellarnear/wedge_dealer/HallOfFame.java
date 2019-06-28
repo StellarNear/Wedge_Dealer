@@ -51,4 +51,8 @@ public class HallOfFame {
             }
         return val;
     }
+
+    public void refreshSave() {
+        saveLocalHallOfFame();
+    }
 }

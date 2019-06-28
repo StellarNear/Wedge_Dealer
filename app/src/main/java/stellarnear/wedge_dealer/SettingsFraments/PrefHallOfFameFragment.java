@@ -17,6 +17,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
 import stellarnear.wedge_dealer.CustomAlertDialog;
 import stellarnear.wedge_dealer.FameEntry;
 import stellarnear.wedge_dealer.MainActivity;
@@ -116,7 +119,8 @@ public class PrefHallOfFameFragment extends Preference {
             statLine.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    tools.customToast(mC,fame.getDetails(),"center");
+                    SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy", Locale.FRANCE);
+                    tools.customToast(mC,formater.format(fame.getStat().getDate())+"\n"+fame.getDetails(),"center");
                 }
             });
 
@@ -206,6 +210,7 @@ public class PrefHallOfFameFragment extends Preference {
                 String location = ((EditText) addHallEntry.findViewById(R.id.hall_of_fame_location)).getText().toString();
                 String details = ((EditText) addHallEntry.findViewById(R.id.hall_of_fame_details)).getText().toString();
                 fame.updateInfos(foeName,location,details);
+                wedge.getHallOfFame().refreshSave();
                 tools.customToast(mC,  "Entrée changée !");
 
             }
