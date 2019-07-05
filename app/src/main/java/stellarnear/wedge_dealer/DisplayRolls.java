@@ -62,9 +62,6 @@ class DisplayRolls {
 
                 for (Dice dice : dmgRoll.getDmgDiceList().getList()){
                     ImageView diceImg = dice.getImg();
-                    if (diceImg.getParent() != null) {
-                        ((ViewGroup) diceImg.getParent()).removeView(diceImg);
-                    }
                     line.addView(diceImg);
                 }
                 scrollLinear.addView(line);
