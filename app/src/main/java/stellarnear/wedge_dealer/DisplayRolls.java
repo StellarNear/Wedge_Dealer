@@ -6,6 +6,8 @@ import android.graphics.Color;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -59,7 +61,11 @@ class DisplayRolls {
                 line.addView(plus);
 
                 for (Dice dice : dmgRoll.getDmgDiceList().getList()){
-                    line.addView(dice.getImg());
+                    ImageView diceImg = dice.getImg();
+                    if (diceImg.getParent() != null) {
+                        ((ViewGroup) diceImg.getParent()).removeView(diceImg);
+                    }
+                    line.addView(diceImg);
                 }
                 scrollLinear.addView(line);
             }
