@@ -179,8 +179,8 @@ public class DSSFDmgInfoManager {
         int nHit=selectedStats.getNAtksHit();
         int nCrit=selectedStats.getNCrit();
         int nCritNat=selectedStats.getNCritNat();
-        float nCritMoy = selectedStats.size()>1 ? (1f*(nCrit-nCritNat))/selectedStats.size() : 0;
-        float nCritNatMoy = selectedStats.size()>1 ? (1f*nCritNat)/selectedStats.size() : 0;
+        float nCritMoy = selectedStats.size()>0 ? (1f*(nCrit-nCritNat))/selectedStats.size() : 0;
+        float nCritNatMoy = selectedStats.size()>0 ? (1f*nCritNat)/selectedStats.size() : 0;
 
         int critPercent=Math.round(100f*(nCrit-nCritNat)/(1f*nHit));
         int critNatPercent=Math.round(100f*(nCritNat/(1f*nHit)));

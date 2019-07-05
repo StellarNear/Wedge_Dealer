@@ -159,6 +159,7 @@ public class DSSFDmgChartMaker {
 
     private BarDataSet computeBarDataSet(String elemsSelected){
         Map<Integer, Integer> histo = new HashMap<>();
+        mapIStepSelectedListStat=new HashMap<>();
         for (Stat stat : wedge.getStats().getStatsList().asList()) {
             int sumDmg;
             if(elemsSelected.equalsIgnoreCase("all")) {
