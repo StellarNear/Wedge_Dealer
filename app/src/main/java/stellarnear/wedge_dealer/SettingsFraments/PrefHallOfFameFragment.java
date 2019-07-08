@@ -31,7 +31,7 @@ import stellarnear.wedge_dealer.Tools;
 public class PrefHallOfFameFragment extends Preference {
     private Perso wedge= MainActivity.wedge;
     private Context mC;
-    private LinearLayout mainView;
+    private View mainView;
     private LinearLayout fameList;
     private Tools tools=new Tools();
 
@@ -54,62 +54,39 @@ public class PrefHallOfFameFragment extends Preference {
         super.onCreateView(parent);
         this.mC=getContext();
 
-        mainView = new LinearLayout(getContext());
-        mainView.setOrientation(LinearLayout.VERTICAL);
-        final ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(parent.getWidth(), parent.getHeight());  //pour full screen
-        mainView.setLayoutParams(params);
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        mainView = inflater.inflate(R.layout.hall_of_fame, null);
 
-        addHallOfFame();
-        fameList = new LinearLayout(getContext());
-        fameList.setOrientation(LinearLayout.VERTICAL);
-        fameList.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-        mainView.addView(fameList);
+        setSave();
         refreshHall();
+
         return mainView;
     }
 
 
-    private void addHallOfFame() {
-        LinearLayout saveLine = new LinearLayout(mC);
-        saveLine.setOrientation(LinearLayout.HORIZONTAL);
-        LinearLayout.LayoutParams para = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
-        para.setMargins(0,50,0,50);
-        saveLine.setLayoutParams(para);
-        saveLine.setGravity(Gravity.CENTER);
-        ImageView buttonSave = new ImageView(mC);
-        buttonSave.setPadding(0,0,10,0);
-        Drawable saveIco=mC.getDrawable(R.drawable.ic_save_black_24dp);
-        saveIco.setColorFilter(mC.getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
-        buttonSave.setImageDrawable(saveIco);
-        saveLine.addView(buttonSave);
-        TextView textSave = new TextView(mC);
-        textSave.setText("Enregistrer la dernière entrée");
-        textSave.setTypeface(null, Typeface.BOLD);
-        textSave.setTextSize(20);
-        textSave.setTextColor(mC.getColor(R.color.colorPrimary));
-        saveLine.addView(textSave);
-
-        saveLine.setOnClickListener(new View.OnClickListener() {
+    private void setSave() {
+        ((LinearLayout)mainView.findViewById(R.id.hall_of_fame_save)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 saveLast();
                 refreshHall();
             }
         });
-
-        mainView.addView(saveLine);
     }
 
     private void refreshHall() {
+        fameList=(LinearLayout)mainView.findViewById(R.id.hall_of_frame_list);
         fameList.removeAllViews();
         for(final FameEntry fame : wedge.getHallOfFame().getHallOfFameList()){
             LinearLayout statLine = new LinearLayout(mC);
             statLine.setOrientation(LinearLayout.HORIZONTAL);
+            statLine.setGravity(Gravity.CENTER_VERTICAL);
+
             LinearLayout.LayoutParams para =new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
             para.setMargins(10,10,10,10);
+            para.gravity=Gravity.CENTER;
             statLine.setLayoutParams(para);
             statLine.setMinimumHeight(150);
-            statLine.setGravity(Gravity.CENTER);
             statLine.setBackground(mC.getDrawable(R.drawable.background_border_fame));
 
             statLine.addView(newTextInfo(fame.getSumDmg()+" dégâts"));
@@ -132,14 +109,17 @@ public class PrefHallOfFameFragment extends Preference {
                 }
             });
 
-            fameList.addView(statLine);
+            fameList.addView(statLine,0);
         }
     }
 
     private TextView newTextInfo(String txt) {
         TextView text = new TextView(mC);
+        text.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT,1));
+        text.setGravity(Gravity.CENTER);
         text.setText(txt);
         text.setTextColor(Color.DKGRAY);
+        text.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         text.setTypeface(null, Typeface.BOLD);
         text.setPadding(10,10,10,10);
         return text;
