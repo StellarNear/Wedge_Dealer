@@ -181,7 +181,7 @@ public class PrefHallOfFameFragment extends Preference {
 
         CustomAlertDialog creationItemAlert = new CustomAlertDialog(null, mC, addHallEntry);
         creationItemAlert.setPermanent(true);
-        creationItemAlert.addConfirmButton("Ajouter");
+        creationItemAlert.addConfirmButton("Actualiser");
         creationItemAlert.addCancelButton("Annuler");
         creationItemAlert.setAcceptEventListener(new CustomAlertDialog.OnAcceptEventListener() {
             @Override
