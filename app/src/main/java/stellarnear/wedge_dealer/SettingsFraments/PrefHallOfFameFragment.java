@@ -119,7 +119,7 @@ public class PrefHallOfFameFragment extends Preference {
         text.setGravity(Gravity.CENTER);
         text.setText(txt);
         text.setTextColor(Color.DKGRAY);
-        text.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        text.setGravity(Gravity.CENTER);
         text.setTypeface(null, Typeface.BOLD);
         text.setPadding(10,10,10,10);
         return text;
@@ -156,6 +156,7 @@ public class PrefHallOfFameFragment extends Preference {
                 String details = ((EditText) addHallEntry.findViewById(R.id.hall_of_fame_details)).getText().toString();
                 wedge.getHallOfFame().addToHallOfFame(new FameEntry(lastStat,foeName,location,details));
                 tools.customToast(mC,  "Entrée ajoutée !");
+                refreshHall();
             }
         });
         creationItemAlert.showAlert();
@@ -192,7 +193,7 @@ public class PrefHallOfFameFragment extends Preference {
                 fame.updateInfos(foeName,location,details);
                 wedge.getHallOfFame().refreshSave();
                 tools.customToast(mC,  "Entrée changée !");
-
+                refreshHall();
             }
         });
         creationItemAlert.showAlert();

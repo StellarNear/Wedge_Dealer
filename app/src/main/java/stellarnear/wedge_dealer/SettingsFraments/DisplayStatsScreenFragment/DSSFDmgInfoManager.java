@@ -71,7 +71,7 @@ public class DSSFDmgInfoManager {
         String label="Tout";
         if(!allStats){label=selectedBracket;}
         t.setText(label);
-        t.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        t.setGravity(Gravity.CENTER);
         t.setTextSize(20);
         t.setTextColor(Color.BLACK);
         bloc1.addView(t);
@@ -109,7 +109,7 @@ public class DSSFDmgInfoManager {
     private void addInfosRecent(LinearLayout bloc2) {
         TextView t = new TextView(mC);
         t.setText("Récent");
-        t.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        t.setGravity(Gravity.CENTER);
         t.setTextSize(20);
         t.setTextColor(Color.BLACK);
         bloc2.addView(t);
@@ -153,7 +153,7 @@ public class DSSFDmgInfoManager {
     private void addInfosDetails(LinearLayout bloc2) {
         TextView t = new TextView(mC);
         t.setText("Détails (moy)");
-        t.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        t.setGravity(Gravity.CENTER);
         t.setTextSize(20);
         t.setTextColor(Color.BLACK);
         bloc2.addView(t);
@@ -211,7 +211,7 @@ public class DSSFDmgInfoManager {
         TextView textTitle = new TextView(mC);
         textTitle.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT,1));
         textTitle.setText(txt);
-        textTitle.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        textTitle.setGravity(Gravity.CENTER);
         textTitle.setTextSize(infoTxtSize);
         textTitle.setTextColor(Color.BLACK);
         return textTitle;

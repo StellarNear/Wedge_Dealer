@@ -38,7 +38,7 @@
             android:id="@+id/hall_of_fame_foe_name"
             android:layout_width="wrap_content"
             android:hint="Nom de l'ennemi"
-            android:textAlignment="center"
+            android:gravity="center"
             android:inputType="text"
             android:layout_height="wrap_content" />
 
@@ -46,7 +46,7 @@
             android:id="@+id/hall_of_fame_location"
             android:hint="Lieu"
             android:inputType="text"
-            android:textAlignment="center"
+            android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -54,7 +54,7 @@
             android:id="@+id/hall_of_fame_details"
             android:hint="Autre détails"
             android:inputType="text"
-            android:textAlignment="center"
+            android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

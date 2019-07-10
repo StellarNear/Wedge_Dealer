@@ -142,7 +142,7 @@ public class Bag {
                     TextView text = new TextView(mC);
                     text.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
                     text.setGravity(Gravity.CENTER);
-                    text.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                    text.setGravity(Gravity.CENTER);
                     text.setText(tag + " : " + getAppedix(Long.parseLong(getSumPo(tag))));
                     text.setCompoundDrawablesWithIntrinsicBounds(null, null, mC.getDrawable(R.drawable.ic_gold_coin), null);
                     tagMain.addView(text);

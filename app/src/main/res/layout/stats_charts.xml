@@ -35,7 +35,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="n attaques"
-                    android:textAlignment="center"
+                    android:gravity="center"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
@@ -62,7 +62,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="x ième attaque"
-                    android:textAlignment="center"
+                    android:gravity="center"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 
@@ -142,7 +142,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="dmgMoy"
-                        android:textAlignment="center"
+                        android:gravity="center"
                         android:textColor="@color/black"
                         android:textSize="14sp"
                         android:layout_marginLeft="@dimen/general_margin"
@@ -167,7 +167,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="nombre d'attaques"
-                    android:textAlignment="center"
+                    android:gravity="center"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 
@@ -189,7 +189,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="dmgMoy"
-                        android:textAlignment="center"
+                        android:gravity="center"
                         android:textColor="@color/black"
                         android:textSize="14sp"
                         android:layout_marginLeft="@dimen/general_margin"
@@ -214,7 +214,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="nombre de crits (crit+critNat)"
-                    android:textAlignment="center"
+                    android:gravity="center"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 
@@ -324,7 +324,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="%"
-                        android:textAlignment="center"
+                        android:gravity="center"
                         android:textColor="@color/black"
                         android:textSize="14sp"
                         android:layout_marginLeft="@dimen/general_margin"
@@ -349,7 +349,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="date"
-                    android:textAlignment="center"
+                    android:gravity="center"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 
@@ -371,7 +371,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="dmgMoy"
-                        android:textAlignment="center"
+                        android:gravity="center"
                         android:textColor="@color/black"
                         android:textSize="14sp"
                         android:layout_marginLeft="@dimen/general_margin"
@@ -396,7 +396,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="date"
-                    android:textAlignment="center"
+                    android:gravity="center"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 
@@ -503,7 +503,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="n dégats"
-                    android:textAlignment="center"
+                    android:gravity="center"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
@@ -533,7 +533,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="somme de dégats"
-                    android:textAlignment="center"
+                    android:gravity="center"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 
