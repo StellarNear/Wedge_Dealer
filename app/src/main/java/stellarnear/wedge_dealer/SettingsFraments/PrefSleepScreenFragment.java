@@ -17,6 +17,8 @@ import java.util.List;
 
 import stellarnear.wedge_dealer.MainActivity;
 import stellarnear.wedge_dealer.Perso.Perso;
+import stellarnear.wedge_dealer.PostData;
+import stellarnear.wedge_dealer.PostDataElement;
 import stellarnear.wedge_dealer.R;
 import stellarnear.wedge_dealer.Tools;
 
@@ -85,6 +87,7 @@ public class PrefSleepScreenFragment extends Preference {
                 wedge.getAllResources().sleepReset();
                 resetTemp();
                 tools.customToast(mC, "Une nouvelle journée pleine de coups critiques t'attends.", "center");
+                new PostData(mC,new PostDataElement("Nuit de repos","Recharge des ressources journalières"));
                 Intent intent = new Intent(mC, MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 mC.startActivity(intent);
