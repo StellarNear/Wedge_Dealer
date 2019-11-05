@@ -116,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
                     mode = "barrage_shot";
                     hideButtons(2);
                     wedge.getAllResources().getResource("mythic_points").spend(1);
+                    new PostData(mC,new PostDataElement("Lancement de tir de barrage mythique","-1pt mythique"));
                     tools.customToast(mC,"Il te reste "+wedge.getResourceValue("mythic_points")+" points mythiques","center");
                     startPreRand();
                 } else { tools.customToast(mC,"Tu n'as pas assez de points mythiques","center"); }
@@ -238,6 +239,7 @@ public class MainActivity extends AppCompatActivity {
         }
         postRandValues = new PostRandValues(mC, mainPage, rollList);
         setupCheckboxes = new SetupCheckboxes(mC, mainPage, rollList);
+        new PostData(mC,new PostDataElement(rollList,"atk"));
     }
 
     private void showDivider() {
@@ -285,6 +287,7 @@ public class MainActivity extends AppCompatActivity {
             fabDmgDet.setEnabled(true);
         }
         postRandValues.refreshPostRandValues();
+        new PostData(mC,new PostDataElement(selectedRolls,"dmg"));
     }
 
     private void checkSelectedRolls() {

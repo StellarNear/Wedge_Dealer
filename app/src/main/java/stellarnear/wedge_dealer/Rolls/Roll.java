@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import stellarnear.wedge_dealer.R;
+import stellarnear.wedge_dealer.Rolls.Dices.Dice;
 import stellarnear.wedge_dealer.Tools;
 
 public class Roll {
@@ -83,6 +84,9 @@ public class Roll {
     }
     public Integer getPreRandValue() {
         return atkRoll.getPreRandValue();
+    }
+    public Dice getAtkDice() {
+        return atkRoll.getAtkDice();
     }
     public ImageView getImgAtk() {
         return atkRoll.getImgAtk();

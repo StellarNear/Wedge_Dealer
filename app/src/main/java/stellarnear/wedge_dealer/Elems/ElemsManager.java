@@ -26,6 +26,10 @@ public class ElemsManager {
         return instance;
     }
 
+    public static ElemsManager getInstance() {
+        return instance;
+    }
+
     public List<Elem> getElems(){
         return this.listElems;
     }

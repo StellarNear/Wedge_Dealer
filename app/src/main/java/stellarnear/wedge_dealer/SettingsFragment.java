@@ -200,6 +200,7 @@ public class SettingsFragment extends PreferenceFragment {
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int whichButton) {
                                     wedge.getAllResources().getResource("mythic_points").spend(1);
+                                    new PostData(mC,new PostDataElement("Dépense de point mythique","-1pt mythique"));
                                     tools.customToast(mC,"Il te reste "+wedge.getResourceValue("mythic_points")+" point(s) mythique(s)","center");
                                 }
                             })

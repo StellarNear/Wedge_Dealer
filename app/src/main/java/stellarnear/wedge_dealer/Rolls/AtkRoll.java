@@ -218,4 +218,5 @@ public class AtkRoll {
         return this.critCheckbox;
     }
 
+
 }

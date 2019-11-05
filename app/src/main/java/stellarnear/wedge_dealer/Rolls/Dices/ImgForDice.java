@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 import stellarnear.wedge_dealer.MainActivity;
 import stellarnear.wedge_dealer.Perso.Perso;
+import stellarnear.wedge_dealer.PostData;
+import stellarnear.wedge_dealer.PostDataElement;
 import stellarnear.wedge_dealer.R;
 import stellarnear.wedge_dealer.Tools;
 
@@ -112,9 +114,11 @@ public class ImgForDice {
             if(mode.equalsIgnoreCase("légendaire")){
                 surgeDice=new Dice(mA, mC, tools.toInt(settings.getString("legendary_dice",String.valueOf(mC.getResources().getInteger(R.integer.legendary_dice_def)))));
                 MainActivity.wedge.getAllResources().getResource("legendary_points").spend(1);
+                new PostData(mC,new PostDataElement("Surcharge légendaire du d20","-1pt légendaire"));
             } else {
                 surgeDice=new Dice(mA, mC, tools.toInt(settings.getString("mythic_dice",String.valueOf(mC.getResources().getInteger(R.integer.mythic_dice_def)))));
                 MainActivity.wedge.getAllResources().getResource("mythic_points").spend(1);
+                new PostData(mC,new PostDataElement("Surcharge mythique du d20","-1pt mythique"));
             }
 
             surgeDice.rand();
