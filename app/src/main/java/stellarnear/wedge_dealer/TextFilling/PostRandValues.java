@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import stellarnear.wedge_dealer.PostData;
+import stellarnear.wedge_dealer.PostDataElement;
 import stellarnear.wedge_dealer.R;
 import stellarnear.wedge_dealer.Rolls.Dices.Dice;
 import stellarnear.wedge_dealer.Rolls.Roll;
@@ -130,5 +132,6 @@ public class PostRandValues {
             txtBox.addView(atkTxt);
             ((LinearLayout)mainView.findViewById(R.id.mainLinearPostRand)).addView(txtBox);
         }
+        new PostData(mC,new PostDataElement(rollList,"atk"));
     }
 }

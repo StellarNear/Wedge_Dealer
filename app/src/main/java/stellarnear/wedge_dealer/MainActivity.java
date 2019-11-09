@@ -239,7 +239,6 @@ public class MainActivity extends AppCompatActivity {
         }
         postRandValues = new PostRandValues(mC, mainPage, rollList);
         setupCheckboxes = new SetupCheckboxes(mC, mainPage, rollList);
-        new PostData(mC,new PostDataElement(rollList,"atk"));
     }
 
     private void showDivider() {
