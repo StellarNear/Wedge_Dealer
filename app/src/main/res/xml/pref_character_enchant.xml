@@ -6,7 +6,7 @@
         android:key="magic_switch"
         android:summary="@string/magic_summ"
         android:title="@string/magic" />
-    <stellarnear.wedge_dealer.EditTextPreference
+    <stellarnear.wedge_companion.EditTextPreference
         android:defaultValue="@integer/magic_val_def"
         android:dependency="magic_switch"
         android:key="magic_val"

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<records>
+    <resource>
+        <name>Points de vie</name>
+        <shortname>PVs</shortname>
+        <testable>true</testable>
+        <id>resource_hp</id>
+    </resource>
+    <resource>
+        <name>Régénération</name>
+        <id>resource_regen</id>
+        <hide>true</hide>
+    </resource>
+    <resource>
+        <shortname>Pts. myth</shortname>
+        <name>Points mythiques</name>
+        <id>resource_mythic_points</id>
+    </resource>
+    <resource>
+        <shortname>Pts. legs</shortname>
+        <name>Points légendaires</name>
+        <id>resource_legendary_points</id>
+    </resource>
+    <resource>
+        <name>Points héroique</name>
+        <id>resource_heroic</id>
+    </resource>
+
+</records>

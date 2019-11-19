@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="stellarnear.wedge_dealer.MainActivity"
+    tools:context="stellarnear.wedge_companion.Activities.MainActivity"
     android:fitsSystemWindows="true"
 
     android:padding="@dimen/general_margin"

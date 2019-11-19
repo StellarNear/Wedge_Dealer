@@ -37,6 +37,8 @@
     <bool name="barrage_shot_switch_def">true</bool>
     <bool name="hammer_gap_switch_def">false</bool>
     <bool name="switch_shadow_link_def">true</bool>
+    <bool name="switch_manual_diceroll_DEF">false</bool>
+    <bool name="switch_fullscreen_mode_DEF">true</bool>
 
 
 </resources>

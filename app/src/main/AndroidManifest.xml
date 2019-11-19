@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="stellarnear.wedge_dealer">
+    package="stellarnear.wedge_companion">
     <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
@@ -10,7 +10,7 @@
         android:theme="@style/AppTheme"
         >
         <activity
-            android:name="stellarnear.wedge_dealer.MainActivity"
+            android:name="stellarnear.wedge_companion.Activities.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="stellarnear.wedge_dealer.SettingsActivity"
+            android:name="stellarnear.wedge_companion.SettingsActivity"
             android:screenOrientation="portrait"
             android:label="@string/title_activity_settings"></activity>
     </application>

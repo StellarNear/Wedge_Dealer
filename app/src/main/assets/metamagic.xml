@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<records>
+    <metamagic>
+        <id>meta_perfect</id>
+        <name>Sort parfait</name>
+        <descr>Toutes les variables numériques d’un sort parfait sont maximisées puis doublées. Un sort parfait cause le double des dommages maximum, soigne le double de PV maximum, double de nombre de cibles affectés par le sort… Les jets de sauvegarde et jets opposés ne sont pas affectés. Un sort parfait nécessite un emplacement de sort de six niveaux de plus que son niveau réel.</descr>
+        <uprank>6</uprank>
+    </metamagic>
+    <metamagic>
+        <id>meta_enhance</id>
+        <name>Sort Amélioré</name>
+        <descr>Les dés de dégâts pour les sorts que vous lancez augmentent d'un pas (c.a.d., d6>d8, d8>2d6, etc.). Un sort amélioré utilise un emplacement de sorts quatre fois plus haut que le niveau réel du sort. N'a aucun effet sur les sorts qui n'infligent pas de dégâts.</descr>
+        <uprank>4</uprank>
+    </metamagic>
+    <metamagic>
+        <id>meta_delay</id>
+        <name>Sort à retardement</name>
+        <descr>Le déclenchement du sort se produira un fois un certain temps écoulé (max 24h). Une fois la durée fixée rien ne peut la changer (hors annulation). Un sort retardé est visible magiquement et peut etre dissipé. Un sort à retardement nécessite un emplacement de sort de quatre niveaux de plus que son niveau réel.</descr>
+        <uprank>4</uprank>
+    </metamagic>
+    <metamagic>
+        <id>meta_quicken</id>
+        <name>Incantation rapide</name>
+        <descr>L’incantation du sort ne prend qu’une action rapide. Si le temps d’incantation du sort est supérieur à un round, on ne peut pas l’accélérer avec ce don. Un sort à incantation rapide nécessite un emplacement de sort de quatre niveaux de plus que son niveau réel.</descr>
+        <uprank>4</uprank>
+    </metamagic>
+    <metamagic>
+        <id>meta_max</id>
+        <name>Quintessence des sorts</name>
+        <descr>Tous les effets numériques aléatoires de la quintessence d’un sort prennent automatiquement leur valeur maximale. Les jets de sauvegarde et les jets opposés ne sont pas affectés, pas plus que les sorts sans données numériques et aléatoires. La quintessence d’un sort nécessite un emplacement de sort de trois niveaux de plus que son niveau réel.</descr>
+        <uprank>3</uprank>
+    </metamagic>
+    <metamagic>
+        <id>meta_extend</id>
+        <name>Extension d'effet</name>
+        <descr>Toutes les variables numériques et aléatoires d’un sort bénéficiant d'une extension d’effet augmentent de 50%. Les jets de sauvegarde et les jets opposés ne sont pas affectés, ni les sorts sans variable numérique aléatoire. Un sort à extension d’effet nécessite un emplacement de sort de deux niveaux de plus que son niveau réel.</descr>
+        <uprank>2</uprank>
+    </metamagic>
+    <metamagic>
+        <id>meta_arrow</id>
+        <name>Flêche naturalisée</name>
+        <descr>Place un sort sur une flêche de l'archer-sylvestre (Wedge + Tenshi ftw). Tout sort placé sur une flèche de cette manière est alors considéré comme lancé. Les flèches naturalisées restent actives 24h. Utiliser ce pouvoir est une action complexe et nécéssite un emplacement de sort de deux niveaux de plus que son niveau réel.</descr>
+        <uprank>2</uprank>
+    </metamagic>
+
+    <metamagic>
+        <id>meta_heighten</id>
+        <name>Augmentation d'intensité</name>
+        <descr>Ce don permet d’amplifier l’intensité du sort choisi en augmentant son niveau effectif (d’un ou plusieurs niveaux, sans dépasser le 9e). Contrairement aux autres dons de métamagie, il augmente réellement le niveau de sort modifié. Toutes les propriétés du sort qui dépendent de son niveau, nécessite un emplacement de sort égal à son nouveau niveau effectif.</descr>
+        <uprank>1</uprank>
+        <multicast>true</multicast>
+    </metamagic>
+    <metamagic>
+        <id>meta_duration</id>
+        <name>Extension de durée</name>
+        <descr>Un sort à extension de durée dure deux fois plus longtemps qu’indiqué dans sa description. Les sorts permanents, instantanés et ceux dont la durée dépend de la concentration du personnage ne sont pas concernés. Un sort à extension de durée nécessite un emplacement de sort d’un niveau de plus que son niveau réel."</descr>
+        <uprank>1</uprank>
+    </metamagic>
+    <metamagic>
+        <id>meta_focus</id>
+        <name>Sort concentré</name>
+        <descr>Lorsque le personnage lance un sort qui touche ou cible plus d’une créature, il peut choisir une cible ou une créature dans la zone d’effet du sort. Le DD du jet de sauvegarde de cette créature pour résister au sort est augmenté de +2. Occupe un emplacement de sort d’un niveau de plus que le niveau normal du sort.</descr>
+        <uprank>1</uprank>
+    </metamagic>
+    <metamagic>
+        <id>meta_range</id>
+        <name>Sort éloigné</name>
+        <descr>Ce don permet d’augmenter la portée d'un sort (selon l’ordre « contact », « courte », « moyenne », « longue »). Un sort éloigné occupe un emplacement de sort d’un niveau de plus que le niveau normal du sort pour chaque augmentation de catégorie. Si le sort de base nécessite des attaques de contact au corps à corps, la version modifiée par ce don utilise des attaques de contact à distance.</descr>
+        <uprank>1</uprank>
+        <multicast>true</multicast>
+    </metamagic>
+    <metamagic>
+        <id>meta_select</id>
+        <name>Sort séléctif</name>
+        <descr>Lorsque le personnage lance un sort de zone sélectif, il peut choisir des cibles situées dans la zone. Les cibles choisies échappent aux effets du sort. Un sort sélectif occupe un emplacement de sort d’un niveau de plus que le niveau normal du sort.</descr>
+        <uprank>1</uprank>
+    </metamagic>
+    <metamagic>
+        <id>meta_silent</id>
+        <name>Sort silencieux</name>
+        <descr>Un sort à incantation silencieuse ne nécessite pas de composante verbale. Les sorts sans composante verbale ne sont donc pas affectés. Un sort à incantation silencieuse nécessite un emplacement de sort d’un niveau de plus que son niveau réel.</descr>
+        <uprank>1</uprank>
+    </metamagic>
+
+
+
+
+</records>

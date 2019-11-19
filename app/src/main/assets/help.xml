@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<records>
+
+    <help>
+        <name>Jet de sauvegarde</name>
+        <descr>En règle générale, lorsque le personnage est victime d’une attaque magique ou inhabituelle, il a droit à un jet de sauvegarde pour l’annuler, ou du moins pour en amoindrir les effets. Tout comme le jet d’attaque, le jet de sauvegarde se joue avec 1d20, auquel on ajoute un bonus dépendant de la classe du personnage et de son niveau ainsi qu’un modificateur de caractéristique.</descr>
+        <id>help_save</id>
+    </help>
+    <help>
+        <name>Tests de compétences</name>
+        <descr>Lorsque votre personnage utilise une compétence, rien ne garantit que son action soit un succès, vous devez faire un test de compétence. Si le résultat du test de compétence est égal ou supérieur au degré de difficulté (ou DD) de la tâche que vous tentez d’accomplir, c’est une réussite. Sinon c’est un échec. Un test de compétence est généralement réalisé dans des conditions de stress et de distraction. Parfois, cependant, un personnage peut utiliser une compétence dans de meilleures conditions. Dans ce cas il peut décider de faire automatiquement 10 à son jet, ou bien de prendre son temps en se concentrant et obtenir un jet à 20.</descr>
+        <id>skill</id>
+    </help>
+    <help>
+        <name>Tour de jeu (Round)</name>
+        <descr>Dans l’univers du jeu, chaque round correspond environ à 6 secondes et 10 rounds équivalent à une minute de combat. Un round permet à chaque personnage impliqué dans le combat d’agir. Au cours d'un round on peut effectuer une action simple et une action de mouvement ou bien une seule action complexe.</descr>
+        <id>help_round</id>
+    </help>
+
+    <help>
+        <name>Vie et Mort</name>
+        <descr>Les points de vie du personnage déterminent à quel point il est difficile de le tuer. Peu importe le nombre de points de vie perdus, le personnage n’est nullement handicapé par ses blessures tant qu’il ne tombe à 0 point de vie ou moins. Lorsque les points de vie d’un personnage tombent à 0 pile, il se retrouve hors de combat. Le personnage meurt aussitôt si ses points de vie atteignent une valeur négative égale ou supérieure à sa valeur de Constitution.</descr>
+        <id>help_life_death</id>
+    </help>
+
+</records>

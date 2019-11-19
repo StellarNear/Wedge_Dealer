@@ -40,7 +40,7 @@
         android:key="viser"
         android:summary="@string/viser_summ"
         android:title="@string/viser" />
-    <stellarnear.wedge_dealer.EditTextPreference
+    <stellarnear.wedge_companion.EditTextPreference
         android:defaultValue="@integer/viser_val_def"
         android:dependency="viser"
         android:inputType="number"
@@ -64,7 +64,7 @@
             android:key="feu_nourri_switch"
             android:summary="@string/feu_nourri_summ"
             android:title="@string/feu_nourri" />
-        <stellarnear.wedge_dealer.EditTextPreference
+        <stellarnear.wedge_companion.EditTextPreference
             android:defaultValue="@integer/multi_value_def"
             android:dependency="feu_nourri_switch"
             android:key="multi_val"

@@ -31,4 +31,5 @@
     <integer name="legendary_dice_def">8</integer>
 
     <integer name="display_stats_bin_def">50</integer>
+    <integer name="translationFragDuration">500</integer>
 </resources>

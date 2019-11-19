@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<records>
+    <!-- feat_magic -->
+
+
+
+
+
+    <!-- DEF -->
+
+
+
+    <!-- feat_otherS -->
+    <feat>
+        <name>Parangon mythique</name>
+        <type>feat_other</type>
+        <descr>Le pouvoir mythique du personnage est encore plus puissant que celui de la plupart des autres entités mythiques.</descr>
+        <id>mythicfeat_parangon</id>
+    </feat>
+
+
+
+</records>

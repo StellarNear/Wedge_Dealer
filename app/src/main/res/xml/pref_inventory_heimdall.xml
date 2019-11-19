@@ -24,7 +24,7 @@
         <PreferenceCategory android:title="Objet légendaire"/>
         <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
 
-        <stellarnear.wedge_dealer.EditTextPreference
+        <stellarnear.wedge_companion.EditTextPreference
             android:defaultValue="@integer/legendary_points_def"
             android:key="legendary_points"
             android:title="Points légendaires"
@@ -32,7 +32,7 @@
             android:inputType="number"
             android:summary="Valeur : %s"/>
 
-        <stellarnear.wedge_dealer.EditTextPreference
+        <stellarnear.wedge_companion.EditTextPreference
             android:defaultValue="@integer/legendary_dice_def"
             android:key="legendary_dice"
             android:title="Dès de montée en puissance"

@@ -12,6 +12,8 @@
     <color name="start_gradient_button_cancel">#822616</color>
     <color name="end_gradient_button_cancel">#bd3e1e</color>
 
+    <color name="start_gradient_skill_main">#FFFFFF</color>
+    <color name="end_gradient_main">@android:color/darker_gray</color>
     <color name="colorBackground">#f9f9f9</color>
     <color name="validation">#0FBD40</color>
     <color name="cancel">#FF0000</color>
@@ -44,6 +46,11 @@
     <color name="recent_fire">#cc0000</color>
     <color name="recent_shock">#008599</color>
     <color name="recent_frost">#001a66</color>
+    <color name="start_back_color">#000000</color>
+
+    <color name="start_gradient_button_basic">@android:color/darker_gray</color>
+    <color name="end_gradient_button_basic">@color/white</color>
+    <color name="gray50">#808080</color>
 
 
 </resources>

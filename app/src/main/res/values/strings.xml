@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Wedge Dealer</string>
+    <string name="app_name">Wedge Companion</string>
     <string name="action_settings">Paramètres</string>
     <string name="title_activity_settings">Paramètres</string>
     <string name="title_det_dmg">Détail des dégâts</string>
@@ -151,5 +151,14 @@
         <item>100</item>
     </string-array>
 
+
+    <!-- companion -->
+
+    <string name="quadrantGeneralTitle">Caractéristiques</string>
+
+    <string name="quadrantQ1Title">Caractéristiques de base</string>
+    <string name="quadrantQ2Title">Ressources</string>
+    <string name="quadrantQ3Title">Caractéristiques défensives</string>
+    <string name="quadrantQ4Title">Caractéristiques avancées</string>
 
 </resources>

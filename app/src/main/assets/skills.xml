@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<records>
+    
+    <skill>
+        <name>Acrobaties</name>
+        <abilityDependence>ability_dexterite</abilityDependence>
+        <descr>Le personnage peut garder son équilibre lorsqu’il marche sur des surfaces étroites ou un sol traître. Il peut également se baisser, se retourner, sauter ou effectuer un roulé-boulé pour éviter les coups ou traverser certains obstacles. Les tests d’Acrobaties font partie d’une autre action (comme un mouvement) ou se font en réaction à une situation.</descr>
+        <id>skill_acrob</id>
+    </skill>
+    <skill>
+        <name>Art de la magie</name>
+        <abilityDependence>ability_intelligence</abilityDependence>
+        <descr>L’art de lancer des sorts n’a pas beaucoup de secrets pour le personnage. Il sait identifier les objets magiques, les fabriquer et reconnaître les sorts que d’autres personnes lancent.</descr>
+        <id>skill_magic_art</id>
+    </skill>
+    <skill>
+        <name>Artisanat (alchimie)</name>
+        <abilityDependence>ability_intelligence</abilityDependence>
+        <descr>Le personnage est entraîné à créer un type spécifique d’objets : ici des potions.</descr>
+        <id>skill_craft</id>
+    </skill>
+    <skill>
+        <name>Bluff</name>
+        <abilityDependence>ability_charisme</abilityDependence>
+        <descr>Cette compétence s’utilise sous la forme de tests opposés aux tests de Psychologie des victimes. Lorsque le personnage utilise la compétence de Bluff pour tromper quelqu’un, un test réussi lui permet de convaincre sa victime qu’il lui dit la vérité. Les résultats des tests de Bluff sont modifiés selon la crédibilité du mensonge.</descr>
+        <id>skill_bluff</id>
+    </skill>
+    <skill>
+        <name>Connaissance mystère</name>
+        <abilityDependence>ability_intelligence</abilityDependence>
+        <descr>Le personnage possède des connaissances dans un domaine spécifique, qui lui permettent de répondre à des questions simples ou complexes. Mystères (créatures artificielles, créatures magiques, dragons, mystères anciens, symboles ésotériques, traditions magiques).</descr>
+        <id>skill_myst</id>
+    </skill>
+    <skill>
+        <name>Connaissance religion</name>
+        <abilityDependence>ability_intelligence</abilityDependence>
+        <descr>Le personnage possède des connaissances dans un domaine spécifique, qui lui permettent de répondre à des questions simples ou complexes. Religion (dieux et déesses, morts-vivants, mythologie, symboles sacrés, tradition ecclésiastique).</descr>
+        <id>skill_religion</id>
+    </skill>
+    <skill>
+        <name>Diplomatie</name>
+        <abilityDependence>ability_charisme</abilityDependence>
+        <descr>Le personnage peut utiliser cette compétence pour persuader quelqu’un de se ranger à son avis, pour résoudre un conflit ou encore pour récolter des informations ou se tenir au courant des rumeurs. Elle est également utile pour mener à bien des négociations tout en respectant l’étiquette et en adoptant les manières qui conviennent à une situation donnée.</descr>
+        <id>skill_diplomacy</id>
+    </skill>
+    <skill>
+        <name>Discretion</name>
+        <abilityDependence>ability_dexterite</abilityDependence>
+        <descr>Le personnage sait comment éviter de se faire repérer, ce qui lui permet de tromper la surveillance des gardes ou encore de se cacher et de se déplacer en silence pour pouvoir ensuite attaquer par surprise.</descr>
+        <id>skill_stealth</id>
+    </skill>
+    <skill>
+        <name>Equitation</name>
+        <abilityDependence>ability_dexterite</abilityDependence>
+        <descr>Le personnage sait monter à cheval ou utiliser d’autres montures plus exotiques comme un griffon ou un pégase. Si le personnage tente de chevaucher une créature qui n’est pas faite pour cela, il subit un malus de -5 sur ses tests d’Équitation. Les actions d’équitation classiques n’exigent pas de test de compétence. Le personnage peut ainsi seller sa monture, monter en selle, avancer au pas, trotter, galoper et descendre de sa monture sans le moindre problème.</descr>
+        <id>skill_ride</id>
+    </skill>
+    <skill>
+        <name>Escalade</name>
+        <abilityDependence>ability_force</abilityDependence>
+        <descr>Le personnage s’est entraîné à escalader toutes sortes de parois verticales, des murs relativement lisses de la ville jusqu’aux falaises rocailleuses. Un test de compétence raté de 1 à 4 points indique que le personnage ne parvient pas à progresser, alors qu’un test raté de 5 points ou plus implique une chute sur toute la hauteur déjà parcourue.</descr>
+        <id>skill_climb</id>
+    </skill>
+    <skill>
+        <name>Estimation</name>
+        <abilityDependence>ability_intelligence</abilityDependence>
+        <descr>Le personnage est capable d’évaluer les objets courants grâce à un test d’Estimation de DD 20. Si le test réussit de 5 points ou plus, le personnage détermine également si l’objet possède des propriétés magiques, mais le test n’en révèle pas les capacités exactes. En cas d’échec de moins de 5 points, l’estimation du personnage se situe entre 80% et 120% du prix exact. Si le test échoue de 5 points ou plus, l’estimation est très inexacte (à l’appréciation du MJ). Dans le cas d’objets rares ou exotiques, le DD du test pourrait être augmenté de 5 ou plus.</descr>
+        <id>skill_estimate</id>
+    </skill>
+    <skill>
+        <name>Evasion</name>
+        <abilityDependence>ability_dexterite</abilityDependence>
+        <descr>Le personnage s’est entraîné pour pouvoir se libérer de liens et se soustraire aux étreintes lors d’une lutte. Il faut une minute de travail pour tenter de se libérer de liens, de menottes ou d’entraves d’une autre sorte (à l’exception d’une lutte).</descr>
+        <id>skill_escape</id>
+    </skill>
+    <skill>
+        <name>Intimidation</name>
+        <abilityDependence>ability_charisme</abilityDependence>
+        <descr>Cette compétence permet au personnage d’effrayer ses adversaires ou de les contraindre à agir à son avantage grâce à des menaces verbales et à des démonstrations de force. Modifier l’attitude de quelqu’un prend une minute de discussion. Démoraliser un adversaire en combat nécessite une action simple.</descr>
+        <id>skill_intimidate</id>
+    </skill>
+    <skill>
+        <name>Natation</name>
+        <abilityDependence>ability_dexterite</abilityDependence>
+        <descr>Le personnage a appris à nager et peut même le faire dans des eaux agitées. Un test de Natation réussi permet de nager sur une distance égale au quart de sa vitesse de déplacement par une action de mouvement ou à la moitié de sa vitesse par une action complexe.</descr>
+        <id>skill_swim</id>
+    </skill>
+    <skill>
+        <name>Perception</name>
+        <abilityDependence>ability_sagesse</abilityDependence>
+        <descr>Les sens du personnage lui permettent de repérer certains détails et le préviennent des dangers imminents. La compétence de Perception regroupe les cinq sens : la vue, l’ouïe, le toucher, le goût et l’odorat. La plupart des tests de Perception sont faits en réaction à un stimulus observable. Chercher activement un tel stimulus est une action de mouvement. Un personnage peut essayer de percevoir un détail qu’il a raté la première fois, pour autant que le détail en question soit toujours présent.</descr>
+        <id>skill_percept</id>
+    </skill>
+    <skill>
+        <name>Premiers secours</name>
+        <abilityDependence>ability_sagesse</abilityDependence>
+        <descr>Le personnage sait comment soigner les blessures et les autres maux. Donner les premiers secours, soigner une blessure ou un empoisonnement est une action simple. Soigner une maladie ou une blessure de croissance d'épines ou de pierres acérées nécessite dix minutes de travail. Traiter des blessures mortelles requiert une heure de travail. Donner des soins suivis prend huit heures d’activité réduite.</descr>
+        <id>skill_heal</id>
+    </skill>
+    <skill>
+        <name>Psychologie</name>
+        <abilityDependence>ability_sagesse</abilityDependence>
+        <descr>Le personnage sait comment repérer les mensonges et percevoir les intentions véritables des individus qu’il croise. Un test de Psychologie réussi permet de ne pas se faire bluffer (voir la compétence de Bluff). Il est également possible d’utiliser cette compétence pour sentir quand quelque chose de louche se prépare ou pour déterminer si quelqu’un est digne de confiance. Il faut au moins une minute pour tenter d’obtenir la moindre information à l’aide de cette compétence, mais le personnage peut éventuellement passer une soirée entière à essayer de comprendre ce que pensent les gens qui l’entourent.</descr>
+        <id>skill_psycho</id>
+    </skill>
+    <skill>
+        <name>Survie</name>
+        <abilityDependence>ability_sagesse</abilityDependence>
+        <descr>Le personnage sait comment survivre et se diriger dans les régions sauvages. Il est également entraîné à suivre les pistes ou les traces laissées par d’autres créatures. En pleine nature, le personnage est capable d’assurer sa propre sécurité et sa subsistance ainsi que celles de ses compagnons.</descr>
+        <id>skill_survival</id>
+    </skill>
+    <skill>
+        <name>Utilisation d'objet magique</name>
+        <abilityDependence>ability_charisme</abilityDependence>
+        <descr>Le personnage peut utiliser cette compétence pour lire un sort ou activer un objet magique. Elle lui permet d’utiliser un objet magique comme s’il possédait les capacités magiques ou les aptitudes d’une classe autre que la sienne ou comme s’il appartenait à une race ou possédait un alignement différant des siens. Le personnage réalise un test d’Utilisation d’objets magiques chaque fois qu’il active un objet tel qu’une baguette. S’il se sert de la compétence pour simuler un alignement ou un autre facteur de manière continue, il doit effectuer un test par heure.</descr>
+        <id>skill_magic_item</id>
+    </skill>
+    <skill>
+        <name>Vol</name>
+        <abilityDependence>ability_dexterite</abilityDependence>
+        <descr>Lorsque le personnage vole (grâce à des ailes ou par magie), il sait le faire avec agilité. Il peut réaliser des manœuvres aériennes complexes ou dangereuses. Cette compétence ne lui donne cependant pas la capacité de voler.</descr>        <id>skill_fly</id>
+    </skill>
+</records>
