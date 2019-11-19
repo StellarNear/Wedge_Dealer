@@ -7,21 +7,21 @@ import android.preference.PreferenceManager;
 import java.util.Arrays;
 import java.util.List;
 
-import stellarnear.wedge_companion.Activities.MainActivity;
 import stellarnear.wedge_companion.Perso.Perso;
+import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.Spells.Metamagic;
 import stellarnear.wedge_companion.Spells.Spell;
 import stellarnear.wedge_companion.Spells.SpellList;
 
 public class Calculation {
-    private Perso wedge = MainActivity.wedge;
+    private Perso pj = PersoManager.getCurrentPJ();
     private Tools tools=new Tools();
 
     public Calculation(){  }
 
     public int saveVal(Spell spell){
         int val=10;
-        val+= wedge.getAbilityMod("ability_charisme");
+        val+= pj.getAbilityMod("ability_charisme");
         val+=spell.getRank();
         if(spell.getMetaList().metaIdIsActive("meta_heighten")){
             val+=spell.getMetaList().getMetaByID("meta_heighten").getnCast() * spell.getMetaList().getMetaByID("meta_heighten").getUprank();
@@ -35,7 +35,7 @@ public class Calculation {
 
 
     public int casterLevel(Spell spell){
-        int val= wedge.getCasterLevel();
+        int val= pj.getCasterLevel();
         if(spell.getMetaList().metaIdIsActive("meta_heighten")){
             val+=spell.getMetaList().getMetaByID("meta_heighten").getnCast() * spell.getMetaList().getMetaByID("meta_heighten").getUprank();
         }
@@ -45,7 +45,7 @@ public class Calculation {
 
 
     public int casterLevelSR(Spell spell){
-        int val= wedge.getCasterLevel();
+        int val= pj.getCasterLevel();
         if(spell.getMetaList().metaIdIsActive("meta_heighten")){
             val+=spell.getMetaList().getMetaByID("meta_heighten").getnCast() * spell.getMetaList().getMetaByID("meta_heighten").getUprank();
         }
@@ -59,7 +59,7 @@ public class Calculation {
             val = spell.getCap_dice();
         }else {
             if ((casterLevel(spell) * spell.getN_dice_per_lvl() > spell.getCap_dice()) && (spell.getCap_dice() != 0)) {
-                    val = spell.getCap_dice();
+                val = spell.getCap_dice();
 
             } else {
                 val = (int) (casterLevel(spell) * spell.getN_dice_per_lvl());
@@ -138,69 +138,36 @@ public class Calculation {
         int nSpells = 0;
         int nRound = 0;
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
-        Boolean multicast = settings.getBoolean("multispell_switch", mC.getResources().getBoolean(R.bool.multispell_switch_def));
-        if (multicast) {
-            for (Spell spell : spellList.getUnbindedSpells().asList()) {
-                nSpells += 1;
-                switch (getCastTimeTxt(spell)) {
-                    case "complexe":
-                        nComplexe += 1;
-                        break;
-                    case "simple":
-                        sumAction += 4;
-                        nSimple += 1;
-                        break;
-                    case "rapide":
-                        sumAction += 1;
-                        nRapide += 1;
-                        break;
-                    default:
-                        nComplexe+=tools.toInt(getCastTimeTxt(spell).replace("min",""))*60/6;  //converti le nombre de minute en round
-                        break;
-                }
+
+        for (Spell spell : spellList.asList()) {
+            nSpells += 1;
+            switch (getCastTimeTxt(spell)) {
+                case "complexe":
+                    nComplexe += 1;
+                    break;
+                case "simple":
+                    sumAction += 2;
+                    nSimple += 1;
+                    break;
+                case "rapide":
+                    sumAction += 1;
+                    nRapide += 1;
+                    break;
+                default:
+                    nComplexe+=tools.toInt(getCastTimeTxt(spell).replace("min",""))*60/6;  //converti le nombre de minute en round
+                    break;
             }
-            nRound = (int) (Math.ceil(sumAction / 6.0));
-            nRound += nComplexe;
-            if ((int) (Math.ceil(nRapide / 3.0)) > nRound) {
-                nRound = (int) (Math.ceil(nRapide / 3.0));
-            }
-            if (nSimple > nRound) {
-                nRound = nSimple;
-            }
-            if ((int) (Math.ceil(nSpells / 3.0)) > nRound) {
-                nRound = (int) (Math.ceil(nSpells / 3.0));
-            }
-        } else {
-            for (Spell spell : spellList.asList()) {
-                nSpells += 1;
-                switch (getCastTimeTxt(spell)) {
-                    case "complexe":
-                        nComplexe += 1;
-                        break;
-                    case "simple":
-                        sumAction += 2;
-                        nSimple += 1;
-                        break;
-                    case "rapide":
-                        sumAction += 1;
-                        nRapide += 1;
-                        break;
-                    default:
-                        nComplexe+=tools.toInt(getCastTimeTxt(spell).replace("min",""))*60/6;  //converti le nombre de minute en round
-                        break;
-                }
-            }
-            nRound = (int) (Math.ceil(sumAction / 3.0));
-            nRound += nComplexe;
-            if ((int) (Math.ceil(nRapide / 2.0)) > nRound) {
-                nRound = (int) (Math.ceil(nRapide / 2.0));
-            }
-            if (nSimple > nRound) {
-                nRound = nSimple;
-            }
-            if ((int) (Math.ceil(nSpells / 2.0)) > nRound) {
-                nRound = (int) (Math.ceil(nSpells / 2.0));
-            }
+        }
+        nRound = (int) (Math.ceil(sumAction / 3.0));
+        nRound += nComplexe;
+        if ((int) (Math.ceil(nRapide / 2.0)) > nRound) {
+            nRound = (int) (Math.ceil(nRapide / 2.0));
+        }
+        if (nSimple > nRound) {
+            nRound = nSimple;
+        }
+        if ((int) (Math.ceil(nSpells / 2.0)) > nRound) {
+            nRound = (int) (Math.ceil(nSpells / 2.0));
         }
 
         return nRound;

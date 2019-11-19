@@ -22,7 +22,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import stellarnear.wedge_companion.Activities.MainActivity;
 import stellarnear.wedge_companion.Elems.ElemsManager;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.R;
@@ -30,7 +29,7 @@ import stellarnear.wedge_companion.Stats.StatsList;
 import stellarnear.wedge_companion.Tools;
 
 public class DSSFDmg {
-    private Perso wedge = MainActivity.wedge;
+    private Perso pj = PersoManager.getCurrentPJ();
     private DSSFDmgChartMaker chartMaker;
     private DSSFDmgInfoManager subManager;
     private PieChart pieChart;

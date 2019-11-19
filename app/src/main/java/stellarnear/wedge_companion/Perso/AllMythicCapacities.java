@@ -24,10 +24,12 @@ public class AllMythicCapacities {
     private Context mC;
     private List<MythicCapacity> allMythicCapacities = new ArrayList<>();
     private Map<String,MythicCapacity> mapIdMythiccapacity =new HashMap<>();
+    private String pjID="";
 
-    public AllMythicCapacities(Context mC)
+    public AllMythicCapacities(Context mC,String pjID)
     {
         this.mC = mC;
+        this.pjID=pjID;
         buildKiCapacitiesList();
     }
 
@@ -35,7 +37,7 @@ public class AllMythicCapacities {
         allMythicCapacities = new ArrayList<>();
         mapIdMythiccapacity =new HashMap<>();
         try {
-            InputStream is = mC.getAssets().open("mythiccapacities.xml");
+            InputStream is = mC.getAssets().open("mythiccapacities"+pjID+".xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(is);
@@ -55,7 +57,8 @@ public class AllMythicCapacities {
                             readValue("descr", element2),
                             readValue("type", element2),
                             readValue("id", element2),
-                            mC);
+                            mC,
+                            pjID);
                     allMythicCapacities.add(MythicCapacity);
                     mapIdMythiccapacity.put(MythicCapacity.getId(),MythicCapacity);
                 }

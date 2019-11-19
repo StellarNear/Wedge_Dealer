@@ -7,34 +7,30 @@ import android.preference.PreferenceManager;
 
 import java.util.ArrayList;
 
-import stellarnear.wedge_companion.Activities.MainActivity;
-import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.Resource;
-import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Tools;
 
 public class SpellsRanksManager {
     private Tools tools= new Tools();
     private SharedPreferences settings;
     private int highestSpellRank=0;
-    private int highestSpellConvank=0;
     private ArrayList<Resource> spellTiers;
-    private ArrayList<Resource> spellConvTiers;
-    private Perso wedge = MainActivity.wedge;
     private OnHighTierChange mListner;
     private Context mC;
-    public SpellsRanksManager(Context mC){
+    private String pjID="";
+
+    public SpellsRanksManager(Context mC,String pjID){
         this.mC=mC;
+        this.pjID=pjID;
         settings = PreferenceManager.getDefaultSharedPreferences(mC);
         refreshRanks();
     }
 
     public void refreshRanks() {
-        int newHighTier=tools.toInt(settings.getString("highest_tier_spell",String.valueOf(mC.getResources().getInteger(R.integer.highest_tier_spell_def))));
-        int newHighConvTier=tools.toInt(settings.getString("highest_tier_spell_conv",String.valueOf(mC.getResources().getInteger(R.integer.highest_tier_spell_conv_def))));
-        if(highestSpellRank!=newHighTier || highestSpellConvank!=newHighConvTier){
+        int resId = mC.getResources().getIdentifier("highest_tier_spell" + pjID, "integer", mC.getPackageName());
+        int newHighTier=tools.toInt(settings.getString("highest_tier_spell"+ pjID,String.valueOf(mC.getResources().getInteger(resId))));
+        if(highestSpellRank!=newHighTier){
             highestSpellRank = newHighTier;
-            highestSpellConvank = newHighConvTier;
             refreshAllTiers();
             if(mListner!=null){mListner.onEvent();}
         }
@@ -42,20 +38,12 @@ public class SpellsRanksManager {
 
     private void refreshAllTiers() {
         spellTiers=new ArrayList<>();
-        spellConvTiers=new ArrayList<>();
         for(int rank=1;rank<=highestSpellRank;rank++){
-            Resource rankRes = new Resource("Sort disponible rang "+rank,"Sort "+rank,true,true,"spell_rank_"+rank,mC);
+            Resource rankRes = new Resource("Sort disponible rang "+rank,"Sort "+rank,true,true,"spell_rank_"+rank,mC,pjID);
             int val = readResourceMax( rankRes.getId());
             rankRes.setMax(val);
             rankRes.setCurrent(readResourceCurrent(rankRes.getId()));
             spellTiers.add(rankRes);
-        }
-        for(int rankConv=1;rankConv<=highestSpellConvank;rankConv++){
-            Resource rankConvRes = new Resource("Sort convertible disponible rang "+rankConv,"Sort Conv "+rankConv,true,true,"spell_conv_rank_"+rankConv,mC);
-            int valConv = readResourceMax( rankConvRes.getId());
-            rankConvRes.setMax(valConv);
-            rankConvRes.setCurrent(readResourceCurrent(rankConvRes.getId()));
-            spellConvTiers.add(rankConvRes);
         }
     }
 
@@ -93,18 +81,10 @@ public class SpellsRanksManager {
         return spellTiers;
     }
 
-    public ArrayList<Resource> getSpellConvTiers() {
-        return spellConvTiers;
-    }
-
     public void refreshMax() {
         for(Resource res : spellTiers){
             int val = readResourceMax( res.getId());
             res.setMax(val);
-        }
-        for(Resource resConv : spellConvTiers){
-            int val = readResourceMax( resConv.getId());
-            resConv.setMax(val);
         }
     }
 
@@ -116,16 +96,6 @@ public class SpellsRanksManager {
         int allRankCurrent=0;
         int allRankMax=0;
         for (Resource res : spellTiers){
-            allRankCurrent+=res.getCurrent();
-            allRankMax+=res.getMax();
-        }
-        return Math.round(100f*allRankCurrent/allRankMax)+"%";
-    }
-
-    public String getPercentAvailConv() {
-        int allRankCurrent=0;
-        int allRankMax=0;
-        for (Resource res : spellConvTiers){
             allRankCurrent+=res.getCurrent();
             allRankMax+=res.getMax();
         }

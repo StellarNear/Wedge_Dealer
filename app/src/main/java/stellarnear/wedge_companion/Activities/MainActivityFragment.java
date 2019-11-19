@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 
 import java.util.List;
 
+import stellarnear.wedge_companion.Quadrants.QuadrantManager;
 import stellarnear.wedge_companion.R;
 
 /**

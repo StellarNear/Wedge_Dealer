@@ -24,9 +24,12 @@ public class AllMythicFeats {
     private Context mC;
     private List<MythicFeat> allMythicFeatsList = new ArrayList<>();
     private Map<String,MythicFeat> mapIdMythicFeat =new HashMap<>();
-    public AllMythicFeats(Context mC)
+    private String pjID="";
+
+    public AllMythicFeats(Context mC,String pjID)
     {
         this.mC = mC;
+        this.pjID=pjID;
         buildFeatsList();
     }
 
@@ -34,7 +37,7 @@ public class AllMythicFeats {
         allMythicFeatsList = new ArrayList<>();
         mapIdMythicFeat =new HashMap<>();
         try {
-            InputStream is = mC.getAssets().open("mythicfeats.xml");
+            InputStream is = mC.getAssets().open("mythicfeats"+pjID+".xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(is);
@@ -54,7 +57,8 @@ public class AllMythicFeats {
                             readValue("type", element2),
                             readValue("descr", element2),
                             readValue("id", element2),
-                            mC);
+                            mC,
+                            pjID);
                     allMythicFeatsList.add(feat);
                     mapIdMythicFeat.put(feat.getId(),feat);
                 }

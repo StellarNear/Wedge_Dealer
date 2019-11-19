@@ -27,12 +27,11 @@ import android.widget.ImageView;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import stellarnear.wedge_companion.Perso.Perso;
+import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.SettingsActivity;
 
 public class MainActivity extends AppCompatActivity {
-    public static Perso wedge;
     private boolean loading = false;
     private boolean touched = false;
     private FrameLayout mainFrameFrag;
@@ -47,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         }
         super.onCreate(savedInstanceState);
 
-        if (wedge == null) {
+        if (PersoManager.getCurrentPJ() == null) {
             Window window = getWindow();
             window.setStatusBarColor(getColor(R.color.start_back_color));
             lockOrient();
@@ -57,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                     MainActivity.this.runOnUiThread(new Runnable()
                     {
                         public void run() {
-                            wedge = new Perso(getApplicationContext());
+                            PersoManager.initPJs(getApplicationContext());
                             loading = true;
                         }
                     });
@@ -131,8 +130,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         checkOrientStart(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        if (wedge != null && loading && touched) {
-            wedge.refresh();
+        if (PersoManager.getCurrentPJ() != null && loading && touched) {
+            PersoManager.getCurrentPJ().refresh();
             buildMainPage();
         }
     }

@@ -21,6 +21,7 @@ import java.util.List;
 
 import stellarnear.wedge_companion.Activities.MainActivity;
 import stellarnear.wedge_companion.Perso.Perso;
+import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.PostData;
 import stellarnear.wedge_companion.PostDataElement;
 import stellarnear.wedge_companion.R;
@@ -28,7 +29,7 @@ import stellarnear.wedge_companion.Tools;
 
 
 public class SettingsFragment extends PreferenceFragment {
-    private Perso wedge= MainActivity.wedge;
+    private Perso pj = PersoManager.getCurrentPJ();
     private Activity mA;
     private Context mC;
     private List<String> histoPrefKeys = new ArrayList<>();
@@ -142,7 +143,7 @@ public class SettingsFragment extends PreferenceFragment {
     private void action(Preference preference) {
         switch (preference.getKey()) {
             case "show_equipment":
-                wedge.getInventory().showEquipment(getActivity(), true);
+                pj.getInventory().showEquipment(getActivity(),mC, true);
                 break;
             case "add_gold":
                 preference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
@@ -195,16 +196,16 @@ public class SettingsFragment extends PreferenceFragment {
                 navigate();
                 break;
             case "spend_myth_point":
-                if( wedge.getResourceValue("resource_mythic_points")>0) {
+                if( pj.getResourceValue("resource_mythic_points")>0) {
                     new AlertDialog.Builder(mC)
                             .setTitle("Demande de confirmation")
                             .setMessage("Confirmes-tu la dépense d'un point mythique ?")
                             .setIcon(android.R.drawable.ic_menu_help)
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int whichButton) {
-                                    wedge.getAllResources().getResource("mythic_points").spend(1);
+                                    pj.getAllResources().getResource("mythic_points").spend(1);
                                     new PostData(mC,new PostDataElement("Dépense de point mythique","-1pt mythique"));
-                                    tools.customToast(mC,"Il te reste "+wedge.getResourceValue("resource_mythic_points")+" point(s) mythique(s)","center");
+                                    tools.customToast(mC,"Il te reste "+pj.getResourceValue("resource_mythic_points")+" point(s) mythique(s)","center");
                                 }
                             })
                             .setNegativeButton(android.R.string.no, null).show();

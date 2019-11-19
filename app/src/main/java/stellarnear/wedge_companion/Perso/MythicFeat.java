@@ -14,13 +14,15 @@ public class MythicFeat {
     private String descr;
     private String id;
     private Context mC;
+    private String pjID;
 
-    public MythicFeat(String name, String type, String descr, String id, Context mC){
+    public MythicFeat(String name, String type, String descr, String id, Context mC,String pjID){
         this.name=name;
         this.type=type;
         this.descr=descr;
         this.id=id;
         this.mC=mC;
+        this.pjID=pjID;
     }
 
     public String getName() {
@@ -40,15 +42,11 @@ public class MythicFeat {
     }
 
     public boolean isActive(){
-        boolean active=false;
+        boolean active = false;
         try {
             SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
-            int switchDefId = mC.getResources().getIdentifier("switch_"+this.id+"_def", "bool", mC.getPackageName());
-            boolean switchDef = mC.getResources().getBoolean(switchDefId);
-            active = settings.getBoolean("switch_"+this.id, switchDef);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            active = settings.getBoolean("switch_"+this.id+pjID, true);
+        } catch ( Exception e) {}
         return active;
     }
 }

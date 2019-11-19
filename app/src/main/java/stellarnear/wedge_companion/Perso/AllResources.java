@@ -35,11 +35,13 @@ public class AllResources {
     private SpellsRanksManager rankManager=null;
     private SharedPreferences settings;
     private Tools tools = new Tools();
+    private String pjID="";
 
-    public AllResources(Context mC,AllAbilities allAbilities,AllMythicCapacities allMythicCapacities) {
+    public AllResources(Context mC,AllAbilities allAbilities,AllMythicCapacities allMythicCapacities,String pjID) {
         this.mC = mC;
         this.allAbilities=allAbilities;
         this.allMythicCapacities=allMythicCapacities;
+        this.pjID=pjID;
         settings = PreferenceManager.getDefaultSharedPreferences(mC);
         try {
             buildResourcesList();
@@ -47,7 +49,7 @@ public class AllResources {
             loadCurrent();
         } catch (Exception e) {
             e.printStackTrace();
-            Log.d("Load_RES","Error loading resources"+e.getMessage());
+            Log.d("Load_RES","Error loading resources "+pjID+e.getMessage());
             reset();
         }
     }
@@ -56,7 +58,7 @@ public class AllResources {
         listResources = new ArrayList<>();
         mapIDRes = new HashMap<>();
         try {
-            InputStream is = mC.getAssets().open("resources.xml");
+            InputStream is = mC.getAssets().open("resources"+pjID+".xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(is);
@@ -77,7 +79,8 @@ public class AllResources {
                             tools.toBool(readValue("testable", element2)),
                             tools.toBool(readValue("hide", element2)),
                             readValue("id", element2),
-                            mC);
+                            mC,
+                            pjID);
                     listResources.add(res);
                     mapIDRes.put(res.getId(), res);
                 }
@@ -86,7 +89,7 @@ public class AllResources {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        rankManager=new SpellsRanksManager(mC);
+        rankManager=new SpellsRanksManager(mC,pjID);
         rankManager.setRefreshEventListener(new SpellsRanksManager.OnHighTierChange() {
             @Override
             public void onEvent() {
@@ -98,7 +101,7 @@ public class AllResources {
             mapIDRes.put(res.getId(), res);
         }
 
-        Resource display_spell = new Resource("Rang de sorts","Sorts",false,false,"resource_display_rank",mC);
+        Resource display_spell = new Resource("Rang de sorts","Sorts",false,false,"resource_display_rank",mC,pjID);
         listResources.add(display_spell);
         mapIDRes.put(display_spell.getId(), display_spell);
     }
@@ -140,8 +143,8 @@ public class AllResources {
         return selectedResource;
     }
     private int readResource(String key) {
-        int resId = mC.getResources().getIdentifier(key.toLowerCase() + "_def", "integer", mC.getPackageName());
-        return tools.toInt(settings.getString(key.toLowerCase(), String.valueOf(mC.getResources().getInteger(resId))));
+        int resId = mC.getResources().getIdentifier(key.toLowerCase() + "_def"+pjID, "integer", mC.getPackageName());
+        return tools.toInt(settings.getString(key.toLowerCase()+pjID, String.valueOf(mC.getResources().getInteger(resId))));
     }
 
     public void refreshMaxs() {

@@ -18,14 +18,16 @@ public class Skill {
     private int rank;
     private int bonus;
     private Context mC;
+    private String pjID="";
     private Tools tools=new Tools();
 
-    public Skill(String name, String abilityDependence, String descr, String id, Context mC){
+    public Skill(String name, String abilityDependence, String descr, String id, Context mC,String pjID){
         this.name=name;
         this.abilityDependence = abilityDependence;
         this.descr=descr;
         this.id=id;
         this.mC=mC;
+        this.pjID=pjID;
         refreshVals();
     }
 
@@ -64,9 +66,9 @@ public class Skill {
         int valTemp=0;
         try {
             SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
-            int valDefId = mC.getResources().getIdentifier(this.id+"_rankDEF", "integer", mC.getPackageName());
+            int valDefId = mC.getResources().getIdentifier(this.id+"_rankDEF"+pjID, "integer", mC.getPackageName());
             int valDef = mC.getResources().getInteger(valDefId);
-            valTemp = tools.toInt(settings.getString(this.id+"_rank", String.valueOf(valDef)));
+            valTemp = tools.toInt(settings.getString(this.id+"_rank"+pjID, String.valueOf(valDef)));
         } catch ( Exception e) {}
         this.rank = valTemp;
     }
@@ -79,9 +81,9 @@ public class Skill {
         int bonusTemp=0;
         try {
             SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
-            int bonusDefId = mC.getResources().getIdentifier(this.id+"_bonusDEF", "integer", mC.getPackageName());
+            int bonusDefId = mC.getResources().getIdentifier(this.id+"_bonusDEF"+pjID, "integer", mC.getPackageName());
             int bonusDef = mC.getResources().getInteger(bonusDefId);
-            bonusTemp = tools.toInt(settings.getString(this.id+"_bonus", String.valueOf(bonusDef)));
+            bonusTemp = tools.toInt(settings.getString(this.id+"_bonus"+pjID, String.valueOf(bonusDef)));
         } catch ( Exception e) {}
         this.bonus= bonusTemp;
     }

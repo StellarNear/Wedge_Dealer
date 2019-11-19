@@ -12,9 +12,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import stellarnear.wedge_companion.Activities.MainActivity;
 import stellarnear.wedge_companion.Elems.ElemsManager;
 import stellarnear.wedge_companion.Perso.Perso;
+import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Rolls.Roll;
 import stellarnear.wedge_companion.Rolls.RollList;
@@ -26,7 +26,7 @@ public class Damages {
     private View mainView;
     private RollList selectedRolls;
     private ElemsManager elems;
-    private Perso wedge= MainActivity.wedge;
+    private Perso pj = PersoManager.getCurrentPJ();
 
     private Tools tools = new Tools();
 
@@ -77,7 +77,7 @@ public class Damages {
         }
 
         //storing results
-        wedge.getStats().storeStatsFromRolls(selectedRolls);
+        pj.getStats().storeStatsFromRolls(selectedRolls);
 
         if (totalSum>0){
             showViews();

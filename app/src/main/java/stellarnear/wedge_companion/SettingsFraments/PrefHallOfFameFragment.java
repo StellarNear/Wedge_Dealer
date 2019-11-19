@@ -17,16 +17,16 @@ import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
-import stellarnear.wedge_companion.Activities.MainActivity;
 import stellarnear.wedge_companion.CustomAlertDialog;
 import stellarnear.wedge_companion.FameEntry;
 import stellarnear.wedge_companion.Perso.Perso;
+import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Stats.Stat;
 import stellarnear.wedge_companion.Tools;
 
 public class PrefHallOfFameFragment extends Preference {
-    private Perso wedge= MainActivity.wedge;
+    private Perso pj = PersoManager.getCurrentPJ();
     private Context mC;
     private View mainView;
     private LinearLayout fameList;
@@ -74,7 +74,7 @@ public class PrefHallOfFameFragment extends Preference {
     private void refreshHall() {
         fameList=(LinearLayout)mainView.findViewById(R.id.hall_of_frame_list);
         fameList.removeAllViews();
-        for(final FameEntry fame : wedge.getHallOfFame().getHallOfFameList()){
+        for(final FameEntry fame : pj.getHallOfFame().getHallOfFameList()){
             LinearLayout statLine = new LinearLayout(mC);
             statLine.setOrientation(LinearLayout.HORIZONTAL);
             statLine.setGravity(Gravity.CENTER_VERTICAL);
@@ -124,11 +124,11 @@ public class PrefHallOfFameFragment extends Preference {
 
 
     private void saveLast() {
-        Stat lastStat = wedge.getStats().getStatsList().getLastStat();
+        Stat lastStat = pj.getStats().getStatsList().getLastStat();
         if(lastStat==null){
             tools.customToast(mC, "Aucune attaque à enregistrer...", "center");
         } else {
-            if (wedge.getHallOfFame().containsStat(lastStat)) {
+            if (pj.getHallOfFame().containsStat(lastStat)) {
                 tools.customToast(mC, "Entrée déjà présente", "center");
             } else {
                 addFameEntry(lastStat);
@@ -151,7 +151,7 @@ public class PrefHallOfFameFragment extends Preference {
                 String foeName = ((EditText) addHallEntry.findViewById(R.id.hall_of_fame_foe_name)).getText().toString();
                 String location = ((EditText) addHallEntry.findViewById(R.id.hall_of_fame_location)).getText().toString();
                 String details = ((EditText) addHallEntry.findViewById(R.id.hall_of_fame_details)).getText().toString();
-                wedge.getHallOfFame().addToHallOfFame(new FameEntry(lastStat,foeName,location,details));
+                pj.getHallOfFame().addToHallOfFame(new FameEntry(lastStat,foeName,location,details));
                 tools.customToast(mC,  "Entrée ajoutée !");
                 refreshHall();
             }
@@ -188,7 +188,7 @@ public class PrefHallOfFameFragment extends Preference {
                 String location = ((EditText) addHallEntry.findViewById(R.id.hall_of_fame_location)).getText().toString();
                 String details = ((EditText) addHallEntry.findViewById(R.id.hall_of_fame_details)).getText().toString();
                 fame.updateInfos(foeName,location,details);
-                wedge.getHallOfFame().refreshSave();
+                pj.getHallOfFame().refreshSave();
                 tools.customToast(mC,  "Entrée changée !");
                 refreshHall();
             }

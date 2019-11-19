@@ -4,11 +4,14 @@ import android.content.Context;
 import android.support.design.widget.Snackbar;
 import android.widget.SeekBar;
 
-import stellarnear.yfa_companion.Activities.MainActivity;
-import stellarnear.yfa_companion.Perso.Perso;
+import stellarnear.wedge_companion.Calculation;
+import stellarnear.wedge_companion.Perso.Perso;
+import stellarnear.wedge_companion.Perso.PersoManager;
+import stellarnear.wedge_companion.Tools;
+
 
 public class SliderBuilder {
-    private Perso yfa= MainActivity.yfa;
+    private Perso pj = PersoManager.getCurrentPJ();
     private Spell spell;
     private Context mC;
     private boolean slided=false;
@@ -29,19 +32,19 @@ public class SliderBuilder {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 if (seekBar.getProgress() > 75) {
                     seekBar.setProgress(100);
-                    if (spell.getRank() != 0 && yfa.getResourceValue("spell_rank_" + calculation.currentRank(spell)) <1) {
+                    if (spell.getRank() != 0 && pj.getResourceValue("spell_rank_" + calculation.currentRank(spell)) <1) {
                         seekBar.setProgress(1);
                         tools.customToast(mC,"Tu n'as pas d'emplacement de sort "+calculation.currentRank(spell)+" de disponible...","center");
-                    } else if (!spell.isCast() && !spell.getConversion().getArcaneId().equalsIgnoreCase("") && yfa.getResourceValue("spell_conv_rank_" + spell.getConversion().getRank())<1) {
+                    } else if (!spell.isCast() && !spell.getConversion().getArcaneId().equalsIgnoreCase("") && pj.getResourceValue("spell_conv_rank_" + spell.getConversion().getRank())<1) {
                         seekBar.setProgress(1);
                         tools.customToast(mC, "Tu n'as pas d'emplacement de sort convertible " + calculation.currentRank(spell) + " de disponible...","center");
-                    } else if (!spell.isCast() && spell.elementIsConverted() && yfa.getResourceValue("resource_mythic_points") < 1) {
+                    } else if (!spell.isCast() && spell.elementIsConverted() && pj.getResourceValue("resource_mythic_points") < 1) {
                         seekBar.setProgress(1);
                         tools.customToast(mC, "Il ne te reste aucun point mythique pour la conversion d'élément","center");
-                    } else if(!spell.isCast() && spell.isMyth() && yfa.getResourceValue("resource_mythic_points") <1){
+                    } else if(!spell.isCast() && spell.isMyth() && pj.getResourceValue("resource_mythic_points") <1){
                         seekBar.setProgress(1);
                         tools.customToast(mC, "Il ne te reste aucun point mythique pour lancer ce sort Mythique","center");
-                    } else if(!spell.isCast() && spell.isMyth() && spell.elementIsConverted() && yfa.getResourceValue("resource_mythic_points") <2){
+                    } else if(!spell.isCast() && spell.isMyth() && spell.elementIsConverted() && pj.getResourceValue("resource_mythic_points") <2){
                         seekBar.setProgress(1);
                         tools.customToast(mC, "Il ne te reste pas assez de points mythiques pour lancer ce sort Mythique avec conversion d'élément","center");
                     } else {
@@ -81,23 +84,23 @@ public class SliderBuilder {
             slided=true;
             if(spell.getRank()==0){new PostData(mC,new PostDataElement(spell));} //pour quand meme signalé les grauit
             if (spell.getRank() > 0) {
-                yfa.castSpell(spell);
+                pj.castSpell(spell);
             }
             if (!spell.getConversion().getArcaneId().equalsIgnoreCase("")) {
-                yfa.castConvSpell(spell.getConversion().getRank());
+                pj.castConvSpell(spell.getConversion().getRank());
             }
             if (spell.isMyth()) {
-                yfa.getAllResources().getResource("resource_mythic_points").spend(1);
+                pj.getAllResources().getResource("resource_mythic_points").spend(1);
                 new PostData(mC,new PostDataElement("Lancement sort mythique","-1pt mythique"));
-                tools.customToast(mC, "Sort Mythique\nIl te reste " + yfa.getResourceValue("resource_mythic_points") + " point(s) mythique(s)", "center");
+                tools.customToast(mC, "Sort Mythique\nIl te reste " + pj.getResourceValue("resource_mythic_points") + " point(s) mythique(s)", "center");
             }
             if (spell.elementIsConverted()) {
-                yfa.getAllResources().getResource("resource_mythic_points").spend(1);
+                pj.getAllResources().getResource("resource_mythic_points").spend(1);
                 new PostData(mC,new PostDataElement("Conversiont d'élément mythique","-1pt mythique"));
-                tools.customToast(mC, "Conversion d'élément\nIl te reste " + yfa.getResourceValue("resource_mythic_points") + " point(s) mythique(s)", "center");
+                tools.customToast(mC, "Conversion d'élément\nIl te reste " + pj.getResourceValue("resource_mythic_points") + " point(s) mythique(s)", "center");
             }
-            if(yfa.getAllBuffs().buffByIDIsActive("true_strike") && !spell.getContact().equalsIgnoreCase("")){
-                yfa.getAllBuffs().getBuffByID("true_strike").cancel();
+            if(pj.getAllBuffs().buffByIDIsActive("true_strike") && !spell.getContact().equalsIgnoreCase("")){
+                pj.getAllBuffs().getBuffByID("true_strike").cancel();
             }
         } else if(!slided) {
             slided=true;

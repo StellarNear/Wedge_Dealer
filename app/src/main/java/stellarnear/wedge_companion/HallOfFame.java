@@ -11,14 +11,16 @@ import stellarnear.wedge_companion.Stats.Stat;
 public class HallOfFame {
     private List<FameEntry> hallOfFameList = new ArrayList<>();
     private TinyDB tinyDB;
+    private String pjID="";
 
-    public HallOfFame(Context mC){
+    public HallOfFame(Context mC,String pjID){
         tinyDB = new TinyDB(mC);
+        this.pjID=pjID;
         try {
             refreshAllOfFame();
         } catch (Exception e) {
             e.printStackTrace();
-            Log.d("Load_HALL","Error loading hall of fame"+e.getMessage());
+            Log.d("Load_HALL","Error loading hall of fame "+pjID+e.getMessage());
             reset();
         }
     }
@@ -26,7 +28,7 @@ public class HallOfFame {
     // hall of frame
 
     private void refreshAllOfFame() {
-        List<FameEntry> listDB = tinyDB.getHallOfFame("localSaveHallOfFame");
+        List<FameEntry> listDB = tinyDB.getHallOfFame("localSaveHallOfFame"+pjID);
         if (listDB.size() == 0) {
             initAllOfFame();
             saveLocalHallOfFame();
@@ -39,7 +41,7 @@ public class HallOfFame {
     }
 
     private void saveLocalHallOfFame() { //sauvegarde dans local DB
-        tinyDB.putHallOfFame("localSaveHallOfFame", hallOfFameList);
+        tinyDB.putHallOfFame("localSaveHallOfFame"+pjID, hallOfFameList);
     }
 
     public List<FameEntry> getHallOfFameList() {

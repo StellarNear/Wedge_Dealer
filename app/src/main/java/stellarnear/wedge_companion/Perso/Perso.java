@@ -40,19 +40,19 @@ public class Perso {
     private SharedPreferences prefs;
     private Calculation calculation=new Calculation();
 
-    public Perso(Context mC) {
+    public Perso(Context mC,String pjID) {
         this.mC=mC;
         this.prefs= PreferenceManager.getDefaultSharedPreferences(mC);
-        inventory = new Inventory(mC);
-        stats = new Stats(mC);
-        hallOfFame=new HallOfFame(mC);
-        allFeats = new AllFeats(mC);
-        allCapacities = new AllCapacities(mC);
-        allMythicFeats = new AllMythicFeats(mC);
-        allMythicCapacities = new AllMythicCapacities(mC);
-        allAbilities = new AllAbilities(mC);
-        allSkills = new AllSkills(mC);
-        allResources = new AllResources(mC,allAbilities,allMythicCapacities);
+        inventory = new Inventory(mC,pjID);
+        stats = new Stats(mC,pjID);
+        hallOfFame=new HallOfFame(mC,pjID);
+        allFeats = new AllFeats(mC,pjID);
+        allCapacities = new AllCapacities(mC,pjID);
+        allMythicFeats = new AllMythicFeats(mC,pjID);
+        allMythicCapacities = new AllMythicCapacities(mC,pjID);
+        allAbilities = new AllAbilities(mC,pjID);
+        allSkills = new AllSkills(mC,pjID);
+        allResources = new AllResources(mC,allAbilities,allMythicCapacities,pjID);
     }
 
     public void refresh() {

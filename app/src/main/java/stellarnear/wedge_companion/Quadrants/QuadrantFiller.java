@@ -20,16 +20,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import stellarnear.wedge_companion.Activities.MainActivity;
+import stellarnear.wedge_companion.HealthDialog;
 import stellarnear.wedge_companion.Perso.Ability;
 import stellarnear.wedge_companion.Perso.Perso;
+import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.Perso.Resource;
 import stellarnear.wedge_companion.R;
+import stellarnear.wedge_companion.TestAlertDialog;
 import stellarnear.wedge_companion.Tools;
-import stellarnear.yfa_companion.HealthDialog;
-import stellarnear.yfa_companion.Perso.Ability;
-import stellarnear.yfa_companion.Perso.Resource;
-import stellarnear.yfa_companion.TestAlertDialog;
 
 
 public class QuadrantFiller {
@@ -40,7 +38,7 @@ public class QuadrantFiller {
     private LinearLayout quadrant2;
     private LinearLayout quadrant3;
     private LinearLayout quadrant4;
-    private Perso wedge = MainActivity.wedge;
+    private Perso pj = PersoManager.getCurrentPJ();
     private Map<LinearLayout,String> mapLayoutTextTitle =new HashMap<>();
     private Map<LinearLayout,String> mapQuadrantType=new HashMap<>();
     private ViewSwitcher viewSwitcher;
@@ -95,10 +93,10 @@ public class QuadrantFiller {
             int layIdSub2 = mC.getResources().getIdentifier(nameSub2, "id", mC.getPackageName());
             LinearLayout sub2 =  mainView.findViewById(layIdSub2);
             if (i==1){
-                List<Resource> resList= wedge.getAllResources().getResourcesListDisplay();
+                List<Resource> resList= pj.getAllResources().getResourcesListDisplay();
                 injectStatsRes(resList, sub1, sub2,"mini");
             } else {
-                List<Ability> abiList= wedge.getAllAbilities().getAbilitiesList(types[i]);
+                List<Ability> abiList= pj.getAllAbilities().getAbilitiesList(types[i]);
                 injectStatsAbi(abiList, sub1, sub2,"mini");
             }
         }
@@ -106,10 +104,10 @@ public class QuadrantFiller {
 
     public void fullscreenQuadrant(LinearLayout layout){
         if (mapQuadrantType.get(layout).equalsIgnoreCase("res")){
-            List<Resource> abiRes= wedge.getAllResources().getResourcesListDisplay();
+            List<Resource> abiRes= pj.getAllResources().getResourcesListDisplay();
             injectStatsRes(abiRes, quadrantFullSub1, quadrantFullSub2,"full");
         } else {
-            List<Ability> abiList= wedge.getAllAbilities().getAbilitiesList(mapQuadrantType.get(layout));
+            List<Ability> abiList= pj.getAllAbilities().getAbilitiesList(mapQuadrantType.get(layout));
             injectStatsAbi(abiList, quadrantFullSub1, quadrantFullSub2,"full");
         }
         switchTextTitle(mapLayoutTextTitle.get(layout));
@@ -124,11 +122,11 @@ public class QuadrantFiller {
         }
     }
 
-    private void injectStatsRes(List<Resource> resList, LinearLayout quadrantSub1, LinearLayout quadrantSub2,String mode) {
+    private void injectStatsRes(List<Resource> resList, LinearLayout quadrantSub1, LinearLayout quadrantSub2, String mode) {
         quadrantSub1.removeAllViews();
         quadrantSub2.removeAllViews();
         for (Resource res : resList){
-                addTextRes(res, quadrantSub1, quadrantSub2, mode);
+            addTextRes(res, quadrantSub1, quadrantSub2, mode);
         }
     }
 
@@ -153,14 +151,14 @@ public class QuadrantFiller {
         String txt2;
         if (abi.getType().equalsIgnoreCase("base")){
             String abScore = "";
-            if(wedge.getAbilityMod(abi.getId())>=0){
-                abScore = "+"+ wedge.getAbilityMod(abi.getId());
+            if(pj.getAbilityMod(abi.getId())>=0){
+                abScore = "+"+ pj.getAbilityMod(abi.getId());
             } else {
-                abScore = String.valueOf(wedge.getAbilityMod(abi.getId()));
+                abScore = String.valueOf(pj.getAbilityMod(abi.getId()));
             }
-            txt2=String.valueOf(wedge.getAbilityScore(abi.getId()))+ " ("+abScore+")";
+            txt2=String.valueOf(pj.getAbilityScore(abi.getId()))+ " ("+abScore+")";
         } else {
-            txt2=String.valueOf(wedge.getAbilityScore(abi.getId()));
+            txt2=String.valueOf(pj.getAbilityScore(abi.getId()));
         }
         text2.setText(txt2);
         text2.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT,1));
@@ -196,24 +194,19 @@ public class QuadrantFiller {
         TextView column2 = new TextView(mC);
         column2.setTextSize(TypedValue.COMPLEX_UNIT_PX,textSize);
         String column2txt;
-        if(res.getId().equalsIgnoreCase("res_true_strike")){
-            if(mode.equalsIgnoreCase("full")){if(wedge.getAllBuffs().buffByIDIsActive("true_strike")){ column2txt="actif"; }else{ column2txt="inactif"; }}
-            else {if(wedge.getAllBuffs().buffByIDIsActive("true_strike")){ column2txt="on"; }else{ column2txt="off"; }}
-        } else if(res.getId().equalsIgnoreCase("resource_display_rank")||res.getId().equalsIgnoreCase("resource_display_rank_conv")){
-            if(res.getId().equalsIgnoreCase("resource_display_rank")){
-                column2txt= wedge.getAllResources().getRankManager().getPercentAvail();
-            } else {
-                column2txt= wedge.getAllResources().getRankManager().getPercentAvailConv();
-            }
+
+        if(res.getId().equalsIgnoreCase("resource_display_rank")){
+            column2txt= pj.getAllResources().getRankManager().getPercentAvail();
+
         } else {
-            column2txt = String.valueOf(wedge.getResourceValue(res.getId()));
+            column2txt = String.valueOf(pj.getResourceValue(res.getId()));
             if (mode.equalsIgnoreCase("mini") && res.getId().equalsIgnoreCase("resource_hp")) {
-                column2txt = String.valueOf(wedge.getAllResources().getResource(res.getId()).getCurrent() + wedge.getAllResources().getResource(res.getId()).getShield());
+                column2txt = String.valueOf(pj.getAllResources().getResource(res.getId()).getCurrent() + pj.getAllResources().getResource(res.getId()).getShield());
             }
             if (mode.equalsIgnoreCase("full") && res.getId().equalsIgnoreCase("resource_hp")) {
-                column2txt = String.valueOf(wedge.getAllResources().getResource(res.getId()).getCurrent());
-                if (wedge.getAllResources().getResource(res.getId()).getShield() > 0) {
-                    column2txt += " (" + String.valueOf(wedge.getAllResources().getResource(res.getId()).getShield()) + ")";
+                column2txt = String.valueOf(pj.getAllResources().getResource(res.getId()).getCurrent());
+                if (pj.getAllResources().getResource(res.getId()).getShield() > 0) {
+                    column2txt += " (" + String.valueOf(pj.getAllResources().getResource(res.getId()).getShield()) + ")";
                 }
             }
         }
@@ -250,7 +243,7 @@ public class QuadrantFiller {
                 HealthDialog healthDialog = new HealthDialog(mA,mC);
                 healthDialog.setRefreshEventListener(new HealthDialog.OnRefreshEventListener() {
                     public void onEvent() {
-                        List<Resource> abiRes= wedge.getAllResources().getResourcesListDisplay();
+                        List<Resource> abiRes= pj.getAllResources().getResourcesListDisplay();
                         injectStatsRes(abiRes, quadrantFullSub1, quadrantFullSub2,"full"); //refresh le full
                         buildAllMini(); //refresh les mini
                     }

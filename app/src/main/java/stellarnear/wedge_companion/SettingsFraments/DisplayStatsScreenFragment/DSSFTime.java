@@ -24,16 +24,16 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import stellarnear.wedge_companion.Activities.MainActivity;
 import stellarnear.wedge_companion.Elems.ElemsManager;
 import stellarnear.wedge_companion.Perso.Perso;
+import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Stats.Stat;
 import stellarnear.wedge_companion.Stats.StatsList;
 import stellarnear.wedge_companion.Tools;
 
 public class DSSFTime {
-    private Perso wedge = MainActivity.wedge;
+    private Perso pj = PersoManager.getCurrentPJ();
     private Context mC;
     private View mainView;
     private ElemsManager elems;
@@ -165,7 +165,7 @@ public class DSSFTime {
     private void computeHashmaps() {
         mapDatetxtStatslist = new LinkedHashMap<>();
         SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy", Locale.FRANCE);
-        for (Stat stat : wedge.getStats().getStatsList().asList()){
+        for (Stat stat : pj.getStats().getStatsList().asList()){
             String dateTxt = formater.format(stat.getDate());
             if(mapDatetxtStatslist.get(dateTxt)==null) {
                 mapDatetxtStatslist.put(dateTxt,new StatsList());

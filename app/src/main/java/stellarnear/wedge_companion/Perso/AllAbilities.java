@@ -31,9 +31,11 @@ public class AllAbilities {
     private List<Ability> listAbilities= new ArrayList<>();
     private Context mC;
     private Tools tools=new Tools();
+    private String pjID="";
 
-    public AllAbilities(Context mC) {
+    public AllAbilities(Context mC,String pjID) {
         this.mC = mC;
+        this.pjID=pjID;
         buildAbilitiesList();
         refreshAllAbilities();
     }
@@ -42,7 +44,7 @@ public class AllAbilities {
         mapIDAbi = new HashMap<>();
         listAbilities= new ArrayList<>();
         try {
-            InputStream is = mC.getAssets().open("abilities.xml");
+            InputStream is = mC.getAssets().open("abilities.xml");  //ici on change pas de xml halda a les meme abi mais des valeurs differentes
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(is);
@@ -88,8 +90,8 @@ public class AllAbilities {
 
     private int readAbility(String key) {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
-        int resId = mC.getResources().getIdentifier( key.toLowerCase() + "_def", "integer", mC.getPackageName());
-        return tools.toInt(settings.getString( key.toLowerCase(), String.valueOf(mC.getResources().getInteger(resId))));
+        int resId = mC.getResources().getIdentifier( key.toLowerCase() + "_def"+pjID, "integer", mC.getPackageName());
+        return tools.toInt(settings.getString( key.toLowerCase()+pjID, String.valueOf(mC.getResources().getInteger(resId))));
     }
 
     public void refreshAllAbilities() {

@@ -6,6 +6,8 @@ import android.widget.ImageView;
 
 import java.util.Random;
 
+import stellarnear.wedge_companion.Tools;
+
 public class Dice {
     private int nFace;
     private int randValue;
@@ -16,10 +18,12 @@ public class Dice {
     private boolean rolled=false;
     private boolean delt=false;
     private boolean canCrit=false;
+    private Tools tools= new Tools();
 
     private Dice mythicDice; //si c'est un d20 il a un dés mythic attaché
 
-    private OnMythicEventListener mListener;
+    private OnMythicEventListener mListenerMythic;
+    private OnRefreshEventListener mListenerRefresh;
 
     public Dice(Activity mA, Context mC, Integer nFace, String... elementArg) {
         this.nFace=nFace;
@@ -28,10 +32,30 @@ public class Dice {
         this.mA=mA;
     }
 
-    public void rand(){
+    public void rand(Boolean manual){
+        if (manual){
+            new DiceDealerDialog(mA, Dice.this);
+        } else {
             Random rand = new Random();
             this.randValue = 1 + rand.nextInt(nFace);
             this.rolled=true;
+        }
+    }
+
+    public void setRand(int randFromWheel) { // le retour depuis wheelpicker
+        this.randValue = randFromWheel;
+        this.rolled=true;
+        if(mListenerRefresh!=null) {
+            mListenerRefresh.onEvent();
+        }
+    }
+
+    public interface OnRefreshEventListener {
+        void onEvent();
+    }
+
+    public void setRefreshEventListener(OnRefreshEventListener eventListener) {
+        mListenerRefresh = eventListener;
     }
 
     public boolean isRolled() {
@@ -77,12 +101,13 @@ public class Dice {
     }
 
     public void setMythicEventListener(OnMythicEventListener eventListener) {
-        mListener = eventListener;
+        mListenerMythic = eventListener;
     }
 
     public void setMythicDice(Dice mythicDice){
         this.mythicDice=mythicDice;
-        if(mListener!=null){mListener.onEvent();}
+        if(mListenerMythic !=null){
+            mListenerMythic.onEvent();}
     }
 
     public Dice getMythicDice(){

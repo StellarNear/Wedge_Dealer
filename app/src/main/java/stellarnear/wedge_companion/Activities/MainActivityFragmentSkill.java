@@ -17,17 +17,19 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import stellarnear.yfa_companion.Perso.Perso;
-import stellarnear.yfa_companion.Perso.Skill;
-import stellarnear.yfa_companion.R;
-import stellarnear.yfa_companion.TestAlertDialog;
-import stellarnear.yfa_companion.Tools;
+import stellarnear.wedge_companion.Perso.Perso;
+import stellarnear.wedge_companion.Perso.PersoManager;
+import stellarnear.wedge_companion.Perso.Skill;
+import stellarnear.wedge_companion.R;
+import stellarnear.wedge_companion.TestAlertDialog;
+import stellarnear.wedge_companion.Tools;
+
 
 /**
  * A placeholder fragment containing a simple view.
  */
 public class MainActivityFragmentSkill extends Fragment {
-    private Perso yfa= MainActivity.yfa;
+    private Perso pj = PersoManager.getCurrentPJ();
     private LinearLayout linearSkillScroll;
     private View returnFragView;
     private Tools tools=new Tools();
@@ -46,7 +48,7 @@ public class MainActivityFragmentSkill extends Fragment {
 
         linearSkillScroll = returnFragView.findViewById(R.id.skillscrollLayout);
 
-        for (Skill skill : yfa.getAllSkills().getSkillsList()) {
+        for (Skill skill : pj.getAllSkills().getSkillsList()) {
             addAllColumns(skill);
         }
 
@@ -93,7 +95,7 @@ public class MainActivityFragmentSkill extends Fragment {
         TextView totalTxt = new TextView(getContext());
         TextView totalTitle = returnFragView.findViewById(R.id.skillTotalTitle);
         totalTxt.setLayoutParams(totalTitle.getLayoutParams());
-        int total = yfa.getAbilityMod(skill.getAbilityDependence())+skill.getRank()+yfa.getSkillBonus(getContext(),skill.getId());
+        int total = pj.getAbilityMod(skill.getAbilityDependence())+skill.getRank()+pj.getSkillBonus(getContext(),skill.getId());
         totalTxt.setText(String.valueOf(total));
         totalTxt.setTypeface(null, Typeface.BOLD);
         totalTxt.setGravity(Gravity.CENTER);
@@ -102,10 +104,10 @@ public class MainActivityFragmentSkill extends Fragment {
         TextView abiTitle = returnFragView.findViewById(R.id.skillAbiTitle);
         abiTxt.setLayoutParams(abiTitle.getLayoutParams());
         String abScore;
-        if(yfa.getAbilityMod(skill.getAbilityDependence())>=0){
-            abScore = "+"+yfa.getAbilityMod(skill.getAbilityDependence());
+        if(pj.getAbilityMod(skill.getAbilityDependence())>=0){
+            abScore = "+"+pj.getAbilityMod(skill.getAbilityDependence());
         } else {
-            abScore = String.valueOf(yfa.getAbilityMod(skill.getAbilityDependence()));
+            abScore = String.valueOf(pj.getAbilityMod(skill.getAbilityDependence()));
         }
         abiTxt.setText(skill.getAbilityDependence().substring(8,11) + " : " +abScore );  //la clef de l'id etant ability_x
         abiTxt.setGravity(Gravity.CENTER);
@@ -119,7 +121,7 @@ public class MainActivityFragmentSkill extends Fragment {
         TextView bonusTxt = new TextView(getContext());
         TextView bonusTitle = returnFragView.findViewById(R.id.skillBonusTitle);
         bonusTxt.setLayoutParams(bonusTitle.getLayoutParams());
-        bonusTxt.setText(String.valueOf(yfa.getSkillBonus(getContext(),skill.getId())));
+        bonusTxt.setText(String.valueOf(pj.getSkillBonus(getContext(),skill.getId())));
         bonusTxt.setGravity(Gravity.CENTER);
 
         line.addView(nameTxt);
@@ -136,7 +138,7 @@ public class MainActivityFragmentSkill extends Fragment {
         line.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new TestAlertDialog(getActivity(),getContext(),skill,yfa.getAbilityMod(skill.getAbilityDependence()));
+                new TestAlertDialog(getActivity(),getContext(),skill,pj.getAbilityMod(skill.getAbilityDependence()));
             }
         });
     }

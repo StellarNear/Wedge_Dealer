@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<records>
+    <!-- feat_magic -->
+    <feat>
+        <name>Science du contresort</name>
+        <type>feat_magic</type>
+        <descr>Permet de contrer un sort avec un sort de la même école et d’un niveau supérieur.</descr>
+    </feat>
+
+    <feat>
+        <name>Parade de sorts</name>
+        <type>feat_magic</type>
+        <descr>Renvoyer un sort contré vers le lanceur.</descr>
+    </feat>
+
+
+    <!-- DEF -->
+    <feat>
+        <name>Réflexes surhumains</name>
+        <type>feat_def</type>
+        <descr>Le personnage bénéficie d’un bonus de +2 aux jets de Réflexes.</descr>
+        <id>feat_inhuman_reflexes</id>
+    </feat>
+
+
+
+    <!-- feat_otherS -->
+    <feat>
+        <name>Prestige</name>
+        <type>feat_other</type>
+        <descr>Le personnage attire des suivants et un compagnon d’armes qui se joignent à sa cause et l’accompagnent au cours de ses aventures.</descr>
+    </feat>
+
+    <feat>
+        <name>Création d'objets merveilleux</name>
+        <type>feat_other</type>
+        <descr>Le personnage sait fabriquer des objets merveilleux, un type d’objets magiques. Le personnage peut fabriquer une grande variété d’objets merveilleux. Le processus de fabrication prend un jour par tranche de 1000 po du prix de base de l’objet. Le personnage doit acheter les matières premières nécessaires à la moitié de leur prix de base (Voir la page sur la création d'objets magiques).</descr>
+    </feat>
+
+
+</records>

@@ -19,7 +19,7 @@ import stellarnear.wedge_companion.Tools;
 
 public class PrefResetScreenFragment extends Preference {
     private Context mC;
-    private Perso wedge=MainActivity.wedge;
+    private Perso pj = PersoManager.getCurrentPJ();
     private View mainView;
 
     public PrefResetScreenFragment(Context context, AttributeSet attrs) {

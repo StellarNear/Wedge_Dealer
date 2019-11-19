@@ -10,16 +10,16 @@ import android.widget.TextView;
 
 import java.util.Map;
 
-import stellarnear.wedge_companion.Activities.MainActivity;
 import stellarnear.wedge_companion.Elems.ElemsManager;
 import stellarnear.wedge_companion.Perso.Perso;
+import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Stats.Stat;
 import stellarnear.wedge_companion.Stats.StatsList;
 import stellarnear.wedge_companion.Tools;
 
 public class DSSFDmgInfoManager {
-    private Perso wedge = MainActivity.wedge;
+    private Perso pj = PersoManager.getCurrentPJ();
 
     private Context mC;
     private View mainView;
@@ -47,7 +47,7 @@ public class DSSFDmgInfoManager {
 
     public void addInfos(StatsList selectedStats){
         if(selectedStats==null){
-            this.selectedStats=wedge.getStats().getStatsList();
+            this.selectedStats=pj.getStats().getStatsList();
             this.allStats=true;
         } else { this.selectedStats=selectedStats; this.allStats=false;}
         if(this.selectedStats.size()>0){addInfos();}

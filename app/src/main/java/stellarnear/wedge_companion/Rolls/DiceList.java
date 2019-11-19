@@ -7,6 +7,7 @@ import stellarnear.wedge_companion.Rolls.Dices.Dice;
 
 public class DiceList {
 
+
     private List<Dice> diceList;
     public DiceList() {
         this.diceList=new ArrayList<>();
@@ -69,11 +70,11 @@ public class DiceList {
         return diceList;
     }
 
-    public Integer getMin(){
+    public Integer getMinDmg(){
         return diceList.size(); //puisque on fait 1 au min
     }
 
-    public Integer getMax(){
+    public Integer getMaxDmg(){
         int value=0;
         for (Dice dice : diceList){
             value+=dice.getnFace();

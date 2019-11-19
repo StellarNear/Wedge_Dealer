@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/page1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="stellarnear.wedge_companion.Activities.MainActivityFragmentSpell">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:id="@+id/RelatTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@drawable/background_spell_list_title"
+            >
+
+            <TextView
+                android:id="@+id/Titre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="Liste des sorts"
+                android:textColor="@android:color/white"
+                android:layout_centerInParent="true"
+                android:textSize="25sp"
+
+                />
+
+            <ImageButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_send_black_24dp"
+                style="?android:attr/borderlessButtonStyle"
+                android:gravity="center_vertical"
+                tools:ignore="ContentDescription"
+                />
+
+            <FrameLayout
+                android:id="@+id/back_main_from_spell"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginStart="@dimen/general_margin"
+                android:foregroundGravity="center"
+                android:layout_centerVertical="true"
+                tools:ignore="ContentDescription"
+                >
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/mire_test"/>
+
+            </FrameLayout>
+
+        </RelativeLayout>
+
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:weightSum="100">
+
+            <ScrollView
+                android:id="@+id/main_scroll_relat"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="89"
+                >
+
+                <LinearLayout
+                    android:id="@+id/linear1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:textAlignment="center"
+                    />
+            </ScrollView>
+
+            <LinearLayout
+                android:id="@+id/side_bar"
+                android:layout_width="0dp"
+                android:layout_weight="11"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/general_margin">
+
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+
+
+
+</android.support.design.widget.CoordinatorLayout>

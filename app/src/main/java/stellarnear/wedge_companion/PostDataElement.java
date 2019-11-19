@@ -9,6 +9,7 @@ import stellarnear.wedge_companion.Elems.ElemsManager;
 import stellarnear.wedge_companion.Rolls.Dices.Dice;
 import stellarnear.wedge_companion.Rolls.Roll;
 import stellarnear.wedge_companion.Rolls.RollList;
+import stellarnear.wedge_companion.Spells.Spell;
 
 
 public class PostDataElement {
@@ -141,6 +142,30 @@ public class PostDataElement {
         String detailTxt = String.valueOf(oriDice.getRandValue());
         if(oriDice.getMythicDice()!=null){detailTxt +=","+oriDice.getMythicDice().getRandValue();}
         this.detail =detailTxt;
+    }
+
+    /* lancement d'un sort */
+    public PostDataElement(Spell spell){
+        SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.FRANCE);
+        this.date=formater.format(new Date());
+
+        this.typeEvent="Lancement sort "+spell.getName() +" (rang:"+new Calculation().currentRank(spell)+")";
+
+        if(spell.isFailed()||spell.contactFailed()){
+            String failPostData="-";
+            if(spell.isFailed()){
+                failPostData="Test de RM raté";
+            } else if(spell.contactFailed()){
+                failPostData="Test de contact raté";
+            }
+            this.result=failPostData;
+        } else {
+            if(spell.getDmg_type().equalsIgnoreCase("")){
+                this.result="Lancé !";
+            } else {
+                this.result="Dégâts : "+spell.getDmgResult();
+            }
+        }
     }
 
     public String getDetail() {

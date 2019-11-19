@@ -41,27 +41,29 @@ public class Bag {
     private Boolean removable;
     private Context mC;
     private Tools tools=new Tools();
+    private String pjID="";
     private TinyDB tinyDB;
 
-    public Bag(Context mC){
+    public Bag(Context mC,String pjID){
         this.mC = mC;
+        this.pjID=pjID;
         settings = PreferenceManager.getDefaultSharedPreferences(mC);
         try {
             refreshBag();
         } catch (Exception e) {
             e.printStackTrace();
-            Log.d("Load_BAG","Error loading bag"+e.getMessage());
+            Log.d("Load_BAG","Error loading bag"+pjID+e.getMessage());
             reset();
         }
     }
 
     private void saveLocalBag() {
-        tinyDB.putListEquipments("localSaveListBag", listBag);
-    }
+        tinyDB.putListEquipments("localSaveListBag"+pjID, listBag);
+    }  //on save avec le pjID pour avoir une database differente pour halda
 
     private void refreshBag(){
         tinyDB = new TinyDB(mC);
-        List<Equipment> listDB = tinyDB.getListEquipments("localSaveListBag");
+        List<Equipment> listDB = tinyDB.getListEquipments("localSaveListBag"+pjID); //on save avec le pjID pour avoir une database differente pour halda
         if (listDB.size() == 0) {
             buildBag();
             saveLocalBag();

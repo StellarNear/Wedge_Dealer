@@ -52,5 +52,43 @@
     <color name="end_gradient_button_basic">@color/white</color>
     <color name="gray50">#808080</color>
 
+    <color name="aucun">#F2F2F2</color>
+    <color name="aucun_dark">#A4A4A4</color>
+    <color name="feu">#F79F81</color>
+    <color name="feu_dark">#FF0000</color>
+    <color name="froid">#819FF7</color>
+    <color name="froid_dark">#013ADF</color>
+    <color name="foudre">#E0ECF8</color>
+    <color name="foudre_dark">#2ECCFA</color>
+    <color name="acide">#d4f7d9</color>
+    <color name="acide_dark">#3cdd54</color>
+    <color name="lightgray">#dddddd</color>
+
+    <color name="start_gradient_title_bar_main_skill">#000967</color>
+    <color name="end_gradient_title_bar_main_skill">#b164f5</color>
+    <color name="title_skill_color_text">@color/colorBackground</color>
+    <color name="title_skill_color_background">@color/colorPrimaryDark</color>
+
+    <color name="start_gradient_background_spell">#d9d9d9</color>
+    <color name="end_gradient_background_spell">#ffffff</color>
+    <color name="dark_gray">#404040</color>
+    <color name="gray">#808080</color>
+
+    <!-- health -->
+    <color name="colorTextButtonHealthDialog">#000000</color>
+    <color name="start_gradient_health_bar_underhalf">#ffa366</color>
+    <color name="end_gradient_health_bar_underhalf">#e65c00</color>
+    <color name="end_gradient_health_bar_ok">@color/end_gradient_button_ok</color>
+    <color name="start_gradient_health_bar_ok">@color/start_gradient_button_ok</color>
+    <color name="start_gradient_health_bar_notok">@color/end_gradient_button_cancel</color>
+    <color name="end_gradient_health_bar_notok">@color/start_gradient_button_cancel</color>
+    <color name="start_gradient_health_bar_abovehalf">#ffff00</color>
+    <color name="end_gradient_health_bar_abovehalf">#b3b300</color>
+
+    <color name="secondaryTextCustomDialog">@color/dark_gray</color>
+
+    <color name="start_gradient_skill">#ffffff</color>
+    <color name="end_gradient_skill">#e6e6e6</color>
+
 
 </resources>

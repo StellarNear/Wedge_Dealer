@@ -315,7 +315,7 @@ public class MainActivityFragmentCombat extends Fragment {
         fabDmgDet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(displayRolls==null){displayRolls = new DisplayRolls(MainActivityFragmentCombat.this, mC, selectedRolls);}
+                if(displayRolls==null){displayRolls = new DisplayRolls(getActivity(), mC, selectedRolls);}
                 displayRolls.showPopup();
             }
         });

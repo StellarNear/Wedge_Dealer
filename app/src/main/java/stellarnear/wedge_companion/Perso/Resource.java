@@ -20,8 +20,9 @@ public class Resource {
     private boolean hide;
     private Drawable img;
     private SharedPreferences settings;
+    private String pjID="";
 
-    public Resource(String name, String shortname, Boolean testable, Boolean hide, String id, Context mC) {
+    public Resource(String name, String shortname, Boolean testable, Boolean hide, String id, Context mC,String pjID) {
         this.name = name;
         this.shortname = shortname;
         if(shortname.equalsIgnoreCase("")){this.shortname=name;}
@@ -35,6 +36,7 @@ public class Resource {
         } else {
             this.img = null;
         }
+        this.pjID=pjID;
     }
 
     public String getName() {
@@ -108,7 +110,7 @@ public class Resource {
     }
 
     public void loadCurrentFromSettings() {
-        int currentVal = settings.getInt(this.id + "_current", -99);
+        int currentVal = settings.getInt(this.id + "_current"+pjID, -99);
         if (currentVal != -99) {
             this.current = currentVal;
         } else {
@@ -117,7 +119,7 @@ public class Resource {
     }
 
     private void saveCurrentToSettings() {
-        settings.edit().putInt(this.id + "_current", this.current).apply();
+        settings.edit().putInt(this.id + "_current"+pjID, this.current).apply();
     }
 
 

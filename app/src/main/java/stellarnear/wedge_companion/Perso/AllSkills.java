@@ -24,9 +24,12 @@ public class AllSkills {
     private Context mC;
     private List<Skill> allSkillsList = new ArrayList<>();
     private Map<String,Skill> mapIdSkill=new HashMap<>();
-    public AllSkills(Context mC)
+    private String pjID="";
+
+    public AllSkills(Context mC,String pjID)
     {
         this.mC = mC;
+        this.pjID=pjID;
         buildSkillsList();
     }
 
@@ -54,7 +57,8 @@ public class AllSkills {
                             readValue("abilityDependence", element2),
                             readValue("descr", element2),
                             readValue("id", element2),
-                            mC);
+                            mC,
+                            pjID);
                     allSkillsList.add(skill);
                     mapIdSkill.put(skill.getId(),skill);
                 }

@@ -21,6 +21,27 @@
     <dimen name="size_icon_main_actions">80dp</dimen>
     <dimen name="size_text_main_actions">12sp</dimen>
     <dimen name="main_frag_stats_heigh_quadrant">350dp</dimen>
+    <dimen name="translationFragTransiNegative">-500</dimen>
+    <dimen name="translationFragTransi">500</dimen>
+    <dimen name="size_icon_main_actions075">60dp</dimen>
+    <dimen name="radius_corner_spell">5dp</dimen>
+    <dimen name="bordure_spell_background">2dp</dimen>
+    <dimen name="height_spell_profile">150dp</dimen>
+
+    <dimen name="textSizeQuadrantMini">14sp</dimen>
+    <dimen name="iconSizeQuadrantMini">20dp</dimen>
+    <dimen name="textSizeQuadrantFull">19sp</dimen>
+    <dimen name="iconSizeQuadrantFull">42dp</dimen>
+    <dimen name="full_quadrant_icons_margin">15dp</dimen>
+    <dimen name="mini_quadrant_icons_margin">3dp</dimen>
+
+    <dimen name="margin_healthDialog_text">30dp</dimen>
+    <dimen name="size_button_healthDialog">100dp</dimen>
+    <dimen name="margin_customDialog_text">5dp</dimen>
+    <dimen name="icon_dices_testalertdialog">60dp</dimen>
+    <dimen name="sizeTextCustomDialogResult">50sp</dimen>
+    <dimen name="icon_skills_list_height">40dp</dimen>
+    <dimen name="icon_dice">60dp</dimen>
 
 
 </resources>

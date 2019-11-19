@@ -12,6 +12,7 @@ import java.util.Map;
 
 public class ProbaFromDiceRand {
     private RollList selectedRollList;
+    private DiceList selectedDiceList;
     private int max;
     private int min;
     private int sum;
@@ -20,6 +21,10 @@ public class ProbaFromDiceRand {
 
     public ProbaFromDiceRand(RollList selectedRollList) {
         this.selectedRollList = selectedRollList;
+    }
+
+    public ProbaFromDiceRand(DiceList selectedDiceList) {
+        this.selectedDiceList = selectedDiceList;
     }
 
     public String getProba(String element, boolean... critArg) {
@@ -50,9 +55,15 @@ public class ProbaFromDiceRand {
     }
 
     private void buildParameters() {
-        max = selectedRollList.getMaxDmgFromType(element);
-        min = selectedRollList.getMinDmgFromType(element);
-        sum = selectedRollList.getDmgSumFromType(element);
+        if(selectedRollList!=null) {
+            max = selectedRollList.getMaxDmgFromType(element);
+            min = selectedRollList.getMinDmgFromType(element);
+            sum = selectedRollList.getDmgSumFromType(element);
+        }else if(selectedDiceList!=null){
+            max = selectedDiceList.getMaxDmg();
+            min = selectedDiceList.getMinDmg();
+            sum = selectedDiceList.getSum();
+        }
     }
 
     private Double getProbaPercentage(DiceList diceList, int sum) {

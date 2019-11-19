@@ -24,18 +24,20 @@ public class AllCapacities {
     private Context mC;
     private List<Capacity> allCapacities = new ArrayList<>();
     private Map<String,Capacity> mapIdcapacity =new HashMap<>();
+    private String pjID="";
 
-    public AllCapacities(Context mC)
+    public AllCapacities(Context mC,String pjID)
     {
         this.mC = mC;
-        buildKiCapacitiesList();
+        this.pjID=pjID;
+        buildCapacitiesList();
     }
 
-    private void buildKiCapacitiesList() {
+    private void buildCapacitiesList() {
         allCapacities = new ArrayList<>();
         mapIdcapacity =new HashMap<>();
         try {
-            InputStream is = mC.getAssets().open("capacities.xml");
+            InputStream is = mC.getAssets().open("capacities"+pjID+".xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(is);
@@ -54,7 +56,9 @@ public class AllCapacities {
                             readValue("name", element2),
                             readValue("descr", element2),
                             readValue("type", element2),
-                            readValue("id", element2));
+                            readValue("id", element2),
+                            mC,
+                            pjID);
                     allCapacities.add(Capacity);
                     mapIdcapacity.put(Capacity.getId(),Capacity);
                 }
@@ -99,6 +103,6 @@ public class AllCapacities {
     }
 
     public void reset() {
-        buildKiCapacitiesList();
+        buildCapacitiesList();
     }
 }

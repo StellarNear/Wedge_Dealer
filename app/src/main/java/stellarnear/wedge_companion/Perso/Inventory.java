@@ -22,9 +22,9 @@ public class Inventory {
     private CustomAlertDialog equipWindow;
     private boolean editable;
 
-    public Inventory(Context mC) {
-        this.bag = new Bag(mC);
-        this.allEquipments = new AllEquipments(mC);
+    public Inventory(Context mC,String pjID) {
+        this.bag = new Bag(mC,pjID);
+        this.allEquipments = new AllEquipments(mC,pjID);
     }
 
     public void showEquipment(Activity mA,Context mC, Boolean... canDelete) {

@@ -41,22 +41,24 @@ public class AllEquipments {
     private Boolean editable;
     private Tools tools = new Tools();
     private TinyDB tinyDB;
+    private String pjID="";
     private OnRefreshEventListener mListener;
 
-    public AllEquipments(Context mC) {
+    public AllEquipments(Context mC,String pjID) {
         this.mC = mC;
+        this.pjID=pjID;
         try {
             refreshEquipment();
         } catch (Exception e) {
             e.printStackTrace();
-            Log.d("Load_EQUIP","Error loading bag"+e.getMessage());
+            Log.d("Load_EQUIP","Error loading bag "+pjID+e.getMessage());
             reset();
         }
     }
 
     private void refreshEquipment() {
         tinyDB = new TinyDB(mC);
-        List<Equipment> listDB = tinyDB.getListEquipments("localSaveListEquipments");
+        List<Equipment> listDB = tinyDB.getListEquipments("localSaveListEquipments"+pjID);  //on save avec le pjID pour avoir une database differente pour halda
         if (listDB.size() == 0) {
             buildList();
             saveLocalAllEquipments();
@@ -66,7 +68,7 @@ public class AllEquipments {
     }
 
     private void saveLocalAllEquipments() {
-        tinyDB.putListEquipments("localSaveListEquipments", listEquipments);
+        tinyDB.putListEquipments("localSaveListEquipments"+pjID, listEquipments); //on save avec le pjID pour avoir une database differente pour halda
     }
 
     private void buildList() {

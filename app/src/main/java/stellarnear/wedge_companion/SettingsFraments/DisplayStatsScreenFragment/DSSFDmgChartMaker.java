@@ -20,16 +20,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import stellarnear.wedge_companion.Activities.MainActivity;
 import stellarnear.wedge_companion.Elems.ElemsManager;
 import stellarnear.wedge_companion.Perso.Perso;
+import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Stats.Stat;
 import stellarnear.wedge_companion.Stats.StatsList;
 import stellarnear.wedge_companion.Tools;
 
 public class DSSFDmgChartMaker {
-    private Perso wedge = MainActivity.wedge;
+    private Perso pj = PersoManager.getCurrentPJ();
     private BarChart chart;
     private Context mC;
     private ElemsManager elems;
@@ -75,7 +75,7 @@ public class DSSFDmgChartMaker {
         addDataChart();
         computeBarDataSetLabel();
         formatAxisChart();
-        if(wedge.getStats().getStatsList().size()>=1)addLimitsChart();
+        if(pj.getStats().getStatsList().size()>=1)addLimitsChart();
         Handler h = new Handler();
         h.postDelayed(new Runnable() {
             @Override
@@ -99,13 +99,13 @@ public class DSSFDmgChartMaker {
     private void calculateMinMaxRound() {
         int minDmg,maxDmg;
         if(elemsSelected.size()==4) {
-            minDmg = wedge.getStats().getStatsList().getMinDmgTot();
-            maxDmg = wedge.getStats().getStatsList().getMaxDmgTot();
+            minDmg = pj.getStats().getStatsList().getMinDmgTot();
+            maxDmg = pj.getStats().getStatsList().getMaxDmgTot();
         } else {
             int currentMin=0,currentMax=0;
             for (String elem:elemsSelected){
-                int minElem=wedge.getStats().getStatsList().getMinDmgElem(elem);
-                int maxElem=wedge.getStats().getStatsList().getMaxDmgElem(elem);
+                int minElem=pj.getStats().getStatsList().getMinDmgElem(elem);
+                int maxElem=pj.getStats().getStatsList().getMaxDmgElem(elem);
                 if(currentMin==0 && minElem!=0 ){
                     currentMin=minElem;
                 }
@@ -160,7 +160,7 @@ public class DSSFDmgChartMaker {
     private BarDataSet computeBarDataSet(String elemsSelected){
         Map<Integer, Integer> histo = new HashMap<>();
         mapIStepSelectedListStat=new HashMap<>();
-        for (Stat stat : wedge.getStats().getStatsList().asList()) {
+        for (Stat stat : pj.getStats().getStatsList().asList()) {
             int sumDmg;
             if(elemsSelected.equalsIgnoreCase("all")) {
                 sumDmg = stat.getSumDmg();
@@ -239,9 +239,9 @@ public class DSSFDmgChartMaker {
         String label="récent";
         if(barGroupMode){label="";}
         if(elem.equalsIgnoreCase("all")){
-            sumDmg = wedge.getStats().getStatsList().getLastStat().getSumDmg();
+            sumDmg = pj.getStats().getStatsList().getLastStat().getSumDmg();
         } else {
-            sumDmg = wedge.getStats().getStatsList().getLastStat().getElemSumDmg().get(elem);
+            sumDmg = pj.getStats().getStatsList().getLastStat().getElemSumDmg().get(elem);
         }
 
         int lineColor;

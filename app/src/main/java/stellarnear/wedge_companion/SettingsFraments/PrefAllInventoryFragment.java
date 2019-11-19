@@ -17,6 +17,7 @@ import stellarnear.wedge_companion.Activities.MainActivity;
 import stellarnear.wedge_companion.CustomAlertDialog;
 import stellarnear.wedge_companion.Perso.Equipment;
 import stellarnear.wedge_companion.Perso.Inventory;
+import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Tools;
 
@@ -31,7 +32,7 @@ public class PrefAllInventoryFragment {
     public PrefAllInventoryFragment(Activity mA,Context mC){
         this.mA=mA;
         this.mC=mC;
-        this.inventory = MainActivity.wedge.getInventory();
+        this.inventory = PersoManager.getCurrentPJ().getInventory();
     }
 
     public void addEditableEquipment(PreferenceCategory otherList, PreferenceCategory spareList) {

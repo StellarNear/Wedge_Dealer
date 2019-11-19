@@ -38,22 +38,21 @@ import android.widget.Toast;
 import java.text.DecimalFormatSymbols;
 import java.util.Iterator;
 
-import stellarnear.yfa_companion.CustomAlertDialog;
-import stellarnear.yfa_companion.MyDragAndDrop;
-import stellarnear.yfa_companion.Perso.Perso;
-import stellarnear.yfa_companion.PostData;
-import stellarnear.yfa_companion.PostDataElement;
-import stellarnear.yfa_companion.R;
-import stellarnear.yfa_companion.Spells.BuildSpellList;
-import stellarnear.yfa_companion.Spells.Spell;
-import stellarnear.yfa_companion.Spells.SpellList;
-import stellarnear.yfa_companion.Targets;
-import stellarnear.yfa_companion.Tools;
+import stellarnear.wedge_companion.CustomAlertDialog;
+import stellarnear.wedge_companion.Perso.Perso;
+import stellarnear.wedge_companion.Perso.PersoManager;
+import stellarnear.wedge_companion.PostData;
+import stellarnear.wedge_companion.PostDataElement;
+import stellarnear.wedge_companion.R;
+import stellarnear.wedge_companion.Spells.BuildSpellList;
+import stellarnear.wedge_companion.Spells.SelectedSpells;
+import stellarnear.wedge_companion.Spells.Spell;
+import stellarnear.wedge_companion.Spells.SpellList;
+import stellarnear.wedge_companion.Tools;
 
 public class MainActivityFragmentSpell extends Fragment {
     private SpellList selectedSpells=new SpellList();
-    private Targets targets;
-    private Perso yfa=MainActivity.yfa;
+    private Perso pj = PersoManager.getCurrentPJ();
 
     private View returnFragView;
 
@@ -74,7 +73,6 @@ public class MainActivityFragmentSpell extends Fragment {
 
         returnFragView= inflater.inflate(R.layout.fragment_main_cast, container, false);
 
-        targets = Targets.getInstance();
 
         buildPage1();
 
@@ -83,7 +81,6 @@ public class MainActivityFragmentSpell extends Fragment {
             @Override
             public void onClick(View view) {
                 if (!selectedSpells.isEmpty()){
-                    targets.clearTargets();
                     testSpellSelection();
                 } else {
                     Toast toast =  Toast.makeText(getContext(), "Sélectionnes au moins un sort ...", Toast.LENGTH_SHORT);
@@ -137,9 +134,9 @@ public class MainActivityFragmentSpell extends Fragment {
 
 
     private void buildPage1() {
-        listAllSpell=BuildSpellList.getInstance(getContext()).getSpellList();
+        listAllSpell= BuildSpellList.getInstance(getContext()).getSpellList();
 
-        int max_tier=yfa.getAllResources().getRankManager().getHighestTier();
+        int max_tier=pj.getAllResources().getRankManager().getHighestTier();
         for(int i=0;i<=max_tier;i++){
             final ScrollView scroll_tier=(ScrollView) returnFragView.findViewById(R.id.main_scroll_relat);
             LinearLayout Tiers=(LinearLayout) returnFragView.findViewById(R.id.linear1);
@@ -152,7 +149,7 @@ public class MainActivityFragmentSpell extends Fragment {
 
             String tier_txt="Tier "+i;
 
-            String titre_tier=tier_txt +" ["+ yfa.getResourceValue("spell_rank_"+i)+" restant(s)]";
+            String titre_tier=tier_txt +" ["+ pj.getResourceValue("spell_rank_"+i)+" restant(s)]";
             if (i==0){titre_tier=tier_txt +" [illimité]";}
             SpannableString titre=  new SpannableString(titre_tier);
             titre.setSpan(new RelativeSizeSpan(0.65f), tier_txt.length(),titre_tier.length(), 0);
@@ -174,23 +171,23 @@ public class MainActivityFragmentSpell extends Fragment {
             int orientation = getResources().getConfiguration().orientation;  //1 pour portrait et 2 paysage
             side_txt.setTextColor(Color.DKGRAY);
             if (orientation==1) {
-                side_txt.setText("T" + i + "\n(" + yfa.getResourceValue("spell_rank_"+i) + ")");
+                side_txt.setText("T" + i + "\n(" + pj.getResourceValue("spell_rank_"+i) + ")");
                 if (i==0){side_txt.setText("T"+i+"\n("+ DecimalFormatSymbols.getInstance().getInfinity()+")");}
-                else if (yfa.getAllResources().checkConvertibleAvailable(i)) {
-                    String n_spell_conv_txt="T" + i + "\n(" + yfa.getResourceValue("spell_rank_"+i)+","+ yfa.getResourceValue("spell_conv_rank_"+i) + ")";
-                    String before_conv="T" + i + "\n(" + yfa.getResourceValue("spell_rank_"+i)+",";
+                else if (pj.getAllResources().checkConvertibleAvailable(i)) {
+                    String n_spell_conv_txt="T" + i + "\n(" + pj.getResourceValue("spell_rank_"+i)+","+ pj.getResourceValue("spell_conv_rank_"+i) + ")";
+                    String before_conv="T" + i + "\n(" + pj.getResourceValue("spell_rank_"+i)+",";
                     SpannableString n_spell_conv=  new SpannableString(n_spell_conv_txt);
-                    n_spell_conv.setSpan(new ForegroundColorSpan(getContext().getColor(R.color.conversion)),before_conv.length(),before_conv.length()+yfa.getResourceValue("spell_conv_rank_"+i).toString().length(), 0);// set color2
+                    n_spell_conv.setSpan(new ForegroundColorSpan(getContext().getColor(R.color.conversion)),before_conv.length(),before_conv.length()+pj.getResourceValue("spell_conv_rank_"+i).toString().length(), 0);// set color2
                     side_txt.setText(n_spell_conv);
                 }
             } else {
-                side_txt.setText("T" + i + " (" + yfa.getResourceValue("spell_rank_"+i) + ")");
+                side_txt.setText("T" + i + " (" + pj.getResourceValue("spell_rank_"+i) + ")");
                 if (i==0){side_txt.setText("T"+i+" ("+ DecimalFormatSymbols.getInstance().getInfinity()+")");}
-                if (yfa.getAllResources().checkConvertibleAvailable(i)) {
-                    String n_spell_conv_txt="T" + i + " (" + yfa.getResourceValue("spell_rank_"+i)+","+ yfa.getResourceValue("spell_conv_rank_"+i) + ")";
-                    String before_conv="T" + i + " (" + yfa.getResourceValue("spell_rank_"+i)+",";
+                if (pj.getAllResources().checkConvertibleAvailable(i)) {
+                    String n_spell_conv_txt="T" + i + " (" + pj.getResourceValue("spell_rank_"+i)+","+ pj.getResourceValue("spell_conv_rank_"+i) + ")";
+                    String before_conv="T" + i + " (" + pj.getResourceValue("spell_rank_"+i)+",";
                     SpannableString n_spell_conv=  new SpannableString(n_spell_conv_txt);
-                    n_spell_conv.setSpan(new ForegroundColorSpan(getContext().getColor(R.color.conversion)),before_conv.length(),before_conv.length()+yfa.getResourceValue("spell_conv_rank_"+i).toString().length(), 0);// set color2
+                    n_spell_conv.setSpan(new ForegroundColorSpan(getContext().getColor(R.color.conversion)),before_conv.length(),before_conv.length()+pj.getResourceValue("spell_conv_rank_"+i).toString().length(), 0);// set color2
                     side_txt.setText(n_spell_conv);
                 }
             }
@@ -211,7 +208,7 @@ public class MainActivityFragmentSpell extends Fragment {
             side_txt.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
-                    if(yfa.getResourceValue("resource_mythic_points")>0) {
+                    if(pj.getResourceValue("resource_mythic_points")>0) {
 
                         new AlertDialog.Builder(getContext())
                                 .setTitle("Arcane libre")
@@ -223,9 +220,9 @@ public class MainActivityFragmentSpell extends Fragment {
                                         Snackbar.make(side_txt,"Arcane libre de rang " + rank + " lancé.\n(+2 NLS sur ce sort)", Snackbar.LENGTH_LONG)
                                                 .setAction("Action", null).show();
 
-                                        yfa.getAllResources().getResource("resource_mythic_points").spend(1);
+                                        pj.getAllResources().getResource("resource_mythic_points").spend(1);
                                         new PostData(getContext(),new PostDataElement("Lancement sort arcane libre","-1pt mythique"));
-                                        Toast toast = Toast.makeText(getContext(), "Il te reste " + yfa.getResourceValue("resource_mythic_points") + " point(s) mythique(s)", Toast.LENGTH_SHORT);
+                                        Toast toast = Toast.makeText(getContext(), "Il te reste " + pj.getResourceValue("resource_mythic_points") + " point(s) mythique(s)", Toast.LENGTH_SHORT);
                                         toast.setGravity(Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 0);
                                         toast.show();
                                     }
@@ -340,10 +337,10 @@ public class MainActivityFragmentSpell extends Fragment {
 
     private void prepareSpell(final CheckBox check, final Spell spell) {
         if(spell.isMyth()){
-            if(yfa.getResourceValue("resource_mythic_points")>0) {
+            if(pj.getResourceValue("resource_mythic_points")>0) {
                 new AlertDialog.Builder(getContext())
                         .setTitle("Demande de confirmation")
-                        .setMessage("Point(s) mythique(s) avant lancement des sorts : " + yfa.getResourceValue("resource_mythic_points") + "\n" +
+                        .setMessage("Point(s) mythique(s) avant lancement des sorts : " + pj.getResourceValue("resource_mythic_points") + "\n" +
                                 "\nVeux tu préparer la version mythique du sort " + spell.getName() + "\n(cela coûtera 1 pt) ?")
                         .setIcon(android.R.drawable.ic_menu_help)
                         .setPositiveButton("oui", new DialogInterface.OnClickListener() {
@@ -426,114 +423,11 @@ public class MainActivityFragmentSpell extends Fragment {
 
     private void testSpellSelection() {
         if (!selectedSpells.isEmpty()) {
-            askNTarget();
+            SelectedSpells.getInstance().setSelection(selectedSpells);
+            buildPage2();
         } else { startActivity(new Intent(getContext(), MainActivityFragmentSpell.class));}
     }
 
-    private void askNTarget() {
-        LayoutInflater inflater = LayoutInflater.from(getContext());
-        View mainView = inflater.inflate(R.layout.target_naming,null);
-        CustomAlertDialog targetDialog = new CustomAlertDialog(getActivity(),getContext(),mainView);
-        final LinearLayout listName = mainView.findViewById(R.id.target_list_names);
-
-        targetDialog.setPermanent(true);
-        targetDialog.clickToHide(mainView.findViewById(R.id.target_frame));
-        targetDialog.addConfirmButton("Valider");
-        targetDialog.setAcceptEventListener(new CustomAlertDialog.OnAcceptEventListener() {
-            @Override
-            public void onEvent() {
-                if(listName.getChildCount()>1) {
-                    for (int index = 0; index < listName.getChildCount(); index++) {
-                        String nameTar = ((EditText) listName.getChildAt(index)).getText().toString();
-                        if (nameTar.equalsIgnoreCase("")) {
-                            nameTar=((EditText) listName.getChildAt(index)).getHint().toString();
-                        }
-                        targets.addTarget(nameTar);
-                    }
-                    showTargetDragAndDrop();
-                } else { //on assigne tout à mainTarget
-                    String nameTar = ((EditText) listName.getChildAt(0)).getText().toString();
-                    if (nameTar.equalsIgnoreCase("")) {
-                        nameTar=((EditText) listName.getChildAt(0)).getHint().toString();
-                    }
-                    targets.assignAllToMain(nameTar,selectedSpells);
-                    buildPage2();
-                }
-            }
-        });
-
-        Button addTarget = mainView.findViewById(R.id.addTarget);
-        addTarget.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EditText edit = new EditText(getContext());
-                edit.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT));
-                int i = listName.getChildCount();
-                edit.setHint("Cible "+i);
-                edit.setMinEms(7);
-                listName.addView(edit);
-            }
-        });
-
-        targetDialog.showAlert();
-    }
-
-    private void showTargetDragAndDrop() {
-        MyDragAndDrop myDragAndDrop = new MyDragAndDrop(getContext());
-
-        LayoutInflater inflater = LayoutInflater.from(getContext());
-        View mainView = inflater.inflate(R.layout.target_drag_drop,null);
-
-        CustomAlertDialog targetDialog = new CustomAlertDialog(getActivity(),getContext(),mainView);
-        targetDialog.setPermanent(true);
-        targetDialog.clickToHide(mainView.findViewById(R.id.target_frame));
-
-
-        LinearLayout spellListLin = mainView.findViewById(R.id.target_list_spells);
-        LinearLayout targetLin = mainView.findViewById(R.id.target_list_targets);
-
-        for (Spell spell : selectedSpells.asList()){
-            TextView t = new TextView(getContext());
-            t.setText(spell.getName());
-            t.setTextSize(18);
-            t.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-            myDragAndDrop.setTouchListner(t,spell);
-            spellListLin.addView(t);
-        }
-
-        for (String tar : targets.getTargetList()){
-            LinearLayout fram = new LinearLayout(getContext());
-            fram.setGravity(Gravity.CENTER);
-            fram.setOrientation(LinearLayout.VERTICAL);
-            fram.setPadding(5,50,5,50);
-            fram.setBackground(getContext().getDrawable(R.drawable.target_basic_gradient));
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT );
-            params.setMargins(0,5,0,0);
-            fram.setLayoutParams(params);
-            TextView t = new TextView(getContext());
-            t.setText(tar);
-            t.setTextColor(Color.DKGRAY);
-            t.setTextSize(20);
-            t.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-            fram.addView(t);
-            myDragAndDrop.setDragListner(fram,tar); //à faire un truc ennemi
-            targetLin.addView(fram);
-        }
-        targetDialog.addConfirmButton("Valider");
-        targetDialog.setAcceptEventListener(new CustomAlertDialog.OnAcceptEventListener() {
-            @Override
-            public void onEvent() {
-                if (targets.anySpellAssigned()){
-                    buildPage2();
-                } else {
-                    Toast toast =  Toast.makeText(getContext(), "Aucun sort n'est attribué à une cible ...", Toast.LENGTH_SHORT);
-                    toast.setGravity(Gravity.CENTER, 0, 0);
-                    toast.show();
-                }
-            }
-        });
-        targetDialog.showAlert();
-    }
     private void buildPage2(){
         FragmentManager fragmentManager = getActivity().getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

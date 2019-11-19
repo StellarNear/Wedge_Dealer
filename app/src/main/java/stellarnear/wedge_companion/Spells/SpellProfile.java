@@ -12,6 +12,7 @@ import android.widget.TextView;
 import stellarnear.wedge_companion.Activities.MainActivity;
 import stellarnear.wedge_companion.Calculation;
 import stellarnear.wedge_companion.Perso.Perso;
+import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Tools;
 
@@ -24,7 +25,7 @@ public class SpellProfile {
     private DisplayedText displayText =new DisplayedText();
     private SpellProfileManager profileManager;
     private OnRefreshEventListener mListener;
-    private Perso yfa = MainActivity.wedge;
+    private Perso pj = PersoManager.getCurrentPJ();
     private Tools tools=new Tools();
 
     public SpellProfile(Spell spell){
@@ -73,7 +74,7 @@ public class SpellProfile {
 
         ((TextView)profile.findViewById(R.id.current_rank)).setText("(rang : "+calculation.currentRank(spell)+")");
 
-        if(!yfa.getAllResources().checkSpellAvailable(calculation.currentRank(spell))){
+        if(!pj.getAllResources().checkSpellAvailable(calculation.currentRank(spell))){
             ((TextView)profile.findViewById(R.id.current_rank)).setTextColor(Color.RED);
         }else {
             ((TextView)profile.findViewById(R.id.current_rank)).setTextColor(Color.BLACK);

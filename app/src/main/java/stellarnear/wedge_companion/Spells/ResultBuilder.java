@@ -15,10 +15,10 @@ import android.widget.TextView;
 import java.util.Arrays;
 import java.util.List;
 
-import stellarnear.wedge_companion.Activities.MainActivity;
 import stellarnear.wedge_companion.Calculation;
 import stellarnear.wedge_companion.DisplayRolls;
 import stellarnear.wedge_companion.Perso.Perso;
+import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Rolls.DiceList;
 import stellarnear.wedge_companion.Rolls.Dices.Dice;
@@ -27,7 +27,7 @@ import stellarnear.wedge_companion.Tools;
 
 public class ResultBuilder {
 
-    private Perso wedge = MainActivity.wedge;
+    private Perso pj = PersoManager.getCurrentPJ();
     private Spell spell;
     private int spellColorId;
     private Context mC;
@@ -116,14 +116,6 @@ public class ResultBuilder {
             });
         }
         layout.addView(resultTemplate);
-    }
-
-    private void addGlaeBoost(LinearLayout resultTemplate) {
-        Drawable glae = mC.getDrawable(R.drawable.ic_crowned_explosion);
-        glae.mutate().setColorFilter(spellColorId,PorterDuff.Mode.SRC_IN);
-        ImageView glaeImg =new ImageView(mC);
-        glaeImg.setImageDrawable(glae);
-        resultTemplate.addView(glaeImg);
     }
 
     private void addExplo(LinearLayout resultTemplate) {

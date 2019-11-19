@@ -24,16 +24,19 @@ public class AllFeats {
     private Context mC;
     private List<Feat> allFeatsList = new ArrayList<>();
     private Map<String,Feat> mapIdFeat=new HashMap<>();
-    public AllFeats(Context mC)
+    private String pjID="";
+
+    public AllFeats(Context mC,String pjID)
     {
         this.mC = mC;
+        this.pjID=pjID;
         buildFeatsList();
     }
 
     private void buildFeatsList() {
         allFeatsList = new ArrayList<>();
         try {
-            InputStream is = mC.getAssets().open("feats.xml");
+            InputStream is = mC.getAssets().open("feats"+pjID+".xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(is);
@@ -53,7 +56,8 @@ public class AllFeats {
                             readValue("type", element2),
                             readValue("descr", element2),
                             readValue("id", element2),
-                            mC);
+                            mC,
+                            pjID);
                     allFeatsList.add(feat);
                     mapIdFeat.put(feat.getId(),feat);
                 }

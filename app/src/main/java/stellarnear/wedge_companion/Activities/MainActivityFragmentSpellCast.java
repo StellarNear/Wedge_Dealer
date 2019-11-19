@@ -14,21 +14,20 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import stellarnear.yfa_companion.Calculation;
-import stellarnear.yfa_companion.Perso.Perso;
-import stellarnear.yfa_companion.R;
-import stellarnear.yfa_companion.Spells.Spell;
-import stellarnear.yfa_companion.Spells.SpellList;
-import stellarnear.yfa_companion.Spells.SpellProfile;
-import stellarnear.yfa_companion.Targets;
-import stellarnear.yfa_companion.Tools;
+import stellarnear.wedge_companion.Calculation;
+import stellarnear.wedge_companion.Perso.Perso;
+import stellarnear.wedge_companion.Perso.PersoManager;
+import stellarnear.wedge_companion.R;
+import stellarnear.wedge_companion.Spells.SelectedSpells;
+import stellarnear.wedge_companion.Spells.Spell;
+import stellarnear.wedge_companion.Spells.SpellList;
+import stellarnear.wedge_companion.Spells.SpellProfile;
+import stellarnear.wedge_companion.Tools;
 
 
 public class MainActivityFragmentSpellCast extends Fragment {
 
     private SpellList selectedSpells;
-    private Perso yfa = MainActivity.yfa;
-    private Targets targets = Targets.getInstance();
     private Tools tools=new Tools();
     private Calculation calculation=new Calculation();
     private TextView round;
@@ -48,7 +47,7 @@ public class MainActivityFragmentSpellCast extends Fragment {
         super.onCreate(savedInstanceState);
 
         returnFragView= inflater.inflate(R.layout.spell_cast, container, false);
-        selectedSpells = targets.getAllSpellList();
+
 
         mainLin = (LinearLayout) returnFragView.findViewById(R.id.linear2);
         round = (TextView) returnFragView.findViewById(R.id.n_round);
@@ -60,32 +59,15 @@ public class MainActivityFragmentSpellCast extends Fragment {
             }
         });
 
-
-        for(String tar : targets.getTargetList()){
-            TextView textTar = new TextView(getContext());
-            textTar.setText(tar);
-            textTar.setCompoundDrawablesWithIntrinsicBounds(getContext().getDrawable(R.drawable.ic_gps_fixed_red_24dp),null,null,null);
-            textTar.setCompoundDrawablePadding(10);
-            textTar.setTextSize(20);
-            textTar.setTextColor(Color.DKGRAY);
-            textTar.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-
-            LinearLayout.LayoutParams para = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
-            textTar.setLayoutParams(para);
-
-            mainLin.addView(textTar);
-            addSpellsForTarget(targets.getSpellListForTarget(tar).asList());
-
-        }
-
-
+        addSpellsForTarget();
 
         refreshRound();
         return returnFragView;
     }
 
-    private void addSpellsForTarget(List<Spell> targetSpells) {
-        for (final Spell spell : targetSpells) {
+    private void addSpellsForTarget() {
+        selectedSpells= SelectedSpells.getInstance().getSelection();
+        for (final Spell spell : selectedSpells.asList()) {
             SpellProfile spellProfile = spell.getProfile() ;
             View spellProfileView=spellProfile.getProfile(getActivity(),getContext());
             if(spellProfileView.getParent()!=null){((ViewGroup)spellProfileView.getParent()).removeView(spellProfileView);}
@@ -125,7 +107,6 @@ public class MainActivityFragmentSpellCast extends Fragment {
         }
         if(end){
             tools.customToast(getContext(),"Plus de sort à lancer");
-            yfa.getStats().storeStatsFromRolls(selectedSpells);
         }
     }
 

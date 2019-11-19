@@ -20,16 +20,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import stellarnear.wedge_companion.Activities.MainActivity;
 import stellarnear.wedge_companion.Elems.ElemsManager;
 import stellarnear.wedge_companion.Perso.Perso;
+import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Stats.Stat;
 import stellarnear.wedge_companion.Stats.StatsList;
 import stellarnear.wedge_companion.Tools;
 
 public class DSSFGraph {
-    private Perso wedge = MainActivity.wedge;
+    private Perso pj = PersoManager.getCurrentPJ();
     private Context mC;
     private View mainView;
     private ElemsManager elems;
@@ -151,7 +151,7 @@ public class DSSFGraph {
         mapNAllCritStats = new HashMap<>();
         mapNHitStats.put(0,new StatsList());
         nthAtkMax=0;
-        for (Stat stat : wedge.getStats().getStatsList().asList()){
+        for (Stat stat : pj.getStats().getStatsList().asList()){
             int nAtk=stat.getNAtksHit();
             if(nAtk>0){
                 if(mapNHitStats.get(nAtk)!=null){

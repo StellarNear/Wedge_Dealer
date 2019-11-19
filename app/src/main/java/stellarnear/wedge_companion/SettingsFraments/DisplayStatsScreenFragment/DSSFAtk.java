@@ -27,13 +27,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import stellarnear.wedge_companion.Activities.MainActivity;
 import stellarnear.wedge_companion.Perso.Perso;
+import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Stats.Stat;
 
 public class DSSFAtk {
-    private Perso wedge= MainActivity.wedge;
+    private Perso pj = PersoManager.getCurrentPJ();
     private BarChart chart;
     private PieChart pieChart;
     private PieChart pieChartCrit;
@@ -48,7 +48,7 @@ public class DSSFAtk {
         this.mC=mC;
 
         TextView nAtkTxt = mainView.findViewById(R.id.nAtkTxt);
-        nAtkTxt.setText(wedge.getStats().getStatsList().getNAtksTot()+ " attaques");
+        nAtkTxt.setText(pj.getStats().getStatsList().getNAtksTot()+ " attaques");
 
         initChart();
         buildChart();
@@ -116,7 +116,7 @@ public class DSSFAtk {
     private BarDataSet computeBarDataSet(String mode) {
         Map<Integer,Integer> nthAtkCountHit = new HashMap<>();
         int nAtkMax=0;
-        for (Stat stat : wedge.getStats().getStatsList().asList()){
+        for (Stat stat : pj.getStats().getStatsList().asList()){
             List<Integer> listNatk = new ArrayList<>();
             if (mode.equalsIgnoreCase("hit")){
                 listNatk=stat.getListNthAtksHit();
@@ -192,12 +192,12 @@ public class DSSFAtk {
         List<Integer> colorList= new ArrayList<>();
         float hitVal,missVal,percent;
         if(nthAtkSelectedForPieChart==0){
-            hitVal=wedge.getStats().getStatsList().getNAtksHit();
-            missVal=wedge.getStats().getStatsList().getNAtksMiss();
+            hitVal=pj.getStats().getStatsList().getNAtksHit();
+            missVal=pj.getStats().getStatsList().getNAtksMiss();
             percent = 100f*(hitVal/(hitVal+missVal));
         } else {
-            hitVal=wedge.getStats().getStatsList().getNAtksHitNthAtk(nthAtkSelectedForPieChart);
-            missVal=wedge.getStats().getStatsList().getNAtksMissNthAtk(nthAtkSelectedForPieChart);
+            hitVal=pj.getStats().getStatsList().getNAtksHitNthAtk(nthAtkSelectedForPieChart);
+            missVal=pj.getStats().getStatsList().getNAtksMissNthAtk(nthAtkSelectedForPieChart);
             percent = 100f*(hitVal/(hitVal+missVal));
         }
         if(percent>0f) {
@@ -249,13 +249,13 @@ public class DSSFAtk {
     private PieDataSet computePieDataSetCrit() {
         float nHit,nCrit,nCritNat;
         if(nthAtkSelectedForPieChart==0){
-            nHit=wedge.getStats().getStatsList().getNAtksHit();
-            nCrit=wedge.getStats().getStatsList().getNCrit();
-            nCritNat=wedge.getStats().getStatsList().getNCritNat();
+            nHit=pj.getStats().getStatsList().getNAtksHit();
+            nCrit=pj.getStats().getStatsList().getNCrit();
+            nCritNat=pj.getStats().getStatsList().getNCritNat();
         } else {
-            nHit=wedge.getStats().getStatsList().getNAtksHitNthAtk(nthAtkSelectedForPieChart);
-            nCrit=wedge.getStats().getStatsList().getNCritNth(nthAtkSelectedForPieChart);
-            nCritNat=wedge.getStats().getStatsList().getNCritNatNth(nthAtkSelectedForPieChart);
+            nHit=pj.getStats().getStatsList().getNAtksHitNthAtk(nthAtkSelectedForPieChart);
+            nCrit=pj.getStats().getStatsList().getNCritNth(nthAtkSelectedForPieChart);
+            nCritNat=pj.getStats().getStatsList().getNCritNatNth(nthAtkSelectedForPieChart);
         }
         float normalPercent=100f*(nHit-nCrit)/nHit;
         float critPercent=100f*(nCrit-nCritNat)/nHit;

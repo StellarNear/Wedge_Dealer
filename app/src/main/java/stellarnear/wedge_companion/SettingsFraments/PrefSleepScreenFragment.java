@@ -23,7 +23,7 @@ import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Tools;
 
 public class PrefSleepScreenFragment extends Preference {
-    private Perso wedge= MainActivity.wedge;
+    private Perso pj = PersoManager.getCurrentPJ();
     private Context mC;
     private View mainView;
 

@@ -6,9 +6,11 @@
         android:summary="Masque la barre de statut du téléphone"/>
 
     <SwitchPreference
-        android:defaultValue="@bool/switch_manual_diceroll_DEF"
+        android:defaultValue="@bool/switch_manual_diceroll_def"
         android:key="switch_manual_diceroll"
         android:title="Lancement manuel D20"/>
+
+
     <SwitchPreference
         android:defaultValue="@bool/switch_autoclose_dialog_DEF"
         android:key="switch_autoclose_dialog"

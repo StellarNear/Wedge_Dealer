@@ -9,44 +9,44 @@ import android.preference.PreferenceManager;
  */
 
 public class MythicCapacity {
-    private Context mC;
     private String name;
-    private String descr;
     private String type;
+    private String descr;
     private String id;
-    public MythicCapacity(String name, String descr,String type, String id,Context mC)
-    {
-        this.mC=mC;
+    private Context mC;
+    private String pjID;
+
+    public MythicCapacity(String name, String type, String descr, String id, Context mC,String pjID){
         this.name=name;
-        this.descr=descr;
         this.type=type;
+        this.descr=descr;
         this.id=id;
+        this.mC=mC;
+        this.pjID=pjID;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getDescr() {
-        return descr;
-    }
-
     public String getType() {
         return type;
     }
 
-    public String getId(){return id;}
+    public String getDescr() {
+        return descr;
+    }
+
+    public String getId() {
+        return id;
+    }
 
     public boolean isActive(){
-        boolean active=false;
+        boolean active = false;
         try {
             SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
-            if (settings.getBoolean("switch_"+this.id,true)) {
-                active = true;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            active = settings.getBoolean("switch_"+this.id+pjID, true);
+        } catch ( Exception e) {}
         return active;
     }
 }

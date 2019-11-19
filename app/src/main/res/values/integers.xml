@@ -32,4 +32,7 @@
 
     <integer name="display_stats_bin_def">50</integer>
     <integer name="translationFragDuration">500</integer>
+
+    <integer name="percent_fullscreen_customdialog">90</integer>
+    <integer name="percent_fullscreen_customdialog_equipment_list">80</integer>
 </resources>
