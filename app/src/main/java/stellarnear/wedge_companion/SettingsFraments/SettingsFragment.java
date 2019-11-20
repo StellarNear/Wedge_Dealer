@@ -135,7 +135,12 @@ public class SettingsFragment extends PreferenceFragment {
 
     private void loadPage() {
         getPreferenceScreen().removeAll();
-        int xmlID = getResources().getIdentifier(currentPageKey, "xml", getContext().getPackageName());
+        int xmlID;
+        if(PersoManager.getCurrentNamePJ().equalsIgnoreCase("wedge")) {
+            xmlID = getResources().getIdentifier(currentPageKey, "xml", getContext().getPackageName());
+        } else {
+            xmlID = getResources().getIdentifier(currentPageKey+"_halda", "xml", getContext().getPackageName());
+        }
         addPreferencesFromResource(xmlID);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(currentPageTitle);
     }

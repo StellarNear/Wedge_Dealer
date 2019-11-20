@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <SwitchPreference
+        android:defaultValue="@bool/isillirit_switch_def"
+        android:key="isillirit_switch"
+        android:summary="Carquois actif"
+        android:title="Isillirit - Chant de Lune" />
+
+    <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+    <EditTextPreference
+        android:defaultValue="true"
+        android:key="atk_isillirit"
+        android:selectable="false"
+        android:dependency="isillirit_switch"
+        android:summary="+2 aux jets d'attaque" />
+    <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+
+    <EditTextPreference
+        android:defaultValue="true"
+        android:key="dex_isillirit"
+        android:selectable="false"
+        android:dependency="isillirit_switch"
+        android:summary="+2 dexterité"/>
+    <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+
+    <EditTextPreference
+        android:defaultValue="true"
+        android:key="natcrit_isillirit"
+        android:selectable="false"
+        android:dependency="isillirit_switch"
+        android:summary="Lors d'un 20 naturel, +1 mod. de dégat critique"/>
+    <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+
+
+</PreferenceScreen>

@@ -1,0 +1,16 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:key="Capacité moine"
+        android:title="Capacité moine">
+        <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+
+    </PreferenceCategory>
+    <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+    <PreferenceCategory
+        android:key="Capacité de Ki"
+        android:title="Capacité de Ki">
+        <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+
+    </PreferenceCategory>
+    <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+</PreferenceScreen>

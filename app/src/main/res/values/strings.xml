@@ -9,7 +9,7 @@
 
     <string name="jet_att">Valeur d\'attaque de base</string>
     <string name="jet_att_def">17,12,7,2</string>
-    <string name="title_mod_dex">Modificateur de dextérité</string>
+    <string name="title_ability_dexterite">Modificateur de dextérité</string>
 
     <!-- arme  -->
     <string name="thor">Puissance de Thor</string>
@@ -19,7 +19,7 @@
     <string name="rapid_enchant_summ">Procure une attaque supplémentaire</string>
     <string name="composite">Arc composite +4</string>
     <string name="composite_summ">+4 aux dégâts (Req. +4 For)</string>
-    <string name="epic_val">Point(s) d\'attaque épique</string>
+    <string name="attack_att_epic">Point(s) d\'attaque épique</string>
     <string name="epic_dmg_val">Point(s) de dégât épique</string>
     <string name="prouesse_val">Point(s) de prouesse</string>
 
@@ -160,5 +160,13 @@
     <string name="quadrantQ2Title">Ressources</string>
     <string name="quadrantQ3Title">Caractéristiques défensives</string>
     <string name="quadrantQ4Title">Caractéristiques avancées</string>
+
+    <string name="skill_mastery">Rang de maîtrise</string>
+    <string name="skill_bonus">Bonus divers</string>
+
+    <string name="feat_active">Actif</string>
+    <string name="feat_atk">Attaque</string>
+    <string name="feat_def">Défense</string>
+    <string name="feat_other">Autre</string>
 
 </resources>

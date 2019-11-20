@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+   <stellarnear.wedge_companion.EditTextPreference
+        android:defaultValue="@integer/money_plat_def"
+        android:key="money_plat"
+        android:title="Nombre de pièces de platine"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:inputType="number"
+        android:summary="Valeur : %s"/>
+   <stellarnear.wedge_companion.EditTextPreference
+        android:defaultValue="@integer/money_gold_def"
+        android:key="money_gold"
+        android:title="Nombre de pièces d'or"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:inputType="number"
+        android:summary="Valeur : %s"/>
+   <stellarnear.wedge_companion.EditTextPreference
+        android:defaultValue="@integer/money_silver_def"
+        android:key="money_silver"
+        android:title="Nombre de pièces d'argent"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:inputType="number"
+        android:summary="Valeur : %s"/>
+   <stellarnear.wedge_companion.EditTextPreference
+        android:defaultValue="@integer/money_copper_def"
+        android:key="money_copper"
+        android:title="Nombre de pièces de cuivre"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:inputType="number"
+        android:summary="Valeur : %s"/>
+
+    <EditTextPreference
+        android:defaultValue="@integer/add_gold_def"
+        android:key="add_gold"
+        android:title="Ajouter des pièces d'or"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:inputType="number" />
+</PreferenceScreen>

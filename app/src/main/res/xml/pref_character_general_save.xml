@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:key="SAVE"
+        android:title="Jets de sauvegarde">
+        <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+
+        <stellarnear.wedge_companion.EditTextPreference
+            android:defaultValue="@integer/epic_save_def"
+            android:key="epic_save"
+            android:title="Bonus épique"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:inputType="number"
+            android:summary="Valeur : %s"/>
+        <SwitchPreference
+            android:defaultValue="@bool/switch_save_coat_DEF"
+            android:key="switch_save_coat"
+            android:title="Cape de résistances draconique +5" />
+        <SwitchPreference
+            android:defaultValue="@bool/switch_perma_resi_DEF"
+            android:key="switch_perma_resi"
+            android:title="Permanence résistance +1" />
+
+
+    </PreferenceCategory>
+    <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+    <PreferenceCategory
+        android:key="REF"
+        android:title="Jets de réflexe">
+        <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+        <stellarnear.wedge_companion.EditTextPreference
+            android:defaultValue="@integer/ability_ref_def"
+            android:key="ability_ref"
+            android:title="Bonus de base"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:inputType="number"
+            android:summary="Valeur : %s"/>
+
+    </PreferenceCategory>
+    <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+    <PreferenceCategory
+        android:key="VIG"
+        android:title="Jets de vigueur">
+        <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+        <stellarnear.wedge_companion.EditTextPreference
+            android:defaultValue="@integer/ability_vig_def"
+            android:key="ability_vig"
+            android:title="Bonus de base"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:inputType="number"
+            android:summary="Valeur : %s"/>
+    </PreferenceCategory>
+    <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+    <PreferenceCategory
+        android:key="VOL"
+        android:title="Jets de volonté">
+        <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+        <stellarnear.wedge_companion.EditTextPreference
+            android:defaultValue="@integer/ability_vol_def"
+            android:key="ability_vol"
+            android:title="Bonus de base"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:inputType="number"
+            android:summary="Valeur : %s"/>
+    </PreferenceCategory>
+    <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+</PreferenceScreen>

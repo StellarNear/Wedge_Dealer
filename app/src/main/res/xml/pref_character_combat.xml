@@ -1,0 +1,78 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+    <stellarnear.wedge_companion.EditTextPreference
+        android:defaultValue="@string/jet_att_def"
+        android:key="jet_att"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary="Valeurs : %s"
+        android:title="@string/jet_att" />
+
+    <stellarnear.wedge_companion.EditTextPreference
+        android:defaultValue="@integer/attack_range_DEF"
+        android:key="attack_range"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary="Valeurs : %sm"
+        android:inputType="number"
+        android:title="Portée des attaques"
+        />
+
+    <stellarnear.wedge_companion.EditTextPreference
+        android:defaultValue="@integer/attack_att_epic_DEF"
+        android:key="attack_att_epic"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:inputType="number"
+        android:summary="Valeurs : %s"
+        android:title="Bonus d'attaque épique"
+        />
+
+    <stellarnear.wedge_companion.EditTextPreference
+        android:defaultValue="@integer/prouesse_def"
+        android:key="prouesse_val"
+        android:selectAllOnFocus="true"
+        android:inputType="number"
+        android:singleLine="true"
+        android:summary="Valeur : %s"
+        android:title="@string/prouesse_val" />
+
+    <ListPreference
+        android:defaultValue="@integer/prouesse_attrib_def"
+        android:dependency="prouesse_val"
+        android:inputType="number"
+        android:entries="@array/choix_prouesse"
+        android:entryValues="@array/choix_prouesse_val"
+        android:key="prouesse_attrib"
+        android:summary="Valeur : %s"
+        android:title="Assignation de la prouesse" />
+
+
+    <stellarnear.wedge_companion.EditTextPreference
+        android:defaultValue="@integer/attack_dmg_epic_DEF"
+        android:key="attack_dmg_epic"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:inputType="number"
+        android:summary="Valeurs : %s"
+        android:title="Bonus dégats épique"
+        />
+
+    <SwitchPreference
+        android:defaultValue="@bool/magic_switch_def"
+        android:key="magic_switch"
+        android:summary="@string/magic_summ"
+        android:title="@string/magic" />
+    <stellarnear.wedge_companion.EditTextPreference
+        android:defaultValue="@integer/magic_val_def"
+        android:dependency="magic_switch"
+        android:key="magic_val"
+        android:title="@string/magic_val"
+        android:selectAllOnFocus="true"
+        android:inputType="number"
+        android:singleLine="true"
+        android:summary="Valeur : %s"/>
+
+</PreferenceScreen>

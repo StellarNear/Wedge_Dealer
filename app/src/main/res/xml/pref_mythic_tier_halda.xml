@@ -1,0 +1,27 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <stellarnear.wedge_companion.MythicBarPreference
+        android:selectable="false"
+        />
+
+    <PreferenceCategory android:title="Informations sur le grade mythique"/>
+    <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+
+    <stellarnear.wedge_companion.EditTextPreference
+        android:defaultValue="@integer/mythic_tier_def"
+        android:key="mythic_tier"
+        android:title="Grade Mythique"
+        android:singleLine="true"
+        android:inputType="number"
+        android:summary="Valeur : %s"/>
+
+    <stellarnear.wedge_companion.EditTextPreference
+        android:defaultValue="@integer/mythic_dice_def"
+        android:key="mythic_dice"
+        android:title="Dès de montée en puissance"
+        android:singleLine="true"
+        android:inputType="number"
+        android:summary="Valeur : d%s"/>
+
+
+</PreferenceScreen>

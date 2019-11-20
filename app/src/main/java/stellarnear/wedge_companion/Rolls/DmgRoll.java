@@ -131,7 +131,7 @@ public class DmgRoll {
             calcBonusDmg += ((nthAtkRoll-1)*multiVal)+nthDmgRoll-1;
         }
 
-        calcBonusDmg += tools.toInt(settings.getString("epic_dmg_val", String.valueOf(mC.getResources().getInteger(R.integer.epic_dmg_val_def))));
+        calcBonusDmg += tools.toInt(settings.getString("epic_dmg_val", String.valueOf(mC.getResources().getInteger(R.integer.attack_dmg_epic_DEF))));
         calcBonusDmg += tools.toInt(settings.getString("dmg_buff", String.valueOf(mC.getResources().getInteger(R.integer.dmg_buff_def))));
         return calcBonusDmg;
     }

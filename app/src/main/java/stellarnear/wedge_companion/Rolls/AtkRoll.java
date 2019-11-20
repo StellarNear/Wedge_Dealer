@@ -9,6 +9,8 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 
+import stellarnear.wedge_companion.Perso.Perso;
+import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Rolls.Dices.Dice;
 import stellarnear.wedge_companion.Tools;
@@ -34,6 +36,8 @@ public class AtkRoll {
 
     private CheckBox hitCheckbox;
     private CheckBox critCheckbox;
+    private Perso pj = PersoManager.getCurrentPJ();
+
     private Tools tools=new Tools();
 
     public AtkRoll(Activity mA,Context mC, Integer base) {
@@ -110,9 +114,9 @@ public class AtkRoll {
         if (settings.getBoolean("viser", mC.getResources().getBoolean(R.bool.viser_switch_def))) {
             bonusAtk-=tools.toInt(settings.getString("viser_val", String.valueOf(mC.getResources().getInteger(R.integer.viser_val_def))));
         }
-        bonusAtk+= tools.toInt(settings.getString("mod_dex", String.valueOf(mC.getResources().getInteger(R.integer.mod_dex_def))));
+        bonusAtk+= pj.getAbilityMod("ability_dexterite");
 
-        bonusAtk+= tools.toInt(settings.getString("epic_val", String.valueOf(mC.getResources().getInteger(R.integer.epic_val_def))));
+        bonusAtk+= tools.toInt(settings.getString("attack_att_epic", String.valueOf(mC.getResources().getInteger(R.integer.attack_att_epic_DEF))));
 
         bonusAtk+= tools.toInt(settings.getString("att_buff", String.valueOf(mC.getResources().getInteger(R.integer.att_buff_def))));
 

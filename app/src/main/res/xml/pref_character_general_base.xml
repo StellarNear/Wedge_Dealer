@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <stellarnear.wedge_companion.EditTextPreference
+        android:defaultValue="@integer/ability_force_def"
+        android:key="ability_force"
+        android:title="Valeur Force"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:inputType="number"
+        android:summary="Valeur : %s"/>
+    <stellarnear.wedge_companion.EditTextPreference
+        android:defaultValue="@integer/ability_dexterite_def"
+        android:key="ability_dexterite"
+        android:title="Valeur Dexterité"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:inputType="number"
+        android:summary="Valeur : %s"/>
+    <stellarnear.wedge_companion.EditTextPreference
+        android:defaultValue="@integer/ability_constitution_def"
+        android:key="ability_constitution"
+        android:title="Valeur Constitution"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:inputType="number"
+        android:summary="Valeur : %s"/>
+    <stellarnear.wedge_companion.EditTextPreference
+        android:defaultValue="@integer/ability_intelligence_def"
+        android:key="ability_intelligence"
+        android:title="Valeur Intelligence"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:inputType="number"
+        android:summary="Valeur : %s"/>
+    <stellarnear.wedge_companion.EditTextPreference
+        android:defaultValue="@integer/ability_sagesse_def"
+        android:key="ability_sagesse"
+        android:title="Valeur Sagesse"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:inputType="number"
+        android:summary="Valeur : %s"/>
+    <stellarnear.wedge_companion.EditTextPreference
+        android:defaultValue="@integer/ability_charisme_def"
+        android:key="ability_charisme"
+        android:title="Valeur Charisme"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:inputType="number"
+        android:summary="Valeur : %s"/>
+    <stellarnear.wedge_companion.EditTextPreference
+        android:defaultValue="@integer/ability_ms_def"
+        android:key="ability_ms"
+        android:title="Vitesse de déplacement"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:inputType="number"
+        android:summary="Valeur : %s m"/>
+    <stellarnear.wedge_companion.EditTextPreference
+        android:defaultValue="@integer/ability_reduc_def"
+        android:key="ability_reduc"
+        android:title="Réduction de dégats"
+        android:selectAllOnFocus="true"
+        android:inputType="number"
+        android:singleLine="true"
+        android:summary="Valeur : %s"/>
+
+
+
+</PreferenceScreen>

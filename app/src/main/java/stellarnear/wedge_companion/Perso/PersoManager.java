@@ -27,6 +27,10 @@ public class PersoManager {
         currentPJ="wedge";
     }
 
+    public static String getCurrentNamePJ() {
+        return currentPJ;
+    }
+
     public void switchPJ(String name){
         if(name.equalsIgnoreCase("wedge")||name.equalsIgnoreCase("halda")){
             currentPJ=name;

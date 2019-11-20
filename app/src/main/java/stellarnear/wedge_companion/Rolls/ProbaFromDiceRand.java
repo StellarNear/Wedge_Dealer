@@ -54,6 +54,7 @@ public class ProbaFromDiceRand {
         return rangeTxt;
     }
 
+
     private void buildParameters() {
         if(selectedRollList!=null) {
             max = selectedRollList.getMaxDmgFromType(element);
