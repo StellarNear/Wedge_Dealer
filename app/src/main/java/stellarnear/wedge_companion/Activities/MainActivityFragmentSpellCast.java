@@ -3,7 +3,6 @@ package stellarnear.wedge_companion.Activities;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,11 +11,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.List;
-
-import stellarnear.wedge_companion.Calculation;
-import stellarnear.wedge_companion.Perso.Perso;
-import stellarnear.wedge_companion.Perso.PersoManager;
+import stellarnear.wedge_companion.CalculationSpell;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Spells.SelectedSpells;
 import stellarnear.wedge_companion.Spells.Spell;
@@ -29,7 +24,7 @@ public class MainActivityFragmentSpellCast extends Fragment {
 
     private SpellList selectedSpells;
     private Tools tools=new Tools();
-    private Calculation calculation=new Calculation();
+    private CalculationSpell calculationSpell =new CalculationSpell();
     private TextView round;
     private LinearLayout mainLin;
     private View returnFragView;
@@ -47,7 +42,6 @@ public class MainActivityFragmentSpellCast extends Fragment {
         super.onCreate(savedInstanceState);
 
         returnFragView= inflater.inflate(R.layout.spell_cast, container, false);
-
 
         mainLin = (LinearLayout) returnFragView.findViewById(R.id.linear2);
         round = (TextView) returnFragView.findViewById(R.id.n_round);
@@ -94,7 +88,7 @@ public class MainActivityFragmentSpellCast extends Fragment {
     }
 
     private void refreshRound() {
-        int nRound = calculation.calcRounds(getContext(), selectedSpells);
+        int nRound = calculationSpell.calcRounds(getContext(), selectedSpells);
         round.setText("["+nRound+" round"+(nRound>1 ? "s":"")+"]");
     }
 

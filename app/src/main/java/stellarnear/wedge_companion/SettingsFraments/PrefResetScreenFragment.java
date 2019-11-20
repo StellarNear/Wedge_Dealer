@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 
 import stellarnear.wedge_companion.Activities.MainActivity;
 import stellarnear.wedge_companion.Perso.Perso;
+import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Tools;
 
@@ -78,11 +79,8 @@ public class PrefResetScreenFragment extends Preference {
                 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mC);
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.clear();
-                editor.apply();
-                wedge.refresh();
-                wedge.getAllResources().sleepReset();
-                wedge.getInventory().resetInventory();
-                wedge.getStats().resetStats();
+                editor.commit();
+                pj.reset();
                 tools.customToast(mC, "Remise à zero des paramètres de l'application", "center");
                 Intent intent = new Intent(mC, MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);

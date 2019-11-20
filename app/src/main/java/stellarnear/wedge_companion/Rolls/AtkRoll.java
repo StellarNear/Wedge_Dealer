@@ -9,6 +9,8 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 
+import stellarnear.wedge_companion.CalculationAtk;
+import stellarnear.wedge_companion.CalculationSpell;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
@@ -30,6 +32,7 @@ public class AtkRoll {
     private Boolean critConfirmed = false;
     private Boolean fail = false;
     private Boolean invalid = false;
+    private Boolean manualDice;
     private Context mC;
 
     private SharedPreferences settings;
@@ -38,6 +41,7 @@ public class AtkRoll {
     private CheckBox critCheckbox;
     private Perso pj = PersoManager.getCurrentPJ();
 
+    private OnRefreshEventListener mListener;
     private Tools tools=new Tools();
 
     public AtkRoll(Activity mA,Context mC, Integer base) {
@@ -45,6 +49,7 @@ public class AtkRoll {
         this.base=base;
         this.atkDice = new Dice(mA,mC,20);
         settings = PreferenceManager.getDefaultSharedPreferences(mC);
+        manualDice = settings.getBoolean("switch_manual_diceroll", mC.getResources().getBoolean(R.bool.switch_manual_diceroll_def));
         constructCheckboxes();
     }
 
@@ -85,47 +90,40 @@ public class AtkRoll {
         });
     }
 
-    private int getBonusAtk() {
-       int bonusAtk=0;
+    private int getBonusRangeAtk() {
+       int bonusAtkRange=0;
         if (settings.getBoolean("thor_switch", mC.getResources().getBoolean(R.bool.thor_switch_def))) {
-            bonusAtk+= 3;
-        }
-        if (settings.getBoolean("isillirit_switch", mC.getResources().getBoolean(R.bool.isillirit_switch_def))) {
-            bonusAtk+= 2;
+            bonusAtkRange+= 3;
         }
         if (settings.getBoolean("predil_switch", mC.getResources().getBoolean(R.bool.predil_switch_def))) {
-            bonusAtk+= 1;
+            bonusAtkRange+= 1;
         }
         if (settings.getBoolean("predil_sup_switch", mC.getResources().getBoolean(R.bool.predil_sup_switch_def))) {
-            bonusAtk+= 1;
+            bonusAtkRange+= 1;
         }
         if (settings.getBoolean("predil_epic_switch", mC.getResources().getBoolean(R.bool.predil_epic_switch_def))) {
-            bonusAtk+= 2;
+            bonusAtkRange+= 2;
         }
         if (settings.getBoolean("neuf_m_switch", mC.getResources().getBoolean(R.bool.neuf_m_switch_def))) {
-            bonusAtk+= 1;
+            bonusAtkRange+= 1;
         }
         if (settings.getBoolean("magic_switch", mC.getResources().getBoolean(R.bool.magic_switch_def))) {
-            bonusAtk+= tools.toInt(settings.getString("magic_val", String.valueOf(mC.getResources().getInteger(R.integer.magic_val_def))));
+            bonusAtkRange+= tools.toInt(settings.getString("magic_val", String.valueOf(mC.getResources().getInteger(R.integer.magic_val_def))));
         }
         if (this.mode.equalsIgnoreCase("fullround") && settings.getBoolean("tir_rapide", mC.getResources().getBoolean(R.bool.tir_rapide_switch_def))) {
-            bonusAtk-=2;
+            bonusAtkRange-=2;
         }
         if (settings.getBoolean("viser", mC.getResources().getBoolean(R.bool.viser_switch_def))) {
-            bonusAtk-=tools.toInt(settings.getString("viser_val", String.valueOf(mC.getResources().getInteger(R.integer.viser_val_def))));
+            bonusAtkRange-=tools.toInt(settings.getString("viser_val", String.valueOf(mC.getResources().getInteger(R.integer.viser_val_def))));
         }
-        bonusAtk+= pj.getAbilityMod("ability_dexterite");
-
-        bonusAtk+= tools.toInt(settings.getString("attack_att_epic", String.valueOf(mC.getResources().getInteger(R.integer.attack_att_epic_DEF))));
-
-        bonusAtk+= tools.toInt(settings.getString("att_buff", String.valueOf(mC.getResources().getInteger(R.integer.att_buff_def))));
+        bonusAtkRange+= pj.getAbilityMod("ability_dexterite");
 
         if(this.mode.equalsIgnoreCase("barrage_shot")){
-            bonusAtk+=tools.toInt(settings.getString("mythic_tier", String.valueOf(mC.getResources().getInteger(R.integer.mythic_tier_def))));
+            bonusAtkRange+=tools.toInt(settings.getString("mythic_tier", String.valueOf(mC.getResources().getInteger(R.integer.mythic_tier_def))));
         }
-
-        return bonusAtk;
+        return bonusAtkRange;
     }
+
     //setters
     public void setMode(String mode){
         this.mode=mode;
@@ -141,16 +139,29 @@ public class AtkRoll {
     }
 
     public Integer getPreRandValue() {
-        this.preRandValue = this.base + getBonusAtk();
+        this.preRandValue = this.base + new CalculationAtk(mC).getBonusAtk() + getBonusRangeAtk();
         return preRandValue;
     }
+
     public void setAtkRand() {
-        atkDice.rand();
-        setCritAndFail();
+        atkDice.rand(manualDice);
+        if (manualDice) {
+            atkDice.setRefreshEventListener(new Dice.OnRefreshEventListener() {
+                @Override
+                public void onEvent() {
+                    calculAtk();
+                    setCritAndFail();
+                    if(mListener!=null){mListener.onEvent();}
+                }
+            });
+        } else {
+            calculAtk();
+            setCritAndFail();
+        }
     }
 
     private void setCritAndFail() {
-        if (atkDice.getRandValue() == 1 && !settings.getBoolean("chance_switch", mC.getResources().getBoolean(R.bool.chance_switch_def))) { //si c'est un 1 et qu'on a pas le dons antifail
+        if (atkDice.getRandValue() == 1 && !pj.getAllMythicCapacities().mythiccapacityIsActive("mythiccapacity_still_a_chance")) { //si c'est un 1 et qu'on a pas le dons antifail
             this.fail = true;
             atkDice.getImg().setOnClickListener(null);
         }
@@ -199,7 +210,6 @@ public class AtkRoll {
         invalid = true;
         hitCheckbox.setEnabled(false);
         critCheckbox.setEnabled(false);
-        atkDice.delt();
     }
 
     public boolean isMissed(){
@@ -222,5 +232,11 @@ public class AtkRoll {
         return this.critCheckbox;
     }
 
+    public interface OnRefreshEventListener {
+        void onEvent();
+    }
 
+    public void setRefreshEventListener(OnRefreshEventListener eventListener) {
+        mListener = eventListener;
+    }
 }

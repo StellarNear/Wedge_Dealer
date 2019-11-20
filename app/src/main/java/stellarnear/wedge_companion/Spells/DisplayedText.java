@@ -7,7 +7,7 @@ import android.preference.PreferenceManager;
 import java.util.ArrayList;
 import java.util.List;
 
-import stellarnear.wedge_companion.Calculation;
+import stellarnear.wedge_companion.CalculationSpell;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
@@ -16,25 +16,25 @@ import stellarnear.wedge_companion.Tools;
 public class DisplayedText {
     private Perso pj = PersoManager.getCurrentPJ();
     private Tools tools=new Tools();
-    private Calculation calculation=new Calculation();
+    private CalculationSpell calculationSpell =new CalculationSpell();
 
     public DisplayedText(){  }
 
     public String damageTxt(Spell spell) {
 
-        String dmg=calculation.nDice(spell)+"d"+calculation.diceType(spell);
+        String dmg= calculationSpell.nDice(spell)+"d"+ calculationSpell.diceType(spell);
         if(spell.getFlat_dmg()>0){dmg+="+"+spell.getFlat_dmg();}
 
         if(spell.getDice_type().contains("lvl")){
-            Integer dmg_int = calculation.nDice(spell);
+            Integer dmg_int = calculationSpell.nDice(spell);
             dmg = String.valueOf(dmg_int);
             if(spell.getFlat_dmg()>0){dmg_int+=spell.getFlat_dmg();}
         } else  if(spell.getMetaList().metaIdIsActive("meta_perfect")){
-            Integer dmg_int =calculation.nDice(spell) * calculation.diceType(spell) *2;
+            Integer dmg_int = calculationSpell.nDice(spell) * calculationSpell.diceType(spell) *2;
             if(spell.getFlat_dmg()>0){dmg_int+=spell.getFlat_dmg();}
             dmg = String.valueOf(dmg_int);
         }else  if(spell.getMetaList().metaIdIsActive("meta_max")) {
-            Integer dmg_int = calculation.nDice(spell) * calculation.diceType(spell);
+            Integer dmg_int = calculationSpell.nDice(spell) * calculationSpell.diceType(spell);
             if(spell.getFlat_dmg()>0){dmg_int+=spell.getFlat_dmg();}
             dmg = String.valueOf(dmg_int);
         }
@@ -42,7 +42,7 @@ public class DisplayedText {
     }
 
     public String rangeTxt(Spell spell) {
-        Double rangeDouble=calculation.range(spell);
+        Double rangeDouble= calculationSpell.range(spell);
         String range ="";
         if(rangeDouble==0.0){
             range="contact";
@@ -84,7 +84,7 @@ public class DisplayedText {
             Integer result= tools.toInt(dura.replaceAll("[^0-9?!]",""));
             String duration_unit = dura.replaceAll("[0-9?!]","");
             if(dura.contains("/lvl")){
-                Integer lvl =  calculation.casterLevel(spell);
+                Integer lvl =  calculationSpell.casterLevel(spell);
                 result = result * lvl;
                 duration_unit = dura.replaceAll("/lvl","").replaceAll("[0-9?!]","");
             }

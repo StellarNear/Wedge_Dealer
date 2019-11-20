@@ -24,6 +24,7 @@ import java.util.Map;
 
 import stellarnear.wedge_companion.Elems.ElemsManager;
 import stellarnear.wedge_companion.Perso.Perso;
+import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Stats.StatsList;
 import stellarnear.wedge_companion.Tools;
@@ -49,7 +50,7 @@ public class DSSFDmg {
         this.elems=ElemsManager.getInstance(mC);
 
         TextView nAtkTxt = mainView.findViewById(R.id.nDmgTxt);
-        nAtkTxt.setText(wedge.getStats().getStatsList().getNDmgTot() + " jets de dégâts");
+        nAtkTxt.setText(pj.getStats().getStatsList().getNDmgTot() + " jets de dégâts");
 
         CheckBox checkPhy = mainView.findViewById(R.id.dmg_type_phy);
         CheckBox checkFire = mainView.findViewById(R.id.dmg_type_fire);
@@ -145,7 +146,7 @@ public class DSSFDmg {
         if(selectedStats!=null && selectedStats.size()!=0){
             list=selectedStats;
         } else {
-            list=wedge.getStats().getStatsList();
+            list=pj.getStats().getStatsList();
         }
         int totalDmg=list.getSumDmgTot();
         for(String elem : elems.getListKeys()) {

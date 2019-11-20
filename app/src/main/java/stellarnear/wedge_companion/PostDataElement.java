@@ -149,7 +149,7 @@ public class PostDataElement {
         SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.FRANCE);
         this.date=formater.format(new Date());
 
-        this.typeEvent="Lancement sort "+spell.getName() +" (rang:"+new Calculation().currentRank(spell)+")";
+        this.typeEvent="Lancement sort "+spell.getName() +" (rang:"+new CalculationSpell().currentRank(spell)+")";
 
         if(spell.isFailed()||spell.contactFailed()){
             String failPostData="-";

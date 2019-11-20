@@ -6,53 +6,6 @@
         <descr>L’ascendance mixte de certains demi-elfes leur permet de résister aux attaques mentales. Ceux qui possèdent ce trait racial gagnent un bonus de +2 aux jets de Volonté. Ce trait remplace adaptabilité.</descr>
         <id>capacity_dual_spirit</id>
     </capacity>
-    <capacity>
-        <name>Vision nocturne</name>
-        <type>Trait</type>
-        <descr>Voit deux fois plus loin que les humains en condition de faible éclairage.</descr>
-    </capacity>
-
-    <capacity>
-        <name>Immunité elfique</name>
-        <type>Trait</type>
-        <descr>Immunisés sommeil magique, +2 aux JDS contre les sorts et les effets de type enchantement.</descr>
-    </capacity>
-    <capacity>
-        <name>Sens aiguisés</name>
-        <type>Trait</type>
-        <descr>+2 aux tests de Perception.</descr>
-    </capacity>
-
-    <capacity>
-        <name>Voué à un grand destin</name>
-        <type>Spécial</type>
-        <descr> La famille de l’ensorceleur est vouée à un grand destin. La naissance du personnage a peut-être été prédite dans les prophéties ou elle s’est peut-être déroulée au cours d’un événement spécialement favorable, comme une éclipse solaire. Quelle que soit l’origine du lignage du personnage, un grand destin l’attend.</descr>
-    </capacity>
-    <capacity>
-        <name>Toucher de la destinée</name>
-        <type>Lignage</type>
-        <descr>Par une action simple accorder un bonus d’intuition aux jets d’attaque, tests de compétence, carac et JDS =1/2 NIV ensorceleur pendant 1 round, utilisable 3 + modif CHA par jour.</descr>
-    </capacity>
-    <capacity>
-        <name>Destiné</name>
-        <type>Lignage</type>
-        <descr>Bonus de chance de +1 à tous ses JDS et à sa CA pendant les rounds de surprise et les attaques par surprise. Ce bonus augmente de +1 tous les 4 niv jusqu’à +5 au niveau 19.</descr>
-    </capacity>
-    <capacity>
-        <name>Accomplissement de la prophétie</name>
-        <type>Lignage</type>
-        <descr>Peut relancer n’importe quel jet d’attaque, confirmation de crit ou test NLS contre RM. Utilisable après le premier jet mais avant que le MJ en révèle les résultats. 1/jour au niv 9, 2 au niv 17.</descr>
-    </capacity>
-    <capacity>
-        <name>Près du but</name>
-        <type>Lignage</type>
-        <descr>Une fois par jour, en cas de mort, réussir un jet de Volonté (DD 20) permet de réduire les effets de l’action mortelle : les points de vie du personnage tombent à -1 et il est stabilisé.</descr>
-    </capacity>
-    <capacity>
-        <name>Réalisation du destin</name>
-        <type>Lignage</type>
-        <descr>Tout crit contre l’ensorceleur n'est confirmé que par 20 nat. Tout crit du personnage sur un sort est confirmé. Possibilité de réussir un test de NLS contre RM 1fois/jour avant de lancer le dé.</descr>
-    </capacity>
 
 
 </records>

@@ -42,8 +42,27 @@ public class ProbaFromDiceRand {
         return proba;
     }
 
+    public String getProba() {
+        buildParameters();
+        Double percentage = 0d;
+        percentage = 100d - (100 * getProbaPercentage(selectedDiceList, selectedDiceList.getSum()));
+        String proba = String.format("%.02f", percentage) + "%";
+        return proba;
+    }
+
     public String getRange(String element) {
         this.element=element;
+        buildParameters();
+        Integer ecart = max - min;
+        Double percentage = 0d;
+        if (ecart != 0) {
+            percentage = 100d * (sum - min) / ecart;
+        }
+        String rangeTxt = "[" + min + " - " + max + "]\n(" + String.valueOf(percentage.intValue()) + "%)";
+        return rangeTxt;
+    }
+
+    public String getRange() {
         buildParameters();
         Integer ecart = max - min;
         Double percentage = 0d;

@@ -13,6 +13,12 @@
         android:summary="Statistiques relatives au combat"/>
 
     <PreferenceScreen
+        android:key="pref_character_spells"
+        android:icon="@drawable/ic_spell_book"
+        android:title="Nombre de sorts par jour"
+        android:summary="Valeurs de base du nombre de sorts journaliers par rang"/>
+
+    <PreferenceScreen
         android:key="pref_character_skill"
         android:icon="@drawable/ic_settings_black_24dp"
         android:title="Compétences"

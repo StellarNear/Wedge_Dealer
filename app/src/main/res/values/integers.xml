@@ -1,60 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- commun -->
+
     <integer name="custom_alert_long_duration_DEF">10000</integer>
     <integer name="percent_fullscreen_combat_launcher_dialog">95</integer>
 
-    <integer name="ability_lvl_def">27</integer>
-    <integer name="current_xp_def">29874952</integer>
-    <integer name="add_current_xp_def">0</integer>
-
-    <integer name="add_gold_def">0</integer>
-    <integer name="money_plat_def">142</integer>
-    <integer name="money_gold_def">252724</integer>
-    <integer name="money_silver_def">0</integer>
-    <integer name="money_copper_def">81</integer>
-
-
-    <integer name="multi_value_def">3</integer>
-    <integer name="viser_val_def">5</integer>
-    <integer name="magic_val_def">7</integer>
-
-    <!--  Stat de base du perso  -->
-    <integer name="ability_force_def">23</integer>
-    <integer name="ability_dexterite_def">27</integer>
-    <integer name="ability_constitution_def">18</integer>
-    <integer name="ability_intelligence_def">14</integer>
-    <integer name="ability_sagesse_def">24</integer>
-    <integer name="ability_charisme_def">15</integer>
-    <integer name="ability_ms_def">33</integer>
-    <integer name="ability_reduc_def">12</integer>
-    <integer name="ability_reduc_elem_def">0</integer>
-    <integer name="ability_ca_stuff_def">5</integer>
-
-    <!-- Resources  -->
-    <integer name="resource_hp_base_def">194</integer>
-    <integer name="resource_hp_shield_def">0</integer>
-    <integer name="resource_regen_def">0</integer>
-    <integer name="resource_heroic_def">2</integer>
-    <integer name="resource_legendary_points_def">4</integer>
-
-
-
-    <integer name="attack_att_epic_DEF">2</integer>
-    <integer name="attack_dmg_epic_DEF">0</integer>
-    <integer name="prouesse_def">0</integer>
-    <integer name="prouesse_attrib_def">4</integer>
-    <integer name="dmg_buff_def">0</integer>
-    <integer name="att_buff_def">0</integer>
-
-    <integer name="mythic_tier_def">2</integer>
-    <integer name="legendary_points_def">4</integer>
-    <integer name="mythic_dice_def">6</integer>
-    <integer name="legendary_dice_def">8</integer>
+    <integer name="percent_fullscreen_customdialog">90</integer>
+    <integer name="percent_fullscreen_customdialog_equipment_list">80</integer>
 
     <integer name="display_stats_bin_def">50</integer>
     <integer name="translationFragDuration">500</integer>
 
-    <integer name="percent_fullscreen_customdialog">90</integer>
-    <integer name="percent_fullscreen_customdialog_equipment_list">80</integer>
-    <integer name="attack_range_DEF">100</integer>
+    <integer name="add_gold_def">0</integer>
+
+
 </resources>

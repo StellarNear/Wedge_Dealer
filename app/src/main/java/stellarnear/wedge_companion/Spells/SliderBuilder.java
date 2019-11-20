@@ -4,9 +4,12 @@ import android.content.Context;
 import android.support.design.widget.Snackbar;
 import android.widget.SeekBar;
 
-import stellarnear.wedge_companion.Calculation;
+import stellarnear.wedge_companion.CalculationSpell;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
+import stellarnear.wedge_companion.PostData;
+import stellarnear.wedge_companion.PostDataElement;
+import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Tools;
 
 
@@ -15,7 +18,7 @@ public class SliderBuilder {
     private Spell spell;
     private Context mC;
     private boolean slided=false;
-    private Calculation calculation=new Calculation();
+    private CalculationSpell calculationSpell =new CalculationSpell();
     private OnCastEventListener mListener;
     private SeekBar seek;
     private Tools tools=new Tools();
@@ -32,21 +35,12 @@ public class SliderBuilder {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 if (seekBar.getProgress() > 75) {
                     seekBar.setProgress(100);
-                    if (spell.getRank() != 0 && pj.getResourceValue("spell_rank_" + calculation.currentRank(spell)) <1) {
+                    if (spell.getRank() != 0 && pj.getResourceValue("spell_rank_" + calculationSpell.currentRank(spell)) <1) {
                         seekBar.setProgress(1);
-                        tools.customToast(mC,"Tu n'as pas d'emplacement de sort "+calculation.currentRank(spell)+" de disponible...","center");
-                    } else if (!spell.isCast() && !spell.getConversion().getArcaneId().equalsIgnoreCase("") && pj.getResourceValue("spell_conv_rank_" + spell.getConversion().getRank())<1) {
-                        seekBar.setProgress(1);
-                        tools.customToast(mC, "Tu n'as pas d'emplacement de sort convertible " + calculation.currentRank(spell) + " de disponible...","center");
-                    } else if (!spell.isCast() && spell.elementIsConverted() && pj.getResourceValue("resource_mythic_points") < 1) {
-                        seekBar.setProgress(1);
-                        tools.customToast(mC, "Il ne te reste aucun point mythique pour la conversion d'élément","center");
+                        tools.customToast(mC,"Tu n'as pas d'emplacement de sort "+ calculationSpell.currentRank(spell)+" de disponible...","center");
                     } else if(!spell.isCast() && spell.isMyth() && pj.getResourceValue("resource_mythic_points") <1){
                         seekBar.setProgress(1);
                         tools.customToast(mC, "Il ne te reste aucun point mythique pour lancer ce sort Mythique","center");
-                    } else if(!spell.isCast() && spell.isMyth() && spell.elementIsConverted() && pj.getResourceValue("resource_mythic_points") <2){
-                        seekBar.setProgress(1);
-                        tools.customToast(mC, "Il ne te reste pas assez de points mythiques pour lancer ce sort Mythique avec conversion d'élément","center");
                     } else {
                         startCasting();
                     }
@@ -86,21 +80,10 @@ public class SliderBuilder {
             if (spell.getRank() > 0) {
                 pj.castSpell(spell);
             }
-            if (!spell.getConversion().getArcaneId().equalsIgnoreCase("")) {
-                pj.castConvSpell(spell.getConversion().getRank());
-            }
             if (spell.isMyth()) {
                 pj.getAllResources().getResource("resource_mythic_points").spend(1);
                 new PostData(mC,new PostDataElement("Lancement sort mythique","-1pt mythique"));
                 tools.customToast(mC, "Sort Mythique\nIl te reste " + pj.getResourceValue("resource_mythic_points") + " point(s) mythique(s)", "center");
-            }
-            if (spell.elementIsConverted()) {
-                pj.getAllResources().getResource("resource_mythic_points").spend(1);
-                new PostData(mC,new PostDataElement("Conversiont d'élément mythique","-1pt mythique"));
-                tools.customToast(mC, "Conversion d'élément\nIl te reste " + pj.getResourceValue("resource_mythic_points") + " point(s) mythique(s)", "center");
-            }
-            if(pj.getAllBuffs().buffByIDIsActive("true_strike") && !spell.getContact().equalsIgnoreCase("")){
-                pj.getAllBuffs().getBuffByID("true_strike").cancel();
             }
         } else if(!slided) {
             slided=true;

@@ -14,10 +14,6 @@
             android:inputType="number"
             android:summary="Valeur : %s"/>
         <SwitchPreference
-            android:defaultValue="@bool/switch_save_coat_DEF"
-            android:key="switch_save_coat"
-            android:title="Cape de résistances draconique +5" />
-        <SwitchPreference
             android:defaultValue="@bool/switch_perma_resi_DEF"
             android:key="switch_perma_resi"
             android:title="Permanence résistance +1" />

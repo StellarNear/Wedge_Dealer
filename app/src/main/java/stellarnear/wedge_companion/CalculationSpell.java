@@ -13,11 +13,11 @@ import stellarnear.wedge_companion.Spells.Metamagic;
 import stellarnear.wedge_companion.Spells.Spell;
 import stellarnear.wedge_companion.Spells.SpellList;
 
-public class Calculation {
+public class CalculationSpell {
     private Perso pj = PersoManager.getCurrentPJ();
     private Tools tools=new Tools();
 
-    public Calculation(){  }
+    public CalculationSpell(){  }
 
     public int saveVal(Spell spell){
         int val=10;

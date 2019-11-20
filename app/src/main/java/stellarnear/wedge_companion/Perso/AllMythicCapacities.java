@@ -30,10 +30,10 @@ public class AllMythicCapacities {
     {
         this.mC = mC;
         this.pjID=pjID;
-        buildKiCapacitiesList();
+        buildCapacitiesList();
     }
 
-    private void buildKiCapacitiesList() {
+    private void buildCapacitiesList() {
         allMythicCapacities = new ArrayList<>();
         mapIdMythiccapacity =new HashMap<>();
         try {
@@ -92,6 +92,16 @@ public class AllMythicCapacities {
     }
 
     public void reset() {
-        buildKiCapacitiesList();
+        buildCapacitiesList();
+    }
+
+    public boolean mythiccapacityIsActive(String id) {
+        boolean val=false;
+        try {
+            val= getMythiccapacity(id).isActive();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return val;
     }
 }

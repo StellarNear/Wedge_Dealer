@@ -24,7 +24,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:textStyle="bold"
-                    android:textColor="@color/colorBackground"
+                    android:textColor="?attr/colorBackground"
                     android:textSize="19sp"
                     android:text="Lancement des compétences" />
             </LinearLayout>
@@ -35,7 +35,7 @@
                 android:id="@+id/skillTitleLine"
                 android:weightSum="9"
                 android:orientation="horizontal"
-                android:background="@color/title_skill_color_background">
+                android:background="?attr/colorPrimaryDark">
 
                  <TextView
                      android:id="@+id/skillNameTitle"

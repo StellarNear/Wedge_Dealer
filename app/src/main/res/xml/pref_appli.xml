@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceScreen
+        android:key="infos"
+        android:icon="@drawable/ic_info_black_24dp"
+        android:title="Infos"
+        android:summary="Résumé d'informations sur l'application"/>
 
     <PreferenceScreen
         android:key="pref_appli_para"
@@ -8,7 +13,7 @@
         android:title="Paramètres de l'application" />
 
     <PreferenceScreen
-        android:key="pref_appli_reset"
+        android:key="pref_appli_refresh"
         android:summary="Réinitialise tout les paramètres"
         android:icon="@drawable/ic_undo_black_24dp"
         android:title="Reset des paramètres" />

@@ -24,6 +24,16 @@ import java.util.List;
 
 public class Tools {
 
+    public Double toDouble(String key) {
+        Double value;
+        try {
+            value = Double.parseDouble(key);
+        } catch (Exception e){
+            value=0.0;
+        }
+        return value;
+    }
+
     public Integer toInt(String key) {
         Integer value = 0;
         try {
@@ -69,23 +79,34 @@ public class Tools {
     }
 
     public Drawable resize(Context mC, Drawable image, int pixelSizeIcon) {
-        Bitmap b = ((BitmapDrawable) image).getBitmap();
-        Bitmap bitmapResized = Bitmap.createScaledBitmap(b, pixelSizeIcon, pixelSizeIcon, false);
-        return new BitmapDrawable(mC.getResources(), bitmapResized);
+        Drawable draw=mC.getDrawable(R.drawable.mire_test);
+        try {
+            Bitmap b = ((BitmapDrawable) image).getBitmap();
+            Bitmap bitmapResized = Bitmap.createScaledBitmap(b, pixelSizeIcon, pixelSizeIcon, false);
+            draw =new BitmapDrawable(mC.getResources(), bitmapResized);
+        } catch (Exception e) {
+            Bitmap b = ((BitmapDrawable) draw).getBitmap();
+            Bitmap bitmapResized = Bitmap.createScaledBitmap(b, pixelSizeIcon, pixelSizeIcon, false);
+            draw =new BitmapDrawable(mC.getResources(), bitmapResized);
+            e.printStackTrace();
+        }
+        return draw;
     }
 
     public Drawable resize(Context mC, int imageId, int pixel_size_icon) {
-        Drawable image = null;
+        Drawable image = mC.getDrawable(R.drawable.mire_test);
         try {
             image = mC.getDrawable(imageId);
+            Bitmap b = ((BitmapDrawable) image).getBitmap();
+            Bitmap bitmapResized = Bitmap.createScaledBitmap(b, pixel_size_icon, pixel_size_icon, false);
+            image = new BitmapDrawable(mC.getResources(), bitmapResized);
         } catch (Exception e) {
-            int drawableId = mC.getResources().getIdentifier("mire_test", "drawable", mC.getPackageName());
-            image = mC.getDrawable(drawableId);
+            Bitmap b = ((BitmapDrawable) image).getBitmap();
+            Bitmap bitmapResized = Bitmap.createScaledBitmap(b, pixel_size_icon, pixel_size_icon, false);
+            image = new BitmapDrawable(mC.getResources(), bitmapResized);
             e.printStackTrace();
         }
-        Bitmap b = ((BitmapDrawable) image).getBitmap();
-        Bitmap bitmapResized = Bitmap.createScaledBitmap(b, pixel_size_icon, pixel_size_icon, false);
-        return new BitmapDrawable(mC.getResources(), bitmapResized);
+        return image;
     }
 
 

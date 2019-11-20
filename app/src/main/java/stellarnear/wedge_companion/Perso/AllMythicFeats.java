@@ -94,4 +94,14 @@ public class AllMythicFeats {
     public void reset() {
         buildFeatsList();
     }
+
+    public boolean mythicFeatsIsActive(String id) {
+        boolean val=false;
+        try {
+            val= getMythicFeat(id).isActive();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return val;
+    }
 }

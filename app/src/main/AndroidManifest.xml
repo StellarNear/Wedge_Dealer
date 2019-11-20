@@ -21,9 +21,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="stellarnear.wedge_companion.SettingsActivity"
+            android:name="stellarnear.wedge_companion.Activities.SettingsActivity"
             android:screenOrientation="portrait"
-            android:label="@string/title_activity_settings"></activity>
+            android:label="@string/title_activity_settings"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

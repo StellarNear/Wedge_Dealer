@@ -7,11 +7,13 @@ import android.preference.PreferenceManager;
 import java.util.Arrays;
 import java.util.List;
 
-import stellarnear.wedge_companion.Calculation;
+import stellarnear.wedge_companion.CalculationAtk;
+import stellarnear.wedge_companion.CalculationSpell;
 import stellarnear.wedge_companion.HallOfFame;
 import stellarnear.wedge_companion.PostData;
 import stellarnear.wedge_companion.PostDataElement;
 import stellarnear.wedge_companion.R;
+import stellarnear.wedge_companion.Rolls.RollFactory;
 import stellarnear.wedge_companion.Spells.Spell;
 import stellarnear.wedge_companion.Stats.Stats;
 import stellarnear.wedge_companion.Tools;
@@ -35,10 +37,12 @@ public class Perso {
     private AllMythicFeats allMythicFeats;
     private AllMythicCapacities allMythicCapacities;
 
+    private String pjID;
+
     private Tools tools=new Tools();
     private Context mC;
     private SharedPreferences prefs;
-    private Calculation calculation=new Calculation();
+    private CalculationSpell calculationSpell =new CalculationSpell();
 
     public Perso(Context mC,String pjID) {
         this.mC=mC;
@@ -53,6 +57,7 @@ public class Perso {
         allAbilities = new AllAbilities(mC,pjID);
         allSkills = new AllSkills(mC,pjID);
         allResources = new AllResources(mC,allAbilities,allMythicCapacities,pjID);
+        this.pjID=pjID;
     }
 
     public void refresh() {
@@ -61,6 +66,9 @@ public class Perso {
         allResources.refresh();
     }
 
+    public String getID() {
+        return pjID;
+    }
 
     public AllAbilities getAllAbilities() {
         return allAbilities;
@@ -95,9 +103,6 @@ public class Perso {
         return inventory;
     }
 
-    public void castConvSpell(Integer selected_rank) {
-        allResources.castConvSpell(selected_rank);
-    }
     public void castSpell(Integer selected_rank) {
         allResources.castSpell(selected_rank);
     }
@@ -105,7 +110,7 @@ public class Perso {
     public void castSpell(Spell spell) {
         if (!spell.isCast()){
             spell.cast();
-            allResources.castSpell(calculation.currentRank(spell));
+            allResources.castSpell(calculationSpell.currentRank(spell));
             new PostData(mC,new PostDataElement(spell));
         }
     }
@@ -122,8 +127,8 @@ public class Perso {
         return val;
     }
 
-    private void resetTemp() {
-        List<String> allTempList = Arrays.asList("dmg_buff", "att_buff");
+    public void resetTemp() {
+        List<String> allTempList = Arrays.asList("NLS_bonus","bonus_dmg_temp","bonus_atk_temp","bonus_temp_ca","bonus_temp_save","bonus_temp_rm");
         for (String temp : allTempList) {
             prefs.edit().putString(temp, "0").apply();
         }
@@ -186,9 +191,9 @@ public class Perso {
             }
 
             if (abiId.equalsIgnoreCase("ability_init")) {
-                if(getAllMythicCapacities().getMythiccapacity("mythiccapacity_init").isActive()) {
+                if(getAllMythicCapacities().mythiccapacityIsActive("mythiccapacity_init")) {
                     int currentTier = tools.toInt(settings.getString("mythic_tier", String.valueOf(mC.getResources().getInteger(R.integer.mythic_tier_def))));
-                    if(getAllMythicFeats().getMythicFeat("mythicfeat_parangon").isActive()){
+                    if(getAllMythicFeats().mythicFeatsIsActive("mythicfeat_parangon")){
                         currentTier+=2;
                     }
                     abiScore += currentTier;
@@ -225,10 +230,15 @@ public class Perso {
                 }
             }
             if(abiId.equalsIgnoreCase("ability_bmo")||abiId.equalsIgnoreCase("ability_dmd")){
-                abiScore+=getBaseAtk()+getBonusAtk();
+                abiScore+=getBaseAtk();
             }
         }
         return abiScore;
+    }
+
+    private int getBaseAtk() {
+        CalculationAtk calcAtk= new CalculationAtk(mC);
+        return calcAtk.getBaseAtk()+calcAtk.getBonusAtk();
     }
 
     public Integer getAbilityMod(String abiId) {

@@ -157,7 +157,7 @@ public class AllResources {
         getResource("resource_regen").setMax(readResource("resource_regen"));
         getResource("resource_heroic").setMax(readResource("resource_heroic"));
         getResource("resource_mythic_points").setMax(3+2*readResource("mythic_tier"));
-        getResource("legendary_points").setMax(readResource("legendary_points"));
+        getResource("resource_legendary_points").setMax(readResource("legendary_points"));
         rankManager.refreshMax();
     }
 
@@ -171,50 +171,18 @@ public class AllResources {
         for (Resource res : listResources) {
             res.resetCurrent();
         }
-        if(allMythicCapacities.getMythiccapacity("mythiccapacity_recover").isActive()){
-            getResource("resource_hp").fullHeal();
-        }
     }
 
     public void halfSleepReset() {
         getResource("resource_mythic_points").resetCurrent();
-        if(allMythicCapacities.getMythiccapacity("mythiccapacity_recover").isActive()){
-            getResource("resource_hp").fullHeal();
-        }
     }
 
     public boolean checkSpellAvailable(Integer selected_rank) {
         return selected_rank==0 || (getResource("spell_rank_"+selected_rank)!=null && getResource("spell_rank_"+selected_rank).getCurrent()>0);
     }
 
-    public boolean checkConvertibleAvailable(Integer selected_rank) {
-        boolean bool=false;
-        try {
-            bool=getResource("spell_conv_rank_"+selected_rank).getCurrent()>0;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return bool;
-    }
-
-    public boolean checkAnyConvertibleAvailable() {
-        Boolean bool =false;
-        for (int rankConv=1;rankConv<=6;rankConv++){
-            if(getResource("spell_conv_rank_"+rankConv).getCurrent()>0){ bool=true;break;}
-        }
-        return bool;
-    }
-
-    public void castConvSpell(Integer selected_rank) {
-        getResource("spell_conv_rank_"+selected_rank).spend(1);
-        getResource("spell_rank_"+selected_rank).spend(1);
-    }
     public void castSpell(Integer selected_rank) {
         getResource("spell_rank_"+selected_rank).spend(1);
-
-        if(getResource("spell_conv_rank_"+selected_rank)!=null && (getResource("spell_conv_rank_"+selected_rank).getCurrent()>getResource("spell_rank_"+selected_rank).getCurrent())){
-            getResource("spell_conv_rank_"+selected_rank).spend(1);
-        }
     }
 
     public void resetRessources(){

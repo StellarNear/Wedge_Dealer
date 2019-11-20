@@ -32,7 +32,7 @@ public class ContactAlertDialog {
     private View dialogView;
     private View dialogViewWheelPicker;
     private String mode;
-    private Calculation calculation=new Calculation();
+    private CalculationSpell calculationSpell =new CalculationSpell();
     private int sumScore;
     private Spell spell;
     private Dice dice;
@@ -47,7 +47,7 @@ public class ContactAlertDialog {
         this.mA=mA;
         this.mC=mC;
         this.spell=spell;
-        this.mode = calculation.getContact(spell);
+        this.mode = calculationSpell.getContact(spell);
         this.sumScore = 0;
         buildAlertDialog();
     }
@@ -63,13 +63,9 @@ public class ContactAlertDialog {
         title.setSingleLine(false);
         title.setText(titleTxt);
 
-        sumScore= pj.getBaseAtk();
+        sumScore= new CalculationAtk(mC).getBaseAtk();
         String summaryDetail="BBA (+"+String.valueOf(sumScore)+")";
 
-        if(pj.getBonusAtk()>0){
-            sumScore+= pj.getBonusAtk();
-            summaryDetail+=" (bonus +"+String.valueOf(pj.getBonusAtk())+")";
-        }
         if(mode.equalsIgnoreCase("melee")){
             sumScore+= pj.getAbilityMod("ability_force");
             summaryDetail+="\nBonus force ("+(pj.getAbilityMod("ability_force")>0?"+":"")+ pj.getAbilityMod("ability_force")+")";

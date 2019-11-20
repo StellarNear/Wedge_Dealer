@@ -1,27 +1,35 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceScreen
+        android:key="pref_character_feat_magic"
+        android:icon="@drawable/ic_spell_book"
+        android:title="Dons de métamagie"
+        android:summary="Liste des dons concernant la magie"/>
+
+    <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+
     <PreferenceCategory
-        android:key="@string/feat_active"
-        android:title="@string/feat_active">
+        android:key="Magie"
+        android:title="Magie">
         <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
     </PreferenceCategory>
     <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
     <PreferenceCategory
-        android:key="@string/feat_def"
-        android:title="@string/feat_def">
+        android:key="Attaque"
+        android:title="Attaque">
         <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
 
     </PreferenceCategory>
     <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
     <PreferenceCategory
-        android:key="@string/feat_atk"
-        android:title="@string/feat_atk">
+        android:key="Défense"
+        android:title="Défense">
         <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
 
     </PreferenceCategory>
     <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
     <PreferenceCategory
-        android:key="@string/feat_other"
-        android:title="@string/feat_other">
+        android:key="Autre"
+        android:title="Autre">
         <Preference   android:layout="@layout/divider_pref" android:selectable="false"/>
 
     </PreferenceCategory>

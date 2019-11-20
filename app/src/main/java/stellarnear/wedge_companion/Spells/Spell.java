@@ -342,15 +342,6 @@ public class Spell {
         this.name=this.name+" "+i;
     }
 
-    public void setDmgType(String newElement){
-        this.dmg_type.setDmgType(newElement);
-        this.dmg_type.setConverted();
-    }
-
-    public boolean elementIsConverted() {
-        return dmg_type.isConverted();
-    }
-
     public boolean isBinded() {
         return binded;
     }

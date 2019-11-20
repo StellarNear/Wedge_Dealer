@@ -8,11 +8,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,7 +32,7 @@ import java.util.TimerTask;
 
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
-import stellarnear.wedge_companion.SettingsActivity;
+import stellarnear.wedge_companion.Tools;
 
 public class MainActivity extends AppCompatActivity {
     private boolean loading = false;
@@ -107,17 +110,35 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void buildMainPage() {
+        int themeId=getResources().getIdentifier("AppTheme"+PersoManager.getCurrentPJ().getID(), "style", getPackageName());
+        setTheme(themeId);
         setContentView(R.layout.activity_main);
         mainFrameFrag = findViewById(R.id.fragment_main_frame_layout);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().hide();
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
-        Window window = getWindow();
-        window.setStatusBarColor(getColor(R.color.colorPrimaryDark));
+        toolbar.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                PersoManager.swap();
+                buildMainPage();
+                return false;
+            }
+        });
+
+        setSupportActionBar(toolbar);
         getSupportActionBar().show();
+        new Tools().customToast(getApplicationContext(),"Personnage selectionné : "+PersoManager.getCurrentNamePJ(),"center");
+        toolbar.setTitle(PersoManager.getCurrentNamePJ()+" companion");
+        int drawableId=getResources().getIdentifier("background_banner"+PersoManager.getCurrentPJ().getID(), "drawable", getPackageName());
+        toolbar.setBackground(getDrawable(drawableId));
+        Window window = getWindow();
+        TypedValue typedValue = new TypedValue();
+        getTheme().resolveAttribute(R.attr.colorPrimaryDark,typedValue,true);
+        window.setStatusBarColor(typedValue.data);
         startFragment();
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -140,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
         Fragment fragment = new MainActivityFragment();
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(mainFrameFrag.getId(), fragment);
+        fragmentTransaction.replace(mainFrameFrag.getId(), fragment,"frag_main");
         fragmentTransaction.commit();
     }
 

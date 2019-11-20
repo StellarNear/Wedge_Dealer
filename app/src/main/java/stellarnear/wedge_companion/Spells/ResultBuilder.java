@@ -15,7 +15,7 @@ import android.widget.TextView;
 import java.util.Arrays;
 import java.util.List;
 
-import stellarnear.wedge_companion.Calculation;
+import stellarnear.wedge_companion.CalculationSpell;
 import stellarnear.wedge_companion.DisplayRolls;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
@@ -32,7 +32,7 @@ public class ResultBuilder {
     private int spellColorId;
     private Context mC;
     private Activity mA;
-    private Calculation calculation=new Calculation();
+    private CalculationSpell calculationSpell =new CalculationSpell();
     private DisplayedText displayedText=new DisplayedText();
     private Tools tools=new Tools();
 
@@ -79,9 +79,9 @@ public class ResultBuilder {
         } else {
             final DiceList diceList = new DiceList();
             List<Integer> listDiceAllowed = Arrays.asList(3,4,6,8,10);
-            if (listDiceAllowed.contains(calculation.diceType(spell))){
-                for(int i=1 ; i<= calculation.nDice(spell);i++){
-                    diceList.add(new Dice(mA,mC,calculation.diceType(spell),spell.getDmg_type()));
+            if (listDiceAllowed.contains(calculationSpell.diceType(spell))){
+                for(int i = 1; i<= calculationSpell.nDice(spell); i++){
+                    diceList.add(new Dice(mA,mC, calculationSpell.diceType(spell),spell.getDmg_type()));
                 }
                 for (Dice dice : diceList.getList()){
                     dice.rand(false);

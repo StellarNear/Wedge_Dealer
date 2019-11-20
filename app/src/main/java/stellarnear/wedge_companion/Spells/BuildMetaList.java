@@ -94,4 +94,14 @@ public class BuildMetaList {
     public MetaList getMetaList() {
         return new MetaList(this.metaList); //pour que chaque sort ai sa version de la métalist
     }
+
+    public boolean metaIDisActive(String id) {
+        boolean val=false;
+        for(Metamagic meta : metaList.asList()){
+            if(meta.getId().equalsIgnoreCase(id)){
+             val=true;
+            }
+        }
+        return val;
+    }
 }

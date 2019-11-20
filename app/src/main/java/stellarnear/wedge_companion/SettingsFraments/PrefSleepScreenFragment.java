@@ -17,6 +17,7 @@ import java.util.List;
 
 import stellarnear.wedge_companion.Activities.MainActivity;
 import stellarnear.wedge_companion.Perso.Perso;
+import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.PostData;
 import stellarnear.wedge_companion.PostDataElement;
 import stellarnear.wedge_companion.R;
@@ -53,7 +54,6 @@ public class PrefSleepScreenFragment extends Preference {
         return mainView;
     }
 
-
     public void addSleepScreen() {
         mainView.setBackgroundResource(R.drawable.sleep_background);
         new AlertDialog.Builder(mC)
@@ -66,7 +66,13 @@ public class PrefSleepScreenFragment extends Preference {
                         sleep();
                     }
                 })
-                .setNegativeButton("Non", new DialogInterface.OnClickListener() {
+                .setNegativeButton("Sans sorts", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        halfSleep();
+                    }
+                })
+                .setNeutralButton("Non", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                     }
@@ -83,11 +89,9 @@ public class PrefSleepScreenFragment extends Preference {
         h.postDelayed(new Runnable() {
             @Override
             public void run() {
-                wedge.getAllResources().refreshMaxs();
-                wedge.getAllResources().sleepReset();
-                resetTemp();
-                tools.customToast(mC, "Une nouvelle journée pleine de coups critiques t'attends.", "center");
-                new PostData(mC,new PostDataElement("Nuit de repos","Recharge des ressources journalières"));
+                pj.sleep();
+                tools.customToast(mC, "Une nouvelle journée pleine de sortilèges t'attends.", "center");
+                new PostData(mC,new PostDataElement("Nuit de repos","Recharge des ressources journalières et sorts"));
                 Intent intent = new Intent(mC, MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 mC.startActivity(intent);
@@ -95,12 +99,22 @@ public class PrefSleepScreenFragment extends Preference {
         }, time);
     }
 
-    private void resetTemp() {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mC);
-        List<String> allTempList = Arrays.asList("dmg_buff", "att_buff");
-        for (String temp : allTempList) {
-            prefs.edit().putString(temp, "0").apply();
-        }
+    private void halfSleep() {
+        final Tools tools = new Tools();
+        tools.customToast(mC, "Fais de beaux rêves !", "center");
+        int time = 2000; // in milliseconds
+        Handler h = new Handler();
+        h.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                pj.halfSleep();
+                tools.customToast(mC, "Une journée sans sortilèges t'attends...", "center");
+                new PostData(mC,new PostDataElement("Nuit de repos (sans sorts)","Recharge des ressources journalières"));
+                Intent intent = new Intent(mC,  MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                mC.startActivity(intent);
+            }
+        }, time);
     }
 
 }

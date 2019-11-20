@@ -21,6 +21,7 @@
     <bool name="tir_rapide_switch_def">true</bool>
     <bool name="viser_switch_def">true</bool>
     <bool name="improved_crit_switch_def">true</bool>
+    <bool name="hammer_gap_switch_def">false</bool>
 
     <!-- Dons epic -->
     <bool name="feu_nourri_switch_def">true</bool>
@@ -32,13 +33,27 @@
 
     <!-- Mythic -->
 
-    <bool name="chance_switch_def">true</bool>
-    <bool name="crit_science_myth_switch_def">true</bool>
-    <bool name="barrage_shot_switch_def">true</bool>
-    <bool name="hammer_gap_switch_def">false</bool>
     <bool name="switch_shadow_link_def">true</bool>
     <bool name="switch_manual_diceroll_def">false</bool>
     <bool name="switch_fullscreen_mode_DEF">true</bool>
+    <bool name="switch_perma_resi_DEF">true</bool>
+
+    <!-- metas -->
+    <bool name="meta_perfect_switch_def">true</bool>
+    <bool name="meta_enhance_switch_def">false</bool>
+    <bool name="meta_silent_switch_def">true</bool>
+    <bool name="materiel_switch_def">true</bool>
+    <bool name="materiel_epic_switch_def">true</bool>
+    <bool name="meta_quicken_switch_def">true</bool>
+    <bool name="meta_select_switch_def">true</bool>
+    <bool name="meta_max_switch_def">true</bool>
+    <bool name="meta_extend_switch_def">true</bool>
+    <bool name="meta_range_switch_def">true</bool>
+    <bool name="meta_heighten_switch_def">true</bool>
+    <bool name="meta_focus_switch_def">true</bool>
+    <bool name="meta_arrow_switch_def">true</bool>
+    <bool name="meta_delay_switch_def">true</bool>
+    <bool name="meta_duration_switch_def">true</bool>
 
 
 </resources>

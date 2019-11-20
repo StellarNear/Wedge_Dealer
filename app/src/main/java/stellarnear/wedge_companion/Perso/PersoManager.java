@@ -22,23 +22,29 @@ public class PersoManager {
 
     public static void initPJs(Context applicationContext) {
         currentMapPJ = new HashMap<>();
-        currentMapPJ.put("wedge",new Perso(applicationContext,""));
-        currentMapPJ.put("halda",new Perso(applicationContext,"halda"));
-        currentPJ="wedge";
+        currentMapPJ.put("Wedge",new Perso(applicationContext,""));
+        currentMapPJ.put("Halda",new Perso(applicationContext,"halda"));
+        currentPJ="Wedge";
+
     }
 
     public static String getCurrentNamePJ() {
         return currentPJ;
     }
 
-    public void switchPJ(String name){
-        if(name.equalsIgnoreCase("wedge")||name.equalsIgnoreCase("halda")){
-            currentPJ=name;
-        } else {
-            currentPJ="wedge";
+    public static void swap() {
+        if(currentPJ.equalsIgnoreCase("wedge")){
+            currentPJ="Halda";
+        } else if(currentPJ.equalsIgnoreCase("halda")) {
+            currentPJ="Wedge";
         }
     }
 
-
-
+    public void getPJ(String name){
+        if(name.equalsIgnoreCase("Wedge")||name.equalsIgnoreCase("Halda")){
+            currentPJ=name;
+        } else {
+            currentPJ="Wedge";
+        }
+    }
 }

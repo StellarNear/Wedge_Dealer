@@ -9,8 +9,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import stellarnear.wedge_companion.Activities.MainActivity;
-import stellarnear.wedge_companion.Calculation;
+import stellarnear.wedge_companion.CalculationSpell;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
@@ -21,7 +20,7 @@ public class SpellProfile {
     private Context mC;
     private Spell spell;
     private View profile;
-    private Calculation calculation=new Calculation();
+    private CalculationSpell calculationSpell =new CalculationSpell();
     private DisplayedText displayText =new DisplayedText();
     private SpellProfileManager profileManager;
     private OnRefreshEventListener mListener;
@@ -72,9 +71,9 @@ public class SpellProfile {
 
         testSpellForColorTitle();
 
-        ((TextView)profile.findViewById(R.id.current_rank)).setText("(rang : "+calculation.currentRank(spell)+")");
+        ((TextView)profile.findViewById(R.id.current_rank)).setText("(rang : "+ calculationSpell.currentRank(spell)+")");
 
-        if(!pj.getAllResources().checkSpellAvailable(calculation.currentRank(spell))){
+        if(!pj.getAllResources().checkSpellAvailable(calculationSpell.currentRank(spell))){
             ((TextView)profile.findViewById(R.id.current_rank)).setTextColor(Color.RED);
         }else {
             ((TextView)profile.findViewById(R.id.current_rank)).setTextColor(Color.BLACK);
@@ -111,7 +110,7 @@ public class SpellProfile {
 
     private String printInfo() {
         String text = "";
-        if (calculation.nDice(spell)>0) {
+        if (calculationSpell.nDice(spell)>0) {
             text += "Dégats:" + displayText.damageTxt(spell) + ", ";
         }
         if (!spell.getDmg_type().equals("")) {
@@ -127,7 +126,7 @@ public class SpellProfile {
             text += "Compos:" + displayText.compoTxt(mC,spell) + ", ";
         }
         if (!spell.getCast_time().equals("")) {
-            text += "Cast:" + calculation.getCastTimeTxt(spell) + ", ";
+            text += "Cast:" + calculationSpell.getCastTimeTxt(spell) + ", ";
         }
         if (!spell.getDuration().equals("") && !spell.getDuration().equalsIgnoreCase("instant")) {
             text += "Durée:" + displayText.durationTxt(spell) + ", ";
@@ -139,7 +138,7 @@ public class SpellProfile {
         if (spell.getSave_type().equals("aucun") || spell.getSave_type().equals("")) {
             resistance = spell.getSave_type();
         } else {
-            resistance = spell.getSave_type() + "(" + calculation.saveVal(spell) + ")";
+            resistance = spell.getSave_type() + "(" + calculationSpell.saveVal(spell) + ")";
         }
         if (!resistance.equals("")) {
             text += "Sauv:" + resistance + ", ";

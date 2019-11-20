@@ -10,5 +10,5 @@
     <corners android:bottomLeftRadius="@dimen/radius_corner_spell" android:bottomRightRadius="@dimen/radius_corner_spell" android:topLeftRadius="0dp" android:topRightRadius="0dp"/>
     <stroke
         android:width="@dimen/bordure_spell_background"
-        android:color="@color/dark_gray" />
+        android:color="@color/darker_gray" />
 </shape>

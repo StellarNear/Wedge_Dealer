@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:text="Liste des sorts"
-                android:textColor="@android:color/white"
+                android:textColor="?attr/colorBackground"
                 android:layout_centerInParent="true"
                 android:textSize="25sp"
 

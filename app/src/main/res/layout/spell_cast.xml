@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="true"
+    android:transitionName="transition"
+
+    android:id="@+id/page2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="stellarnear.wedge_companion.Activities.MainActivityFragmentSpell">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:id="@+id/RelatTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@drawable/background_spell_list_title"
+            >
+            <TextView
+                android:id="@+id/Titre2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lançement des sorts"
+                android:layout_centerInParent="true"
+                android:textAlignment="center"
+                android:textSize="25sp"
+                android:textColor="@android:color/white"
+
+                />
+
+            <TextView
+                android:id="@+id/n_round"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="[x rounds]"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/general_margin"
+                android:textSize="12sp"
+                android:textColor="@android:color/white"
+
+                />
+            <FrameLayout
+                android:id="@+id/back_spell_from_spell_cast"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginStart="@dimen/general_margin"
+                android:foregroundGravity="center"
+                android:layout_centerVertical="true"
+                tools:ignore="ContentDescription"
+                >
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/mire_test"/>
+
+            </FrameLayout>
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <LinearLayout
+                android:id="@+id/linear2"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:padding="@dimen/general_margin"
+
+                />
+        </ScrollView>
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

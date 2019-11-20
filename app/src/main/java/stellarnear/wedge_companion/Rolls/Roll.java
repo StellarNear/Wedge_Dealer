@@ -165,4 +165,5 @@ public class Roll {
         return atkRoll.isMissed();
     }
 
+
 }

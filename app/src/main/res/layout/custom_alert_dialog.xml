@@ -64,14 +64,14 @@
             android:layout_margin="@dimen/general_margin"
             android:background="@drawable/button_basic_gradient"
             android:textSize="12dp"
-            android:text="passif"/>
+            android:text="passif (10)"/>
         <Button
             android:id="@+id/button_customDialog_test_focus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/button_basic_gradient"
             android:textSize="12dp"
-            android:text="focus"/>
+            android:text="focus (20)"/>
     </LinearLayout>
 
     <LinearLayout

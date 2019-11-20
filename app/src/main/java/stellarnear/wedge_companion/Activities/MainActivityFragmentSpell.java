@@ -173,29 +173,14 @@ public class MainActivityFragmentSpell extends Fragment {
             if (orientation==1) {
                 side_txt.setText("T" + i + "\n(" + pj.getResourceValue("spell_rank_"+i) + ")");
                 if (i==0){side_txt.setText("T"+i+"\n("+ DecimalFormatSymbols.getInstance().getInfinity()+")");}
-                else if (pj.getAllResources().checkConvertibleAvailable(i)) {
-                    String n_spell_conv_txt="T" + i + "\n(" + pj.getResourceValue("spell_rank_"+i)+","+ pj.getResourceValue("spell_conv_rank_"+i) + ")";
-                    String before_conv="T" + i + "\n(" + pj.getResourceValue("spell_rank_"+i)+",";
-                    SpannableString n_spell_conv=  new SpannableString(n_spell_conv_txt);
-                    n_spell_conv.setSpan(new ForegroundColorSpan(getContext().getColor(R.color.conversion)),before_conv.length(),before_conv.length()+pj.getResourceValue("spell_conv_rank_"+i).toString().length(), 0);// set color2
-                    side_txt.setText(n_spell_conv);
-                }
             } else {
                 side_txt.setText("T" + i + " (" + pj.getResourceValue("spell_rank_"+i) + ")");
                 if (i==0){side_txt.setText("T"+i+" ("+ DecimalFormatSymbols.getInstance().getInfinity()+")");}
-                if (pj.getAllResources().checkConvertibleAvailable(i)) {
-                    String n_spell_conv_txt="T" + i + " (" + pj.getResourceValue("spell_rank_"+i)+","+ pj.getResourceValue("spell_conv_rank_"+i) + ")";
-                    String before_conv="T" + i + " (" + pj.getResourceValue("spell_rank_"+i)+",";
-                    SpannableString n_spell_conv=  new SpannableString(n_spell_conv_txt);
-                    n_spell_conv.setSpan(new ForegroundColorSpan(getContext().getColor(R.color.conversion)),before_conv.length(),before_conv.length()+pj.getResourceValue("spell_conv_rank_"+i).toString().length(), 0);// set color2
-                    side_txt.setText(n_spell_conv);
-                }
             }
 
             side_txt.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     scroll_tier.post(new Runnable() {
                         @Override
                         public void run() {

@@ -211,7 +211,7 @@
                         android:layout_marginStart="@dimen/general_margin"
                         android:text="Appliquer une métamagie"
                         android:textAlignment="center"
-                        android:textColor="@color/dark_gray"
+                        android:textColor="@color/darker_gray"
                         android:textSize="20sp" />
                 </LinearLayout>
 
@@ -252,7 +252,7 @@
                             android:layout_marginStart="@dimen/general_margin"
                             android:text="Jet de contact"
                             android:textAlignment="center"
-                            android:textColor="@color/dark_gray"
+                            android:textColor="@color/darker_gray"
                             android:textSize="20sp" />
 
                     </LinearLayout>

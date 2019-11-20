@@ -39,34 +39,19 @@
         <type>Archimage</type>
     </mythiccapacity>
 
-    <mythiccapacity>
-        <name>Conversion profane</name>
-        <descr>L'ensorceleur épique peut consommer ses sorts de plus bas niveaux pour augmenter la puissance des sorts plus élevés.</descr>
-        <type>Archimage</type>
-    </mythiccapacity>
+
     <mythiccapacity>
         <name>Incantation mythique</name>
         <descr>Le personnage peut apprendre un nombre de sorts mythiques égal à son grade et peut dépenser du pouvoir mythique lorsqu’il les lance pour améliorer leurs effets.</descr>
         <type>Universelle</type>
     </mythiccapacity>
-    <mythiccapacity>
-        <name>Conversion d'énergie destructive</name>
-        <descr>Lorsque le personnage lance un sort appartenant au registre de l’acide, du froid, de l’électricité ou du feu, il peut dépenser un pouvoir mythique pour remplacer l’énergie destructive du sort par une autre.</descr>
-        <type>Archimage</type>
-    </mythiccapacity>
 
     <mythiccapacity>
         <name>Pénétration magique</name>
         <descr>Le personnage a un don pour pénétrer les défenses magiques et pour ignorer les résistances à la magie. Lorsqu’il effectue un test de niveau de lanceur de sorts pour dissiper un effet, pour ignorer une résistance à la magie ou pour toutes autres occasions visant à déterminer si sa magie affecte ou non une cible (comme avec les sorts de déblocage ou de neutralisation du poison), il lance deux fois le dé et conserve le meilleur résultat.</descr>
-        <type>Archimage</type>
+        <type>Hiérophante</type>
         <id>mythiccapacity_penetration</id>
     </mythiccapacity>
 
-    <mythiccapacity>
-        <name>Esquive miroir</name>
-        <descr>Lorsqu’il est touché par une attaque au corps à corps ou à distance, le personnage peut dépenser une utilisation de pouvoir mythique par une action immédiate pour se téléporter vers un emplacement libre situé à 9 mètres ou moins de sa position et créer un double illusoire de lui-même sur l’emplacement d’origine. Il ne subit aucun dégât de cette attaque qui détruit à la place son double illusoire (de façon similaire à une image miroir). Il faut une ligne de mire vers l’emplacement sur lequel le personnage souhaite se téléporter pour pouvoir utiliser cette aptitude.</descr>
-        <type>Archimage</type>
-        <id>mythiccapacity_mirror_evade</id>
-    </mythiccapacity>
 
 </records>

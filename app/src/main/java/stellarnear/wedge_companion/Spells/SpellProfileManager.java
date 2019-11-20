@@ -99,8 +99,6 @@ public class SpellProfileManager {
             sliderBuild.setCastEventListener(new SliderBuilder.OnCastEventListener() {
                 @Override
                 public void onEvent() {
-                    ((ImageView) profile.findViewById(R.id.button_change_element)).setVisibility(View.GONE);
-                    ((ImageView) profile.findViewById(R.id.button_conversion)).setVisibility(View.GONE);
                     ((LinearLayout) profile.findViewById(R.id.fourth_panel)).removeAllViews();
                     new ResultBuilder(mA, mC, spell).addResults((LinearLayout) profile.findViewById(R.id.fourth_panel));
                     resultDisplayed = true;
@@ -207,7 +205,7 @@ public class SpellProfileManager {
             metaLin.setGravity(Gravity.CENTER);
             CheckBox check = spell.getCheckboxeForMetaId(mA,mC,meta.getId());
 
-            check.setTextColor(mC.getColor(R.color.dark_gray));
+            check.setTextColor(mC.getColor(R.color.darker_gray));
             ViewGroup parent = (ViewGroup) check.getParent();
             if (parent != null) {
                 parent.removeView(check);
@@ -222,7 +220,7 @@ public class SpellProfileManager {
             metaLin.addView(check);
 
             ImageButton image = new ImageButton(mC);
-            image.setImageDrawable(mC.getDrawable(R.drawable.ic_info_outline_black_24dp));
+            image.setImageDrawable(mC.getDrawable(R.drawable.ic_add_circle_outline_black_24dp));
             LinearLayout.LayoutParams para = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
             image.setLayoutParams(para);
             image.setForegroundGravity(Gravity.CENTER);

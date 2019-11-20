@@ -1,10 +1,16 @@
-package stellarnear.wedge_companion;
+package stellarnear.wedge_companion.Activities;
 
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
 
+import stellarnear.wedge_companion.Perso.PersoManager;
+import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.SettingsFraments.SettingsFragment;
 
 /**
@@ -26,15 +32,27 @@ public class SettingsActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        if ( PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean("switch_fullscreen_mode", getApplicationContext().getResources().getBoolean(R.bool.switch_fullscreen_mode_DEF))) {
+            requestWindowFeature(Window.FEATURE_NO_TITLE);
+            this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        }
+        int themeId=getResources().getIdentifier("AppTheme"+PersoManager.getCurrentPJ().getID(), "style", getPackageName());
+        setTheme(themeId);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setContentView(R.layout.activity_settings);
 
         settingsFragment = new SettingsFragment();
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         // Display the fragment as the main content.
         getFragmentManager().beginTransaction()
-                .replace(android.R.id.content, settingsFragment)
+                .replace(R.id.pref_content, settingsFragment)
                 .commit();
+
+
     }
 
     //

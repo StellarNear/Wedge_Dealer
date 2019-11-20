@@ -3,6 +3,14 @@
     <!-- feat_magic -->
 
 
+    <!-- feat_atk -->
+
+    <feat>
+        <name>Science du critique (mythique)</name>
+        <type>feat_atk</type>
+        <descr>Le multiplicateur de critique que le personnage applique lorsqu’il manipule l’arme choisie augmente de 1.</descr>
+        <id>mythicfeat_crit_science</id>
+    </feat>
 
 
 
@@ -11,12 +19,7 @@
 
 
     <!-- feat_otherS -->
-    <feat>
-        <name>Parangon mythique</name>
-        <type>feat_other</type>
-        <descr>Le pouvoir mythique du personnage est encore plus puissant que celui de la plupart des autres entités mythiques.</descr>
-        <id>mythicfeat_parangon</id>
-    </feat>
+
 
 
 

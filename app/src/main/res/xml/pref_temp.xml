@@ -2,26 +2,65 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <stellarnear.wedge_companion.EditTextPreference
-        android:defaultValue="@integer/att_buff_def"
-        android:key="att_buff"
-        android:title="@string/att_buff"
+        android:defaultValue="0"
+        android:key="bonus_atk_temp"
+        android:title="Bonus au jet d'attaque"
         android:selectAllOnFocus="true"
-        android:singleLine="true"
         android:inputType="number"
-        android:summary="Valeur : %s"/>
-    <stellarnear.wedge_companion.EditTextPreference
-        android:defaultValue="@integer/dmg_buff_def"
-        android:key="dmg_buff"
-        android:title="@string/dmg_buff"
-        android:inputType="number"
-        android:selectAllOnFocus="true"
         android:singleLine="true"
         android:summary="Valeur : %s"/>
 
+    <stellarnear.wedge_companion.EditTextPreference
+        android:defaultValue="0"
+        android:key="bonus_dmg_temp"
+        android:title="Bonus au jet de dégats"
+        android:selectAllOnFocus="true"
+        android:inputType="number"
+        android:singleLine="true"
+        android:summary="Valeur : %s"/>
+
+    <stellarnear.wedge_companion.EditTextPreference
+        android:defaultValue="0"
+        android:key="bonus_temp_ca"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary="Valeurs : %s"
+        android:inputType="number"
+        android:title="Bonus à la CA"
+        />
+
+    <stellarnear.wedge_companion.EditTextPreference
+        android:defaultValue="0"
+        android:key="bonus_temp_save"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary="Valeurs : %s"
+        android:inputType="number"
+        android:title="Bonus aux jets de sauvegardes"
+        />
+
+    <stellarnear.wedge_companion.EditTextPreference
+        android:defaultValue="0"
+        android:key="bonus_temp_rm"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary="Valeurs : %s"
+        android:inputType="number"
+        android:title="Bonus à la résisitance magique"
+        />
+
+    <stellarnear.wedge_companion.EditTextPreference
+        android:defaultValue="0"
+        android:key="NLS_bonus"
+        android:title="Bonus au NLS"
+        android:selectAllOnFocus="true"
+        android:inputType="number"
+        android:singleLine="true"
+        android:summary="Valeur : %s"/>
+    
     <PreferenceScreen
         android:key="reset_temp"
         android:summary="Réinitialise à zéro les valeurs temporaires"
         android:icon="@drawable/ic_undo_black_24dp"
         android:title="Reset des bonus" />
-
 </PreferenceScreen>

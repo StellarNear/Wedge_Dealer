@@ -226,7 +226,7 @@ public class HealthDialog {
     private void setHealthWidth() {
         TextView textLife = dialogView.findViewById(R.id.healthDialogHealth);
         TextView textLifeTitle = dialogView.findViewById(R.id.healthDialogHealthTitle);
-        //Double percent = 100.0*wedge.getResourceValue("resource_hp")/wedge.getAllResources().getResource("resource_hp").getMax();
+        //Double percent = 100.0*pj.getResourceValue("resource_hp")/pj.getAllResources().getResource("resource_hp").getMax();
         String txt;
         String txtTitle;
         int shield = pj.getAllResources().getResource("resource_hp").getShield();

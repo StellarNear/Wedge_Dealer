@@ -41,7 +41,7 @@ public class MainActivityFragment extends Fragment {
 
         ImageButton fabCombat = (ImageButton) returnFragView.findViewById(R.id.button_frag_to_combat);
         setButtonActivity(fabCombat,new MainActivityFragmentCombat(),R.animator.infrombotfrag,R.animator.outfadefrag,"frag_combat");
-        Animation top = AnimationUtils.loadAnimation(getContext(),R.anim.infromtopcombat);
+        Animation top = AnimationUtils.loadAnimation(getContext(),R.anim.infromtop);
         fabCombat.startAnimation(top);
 
         ImageButton fabSkill = (ImageButton) returnFragView.findViewById(R.id.button_frag_to_skill);

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- HALDA -->
+    <integer name="ability_lvl_defhalda">27</integer>
+    <integer name="current_xp_defhalda">29874952</integer>
+    <integer name="add_current_xp_defhalda">0</integer>
+
+    <integer name="money_plat_defhalda">142</integer>
+    <integer name="money_gold_defhalda">252724</integer>
+    <integer name="money_silver_defhalda">0</integer>
+    <integer name="money_copper_defhalda">81</integer>
+
+    <integer name="multi_value_defhalda">3</integer>
+    <integer name="viser_val_defhalda">5</integer>
+    <integer name="magic_val_defhalda">7</integer>
+
+    <integer name="attack_att_epic_defhalda">2</integer>
+    <integer name="attack_dmg_epic_defhalda">0</integer>
+    <integer name="prouesse_defhalda">0</integer>
+    <integer name="prouesse_attrib_defhalda">4</integer>
+    <integer name="attack_range_defhalda">100</integer>
+
+    <!--  Stat de base du perso  -->
+    <integer name="ability_force_defhalda">23</integer>
+    <integer name="ability_dexterite_defhalda">27</integer>
+    <integer name="ability_constitution_defhalda">18</integer>
+    <integer name="ability_intelligence_defhalda">14</integer>
+    <integer name="ability_sagesse_defhalda">24</integer>
+    <integer name="ability_charisme_defhalda">15</integer>
+    <integer name="ability_ms_defhalda">33</integer>
+    <integer name="ability_reduc_defhalda">12</integer>
+    <integer name="ability_reduc_elem_defhalda">0</integer>
+    <integer name="ability_ca_stuff_defhalda">5</integer>
+
+    <!-- Resources  -->
+    <integer name="resource_hp_base_defhalda">194</integer>
+    <integer name="resource_hp_shield_defhalda">0</integer>
+    <integer name="resource_regen_defhalda">0</integer>
+    <integer name="resource_heroic_defhalda">2</integer>
+    <integer name="resource_legendary_points_defhalda">4</integer>
+
+    <integer name="highest_tier_spell_defhalda">7</integer>
+
+    <integer name="mythic_tier_defhalda">2</integer>
+    <integer name="legendary_points_defhalda">4</integer>
+    <integer name="mythic_dice_defhalda">6</integer>
+    <integer name="legendary_dice_defhalda">8</integer>
+
+    <integer name="ability_vig_defhalda">12</integer>
+    <integer name="ability_ref_defhalda">12</integer>
+    <integer name="ability_vol_defhalda">12</integer>
+
+    <integer name="ability_rm_defhalda">30</integer>
+    <integer name="epic_save_defhalda">2</integer>
+
+    <integer name="wedge_max_lvl_spell_defhalda">7</integer>
+
+    <!--  Rank de maitrise des compétences  -->
+    <integer name="skill_magic_art_rankDEFhalda">26</integer>
+    <integer name="skill_acrob_rankDEFhalda">0</integer>
+    <integer name="skill_craft_rankDEFhalda">12</integer>
+    <integer name="skill_bluff_rankDEFhalda">16</integer>
+    <integer name="skill_myst_rankDEFhalda">26</integer>
+    <integer name="skill_religion_rankDEFhalda">0</integer>
+    <integer name="skill_stealth_rankDEFhalda">0</integer>
+    <integer name="skill_diplomacy_rankDEFhalda">2</integer>
+    <integer name="skill_ride_rankDEFhalda">0</integer>
+    <integer name="skill_climb_rankDEFhalda">0</integer>
+    <integer name="skill_estimate_rankDEFhalda">8</integer>
+    <integer name="skill_escape_rankDEFhalda">0</integer>
+    <integer name="skill_intimidate_rankDEFhalda">16</integer>
+    <integer name="skill_swim_rankDEFhalda">0</integer>
+    <integer name="skill_percept_rankDEFhalda">0</integer>
+    <integer name="skill_heal_rankDEFhalda">0</integer>
+    <integer name="skill_psycho_rankDEFhalda">15</integer>
+    <integer name="skill_survival_rankDEFhalda">0</integer>
+    <integer name="skill_magic_item_rankDEFhalda">5</integer>
+    <integer name="skill_fly_rankDEFhalda">1</integer>
+
+    <!--  Bonus des compétences  -->
+    <integer name="skill_magic_art_bonusDEFhalda">3</integer>
+    <integer name="skill_acrob_bonusDEFhalda">0</integer>
+    <integer name="skill_craft_bonusDEFhalda">3</integer>
+    <integer name="skill_bluff_bonusDEFhalda">3</integer>
+    <integer name="skill_myst_bonusDEFhalda">3</integer>
+    <integer name="skill_religion_bonusDEFhalda">0</integer>
+    <integer name="skill_stealth_bonusDEFhalda">0</integer>
+    <integer name="skill_diplomacy_bonusDEFhalda">0</integer>
+    <integer name="skill_ride_bonusDEFhalda">0</integer>
+    <integer name="skill_climb_bonusDEFhalda">0</integer>
+    <integer name="skill_estimate_bonusDEFhalda">3</integer>
+    <integer name="skill_escape_bonusDEFhalda">0</integer>
+    <integer name="skill_intimidate_bonusDEFhalda">3</integer>
+    <integer name="skill_swim_bonusDEFhalda">0</integer>
+    <integer name="skill_percept_bonusDEFhalda">2</integer>
+    <integer name="skill_heal_bonusDEFhalda">0</integer>
+    <integer name="skill_psycho_bonusDEFhalda">0</integer>
+    <integer name="skill_survival_bonusDEFhalda">0</integer>
+    <integer name="skill_magic_item_bonusDEFhalda">3</integer>
+    <integer name="skill_fly_bonusDEFhalda">3</integer>
+
+</resources>

@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- start style -->
     <color name="colorPrimary">#13823E</color>
     <color name="colorPrimaryDark">#003A17</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorBackground">#DDF9EC</color>
+
+    <color name="colorPrimaryhalda">#F1DDA0</color>
+    <color name="colorPrimaryDarkhalda">#5d4926</color>
+    <color name="colorBackgroundhalda">#fdfbed</color>
+
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+
+    <color name="colorAccent">#FF4081</color>
+    <color name="darker_gray">@android:color/darker_gray</color>
+    <color name="gray">#808080</color>
+    <!-- end style -->
 
     <color name="end_gradient_button_ok">@color/colorPrimaryDark</color>
     <color name="start_gradient_button_ok">@color/colorPrimary</color>
@@ -13,8 +24,8 @@
     <color name="end_gradient_button_cancel">#bd3e1e</color>
 
     <color name="start_gradient_skill_main">#FFFFFF</color>
-    <color name="end_gradient_main">@android:color/darker_gray</color>
-    <color name="colorBackground">#f9f9f9</color>
+
+
     <color name="validation">#0FBD40</color>
     <color name="cancel">#FF0000</color>
     <color name="information">#81BEF7</color>
@@ -48,8 +59,8 @@
     <color name="recent_frost">#001a66</color>
     <color name="start_back_color">#000000</color>
 
-    <color name="start_gradient_button_basic">@android:color/darker_gray</color>
-    <color name="end_gradient_button_basic">@color/white</color>
+    <color name="start_gradient_button_basic">#80555555</color>
+    <color name="end_gradient_button_basic">#80FFFFFF</color>
     <color name="gray50">#808080</color>
 
     <color name="aucun">#F2F2F2</color>
@@ -64,6 +75,7 @@
     <color name="acide_dark">#3cdd54</color>
     <color name="lightgray">#dddddd</color>
 
+    <attr name="start_gradient_title_bar_main_skill" format="reference" />
     <color name="start_gradient_title_bar_main_skill">#000967</color>
     <color name="end_gradient_title_bar_main_skill">#b164f5</color>
     <color name="title_skill_color_text">@color/colorBackground</color>
@@ -71,8 +83,7 @@
 
     <color name="start_gradient_background_spell">#d9d9d9</color>
     <color name="end_gradient_background_spell">#ffffff</color>
-    <color name="dark_gray">#404040</color>
-    <color name="gray">#808080</color>
+
 
     <!-- health -->
     <color name="colorTextButtonHealthDialog">#000000</color>
@@ -85,7 +96,7 @@
     <color name="start_gradient_health_bar_abovehalf">#ffff00</color>
     <color name="end_gradient_health_bar_abovehalf">#b3b300</color>
 
-    <color name="secondaryTextCustomDialog">@color/dark_gray</color>
+    <color name="secondaryTextCustomDialog">@color/darker_gray</color>
 
     <color name="start_gradient_skill">#ffffff</color>
     <color name="end_gradient_skill">#e6e6e6</color>

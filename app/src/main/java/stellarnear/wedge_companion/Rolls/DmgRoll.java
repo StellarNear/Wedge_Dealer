@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Rolls.Dices.Dice;
 import stellarnear.wedge_companion.Tools;
@@ -15,6 +16,7 @@ public class DmgRoll {
     private SharedPreferences settings;
     private Boolean critConfirmed;
     private Integer critMultiplier;
+    private boolean manualDiceDmg;
 
     private int bonusDmg = 0;
     private int nthAtkRoll=0;
@@ -31,7 +33,8 @@ public class DmgRoll {
         this.nthDmgRoll=nthDmgRoll;
 
         this.settings = PreferenceManager.getDefaultSharedPreferences(mC);
-        if (settings.getBoolean("crit_science_myth_switch", mC.getResources().getBoolean(R.bool.crit_science_myth_switch_def))) {
+        this.manualDiceDmg = settings.getBoolean("switch_manual_diceroll_damage", mC.getResources().getBoolean(R.bool.switch_manual_diceroll_def));
+        if (PersoManager.getCurrentPJ().getAllMythicCapacities().mythiccapacityIsActive("mythicfeat_crit_science")) {
             critMultiplier = 4;
         } else {
             critMultiplier = 3;
@@ -96,7 +99,7 @@ public class DmgRoll {
 
     public void setDmgRand() {
         for (Dice dice : allDiceList.getList()) {
-            dice.rand();
+            dice.rand(manualDiceDmg);
         }
     }
 
@@ -132,7 +135,7 @@ public class DmgRoll {
         }
 
         calcBonusDmg += tools.toInt(settings.getString("epic_dmg_val", String.valueOf(mC.getResources().getInteger(R.integer.attack_dmg_epic_DEF))));
-        calcBonusDmg += tools.toInt(settings.getString("dmg_buff", String.valueOf(mC.getResources().getInteger(R.integer.dmg_buff_def))));
+        calcBonusDmg += tools.toInt(settings.getString("bonus_dmg_temp", String.valueOf(0)));
         return calcBonusDmg;
     }
 

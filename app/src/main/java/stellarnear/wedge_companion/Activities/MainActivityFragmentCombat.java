@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import stellarnear.wedge_companion.DisplayRolls;
 import stellarnear.wedge_companion.Perso.Perso;
+import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.PostData;
 import stellarnear.wedge_companion.PostDataElement;
 import stellarnear.wedge_companion.R;
@@ -33,10 +34,9 @@ import stellarnear.wedge_companion.TextFilling.SetupCheckboxes;
 import stellarnear.wedge_companion.Tools;
 
 public class MainActivityFragmentCombat extends Fragment {
-    private Context mC;
     private View mainPage;
     private Drawable ori_background;
-    public static Perso wedge;
+    public Perso pj= PersoManager.getCurrentPJ();
 
     private FloatingActionButton fabAtk;
     private FloatingActionButton fabDmg;
@@ -71,7 +71,7 @@ public class MainActivityFragmentCombat extends Fragment {
             container.removeAllViews();
         }
 
-        mainPage = inflater.inflate(R.layout.fragment_attack, container, false);
+        mainPage = inflater.inflate(R.layout.fragment_main_attack, container, false);
         
         /*
        ImageButton buttonMain = (ImageButton) returnFragView.mainPage.findViewById(R.id.button_frag_combat_to_main);
@@ -124,14 +124,14 @@ public class MainActivityFragmentCombat extends Fragment {
         barrageShot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(wedge.getAllResources().getResource("mythic_points").getCurrent()>=1) {
+                if(pj.getAllResources().getResource("mythic_points").getCurrent()>=1) {
                     mode = "barrage_shot";
                     hideButtons(2);
-                    wedge.getAllResources().getResource("mythic_points").spend(1);
-                    new PostData(mC,new PostDataElement("Lancement de tir de barrage mythique","-1pt mythique"));
-                    tools.customToast(mC,"Il te reste "+wedge.getResourceValue("resource_mythic_points")+" points mythiques","center");
+                    pj.getAllResources().getResource("mythic_points").spend(1);
+                    new PostData(getContext(),new PostDataElement("Lancement de tir de barrage mythique","-1pt mythique"));
+                    tools.customToast(getContext(),"Il te reste "+ pj.getResourceValue("resource_mythic_points")+" points mythiques","center");
                     startPreRand();
-                } else { tools.customToast(mC,"Tu n'as pas assez de points mythiques","center"); }
+                } else { tools.customToast(getContext(),"Tu n'as pas assez de points mythiques","center"); }
             }
         });
 
@@ -142,8 +142,8 @@ public class MainActivityFragmentCombat extends Fragment {
         fabDmgDet = (FloatingActionButton) mainPage.findViewById(R.id.fab_damage_detail);
         setListenerFabDmgDet();
 
-        ((TextView) mainPage.findViewById(R.id.leg_pts_txt)).setText(String.valueOf(wedge.getResourceValue("resource_legendary_points")));
-        ((TextView) mainPage.findViewById(R.id.mythic_pts_txt)).setText(String.valueOf(wedge.getResourceValue("resource_mythic_points")));
+        ((TextView) mainPage.findViewById(R.id.leg_pts_txt)).setText(String.valueOf(pj.getResourceValue("resource_legendary_points")));
+        ((TextView) mainPage.findViewById(R.id.mythic_pts_txt)).setText(String.valueOf(pj.getResourceValue("resource_mythic_points")));
     }
 
     private void setListenerFabAtk() {
@@ -206,7 +206,7 @@ public class MainActivityFragmentCombat extends Fragment {
     private void startPreRand() {
         clearStep(0);
         this.rollList = new RollFactory(getActivity(),getContext(),mode).getRollList();
-        preRandValues = new PreRandValues(mC, mainPage, rollList);
+        preRandValues = new PreRandValues(getContext(), mainPage, rollList);
         if (damages != null) {
             damages.hideViews();
         }
@@ -249,8 +249,8 @@ public class MainActivityFragmentCombat extends Fragment {
         if (setupCheckboxes != null) {
             setupCheckboxes.hideViews();
         }
-        postRandValues = new PostRandValues(mC, mainPage, rollList);
-        setupCheckboxes = new SetupCheckboxes(mC, mainPage, rollList);
+        postRandValues = new PostRandValues(getContext(), mainPage, rollList);
+        setupCheckboxes = new SetupCheckboxes(getContext(), mainPage, rollList);
     }
 
     private void showDivider() {
@@ -293,12 +293,12 @@ public class MainActivityFragmentCombat extends Fragment {
         clearStep(2);
         damages = new Damages(getActivity(),getContext(), mainPage, selectedRolls);  //calcul et affiche les degats
         if (selectedRolls.getDmgDiceList().getList().size() > 0) {
-            rangesAndProba = new RangesAndProba(mC, mainPage, selectedRolls);
+            rangesAndProba = new RangesAndProba(getContext(), mainPage, selectedRolls);
             fabDmgDet.setVisibility(View.VISIBLE);
             fabDmgDet.setEnabled(true);
         }
         postRandValues.refreshPostRandValues();
-        new PostData(mC,new PostDataElement(selectedRolls,"dmg"));
+        new PostData(getContext(),new PostDataElement(selectedRolls,"dmg"));
     }
 
     private void checkSelectedRolls() {
@@ -315,7 +315,7 @@ public class MainActivityFragmentCombat extends Fragment {
         fabDmgDet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(displayRolls==null){displayRolls = new DisplayRolls(getActivity(), mC, selectedRolls);}
+                if(displayRolls==null){displayRolls = new DisplayRolls(getActivity(), getContext(), selectedRolls);}
                 displayRolls.showPopup();
             }
         });
