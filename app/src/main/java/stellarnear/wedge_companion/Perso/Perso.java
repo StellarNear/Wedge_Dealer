@@ -262,8 +262,13 @@ public class Perso {
     }
 
     public boolean featIsActive(String featId) {
-        Feat feat = allFeats.getFeat(featId);
-        boolean active = feat.isActive();
+        boolean active = false;
+        try {
+            Feat feat = allFeats.getFeat(featId);
+            active = feat.isActive();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return active;
     }
 

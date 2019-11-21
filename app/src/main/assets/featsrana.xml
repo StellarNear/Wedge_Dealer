@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<records>
+    <!-- feat_magic -->
+
+
+    <!-- DEF -->
+
+
+
+    <!-- feat_otherS -->
+    <feat>
+        <name>Prestige</name>
+        <type>feat_other</type>
+        <descr>Le personnage attire des suivants et un compagnon d’armes qui se joignent à sa cause et l’accompagnent au cours de ses aventures.</descr>
+    </feat>
+
+
+
+</records>

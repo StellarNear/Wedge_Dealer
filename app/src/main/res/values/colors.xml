@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- start style -->
-    <color name="colorPrimary">#13823E</color>
-    <color name="colorPrimaryDark">#003A17</color>
-    <color name="colorBackground">#DDF9EC</color>
+    <color name="colorPrimary">#7d9a59</color>
+    <color name="colorPrimaryDark">#25340c</color>
+    <color name="colorBackground">#f7fdef</color>
 
     <color name="colorPrimaryhalda">#F1DDA0</color>
     <color name="colorPrimaryDarkhalda">#5d4926</color>
     <color name="colorBackgroundhalda">#fdfbed</color>
+
+    <color name="colorPrimarysylphe">#c2a44a</color>
+    <color name="colorPrimaryDarksylphe">#3b2b09</color>
+    <color name="colorBackgroundsylphe">#f7f8e3</color>
+
+    <color name="colorPrimaryrana">#6360f5</color>
+    <color name="colorPrimaryDarkrana">#3a1438</color>
+    <color name="colorBackgroundrana">#dde1f7</color>
 
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
@@ -24,7 +32,6 @@
     <color name="end_gradient_button_cancel">#bd3e1e</color>
 
     <color name="start_gradient_skill_main">#FFFFFF</color>
-
 
     <color name="validation">#0FBD40</color>
     <color name="cancel">#FF0000</color>

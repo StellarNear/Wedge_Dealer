@@ -100,7 +100,7 @@ public class AllMythicFeats {
         try {
             val= getMythicFeat(id).isActive();
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         return val;
     }

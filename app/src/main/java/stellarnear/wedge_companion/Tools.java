@@ -85,6 +85,7 @@ public class Tools {
             Bitmap bitmapResized = Bitmap.createScaledBitmap(b, pixelSizeIcon, pixelSizeIcon, false);
             draw =new BitmapDrawable(mC.getResources(), bitmapResized);
         } catch (Exception e) {
+            draw=mC.getDrawable(R.drawable.mire_test);
             Bitmap b = ((BitmapDrawable) draw).getBitmap();
             Bitmap bitmapResized = Bitmap.createScaledBitmap(b, pixelSizeIcon, pixelSizeIcon, false);
             draw =new BitmapDrawable(mC.getResources(), bitmapResized);

@@ -1,26 +1,26 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
-        android:key="Dons magie"
-        android:title="Dons magie">
+        android:key="Magie"
+        android:title="Magie">
         <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
     </PreferenceCategory>
     <PreferenceCategory
-        android:key="Dons attaque"
-        android:title="Dons attaque">
+        android:key="Attaque"
+        android:title="Attaque">
         <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
     </PreferenceCategory>
     <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
     <PreferenceCategory
-        android:key="Dons défensif"
-        android:title="Dons défensif">
+        android:key="Défense"
+        android:title="Défense">
         <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
 
     </PreferenceCategory>
     <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
     <PreferenceCategory
-        android:key="Dons autre"
-        android:title="Dons autre">
+        android:key="Autre"
+        android:title="Autre">
         <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
     </PreferenceCategory>
 

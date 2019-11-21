@@ -10,8 +10,8 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
         <item name="colorBackground">@color/colorBackground</item>
+        <item name="colorAccent">@color/colorAccent</item>
         <item name="darker_gray">@color/darker_gray</item>
         <item name="gray">@color/gray</item>
         <item name="white">@color/white</item>
@@ -24,8 +24,28 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimaryhalda</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDarkhalda</item>
-        <item name="colorAccent">@color/colorAccent</item>
         <item name="colorBackground">@color/colorBackgroundhalda</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppThemesylphe" parent="AppTheme">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimarysylphe</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarksylphe</item>
+        <item name="colorBackground">@color/colorBackgroundsylphe</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppThemerana" parent="AppTheme">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimaryrana</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkrana</item>
+        <item name="colorBackground">@color/colorBackgroundrana</item>
+        <item name="colorAccent">@color/colorAccent</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
@@ -45,6 +65,7 @@
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
+
 
 
 </resources>

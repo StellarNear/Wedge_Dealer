@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<records>
+
+    <!-- DEF -->
+    <feat>
+        <name>Réflexes surhumains</name>
+        <type>feat_def</type>
+        <descr>Le personnage bénéficie d’un bonus de +2 aux jets de Réflexes.</descr>
+        <id>feat_inhuman_reflexes</id>
+    </feat>
+
+
+
+
+</records>

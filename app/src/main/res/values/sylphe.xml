@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- sylphe -->
+    <integer name="ability_lvl_defsylphe">27</integer>
+    <integer name="current_xp_defsylphe">29874952</integer>
+    <integer name="add_current_xp_defsylphe">0</integer>
+
+    <integer name="money_plat_defsylphe">142</integer>
+    <integer name="money_gold_defsylphe">252724</integer>
+    <integer name="money_silver_defsylphe">0</integer>
+    <integer name="money_copper_defsylphe">81</integer>
+
+    <integer name="multi_value_defsylphe">3</integer>
+    <integer name="viser_val_defsylphe">5</integer>
+    <integer name="magic_val_defsylphe">7</integer>
+
+    <integer name="attack_att_epic_defsylphe">2</integer>
+    <integer name="attack_dmg_epic_defsylphe">0</integer>
+    <integer name="prouesse_defsylphe">0</integer>
+    <integer name="prouesse_attrib_defsylphe">4</integer>
+    <integer name="attack_range_defsylphe">100</integer>
+
+    <!--  Stat de base du perso  -->
+    <integer name="ability_force_defsylphe">23</integer>
+    <integer name="ability_dexterite_defsylphe">27</integer>
+    <integer name="ability_constitution_defsylphe">18</integer>
+    <integer name="ability_intelligence_defsylphe">14</integer>
+    <integer name="ability_sagesse_defsylphe">24</integer>
+    <integer name="ability_charisme_defsylphe">15</integer>
+    <integer name="ability_ms_defsylphe">33</integer>
+    <integer name="ability_reduc_defsylphe">12</integer>
+    <integer name="ability_reduc_elem_defsylphe">0</integer>
+    <integer name="ability_ca_stuff_defsylphe">5</integer>
+
+    <!-- Resources  -->
+    <integer name="resource_hp_base_defsylphe">194</integer>
+    <integer name="resource_hp_shield_defsylphe">0</integer>
+    <integer name="resource_regen_defsylphe">0</integer>
+    <integer name="resource_heroic_defsylphe">2</integer>
+    <integer name="resource_legendary_points_defsylphe">4</integer>
+
+    <integer name="highest_tier_spell_defsylphe">7</integer>
+
+    <integer name="mythic_tier_defsylphe">2</integer>
+    <integer name="legendary_points_defsylphe">4</integer>
+    <integer name="mythic_dice_defsylphe">6</integer>
+    <integer name="legendary_dice_defsylphe">8</integer>
+
+    <integer name="ability_vig_defsylphe">12</integer>
+    <integer name="ability_ref_defsylphe">12</integer>
+    <integer name="ability_vol_defsylphe">12</integer>
+
+    <integer name="ability_rm_defsylphe">30</integer>
+    <integer name="epic_save_defsylphe">2</integer>
+
+    <integer name="wedge_max_lvl_spell_defsylphe">7</integer>
+
+    <!--  Rank de maitrise des compétences  -->
+    <integer name="skill_magic_art_rankDEFsylphe">26</integer>
+    <integer name="skill_acrob_rankDEFsylphe">0</integer>
+    <integer name="skill_craft_rankDEFsylphe">12</integer>
+    <integer name="skill_bluff_rankDEFsylphe">16</integer>
+    <integer name="skill_myst_rankDEFsylphe">26</integer>
+    <integer name="skill_religion_rankDEFsylphe">0</integer>
+    <integer name="skill_stealth_rankDEFsylphe">0</integer>
+    <integer name="skill_diplomacy_rankDEFsylphe">2</integer>
+    <integer name="skill_ride_rankDEFsylphe">0</integer>
+    <integer name="skill_climb_rankDEFsylphe">0</integer>
+    <integer name="skill_estimate_rankDEFsylphe">8</integer>
+    <integer name="skill_escape_rankDEFsylphe">0</integer>
+    <integer name="skill_intimidate_rankDEFsylphe">16</integer>
+    <integer name="skill_swim_rankDEFsylphe">0</integer>
+    <integer name="skill_percept_rankDEFsylphe">0</integer>
+    <integer name="skill_heal_rankDEFsylphe">0</integer>
+    <integer name="skill_psycho_rankDEFsylphe">15</integer>
+    <integer name="skill_survival_rankDEFsylphe">0</integer>
+    <integer name="skill_magic_item_rankDEFsylphe">5</integer>
+    <integer name="skill_fly_rankDEFsylphe">1</integer>
+
+    <!--  Bonus des compétences  -->
+    <integer name="skill_magic_art_bonusDEFsylphe">3</integer>
+    <integer name="skill_acrob_bonusDEFsylphe">0</integer>
+    <integer name="skill_craft_bonusDEFsylphe">3</integer>
+    <integer name="skill_bluff_bonusDEFsylphe">3</integer>
+    <integer name="skill_myst_bonusDEFsylphe">3</integer>
+    <integer name="skill_religion_bonusDEFsylphe">0</integer>
+    <integer name="skill_stealth_bonusDEFsylphe">0</integer>
+    <integer name="skill_diplomacy_bonusDEFsylphe">0</integer>
+    <integer name="skill_ride_bonusDEFsylphe">0</integer>
+    <integer name="skill_climb_bonusDEFsylphe">0</integer>
+    <integer name="skill_estimate_bonusDEFsylphe">3</integer>
+    <integer name="skill_escape_bonusDEFsylphe">0</integer>
+    <integer name="skill_intimidate_bonusDEFsylphe">3</integer>
+    <integer name="skill_swim_bonusDEFsylphe">0</integer>
+    <integer name="skill_percept_bonusDEFsylphe">2</integer>
+    <integer name="skill_heal_bonusDEFsylphe">0</integer>
+    <integer name="skill_psycho_bonusDEFsylphe">0</integer>
+    <integer name="skill_survival_bonusDEFsylphe">0</integer>
+    <integer name="skill_magic_item_bonusDEFsylphe">3</integer>
+    <integer name="skill_fly_bonusDEFsylphe">3</integer>
+
+</resources>

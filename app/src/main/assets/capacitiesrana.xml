@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<records>
+
+    <capacity>
+        <name>Sens aiguisés</name>
+        <type>Trait</type>
+        <descr>+2 aux tests de Perception.</descr>
+    </capacity>
+
+</records>

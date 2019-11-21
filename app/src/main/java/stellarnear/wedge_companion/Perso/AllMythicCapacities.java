@@ -100,7 +100,7 @@ public class AllMythicCapacities {
         try {
             val= getMythiccapacity(id).isActive();
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         return val;
     }

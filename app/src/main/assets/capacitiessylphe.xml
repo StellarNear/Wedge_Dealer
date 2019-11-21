@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<records>
+
+    <capacity>
+        <name>Vision nocturne</name>
+        <type>Trait</type>
+        <descr>Voit deux fois plus loin que les humains en condition de faible éclairage.</descr>
+    </capacity>
+
+</records>

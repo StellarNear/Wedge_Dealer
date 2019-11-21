@@ -20,6 +20,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import stellarnear.wedge_companion.Activities.MainActivity;
+import stellarnear.wedge_companion.Activities.PetActivity;
 import stellarnear.wedge_companion.HealthDialog;
 import stellarnear.wedge_companion.Perso.Ability;
 import stellarnear.wedge_companion.Perso.Perso;
@@ -55,7 +57,11 @@ public class QuadrantFiller {
         viewSwitcher=mainView.findViewById(R.id.viewSwitcherQuadrant);
         LayoutInflater inflater = (LayoutInflater) mC.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        fullView =(View) inflater.inflate(R.layout.quadrant_full, null);
+        if(PersoManager.isMainPJ()){
+            fullView =(View) inflater.inflate(R.layout.quadrant_full, null);
+        } else {
+            fullView =(View) inflater.inflate(R.layout.quadrant_full_pet, null);
+        }
         viewSwitcher.addView(fullView);
         quadrantFullSub1 = fullView.findViewById(R.id.quadrant_full_sub1);
         quadrantFullSub2 = fullView.findViewById(R.id.quadrant_full_sub2);
@@ -311,7 +317,13 @@ public class QuadrantFiller {
 
     public boolean isFullscreen() { return fullscreen;  }
 
-    private void lockOrient() {    mA.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);  }
+    private void lockOrient() {
+        if(mA instanceof MainActivity) {
+            mA.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        } else if (mA instanceof PetActivity) {
+            mA.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        }
+    }
 
     private void unlockOrient() {     mA.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR);
     }

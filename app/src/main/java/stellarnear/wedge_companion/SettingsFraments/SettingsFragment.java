@@ -144,10 +144,7 @@ public class SettingsFragment extends PreferenceFragment {
 
     private void navigate() {
         if (currentPageKey.equalsIgnoreCase("pref")) {
-            getPreferenceScreen().removeAll();
-            addPreferencesFromResource(R.xml.pref);
-            ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(currentPageTitle);
-            findPreference("pref_stats").setSummary("Record actuel : "+settings.getString("highscore"+pj.getID(),"0"));
+            displayMainPage();
         } else if (currentPageKey.contains("pref_")) {
             loadPage();
             switch (currentPageKey) {
@@ -214,10 +211,28 @@ public class SettingsFragment extends PreferenceFragment {
         }
     }
 
-    private void loadPage() {
+    private void displayMainPage() {
         getPreferenceScreen().removeAll();
-        int xmlID = getResources().getIdentifier(currentPageKey, "xml", getContext().getPackageName());
-        addPreferencesFromResource(xmlID);
+        addPreferencesFromResource(R.xml.pref);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(currentPageTitle);
+        findPreference("pref_stats").setSummary("Record actuel : "+settings.getString("highscore"+pj.getID(),"0"));
+    }
+
+    private void loadPage() {
+        try {
+            getPreferenceScreen().removeAll();
+            if(currentPageKey.contains("_appli")) {
+                int xmlID = getResources().getIdentifier(currentPageKey, "xml", getContext().getPackageName());
+                addPreferencesFromResource(xmlID);
+            } else {
+                String extXML = pj.getID().equalsIgnoreCase("") ? "" : "_"+pj.getID();
+                int xmlID = getResources().getIdentifier(currentPageKey+extXML, "xml", getContext().getPackageName());
+                addPreferencesFromResource(xmlID);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            displayMainPage();
+        }
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(currentPageTitle);
     }
 

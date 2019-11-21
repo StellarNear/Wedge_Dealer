@@ -43,5 +43,7 @@
     <dimen name="icon_skills_list_height">40dp</dimen>
     <dimen name="icon_dice">60dp</dimen>
 
+    <dimen name="pet_main_frag_stats_heigh_quadrant">200dp</dimen>
+
 
 </resources>

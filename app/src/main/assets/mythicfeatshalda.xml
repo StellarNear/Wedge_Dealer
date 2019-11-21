@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<records>
+    <!-- feat_magic -->
+
+
+    <!-- feat_atk -->
+
+    <feat>
+        <name>Science du critique (mythique)</name>
+        <type>feat_atk</type>
+        <descr>Le multiplicateur de critique que le personnage applique lorsqu’il manipule l’arme choisie augmente de 1.</descr>
+        <id>mythicfeat_crit_science</id>
+    </feat>
+
+
+
+    <!-- DEF -->
+
+
+
+    <!-- feat_otherS -->
+
+
+
+
+</records>

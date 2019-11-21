@@ -124,7 +124,7 @@ public class Bag {
     private String readXMLBag() {
         String rawBagXML = "";
         try {
-            InputStream is = mC.getAssets().open("equipment.xml");
+            InputStream is = mC.getAssets().open("equipment"+pjID+".xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(is);

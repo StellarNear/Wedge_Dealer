@@ -32,9 +32,7 @@ import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Tools;
 
-public class MainActivity extends AppCompatActivity {
-    private boolean loading = false;
-    private boolean touched = false;
+public class PetActivity extends AppCompatActivity {
     private FrameLayout mainFrameFrag;
     private SharedPreferences settings;
 
@@ -46,72 +44,15 @@ public class MainActivity extends AppCompatActivity {
             this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
         super.onCreate(savedInstanceState);
-        PersoManager.setMainPJ();
-        if (PersoManager.getCurrentPJ() == null) {
-            Window window = getWindow();
-            window.setStatusBarColor(getColor(R.color.start_back_color));
-            lockOrient();
+        PersoManager.setPetPJ();
 
-            Thread persoCreation = new Thread(new Runnable() {
-                public void run() {
-                    MainActivity.this.runOnUiThread(new Runnable()
-                    {
-                        public void run() {
-                            PersoManager.initPJs(getApplicationContext());
-                            loading = true;
-                        }
-                    });
-                }});
-
-            persoCreation.start();
-
-            final ImageView image = new ImageView(getApplicationContext());
-            image.setBackgroundColor(getColor(R.color.start_back_color));
-            setContentView(image);
-
-            Thread loadListner = new Thread(new Runnable() {
-                public void run() {
-                    setLoadCompleteListner(image);
-                }
-            });
-            loadListner.start();
-
-        }
-    }
-
-    private void setLoadCompleteListner(final ImageView image) {
-        Timer timerRefreshLoading = new Timer();
-        timerRefreshLoading.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                if (loading) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-
-                            image.setImageDrawable(getDrawable(R.drawable.background));
-                            image.setOnTouchListener(new View.OnTouchListener() {
-                                @Override
-                                public boolean onTouch(View arg0, MotionEvent arg1) {
-                                    if(!touched) {
-                                        unlockOrient();
-                                        touched = true;
-                                        buildMainPage();
-                                    }
-                                    return true;//always return true to consume event
-                                }
-                            });
-                        }
-                    });
-                }
-            }
-        }, 333, 333);
+        buildMainPage();
     }
 
     private void buildMainPage() {
         int themeId=getResources().getIdentifier("AppTheme"+PersoManager.getCurrentPJ().getID(), "style", getPackageName());
         setTheme(themeId);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_pet);
         mainFrameFrag = findViewById(R.id.fragment_main_frame_layout);
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
@@ -126,8 +67,8 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         getSupportActionBar().show();
-        new Tools().customToast(getApplicationContext(),"Personnage selectionné : "+PersoManager.getCurrentNamePJ(),"center");
-        toolbar.setTitle(PersoManager.getCurrentNamePJ()+" companion");
+        new Tools().customToast(getApplicationContext(),"Companion animal selectionné : "+PersoManager.getCurrentNamePJ(),"center");
+        toolbar.setTitle("Companion animal : "+PersoManager.getCurrentNamePJ());
         int drawableId=getResources().getIdentifier("background_banner"+PersoManager.getCurrentPJ().getID(), "drawable", getPackageName());
         toolbar.setBackground(getDrawable(drawableId));
         Window window = getWindow();
@@ -149,16 +90,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        checkOrientStart(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        if (PersoManager.getCurrentPJ() != null ) {
-            PersoManager.setMainPJ();
+        checkOrientStart(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        if (PersoManager.getCurrentPJ() != null) {
+            PersoManager.setPetPJ();
             PersoManager.getCurrentPJ().refresh();
             buildMainPage();
         }
     }
 
     private void startFragment() {
-        Fragment fragment = new MainActivityFragment();
+        Fragment fragment = new MainPetActivityFragment();
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(mainFrameFrag.getId(), fragment,"frag_main");
@@ -195,25 +136,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-
         final Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
 
-        switch (display.getRotation()) {
-            case Surface.ROTATION_0:
-                //on y est déja
-                break;
+        if (display.getRotation()==Surface.ROTATION_0) {
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(intent);
+            finish();
+        }
 
-            case Surface.ROTATION_90:
-                Intent intent_pet = new Intent(MainActivity.this, PetActivity.class);
-                startActivity(intent_pet);
-                finish();
-                break;
-
-            case Surface.ROTATION_270:
-                //Intent intent_help = new Intent(MainActivity.this, HelpActivity.class);
-                //startActivity(intent_help);
-                finish();
-                break;
+        if (display.getRotation()==Surface.ROTATION_180) {
+            /*Intent intent = new Intent(this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(intent);
+            finish();
+            */
         }
     }
 

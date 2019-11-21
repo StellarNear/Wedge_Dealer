@@ -7,13 +7,13 @@ import java.util.Map;
 
 public class PersoManager {
 
-    private static Map<String,Perso> currentMapPJ = null;
+    private static Map<String,Perso> currentMapPJ = new HashMap<>();
     private static String currentPJ = "";
 
     public static Perso getCurrentPJ() {
         Perso current=null;
         try {
-            current=currentMapPJ.get(currentPJ);
+                current = currentMapPJ.get(currentPJ);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -21,11 +21,11 @@ public class PersoManager {
     }
 
     public static void initPJs(Context applicationContext) {
-        currentMapPJ = new HashMap<>();
         currentMapPJ.put("Wedge",new Perso(applicationContext,""));
         currentMapPJ.put("Halda",new Perso(applicationContext,"halda"));
+        currentMapPJ.put("Sylphe",new Perso(applicationContext,"sylphe"));
+        currentMapPJ.put("Rana",new Perso(applicationContext,"rana"));
         currentPJ="Wedge";
-
     }
 
     public static String getCurrentNamePJ() {
@@ -33,18 +33,36 @@ public class PersoManager {
     }
 
     public static void swap() {
-        if(currentPJ.equalsIgnoreCase("wedge")){
+        if(currentPJ.equalsIgnoreCase("Wedge")){
             currentPJ="Halda";
-        } else if(currentPJ.equalsIgnoreCase("halda")) {
+        } else if(currentPJ.equalsIgnoreCase("Halda")) {
+            currentPJ="Wedge";
+        } else if(currentPJ.equalsIgnoreCase("Sylphe")) {
+            currentPJ="Rana";
+        } else if(currentPJ.equalsIgnoreCase("Rana")) {
+            currentPJ="Sylphe";
+        } else {
             currentPJ="Wedge";
         }
     }
 
-    public void getPJ(String name){
-        if(name.equalsIgnoreCase("Wedge")||name.equalsIgnoreCase("Halda")){
-            currentPJ=name;
-        } else {
+    public static void setMainPJ() {
+        if(currentPJ.equalsIgnoreCase("Sylphe")){
             currentPJ="Wedge";
+        } else if(currentPJ.equalsIgnoreCase("Rana")) {
+            currentPJ="Halda";
         }
+    }
+
+    public static void setPetPJ() {
+        if(currentPJ.equalsIgnoreCase("Wedge")){
+            currentPJ="Sylphe";
+        } else if(currentPJ.equalsIgnoreCase("Halda")) {
+            currentPJ="Rana";
+        }
+    }
+
+    public static boolean isMainPJ() {
+        return currentPJ.equalsIgnoreCase("wedge")||currentPJ.equalsIgnoreCase("halda");
     }
 }
