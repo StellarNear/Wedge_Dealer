@@ -44,9 +44,6 @@ public class MainActivityFragmentSkill extends Fragment {
             container.removeAllViews();
         }
 
-        int themeId=getResources().getIdentifier("AppTheme"+PersoManager.getCurrentPJ().getID(), "style", getContext().getPackageName());
-        getActivity().setTheme(themeId);
-
         returnFragView = inflater.inflate(R.layout.fragment_main_skill, container, false);
 
         linearSkillScroll = returnFragView.findViewById(R.id.skillscrollLayout);

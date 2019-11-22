@@ -24,7 +24,7 @@ public class PersoManager {
         currentMapPJ.put("Wedge",new Perso(applicationContext,""));
         currentMapPJ.put("Halda",new Perso(applicationContext,"halda"));
         currentMapPJ.put("Sylphe",new Perso(applicationContext,"sylphe"));
-        currentMapPJ.put("Rana",new Perso(applicationContext,"rana"));
+        currentMapPJ.put("Ràna",new Perso(applicationContext,"rana"));
         currentPJ="Wedge";
     }
 
@@ -38,8 +38,8 @@ public class PersoManager {
         } else if(currentPJ.equalsIgnoreCase("Halda")) {
             currentPJ="Wedge";
         } else if(currentPJ.equalsIgnoreCase("Sylphe")) {
-            currentPJ="Rana";
-        } else if(currentPJ.equalsIgnoreCase("Rana")) {
+            currentPJ="Ràna";
+        } else if(currentPJ.equalsIgnoreCase("Ràna")) {
             currentPJ="Sylphe";
         } else {
             currentPJ="Wedge";
@@ -58,7 +58,7 @@ public class PersoManager {
         if(currentPJ.equalsIgnoreCase("Wedge")){
             currentPJ="Sylphe";
         } else if(currentPJ.equalsIgnoreCase("Halda")) {
-            currentPJ="Rana";
+            currentPJ="Ràna";
         }
     }
 

@@ -6,6 +6,7 @@ import java.util.Locale;
 
 import stellarnear.wedge_companion.Elems.Elem;
 import stellarnear.wedge_companion.Elems.ElemsManager;
+import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.Rolls.Dices.Dice;
 import stellarnear.wedge_companion.Rolls.Roll;
 import stellarnear.wedge_companion.Rolls.RollList;
@@ -13,7 +14,7 @@ import stellarnear.wedge_companion.Spells.Spell;
 
 
 public class PostDataElement {
-    private String targetSheet="Wedge";
+    private String targetSheet= PersoManager.getCurrentNamePJ();
     private String date="-";
     private String detail ="-";
     private String typeEvent="-";

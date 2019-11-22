@@ -65,13 +65,12 @@ public class MainActivity extends AppCompatActivity {
 
             persoCreation.start();
 
-            final ImageView image = new ImageView(getApplicationContext());
-            image.setBackgroundColor(getColor(R.color.start_back_color));
-            setContentView(image);
+            final View unloadedBack =(View) getLayoutInflater().inflate(R.layout.loading_back, null);
+            setContentView(unloadedBack);
 
             Thread loadListner = new Thread(new Runnable() {
                 public void run() {
-                    setLoadCompleteListner(image);
+                    setLoadCompleteListner(unloadedBack);
                 }
             });
             loadListner.start();
@@ -79,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void setLoadCompleteListner(final ImageView image) {
+    private void setLoadCompleteListner(final View back) {
         Timer timerRefreshLoading = new Timer();
         timerRefreshLoading.scheduleAtFixedRate(new TimerTask() {
             @Override
@@ -88,9 +87,10 @@ public class MainActivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-
-                            image.setImageDrawable(getDrawable(R.drawable.background));
-                            image.setOnTouchListener(new View.OnTouchListener() {
+                            back.findViewById(R.id.main_back).setBackground(getDrawable(R.drawable.loaded_back));
+                            ((ImageView)back.findViewById(R.id.main_back_img)).setImageDrawable(getDrawable(R.drawable.wedge_loaded));
+                            ((ImageView)back.findViewById(R.id.main_back_img)).setBackground(getDrawable(R.drawable.loaded_back_img));
+                            back.setOnTouchListener(new View.OnTouchListener() {
                                 @Override
                                 public boolean onTouch(View arg0, MotionEvent arg1) {
                                     if(!touched) {
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                     });
                 }
             }
-        }, 333, 333);
+        }, 1000, 500);
     }
 
     private void buildMainPage() {

@@ -2,10 +2,8 @@ package stellarnear.wedge_companion.Spells;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.preference.PreferenceManager;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -20,9 +18,6 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
-
-import java.util.Arrays;
-import java.util.List;
 
 import stellarnear.wedge_companion.ContactAlertDialog;
 import stellarnear.wedge_companion.CustomAlertDialog;

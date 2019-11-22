@@ -13,7 +13,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import stellarnear.wedge_companion.Activities.MainActivity;
 import stellarnear.wedge_companion.CustomAlertDialog;
 import stellarnear.wedge_companion.Perso.Equipment;
 import stellarnear.wedge_companion.Perso.Inventory;

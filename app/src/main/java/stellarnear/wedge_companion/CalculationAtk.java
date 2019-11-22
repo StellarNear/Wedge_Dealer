@@ -9,9 +9,6 @@ import java.util.List;
 
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
-import stellarnear.wedge_companion.Spells.Metamagic;
-import stellarnear.wedge_companion.Spells.Spell;
-import stellarnear.wedge_companion.Spells.SpellList;
 
 public class CalculationAtk {
     private Perso pj = PersoManager.getCurrentPJ();

@@ -1,7 +1,6 @@
 package stellarnear.wedge_companion.Activities;
 
 import android.app.Fragment;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;

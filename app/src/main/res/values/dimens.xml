@@ -45,5 +45,7 @@
 
     <dimen name="pet_main_frag_stats_heigh_quadrant">200dp</dimen>
 
+    <dimen name="splash_icon_margin">200dp</dimen>
+
 
 </resources>
