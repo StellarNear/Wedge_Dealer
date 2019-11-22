@@ -3,6 +3,7 @@
     <!-- base ability -->
     <ability>
         <name>Force</name>
+        <shortname>For</shortname>
         <type>base</type>
         <descr>La Force représente la puissance musculaire et physique. Cette caractéristique est importante pour les combattants au corps à corps comme les guerriers, les moines, les paladins et certains rôdeurs. La Force indique également le poids maximal que votre personnage peut porter. Un personnage avec une valeur de Force de 0 est trop faible pour se mouvoir ; il est inconscient. Certaines créatures ne possèdent pas de valeur de Force et n’appliquent aucun modificateur aux compétences et aux jets basés sur la Force.</descr>
         <id>ability_force</id>
@@ -11,6 +12,7 @@
     </ability>
     <ability>
         <name>Dextérité</name>
+        <shortname>Dex</shortname>
         <type>base</type>
         <descr>La Dextérité représente l’agilité, les réflexes et l’équilibre. Cette caractéristique est surtout importante pour les roublards mais elle est également utile pour les personnages qui ne portent que des armures légères ou intermédiaires ou aucune armure du tout. C’est une caractéristique vitale pour les personnages qui désirent exceller au combat avec des armes à distance comme les arcs et les frondes. Un personnage avec une valeur de Dextérité de 0 est incapable de se mouvoir ; il est immobile (mais pas inconscient).</descr>
         <id>ability_dexterite</id>
@@ -19,6 +21,7 @@
     </ability>
     <ability>
         <name>Constitution</name>
+        <shortname>Con</shortname>
         <type>base</type>
         <descr>La Constitution représente la santé et l’endurance de votre personnage. Le bonus lié à la Constitution augmente les points de vie du personnage, ce qui rend cette caractéristique importante pour toutes les classes. Certaines créatures, comme les morts-vivants et les créatures artificielles, ne possèdent pas de valeur de Constitution. Leur modificateur pour tous les jets basés sur la Constitution est de +0. Un personnage avec une valeur de Constitution de 0 est mort.</descr>
         <id>ability_constitution</id>
@@ -27,6 +30,7 @@
     </ability>
     <ability>
         <name>Intelligence</name>
+        <shortname>Int</shortname>
         <type>base</type>
         <descr>L’Intelligence détermine la capacité d’apprentissage et de raisonnement de votre personnage. Cette caractéristique est importante pour les magiciens car elle influence leur aptitude à lancer des sorts de nombreuses manières. Un personnage avec une valeur d’Intelligence de 0 est comateux. Certaines créatures ne possèdent pas de valeur d’Intelligence ; leur modificateur pour les compétences et les jets basés sur l’Intelligence est de +0.</descr>
         <id>ability_intelligence</id>
@@ -35,6 +39,7 @@
     </ability>
     <ability>
         <name>Sagesse</name>
+        <shortname>Sag</shortname>
         <type>base</type>
         <descr>La Sagesse mesure la volonté, le bon sens, la capacité de percevoir et l’intuition du personnage. C’est une caractéristique essentielle pour les prêtres et les druides et importante pour les paladins, les rôdeurs et les inquisiteurs. Placez une valeur élevée en Sagesse si vous voulez que votre personnage possède des sens aiguisés. Toutes les créatures possèdent une valeur de Sagesse. Un personnage avec une valeur de Sagesse de 0 est incapable de penser de manière rationnelle ; il est inconscient.</descr>
         <id>ability_sagesse</id>
@@ -43,6 +48,7 @@
     </ability>
     <ability>
         <name>Charisme</name>
+        <shortname>Cha</shortname>
         <type>base</type>
         <descr>Le Charisme représente la personnalité, le magnétisme personnel, la capacité à diriger et l’apparence du personnage. C’est une caractéristique essentielle pour les paladins, les ensorceleurs et les bardes, et importante pour les prêtres (car elle conditionne leur capacité à canaliser de l’énergie). Toutes les créatures possèdent une valeur de Charisme. Un personnage avec une valeur de Charisme de 0 est incapable de prendre la décision de faire quoi que ce soit ; il est inconscient.</descr>
         <id>ability_charisme</id>
@@ -54,6 +60,7 @@
 
     <ability>
         <name>Reflexe</name>
+        <shortname>Ref</shortname>
         <type>def</type>
         <descr>Ce type de jet de sauvegarde représente la faculté du personnage à esquiver les attaques de zone et les situations inattendues. On y applique le modificateur de Dextérité.</descr>
         <id>ability_ref</id>
@@ -61,6 +68,7 @@
     </ability>
     <ability>
         <name>Vigueur</name>
+        <shortname>Vig.</shortname>
         <type>def</type>
         <descr>Ce type de jet de sauvegarde reflète la capacité du personnage à résister aux attaques mettant sa vitalité ou sa santé en danger, ainsi qu’à résister à la douleur. On y applique le modificateur de Constitution.</descr>
         <id>ability_vig</id>
@@ -68,6 +76,7 @@
     </ability>
     <ability>
         <name>Volonté</name>
+        <shortname>Vol</shortname>
         <type>def</type>
         <descr>Ce type de jet de sauvegarde représente la faculté du personnage à se soustraire aux tentatives de domination et à d’autres effets magiques similaires. On y ajoute le modificateur de Sagesse.</descr>
         <id>ability_vol</id>
@@ -76,27 +85,28 @@
 
     <ability>
         <name>Classe d'armure</name>
+        <shortname>CA</shortname>
         <type>def</type>
         <descr>La classe d’armure (CA) représente la difficulté que les adversaires ont à toucher le personnage. Elle indique également la valeur que l’ennemi doit atteindre pour porter un coup infligeant des dégâts.</descr>
         <id>ability_ca</id>
     </ability>
     <ability>
         <name>Résistance magie</name>
-        <shortname>Rési. mag.</shortname>
+        <shortname>Rés mag</shortname>
         <type>def</type>
         <descr>La résistance à la magie (ou RM) est un pouvoir permettant de ne pas être affecté par la magie. La résistance à la magie ne fait effet que contre les sorts et les pouvoirs magiques, pas contre les pouvoirs extraordinaires ou surnaturels. Une créature peut de son plein gré réduire sa résistance à la magie par une action simple ne provoquant pas d’attaque d’opportunité. Dans ce cas, la résistance à la magie garde la valeur choisie jusqu’au prochain tour de jeu de la créature.</descr>
         <id>ability_rm</id>
     </ability>
     <ability>
         <name>Résistance aux énergies</name>
-        <shortname>Réduc. mag</shortname>
+        <shortname>Réd mag</shortname>
         <type>def</type>
         <descr>Cette résistance offre une protection limitée contre les formes d’énergie suivante : acide, électricité, feu, froid ou son. Le sujet bénéficie d’une résistance ces types d’énergie, ce qui signifie que chaque fois qu’il subit des dégâts (que leur source soit d’origine naturelle ou magique), ils sont réduits.</descr>
         <id>ability_reduc_elem</id>
     </ability>
     <ability>
         <name>Réduction de dégats</name>
-        <shortname>Réduc. phy</shortname>
+        <shortname>Réd phy</shortname>
         <type>def</type>
         <descr>Certaines créatures possèdent un pouvoir surnaturel leur permettant d’ignorer les coups ou grâce auquel les blessures infligées par la plupart des armes se referment instantanément. Quand la réduction des dégâts annule en totalité les dégâts infligés par une attaque, les éventuels effets secondaires de l’attaque disparaissent aussi (poison, étourdissement si le coup a été porté par un moine, maladie, etc.).</descr>
         <id>ability_reduc</id>
@@ -112,7 +122,7 @@
     </ability>
     <ability>
         <name>Vitesse de déplacement (m)</name>
-        <shortname>Déplacement</shortname>
+        <shortname>MS</shortname>
         <type>advanced</type>
         <descr>La vitesse de déplacement indique la distance qu’un personnage peut parcourir en un round tout en réalisant malgré tout une action, comme porter une attaque ou en lancer un sort. Elle dépend de la race et de l’armure du personnage.</descr>
         <id>ability_ms</id>
@@ -120,6 +130,7 @@
 
     <ability>
         <name>Initiative</name>
+        <shortname>Init</shortname>
         <type>advanced</type>
         <descr>Au début du combat, chaque participant effectue un test d’initiative. Les personnages et leurs adversaires agissent dans l’ordre des résultats (celui qui obtient le test d’initiative le plus élevé commence, et ainsi de suite jusqu’au plus petit). Le résultat du test d’initiative initial s’applique à tout le combat.</descr>
         <id>ability_init</id>
@@ -143,6 +154,7 @@
 
     <ability>
         <name>Inventaire</name>
+        <shortname>Invent</shortname>
         <type>advanced</type>
         <descr>Ensemble des objets portés par le personnage.</descr>
         <id>ability_equipment</id>

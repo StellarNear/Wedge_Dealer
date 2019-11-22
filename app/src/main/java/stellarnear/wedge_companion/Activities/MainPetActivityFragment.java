@@ -37,7 +37,7 @@ public class MainPetActivityFragment extends Fragment {
             container.removeAllViews();
         }
 
-        returnFragView= inflater.inflate(R.layout.fragment_pet_main, container, false);
+        returnFragView= inflater.inflate(R.layout.fragment_main, container, false);
 
         ImageButton fabCombat = (ImageButton) returnFragView.findViewById(R.id.button_frag_to_combat);
         setButtonActivity(fabCombat,new MainActivityFragmentCombat(),R.animator.infrombotfrag,R.animator.outfadefrag,"frag_combat");
@@ -123,7 +123,7 @@ public class MainPetActivityFragment extends Fragment {
 
 
     private void lockOrient() {
-        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
     }
 
 }

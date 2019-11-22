@@ -33,7 +33,7 @@
     <dimen name="textSizeQuadrantFull">19sp</dimen>
     <dimen name="iconSizeQuadrantFull">42dp</dimen>
     <dimen name="full_quadrant_icons_margin">15dp</dimen>
-    <dimen name="mini_quadrant_icons_margin">3dp</dimen>
+    <dimen name="mini_quadrant_icons_margin">5dp</dimen>
 
     <dimen name="margin_healthDialog_text">30dp</dimen>
     <dimen name="size_button_healthDialog">100dp</dimen>
