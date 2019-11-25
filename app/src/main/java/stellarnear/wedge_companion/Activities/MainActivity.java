@@ -184,7 +184,9 @@ public class MainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             unlockOrient();
-            startActivity(new Intent(this, SettingsActivity.class));
+            Intent intent = new Intent(this, SettingsActivity.class);
+            intent.putExtra("fromActivity","MainActivity");
+            startActivity(intent);
             finish();
             return true;
         }

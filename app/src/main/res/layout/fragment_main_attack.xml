@@ -67,7 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_icon_main_actions075"
             android:orientation="horizontal"
-            android:background="@drawable/bar_gradient_main_skill"
+            android:background="@drawable/bar_gradient_main_subfragments"
             android:gravity="center">
             <TextView
                 android:layout_width="wrap_content"

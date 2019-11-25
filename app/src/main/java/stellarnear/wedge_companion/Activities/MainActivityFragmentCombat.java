@@ -84,12 +84,7 @@ public class MainActivityFragmentCombat extends Fragment {
             @Override
             public void onClick(View view) {
                 unlockOrient();
-                Fragment fragment;
-                if(getActivity() instanceof MainActivity) {
-                    fragment = new MainActivityFragment();
-                }else{
-                    fragment = new PetActivityFragment();
-                }
+                Fragment fragment = new MainActivityFragment();
                 FragmentManager fragmentManager = getActivity().getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.setCustomAnimations(R.animator.infadefrag,R.animator.outtobotfrag);

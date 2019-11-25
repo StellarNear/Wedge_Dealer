@@ -4,7 +4,7 @@
     <string name="app_name">Wedge Companion</string>
     <string name="action_settings">Paramètres</string>
     <string name="title_activity_settings">Paramètres</string>
-    <string name="title_det_dmg">Détail des dégâts</string>
+
     <string name="pref_header_general">Caractéristiques générales</string>
 
     <string name="jet_att">Valeur d\'attaque de base</string>
@@ -36,48 +36,13 @@
         <item>4</item>
     </string-array>
 
-    <!-- dons combats  -->
-    <string name="pref_header_combat">Aptitudes de combat</string>
-    <string name="predil">Arme de prédilection</string>
-    <string name="predil_summ">+1 à tous ses jets d\'attaque avec l\'arme choisie.</string>
-    <string name="predil_sup">Arme de prédilection sup.</string>
-    <string name="predil_sup_summ">+1 à tous ses jets d\'attaque avec l\'arme choisie.</string>
-    <string name="weapon_spe">Spécialisation martiale</string>
-    <string name="weapon_spe_summ">Le personnage obtient un bonus de +2 sur les jets de dégâts de l’arme choisie.</string>
-    <string name="weapon_spe_sup">Spécialisation martiale supérieure</string>
-    <string name="weapon_spe_sup_summ">Le personnage obtient un bonus de +2 sur les jets de dégâts de l’arme choisie.</string>
-    <string name="improved_crit_summ">La zone de critique de l’arme choisie est doublée.</string>
-    <string name="improved_crit">Science du critique</string>
-    <string name="neuf_m">Tir à bout portant</string>
-    <string name="neuf_m_summ">Quand une cible est à moins de 9m \n +1 au jet d\'attaque et de dégât.</string>
-    <string name="tir_rapide">Tir rapide</string>
-    <string name="tir_rapide_summ">Une attaque à distance supplémentaire.\n-2 aux jets d\'attaques du round.</string>
-    <string name="viser">Viser</string>
-    <string name="viser_summ">-x aux jets d\'attaques / +2x aux dégâts</string>
-    <string name="viser_val">Valeur du malus</string>
-
-    <!-- Feat autre soon  -->
-    <string name="hammer_gap_summ">Chaque coup successif augemente les dégats</string>
-    <string name="hammer_gap">Marteler la faille</string>
-
-    <!--Epic  -->
-    <string name="predil_epic">Arme de prédilection épique</string>
-    <string name="predil_epic_summ">+2 à tous ses jets d\'attaque avec l\'arme choisie.</string>
-    <string name="feu_nourri">Feu nourri suprême</string>
-    <string name="feu_nourri_summ">x flêches par attaque (une seule crit).</string>
-    <string name="multi_value">Nombre de flêches par attaque</string>
-
-    <string name="weapon_spe_epic_summ">Le personnage obtient un bonus de +4 sur les jets de dégâts de l’arme choisie.</string>
-    <string name="weapon_spe_epic">Spécialisation martiale épique</string>
-
-
     <!-- ENCHANTS -->
     <string name="pref_header_enchant">Enchantements</string>
 
 
-    <string name="magic">Flêche magique</string>
-    <string name="magic_summ">Chaque flêche tirée par l\'archer sylvestre a un bonus d\'altération magique.</string>
-    <string name="magic_val">Valeur de l\'altération</string>
+    <string name="magic_arrow">Flêche magique</string>
+    <string name="magic_arrow_summ">Chaque flêche tirée par l\'archer sylvestre a un bonus d\'altération magique.</string>
+    <string name="magic_arrow_val_title">Valeur de l\'altération</string>
     <string name="feu">Feu intense</string>
     <string name="feu_summ">+2d6 dégâts de feu. +2d10 en critique</string>
     <string name="foudre">Foudre intense</string>
@@ -147,6 +112,5 @@
 
     <string name="skill_mastery">Rang de maîtrise</string>
     <string name="skill_bonus">Bonus divers</string>
-
 
 </resources>

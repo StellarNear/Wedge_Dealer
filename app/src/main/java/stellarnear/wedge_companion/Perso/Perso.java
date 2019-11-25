@@ -190,7 +190,7 @@ public class Perso {
             }
 
             if (abiId.equalsIgnoreCase("ability_init")) {
-                if(getAllMythicCapacities().mythiccapacityIsActive("mythiccapacity_init")) {
+                if(getAllMythicCapacities().mythicCapacityIsActive("mythiccapacity_init")) {
                     int currentTier = tools.toInt(settings.getString("mythic_tier", String.valueOf(mC.getResources().getInteger(R.integer.mythic_tier_def))));
                     if(getAllMythicFeats().mythicFeatsIsActive("mythicfeat_parangon")){
                         currentTier+=2;
@@ -290,11 +290,15 @@ public class Perso {
         this.allAbilities.reset();
         this.allResources.reset();
         this.allSkills.reset();
-        this.stats.reset();
-        this.hallOfFame.reset();
-        this.inventory.reset();
         resetTemp();
         refresh();
         allResources.resetCurrent();
+    }
+
+    public void hardReset(){
+        this.stats.reset();
+        this.hallOfFame.reset();
+        this.inventory.reset();
+        reset();
     }
 }

@@ -17,31 +17,31 @@ import stellarnear.wedge_companion.Rolls.Dices.Dice;
 import stellarnear.wedge_companion.Tools;
 
 public class AtkRoll {
-    private Dice atkDice;
+    protected Dice atkDice;
 
-    private Integer preRandValue = 0;
-    private Integer atk = 0;
-    private Integer base = 0;
+    protected Integer preRandValue = 0;
+    protected Integer atk = 0;
+    protected Integer base = 0;
 
-    private String mode; //le type d'attauqe fullround,barrrage,simple
+    protected String mode; //le type d'attauqe fullround,barrrage,simple
 
-    private Boolean miss = false;
-    private Boolean hitConfirmed = false;
-    private Boolean crit = false;
-    private Boolean critConfirmed = false;
-    private Boolean fail = false;
-    private Boolean invalid = false;
-    private Boolean manualDice;
-    private Context mC;
+    protected Boolean miss = false;
+    protected Boolean hitConfirmed = false;
+    protected Boolean crit = false;
+    protected Boolean critConfirmed = false;
+    protected Boolean fail = false;
+    protected Boolean invalid = false;
+    protected Boolean manualDice;
+    protected Context mC;
 
-    private SharedPreferences settings;
+    protected SharedPreferences settings;
 
-    private CheckBox hitCheckbox;
-    private CheckBox critCheckbox;
-    private Perso pj = PersoManager.getCurrentPJ();
+    protected CheckBox hitCheckbox;
+    protected CheckBox critCheckbox;
+    protected Perso pj = PersoManager.getCurrentPJ();
 
-    private OnRefreshEventListener mListener;
-    private Tools tools=new Tools();
+    protected OnRefreshEventListener mListener;
+    protected Tools tools=new Tools();
 
     public AtkRoll(Activity mA,Context mC, Integer base) {
         this.mC = mC;
@@ -89,40 +89,6 @@ public class AtkRoll {
         });
     }
 
-    private int getBonusRangeAtk() {
-       int bonusAtkRange=0;
-        if (settings.getBoolean("thor_switch", mC.getResources().getBoolean(R.bool.thor_switch_def))) {
-            bonusAtkRange+= 3;
-        }
-        if (settings.getBoolean("predil_switch", mC.getResources().getBoolean(R.bool.predil_switch_def))) {
-            bonusAtkRange+= 1;
-        }
-        if (settings.getBoolean("predil_sup_switch", mC.getResources().getBoolean(R.bool.predil_sup_switch_def))) {
-            bonusAtkRange+= 1;
-        }
-        if (settings.getBoolean("predil_epic_switch", mC.getResources().getBoolean(R.bool.predil_epic_switch_def))) {
-            bonusAtkRange+= 2;
-        }
-        if (settings.getBoolean("neuf_m_switch", mC.getResources().getBoolean(R.bool.neuf_m_switch_def))) {
-            bonusAtkRange+= 1;
-        }
-        if (settings.getBoolean("magic_switch", mC.getResources().getBoolean(R.bool.magic_switch_def))) {
-            bonusAtkRange+= tools.toInt(settings.getString("magic_val", String.valueOf(mC.getResources().getInteger(R.integer.magic_val_def))));
-        }
-        if (this.mode.equalsIgnoreCase("fullround") && settings.getBoolean("tir_rapide", mC.getResources().getBoolean(R.bool.tir_rapide_switch_def))) {
-            bonusAtkRange-=2;
-        }
-        if (settings.getBoolean("viser", mC.getResources().getBoolean(R.bool.viser_switch_def))) {
-            bonusAtkRange-=tools.toInt(settings.getString("viser_val", String.valueOf(mC.getResources().getInteger(R.integer.viser_val_def))));
-        }
-        bonusAtkRange+= pj.getAbilityMod("ability_dexterite");
-
-        if(this.mode.equalsIgnoreCase("barrage_shot")){
-            bonusAtkRange+=tools.toInt(settings.getString("mythic_tier", String.valueOf(mC.getResources().getInteger(R.integer.mythic_tier_def))));
-        }
-        return bonusAtkRange;
-    }
-
     //setters
     public void setMode(String mode){
         this.mode=mode;
@@ -138,7 +104,7 @@ public class AtkRoll {
     }
 
     public Integer getPreRandValue() {
-        this.preRandValue = this.base + new CalculationAtk(mC).getBonusAtk() + getBonusRangeAtk();
+        this.preRandValue = this.base + new CalculationAtk(mC).getBonusAtk();
         return preRandValue;
     }
 
@@ -160,22 +126,17 @@ public class AtkRoll {
     }
 
     private void setCritAndFail() {
-        if (atkDice.getRandValue() == 1 && !pj.getAllMythicCapacities().mythiccapacityIsActive("mythiccapacity_still_a_chance")) { //si c'est un 1 et qu'on a pas le dons antifail
+        if (atkDice.getRandValue() == 1 ) {
             this.fail = true;
             atkDice.getImg().setOnClickListener(null);
         }
-        int critMin;
-        if (settings.getBoolean("improved_crit_switch", mC.getResources().getBoolean(R.bool.improved_crit_switch_def))) {
-            critMin = 18;
-        } else {
-            critMin = 20;
-        }
-        if (atkDice.getRandValue() >= critMin) { //c'est possiblement un crit
+        int critMin=20;
+        if (atkDice.getRandValue() >= critMin) {
             this.crit = true;
         }
     }
 
-    private void calculAtk() {
+    public void calculAtk() {
         this.atk = this.preRandValue + atkDice.getRandValue();
         if(this.atkDice.getMythicDice()!=null){
             this.atk+=this.atkDice.getMythicDice().getRandValue();

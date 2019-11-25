@@ -31,6 +31,7 @@ import stellarnear.wedge_companion.PetTextFilling.PetSetupCheckboxes;
 import stellarnear.wedge_companion.PostData;
 import stellarnear.wedge_companion.PostDataElement;
 import stellarnear.wedge_companion.R;
+import stellarnear.wedge_companion.Rolls.PetRollFactory;
 import stellarnear.wedge_companion.Rolls.Roll;
 import stellarnear.wedge_companion.Rolls.RollFactory;
 import stellarnear.wedge_companion.Rolls.RollList;
@@ -85,12 +86,7 @@ public class PetActivityFragmentCombat extends Fragment {
             @Override
             public void onClick(View view) {
                 unlockOrient();
-                Fragment fragment;
-                if(getActivity() instanceof MainActivity) {
-                    fragment = new MainActivityFragment();
-                }else{
-                    fragment = new PetActivityFragment();
-                }
+                Fragment fragment = new PetActivityFragment();
                 FragmentManager fragmentManager = getActivity().getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.setCustomAnimations(R.animator.infadefrag,R.animator.outtobotfrag);
@@ -134,39 +130,11 @@ public class PetActivityFragmentCombat extends Fragment {
             @Override
             public boolean onTouch(View arg0, MotionEvent arg1) {
                 mainPage.setBackground(ori_background);
-                hideButtons(0);
                 startPreRand();
                 mainPage.setOnTouchListener(null);
                 return true;//always return true to consume event
             }
         });
-
-        /*
-        simpleAtk = mainPage.findViewById(R.id.button_simple_atk);
-        simpleAtk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mode="simple";
-                hideButtons(1);
-                startPreRand();
-            }
-        });
-        barrageShot = mainPage.findViewById(R.id.button_barrage_shot);
-        barrageShot.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(pj.getAllResources().getResource("mythic_points").getCurrent()>=1) {
-                    mode = "barrage_shot";
-                    hideButtons(2);
-                    pj.getAllResources().getResource("mythic_points").spend(1);
-                    new PostData(getContext(),new PostDataElement("Lancement de tir de barrage mythique","-1pt mythique"));
-                    tools.customToast(getContext(),"Il te reste "+ pj.getResourceValue("resource_mythic_points")+" points mythiques","center");
-                    startPreRand();
-                } else { tools.customToast(getContext(),"Tu n'as pas assez de points mythiques","center"); }
-            }
-        });
-
-         */
 
         fabAtk = (ImageButton) mainPage.findViewById(R.id.fabAtk);
         setListenerFabAtk();
@@ -183,7 +151,6 @@ public class PetActivityFragmentCombat extends Fragment {
             public void onClick(View view) {
                 if(mode.equalsIgnoreCase("")){mode="fullround";}
                 if (firstAtkRoll) {
-                    hideButtons(0);
                     startRandAtk();
                 } else {
                     new AlertDialog.Builder(getContext())
@@ -236,40 +203,16 @@ public class PetActivityFragmentCombat extends Fragment {
 
     private void startPreRand() {
         clearStep(0);
-        this.rollList = new RollFactory(getActivity(),getContext(),mode).getRollList();
+        this.rollList = new PetRollFactory(getActivity(),getContext(),mode).getRollList();
         preRandValues = new PetPreRandValues(getContext(), mainPage, rollList);
         if (damages != null) {
             damages.hideViews();
         }
     }
 
-    private void hideButtons(int buttonClicked) {
-        /*
-        simpleAtk.setOnClickListener(null);
-        barrageShot.setOnClickListener(null);
-
-        switch (buttonClicked){
-            case 0:
-                simpleAtk.animate().translationXBy(-200).setDuration(1000).start();
-                barrageShot.animate().translationXBy(200).setDuration(1000).start();
-                break;
-            case 1:
-                simpleAtk.animate().scaleX(2).scaleY(2).alpha(0).setDuration(1000).start();
-                barrageShot.animate().translationXBy(200).setDuration(1000).start();
-                break;
-            case 2:
-                simpleAtk.animate().translationXBy(-200).setDuration(1000).start();
-                barrageShot.animate().scaleX(2).scaleY(2).alpha(0).setDuration(1000).start();
-                break;
-        }
-
-         */
-    }
-
     private void startRandAtk() {
         firstAtkRoll = false;
         firstDmgRoll = true;
-        showDivider();
         fabAtk.animate().setDuration(1000).translationX(-400).start();       //decale le bouton à gauche pour l'apparition du suivant
         startPreRand();
         if (postRandValues != null) {
@@ -280,10 +223,6 @@ public class PetActivityFragmentCombat extends Fragment {
         }
         postRandValues = new PetPostRandValues(getContext(), mainPage, rollList);
         setupCheckboxes = new PetSetupCheckboxes(getContext(), mainPage, rollList);
-    }
-
-    private void showDivider() {
-        //mainPage.findViewById(R.id.bar_sep).setVisibility(View.VISIBLE);
     }
 
     private void setListenerFabDmg() {

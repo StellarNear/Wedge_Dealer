@@ -1,41 +1,134 @@
 <?xml version="1.0"?>
 <records>
     <!-- feat_magic -->
+
+    <!-- ATK -->
     <feat>
-        <name>Science du contresort</name>
-        <type>feat_magic</type>
-        <descr>Permet de contrer un sort avec un sort de la même école et d’un niveau supérieur.</descr>
+        <name>Tir à bout portant</name>
+        <type>feat_atk</type>
+        <descr>Quand une cible est à moins de 9m, +1 au jet d'attaque et de dégât.</descr>
+        <id>feat_nine_m</id>
+    </feat>
+    <feat>
+        <name>Tir de précision</name>
+        <type>feat_atk</type>
+        <descr>Annule le -4 de malus quand un allié est au corp à corp</descr>
+    </feat>
+    <feat>
+        <name>Science du tir de précision</name>
+        <type>feat_atk</type>
+        <descr>Pas de camouflage ni d'abri contre le sattaques à distance</descr>
+    </feat>
+    <feat>
+        <name>Tir rapide</name>
+        <type>feat_atk</type>
+        <descr>Une attaque à distance supplémentaire.-2 aux jets d'attaques du round.</descr>
+        <id>feat_rapid_fire</id>
+    </feat>
+    <feat>
+        <name>Feu nourri</name>
+        <type>feat_atk</type>
+        <descr>2 flêches sur la premiere attaque.</descr>
+        <id>feat_manyshot</id>
+    </feat>
+    <feat>
+        <name>Tirs groupés</name>
+        <type>feat_atk</type>
+        <descr>L'ensemble des dégats sont infligés en un coup (avant RD)</descr>
+    </feat>
+    <feat>
+        <name>Arme de prédilection</name>
+        <type>feat_atk</type>
+        <descr>+1 à tous ses jets d\'attaque avec l'arme choisie.</descr>
+        <id>feat_predil</id>
+    </feat>
+    <feat>
+        <name>Arme de prédilection sup.</name>
+        <type>feat_atk</type>
+        <descr>+1 à tous ses jets d\'attaque avec l'arme choisie.</descr>
+        <id>feat_predil_sup</id>
+    </feat>
+    <feat>
+        <name>Spécialisation martiale</name>
+        <type>feat_atk</type>
+        <descr>Le personnage obtient un bonus de +2 sur les jets de dégâts de l’arme choisie.</descr>
+        <id>feat_weapon_spe</id>
+    </feat>
+    <feat>
+        <name>Spécialisation martiale supérieure</name>
+        <type>feat_atk</type>
+        <descr>Le personnage obtient un bonus de +2 sur les jets de dégâts de l’arme choisie.</descr>
+        <id>feat_weapon_spe_sup</id>
+    </feat>
+    <feat>
+        <name>Science du critique</name>
+        <type>feat_atk</type>
+        <descr>La zone de critique de l’arme choisie est doublée.</descr>
+        <id>feat_improved_crit</id>
+    </feat>
+    <feat>
+        <name>Viser juste</name>
+        <type>feat_atk</type>
+        <descr>Action simple : attaque unique, la cible n'a plus d'armure ni d'armure naturelle etc.</descr>
+        <id>feat_true_aim</id>
+    </feat>
+    <feat>
+        <name>Viser</name>
+        <type>feat_atk</type>
+        <descr>-x aux jets d'attaques / +2x aux dégâts</descr>
+        <id>feat_aim</id>
+    </feat>
+    <feat>
+        <name>Marteler la faille</name>
+        <type>feat_atk</type>
+        <descr>Chaque coup successif augemente les dégats</descr>
+        <id>feat_hammer_gap</id>
     </feat>
 
+    <!-- Epic -->
+
     <feat>
-        <name>Parade de sorts</name>
-        <type>feat_magic</type>
-        <descr>Renvoyer un sort contré vers le lanceur.</descr>
+        <name>Arme de prédilection épique</name>
+        <type>feat_atk</type>
+        <descr>+2 à tous ses jets d'attaque avec l'arme choisie.</descr>
+        <id>feat_predil_epic</id>
+    </feat>
+    <feat>
+        <name>Feu nourri superieur</name>
+        <type>feat_atk</type>
+        <descr>2 flêches par attaque (une seule crit).</descr>
+        <id>feat_manyshot_sup</id>
+    </feat>
+    <feat>
+        <name>Feu nourri suprême</name>
+        <type>feat_atk</type>
+        <descr>x flêches par attaque (une seule crit).</descr>
+        <id>feat_manyshot_suprem</id>
+    </feat>
+    <feat>
+        <name>Spécialisation martiale épique</name>
+        <type>feat_atk</type>
+        <descr>Le personnage obtient un bonus de +4 sur les jets de dégâts de l’arme choisie.</descr>
+        <id>feat_weapon_spe_epic</id>
     </feat>
 
 
     <!-- DEF -->
-    <feat>
-        <name>Réflexes surhumains</name>
-        <type>feat_def</type>
-        <descr>Le personnage bénéficie d’un bonus de +2 aux jets de Réflexes.</descr>
-        <id>feat_inhuman_reflexes</id>
-    </feat>
 
 
 
     <!-- feat_otherS -->
     <feat>
+        <name>Science de l'initiative</name>
+        <type>feat_other</type>
+        <descr>+4 au test d'initiative</descr>
+        <id>feat_init_sup</id>
+    </feat>
+
+    <feat>
         <name>Prestige</name>
         <type>feat_other</type>
         <descr>Le personnage attire des suivants et un compagnon d’armes qui se joignent à sa cause et l’accompagnent au cours de ses aventures.</descr>
     </feat>
-
-    <feat>
-        <name>Création d'objets merveilleux</name>
-        <type>feat_other</type>
-        <descr>Le personnage sait fabriquer des objets merveilleux, un type d’objets magiques. Le personnage peut fabriquer une grande variété d’objets merveilleux. Le processus de fabrication prend un jour par tranche de 1000 po du prix de base de l’objet. Le personnage doit acheter les matières premières nécessaires à la moitié de leur prix de base (Voir la page sur la création d'objets magiques).</descr>
-    </feat>
-
 
 </records>

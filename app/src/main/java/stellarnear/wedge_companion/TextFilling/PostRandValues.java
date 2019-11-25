@@ -11,10 +11,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import stellarnear.wedge_companion.Perso.Perso;
+import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.PostData;
 import stellarnear.wedge_companion.PostDataElement;
 import stellarnear.wedge_companion.R;
+import stellarnear.wedge_companion.Rolls.AtkRoll;
 import stellarnear.wedge_companion.Rolls.Dices.Dice;
+import stellarnear.wedge_companion.Rolls.RangeAtkRoll;
+import stellarnear.wedge_companion.Rolls.RangedRoll;
 import stellarnear.wedge_companion.Rolls.Roll;
 import stellarnear.wedge_companion.Rolls.RollList;
 
@@ -23,6 +28,7 @@ public class PostRandValues {
     private View mainView;
     private RollList rollList;
     private SharedPreferences settings;
+    private Perso pj= PersoManager.getCurrentPJ();
 
     public PostRandValues(Context mC, View mainView, RollList rollList) {
         this.mC = mC;
@@ -90,8 +96,8 @@ public class PostRandValues {
     }
 
     private void checkForMultipleArrows() {
-        if (settings.getBoolean("feu_nourri_switch", mC.getResources().getBoolean(R.bool.feu_nourri_switch_def))) {
-            String multi_val_str = settings.getString("multi_val", String.valueOf(mC.getResources().getInteger(R.integer.multi_value_def)));
+        if (pj.featIsActive("feat_manyshot_suprem")) {
+            String multi_val_str = settings.getString("feat_manyshot_suprem_val", String.valueOf(mC.getResources().getInteger(R.integer.feat_manyshot_suprem_val_def)));
 
             for (Roll roll : rollList.getList()) {
                 LinearLayout txtBox = new LinearLayout(mC);

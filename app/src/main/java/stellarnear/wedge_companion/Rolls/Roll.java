@@ -10,18 +10,22 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 import java.util.List;
 
+import stellarnear.wedge_companion.Activities.MainActivity;
+import stellarnear.wedge_companion.Perso.Perso;
+import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Rolls.Dices.Dice;
 import stellarnear.wedge_companion.Tools;
 
 public class Roll {
-    private AtkRoll atkRoll;
-    private List<DmgRoll> dmgRollList; //on peut avoir plusieurs fleches de degat par jet d'attaque
-    private Activity mA;
-    private Context mC;
-    private SharedPreferences settings;
-    private Tools tools=new Tools();
-    private int nthAtkRoll;
+    protected AtkRoll atkRoll;
+    protected List<DmgRoll> dmgRollList; //on peut avoir plusieurs fleches de degat par jet d'attaque
+    protected int nthAtkRoll;
+    protected Activity mA;
+    protected Context mC;
+    protected SharedPreferences settings;
+    protected Tools tools=new Tools();
+    protected Perso pj = PersoManager.getCurrentPJ();
 
     public Roll(Activity mA, Context mC, Integer atkBase) {
         this.mA=mA;
@@ -37,16 +41,7 @@ public class Roll {
 
     public void setDmgRand() {
         if (this.dmgRollList.isEmpty() && !isMissed()){
-            int nthDmgRoll=1;
-            this.dmgRollList.add(new DmgRoll(mA,mC,atkRoll.isCritConfirmed(),atkRoll.getAtkDice().getRandValue()==20,this.nthAtkRoll,nthDmgRoll));
-            if (settings.getBoolean("feu_nourri_switch", mC.getResources().getBoolean(R.bool.feu_nourri_switch_def))) {
-                int multiVal = tools.toInt(settings.getString("multi_val", String.valueOf(mC.getResources().getInteger(R.integer.multi_value_def))));
-                for(int i=1;i<multiVal;i++){
-                    nthDmgRoll++;
-                    this.dmgRollList.add(new DmgRoll(mA,mC,false,false,this.nthAtkRoll,nthDmgRoll)); //seul l'attaque principale peut crit
-                }
-            }
-
+            this.dmgRollList.add(new DmgRoll(mA,mC,atkRoll.isCritConfirmed(),atkRoll.getAtkDice().getRandValue()==20));
             for(DmgRoll dmgRoll:this.dmgRollList){
                 dmgRoll.setDmgRand();
             }
@@ -152,6 +147,10 @@ public class Roll {
         return sum;
     }
 
+    public boolean isMissed() {
+        return atkRoll.isMissed();
+    }
+
 
     public void setNthAtkRoll(int nthAtkRoll) {
         this.nthAtkRoll = nthAtkRoll;
@@ -160,10 +159,5 @@ public class Roll {
     public int getNthAtkRoll() {
         return nthAtkRoll;
     }
-
-    public boolean isMissed() {
-        return atkRoll.isMissed();
-    }
-
 
 }

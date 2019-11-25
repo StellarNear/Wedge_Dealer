@@ -54,7 +54,7 @@ public class PrefResetScreenFragment extends Preference {
         new AlertDialog.Builder(mC)
                 .setIcon(R.drawable.ic_warning_black_24dp)
                 .setTitle("Remise à zéro des paramètres")
-                .setMessage("Es-tu sûre de vouloir réinitialiser ?")
+                .setMessage("Es-tu sûre de vouloir tout réinitialiser ?")
                 .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -80,8 +80,8 @@ public class PrefResetScreenFragment extends Preference {
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.clear();
                 editor.commit();
-                pj.reset();
-                tools.customToast(mC, "Remise à zero des paramètres de l'application", "center");
+                pj.hardReset();
+                tools.customToast(mC, "Remise à zero de tout les paramètres de l'application", "center");
                 Intent intent = new Intent(mC, MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 mC.startActivity(intent);

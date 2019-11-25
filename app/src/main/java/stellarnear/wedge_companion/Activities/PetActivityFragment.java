@@ -72,15 +72,12 @@ public class PetActivityFragment extends Fragment {
         Animation fadeIn = AnimationUtils.loadAnimation(mC,R.anim.infade);
         View tooltip1 = returnFragView.findViewById(R.id.textCombatActionTooltip);
         View tooltip2 = returnFragView.findViewById(R.id.textSkillActionTooltip);
-        View tooltip3 = returnFragView.findViewById(R.id.textSkillActionTooltip);
 
         tooltip1.setVisibility(View.VISIBLE);
         tooltip2.setVisibility(View.VISIBLE);
-        tooltip3.setVisibility(View.VISIBLE);
 
         tooltip1.startAnimation(fadeIn);
         tooltip2.startAnimation(fadeIn);
-        tooltip3.startAnimation(fadeIn);
     }
 
     private void popInQuadrant(Context mC,Activity mA) {

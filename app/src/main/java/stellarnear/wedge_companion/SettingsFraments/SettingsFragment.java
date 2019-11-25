@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import stellarnear.wedge_companion.Activities.MainActivity;
+import stellarnear.wedge_companion.Activities.PetActivity;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.PostData;
@@ -106,7 +107,13 @@ public class SettingsFragment extends PreferenceFragment {
         if (histoPrefKeys.get(histoPrefKeys.size() - 1).equalsIgnoreCase("pref") || histoPrefKeys.size() <= 1) // in top-level
         {
             pj.refresh();
-            Intent intent = new Intent(mA, MainActivity.class);// Switch to MainActivityFragmentSpell
+            Intent intent;
+            if(mA.getIntent() != null && mA.getIntent().getExtras() != null && mA.getIntent().hasExtra("fromActivity")
+                    && mA.getIntent().getStringExtra("fromActivity").equalsIgnoreCase("PetActivity")){
+                intent = new Intent(mA, PetActivity.class);
+            } else {
+                intent = new Intent(mA, MainActivity.class);
+            }
             intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             mA.startActivity(intent);
         } else // in sub-level
@@ -133,12 +140,6 @@ public class SettingsFragment extends PreferenceFragment {
         } else {
             action(preference);
         }
-        /*
-        // Top level PreferenceScreen
-        if (key.equals("top_key_0")) {         changePrefScreen(R.xml.pref_general, preference.getTitle().toString()); // descend into second level    }
-
-        // Second level PreferenceScreens
-        if (key.equals("second_level_key_0")) {        // do something...    }       */
         return true;
     }
 
@@ -221,7 +222,7 @@ public class SettingsFragment extends PreferenceFragment {
     private void loadPage() {
         try {
             getPreferenceScreen().removeAll();
-            if(currentPageKey.contains("_appli")) {
+            if(currentPageKey.contains("_appli") || currentPageKey.contains("_stats") ) {  //pages communes
                 int xmlID = getResources().getIdentifier(currentPageKey, "xml", getContext().getPackageName());
                 addPreferencesFromResource(xmlID);
             } else {

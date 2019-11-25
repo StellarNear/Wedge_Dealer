@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_icon_main_actions075"
             android:orientation="horizontal"
-            android:background="@drawable/bar_gradient_main_skill"
+            android:background="@drawable/bar_gradient_main_subfragments"
             android:gravity="center">
             <TextView
                 android:layout_width="wrap_content"
@@ -44,14 +44,16 @@
                 android:layout_margin="@dimen/general_margin"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:background="@drawable/background_border_pet_attack"
                 android:orientation="horizontal"
                 android:layout_weight="13"
                 android:weightSum="10">
                 <LinearLayout
+                    android:layout_margin="@dimen/general_margin"
                     android:id="@+id/mainLinearAtk"
                     android:layout_width="0dp"
                     android:layout_weight="6"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:gravity="center"
                     android:orientation="horizontal">
                     <LinearLayout
@@ -179,6 +181,8 @@
                 <View
                     android:id="@+id/bar_sep"
                     android:layout_width="3dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
                     android:layout_height="match_parent"
                     android:background="#90909090"
                     android:visibility="visible" />
@@ -186,6 +190,7 @@
 
 
                 <LinearLayout
+                    android:layout_margin="@dimen/general_margin"
                     android:layout_width="0dp"
                     android:layout_weight="4"
                     android:layout_height="wrap_content"
@@ -233,7 +238,7 @@
                             android:text="Probabilité de dépassement (>) :"
                             android:textSize="15sp"
                             android:textColor="@android:color/darker_gray"
-                            android:visibility="visible"/>
+                            android:visibility="gone"/>
                         <LinearLayout
                             android:id="@+id/mainLinearProbaDmg"
                             android:layout_width="match_parent"

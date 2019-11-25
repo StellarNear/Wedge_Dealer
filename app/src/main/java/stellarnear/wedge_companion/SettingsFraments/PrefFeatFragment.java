@@ -4,10 +4,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.preference.PreferenceCategory;
 import android.preference.SwitchPreference;
+import android.text.InputType;
 
+import stellarnear.wedge_companion.EditTextPreference;
 import stellarnear.wedge_companion.Perso.Feat;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
+import stellarnear.wedge_companion.R;
 
 
 public class PrefFeatFragment {
@@ -29,7 +32,22 @@ public class PrefFeatFragment {
             if (feat.getType().contains("feat_magic")) {
                 magic.addPreference(switch_feat);
             } else if (feat.getType().contains("feat_atk")) {
-                def.addPreference(switch_feat);
+                atk.addPreference(switch_feat);
+                if(feat.getId().equalsIgnoreCase("feat_aim")){
+                    EditTextPreference aimVal = new EditTextPreference(mC, InputType.TYPE_CLASS_TEXT);
+                    aimVal.setTitle("Valeur de Viser");
+                    aimVal.setKey("feat_aim_val");
+                    aimVal.setDefaultValue(String.valueOf(mC.getResources().getInteger(R.integer.feat_aim_val_def)));
+                    aimVal.setSummary("Valeur : %s");
+                    atk.addPreference(aimVal);
+                } else if(feat.getId().equalsIgnoreCase("feat_manyshot_suprem")){
+                    EditTextPreference manyval = new EditTextPreference(mC, InputType.TYPE_CLASS_TEXT);
+                    manyval.setTitle("Valeur de Feu nourri supreme");
+                    manyval.setKey("feat_manyshot_suprem_val");
+                    manyval.setDefaultValue(String.valueOf(mC.getResources().getInteger(R.integer.feat_manyshot_suprem_val_def)));
+                    manyval.setSummary("Valeur : %s");
+                    atk.addPreference(manyval);
+                }
             } else if (feat.getType().contains("feat_def")) {
                 def.addPreference(switch_feat);
             } else if (feat.getType().contains("feat_other")) {

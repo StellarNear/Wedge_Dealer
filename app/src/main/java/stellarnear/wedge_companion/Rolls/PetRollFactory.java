@@ -14,7 +14,7 @@ import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Tools;
 
-public class RollFactory {
+public class PetRollFactory {
 
     private Activity mA;
     private Context mC;
@@ -22,9 +22,9 @@ public class RollFactory {
     private RollList rollList;
     private SharedPreferences settings;
     private Tools tools=new Tools();
-    private Perso pj= PersoManager.getCurrentPJ();
+    private Perso pj = PersoManager.getCurrentPJ();
 
-    public RollFactory(Activity mA,Context mC,String mode){
+    public PetRollFactory(Activity mA, Context mC, String mode){
         this.mA=mA;
         this.mC=mC;
         this.mode=mode;
@@ -52,7 +52,7 @@ public class RollFactory {
                 allAtks.add(0, allAtks.get(0));
             }
             for (Integer atk : allAtks) {
-                Roll roll = new RangedRoll(mA, mC, atk);
+                Roll roll = new Roll(mA, mC, atk);
                 this.rollList.add(roll);
             }
             int nCount=1;
@@ -62,7 +62,7 @@ public class RollFactory {
                 nCount++;
             }
         } else {
-            Roll roll = new RangedRoll(mA, mC, allAtks.get(0));
+            Roll roll = new Roll(mA, mC, allAtks.get(0));
             roll.getAtkRoll().setMode(this.mode);
             this.rollList.add(roll);
         }

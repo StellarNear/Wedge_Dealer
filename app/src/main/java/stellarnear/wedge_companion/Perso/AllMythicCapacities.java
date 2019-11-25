@@ -95,12 +95,12 @@ public class AllMythicCapacities {
         buildCapacitiesList();
     }
 
-    public boolean mythiccapacityIsActive(String id) {
+    public boolean mythicCapacityIsActive(String id) {
         boolean val=false;
         try {
             val= getMythiccapacity(id).isActive();
         } catch (Exception e) {
-            //e.printStackTrace();
+            e.printStackTrace();
         }
         return val;
     }
