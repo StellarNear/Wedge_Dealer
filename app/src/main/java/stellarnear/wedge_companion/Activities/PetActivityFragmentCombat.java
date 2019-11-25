@@ -8,8 +8,6 @@ import android.content.pm.ActivityInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -25,6 +23,11 @@ import android.widget.TextView;
 import stellarnear.wedge_companion.DisplayRolls;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
+import stellarnear.wedge_companion.PetTextFilling.PetDamages;
+import stellarnear.wedge_companion.PetTextFilling.PetPostRandValues;
+import stellarnear.wedge_companion.PetTextFilling.PetPreRandValues;
+import stellarnear.wedge_companion.PetTextFilling.PetRangesAndProba;
+import stellarnear.wedge_companion.PetTextFilling.PetSetupCheckboxes;
 import stellarnear.wedge_companion.PostData;
 import stellarnear.wedge_companion.PostDataElement;
 import stellarnear.wedge_companion.R;
@@ -38,16 +41,14 @@ import stellarnear.wedge_companion.TextFilling.RangesAndProba;
 import stellarnear.wedge_companion.TextFilling.SetupCheckboxes;
 import stellarnear.wedge_companion.Tools;
 
-public class MainActivityFragmentCombat extends Fragment {
+public class PetActivityFragmentCombat extends Fragment {
     private View mainPage;
     private Drawable ori_background;
     public Perso pj= PersoManager.getCurrentPJ();
 
-    private FloatingActionButton fabAtk;
-    private FloatingActionButton fabDmg;
-    private FloatingActionButton fabDmgDet;
-    private ImageButton simpleAtk;
-    private ImageButton barrageShot;
+    private ImageButton fabAtk;
+    private ImageButton fabDmg;
+    private ImageButton fabDmgDet;
 
     private RollList rollList;
     private RollList selectedRolls;
@@ -55,17 +56,17 @@ public class MainActivityFragmentCombat extends Fragment {
     private boolean firstAtkRoll = true;
     private String mode;
 
-    private PreRandValues preRandValues;
-    private PostRandValues postRandValues;
-    private SetupCheckboxes setupCheckboxes;
-    private Damages damages;
-    private RangesAndProba rangesAndProba;
+    private PetPreRandValues preRandValues;
+    private PetPostRandValues postRandValues;
+    private PetSetupCheckboxes setupCheckboxes;
+    private PetDamages damages;
+    private PetRangesAndProba rangesAndProba;
     private DisplayRolls displayRolls;
 
     private Tools tools = new Tools();
 
 
-    public MainActivityFragmentCombat() {
+    public PetActivityFragmentCombat() {
     }
 
     @Override
@@ -140,6 +141,7 @@ public class MainActivityFragmentCombat extends Fragment {
             }
         });
 
+        /*
         simpleAtk = mainPage.findViewById(R.id.button_simple_atk);
         simpleAtk.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,12 +166,15 @@ public class MainActivityFragmentCombat extends Fragment {
             }
         });
 
-        fabAtk = (FloatingActionButton) mainPage.findViewById(R.id.fabAtk);
+         */
+
+        fabAtk = (ImageButton) mainPage.findViewById(R.id.fabAtk);
         setListenerFabAtk();
-        fabDmg = (FloatingActionButton) mainPage.findViewById(R.id.fab_damage);
+        fabDmg = (ImageButton) mainPage.findViewById(R.id.fab_damage);
         setListenerFabDmg();
-        fabDmgDet = (FloatingActionButton) mainPage.findViewById(R.id.fab_damage_detail);
+        fabDmgDet = (ImageButton) mainPage.findViewById(R.id.fab_damage_detail);
         setListenerFabDmgDet();
+
     }
 
     private void setListenerFabAtk() {
@@ -232,13 +237,14 @@ public class MainActivityFragmentCombat extends Fragment {
     private void startPreRand() {
         clearStep(0);
         this.rollList = new RollFactory(getActivity(),getContext(),mode).getRollList();
-        preRandValues = new PreRandValues(getContext(), mainPage, rollList);
+        preRandValues = new PetPreRandValues(getContext(), mainPage, rollList);
         if (damages != null) {
             damages.hideViews();
         }
     }
 
     private void hideButtons(int buttonClicked) {
+        /*
         simpleAtk.setOnClickListener(null);
         barrageShot.setOnClickListener(null);
 
@@ -256,6 +262,8 @@ public class MainActivityFragmentCombat extends Fragment {
                 barrageShot.animate().scaleX(2).scaleY(2).alpha(0).setDuration(1000).start();
                 break;
         }
+
+         */
     }
 
     private void startRandAtk() {
@@ -263,7 +271,6 @@ public class MainActivityFragmentCombat extends Fragment {
         firstDmgRoll = true;
         showDivider();
         fabAtk.animate().setDuration(1000).translationX(-400).start();       //decale le bouton à gauche pour l'apparition du suivant
-        Snackbar.make(mainPage, "Lancement des dés en cours... ", Snackbar.LENGTH_SHORT).show();
         startPreRand();
         if (postRandValues != null) {
             postRandValues.hideViews();
@@ -271,21 +278,19 @@ public class MainActivityFragmentCombat extends Fragment {
         if (setupCheckboxes != null) {
             setupCheckboxes.hideViews();
         }
-        postRandValues = new PostRandValues(getContext(), mainPage, rollList);
-        setupCheckboxes = new SetupCheckboxes(getContext(), mainPage, rollList);
+        postRandValues = new PetPostRandValues(getContext(), mainPage, rollList);
+        setupCheckboxes = new PetSetupCheckboxes(getContext(), mainPage, rollList);
     }
 
     private void showDivider() {
-        mainPage.findViewById(R.id.bar_sep).setVisibility(View.VISIBLE);
+        //mainPage.findViewById(R.id.bar_sep).setVisibility(View.VISIBLE);
     }
 
     private void setListenerFabDmg() {
         fabDmg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 fabDmg.animate().setDuration(1000).translationX(+400).start();
-                Snackbar.make(view, "Calcul des dégâts en cours... ", Snackbar.LENGTH_SHORT).show();
                 AlphaAnimation anim = new AlphaAnimation(0, 1);
                 anim.setDuration(2000);
 
@@ -312,9 +317,9 @@ public class MainActivityFragmentCombat extends Fragment {
     private void startDamage() {
         displayRolls = null;
         clearStep(2);
-        damages = new Damages(getActivity(),getContext(), mainPage, selectedRolls);  //calcul et affiche les degats
+        damages = new PetDamages(getActivity(),getContext(), mainPage, selectedRolls);  //calcul et affiche les degats
         if (selectedRolls.getDmgDiceList().getList().size() > 0) {
-            rangesAndProba = new RangesAndProba(getContext(), mainPage, selectedRolls);
+            rangesAndProba = new PetRangesAndProba(getContext(), mainPage, selectedRolls);
             fabDmgDet.setVisibility(View.VISIBLE);
             fabDmgDet.setEnabled(true);
         }

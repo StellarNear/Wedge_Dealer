@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -46,7 +47,7 @@ public class MainActivityFragmentSpellCast extends Fragment {
         mainLin = (LinearLayout) returnFragView.findViewById(R.id.linear2);
         round = (TextView) returnFragView.findViewById(R.id.n_round);
 
-        ((FrameLayout) returnFragView.findViewById(R.id.back_spell_from_spell_cast)).setOnClickListener(new View.OnClickListener() {
+        ((ImageButton) returnFragView.findViewById(R.id.back_spell_from_spell_cast)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 backToSpell();

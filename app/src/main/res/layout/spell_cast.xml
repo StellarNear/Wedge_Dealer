@@ -16,7 +16,7 @@
         <RelativeLayout
             android:id="@+id/RelatTitle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/size_icon_main_actions075"
             android:gravity="center"
             android:background="@drawable/background_spell_list_title"
             >
@@ -27,8 +27,8 @@
                 android:text="Lançement des sorts"
                 android:layout_centerInParent="true"
                 android:textAlignment="center"
+                android:textColor="?attr/colorBackground"
                 android:textSize="25sp"
-                android:textColor="@android:color/white"
 
                 />
 
@@ -42,25 +42,18 @@
                 android:layout_marginEnd="@dimen/general_margin"
                 android:textSize="12sp"
                 android:textColor="@android:color/white"
-
                 />
-            <FrameLayout
-                android:id="@+id/back_spell_from_spell_cast"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_marginStart="@dimen/general_margin"
-                android:foregroundGravity="center"
-                android:layout_centerVertical="true"
-                tools:ignore="ContentDescription"
-                >
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/mire_test"/>
 
-            </FrameLayout>
+            <ImageButton
+                tools:ignore="ContentDescription"
+                android:id="@+id/back_spell_from_spell_cast"
+                android:layout_width="@dimen/size_icon_main_actions075"
+                android:layout_height="@dimen/size_icon_main_actions075"
+                android:src="@drawable/mire_test"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:padding="@dimen/general_margin"
+                android:background="@null"/>
         </RelativeLayout>
 
         <ScrollView

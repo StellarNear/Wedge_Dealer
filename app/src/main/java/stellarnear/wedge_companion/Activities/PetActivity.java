@@ -94,7 +94,7 @@ public class PetActivity extends AppCompatActivity {
     }
 
     private void startFragment() {
-        Fragment fragment = new MainPetActivityFragment();
+        Fragment fragment = new PetActivityFragment();
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(mainFrameFrag.getId(), fragment,"frag_main");

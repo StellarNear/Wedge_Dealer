@@ -77,7 +77,7 @@ public class MainActivityFragment extends Fragment {
         Animation fadeIn = AnimationUtils.loadAnimation(mC,R.anim.infade);
         View tooltip1 = returnFragView.findViewById(R.id.textCombatActionTooltip);
         View tooltip2 = returnFragView.findViewById(R.id.textSkillActionTooltip);
-        View tooltip3 = returnFragView.findViewById(R.id.textKiActionTooltip);
+        View tooltip3 = returnFragView.findViewById(R.id.textSpellActionTooltip);
 
         tooltip1.setVisibility(View.VISIBLE);
         tooltip2.setVisibility(View.VISIBLE);

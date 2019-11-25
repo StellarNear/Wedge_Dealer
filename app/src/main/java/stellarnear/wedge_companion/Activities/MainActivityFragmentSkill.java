@@ -60,7 +60,12 @@ public class MainActivityFragmentSkill extends Fragment {
             @Override
             public void onClick(View view) {
                 unlockOrient();
-                Fragment fragment = new MainActivityFragment();
+                Fragment fragment;
+                if(getActivity() instanceof MainActivity) {
+                    fragment = new MainActivityFragment();
+                }else{
+                    fragment = new PetActivityFragment();
+                }
                 FragmentManager fragmentManager = getActivity().getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.setCustomAnimations(R.animator.infadefrag,R.animator.outtoleftfrag);

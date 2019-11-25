@@ -24,9 +24,9 @@ import stellarnear.wedge_companion.R;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class MainPetActivityFragment extends Fragment {
+public class PetActivityFragment extends Fragment {
     View returnFragView;
-    public MainPetActivityFragment() {
+    public PetActivityFragment() {
     }
 
     @Override
@@ -40,7 +40,7 @@ public class MainPetActivityFragment extends Fragment {
         returnFragView= inflater.inflate(R.layout.fragment_main, container, false);
 
         ImageButton fabCombat = (ImageButton) returnFragView.findViewById(R.id.button_frag_to_combat);
-        setButtonActivity(fabCombat,new MainActivityFragmentCombat(),R.animator.infrombotfrag,R.animator.outfadefrag,"frag_combat");
+        setButtonActivity(fabCombat,new PetActivityFragmentCombat(),R.animator.infrombotfrag,R.animator.outfadefrag,"frag_combat");
         Animation top = AnimationUtils.loadAnimation(getContext(),R.anim.infromtop);
         fabCombat.startAnimation(top);
 
@@ -48,11 +48,6 @@ public class MainPetActivityFragment extends Fragment {
         setButtonActivity(fabSkill, new MainActivityFragmentSkill(), R.animator.infromleftfrag,R.animator.outfadefrag,"frag_skill");
         Animation left = AnimationUtils.loadAnimation(getContext(),R.anim.infromleft);
         fabSkill.startAnimation(left);
-
-        ImageButton fabCast = (ImageButton) returnFragView.findViewById(R.id.button_frag_to_spell);
-        setButtonActivity(fabCast,new MainActivityFragmentSpell(),R.animator.infromrightfrag,R.animator.outfadefrag,"frag_spell");
-        Animation right = AnimationUtils.loadAnimation(getContext(),R.anim.infromright);
-        fabCast.startAnimation(right);
 
         fadeInTooltips(getContext());
 
@@ -77,7 +72,7 @@ public class MainPetActivityFragment extends Fragment {
         Animation fadeIn = AnimationUtils.loadAnimation(mC,R.anim.infade);
         View tooltip1 = returnFragView.findViewById(R.id.textCombatActionTooltip);
         View tooltip2 = returnFragView.findViewById(R.id.textSkillActionTooltip);
-        View tooltip3 = returnFragView.findViewById(R.id.textKiActionTooltip);
+        View tooltip3 = returnFragView.findViewById(R.id.textSkillActionTooltip);
 
         tooltip1.setVisibility(View.VISIBLE);
         tooltip2.setVisibility(View.VISIBLE);

@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     tools:context="stellarnear.wedge_companion.Activities.MainActivityFragmentCombat">
 
 
@@ -57,71 +58,26 @@
         app:srcCompat="@drawable/barrage_shot"
         tools:ignore="ContentDescription" />
 
-    <FrameLayout
-        android:id="@+id/mythic_pts"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_gravity="top|start"
-        android:adjustViewBounds="true"
-        >
-        <ImageView
-            android:layout_margin="@dimen/general_margin"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_embrassed_energy"/>
-
-        <TextView
-            android:id="@+id/mythic_pts_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="X"
-            android:textSize="30sp"
-            android:layout_gravity="center"
-            android:shadowColor="@color/black"
-            android:textColor="@color/white"
-            android:shadowDx="0.0"
-            android:shadowDy="0.0"
-            android:shadowRadius="10"/>
-
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/leg_pts"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-
-        android:layout_gravity="top|end"
-        android:adjustViewBounds="true"
-        >
-        <ImageView
-            android:layout_margin="@dimen/general_margin"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_bow_arrow"/>
-
-        <TextView
-            android:id="@+id/leg_pts_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="X"
-            android:shadowColor="@color/black"
-            android:textColor="@color/white"
-            android:shadowDx="0.0"
-            android:shadowDy="0.0"
-            android:shadowRadius="10"
-            android:textSize="30sp"
-            android:layout_gravity="center"
-            />
-
-
-    </FrameLayout>
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="top"
         android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_icon_main_actions075"
+            android:orientation="horizontal"
+            android:background="@drawable/bar_gradient_main_skill"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textColor="?attr/colorBackground"
+                android:textSize="20sp"
+                android:text="Lancement des attaques" />
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/mainLinearAtk"
@@ -256,4 +212,16 @@
                 android:visibility="gone"/>
         </LinearLayout>
     </LinearLayout>
+    <ImageButton
+        tools:ignore="ContentDescription"
+        android:id="@+id/button_frag_combat_to_main"
+        android:layout_width="@dimen/size_icon_main_actions075"
+        android:layout_height="@dimen/size_icon_main_actions075"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/mire_test"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:padding="@dimen/general_margin"
+        android:background="@null"/>
 </android.support.design.widget.CoordinatorLayout>

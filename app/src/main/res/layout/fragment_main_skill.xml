@@ -23,9 +23,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:textStyle="bold"
+                    android:textAlignment="center"
                     android:textColor="?attr/colorBackground"
-                    android:textSize="19sp"
+                    android:textSize="20sp"
                     android:text="Lancement des compétences" />
             </LinearLayout>
 
@@ -113,10 +113,11 @@
         android:layout_height="@dimen/size_icon_main_actions075"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/skill_back"
+        android:src="@drawable/skill_back"
         android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        android:backgroundTint="@android:color/transparent"/>
+        android:scaleType="fitXY"
+        android:padding="@dimen/general_margin"
+        android:background="@null"/>
 
 
 </android.support.constraint.ConstraintLayout>

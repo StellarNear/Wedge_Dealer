@@ -23,7 +23,7 @@
     <dimen name="main_frag_stats_heigh_quadrant">350dp</dimen>
     <dimen name="translationFragTransiNegative">-500</dimen>
     <dimen name="translationFragTransi">500</dimen>
-    <dimen name="size_icon_main_actions075">60dp</dimen>
+    <dimen name="size_icon_main_actions075">45dp</dimen>
     <dimen name="radius_corner_spell">5dp</dimen>
     <dimen name="bordure_spell_background">2dp</dimen>
     <dimen name="height_spell_profile">150dp</dimen>
@@ -46,6 +46,8 @@
     <dimen name="pet_main_frag_stats_heigh_quadrant">200dp</dimen>
 
     <dimen name="splash_icon_margin">200dp</dimen>
+
+    <dimen name="icon_main_dices_pet_size">40dp</dimen>
 
 
 </resources>

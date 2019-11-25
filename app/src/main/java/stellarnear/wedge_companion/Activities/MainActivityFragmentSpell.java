@@ -86,13 +86,13 @@ public class MainActivityFragmentSpell extends Fragment {
             }
         });
 
-        ((FrameLayout) returnFragView.findViewById(R.id.back_main_from_spell)).setOnClickListener(new View.OnClickListener() {
+        ((ImageButton) returnFragView.findViewById(R.id.back_main_from_spell)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 backToMain();
             }
         });
-        animate(((FrameLayout) returnFragView.findViewById(R.id.back_main_from_spell)));
+        animate(((ImageButton) returnFragView.findViewById(R.id.back_main_from_spell)));
         return returnFragView;
     }
 
@@ -107,7 +107,7 @@ public class MainActivityFragmentSpell extends Fragment {
         fragmentTransaction.commit();
     }
 
-    private void animate(final FrameLayout buttonMain) {
+    private void animate(final ImageButton buttonMain) {
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
