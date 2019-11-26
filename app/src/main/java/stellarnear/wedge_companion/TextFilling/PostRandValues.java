@@ -16,10 +16,7 @@ import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.PostData;
 import stellarnear.wedge_companion.PostDataElement;
 import stellarnear.wedge_companion.R;
-import stellarnear.wedge_companion.Rolls.AtkRoll;
 import stellarnear.wedge_companion.Rolls.Dices.Dice;
-import stellarnear.wedge_companion.Rolls.RangeAtkRoll;
-import stellarnear.wedge_companion.Rolls.RangedRoll;
 import stellarnear.wedge_companion.Rolls.Roll;
 import stellarnear.wedge_companion.Rolls.RollList;
 

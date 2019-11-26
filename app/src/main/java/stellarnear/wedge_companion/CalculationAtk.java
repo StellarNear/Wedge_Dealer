@@ -20,7 +20,14 @@ public class CalculationAtk {
 
     public Integer getBonusAtk() {
         int bonusAtk=0;
-
+        try {
+            int isilDefId = mC.getResources().getIdentifier("isillirit_switch_def"+ PersoManager.getPJSuffix(), "bool", mC.getPackageName());
+            if (preferences.getBoolean("isillirit_switch"+PersoManager.getPJSuffix(), mC.getResources().getBoolean(isilDefId))) {
+                bonusAtk+= 2;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         try {
             int valDefId = mC.getResources().getIdentifier("attack_att_epic_DEF"+PersoManager.getPJSuffix(), "integer", mC.getPackageName());
             int valDef = mC.getResources().getInteger(valDefId);

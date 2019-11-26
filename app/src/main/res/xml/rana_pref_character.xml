@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceScreen
+        android:key="rana_pref_character_general"
+        android:icon="@drawable/ic_person_pin_black_24dp"
+        android:title="Caractéristiques générales"
+        android:summary="Statistiques générales du personnage"/>
+
+    <PreferenceScreen
+        android:key="rana_pref_character_combat"
+        android:icon="@drawable/ic_filter_center_focus_black_24dp"
+        android:title="Caractéristiques de combat"
+        android:summary="Statistiques relatives au combat"/>
+
+    <PreferenceScreen
+        android:key="pref_character_skill"
+        android:icon="@drawable/ic_settings_black_24dp"
+        android:title="Compétences"
+        android:summary="Maitrise des compétences"
+       />
+
+    <PreferenceScreen
+        android:key="pref_character_feat"
+        android:icon="@drawable/ic_playlist_add_check_black_24dp"
+        android:title="Dons actifs"
+        android:summary="Ensemble des dons connus et/ou actifs"
+         />
+
+    <PreferenceScreen
+        android:key="pref_character_capa"
+        android:icon="@drawable/ic_flash_on_black_24dp"
+        android:title="Capacités actives"
+        android:summary="Ensemble des des capacités connues et/ou actives"
+        />
+
+</PreferenceScreen>

@@ -161,7 +161,14 @@ public class AllResources {
     public void refreshMaxs() {
         //partie from setting
         int hpPool = readResource("resource_hp_base");
-        hpPool += 3*readResource("mythic_tier"); //archimage
+        int hpMythPerGrad=0;
+        if(PersoManager.getCurrentNamePJ().equalsIgnoreCase("Wedge")){
+            hpMythPerGrad=5; //champion mythique
+        } else if(PersoManager.getCurrentNamePJ().equalsIgnoreCase("Halda")){
+            hpMythPerGrad=4; //hierophante mythique
+        }
+        hpPool += hpMythPerGrad*readResource("mythic_tier");
+
         hpPool += allAbilities.getAbi("ability_constitution").getMod()*allAbilities.getAbi("ability_lvl").getValue();
 
         getResource("resource_hp").setMax(hpPool);

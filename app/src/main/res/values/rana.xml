@@ -2,24 +2,7 @@
 <resources>
 
     <!-- _rana -->
-    <integer name="ability_lvl_def_rana">27</integer>
-    <integer name="current_xp_def_rana">29874952</integer>
-    <integer name="add_current_xp_def_rana">0</integer>
-
-    <integer name="money_plat_def_rana">142</integer>
-    <integer name="money_gold_def_rana">252724</integer>
-    <integer name="money_silver_def_rana">0</integer>
-    <integer name="money_copper_def_rana">81</integer>
-
-    <integer name="multi_value_def_rana">3</integer>
-    <integer name="viser_val_def_rana">5</integer>
-    <integer name="magic_val_def_rana">7</integer>
-
-    <integer name="attack_att_epic_def_rana">2</integer>
-    <integer name="attack_dmg_epic_def_rana">0</integer>
-    <integer name="prouesse_def_rana">0</integer>
-    <integer name="prouesse_attrib_def_rana">4</integer>
-    <integer name="attack_range_def_rana">100</integer>
+    <string name="jet_att_def_rana">15</string>
 
     <!--  Stat de base du perso  -->
     <integer name="ability_force_def_rana">23</integer>
@@ -31,7 +14,7 @@
     <integer name="ability_ms_def_rana">33</integer>
     <integer name="ability_reduc_def_rana">12</integer>
     <integer name="ability_reduc_elem_def_rana">0</integer>
-    <integer name="ability_ca_stuff_def_rana">5</integer>
+    <integer name="ability_ca_stuff_def_rana">8</integer>
 
     <!-- Resources  -->
     <integer name="resource_hp_base_def_rana">194</integer>
@@ -100,4 +83,6 @@
     <integer name="skill_magic_item_bonusDEF_rana">3</integer>
     <integer name="skill_fly_bonusDEF_rana">3</integer>
 
+    <integer name="feat_power_atk_val_def_rana">4</integer>
+    <bool name="switch_perma_resi_DEF_rana">true</bool>
 </resources>

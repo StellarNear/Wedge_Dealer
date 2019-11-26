@@ -16,9 +16,7 @@ import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import stellarnear.wedge_companion.DisplayRolls;
 import stellarnear.wedge_companion.Perso.Perso;
@@ -33,13 +31,7 @@ import stellarnear.wedge_companion.PostDataElement;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Rolls.PetRollFactory;
 import stellarnear.wedge_companion.Rolls.Roll;
-import stellarnear.wedge_companion.Rolls.RollFactory;
 import stellarnear.wedge_companion.Rolls.RollList;
-import stellarnear.wedge_companion.TextFilling.Damages;
-import stellarnear.wedge_companion.TextFilling.PostRandValues;
-import stellarnear.wedge_companion.TextFilling.PreRandValues;
-import stellarnear.wedge_companion.TextFilling.RangesAndProba;
-import stellarnear.wedge_companion.TextFilling.SetupCheckboxes;
 import stellarnear.wedge_companion.Tools;
 
 public class PetActivityFragmentCombat extends Fragment {

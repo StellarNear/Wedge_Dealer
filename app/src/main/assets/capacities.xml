@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <records>
     <capacity>
-        <name>Esprit dual</name>
-        <type>archer</type>
-        <descr>L’ascendance mixte de certains demi-elfes leur permet de résister aux attaques mentales. Ceux qui possèdent ce trait racial gagnent un bonus de +2 aux jets de Volonté. Ce trait remplace adaptabilité.</descr>
-        <id>capacity_dual_spirit</id>
+        <name>Ancien guerrier</name>
+        <type>other</type>
+        <descr>Lorsqu’il était enfant, le personnage a dévoué de longues heures aux entraînements militaires. Même si le temps les a réduits à l’état de souvenirs, il reste prompt à réagir en cas de problème. Il gagne un bonus de trait de +2 aux tests d’initiative.</descr>
+        <id>capacity_old_warrior</id>
     </capacity>
 
     <capacity>

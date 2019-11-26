@@ -62,10 +62,6 @@ public class PersoManager {
         }
     }
 
-    public static boolean isMainPJ() {
-        return currentPJ.equalsIgnoreCase("wedge")||currentPJ.equalsIgnoreCase("halda");
-    }
-
     public static void allSleep() {
         currentMapPJ.get("Wedge").sleep();
         currentMapPJ.get( "Halda").sleep();

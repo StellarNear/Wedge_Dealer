@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <PreferenceScreen
+        android:key="show_equipment"
+        android:icon="@drawable/ic_binoculars"
+        android:summary="On peut y intervertir les pièces d'équipment"
+        android:title="Afficher l'équipement" />
+
+    <PreferenceScreen
+        android:key="pref_inventory_equipment"
+        android:icon="@drawable/ic_battle_gear"
+        android:summary="Ajout/Suppression des objets équipable"
+        android:title="Gestion de l'équipement"   />
+
+    <PreferenceScreen
+        android:key="halda_pref_inventory_money"
+        android:icon="@drawable/ic_cash"
+        android:summary="Gestion des pièces de platine, or, argent, cuivre"
+        android:title="Monnaie" />
+
+    <PreferenceScreen
+        android:key="pref_inventory_bag"
+        android:icon="@drawable/ic_bag"
+        android:summary="Ajout/Suppression des objets non équipable"
+        android:title="Gestion des objets du sac"   />
+
+</PreferenceScreen>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <stellarnear.wedge_companion.EditTextPreference
+        android:defaultValue="@integer/ability_force_def_rana"
+        android:key="ability_force_rana"
+        android:title="Valeur Force"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:inputType="number"
+        android:summary="Valeur : %s"/>
+    <stellarnear.wedge_companion.EditTextPreference
+        android:defaultValue="@integer/ability_dexterite_def_rana"
+        android:key="ability_dexterite_rana"
+        android:title="Valeur Dexterité"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:inputType="number"
+        android:summary="Valeur : %s"/>
+    <stellarnear.wedge_companion.EditTextPreference
+        android:defaultValue="@integer/ability_constitution_def_rana"
+        android:key="ability_constitution_rana"
+        android:title="Valeur Constitution"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:inputType="number"
+        android:summary="Valeur : %s"/>
+    <stellarnear.wedge_companion.EditTextPreference
+        android:defaultValue="@integer/ability_intelligence_def_rana"
+        android:key="ability_intelligence_rana"
+        android:title="Valeur Intelligence"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:inputType="number"
+        android:summary="Valeur : %s"/>
+    <stellarnear.wedge_companion.EditTextPreference
+        android:defaultValue="@integer/ability_sagesse_def_rana"
+        android:key="ability_sagesse_rana"
+        android:title="Valeur Sagesse"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:inputType="number"
+        android:summary="Valeur : %s"/>
+    <stellarnear.wedge_companion.EditTextPreference
+        android:defaultValue="@integer/ability_charisme_def_rana"
+        android:key="ability_charisme_rana"
+        android:title="Valeur Charisme"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:inputType="number"
+        android:summary="Valeur : %s"/>
+    <stellarnear.wedge_companion.EditTextPreference
+        android:defaultValue="@integer/ability_ms_def_rana"
+        android:key="ability_ms_rana"
+        android:title="Vitesse de déplacement"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:inputType="number"
+        android:summary="Valeur : %s m"/>
+    <stellarnear.wedge_companion.EditTextPreference
+        android:defaultValue="@integer/ability_reduc_def_rana"
+        android:key="ability_reduc_rana"
+        android:title="Réduction de dégats"
+        android:selectAllOnFocus="true"
+        android:inputType="number"
+        android:singleLine="true"
+        android:summary="Valeur : %s"/>
+
+
+
+</PreferenceScreen>

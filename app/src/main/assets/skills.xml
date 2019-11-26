@@ -14,22 +14,46 @@
         <id>skill_magic_art</id>
     </skill>
     <skill>
-        <name>Artisanat (alchimie)</name>
-        <abilityDependence>ability_intelligence</abilityDependence>
-        <descr>Le personnage est entraîné à créer un type spécifique d’objets : ici des potions.</descr>
-        <id>skill_craft</id>
-    </skill>
-    <skill>
         <name>Bluff</name>
         <abilityDependence>ability_charisme</abilityDependence>
         <descr>Cette compétence s’utilise sous la forme de tests opposés aux tests de Psychologie des victimes. Lorsque le personnage utilise la compétence de Bluff pour tromper quelqu’un, un test réussi lui permet de convaincre sa victime qu’il lui dit la vérité. Les résultats des tests de Bluff sont modifiés selon la crédibilité du mensonge.</descr>
         <id>skill_bluff</id>
     </skill>
     <skill>
+        <name>Connaissance exploration</name>
+        <abilityDependence>ability_intelligence</abilityDependence>
+        <descr>Le personnage possède des connaissances dans un domaine spécifique, qui lui permettent de répondre à des questions simples ou complexes. Exploration souterraine (aberrations, cavernes, spéléologie, vases).</descr>
+        <id>skill_explo</id>
+    </skill>
+    <skill>
+        <name>Connaissance géographie</name>
+        <abilityDependence>ability_intelligence</abilityDependence>
+        <descr>Le personnage possède des connaissances dans un domaine spécifique, qui lui permettent de répondre à des questions simples ou complexes. Géographie (climat, pays, peuples, types de terrain).</descr>
+        <id>skill_geo</id>
+    </skill>
+    <skill>
+        <name>Connaissance histoire</name>
+        <abilityDependence>ability_intelligence</abilityDependence>
+        <descr>Le personnage possède des connaissances dans un domaine spécifique, qui lui permettent de répondre à des questions simples ou complexes. Histoire (colonies, guerres, histoire des villes, migrations).</descr>
+        <id>skill_history</id>
+    </skill>
+    <skill>
         <name>Connaissance mystère</name>
         <abilityDependence>ability_intelligence</abilityDependence>
         <descr>Le personnage possède des connaissances dans un domaine spécifique, qui lui permettent de répondre à des questions simples ou complexes. Mystères (créatures artificielles, créatures magiques, dragons, mystères anciens, symboles ésotériques, traditions magiques).</descr>
         <id>skill_myst</id>
+    </skill>
+    <skill>
+        <name>Connaissance nature</name>
+        <abilityDependence>ability_intelligence</abilityDependence>
+        <descr>Le personnage possède des connaissances dans un domaine spécifique, qui lui permettent de répondre à des questions simples ou complexes. Nature (animaux, climat, cycles et saisons, fées, humanoïdes monstrueux, plantes, vermines).</descr>
+        <id>skill_nature</id>
+    </skill>
+    <skill>
+        <name>Connaissance plans</name>
+        <abilityDependence>ability_intelligence</abilityDependence>
+        <descr>Le personnage possède des connaissances dans un domaine spécifique, qui lui permettent de répondre à des questions simples ou complexes. Plans (Extérieurs, magie des plans, plan Astral, plan Éthéré, plans Extérieurs, plans Intérieurs).</descr>
+        <id>skill_plan</id>
     </skill>
     <skill>
         <name>Connaissance religion</name>
@@ -48,6 +72,12 @@
         <abilityDependence>ability_dexterite</abilityDependence>
         <descr>Le personnage sait comment éviter de se faire repérer, ce qui lui permet de tromper la surveillance des gardes ou encore de se cacher et de se déplacer en silence pour pouvoir ensuite attaquer par surprise.</descr>
         <id>skill_stealth</id>
+    </skill>
+    <skill>
+        <name>Dressage</name>
+        <abilityDependence>ability_charisme</abilityDependence>
+        <descr>Le personnage sait comment s’y prendre avec les animaux et peut leur enseigner des tours, les faire obéir à des ordres simples ou même les apprivoiser.</descr>
+        <id>skill_animal</id>
     </skill>
     <skill>
         <name>Equitation</name>

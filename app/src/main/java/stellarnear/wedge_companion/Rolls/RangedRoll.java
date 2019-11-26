@@ -2,18 +2,8 @@ package stellarnear.wedge_companion.Rolls;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import android.widget.CheckBox;
-import android.widget.ImageView;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import stellarnear.wedge_companion.Activities.MainActivity;
 import stellarnear.wedge_companion.R;
-import stellarnear.wedge_companion.Rolls.Dices.Dice;
-import stellarnear.wedge_companion.Tools;
 
 public class RangedRoll extends Roll {
 

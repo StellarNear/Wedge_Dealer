@@ -106,7 +106,7 @@ public class AllAbilities {
         for (Ability abi : listAbilities) {
             int val = 0;
             if (abi.getId().equalsIgnoreCase("ability_ca")) {
-                val = 10+readAbility("ability_ca_stuff") + getAbi("ability_dexterite").getMod();
+                val = 10+readAbility("ability_ca_stuff")+readAbility("ability_ca_other");
             } else if (abi.getId().equalsIgnoreCase("ability_bmo")) {
                 val = getAbi("ability_force").getMod();
             } else if (abi.getId().equalsIgnoreCase("ability_dmd")) {

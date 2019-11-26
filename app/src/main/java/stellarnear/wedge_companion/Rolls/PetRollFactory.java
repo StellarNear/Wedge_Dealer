@@ -5,9 +5,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import java.util.Arrays;
-import java.util.List;
-
 import stellarnear.wedge_companion.CalculationAtk;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
@@ -61,6 +58,7 @@ public class PetRollFactory {
                 this.rollList.add(roll2);
                 Roll roll3 = new Roll(mA, mC, baseAtk);
                 roll3.setMode("bite");
+                this.rollList.add(roll3);
             }
 
             int nCount=1;

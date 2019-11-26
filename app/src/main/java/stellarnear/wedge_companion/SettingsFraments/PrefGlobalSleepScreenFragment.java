@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import stellarnear.wedge_companion.Activities.MainActivity;
-import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.PostData;
 import stellarnear.wedge_companion.PostDataElement;

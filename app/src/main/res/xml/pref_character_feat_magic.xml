@@ -39,23 +39,6 @@
         android:title="Extension d’effet (+2)" />
 
     <SwitchPreference
-        android:defaultValue="@bool/meta_arrow_switch_def"
-        android:key="meta_arrow_switch"
-        android:summary="Place un sort sur une flêche de l'archer-sylvestre"
-        android:title="Flêche naturalisée (+2)" />
-
-    <stellarnear.wedge_companion.EditTextPreference
-        android:defaultValue="@integer/wedge_max_lvl_spell_def"
-        android:key="wedge_max_lvl_spell"
-        android:title="Niveau max de sort connu par l'archer-sylvestre"
-        android:selectAllOnFocus="true"
-        android:inputType="number"
-        android:singleLine="true"
-        android:dependency="meta_arrow_switch"
-        android:summary="Tier : %s"/>
-
-
-    <SwitchPreference
         android:defaultValue="@bool/meta_heighten_switch_def"
         android:key="meta_heighten_switch"
         android:summary="Le sort est considéré comme d’un niveau supérieur"

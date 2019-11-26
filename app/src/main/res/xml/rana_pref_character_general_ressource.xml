@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <stellarnear.wedge_companion.EditTextPreference
-        android:defaultValue="@integer/ability_ca_stuff_def"
-        android:key="ability_ca_stuff"
-        android:title="Pièce d'armure"
+        android:defaultValue="@integer/resource_hp_base_def_rana"
+        android:key="resource_hp_base_rana"
+        android:title="Base point de vie (que les DVs)"
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:inputType="number"
         android:summary="Valeur : %s"/>
 
     <stellarnear.wedge_companion.EditTextPreference
-        android:defaultValue="@integer/ability_ca_other_def"
-        android:key="ability_ca_other"
-        android:title="Modification divers"
+        android:defaultValue="@integer/resource_regen_def_rana"
+        android:key="resource_regen_rana"
+        android:title="Régénération (/round)"
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:inputType="number"
         android:summary="Valeur : %s"/>
+
 </PreferenceScreen>
