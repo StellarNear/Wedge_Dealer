@@ -5,13 +5,12 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import stellarnear.wedge_companion.CalculationAtk;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
-import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Tools;
 
 public class PetRollFactory {
@@ -35,36 +34,58 @@ public class PetRollFactory {
     private void buildRollList(){
         this.rollList = new RollList();
 
-        int rankDefId = mC.getResources().getIdentifier("jet_att_def"+PersoManager.getPJExtension(), "integer", mC.getPackageName());
-        String baseAtksTxt = settings.getString("jet_att"+PersoManager.getPJExtension(), String.valueOf(mC.getResources().getInteger(rankDefId)));     //cherche la clef     jet_att dans les setting sinon valeur def (xml)
-        String delim=",";
-        List<Integer> baseAtks = tools.toInt(Arrays.asList(baseAtksTxt.split(delim)));
-        List<Integer> allAtks = new ArrayList<>(baseAtks);
-
+        int baseAtk=new CalculationAtk(mC).getBaseAtk();
         if (this.mode.equalsIgnoreCase("fullround")) {
-            Integer prouesse = tools.toInt(settings.getString("prouesse_val", String.valueOf(mC.getResources().getInteger(R.integer.prouesse_def))));
-            Integer prouesseAttrib = tools.toInt(settings.getString("prouesse_attrib", String.valueOf(mC.getResources().getInteger(R.integer.prouesse_attrib_def))));
-            allAtks.set(prouesseAttrib - 1, prouesse + baseAtks.get(prouesseAttrib - 1));
+            if(pj.getID().equalsIgnoreCase("sylphe")) {
+                Roll roll1 = new Roll(mA, mC, baseAtk);
+                roll1.setMode("claw");
+                this.rollList.add(roll1);
+                Roll roll2 = new Roll(mA, mC, baseAtk);
+                roll2.setMode("claw");
+                this.rollList.add(roll2);
+                Roll roll3 = new Roll(mA, mC, baseAtk);
+                roll3.setMode("bite");
+                this.rollList.add(roll3);
+                Roll roll4 = new Roll(mA, mC, baseAtk);
+                roll4.setMode("claw");
+                this.rollList.add(roll4);
+                Roll roll5 = new Roll(mA, mC, baseAtk);
+                roll5.setMode("claw");
+                this.rollList.add(roll5);
+            } else {
+                Roll roll1 = new Roll(mA, mC, baseAtk);
+                roll1.setMode("claw");
+                this.rollList.add(roll1);
+                Roll roll2 = new Roll(mA, mC, baseAtk);
+                roll2.setMode("claw");
+                this.rollList.add(roll2);
+                Roll roll3 = new Roll(mA, mC, baseAtk);
+                roll3.setMode("bite");
+            }
 
-            if (settings.getBoolean("rapid_enchant_switch", mC.getResources().getBoolean(R.bool.rapid_enchant_switch_def))) {
-                allAtks.add(0, allAtks.get(0));
-            }
-            if (pj.featIsActive("feat_rapid_fire")) {
-                allAtks.add(0, allAtks.get(0));
-            }
-            for (Integer atk : allAtks) {
-                Roll roll = new Roll(mA, mC, atk);
-                this.rollList.add(roll);
-            }
             int nCount=1;
             for (Roll roll : this.rollList.getList()){
-                roll.getAtkRoll().setMode(this.mode);
                 roll.setNthAtkRoll(nCount);
                 nCount++;
             }
+        } else if(this.mode.equalsIgnoreCase("leap") && pj.getAllCapacities().capacityIsActive("leap")) {
+            Roll roll1 = new Roll(mA, mC, baseAtk);
+            roll1.setMode("leapclaw");
+            this.rollList.add(roll1);
+            Roll roll2 = new Roll(mA, mC, baseAtk);
+            roll2.setMode("leapclaw");
+            this.rollList.add(roll2);
+            Roll roll3 = new Roll(mA, mC, baseAtk);
+            roll3.setMode("leapbite");
+            this.rollList.add(roll3);
+            Roll roll4 = new Roll(mA, mC, baseAtk);
+            roll4.setMode("leapclaw");
+            this.rollList.add(roll4);
+            Roll roll5 = new Roll(mA, mC, baseAtk);
+            roll5.setMode("leapclaw");
+            this.rollList.add(roll5);
         } else {
-            Roll roll = new Roll(mA, mC, allAtks.get(0));
-            roll.getAtkRoll().setMode(this.mode);
+            Roll roll = new Roll(mA, mC, baseAtk);
             this.rollList.add(roll);
         }
     }

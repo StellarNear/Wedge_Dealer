@@ -92,18 +92,25 @@ public class AllCapacities {
         }
     }
 
-    public boolean capacityExist(String id) {
-        boolean val = false;
-        for (Capacity capacity : allCapacities){
-            if (capacity.getId().equalsIgnoreCase(id)){
-                val=true;
-                break;
-            }
-        }
-        return val;
+    public Capacity getCapacity(String id) {
+        Capacity selectedCapa;
+        try {
+            selectedCapa= mapIdcapacity.get(id);
+        } catch (Exception e){  selectedCapa=null;  }
+        return selectedCapa;
     }
 
     public void reset() {
         buildCapacitiesList();
+    }
+
+    public boolean capacityIsActive(String id) {
+        boolean val=false;
+        try {
+            val= getCapacity(id).isActive();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return val;
     }
 }

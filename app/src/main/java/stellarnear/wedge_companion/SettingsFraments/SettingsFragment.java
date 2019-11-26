@@ -76,15 +76,18 @@ public class SettingsFragment extends PreferenceFragment {
         settings.registerOnSharedPreferenceChangeListener(listener);
         this.mA=getActivity();
         this.mC=getContext();
-        int xmlID = R.xml.pref;
         try {
-            xmlID = getResources().getIdentifier("pref"+ PersoManager.getPJExtension(), "xml", getContext().getPackageName());
+            int xmlID = getResources().getIdentifier(PersoManager.getPJPrefix()+"pref", "xml", getContext().getPackageName());
+            addPreferencesFromResource(xmlID);
+            this.histoPrefKeys.add(PersoManager.getPJPrefix()+"pref");
         } catch (Exception e) {
             e.printStackTrace();
+            addPreferencesFromResource(R.xml.pref);
+            this.histoPrefKeys.add("pref");
         }
-        addPreferencesFromResource(xmlID);
+
         findPreference("pref_stats").setSummary("Record actuel : "+settings.getString("highscore"+pj.getID(),"0"));
-        this.histoPrefKeys.add("pref");
+
         this.histoTitle.add("Paramètres");
         this.prefAllInventoryFragment =new PrefAllInventoryFragment(mA,mC);
         this.prefAllInventoryFragment.setRefreshEventListener(new PrefAllInventoryFragment.OnRefreshEventListener() {
@@ -110,7 +113,7 @@ public class SettingsFragment extends PreferenceFragment {
 
     // will be called by SettingsActivity (Host Activity)
     public void onUpButton() {
-        if (histoPrefKeys.get(histoPrefKeys.size() - 1).equalsIgnoreCase("pref"+PersoManager.getPJExtension()) || histoPrefKeys.size() <= 1) // in top-level
+        if (histoPrefKeys.get(histoPrefKeys.size() - 1).equalsIgnoreCase(PersoManager.getPJPrefix()+"pref") || histoPrefKeys.size() <= 1) // in top-level
         {
             pj.refresh();
             Intent intent;
@@ -137,9 +140,6 @@ public class SettingsFragment extends PreferenceFragment {
         if (preference.getKey().contains("pref_")) {
             histoPrefKeys.add(preference.getKey());
             histoTitle.add(preference.getTitle().toString());
-        }
-
-        if (preference.getKey().startsWith("pref")) {
             this.currentPageKey =preference.getKey();
             this.currentPageTitle =preference.getTitle().toString();
             navigate();
@@ -150,7 +150,7 @@ public class SettingsFragment extends PreferenceFragment {
     }
 
     private void navigate() {
-        if (currentPageKey.equalsIgnoreCase("pref")) {
+        if (currentPageKey.equalsIgnoreCase(PersoManager.getPJPrefix()+"pref")) {
             displayMainPage();
         } else if (currentPageKey.contains("pref_")) {
             loadPage();
@@ -225,7 +225,7 @@ public class SettingsFragment extends PreferenceFragment {
         getPreferenceScreen().removeAll();
         int xmlID = R.xml.pref;
         try {
-            xmlID = getResources().getIdentifier("pref"+ PersoManager.getPJExtension(), "xml", getContext().getPackageName());
+            xmlID = getResources().getIdentifier(PersoManager.getPJPrefix()+"pref" , "xml", getContext().getPackageName());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -260,9 +260,9 @@ public class SettingsFragment extends PreferenceFragment {
                     @Override
                     public boolean onPreferenceChange(Preference preference, Object o) {
                         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getContext());
-                        int idValGoldDef=  mC.getResources().getIdentifier("money_gold_def"+ PersoManager.getPJExtension(), "integer", mC.getPackageName());
-                        int gold = tools.toInt(settings.getString("money_gold"+PersoManager.getPJExtension(), String.valueOf(getContext().getResources().getInteger(idValGoldDef))));
-                        settings.edit().putString("money_gold"+PersoManager.getPJExtension(), String.valueOf(gold + tools.toInt(o.toString()))).apply();
+                        int idValGoldDef=  mC.getResources().getIdentifier("money_gold_def"+ PersoManager.getPJSuffix(), "integer", mC.getPackageName());
+                        int gold = tools.toInt(settings.getString("money_gold"+PersoManager.getPJSuffix(), String.valueOf(getContext().getResources().getInteger(idValGoldDef))));
+                        settings.edit().putString("money_gold"+PersoManager.getPJSuffix(), String.valueOf(gold + tools.toInt(o.toString()))).apply();
                         settings.edit().putString("add_gold", String.valueOf(0)).apply();
                         getPreferenceScreen().removeAll();
                         addPreferencesFromResource(R.xml.pref_inventory_money); //pour refresh le current

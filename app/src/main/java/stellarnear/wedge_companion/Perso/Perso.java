@@ -179,7 +179,9 @@ public class Perso {
         if (allAbilities.getAbi(abiId) != null) {
             abiScore = allAbilities.getAbi(abiId).getValue();
             if (abiId.equalsIgnoreCase("ability_ca")) {
-                abiScore += tools.toInt(settings.getString("bonus_temp_ca",String.valueOf(0)));
+                abiScore += tools.toInt(settings.getString("bonus_global_temp_ca",String.valueOf(0)));
+                String suffix=pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
+                abiScore += tools.toInt(settings.getString("bonus_temp_ca"+suffix,String.valueOf(0)));
             }
 
             if (abiId.equalsIgnoreCase("ability_equipment")) {
@@ -187,8 +189,11 @@ public class Perso {
             }
 
             if (abiId.equalsIgnoreCase("ability_rm")) {
-                int bonusRm = tools.toInt(settings.getString("bonus_temp_rm", String.valueOf(0)));
+                int bonusRmGlobal = tools.toInt(settings.getString("bonus_global_temp_rm", String.valueOf(0)));
+                String suffix=pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
+                int bonusRm = tools.toInt(settings.getString("bonus_temp_rm"+suffix, String.valueOf(0)));
                 if (bonusRm>abiScore) { abiScore = bonusRm; }
+                if (bonusRmGlobal>abiScore) { abiScore = bonusRmGlobal; }
             }
 
             if (abiId.equalsIgnoreCase("ability_init")) {
@@ -202,7 +207,9 @@ public class Perso {
             }
 
             if (abiId.equalsIgnoreCase("ability_ref")||abiId.equalsIgnoreCase("ability_vig")||abiId.equalsIgnoreCase("ability_vol")) {
-                abiScore += tools.toInt(settings.getString("bonus_temp_save",String.valueOf(0)));
+                abiScore += tools.toInt(settings.getString("bonus_global_temp_save",String.valueOf(0)));
+                String suffix=pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
+                abiScore += tools.toInt(settings.getString("bonus_temp_save"+suffix,String.valueOf(0)));
                 abiScore += tools.toInt(settings.getString("epic_save",String.valueOf(mC.getResources().getInteger(R.integer.epic_save_def))));
 
                 if (settings.getBoolean("ioun_stone_luck",true)) {
@@ -215,7 +222,7 @@ public class Perso {
 
                 if (abiId.equalsIgnoreCase("ability_ref")){
                     abiScore+=getAbilityMod("ability_dexterite");
-                    if(featIsActive("feat_inhuman_reflexes")){
+                    if(getAllFeats().featIsActive("feat_inhuman_reflexes")){
                         abiScore+=2;
                     }
                 }
@@ -225,7 +232,7 @@ public class Perso {
                 }
                 if (abiId.equalsIgnoreCase("ability_vol")){
                     abiScore+=getAbilityMod("ability_sagesse");
-                    if(allCapacities.capacityExist("capacity_dual_spirit")){
+                    if(allCapacities.capacityIsActive("capacity_dual_spirit")){
                         abiScore+=2;
                     }
                 }
@@ -260,17 +267,6 @@ public class Perso {
 
     public AllFeats getAllFeats() {
         return allFeats;
-    }
-
-    public boolean featIsActive(String featId) {
-        boolean active = false;
-        try {
-            Feat feat = allFeats.getFeat(featId);
-            active = feat.isActive();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return active;
     }
 
     public void sleep() {

@@ -2,6 +2,7 @@ package stellarnear.wedge_companion.Perso;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
@@ -90,6 +91,7 @@ public class AllResources {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         rankManager=new SpellsRanksManager(mC,pjID);
         rankManager.setRefreshEventListener(new SpellsRanksManager.OnHighTierChange() {
             @Override
@@ -101,6 +103,7 @@ public class AllResources {
             listResources.add(res);
             mapIDRes.put(res.getId(), res);
         }
+
 
         Resource display_spell = new Resource("Rang de sorts","Sorts",false,false,"resource_display_rank",mC,pjID);
         listResources.add(display_spell);
@@ -144,9 +147,15 @@ public class AllResources {
         return selectedResource;
     }
     private int readResource(String key) {
+        int val=0;
         String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
         int resId = mC.getResources().getIdentifier(key.toLowerCase() + "_def"+extendID, "integer", mC.getPackageName());
-        return tools.toInt(settings.getString(key.toLowerCase()+extendID, String.valueOf(mC.getResources().getInteger(resId))));
+        try {
+            val=tools.toInt(settings.getString(key.toLowerCase()+extendID, String.valueOf(mC.getResources().getInteger(resId))));
+        } catch (Resources.NotFoundException e) {
+            e.printStackTrace();
+        }
+        return val;
     }
 
     public void refreshMaxs() {

@@ -104,8 +104,36 @@ public class AtkRoll {
     }
 
     public Integer getPreRandValue() {
-        this.preRandValue = this.base + new CalculationAtk(mC).getBonusAtk();
+        this.preRandValue = this.base + new CalculationAtk(mC).getBonusAtk() + getMeleeBonus();
         return preRandValue;
+    }
+
+    private Integer getMeleeBonus() {
+        int bonusAtkMelee=0;
+        bonusAtkMelee+= pj.getAbilityMod("ability_force");
+        if (mode.contains("claw") && pj.getAllCapacities().capacityIsActive("capacity_magic_suprem_bite_claw")) {
+            bonusAtkMelee+=5;
+        }
+        if (mode.contains("bite") && pj.getAllCapacities().capacityIsActive("capacity_magic_suprem_bite_bite")) {
+            bonusAtkMelee+=5;
+        }
+        if(mode.contains("claw")&&pj.getAllFeats().featIsActive("feat_predil_claw")){
+            bonusAtkMelee+=1;
+        }
+        if(mode.contains("claw")&&pj.getAllFeats().featIsActive("feat_predil_sup_claw")){
+            bonusAtkMelee+=1;
+        }
+        if(mode.contains("claw")&&pj.getAllFeats().featIsActive("feat_predil_epic_claw")){
+            bonusAtkMelee+=2;
+        }
+        if ( pj.getAllFeats().featIsActive("feat_power_atk")) {
+            int defValID= mC.getResources().getIdentifier("feat_power_atk_val_def"+PersoManager.getPJSuffix(),"integer",mC.getPackageName());
+            bonusAtkMelee-=tools.toInt(settings.getString("feat_power_atk_val", String.valueOf(mC.getResources().getInteger(defValID))));
+        }
+        if(mode.contains("leap")){
+            bonusAtkMelee+=2;
+        }
+        return bonusAtkMelee;
     }
 
     public void setAtkRand() {
@@ -130,8 +158,13 @@ public class AtkRoll {
             this.fail = true;
             atkDice.getImg().setOnClickListener(null);
         }
-        int critMin=20;
-        if (atkDice.getRandValue() >= critMin) {
+        int critMin;
+        if (pj.getAllFeats().featIsActive("feat_improved_crit")) {
+            critMin = 19;
+        } else {
+            critMin = 20;
+        }
+        if (atkDice.getRandValue() >= critMin) { //c'est possiblement un crit
             this.crit = true;
         }
     }

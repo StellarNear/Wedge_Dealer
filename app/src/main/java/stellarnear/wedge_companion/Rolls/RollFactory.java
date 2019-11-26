@@ -48,7 +48,7 @@ public class RollFactory {
             if (settings.getBoolean("rapid_enchant_switch", mC.getResources().getBoolean(R.bool.rapid_enchant_switch_def))) {
                 allAtks.add(0, allAtks.get(0));
             }
-            if (pj.featIsActive("feat_rapid_fire")) {
+            if (pj.getAllFeats().featIsActive("feat_rapid_fire")) {
                 allAtks.add(0, allAtks.get(0));
             }
             for (Integer atk : allAtks) {
@@ -57,13 +57,13 @@ public class RollFactory {
             }
             int nCount=1;
             for (Roll roll : this.rollList.getList()){
-                roll.getAtkRoll().setMode(this.mode);
+                roll.setMode(this.mode);
                 roll.setNthAtkRoll(nCount);
                 nCount++;
             }
         } else {
             Roll roll = new RangedRoll(mA, mC, allAtks.get(0));
-            roll.getAtkRoll().setMode(this.mode);
+            roll.setMode(this.mode);
             this.rollList.add(roll);
         }
     }

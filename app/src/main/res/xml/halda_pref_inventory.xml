@@ -15,7 +15,7 @@
         android:title="Gestion de l'équipement"   />
 
     <PreferenceScreen
-        android:key="pref_inventory_money_halda"
+        android:key="halda_pref_inventory_money"
         android:icon="@drawable/ic_cash"
         android:summary="Gestion des pièces de platine, or, argent, cuivre"
         android:title="Monnaie" />

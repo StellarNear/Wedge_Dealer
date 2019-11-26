@@ -26,6 +26,7 @@ public class Roll {
     protected SharedPreferences settings;
     protected Tools tools=new Tools();
     protected Perso pj = PersoManager.getCurrentPJ();
+    protected String mode;
 
     public Roll(Activity mA, Context mC, Integer atkBase) {
         this.mA=mA;
@@ -39,10 +40,20 @@ public class Roll {
         return this.atkRoll;
     }
 
+    public void setNthAtkRoll(int nthAtkRoll) {
+        this.nthAtkRoll = nthAtkRoll;
+    }
+
+    public void setMode(String mode) {
+        atkRoll.setMode(mode);
+        this.mode=mode; //les dmgroll sont pas encore présent
+    }
+
     public void setDmgRand() {
         if (this.dmgRollList.isEmpty() && !isMissed()){
             this.dmgRollList.add(new DmgRoll(mA,mC,atkRoll.isCritConfirmed(),atkRoll.getAtkDice().getRandValue()==20));
             for(DmgRoll dmgRoll:this.dmgRollList){
+                dmgRoll.setMode(mode);
                 dmgRoll.setDmgRand();
             }
         }
@@ -151,10 +162,6 @@ public class Roll {
         return atkRoll.isMissed();
     }
 
-
-    public void setNthAtkRoll(int nthAtkRoll) {
-        this.nthAtkRoll = nthAtkRoll;
-    }
 
     public int getNthAtkRoll() {
         return nthAtkRoll;

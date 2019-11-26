@@ -3,6 +3,7 @@ package stellarnear.wedge_companion.Rolls;
 import android.app.Activity;
 import android.content.Context;
 
+import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Rolls.Dices.Dice;
 
@@ -31,7 +32,7 @@ public class RangeDmgRoll extends DmgRoll {
         if (pj.getAllMythicFeats().mythicFeatsIsActive("mythicfeat_crit_science")) {
             critMultiplier = 4;
         } else {
-            critMultiplier = 3;
+            critMultiplier = 3;  //de base l'arc c'est *3
         }
         if (naturalCrit && settings.getBoolean("isillirit_switch", mC.getResources().getBoolean(R.bool.isillirit_switch_def))) {
             critMultiplier += 1;
@@ -94,13 +95,13 @@ public class RangeDmgRoll extends DmgRoll {
 
     public int getBonusDmg() {
         int calcBonusDmg = 0;
-        if (pj.featIsActive("feat_aim")) {
+        if (pj.getAllFeats().featIsActive("feat_aim")) {
             calcBonusDmg += 2 * tools.toInt(settings.getString("feat_aim_val", String.valueOf(mC.getResources().getInteger(R.integer.feat_aim_val_def))));
         }
         if (settings.getBoolean("thor_switch", mC.getResources().getBoolean(R.bool.thor_switch_def))) {
             calcBonusDmg += 3;
         }
-        if (pj.featIsActive("feat_nine_m")) {
+        if (pj.getAllFeats().featIsActive("feat_nine_m")) {
             calcBonusDmg += 1;
         }
         if (settings.getBoolean("magic_switch", mC.getResources().getBoolean(R.bool.magic_arrow_switch_def))) {
@@ -109,22 +110,23 @@ public class RangeDmgRoll extends DmgRoll {
         if (settings.getBoolean("composite_switch", mC.getResources().getBoolean(R.bool.composite_switch_def))) {
             calcBonusDmg += 4;
         }
-        if (pj.featIsActive("feat_weapon_spe")) {
+        if (pj.getAllFeats().featIsActive("feat_weapon_spe")) {
             calcBonusDmg += 2;
         }
-        if (pj.featIsActive("feat_weapon_spe_sup")) {
+        if (pj.getAllFeats().featIsActive("feat_weapon_spe_sup")) {
             calcBonusDmg += 2;
         }
-        if (pj.featIsActive("feat_weapon_spe_epic")) {
+        if (pj.getAllFeats().featIsActive("feat_weapon_spe_epic")) {
             calcBonusDmg += 4;
         }
-        if (pj.featIsActive("feat_hammer_gap")) {
+        if (pj.getAllFeats().featIsActive("feat_hammer_gap")) {
             int multiVal = tools.toInt(settings.getString("feat_manyshot_suprem_val", String.valueOf(mC.getResources().getInteger(R.integer.feat_manyshot_suprem_val_def))));
             calcBonusDmg += ((nthAtkRoll-1)*multiVal)+nthDmgRoll-1;
         }
 
         calcBonusDmg += tools.toInt(settings.getString("epic_dmg_val", String.valueOf(mC.getResources().getInteger(R.integer.attack_dmg_epic_DEF))));
-        calcBonusDmg += tools.toInt(settings.getString("bonus_dmg_temp", String.valueOf(0)));
+        calcBonusDmg += tools.toInt(settings.getString("bonus_global_dmg_temp", String.valueOf(0)));
+        calcBonusDmg += tools.toInt(settings.getString("bonus_dmg_temp"+ PersoManager.getPJSuffix(), String.valueOf(0)));
         return calcBonusDmg;
     }
 }

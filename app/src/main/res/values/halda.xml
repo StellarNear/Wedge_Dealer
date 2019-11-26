@@ -2,24 +2,16 @@
 <resources>
 
     <!-- _halda -->
-    <integer name="ability_lvl_def_halda">27</integer>
-    <integer name="current_xp_def_halda">29874952</integer>
-    <integer name="add_current_xp_def_halda">0</integer>
 
     <integer name="money_plat_def_halda">142</integer>
     <integer name="money_gold_def_halda">252724</integer>
     <integer name="money_silver_def_halda">0</integer>
     <integer name="money_copper_def_halda">81</integer>
 
-    <integer name="multi_value_def_halda">3</integer>
-    <integer name="viser_val_def_halda">5</integer>
-    <integer name="magic_val_def_halda">7</integer>
-
     <integer name="attack_att_epic_def_halda">2</integer>
     <integer name="attack_dmg_epic_def_halda">0</integer>
     <integer name="prouesse_def_halda">0</integer>
     <integer name="prouesse_attrib_def_halda">1</integer>
-    <integer name="attack_range_def_halda">100</integer>
 
     <!--  Stat de base du perso  -->
     <integer name="ability_force_def_halda">23</integer>

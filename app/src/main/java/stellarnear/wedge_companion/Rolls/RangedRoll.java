@@ -26,7 +26,7 @@ public class RangedRoll extends Roll {
         if (this.dmgRollList.isEmpty() && !isMissed()){
             int nthDmgRoll=1;
             this.dmgRollList.add(new RangeDmgRoll(mA,mC,atkRoll.isCritConfirmed(),atkRoll.getAtkDice().getRandValue()==20,this.nthAtkRoll,nthDmgRoll));
-            if (pj.featIsActive("feat_manyshot_suprem")) {
+            if (pj.getAllFeats().featIsActive("feat_manyshot_suprem")) {
                 int multiVal = tools.toInt(settings.getString("feat_manyshot_suprem_val", String.valueOf(mC.getResources().getInteger(R.integer.feat_manyshot_suprem_val_def))));
                 for(int i=1;i<multiVal;i++){
                     nthDmgRoll++;

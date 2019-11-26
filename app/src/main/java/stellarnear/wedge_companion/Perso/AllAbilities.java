@@ -2,6 +2,7 @@ package stellarnear.wedge_companion.Perso;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.preference.PreferenceManager;
 
 import org.w3c.dom.Document;
@@ -89,10 +90,16 @@ public class AllAbilities {
     }
 
     private int readAbility(String key) {
+        int val=0;
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
         String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
         int resId = mC.getResources().getIdentifier( key.toLowerCase() + "_def"+extendID, "integer", mC.getPackageName());
-        return tools.toInt(settings.getString( key.toLowerCase()+pjID, String.valueOf(mC.getResources().getInteger(resId))));
+        try {
+            val=tools.toInt(settings.getString( key.toLowerCase()+pjID, String.valueOf(mC.getResources().getInteger(resId))));
+        } catch (Resources.NotFoundException e) {
+            e.printStackTrace();
+        }
+        return val;
     }
 
     public void refreshAllAbilities() {

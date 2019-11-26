@@ -9,7 +9,48 @@
         <id>feat_inhuman_reflexes</id>
     </feat>
 
+    <feat>
+        <name>Science du critique</name>
+        <type>feat_atk</type>
+        <descr>La zone de critique de l’arme choisie est doublée.</descr>
+        <id>feat_improved_crit</id>
+    </feat>
+    <feat>
+        <name>Arme de prédilection (Griffe)</name>
+        <type>feat_atk</type>
+        <descr>+1 à tous ses jets d\'attaque avec l'arme choisie.</descr>
+        <id>feat_predil_claw</id>
+    </feat>
+    <feat>
+        <name>Arme de prédilection sup. (Griffe)</name>
+        <type>feat_atk</type>
+        <descr>+1 à tous ses jets d\'attaque avec l'arme choisie.</descr>
+        <id>feat_predil_sup_claw</id>
+    </feat>
+    <feat>
+        <name>Arme de prédilection épique (Griffe)</name>
+        <type>feat_atk</type>
+        <descr>+2 à tous ses jets d'attaque avec l'arme choisie.</descr>
+        <id>feat_predil_epic_claw</id>
+    </feat>
 
+    <feat>
+        <name>Attaque en puissance</name>
+        <type>feat_atk</type>
+        <descr>-x aux jets d'attaques / +2x aux dégâts</descr>
+        <id>feat_power_atk</id>
+    </feat>
 
-
+    <feat>
+        <name>Arme naturelle supérieure Griffe</name>
+        <type>feat_atk</type>
+        <descr>Les dégats des griffes passent de 1d6 à 1d8</descr>
+        <id>feat_natural_weapon_sup_claw</id>
+    </feat>
+    <feat>
+        <name>Arme naturelle supérieure Morsure</name>
+        <type>feat_atk</type>
+        <descr>Les dégats de la morsure passent de 1d8 à 2d6</descr>
+        <id>feat_natural_weapon_sup_bite</id>
+    </feat>
 </records>

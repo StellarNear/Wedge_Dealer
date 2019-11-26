@@ -97,4 +97,6 @@
     <integer name="skill_magic_item_bonusDEF">0</integer>
     <integer name="skill_fly_bonusDEF">3</integer>
 
+    <integer name="feat_aim_val_def">5</integer>
+    <integer name="feat_manyshot_suprem_val_def">3</integer>
 </resources>

@@ -1,0 +1,60 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory
+        android:key="Commun"
+        android:title="Commun">
+        <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+
+        <PreferenceScreen
+            android:key="pref_global_temp"
+            android:icon="@drawable/ic_timelapse_black_24dp"
+            android:summary="Améliorations non permanentes"
+            android:title="Bonus temporaires (tous)" />
+
+    </PreferenceCategory>
+    <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+
+    <PreferenceCategory
+        android:key="Personnel"
+        android:title="Personnel">
+        <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+
+        <PreferenceScreen
+            android:key="sylphe_pref_character"
+            android:icon="@drawable/ic_person_black_24dp"
+            android:title="Personnage"
+            android:summary="Statistiques de base du personnage"/>
+
+        <PreferenceScreen
+            android:key="sylphe_pref_inventory"
+            android:icon="@drawable/ic_locked_chest"
+            android:summary="Equipement et trésorerie"
+            android:title="Inventaire" />
+
+        <PreferenceScreen
+            android:key="pref_refresh"
+            android:summary="Réinitialise des les paramètres"
+            android:icon="@drawable/ic_undo_black_24dp"
+            android:title="Refresh/Reset des paramètres" />
+
+        <PreferenceScreen
+            android:key="sylphe_pref_temp"
+            android:icon="@drawable/ic_timelapse_black_24dp"
+            android:summary="Améliorations non permanentes"
+            android:title="Bonus temporaires (soi)" />
+
+        <PreferenceScreen
+            android:icon="@drawable/ic_trophy_cup"
+            android:key="pref_stats"
+            android:title="Statistiques"
+            android:summary="Record actuel : XXXX"/>
+
+    </PreferenceCategory>
+    <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+
+
+
+
+
+
+</PreferenceScreen>

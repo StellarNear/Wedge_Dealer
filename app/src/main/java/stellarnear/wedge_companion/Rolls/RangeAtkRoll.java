@@ -20,25 +20,25 @@ public class RangeAtkRoll extends AtkRoll {
         if (  settings.getBoolean("thor_switch", mC.getResources().getBoolean(R.bool.thor_switch_def))) {
             bonusAtkRange+= 3;
         }
-        if ( pj.featIsActive("feat_predil")) {
+        if ( pj.getAllFeats().featIsActive("feat_predil")) {
             bonusAtkRange+= 1;
         }
-        if ( pj.featIsActive("feat_predil_sup")) {
+        if ( pj.getAllFeats().featIsActive("feat_predil_sup")) {
             bonusAtkRange+= 1;
         }
-        if ( pj.featIsActive("feat_predil_epic")) {
+        if ( pj.getAllFeats().featIsActive("feat_predil_epic")) {
             bonusAtkRange+= 2;
         }
-        if ( pj.featIsActive("feat_nine_m")) {
+        if ( pj.getAllFeats().featIsActive("feat_nine_m")) {
             bonusAtkRange+= 1;
         }
         if (settings.getBoolean("magic_arrow_switch", mC.getResources().getBoolean(R.bool.magic_arrow_switch_def))) {
             bonusAtkRange+= tools.toInt(settings.getString("magic_val", String.valueOf(mC.getResources().getInteger(R.integer.magic_val_def))));
         }
-        if ( pj.featIsActive("feat_aim")) {
+        if ( pj.getAllFeats().featIsActive("feat_aim")) {
             bonusAtkRange-=tools.toInt(settings.getString("feat_aim_val", String.valueOf(mC.getResources().getInteger(R.integer.feat_aim_val_def))));
         }
-        if (this.mode.equalsIgnoreCase("fullround") && pj.featIsActive("feat_rapid_fire")) {
+        if (this.mode.equalsIgnoreCase("fullround") && pj.getAllFeats().featIsActive("feat_rapid_fire")) {
             bonusAtkRange-=2;
         }
         if(this.mode.equalsIgnoreCase("barrage_shot")){
@@ -79,8 +79,8 @@ public class RangeAtkRoll extends AtkRoll {
             atkDice.getImg().setOnClickListener(null);
         }
         int critMin;
-        if (pj.featIsActive("feat_improved_crit")) {
-            critMin = 18;
+        if (pj.getAllFeats().featIsActive("feat_improved_crit")) {
+            critMin = 18; // vient de oeil excercé arché sylvestre sui double 19-20 mais porte à 18 le cir tsi il connait l'ennemie
         } else {
             critMin = 20;
         }

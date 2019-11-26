@@ -47,6 +47,14 @@ public class PrefFeatFragment {
                     manyval.setDefaultValue(String.valueOf(mC.getResources().getInteger(R.integer.feat_manyshot_suprem_val_def)));
                     manyval.setSummary("Valeur : %s");
                     atk.addPreference(manyval);
+                } else if(feat.getId().equalsIgnoreCase("feat_power_atk")){
+                    EditTextPreference aimVal = new EditTextPreference(mC, InputType.TYPE_CLASS_TEXT);
+                    aimVal.setTitle("Valeur d'attaque en puissance");
+                    aimVal.setKey("feat_power_atk_val");
+                    int defValID= mC.getResources().getIdentifier("feat_power_atk_val_def"+PersoManager.getPJSuffix(),"integer",mC.getPackageName());
+                    aimVal.setDefaultValue(String.valueOf(mC.getResources().getInteger(defValID)));
+                    aimVal.setSummary("Valeur : %s");
+                    atk.addPreference(aimVal);
                 }
             } else if (feat.getType().contains("feat_def")) {
                 def.addPreference(switch_feat);

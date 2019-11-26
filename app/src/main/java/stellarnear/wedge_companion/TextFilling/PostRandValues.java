@@ -96,7 +96,7 @@ public class PostRandValues {
     }
 
     private void checkForMultipleArrows() {
-        if (pj.featIsActive("feat_manyshot_suprem")) {
+        if (pj.getAllFeats().featIsActive("feat_manyshot_suprem")) {
             String multi_val_str = settings.getString("feat_manyshot_suprem_val", String.valueOf(mC.getResources().getInteger(R.integer.feat_manyshot_suprem_val_def)));
 
             for (Roll roll : rollList.getList()) {

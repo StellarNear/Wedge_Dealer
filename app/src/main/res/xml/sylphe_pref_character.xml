@@ -1,22 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceScreen
-        android:key="pref_character_general_halda"
+        android:key="sylphe_pref_character_general"
         android:icon="@drawable/ic_person_pin_black_24dp"
         android:title="Caractéristiques générales"
         android:summary="Statistiques générales du personnage"/>
 
     <PreferenceScreen
-        android:key="pref_character_combat_halda"
+        android:key="sylphe_pref_character_combat"
         android:icon="@drawable/ic_filter_center_focus_black_24dp"
         android:title="Caractéristiques de combat"
         android:summary="Statistiques relatives au combat"/>
-
-    <PreferenceScreen
-        android:key="pref_character_spells"
-        android:icon="@drawable/ic_spell_book"
-        android:title="Nombre de sorts par jour"
-        android:summary="Valeurs de base du nombre de sorts journaliers par rang"/>
 
     <PreferenceScreen
         android:key="pref_character_skill"

@@ -7,4 +7,25 @@
         <descr>Voit deux fois plus loin que les humains en condition de faible éclairage.</descr>
     </capacity>
 
+
+    <capacity>
+        <name>Bond</name>
+        <type>other</type>
+        <descr>En sautant sur la cible l'animal peut effectuer une attaque à outrance (et se servir de ses pates arrières). Il bénificie alors d'un bonus de +2 aux jets d'attaques.</descr>
+        <id>capacity_leap</id>
+    </capacity>
+
+    <capacity>
+        <name>Morsure magique suprême (+5 Griffes)*4</name>
+        <type>other</type>
+        <descr>+5 bonus d'altération sur les griffes</descr>
+        <id>capacity_magic_suprem_bite_claw</id>
+    </capacity>
+
+    <capacity>
+        <name>Morsure magique suprême (+5 Morsure)*1</name>
+        <type>other</type>
+        <descr>+5 bonus d'altération sur la morsure</descr>
+        <id>capacity_magic_suprem_bite_bite</id>
+    </capacity>
 </records>

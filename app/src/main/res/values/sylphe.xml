@@ -2,51 +2,25 @@
 <resources>
 
     <!-- _sylphe -->
-    <integer name="ability_lvl_def_sylphe">27</integer>
-    <integer name="current_xp_def_sylphe">29874952</integer>
-    <integer name="add_current_xp_def_sylphe">0</integer>
-
-    <integer name="money_plat_def_sylphe">142</integer>
-    <integer name="money_gold_def_sylphe">252724</integer>
-    <integer name="money_silver_def_sylphe">0</integer>
-    <integer name="money_copper_def_sylphe">81</integer>
-
-    <integer name="multi_value_def_sylphe">3</integer>
-    <integer name="viser_val_def_sylphe">5</integer>
-    <integer name="magic_val_def_sylphe">7</integer>
-
-    <integer name="attack_att_epic_def_sylphe">2</integer>
-    <integer name="attack_dmg_epic_def_sylphe">0</integer>
-    <integer name="prouesse_def_sylphe">0</integer>
-    <integer name="prouesse_attrib_def_sylphe">4</integer>
 
     <string name="jet_att_def_sylphe">16</string>
 
     <!--  Stat de base du perso  -->
-    <integer name="ability_force_def_sylphe">23</integer>
-    <integer name="ability_dexterite_def_sylphe">27</integer>
+    <integer name="ability_force_def_sylphe">33</integer>
+    <integer name="ability_dexterite_def_sylphe">25</integer>
     <integer name="ability_constitution_def_sylphe">18</integer>
-    <integer name="ability_intelligence_def_sylphe">14</integer>
-    <integer name="ability_sagesse_def_sylphe">24</integer>
-    <integer name="ability_charisme_def_sylphe">15</integer>
-    <integer name="ability_ms_def_sylphe">33</integer>
-    <integer name="ability_reduc_def_sylphe">12</integer>
+    <integer name="ability_intelligence_def_sylphe">3</integer>
+    <integer name="ability_sagesse_def_sylphe">15</integer>
+    <integer name="ability_charisme_def_sylphe">10</integer>
+    <integer name="ability_ms_def_sylphe">12</integer>
+    <integer name="ability_reduc_def_sylphe">0</integer>
     <integer name="ability_reduc_elem_def_sylphe">0</integer>
-    <integer name="ability_ca_stuff_def_sylphe">5</integer>
+    <integer name="ability_ca_stuff_def_sylphe">3</integer>
 
     <!-- Resources  -->
     <integer name="resource_hp_base_def_sylphe">194</integer>
     <integer name="resource_hp_shield_def_sylphe">0</integer>
     <integer name="resource_regen_def_sylphe">0</integer>
-    <integer name="resource_heroic_def_sylphe">2</integer>
-    <integer name="resource_legendary_points_def_sylphe">4</integer>
-
-    <integer name="highest_tier_spell_def_sylphe">7</integer>
-
-    <integer name="mythic_tier_def_sylphe">2</integer>
-    <integer name="legendary_points_def_sylphe">4</integer>
-    <integer name="mythic_dice_def_sylphe">6</integer>
-    <integer name="legendary_dice_def_sylphe">8</integer>
 
     <integer name="ability_vig_def_sylphe">12</integer>
     <integer name="ability_ref_def_sylphe">12</integer>
@@ -101,4 +75,6 @@
     <integer name="skill_magic_item_bonusDEF_sylphe">3</integer>
     <integer name="skill_fly_bonusDEF_sylphe">3</integer>
 
+    <integer name="feat_power_atk_val_def_sylphe">4</integer>
+    <bool name="switch_perma_resi_DEF_sylphe">true</bool>
 </resources>

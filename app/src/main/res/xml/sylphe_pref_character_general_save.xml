@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:key="SAVE"
+        android:title="Jets de sauvegarde">
+        <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+
+
+        <SwitchPreference
+            android:defaultValue="@bool/switch_perma_resi_DEF_sylphe"
+            android:key="switch_perma_resi_sylphe"
+            android:title="Permanence résistance +1" />
+
+
+    </PreferenceCategory>
+    <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+    <PreferenceCategory
+        android:key="REF"
+        android:title="Jets de réflexe">
+        <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+        <stellarnear.wedge_companion.EditTextPreference
+            android:defaultValue="@integer/ability_ref_def_sylphe"
+            android:key="ability_ref_sylphe"
+            android:title="Bonus de base"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:inputType="number"
+            android:summary="Valeur : %s"/>
+
+    </PreferenceCategory>
+    <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+    <PreferenceCategory
+        android:key="VIG"
+        android:title="Jets de vigueur">
+        <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+        <stellarnear.wedge_companion.EditTextPreference
+            android:defaultValue="@integer/ability_vig_def_sylphe"
+            android:key="ability_vig_sylphe"
+            android:title="Bonus de base"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:inputType="number"
+            android:summary="Valeur : %s"/>
+    </PreferenceCategory>
+    <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+    <PreferenceCategory
+        android:key="VOL"
+        android:title="Jets de volonté">
+        <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+        <stellarnear.wedge_companion.EditTextPreference
+            android:defaultValue="@integer/ability_vol_def_sylphe"
+            android:key="ability_vol_sylphe"
+            android:title="Bonus de base"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:inputType="number"
+            android:summary="Valeur : %s"/>
+    </PreferenceCategory>
+    <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+</PreferenceScreen>

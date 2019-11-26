@@ -140,6 +140,8 @@ public class MainActivityFragmentCombat extends Fragment {
             @Override
             public void onClick(View view) {
                 mode="simple";
+                new PostData(getContext(),new PostDataElement("Lancement d'un seul tir avec le don Viser juste","La cible ne bénificie ni de son armure ni de son armure naturelle"));
+                tools.customToast(getContext(),"Avec le don viser juste la cible n'a aucune armure !","center");
                 hideButtons(1);
                 startPreRand();
             }

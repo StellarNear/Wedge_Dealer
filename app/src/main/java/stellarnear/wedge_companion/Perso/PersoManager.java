@@ -80,8 +80,13 @@ public class PersoManager {
         currentMapPJ.get("Ràna").halfSleep();
     }
 
-    public static String getPJExtension() {
+    public static String getPJSuffix() {
         String currentID=getCurrentPJ().getID();
         return currentID.equalsIgnoreCase("") ? "" : "_"+currentID;
+    }
+
+    public static String getPJPrefix() {
+        String currentID=getCurrentPJ().getID();
+        return currentID.equalsIgnoreCase("") ? "" : currentID+"_";
     }
 }

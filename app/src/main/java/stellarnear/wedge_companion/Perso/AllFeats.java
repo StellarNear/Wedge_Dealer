@@ -94,4 +94,14 @@ public class AllFeats {
     public void reset() {
         buildFeatsList();
     }
+
+    public boolean featIsActive(String featId) {
+        boolean active = false;
+        try {
+            active = mapIdFeat.get(featId).isActive();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return active;
+    }
 }

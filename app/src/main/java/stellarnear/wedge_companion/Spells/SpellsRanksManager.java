@@ -14,7 +14,7 @@ public class SpellsRanksManager {
     private Tools tools= new Tools();
     private SharedPreferences settings;
     private int highestSpellRank=0;
-    private ArrayList<Resource> spellTiers;
+    private ArrayList<Resource> spellTiers=new ArrayList<>();
     private OnHighTierChange mListner;
     private Context mC;
     private String pjID="";
@@ -27,13 +27,17 @@ public class SpellsRanksManager {
     }
 
     public void refreshRanks() {
-        String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
-        int resId = mC.getResources().getIdentifier("highest_tier_spell_def"+extendID, "integer", mC.getPackageName());
-        int newHighTier=tools.toInt(settings.getString("highest_tier_spell"+ extendID,String.valueOf(mC.getResources().getInteger(resId))));
-        if(highestSpellRank!=newHighTier){
-            highestSpellRank = newHighTier;
-            refreshAllTiers();
-            if(mListner!=null){mListner.onEvent();}
+        try {
+            String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
+            int resId = mC.getResources().getIdentifier("highest_tier_spell_def"+extendID, "integer", mC.getPackageName());
+            int newHighTier= newHighTier = tools.toInt(settings.getString("highest_tier_spell"+ extendID,String.valueOf(mC.getResources().getInteger(resId))));
+            if(highestSpellRank!=newHighTier){
+                highestSpellRank = newHighTier;
+                refreshAllTiers();
+                if(mListner!=null){mListner.onEvent();}
+            }
+        } catch (Resources.NotFoundException e) {
+            e.printStackTrace();
         }
     }
 
