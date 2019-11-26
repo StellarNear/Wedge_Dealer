@@ -35,8 +35,8 @@ public class PetRollFactory {
     private void buildRollList(){
         this.rollList = new RollList();
 
-        int rankDefId = mC.getResources().getIdentifier("jet_att_def"+pj.getID(), "integer", mC.getPackageName());
-        String baseAtksTxt = settings.getString("jet_att"+pj.getID(), String.valueOf(mC.getResources().getInteger(rankDefId)));     //cherche la clef     jet_att dans les setting sinon valeur def (xml)
+        int rankDefId = mC.getResources().getIdentifier("jet_att_def"+PersoManager.getPJExtension(), "integer", mC.getPackageName());
+        String baseAtksTxt = settings.getString("jet_att"+PersoManager.getPJExtension(), String.valueOf(mC.getResources().getInteger(rankDefId)));     //cherche la clef     jet_att dans les setting sinon valeur def (xml)
         String delim=",";
         List<Integer> baseAtks = tools.toInt(Arrays.asList(baseAtksTxt.split(delim)));
         List<Integer> allAtks = new ArrayList<>(baseAtks);

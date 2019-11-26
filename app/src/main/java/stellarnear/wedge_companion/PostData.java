@@ -100,6 +100,7 @@ public class PostData  {
                 }
             }
             catch(Exception e){
+                e.printStackTrace();
                 Log.e("PostData error",e.getMessage());
                 return new String("Exception: " + e.getMessage());
             }
