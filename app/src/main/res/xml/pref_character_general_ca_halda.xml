@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <stellarnear.wedge_companion.EditTextPreference
-        android:defaultValue="@integer/ability_ca_stuff_def"
-        android:key="ability_ca_stuff"
+        android:defaultValue="@integer/ability_ca_stuff_def_halda"
+        android:key="ability_ca_stuff_halda"
         android:title="Equipement"
         android:selectAllOnFocus="true"
         android:singleLine="true"

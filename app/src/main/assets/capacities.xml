@@ -2,10 +2,14 @@
 <records>
     <capacity>
         <name>Esprit dual</name>
-        <type>Trait</type>
+        <type>archer</type>
         <descr>L’ascendance mixte de certains demi-elfes leur permet de résister aux attaques mentales. Ceux qui possèdent ce trait racial gagnent un bonus de +2 aux jets de Volonté. Ce trait remplace adaptabilité.</descr>
         <id>capacity_dual_spirit</id>
     </capacity>
 
-
+    <capacity>
+        <name>Toucher de la destinée</name>
+        <type>druid</type>
+        <descr>Par une action simple accorder un bonus d’intuition aux jets d’attaque, tests de compétence, carac et JDS =1/2 NIV ensorceleur pendant 1 round, utilisable 3 + modif CHA par jour.</descr>
+    </capacity>
 </records>

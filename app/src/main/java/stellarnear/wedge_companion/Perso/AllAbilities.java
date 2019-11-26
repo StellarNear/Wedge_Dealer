@@ -90,7 +90,8 @@ public class AllAbilities {
 
     private int readAbility(String key) {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
-        int resId = mC.getResources().getIdentifier( key.toLowerCase() + "_def"+pjID, "integer", mC.getPackageName());
+        String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
+        int resId = mC.getResources().getIdentifier( key.toLowerCase() + "_def"+extendID, "integer", mC.getPackageName());
         return tools.toInt(settings.getString( key.toLowerCase()+pjID, String.valueOf(mC.getResources().getInteger(resId))));
     }
 

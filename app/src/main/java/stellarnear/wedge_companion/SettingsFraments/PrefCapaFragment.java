@@ -19,14 +19,32 @@ public class PrefCapaFragment {
         this.mC = mC;
     }
 
-    public void addCapaList(PreferenceCategory sorc) {
+    public void addCapaList(PreferenceCategory druid,PreferenceCategory archer,PreferenceCategory oracle,PreferenceCategory other) {
         for (Capacity capacity : pj.getAllCapacities().getAllCapacitiesList()) {
-            SwitchPreference switch_feat = new SwitchPreference(mC);
-            switch_feat.setKey("switch_" + capacity.getId());
-            switch_feat.setTitle(capacity.getName());
-            switch_feat.setSummary(capacity.getDescr());
-            switch_feat.setDefaultValue(true);
-            sorc.addPreference(switch_feat);
+            switch (capacity.getType()){
+                case "druid":
+                    putCapa(capacity,druid);
+                    break;
+                case "archer":
+                    putCapa(capacity,archer);
+                    break;
+                case "oracle":
+                    putCapa(capacity,oracle);
+                    break;
+                case "other":
+                default:
+                    putCapa(capacity,other);
+                    break;
+            }
         }
+    }
+
+    private void putCapa(Capacity capacity, PreferenceCategory category) {
+        SwitchPreference switch_feat = new SwitchPreference(mC);
+        switch_feat.setKey("switch_" + capacity.getId()+pj.getID());
+        switch_feat.setTitle(capacity.getName());
+        switch_feat.setSummary(capacity.getDescr());
+        switch_feat.setDefaultValue(true);
+        category.addPreference(switch_feat);
     }
 }

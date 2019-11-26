@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceScreen
-        android:key="pref_character_general"
+        android:key="pref_character_general_halda"
         android:icon="@drawable/ic_person_pin_black_24dp"
         android:title="Caractéristiques générales"
         android:summary="Statistiques générales du personnage"/>
 
     <PreferenceScreen
-        android:key="pref_character_combat"
+        android:key="pref_character_combat_halda"
         android:icon="@drawable/ic_filter_center_focus_black_24dp"
         android:title="Caractéristiques de combat"
         android:summary="Statistiques relatives au combat"/>
@@ -39,10 +39,4 @@
         android:summary="Ensemble des des capacités connues et/ou actives"
         />
 
-    <PreferenceScreen
-        android:key="pref_character_xp"
-        android:icon="@drawable/ic_upgrade"
-        android:title="Experience"
-        android:summary="Gestion des points d'experience du personnage"
-        />
 </PreferenceScreen>

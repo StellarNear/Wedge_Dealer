@@ -21,19 +21,19 @@ public class PrefMythicCapaFragment {
 
     public void addMythicCapaList(PreferenceCategory common,PreferenceCategory all,PreferenceCategory champ,PreferenceCategory hiero) {
            for (MythicCapacity capacity : pj.getAllMythicCapacities().getAllMythicCapacitiesList()) {
-            SwitchPreference switch_feat = new SwitchPreference(mC);
-            switch_feat.setKey("switch_"+capacity.getId());
-            switch_feat.setTitle(capacity.getName());
-            switch_feat.setSummary(capacity.getDescr());
-            switch_feat.setDefaultValue(true);
+            SwitchPreference switch_capa = new SwitchPreference(mC);
+            switch_capa.setKey("switch_"+capacity.getId()+pj.getID());
+            switch_capa.setTitle(capacity.getName());
+            switch_capa.setSummary(capacity.getDescr());
+            switch_capa.setDefaultValue(true);
             if (capacity.getType().contains("Commun")) {
-                common.addPreference(switch_feat);
+                common.addPreference(switch_capa);
             }  else if (capacity.getType().contains("Universelle")) {
-                all.addPreference(switch_feat);
+                all.addPreference(switch_capa);
             } else if (capacity.getType().equals("Champion")) {
-                champ.addPreference(switch_feat);
+                champ.addPreference(switch_capa);
             }else if (capacity.getType().equals("Hiérophante")) {
-                hiero.addPreference(switch_feat);
+                hiero.addPreference(switch_capa);
             }
         }
     }

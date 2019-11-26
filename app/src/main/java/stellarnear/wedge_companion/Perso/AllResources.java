@@ -58,7 +58,8 @@ public class AllResources {
         listResources = new ArrayList<>();
         mapIDRes = new HashMap<>();
         try {
-            InputStream is = mC.getAssets().open("resources"+pjID+".xml");
+            String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
+            InputStream is = mC.getAssets().open("resources"+extendID+".xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(is);
@@ -143,8 +144,9 @@ public class AllResources {
         return selectedResource;
     }
     private int readResource(String key) {
-        int resId = mC.getResources().getIdentifier(key.toLowerCase() + "_def"+pjID, "integer", mC.getPackageName());
-        return tools.toInt(settings.getString(key.toLowerCase()+pjID, String.valueOf(mC.getResources().getInteger(resId))));
+        String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
+        int resId = mC.getResources().getIdentifier(key.toLowerCase() + "_def"+extendID, "integer", mC.getPackageName());
+        return tools.toInt(settings.getString(key.toLowerCase()+extendID, String.valueOf(mC.getResources().getInteger(resId))));
     }
 
     public void refreshMaxs() {

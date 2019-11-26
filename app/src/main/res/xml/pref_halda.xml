@@ -31,21 +31,20 @@
         android:title="Personnel">
         <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
 
-
         <PreferenceScreen
-            android:key="pref_character"
+            android:key="pref_character_halda"
             android:icon="@drawable/ic_person_black_24dp"
             android:title="Personnage"
             android:summary="Statistiques de base du personnage"/>
 
         <PreferenceScreen
-            android:key="pref_mythic"
+            android:key="pref_mythic_halda"
             android:icon="@drawable/ic_embrassed_energy"
             android:title="Mythique"
             android:summary="Statistiques mythique du personnage"/>
 
         <PreferenceScreen
-            android:key="pref_inventory"
+            android:key="pref_inventory_halda"
             android:icon="@drawable/ic_locked_chest"
             android:summary="Equipement et trésorerie"
             android:title="Inventaire" />
@@ -57,7 +56,7 @@
             android:title="Refresh/Reset des paramètres" />
 
         <PreferenceScreen
-            android:key="pref_temp"
+            android:key="pref_temp_halda"
             android:icon="@drawable/ic_timelapse_black_24dp"
             android:summary="Améliorations non permanentes"
             android:title="Bonus temporaires (soi)" />

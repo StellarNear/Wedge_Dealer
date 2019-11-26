@@ -8,16 +8,16 @@
     <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
 
     <stellarnear.wedge_companion.EditTextPreference
-        android:defaultValue="@integer/mythic_tier_def"
-        android:key="mythic_tier"
+        android:defaultValue="@integer/mythic_tier_def_halda"
+        android:key="mythic_tier_halda"
         android:title="Grade Mythique"
         android:singleLine="true"
         android:inputType="number"
         android:summary="Valeur : %s"/>
 
     <stellarnear.wedge_companion.EditTextPreference
-        android:defaultValue="@integer/mythic_dice_def"
-        android:key="mythic_dice"
+        android:defaultValue="@integer/mythic_dice_def_halda"
+        android:key="mythic_dice_halda"
         android:title="Dès de montée en puissance"
         android:singleLine="true"
         android:inputType="number"

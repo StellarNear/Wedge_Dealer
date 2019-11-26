@@ -45,12 +45,12 @@
     </capacity>
     <capacity>
         <name>Près du but</name>
-        <type>Lignage</type>
+        <type>oracle</type>
         <descr>Une fois par jour, en cas de mort, réussir un jet de Volonté (DD 20) permet de réduire les effets de l’action mortelle : les points de vie du personnage tombent à -1 et il est stabilisé.</descr>
     </capacity>
     <capacity>
         <name>Réalisation du destin</name>
-        <type>Lignage</type>
+        <type>other</type>
         <descr>Tout crit contre l’ensorceleur n'est confirmé que par 20 nat. Tout crit du personnage sur un sort est confirmé. Possibilité de réussir un test de NLS contre RM 1fois/jour avant de lancer le dé.</descr>
     </capacity>
 

@@ -37,7 +37,8 @@ public class AllMythicCapacities {
         allMythicCapacities = new ArrayList<>();
         mapIdMythiccapacity =new HashMap<>();
         try {
-            InputStream is = mC.getAssets().open("mythiccapacities"+pjID+".xml");
+            String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
+            InputStream is = mC.getAssets().open("mythiccapacities"+extendID+".xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(is);

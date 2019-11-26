@@ -18,21 +18,20 @@ import stellarnear.wedge_companion.PostDataElement;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Tools;
 
-public class PrefSleepScreenFragment extends Preference {
-    private Perso pj = PersoManager.getCurrentPJ();
+public class PrefGlobalSleepScreenFragment extends Preference {
     private Context mC;
     private View mainView;
 
-    public PrefSleepScreenFragment(Context context, AttributeSet attrs) {
+    public PrefGlobalSleepScreenFragment(Context context, AttributeSet attrs) {
         super(context, attrs);
 
     }
 
-    public PrefSleepScreenFragment(Context context, AttributeSet attrs, int defStyle) {
+    public PrefGlobalSleepScreenFragment(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
 
     }
-    public PrefSleepScreenFragment(Context context) {
+    public PrefGlobalSleepScreenFragment(Context context) {
         super(context);
     }
 
@@ -53,7 +52,7 @@ public class PrefSleepScreenFragment extends Preference {
         new AlertDialog.Builder(mC)
                 .setIcon(R.drawable.ic_warning_black_24dp)
                 .setTitle("Repos")
-                .setMessage("Es-tu sûre de vouloir te reposer maintenant ?")
+                .setMessage("Tous le monde peut se reposer maintenant ?")
                 .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -83,8 +82,8 @@ public class PrefSleepScreenFragment extends Preference {
         h.postDelayed(new Runnable() {
             @Override
             public void run() {
-                pj.sleep();
-                tools.customToast(mC, "Une nouvelle journée pleine de sortilèges t'attends.", "center");
+                PersoManager.allSleep();
+                tools.customToast(mC, "Une nouvelle journée pleine d'aventure attend toute la petite famille !", "center");
                 new PostData(mC,new PostDataElement("Nuit de repos","Recharge des ressources journalières et sorts"));
                 Intent intent = new Intent(mC, MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
@@ -101,8 +100,8 @@ public class PrefSleepScreenFragment extends Preference {
         h.postDelayed(new Runnable() {
             @Override
             public void run() {
-                pj.halfSleep();
-                tools.customToast(mC, "Une journée sans sortilèges t'attends...", "center");
+                PersoManager.allHalfSleep();
+                tools.customToast(mC, "Une nouvelle journée pleine d'aventure attend toute la petite famille, mais sans magie...", "center");
                 new PostData(mC,new PostDataElement("Nuit de repos (sans sorts)","Recharge des ressources journalières"));
                 Intent intent = new Intent(mC,  MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);

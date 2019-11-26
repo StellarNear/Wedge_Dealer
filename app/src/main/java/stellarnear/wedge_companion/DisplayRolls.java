@@ -35,7 +35,6 @@ public class DisplayRolls {
         metaPopup =new CustomAlertDialog(mA,mC,mainView);
         metaPopup.setPermanent(true);
         metaPopup.clickToHide(mainView.findViewById(R.id.fab_damage_detail_ondetlay));
-
     }
 
     public DisplayRolls(Activity mA, Context mC, DiceList selectedDiceList) {
@@ -62,6 +61,7 @@ public class DisplayRolls {
         for(Roll roll :selectedRolls.getList()){
             for (DmgRoll dmgRoll : roll.getDmgRollList()){
                 LinearLayout line = new LinearLayout(mC);
+                if(roll.isCritConfirmed()){line.setBackground(mC.getDrawable(R.drawable.dice_detail_crit_background));line.getBackground().setAlpha(70);}
                 line.setOrientation(LinearLayout.HORIZONTAL);
                 line.setGravity(Gravity.CENTER_VERTICAL);
 

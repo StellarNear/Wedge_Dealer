@@ -76,7 +76,13 @@ public class SettingsFragment extends PreferenceFragment {
         settings.registerOnSharedPreferenceChangeListener(listener);
         this.mA=getActivity();
         this.mC=getContext();
-        addPreferencesFromResource(R.xml.pref);
+        int xmlID = R.xml.pref;
+        try {
+            xmlID = getResources().getIdentifier("pref"+ PersoManager.getPJExtension(), "xml", getContext().getPackageName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        addPreferencesFromResource(xmlID);
         findPreference("pref_stats").setSummary("Record actuel : "+settings.getString("highscore"+pj.getID(),"0"));
         this.histoPrefKeys.add("pref");
         this.histoTitle.add("Paramètres");
@@ -104,7 +110,7 @@ public class SettingsFragment extends PreferenceFragment {
 
     // will be called by SettingsActivity (Host Activity)
     public void onUpButton() {
-        if (histoPrefKeys.get(histoPrefKeys.size() - 1).equalsIgnoreCase("pref") || histoPrefKeys.size() <= 1) // in top-level
+        if (histoPrefKeys.get(histoPrefKeys.size() - 1).equalsIgnoreCase("pref"+PersoManager.getPJExtension()) || histoPrefKeys.size() <= 1) // in top-level
         {
             pj.refresh();
             Intent intent;
@@ -175,31 +181,34 @@ public class SettingsFragment extends PreferenceFragment {
                     PreferenceCategory magic = (PreferenceCategory) findPreference("Magie");
                     PreferenceCategory atk = (PreferenceCategory) findPreference("Attaque");
                     PreferenceCategory def = (PreferenceCategory) findPreference("Défense");
-                    PreferenceCategory other = (PreferenceCategory) findPreference("Autre");
-                    prefFeatFragment.addFeatsList(magic,atk,def,other);
+                    PreferenceCategory otherFeat = (PreferenceCategory) findPreference("Autre");
+                    prefFeatFragment.addFeatsList(magic,atk,def,otherFeat);
                     setHasOptionsMenu(true);
                     break;
                 case "pref_character_capa":
-                    PreferenceCategory classe = (PreferenceCategory) findPreference("Classe"); //todo capa drudie archer sylv oracle et base ? avec un type capa qui aguille
-                    prefCapaFragment.addCapaList(classe);
+                    PreferenceCategory druid = (PreferenceCategory) findPreference("Druide");
+                    PreferenceCategory archer = (PreferenceCategory) findPreference("Archer-Sylvestre");
+                    PreferenceCategory oracle = (PreferenceCategory) findPreference("Oracle");
+                    PreferenceCategory otherCapa = (PreferenceCategory) findPreference("Autre");
+                    prefCapaFragment.addCapaList(druid,archer,oracle,otherCapa);
                     setHasOptionsMenu(true);
                     break;
                 case "pref_mythic_feat":
-                    PreferenceCategory myth_magic = (PreferenceCategory) findPreference("Magie");
-                    PreferenceCategory myth_atk = (PreferenceCategory) findPreference("Attaque");
-                    PreferenceCategory myth_def = (PreferenceCategory) findPreference("Défense");
-                    PreferenceCategory myth_other = (PreferenceCategory) findPreference("Autre");
+                    PreferenceCategory magicMythFeat = (PreferenceCategory) findPreference("Magie");
+                    PreferenceCategory atkMythFeat = (PreferenceCategory) findPreference("Attaque");
+                    PreferenceCategory defMythFeat = (PreferenceCategory) findPreference("Défense");
+                    PreferenceCategory otherMythFeat = (PreferenceCategory) findPreference("Autre");
 
-                    prefMythicFeatFragment.addMythicFeatsList(myth_magic,myth_atk,myth_def,myth_other);
+                    prefMythicFeatFragment.addMythicFeatsList(magicMythFeat,atkMythFeat,defMythFeat,otherMythFeat);
                     setHasOptionsMenu(true);
                     break;
                 case "pref_mythic_capa":
-                    PreferenceCategory common_myth = (PreferenceCategory) findPreference("Commun");
-                    PreferenceCategory all_myth = (PreferenceCategory) findPreference("Voie Universelle");
-                    PreferenceCategory champ_myth = (PreferenceCategory) findPreference("Voie du Champion");
-                    PreferenceCategory hiero_myth = (PreferenceCategory) findPreference("Voie du Hiérophante");
+                    PreferenceCategory commonMythCapa = (PreferenceCategory) findPreference("Commun");
+                    PreferenceCategory allMythCapa = (PreferenceCategory) findPreference("Voie Universelle");
+                    PreferenceCategory champMythCapa = (PreferenceCategory) findPreference("Voie du Champion");
+                    PreferenceCategory hieroMythCapa = (PreferenceCategory) findPreference("Voie du Hiérophante");
 
-                    prefMythicCapaFragment.addMythicCapaList(common_myth,all_myth,champ_myth,hiero_myth);
+                    prefMythicCapaFragment.addMythicCapaList(commonMythCapa,allMythCapa,champMythCapa,hieroMythCapa);
                     setHasOptionsMenu(true);
                     break;
                 case "pref_character_skill":
@@ -214,7 +223,14 @@ public class SettingsFragment extends PreferenceFragment {
 
     private void displayMainPage() {
         getPreferenceScreen().removeAll();
-        addPreferencesFromResource(R.xml.pref);
+        int xmlID = R.xml.pref;
+        try {
+            xmlID = getResources().getIdentifier("pref"+ PersoManager.getPJExtension(), "xml", getContext().getPackageName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        addPreferencesFromResource(xmlID);
+
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(currentPageTitle);
         findPreference("pref_stats").setSummary("Record actuel : "+settings.getString("highscore"+pj.getID(),"0"));
     }
@@ -222,14 +238,8 @@ public class SettingsFragment extends PreferenceFragment {
     private void loadPage() {
         try {
             getPreferenceScreen().removeAll();
-            if(currentPageKey.contains("_appli") || currentPageKey.contains("_stats") ) {  //pages communes
-                int xmlID = getResources().getIdentifier(currentPageKey, "xml", getContext().getPackageName());
-                addPreferencesFromResource(xmlID);
-            } else {
-                String extXML = pj.getID().equalsIgnoreCase("") ? "" : "_"+pj.getID();
-                int xmlID = getResources().getIdentifier(currentPageKey+extXML, "xml", getContext().getPackageName());
-                addPreferencesFromResource(xmlID);
-            }
+            int xmlID = getResources().getIdentifier(currentPageKey, "xml", getContext().getPackageName());
+            addPreferencesFromResource(xmlID);
         } catch (Exception e) {
             e.printStackTrace();
             displayMainPage();
@@ -250,8 +260,9 @@ public class SettingsFragment extends PreferenceFragment {
                     @Override
                     public boolean onPreferenceChange(Preference preference, Object o) {
                         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getContext());
-                        int gold = tools.toInt(settings.getString("money_gold", String.valueOf(getContext().getResources().getInteger(R.integer.money_gold_def))));
-                        settings.edit().putString("money_gold", String.valueOf(gold + tools.toInt(o.toString()))).apply();
+                        int idValGoldDef=  mC.getResources().getIdentifier("money_gold_def"+ PersoManager.getPJExtension(), "integer", mC.getPackageName());
+                        int gold = tools.toInt(settings.getString("money_gold"+PersoManager.getPJExtension(), String.valueOf(getContext().getResources().getInteger(idValGoldDef))));
+                        settings.edit().putString("money_gold"+PersoManager.getPJExtension(), String.valueOf(gold + tools.toInt(o.toString()))).apply();
                         settings.edit().putString("add_gold", String.valueOf(0)).apply();
                         getPreferenceScreen().removeAll();
                         addPreferencesFromResource(R.xml.pref_inventory_money); //pour refresh le current

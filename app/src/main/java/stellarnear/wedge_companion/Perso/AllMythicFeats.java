@@ -37,7 +37,8 @@ public class AllMythicFeats {
         allMythicFeatsList = new ArrayList<>();
         mapIdMythicFeat =new HashMap<>();
         try {
-            InputStream is = mC.getAssets().open("mythicfeats"+pjID+".xml");
+            String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
+            InputStream is = mC.getAssets().open("mythicfeats"+extendID+".xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(is);

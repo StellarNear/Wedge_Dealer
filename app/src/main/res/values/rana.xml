@@ -1,103 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- rana -->
-    <integer name="ability_lvl_defrana">27</integer>
-    <integer name="current_xp_defrana">29874952</integer>
-    <integer name="add_current_xp_defrana">0</integer>
+    <!-- _rana -->
+    <integer name="ability_lvl_def_rana">27</integer>
+    <integer name="current_xp_def_rana">29874952</integer>
+    <integer name="add_current_xp_def_rana">0</integer>
 
-    <integer name="money_plat_defrana">142</integer>
-    <integer name="money_gold_defrana">252724</integer>
-    <integer name="money_silver_defrana">0</integer>
-    <integer name="money_copper_defrana">81</integer>
+    <integer name="money_plat_def_rana">142</integer>
+    <integer name="money_gold_def_rana">252724</integer>
+    <integer name="money_silver_def_rana">0</integer>
+    <integer name="money_copper_def_rana">81</integer>
 
-    <integer name="multi_value_defrana">3</integer>
-    <integer name="viser_val_defrana">5</integer>
-    <integer name="magic_val_defrana">7</integer>
+    <integer name="multi_value_def_rana">3</integer>
+    <integer name="viser_val_def_rana">5</integer>
+    <integer name="magic_val_def_rana">7</integer>
 
-    <integer name="attack_att_epic_defrana">2</integer>
-    <integer name="attack_dmg_epic_defrana">0</integer>
-    <integer name="prouesse_defrana">0</integer>
-    <integer name="prouesse_attrib_defrana">4</integer>
-    <integer name="attack_range_defrana">100</integer>
+    <integer name="attack_att_epic_def_rana">2</integer>
+    <integer name="attack_dmg_epic_def_rana">0</integer>
+    <integer name="prouesse_def_rana">0</integer>
+    <integer name="prouesse_attrib_def_rana">4</integer>
+    <integer name="attack_range_def_rana">100</integer>
 
     <!--  Stat de base du perso  -->
-    <integer name="ability_force_defrana">23</integer>
-    <integer name="ability_dexterite_defrana">27</integer>
-    <integer name="ability_constitution_defrana">18</integer>
-    <integer name="ability_intelligence_defrana">14</integer>
-    <integer name="ability_sagesse_defrana">24</integer>
-    <integer name="ability_charisme_defrana">15</integer>
-    <integer name="ability_ms_defrana">33</integer>
-    <integer name="ability_reduc_defrana">12</integer>
-    <integer name="ability_reduc_elem_defrana">0</integer>
-    <integer name="ability_ca_stuff_defrana">5</integer>
+    <integer name="ability_force_def_rana">23</integer>
+    <integer name="ability_dexterite_def_rana">27</integer>
+    <integer name="ability_constitution_def_rana">18</integer>
+    <integer name="ability_intelligence_def_rana">14</integer>
+    <integer name="ability_sagesse_def_rana">24</integer>
+    <integer name="ability_charisme_def_rana">15</integer>
+    <integer name="ability_ms_def_rana">33</integer>
+    <integer name="ability_reduc_def_rana">12</integer>
+    <integer name="ability_reduc_elem_def_rana">0</integer>
+    <integer name="ability_ca_stuff_def_rana">5</integer>
 
     <!-- Resources  -->
-    <integer name="resource_hp_base_defrana">194</integer>
-    <integer name="resource_hp_shield_defrana">0</integer>
-    <integer name="resource_regen_defrana">0</integer>
-    <integer name="resource_heroic_defrana">2</integer>
-    <integer name="resource_legendary_points_defrana">4</integer>
+    <integer name="resource_hp_base_def_rana">194</integer>
+    <integer name="resource_hp_shield_def_rana">0</integer>
+    <integer name="resource_regen_def_rana">0</integer>
+    <integer name="resource_heroic_def_rana">2</integer>
+    <integer name="resource_legendary_points_def_rana">4</integer>
 
-    <integer name="highest_tier_spell_defrana">7</integer>
+    <integer name="highest_tier_spell_def_rana">7</integer>
 
-    <integer name="mythic_tier_defrana">2</integer>
-    <integer name="legendary_points_defrana">4</integer>
-    <integer name="mythic_dice_defrana">6</integer>
-    <integer name="legendary_dice_defrana">8</integer>
+    <integer name="mythic_tier_def_rana">2</integer>
+    <integer name="legendary_points_def_rana">4</integer>
+    <integer name="mythic_dice_def_rana">6</integer>
+    <integer name="legendary_dice_def_rana">8</integer>
 
-    <integer name="ability_vig_defrana">12</integer>
-    <integer name="ability_ref_defrana">12</integer>
-    <integer name="ability_vol_defrana">12</integer>
+    <integer name="ability_vig_def_rana">12</integer>
+    <integer name="ability_ref_def_rana">12</integer>
+    <integer name="ability_vol_def_rana">12</integer>
 
-    <integer name="ability_rm_defrana">30</integer>
-    <integer name="epic_save_defrana">2</integer>
+    <integer name="ability_rm_def_rana">30</integer>
+    <integer name="epic_save_def_rana">2</integer>
 
-    <integer name="wedge_max_lvl_spell_defrana">7</integer>
+    <integer name="wedge_max_lvl_spell_def_rana">7</integer>
 
     <!--  Rank de maitrise des compétences  -->
-    <integer name="skill_magic_art_rankDEFrana">26</integer>
-    <integer name="skill_acrob_rankDEFrana">0</integer>
-    <integer name="skill_craft_rankDEFrana">12</integer>
-    <integer name="skill_bluff_rankDEFrana">16</integer>
-    <integer name="skill_myst_rankDEFrana">26</integer>
-    <integer name="skill_religion_rankDEFrana">0</integer>
-    <integer name="skill_stealth_rankDEFrana">0</integer>
-    <integer name="skill_diplomacy_rankDEFrana">2</integer>
-    <integer name="skill_ride_rankDEFrana">0</integer>
-    <integer name="skill_climb_rankDEFrana">0</integer>
-    <integer name="skill_estimate_rankDEFrana">8</integer>
-    <integer name="skill_escape_rankDEFrana">0</integer>
-    <integer name="skill_intimidate_rankDEFrana">16</integer>
-    <integer name="skill_swim_rankDEFrana">0</integer>
-    <integer name="skill_percept_rankDEFrana">0</integer>
-    <integer name="skill_heal_rankDEFrana">0</integer>
-    <integer name="skill_psycho_rankDEFrana">15</integer>
-    <integer name="skill_survival_rankDEFrana">0</integer>
-    <integer name="skill_magic_item_rankDEFrana">5</integer>
-    <integer name="skill_fly_rankDEFrana">1</integer>
+    <integer name="skill_magic_art_rankDEF_rana">26</integer>
+    <integer name="skill_acrob_rankDEF_rana">0</integer>
+    <integer name="skill_craft_rankDEF_rana">12</integer>
+    <integer name="skill_bluff_rankDEF_rana">16</integer>
+    <integer name="skill_myst_rankDEF_rana">26</integer>
+    <integer name="skill_religion_rankDEF_rana">0</integer>
+    <integer name="skill_stealth_rankDEF_rana">0</integer>
+    <integer name="skill_diplomacy_rankDEF_rana">2</integer>
+    <integer name="skill_ride_rankDEF_rana">0</integer>
+    <integer name="skill_climb_rankDEF_rana">0</integer>
+    <integer name="skill_estimate_rankDEF_rana">8</integer>
+    <integer name="skill_escape_rankDEF_rana">0</integer>
+    <integer name="skill_intimidate_rankDEF_rana">16</integer>
+    <integer name="skill_swim_rankDEF_rana">0</integer>
+    <integer name="skill_percept_rankDEF_rana">0</integer>
+    <integer name="skill_heal_rankDEF_rana">0</integer>
+    <integer name="skill_psycho_rankDEF_rana">15</integer>
+    <integer name="skill_survival_rankDEF_rana">0</integer>
+    <integer name="skill_magic_item_rankDEF_rana">5</integer>
+    <integer name="skill_fly_rankDEF_rana">1</integer>
 
     <!--  Bonus des compétences  -->
-    <integer name="skill_magic_art_bonusDEFrana">3</integer>
-    <integer name="skill_acrob_bonusDEFrana">0</integer>
-    <integer name="skill_craft_bonusDEFrana">3</integer>
-    <integer name="skill_bluff_bonusDEFrana">3</integer>
-    <integer name="skill_myst_bonusDEFrana">3</integer>
-    <integer name="skill_religion_bonusDEFrana">0</integer>
-    <integer name="skill_stealth_bonusDEFrana">0</integer>
-    <integer name="skill_diplomacy_bonusDEFrana">0</integer>
-    <integer name="skill_ride_bonusDEFrana">0</integer>
-    <integer name="skill_climb_bonusDEFrana">0</integer>
-    <integer name="skill_estimate_bonusDEFrana">3</integer>
-    <integer name="skill_escape_bonusDEFrana">0</integer>
-    <integer name="skill_intimidate_bonusDEFrana">3</integer>
-    <integer name="skill_swim_bonusDEFrana">0</integer>
-    <integer name="skill_percept_bonusDEFrana">2</integer>
-    <integer name="skill_heal_bonusDEFrana">0</integer>
-    <integer name="skill_psycho_bonusDEFrana">0</integer>
-    <integer name="skill_survival_bonusDEFrana">0</integer>
-    <integer name="skill_magic_item_bonusDEFrana">3</integer>
-    <integer name="skill_fly_bonusDEFrana">3</integer>
+    <integer name="skill_magic_art_bonusDEF_rana">3</integer>
+    <integer name="skill_acrob_bonusDEF_rana">0</integer>
+    <integer name="skill_craft_bonusDEF_rana">3</integer>
+    <integer name="skill_bluff_bonusDEF_rana">3</integer>
+    <integer name="skill_myst_bonusDEF_rana">3</integer>
+    <integer name="skill_religion_bonusDEF_rana">0</integer>
+    <integer name="skill_stealth_bonusDEF_rana">0</integer>
+    <integer name="skill_diplomacy_bonusDEF_rana">0</integer>
+    <integer name="skill_ride_bonusDEF_rana">0</integer>
+    <integer name="skill_climb_bonusDEF_rana">0</integer>
+    <integer name="skill_estimate_bonusDEF_rana">3</integer>
+    <integer name="skill_escape_bonusDEF_rana">0</integer>
+    <integer name="skill_intimidate_bonusDEF_rana">3</integer>
+    <integer name="skill_swim_bonusDEF_rana">0</integer>
+    <integer name="skill_percept_bonusDEF_rana">2</integer>
+    <integer name="skill_heal_bonusDEF_rana">0</integer>
+    <integer name="skill_psycho_bonusDEF_rana">0</integer>
+    <integer name="skill_survival_bonusDEF_rana">0</integer>
+    <integer name="skill_magic_item_bonusDEF_rana">3</integer>
+    <integer name="skill_fly_bonusDEF_rana">3</integer>
 
 </resources>

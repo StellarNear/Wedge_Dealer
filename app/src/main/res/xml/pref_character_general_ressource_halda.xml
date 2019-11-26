@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <stellarnear.wedge_companion.EditTextPreference
-        android:defaultValue="@integer/resource_hp_base_def"
-        android:key="resource_hp_base"
+        android:defaultValue="@integer/resource_hp_base_def_halda"
+        android:key="resource_hp_base_halda"
         android:title="Base point de vie (que les DVs)"
         android:selectAllOnFocus="true"
         android:singleLine="true"
@@ -10,19 +10,12 @@
         android:summary="Valeur : %s"/>
 
     <stellarnear.wedge_companion.EditTextPreference
-        android:defaultValue="@integer/resource_regen_def"
-        android:key="resource_regen"
+        android:defaultValue="@integer/resource_regen_def_halda"
+        android:key="resource_regen_halda"
         android:title="Régénération (/round)"
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:inputType="number"
         android:summary="Valeur : %s"/>
-    <stellarnear.wedge_companion.EditTextPreference
-        android:defaultValue="@integer/resource_heroic_def"
-        android:key="resource_heroic"
-        android:title="Points héroiques"
-        android:selectAllOnFocus="true"
-        android:singleLine="true"
-        android:inputType="number"
-        android:summary="Valeur : %s"/>
+
 </PreferenceScreen>

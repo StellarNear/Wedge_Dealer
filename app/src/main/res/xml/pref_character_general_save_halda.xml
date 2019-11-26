@@ -6,16 +6,16 @@
         <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
 
         <stellarnear.wedge_companion.EditTextPreference
-            android:defaultValue="@integer/epic_save_def"
-            android:key="epic_save"
+            android:defaultValue="@integer/epic_save_def_halda"
+            android:key="epic_save_halda"
             android:title="Bonus épique"
             android:selectAllOnFocus="true"
             android:singleLine="true"
             android:inputType="number"
             android:summary="Valeur : %s"/>
         <SwitchPreference
-            android:defaultValue="@bool/switch_perma_resi_DEF"
-            android:key="switch_perma_resi"
+            android:defaultValue="@bool/switch_perma_resi_DEF_halda"
+            android:key="switch_perma_resi_halda"
             android:title="Permanence résistance +1" />
 
 
@@ -26,8 +26,8 @@
         android:title="Jets de réflexe">
         <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
         <stellarnear.wedge_companion.EditTextPreference
-            android:defaultValue="@integer/ability_ref_def"
-            android:key="ability_ref"
+            android:defaultValue="@integer/ability_ref_def_halda"
+            android:key="ability_ref_halda"
             android:title="Bonus de base"
             android:selectAllOnFocus="true"
             android:singleLine="true"
@@ -41,8 +41,8 @@
         android:title="Jets de vigueur">
         <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
         <stellarnear.wedge_companion.EditTextPreference
-            android:defaultValue="@integer/ability_vig_def"
-            android:key="ability_vig"
+            android:defaultValue="@integer/ability_vig_def_halda"
+            android:key="ability_vig_halda"
             android:title="Bonus de base"
             android:selectAllOnFocus="true"
             android:singleLine="true"
@@ -55,8 +55,8 @@
         android:title="Jets de volonté">
         <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
         <stellarnear.wedge_companion.EditTextPreference
-            android:defaultValue="@integer/ability_vol_def"
-            android:key="ability_vol"
+            android:defaultValue="@integer/ability_vol_def_halda"
+            android:key="ability_vol_halda"
             android:title="Bonus de base"
             android:selectAllOnFocus="true"
             android:singleLine="true"

@@ -37,7 +37,8 @@ public class AllCapacities {
         allCapacities = new ArrayList<>();
         mapIdcapacity =new HashMap<>();
         try {
-            InputStream is = mC.getAssets().open("capacities"+pjID+".xml");
+            String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
+            InputStream is = mC.getAssets().open("capacities"+extendID+".xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(is);

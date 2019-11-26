@@ -13,7 +13,7 @@ public class PersoManager {
     public static Perso getCurrentPJ() {
         Perso current=null;
         try {
-                current = currentMapPJ.get(currentPJ);
+            current = currentMapPJ.get(currentPJ);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -64,5 +64,24 @@ public class PersoManager {
 
     public static boolean isMainPJ() {
         return currentPJ.equalsIgnoreCase("wedge")||currentPJ.equalsIgnoreCase("halda");
+    }
+
+    public static void allSleep() {
+        currentMapPJ.get("Wedge").sleep();
+        currentMapPJ.get( "Halda").sleep();
+        currentMapPJ.get("Sylphe").sleep();
+        currentMapPJ.get("Ràna").sleep();
+    }
+
+    public static void allHalfSleep() {
+        currentMapPJ.get("Wedge").halfSleep();
+        currentMapPJ.get("Halda").halfSleep();
+        currentMapPJ.get("Sylphe").halfSleep();
+        currentMapPJ.get("Ràna").halfSleep();
+    }
+
+    public static String getPJExtension() {
+        String currentID=getCurrentPJ().getID();
+        return currentID.equalsIgnoreCase("") ? "" : "_"+currentID;
     }
 }

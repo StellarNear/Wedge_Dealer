@@ -2,6 +2,12 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceScreen
+        android:key="appli_refresh"
+        android:summary="Réinitialise les valeurs non saisies (garde l'equipement, les stats, le Panthéon)"
+        android:icon="@drawable/ic_refresh_black_24dp"
+        android:title="Rafraîchit l'ensemble des attributs " />  <!-- Tout c equi est objet Perso mais pas les valeure force etc saisie pas l'utilisateur -->
+
+    <PreferenceScreen
         android:key="appli_reset_stuff"
         android:summary="Réinitialise les objets de l'équipement"
         android:icon="@drawable/ic_battle_gear"
@@ -25,15 +31,6 @@
         android:icon="@drawable/ic_format_list_numbered_black_24dp"
         android:title="Remet à zéro le Panthéon" />
 
-    <PreferenceScreen
-        android:key="appli_refresh"
-        android:summary="Réinitialise les valeurs non saisies"
-        android:icon="@drawable/ic_refresh_black_24dp"
-        android:title="Rafraîchit l'ensemble des attributs" />  <!-- Tout c equi est objet Perso mais pas les valeure force etc saisie pas l'utilisateur -->
 
-    <PreferenceScreen
-        android:key="pref_appli_refresh_reset"
-        android:summary="Réinitialise tout les paramètres et sauvegarde"
-        android:icon="@drawable/ic_undo_black_24dp"
-        android:title="Reset de l'application" />
+
 </PreferenceScreen>

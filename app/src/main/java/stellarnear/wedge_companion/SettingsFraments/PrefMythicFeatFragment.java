@@ -25,7 +25,7 @@ public class PrefMythicFeatFragment {
     public void addMythicFeatsList(PreferenceCategory magic, PreferenceCategory atk, PreferenceCategory def,PreferenceCategory other ) {
            for (MythicFeat feat : pj.getAllMythicFeats().getMythicFeatsList()) {
             SwitchPreference switch_feat = new SwitchPreference(mC);
-            switch_feat.setKey("switch_"+feat.getId());
+            switch_feat.setKey("switch_"+feat.getId()+pj.getID());
             switch_feat.setTitle(feat.getName());
             switch_feat.setSummary(feat.getDescr());
             switch_feat.setDefaultValue(feat.isActive());

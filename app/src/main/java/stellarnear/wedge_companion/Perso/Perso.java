@@ -122,14 +122,16 @@ public class Perso {
         if (prefs.getBoolean("ioun_stone",true)){
             val+=1;
         }
-        val+=tools.toInt(prefs.getString("NLS_bonus",String.valueOf(0)));
+        String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
+        val+=tools.toInt(prefs.getString("NLS_bonus"+extendID,String.valueOf(0)));
         return val;
     }
 
     public void resetTemp() {
         List<String> allTempList = Arrays.asList("NLS_bonus","bonus_dmg_temp","bonus_atk_temp","bonus_temp_ca","bonus_temp_save","bonus_temp_rm");
+        String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
         for (String temp : allTempList) {
-            prefs.edit().putString(temp, "0").apply();
+            prefs.edit().putString(temp+extendID, "0").apply();
         }
     }
 

@@ -36,7 +36,8 @@ public class AllFeats {
     private void buildFeatsList() {
         allFeatsList = new ArrayList<>();
         try {
-            InputStream is = mC.getAssets().open("feats"+pjID+".xml");
+            String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
+            InputStream is = mC.getAssets().open("feats"+extendID+".xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(is);

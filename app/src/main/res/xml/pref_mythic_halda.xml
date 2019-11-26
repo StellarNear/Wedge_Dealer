@@ -9,7 +9,7 @@
          />
 
     <PreferenceScreen
-        android:key="pref_mythic_tier"
+        android:key="pref_mythic_tier_halda"
         android:icon="@drawable/ic_upgrade"
         android:title="Grade"
         android:summary="Grade du personnage mythique"

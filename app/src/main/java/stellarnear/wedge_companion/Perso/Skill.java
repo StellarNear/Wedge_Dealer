@@ -66,9 +66,10 @@ public class Skill {
         int valTemp=0;
         try {
             SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
-            int valDefId = mC.getResources().getIdentifier(this.id+"_rankDEF"+pjID, "integer", mC.getPackageName());
+            String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
+            int valDefId = mC.getResources().getIdentifier(this.id+"_rankDEF"+extendID, "integer", mC.getPackageName());
             int valDef = mC.getResources().getInteger(valDefId);
-            valTemp = tools.toInt(settings.getString(this.id+"_rank"+pjID, String.valueOf(valDef)));
+            valTemp = tools.toInt(settings.getString(this.id+"_rank"+extendID, String.valueOf(valDef)));
         } catch ( Exception e) {}
         this.rank = valTemp;
     }
@@ -81,9 +82,10 @@ public class Skill {
         int bonusTemp=0;
         try {
             SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
-            int bonusDefId = mC.getResources().getIdentifier(this.id+"_bonusDEF"+pjID, "integer", mC.getPackageName());
+            String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
+            int bonusDefId = mC.getResources().getIdentifier(this.id+"_bonusDEF"+extendID, "integer", mC.getPackageName());
             int bonusDef = mC.getResources().getInteger(bonusDefId);
-            bonusTemp = tools.toInt(settings.getString(this.id+"_bonus"+pjID, String.valueOf(bonusDef)));
+            bonusTemp = tools.toInt(settings.getString(this.id+"_bonus"+extendID, String.valueOf(bonusDef)));
         } catch ( Exception e) {}
         this.bonus= bonusTemp;
     }
