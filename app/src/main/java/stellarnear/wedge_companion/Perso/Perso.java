@@ -12,7 +12,6 @@ import stellarnear.wedge_companion.CalculationSpell;
 import stellarnear.wedge_companion.HallOfFame;
 import stellarnear.wedge_companion.PostData;
 import stellarnear.wedge_companion.PostDataElement;
-import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Spells.Spell;
 import stellarnear.wedge_companion.Stats.Stats;
 import stellarnear.wedge_companion.Tools;

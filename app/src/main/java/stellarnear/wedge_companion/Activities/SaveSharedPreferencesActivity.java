@@ -48,7 +48,7 @@ public class SaveSharedPreferencesActivity extends Activity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
         Log.i("SAVE_INF", "Request:"+requestCode+" "+"Result:"+resultCode);
-        if (requestCode == 42) {
+        if (requestCode == 42 && resultCode==Activity.RESULT_OK) {
             Uri treeUri = resultData.getData();
 
             DocumentFile pickedDir = DocumentFile.fromTreeUri(this, treeUri);
@@ -60,7 +60,7 @@ public class SaveSharedPreferencesActivity extends Activity {
                 tools.customToast(getApplicationContext(),"Sauvegarde déjà présente !");
             }
             finish();
-        } else if(requestCode == 666){
+        } else if(requestCode == 666 && resultCode==Activity.RESULT_OK){
             Uri treeUri = resultData.getData();
 
             DocumentFile pickedDir = DocumentFile.fromTreeUri(this, treeUri);
@@ -94,6 +94,11 @@ public class SaveSharedPreferencesActivity extends Activity {
             tools.customToast(getApplicationContext(),"Sauvegarde crée");
         } catch (Exception e) {
             Log.e("SAVE_ERR",e.getMessage());
+            tools.customToast(getApplicationContext(),"Erreur:"+e.getStackTrace()[0]);
+            DocumentFile previousSave=pickedDir.findFile(getString(R.string.app_name)+".sav");
+            if(previousSave!=null){
+                previousSave.delete();
+            }
         }
     }
 
@@ -123,10 +128,16 @@ public class SaveSharedPreferencesActivity extends Activity {
 
             PersoManager.loadFromSaveAllPJs();
             tools.customToast(getApplicationContext(),"Sauvegarde chargée");
-
         } catch (Exception e) {
             Log.e("LOAD_ERR",e.getMessage());
+            tools.customToast(getApplicationContext(),"Erreur:"+e.getStackTrace()[0]);
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        //ne rien faire il faut finir cette activité !
+    }
+
 
 }
