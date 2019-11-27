@@ -210,6 +210,7 @@ public class AllResources {
     public void refresh() {
         rankManager.refreshRanks();
         refreshMaxs();
+        loadCurrent();
     }
 
     public SpellsRanksManager getRankManager() {

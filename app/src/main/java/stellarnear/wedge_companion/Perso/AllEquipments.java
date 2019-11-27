@@ -344,6 +344,10 @@ public class AllEquipments {
         saveLocalAllEquipments();
     }
 
+    public void loadFromSave() {
+        refreshEquipment();
+    }
+
     public interface OnRefreshEventListener {
         void onEvent();
     }

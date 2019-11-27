@@ -24,6 +24,7 @@ import java.util.List;
 
 import stellarnear.wedge_companion.Activities.MainActivity;
 import stellarnear.wedge_companion.Activities.PetActivity;
+import stellarnear.wedge_companion.Activities.SaveSharedPreferencesActivity;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.PostData;
@@ -401,6 +402,18 @@ public class SettingsFragment extends PreferenceFragment {
                             }
                         })
                         .setNegativeButton(android.R.string.no, null).show();
+                break;
+            case "export_save":
+                Intent intentSave = new Intent(mC, SaveSharedPreferencesActivity.class);
+                intentSave.putExtra("ACTION_TYPE","SAVE");
+                intentSave.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                mC.startActivity(intentSave);
+                break;
+            case "import_save":
+                Intent intentLoad = new Intent(mC, SaveSharedPreferencesActivity.class);
+                intentLoad.putExtra("ACTION_TYPE","LOAD");
+                intentLoad.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                mC.startActivity(intentLoad);
                 break;
         }
 

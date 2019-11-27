@@ -141,5 +141,10 @@ public class Inventory {
         bag.reset();
         allEquipments.reset();
     }
+
+    public void loadFromSave() {
+        bag.loadFromSave();
+        allEquipments.loadFromSave();
+    }
 }
 

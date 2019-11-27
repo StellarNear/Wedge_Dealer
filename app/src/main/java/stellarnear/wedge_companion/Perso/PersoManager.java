@@ -85,4 +85,11 @@ public class PersoManager {
         String currentID=getCurrentPJ().getID();
         return currentID.equalsIgnoreCase("") ? "" : currentID+"_";
     }
+
+    public static void loadFromSaveAllPJs() {
+        currentMapPJ.get("Wedge").loadFromSave();
+        currentMapPJ.get("Halda").loadFromSave();
+        currentMapPJ.get("Sylphe").loadFromSave();
+        currentMapPJ.get("Ràna").loadFromSave();
+    }
 }

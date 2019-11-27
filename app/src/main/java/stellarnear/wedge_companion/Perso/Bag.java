@@ -326,4 +326,8 @@ public class Bag {
         buildBag();
         saveLocalBag();
     }
+
+    public void loadFromSave() {
+        refreshBag();
+    }
 }

@@ -325,6 +325,13 @@ public class Perso {
         allResources.halfSleepReset();
     }
 
+    public void loadFromSave(){
+        inventory.loadFromSave();
+        stats.loadFromSave();
+        hallOfFame.loadFromSave();
+        refresh();
+    }
+
     public void reset() {
         this.allFeats.reset();
         this.allCapacities.reset();

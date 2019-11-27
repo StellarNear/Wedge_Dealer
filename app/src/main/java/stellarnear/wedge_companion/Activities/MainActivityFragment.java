@@ -5,9 +5,13 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.provider.DocumentFile;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +20,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
+import java.io.FileNotFoundException;
+import java.io.OutputStream;
 import java.util.List;
 
 import stellarnear.wedge_companion.Quadrants.QuadrantManager;
@@ -72,6 +78,7 @@ public class MainActivityFragment extends Fragment {
 
         return returnFragView;
     }
+
 
     private void fadeInTooltips(Context mC) {
         Animation fadeIn = AnimationUtils.loadAnimation(mC,R.anim.infade);
