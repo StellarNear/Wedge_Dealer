@@ -48,6 +48,7 @@
     <dimen name="splash_icon_margin">200dp</dimen>
 
     <dimen name="icon_main_dices_pet_size">40dp</dimen>
+    <dimen name="size_button_healthDialog_land">75dp</dimen>
 
 
 </resources>

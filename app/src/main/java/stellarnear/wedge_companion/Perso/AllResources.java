@@ -162,9 +162,9 @@ public class AllResources {
         //partie from setting
         int hpPool = readResource("resource_hp_base");
         int hpMythPerGrad=0;
-        if(PersoManager.getCurrentNamePJ().equalsIgnoreCase("Wedge")){
+        if(pjID.equalsIgnoreCase("")){ //c'est wedge
             hpMythPerGrad=5; //champion mythique
-        } else if(PersoManager.getCurrentNamePJ().equalsIgnoreCase("Halda")){
+        } else if(pjID.equalsIgnoreCase("halda")){
             hpMythPerGrad=4; //hierophante mythique
         }
         hpPool += hpMythPerGrad*readResource("mythic_tier");

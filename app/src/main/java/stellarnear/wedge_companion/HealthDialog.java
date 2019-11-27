@@ -249,7 +249,12 @@ public class HealthDialog {
                 ViewGroup.LayoutParams para= (ViewGroup.LayoutParams) imgHealth.getLayoutParams();
                 int oriWidth=imgHealthBase.getMeasuredWidth();
                 int oriHeight=imgHealthBase.getMeasuredHeight();
-                int height=(int) (oriHeight*0.355); //c'est le rapport entre le haut gargouille et la barre
+                int height;
+                if(mC.getResources().getConfiguration().orientation== Configuration.ORIENTATION_PORTRAIT) {
+                    height = (int) (oriHeight * 0.355); //c'est le rapport entre le haut gargouille et la barre
+                } else {
+                    height = (int) (oriHeight * 1.0); //en landscape on a pas le sgargouilles
+                }
                 Double coef = (double) pj.getResourceValue("resource_hp")/ pj.getAllResources().getResource("resource_hp").getMax();
                 if(coef<0d){coef=0d;} //pour les hp negatif
                 if(coef>1d){coef=1d;}

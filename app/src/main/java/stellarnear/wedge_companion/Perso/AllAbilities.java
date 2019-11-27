@@ -95,7 +95,7 @@ public class AllAbilities {
         String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
         int resId = mC.getResources().getIdentifier( key.toLowerCase() + "_def"+extendID, "integer", mC.getPackageName());
         try {
-            val=tools.toInt(settings.getString( key.toLowerCase()+pjID, String.valueOf(mC.getResources().getInteger(resId))));
+            val=tools.toInt(settings.getString( key.toLowerCase()+extendID, String.valueOf(mC.getResources().getInteger(resId))));
         } catch (Resources.NotFoundException e) {
             e.printStackTrace();
         }
@@ -106,15 +106,27 @@ public class AllAbilities {
         for (Ability abi : listAbilities) {
             int val = 0;
             if (abi.getId().equalsIgnoreCase("ability_ca")) {
-                val = 10+readAbility("ability_ca_stuff")+readAbility("ability_ca_other");
+                val = 10 + readAbility("ability_ca_stuff") + readAbility("ability_ca_other");
             } else if (abi.getId().equalsIgnoreCase("ability_bmo")) {
                 val = getAbi("ability_force").getMod();
             } else if (abi.getId().equalsIgnoreCase("ability_dmd")) {
-                val = getAbi("ability_force").getMod() + 10 + getAbi("ability_dexterite").getMod() ;
+                val = getAbi("ability_force").getMod() + 10 + getAbi("ability_dexterite").getMod();
             } else if (abi.getId().equalsIgnoreCase("ability_init")) {
                 val = getAbi("ability_dexterite").getMod();
             } else if (abi.getId().equalsIgnoreCase("ability_equipment")) {
                 //on laisse à 0 le nombre de piece de stuff est calculer au niveau du perso
+            } else if (abi.getId().equalsIgnoreCase("ability_lvl") && !pjID.equalsIgnoreCase("")){ //pour les autre que wedge !
+                switch (pjID){
+                    case "halda":
+                        val=PersoManager.getMainPJLevel()-2;
+                        break;
+                    case "sylphe":
+                        val=2 + (int) Math.round((PersoManager.getMainPJLevel()-1)*0.75 - 0.25);
+                        break;
+                    case "rana":
+                        val=2 + (int) Math.round((PersoManager.getMainPJLevel()-2-1)*0.75 - 0.25);
+                        break;
+                }
             } else {
                 val = readAbility(abi.getId());
             }

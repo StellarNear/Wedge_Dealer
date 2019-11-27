@@ -2,7 +2,6 @@
 <resources>
 
     <!-- _sylphe -->
-
     <string name="jet_att_def_sylphe">16</string>
 
     <!--  Stat de base du perso  -->
@@ -18,7 +17,7 @@
     <integer name="ability_ca_stuff_def_sylphe">3</integer>
 
     <!-- Resources  -->
-    <integer name="resource_hp_base_def_sylphe">194</integer>
+    <integer name="resource_hp_base_def_sylphe">147</integer>
     <integer name="resource_hp_shield_def_sylphe">0</integer>
     <integer name="resource_regen_def_sylphe">0</integer>
 

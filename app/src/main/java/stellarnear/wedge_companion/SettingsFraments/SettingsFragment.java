@@ -178,7 +178,7 @@ public class SettingsFragment extends PreferenceFragment {
                 case "pref_character_feat":
                     BuildMetaList.resetMetas();
                     BuildSpellList.resetSpellList();
-                    pj.reset();
+                    pj.getAllFeats().reset();
                     PreferenceCategory magic = (PreferenceCategory) findPreference("Magie");
                     PreferenceCategory atk = (PreferenceCategory) findPreference("Attaque");
                     PreferenceCategory def = (PreferenceCategory) findPreference("Défense");

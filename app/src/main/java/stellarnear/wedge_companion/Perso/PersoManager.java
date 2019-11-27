@@ -1,9 +1,13 @@
 package stellarnear.wedge_companion.Perso;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import stellarnear.wedge_companion.R;
 
 public class PersoManager {
 
@@ -26,6 +30,11 @@ public class PersoManager {
         currentMapPJ.put("Sylphe",new Perso(applicationContext,"sylphe"));
         currentMapPJ.put("Ràna",new Perso(applicationContext,"rana"));
         currentPJ="Wedge";
+    }
+
+    public static int getMainPJLevel() {
+        int levelWedge = currentMapPJ.get("Wedge").getAbilityScore("ability_lvl") ;
+        return levelWedge;
     }
 
     public static String getCurrentNamePJ() {
@@ -76,6 +85,20 @@ public class PersoManager {
         currentMapPJ.get("Ràna").halfSleep();
     }
 
+    public static void loadFromSaveAllPJs() {
+        currentMapPJ.get("Wedge").loadFromSave();
+        currentMapPJ.get("Halda").loadFromSave();
+        currentMapPJ.get("Sylphe").loadFromSave();
+        currentMapPJ.get("Ràna").loadFromSave();
+    }
+
+    public static void hardReset() {
+        currentMapPJ.get("Wedge").hardReset();
+        currentMapPJ.get("Halda").hardReset();
+        currentMapPJ.get("Sylphe").hardReset();
+        currentMapPJ.get("Ràna").hardReset();
+    }
+
     public static String getPJSuffix() {
         String currentID=getCurrentPJ().getID();
         return currentID.equalsIgnoreCase("") ? "" : "_"+currentID;
@@ -86,10 +109,5 @@ public class PersoManager {
         return currentID.equalsIgnoreCase("") ? "" : currentID+"_";
     }
 
-    public static void loadFromSaveAllPJs() {
-        currentMapPJ.get("Wedge").loadFromSave();
-        currentMapPJ.get("Halda").loadFromSave();
-        currentMapPJ.get("Sylphe").loadFromSave();
-        currentMapPJ.get("Ràna").loadFromSave();
-    }
+
 }

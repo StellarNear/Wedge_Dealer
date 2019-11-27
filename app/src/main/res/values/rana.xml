@@ -17,7 +17,7 @@
     <integer name="ability_ca_stuff_def_rana">8</integer>
 
     <!-- Resources  -->
-    <integer name="resource_hp_base_def_rana">194</integer>
+    <integer name="resource_hp_base_def_rana">139</integer>
     <integer name="resource_hp_shield_def_rana">0</integer>
     <integer name="resource_regen_def_rana">0</integer>
     <integer name="resource_heroic_def_rana">2</integer>

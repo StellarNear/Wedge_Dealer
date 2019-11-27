@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- WEDGE -->
-    <integer name="ability_lvl_def">27</integer>
-    <integer name="current_xp_def">34288997</integer>
+
+
     <integer name="add_current_xp_def">0</integer>
 
     <integer name="money_plat_def">142</integer>
@@ -19,6 +19,9 @@
     <integer name="attack_range_DEF">100</integer>
 
     <!--  Stat de base du perso  -->
+    <integer name="ability_lvl_def">27</integer>
+    <integer name="current_xp_def">34288997</integer>
+
     <integer name="ability_force_def">18</integer>
     <integer name="ability_dexterite_def">33</integer>
     <integer name="ability_constitution_def">22</integer>
