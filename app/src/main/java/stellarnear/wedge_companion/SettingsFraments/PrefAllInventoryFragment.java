@@ -40,7 +40,7 @@ public class PrefAllInventoryFragment {
     }
 
     private void addOtherSlotEquipment(PreferenceCategory otherList) {
-        for (final Equipment equi : inventory.getAllEquipments().getSlotListEquipment("other_slot")) {
+        for (final Equipment equi : inventory.getAllEquipments().getDisplayManager().getSlotListEquipment("other_slot")) {
             Preference pref = new Preference(mC);
             pref.setKey("equipment_" + equi.getName());
             pref.setTitle(equi.getName());
@@ -62,7 +62,7 @@ public class PrefAllInventoryFragment {
                             .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    inventory.getAllEquipments().remove(equi);
+                                    inventory.getAllEquipments().getDisplayManager().remove(equi);
                                     mListener.onEvent();
                                 }
                             })
@@ -80,7 +80,7 @@ public class PrefAllInventoryFragment {
     }
 
     private void addSpareEquipmentList(PreferenceCategory spareList) {
-        for (final Equipment equi : inventory.getAllEquipments().getAllSpareEquipment()) {
+        for (final Equipment equi : inventory.getAllEquipments().getDisplayManager().getAllSpareEquipment()) {
             Preference pref = new Preference(mC);
             pref.setKey("equipment_" + equi.getName());
             pref.setTitle(equi.getName());
@@ -102,7 +102,7 @@ public class PrefAllInventoryFragment {
                             .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    inventory.getAllEquipments().remove(equi);
+                                    inventory.getAllEquipments().getDisplayManager().remove(equi);
                                     mListener.onEvent();
                                 }
                             })
@@ -188,7 +188,8 @@ public class PrefAllInventoryFragment {
                 String value = ((EditText) creationView.findViewById(R.id.value_item_creation)).getText().toString() + " po";
                 String tag = ((EditText) creationView.findViewById(R.id.tag_item_creation)).getText().toString();
                 String descr = ((EditText) creationView.findViewById(R.id.descr_item_creation)).getText().toString();
-                Equipment equi = new Equipment(name, descr, value, "", tag, false);
+                int armor = tools.toInt(((EditText) creationView.findViewById(R.id.armor_item_creation)).getText().toString());
+                Equipment equi = new Equipment(name, descr, value, "", tag, false,armor);
                 inventory.getBag().createItem(equi);
                 mListener.onEvent();
                 tools.customToast(mC, equi.getName() + " ajouté !");
@@ -246,8 +247,9 @@ public class PrefAllInventoryFragment {
                 String name = ((EditText) creationView.findViewById(R.id.name_equipment_creation)).getText().toString();
                 String value = ((EditText) creationView.findViewById(R.id.value_equipment_creation)).getText().toString() + " po";
                 String descr = ((EditText) creationView.findViewById(R.id.descr_equipment_creation)).getText().toString();
-                Equipment equi = new Equipment(name, descr, value, "equipment_" + slot + "_def", slot, equiped);
-                inventory.getAllEquipments().createEquipment(equi);
+                int armor = tools.toInt(((EditText) creationView.findViewById(R.id.armor_item_creation)).getText().toString());
+                Equipment equi = new Equipment(name, descr, value, "equipment_" + slot + "_def", slot, equiped,armor);
+                inventory.getAllEquipments().getDisplayManager().createEquipment(equi);
                 mListener.onEvent();
                 tools.customToast(mC, equi.getName() + " ajouté !");
             }

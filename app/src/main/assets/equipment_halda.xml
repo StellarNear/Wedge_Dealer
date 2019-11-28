@@ -2,37 +2,101 @@
 <records>
 
     <!-- SLOTS Equipped -->
+
     <equipment>
-        <name>Anneau de la nouvelle chance/Caméléon</name>
-        <descr>Permet à son porteur de relancer un jet de dés une fois par jour Caméléon : Par une action libre le porteur de cet anneau peut se fondre dans son environnement, ce qui se traduit par +10 à son jet de discrétion.
-Par une action simple, l'anneau permet également de modifié ses traits comme à l'aide du sort déguisement sans limite d'utilisation</descr>
-        <imgId>equipped_ring1</imgId>
-        <value>95000po</value>
+        <name>Anneau de protection épique +10</name>
+        <descr>Bonus d'altération de 10 à l'armure (Abjuration)</descr>
+        <imgId>equipped_protect_ring10</imgId>
+        <armor>10</armor>
+        <value>2000000po</value>
         <slotId>ring1_slot</slotId>
         <equipped>true</equipped>
     </equipment>
+
     <equipment>
-        <name>Anneau de résistance prismatique suprême</name>
-        <descr>+30 résistance au energie destructives prisma (all elements)</descr>
-        <imgId>equipped_ring2</imgId>
+        <name>Anneau de résistance magique +20</name>
+        <imgId>equipped_ring_magic_resi</imgId>
+        <abilityUp>
+            <ability_rm>20</ability_rm>
+        </abilityUp>
         <slotId>ring2_slot</slotId>
-        <value>44000po</value>
         <equipped>true</equipped>
     </equipment>
 
+    <equipment>
+        <name>Armure cérémonielle d'invunérabilité épique</name>
+        <descr>5 d'armure et donne une reduction de 5RD/epic</descr>
+        <imgId>equipped_ceremo_armor</imgId>
+        <armor>1</armor>
+        <slotId>armor_slot</slotId>
+        <value>490000po</value>
+        <equipped>true</equipped>
+        <abilityUp>
+            <ability_reduc>5</ability_reduc>
+        </abilityUp>
+    </equipment>
+
+
+    <equipment>
+        <name>Bandeau de supériorité mentale</name>
+        <descr>+6 Intelligence, Sagesse et Charisme</descr>
+        <imgId>equipped_headband_mental</imgId>
+        <slotId>face_slot</slotId>
+        <equipped>true</equipped>
+        <abilityUp>
+            <ability_intelligence>6</ability_intelligence>
+            <ability_sagesse>6</ability_sagesse>
+            <ability_charisme>6</ability_charisme>
+        </abilityUp>
+    </equipment>
+
+    <equipment>
+        <name>Brassard d'armure +4</name>
+        <descr>+4 bonus à la CA</descr>
+        <imgId>equipped_wrist_rapid_sup</imgId>
+        <armor>4</armor>
+        <slotId>wrist_slot</slotId>
+        <equipped>true</equipped>
+    </equipment>
+
+    <equipment>
+        <name>Scpetre de splentdeur épique +8 CHA</name>
+        <descr>+8 Charisme
+
+1/sem : manoir somptueux
+3/j : 100k po en parrure</descr>
+        <imgId>equipped_splendid_staff</imgId>
+        <slotId>mainhand_slot</slotId>
+        <equipped>true</equipped>
+        <abilityUp>
+            <ability_charisme>8</ability_charisme>
+        </abilityUp>
+    </equipment>
+
+    <equipment>
+        <name>Ceinture de force de geant</name>
+        <descr>+6 Force +6 const</descr>
+        <imgId>equipped_belt</imgId>
+        <slotId>belt_slot</slotId>
+        <equipped>true</equipped>
+        <abilityUp>
+            <ability_force>6</ability_force>
+            <ability_constitution>6</ability_constitution>
+        </abilityUp>
+    </equipment>
+
+    <equipment>
+        <name>Bottes +2 dex</name>
+        <descr>+2 dexterité</descr>
+        <imgId>equipment_feet_slot_def</imgId>
+        <slotId>feet_slot</slotId>
+        <abilityUp>
+            <ability_dexterite>2</ability_dexterite>
+        </abilityUp>
+        <equipped>true</equipped>
+    </equipment>
 
     <!-- Hors slot -->
-    <equipment>
-        <name>L'orbe de Pooka</name>
-        <descr>*Permets à un Archer Sylvestre de se transformer en Vermine (araignée, serpents, rats etc...)
-*L'Archer Sylvestre peut se transformer autant de fois qu'il le souhaite du moment qu'il n'est pas combat,  il lui faut alors une minute de concentration afin de rentrer en comunication avec l'orbe. Rentrer en combat alors qu'il est sous une forme animale, l'oblige à garder cette forme pendant tout
-le combat ou à perdre 2 rounds pour redevenir un humain (Ceci déclenchant des attaques d'opportunité). Encaisser des dégâts pendant cette transformation l'annule.
-*L'Archer Sylvestre gagne une transformation par jour tous les 3 niveaux d'Archer-Sylvestre.
-*Augmente d'un niveau le sort de transformation du druide (Forme Animale et Corps Elementaire)</descr>
-        <imgId>equipped_pooka</imgId>
-        <slotId>other_slot</slotId>
-        <equipped>true</equipped>
-    </equipment>
 
 
 
@@ -41,7 +105,16 @@ le combat ou à perdre 2 rounds pour redevenir un humain (Ceci déclenchant des 
 
 
     <!-- BAG -->
-    <bag>Grapin +20m corde caméléon
-        2 Sceptres inamovible[10000po](Peut etre rendu immobile par pression d'un bouton situé sur celui-ci. Un sceptre inamovible peut supporter un total de quatre tonnes avant de tomber au sol. Si une créature tente de le pousser après qu’il a été arrimé, elle doit réussir un test de Force (DD 30) pour le déplacer de trois mètres en 1 round)
-        Oeuf bleu de dragon</bag>
+    <bag>sacoche à composante
+    petit reliquaire
+    texte sacré
+    deux anneaux den platine(pour le sort Protection d'autrui)
+    deux bracelets dorés(pour le sort Lien sacré)
+    encens
+    battonet métalique(synchro:plan normal, plan dragon)
+    coquelicot
+    une paire de statuettes canines[50po]
+    offrande[25po]
+    diamant[10000po]
+    poussière de diamant[20000po]</bag>
 </records>

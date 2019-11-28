@@ -12,6 +12,7 @@ import org.w3c.dom.NodeList;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,12 +31,14 @@ public class AllAbilities {
 
     private Map<String, Ability> mapIDAbi = new HashMap<>();
     private List<Ability> listAbilities= new ArrayList<>();
+    private Inventory inventory;
     private Context mC;
     private Tools tools=new Tools();
     private String pjID="";
 
-    public AllAbilities(Context mC,String pjID) {
+    public AllAbilities(Context mC,Inventory inventory,String pjID) {
         this.mC = mC;
+        this.inventory=inventory;
         this.pjID=pjID;
         buildAbilitiesList();
         refreshAllAbilities();
@@ -105,8 +108,13 @@ public class AllAbilities {
     public void refreshAllAbilities() {
         for (Ability abi : listAbilities) {
             int val = 0;
-            if (abi.getId().equalsIgnoreCase("ability_ca")) {
-                val = 10 + readAbility("ability_ca_stuff") + readAbility("ability_ca_other");
+            List<String> allBasicAbi = Arrays.asList("ability_force","ability_dexterite","ability_constitution","ability_sagesse","ability_intelligence","ability_charisme");
+            if(allBasicAbi.contains(abi.getId())) {
+                val = readAbility(abi.getId()+"_base"); //on prend que la valeur de base + augement perma le reste est faut au niveau du perso avec le stuff
+                val += readAbility(abi.getId()+"_augment");
+                val += inventory.getAllEquipments().getAbiBonus(abi.getId());
+            } else if (abi.getId().equalsIgnoreCase("ability_ca")) {
+                val = 10; //la ca de base pour les calcul du reste on fait ca au niveau du perso pour prendre compte de la ca equipement et max dex mod etc
             } else if (abi.getId().equalsIgnoreCase("ability_bmo")) {
                 val = getAbi("ability_force").getMod();
             } else if (abi.getId().equalsIgnoreCase("ability_dmd")) {

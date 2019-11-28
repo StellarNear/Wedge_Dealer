@@ -58,7 +58,7 @@ public class PersoManager {
     public static void setMainPJ() {
         if(currentPJ.equalsIgnoreCase("Sylphe")){
             currentPJ="Wedge";
-        } else if(currentPJ.equalsIgnoreCase("Rana")) {
+        } else if(currentPJ.equalsIgnoreCase("Ràna")) {
             currentPJ="Halda";
         }
     }

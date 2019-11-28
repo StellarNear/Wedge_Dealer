@@ -11,13 +11,13 @@
         android:key="appli_reset_stuff"
         android:summary="Réinitialise les objets de l'équipement"
         android:icon="@drawable/ic_battle_gear"
-        android:title="Rafraîchit l'ensemble des attributs" />
+        android:title="Rafraîchit l'equipement" />
 
     <PreferenceScreen
         android:key="appli_reset_bag"
         android:summary="Réinitialise les objets du sac"
         android:icon="@drawable/ic_bag"
-        android:title="Rafraîchit l'ensemble des attributs" />
+        android:title="Rafraîchit le sac" />
 
     <PreferenceScreen
         android:key="appli_reset_stats"

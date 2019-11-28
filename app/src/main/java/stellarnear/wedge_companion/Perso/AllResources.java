@@ -30,6 +30,7 @@ import stellarnear.wedge_companion.Tools;
 public class AllResources {
     private Context mC;
     private AllAbilities allAbilities;
+    private Inventory inventory;
     private AllMythicCapacities allMythicCapacities;
     private Map<String, Resource> mapIDRes = new HashMap<>();
     private List<Resource> listResources = new ArrayList<>();
@@ -38,9 +39,10 @@ public class AllResources {
     private Tools tools = new Tools();
     private String pjID="";
 
-    public AllResources(Context mC,AllAbilities allAbilities,AllMythicCapacities allMythicCapacities,String pjID) {
+    public AllResources(Context mC,AllAbilities allAbilities,Inventory inventory,AllMythicCapacities allMythicCapacities,String pjID) {
         this.mC = mC;
         this.allAbilities=allAbilities;
+        this.inventory=inventory;
         this.allMythicCapacities=allMythicCapacities;
         this.pjID=pjID;
         settings = PreferenceManager.getDefaultSharedPreferences(mC);
@@ -120,7 +122,6 @@ public class AllResources {
         }
     }
 
-
     public List<Resource> getResourcesList() {
         return listResources;
     }
@@ -168,14 +169,17 @@ public class AllResources {
             hpMythPerGrad=4; //hierophante mythique
         }
         hpPool += hpMythPerGrad*readResource("mythic_tier");
-
         hpPool += allAbilities.getAbi("ability_constitution").getMod()*allAbilities.getAbi("ability_lvl").getValue();
-
         getResource("resource_hp").setMax(hpPool);
-        getResource("resource_regen").setMax(readResource("resource_regen"));
-        getResource("resource_heroic").setMax(readResource("resource_heroic"));
-        getResource("resource_mythic_points").setMax(3+2*readResource("mythic_tier"));
-        getResource("resource_legendary_points").setMax(readResource("legendary_points"));
+
+        try {
+            getResource("resource_regen").setMax(readResource("resource_regen"));
+            getResource("resource_heroic").setMax(readResource("resource_heroic"));
+            getResource("resource_mythic_points").setMax(3+2*readResource("mythic_tier"));
+            getResource("resource_legendary_points").setMax(readResource("legendary_points"));
+        } catch (Exception e) {
+        }
+
         rankManager.refreshMax();
     }
 

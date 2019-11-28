@@ -78,9 +78,9 @@ public class Inventory {
                 img.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        allEquipments.showSlot(mA, equi.getSlotId(), editable);
+                        allEquipments.getDisplayManager().showSlot(mA, equi.getSlotId(), editable);
                         if (editable) {
-                            allEquipments.setRefreshEventListener(new AllEquipments.OnRefreshEventListener() {
+                            allEquipments.getDisplayManager().setRefreshEventListener(new DisplayEquipmentManager.OnRefreshEventListener() {
                                 @Override
                                 public void onEvent() {
                                     equipWindow.dismissAlert();
@@ -96,7 +96,7 @@ public class Inventory {
         }
 
         if (editable) {
-            for (final Equipment equi : allEquipments.getAllSpareEquipment()) {
+            for (final Equipment equi : allEquipments.getDisplayManager().getAllSpareEquipment()) {
                 try {
                     if (allEquipments.getEquipmentsEquiped(equi.getSlotId()) == null) {
                         int resID = mC.getResources().getIdentifier(equi.getSlotId(), "id", mC.getPackageName());
@@ -105,8 +105,8 @@ public class Inventory {
                         img.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                allEquipments.showSpareList(mA,allEquipments.getSpareEquipment(equi.getSlotId()),editable);
-                                allEquipments.setRefreshEventListener(new AllEquipments.OnRefreshEventListener() {
+                                allEquipments.getDisplayManager().showSpareList(mA,allEquipments.getDisplayManager().getSpareEquipment(equi.getSlotId()),editable);
+                                allEquipments.getDisplayManager().setRefreshEventListener(new DisplayEquipmentManager.OnRefreshEventListener() {
                                     @Override
                                     public void onEvent() {
                                         equipWindow.dismissAlert();

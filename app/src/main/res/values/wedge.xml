@@ -22,16 +22,26 @@
     <integer name="ability_lvl_def">27</integer>
     <integer name="current_xp_def">34288997</integer>
 
-    <integer name="ability_force_def">18</integer>
-    <integer name="ability_dexterite_def">33</integer>
-    <integer name="ability_constitution_def">22</integer>
-    <integer name="ability_intelligence_def">18</integer>
-    <integer name="ability_sagesse_def">28</integer>
-    <integer name="ability_charisme_def">16</integer>
+    <integer name="ability_force_base_def">12</integer>
+    <integer name="ability_dexterite_base_def">25</integer>
+    <integer name="ability_constitution_base_def">16</integer>
+    <integer name="ability_intelligence_base_def">18</integer>
+    <integer name="ability_sagesse_base_def">23</integer>
+    <integer name="ability_charisme_base_def">16</integer>
+
+    <!-- augement perma -->
+    <integer name="ability_force_augment_def">0</integer>
+    <integer name="ability_dexterite_augment_def">0</integer>
+    <integer name="ability_constitution_augment_def">0</integer>
+    <integer name="ability_intelligence_augment_def">0</integer>
+    <integer name="ability_sagesse_augment_def">5</integer>
+    <integer name="ability_charisme_augment_def">0</integer>
+
+    <!-- autre -->
     <integer name="ability_ms_def">9</integer>
     <integer name="ability_reduc_def">0</integer>
     <integer name="ability_reduc_elem_def">30</integer>
-    <integer name="ability_ca_stuff_def">6</integer>
+
     <integer name="ability_ca_other_def">11</integer>
 
     <!-- Resources  -->

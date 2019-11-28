@@ -1,47 +1,11 @@
 <?xml version="1.0"?>
 <records>
-
-    <!-- SLOTS Equipped -->
     <equipment>
-        <name>Anneau de la nouvelle chance/Caméléon</name>
-        <descr>Permet à son porteur de relancer un jet de dés une fois par jour Caméléon : Par une action libre le porteur de cet anneau peut se fondre dans son environnement, ce qui se traduit par +10 à son jet de discrétion.
-Par une action simple, l'anneau permet également de modifié ses traits comme à l'aide du sort déguisement sans limite d'utilisation</descr>
-        <imgId>equipped_ring1</imgId>
-        <value>95000po</value>
-        <slotId>ring1_slot</slotId>
+        <name>Armure en plaque de mythral</name>
+        <descr>+8 CA (max dex +2)</descr>
+        <armor>8</armor>
+        <maxDexMod>2</maxDexMod>
+        <slotId>armor_slot</slotId>
         <equipped>true</equipped>
     </equipment>
-    <equipment>
-        <name>Anneau de résistance prismatique suprême</name>
-        <descr>+30 résistance au energie destructives prisma (all elements)</descr>
-        <imgId>equipped_ring2</imgId>
-        <slotId>ring2_slot</slotId>
-        <value>44000po</value>
-        <equipped>true</equipped>
-    </equipment>
-
-
-    <!-- Hors slot -->
-    <equipment>
-        <name>L'orbe de Pooka</name>
-        <descr>*Permets à un Archer Sylvestre de se transformer en Vermine (araignée, serpents, rats etc...)
-*L'Archer Sylvestre peut se transformer autant de fois qu'il le souhaite du moment qu'il n'est pas combat,  il lui faut alors une minute de concentration afin de rentrer en comunication avec l'orbe. Rentrer en combat alors qu'il est sous une forme animale, l'oblige à garder cette forme pendant tout
-le combat ou à perdre 2 rounds pour redevenir un humain (Ceci déclenchant des attaques d'opportunité). Encaisser des dégâts pendant cette transformation l'annule.
-*L'Archer Sylvestre gagne une transformation par jour tous les 3 niveaux d'Archer-Sylvestre.
-*Augmente d'un niveau le sort de transformation du druide (Forme Animale et Corps Elementaire)</descr>
-        <imgId>equipped_pooka</imgId>
-        <slotId>other_slot</slotId>
-        <equipped>true</equipped>
-    </equipment>
-
-
-
-    <!-- Spare -->
-
-
-
-    <!-- BAG -->
-    <bag>Grapin +20m corde caméléon
-        2 Sceptres inamovible[10000po](Peut etre rendu immobile par pression d'un bouton situé sur celui-ci. Un sceptre inamovible peut supporter un total de quatre tonnes avant de tomber au sol. Si une créature tente de le pousser après qu’il a été arrimé, elle doit réussir un test de Force (DD 30) pour le déplacer de trois mètres en 1 round)
-        Oeuf bleu de dragon</bag>
 </records>

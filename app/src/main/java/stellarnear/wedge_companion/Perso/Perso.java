@@ -45,22 +45,23 @@ public class Perso {
     public Perso(Context mC,String pjID) {
         this.mC=mC;
         this.prefs= PreferenceManager.getDefaultSharedPreferences(mC);
-        inventory = new Inventory(mC,pjID);
+
         stats = new Stats(mC,pjID);
         hallOfFame=new HallOfFame(mC,pjID);
         allFeats = new AllFeats(mC,pjID);
         allCapacities = new AllCapacities(mC,pjID);
         allMythicFeats = new AllMythicFeats(mC,pjID);
         allMythicCapacities = new AllMythicCapacities(mC,pjID);
-        allAbilities = new AllAbilities(mC,pjID);
         allSkills = new AllSkills(mC,pjID);
-        allResources = new AllResources(mC,allAbilities,allMythicCapacities,pjID);
+        inventory = new Inventory(mC,pjID);
+        allAbilities = new AllAbilities(mC,inventory,pjID);
+        allResources = new AllResources(mC,allAbilities,inventory,allMythicCapacities,pjID);
         this.pjID=pjID;
     }
 
     public void refresh() {
-        allAbilities.refreshAllAbilities();
         allSkills.refreshAllVals();
+        allAbilities.refreshAllAbilities(); //abi d'abord car resource depend de abi
         allResources.refresh();
     }
 
@@ -149,25 +150,11 @@ public class Perso {
 
     public Integer getSkillBonus(Context mC,String skillId) {
         int bonusTemp = allSkills.getSkill(skillId).getBonus();
-        String suffix=pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
-        if(inventory.getAllEquipments().testIfNameItemIsEquipped("Pierre porte bonheur")){
-            bonusTemp+=1;
-        }
-        if(skillId.equalsIgnoreCase("skill_estimate")) {
-            Equipment gant = inventory.getAllEquipments().getEquipmentsEquiped("hand_slot");
-            if (gant != null && gant.getName().equalsIgnoreCase("Gant d'estimation")) {
-                bonusTemp += 3;
-            }
-        }
-        if(skillId.equalsIgnoreCase("skill_stealth")) {
-            Equipment boot = inventory.getAllEquipments().getEquipmentsEquiped("equipment_feet");
-            if (boot != null && boot.getName().equalsIgnoreCase("Bottes elfiques")) {
-                bonusTemp += 5;
-            }
-        }
-        List<String> listSkillPredil = Arrays.asList("skill_geo","skill_nature","skill_stealth","skill_percept","skill_survival");
+        bonusTemp+= inventory.getAllEquipments().getSkillBonus(skillId);
 
-        if(listSkillPredil.contains(skillId)) {
+        String suffix=pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
+        List<String> listSkillPredil = Arrays.asList("skill_geo","skill_nature","skill_stealth","skill_percept","skill_survival");
+        if(pjID.equalsIgnoreCase("") && listSkillPredil.contains(skillId)) {
             int valDefPredilID = mC.getResources().getIdentifier("switch_predil_env_def" + suffix, "bool", mC.getPackageName());
             if (prefs.getBoolean("switch_predil_env" + suffix, mC.getResources().getBoolean(valDefPredilID))) {
                 switch (prefs.getString("switch_predil_env_val" + suffix, "-").toLowerCase()) {
@@ -184,9 +171,23 @@ public class Perso {
             }
         }
 
+        if(inventory.getAllEquipments().testIfNameItemIsEquipped("Pierre porte bonheur")){
+            bonusTemp+=1;
+        }
+        if(skillId.equalsIgnoreCase("skill_estimate")) {
+            Equipment gant = inventory.getAllEquipments().getEquipmentsEquiped("hand_slot");
+            if (gant != null && gant.getName().equalsIgnoreCase("Gant d'estimation")) {
+                bonusTemp += 3;
+            }
+        } else if(skillId.equalsIgnoreCase("skill_stealth")) {
+            Equipment boot = inventory.getAllEquipments().getEquipmentsEquiped("equipment_feet");
+            if (boot != null && boot.getName().equalsIgnoreCase("Bottes elfiques")) {
+                bonusTemp += 5;
+            }
+        }
+
         return bonusTemp;
     }
-
 
     public Integer getAbilityScore(String abiId) {
         int abiScore = 0;
@@ -194,30 +195,32 @@ public class Perso {
 
         if (allAbilities.getAbi(abiId) != null) {
             abiScore = allAbilities.getAbi(abiId).getValue();
-
-            if (abiId.equalsIgnoreCase("ability_ca")) {
+            if(abiId.equalsIgnoreCase("ability_dexterite")) {
+                try {
+                    int isilDefId = mC.getResources().getIdentifier("isillirit_switch_def" + suffix, "bool", mC.getPackageName());
+                    if (prefs.getBoolean("isillirit_switch" + suffix, mC.getResources().getBoolean(isilDefId))) {
+                        abiScore += 2;
+                    }
+                } catch (Exception e) { }
+            }else if (abiId.equalsIgnoreCase("ability_ca")) {
                 abiScore += tools.toInt(prefs.getString("bonus_global_temp_ca",String.valueOf(0)));
                 abiScore += tools.toInt(prefs.getString("bonus_temp_ca"+suffix,String.valueOf(0)));
                 int dexMod=getAbilityMod("ability_dexterite");
-                if(pjID.equalsIgnoreCase("") && inventory.getAllEquipments().testIfNameItemIsEquipped("Chemise du veilleur") && dexMod>=10){
-                    abiScore+=10;
+
+                if(inventory.getAllEquipments().hasArmorDexLimitation() && inventory.getAllEquipments().getArmorDexLimitation()<dexMod){
+                    abiScore+=inventory.getAllEquipments().getArmorDexLimitation();
                 } else {
                     abiScore+=dexMod;
                 }
-            }
-
-            if (abiId.equalsIgnoreCase("ability_equipment")) {
+                abiScore+=inventory.getAllEquipments().getArmorBonus();
+            } else if (abiId.equalsIgnoreCase("ability_equipment")) {
                 abiScore= inventory.getAllItemsCount();
-            }
-
-            if (abiId.equalsIgnoreCase("ability_rm")) {
+            } else if (abiId.equalsIgnoreCase("ability_rm")) {
                 int bonusRmGlobal = tools.toInt(prefs.getString("bonus_global_temp_rm", String.valueOf(0)));
                 int bonusRm = tools.toInt(prefs.getString("bonus_temp_rm"+suffix, String.valueOf(0)));
                 if (bonusRm>abiScore) { abiScore = bonusRm; }
                 if (bonusRmGlobal>abiScore) { abiScore = bonusRmGlobal; }
-            }
-
-            if (abiId.equalsIgnoreCase("ability_init")) {
+            } else  if (abiId.equalsIgnoreCase("ability_init")) {
                 if(getAllMythicCapacities().mythicCapacityIsActive("mythiccapacity_init")) {
                     int valDefTierID = mC.getResources().getIdentifier("mythic_tier_def" + suffix, "integer", mC.getPackageName());
                     int currentTier = tools.toInt(prefs.getString("mythic_tier"+suffix, String.valueOf(mC.getResources().getInteger(valDefTierID))));
@@ -251,9 +254,7 @@ public class Perso {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            }
-
-            if (abiId.equalsIgnoreCase("ability_ref")||abiId.equalsIgnoreCase("ability_vig")||abiId.equalsIgnoreCase("ability_vol")) {
+            } else if (abiId.equalsIgnoreCase("ability_ref")||abiId.equalsIgnoreCase("ability_vig")||abiId.equalsIgnoreCase("ability_vol")) {
                 abiScore += tools.toInt(prefs.getString("bonus_global_temp_save",String.valueOf(0)));
                 abiScore += tools.toInt(prefs.getString("bonus_temp_save"+suffix,String.valueOf(0)));
                 int valDefId = mC.getResources().getIdentifier("epic_save_def"+suffix, "integer", mC.getPackageName());
@@ -272,16 +273,18 @@ public class Perso {
                     if(getAllFeats().featIsActive("feat_inhuman_reflexes")){
                         abiScore+=2;
                     }
-                }
-                if (abiId.equalsIgnoreCase("ability_vig")){
+                } else if (abiId.equalsIgnoreCase("ability_vig")){
                     abiScore+=getAbilityMod("ability_constitution");
-
-                }
-                if (abiId.equalsIgnoreCase("ability_vol")){
+                    if(getAllFeats().featIsActive("feat_inhuman_sta")){
+                        abiScore+=2;
+                    }
+                } else if (abiId.equalsIgnoreCase("ability_vol")){
                     abiScore+=getAbilityMod("ability_sagesse");
+                    if(getAllFeats().featIsActive("feat_iron_will")){
+                        abiScore+=2;
+                    }
                 }
-            }
-            if(abiId.equalsIgnoreCase("ability_bmo")||abiId.equalsIgnoreCase("ability_dmd")){
+            } else if(abiId.equalsIgnoreCase("ability_bmo")||abiId.equalsIgnoreCase("ability_dmd")){
                 abiScore+=getBaseAtk();
             }
         }

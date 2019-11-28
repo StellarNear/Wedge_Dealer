@@ -5,75 +5,54 @@
     <string name="jet_att_def_sylphe">16</string>
 
     <!--  Stat de base du perso  -->
-    <integer name="ability_force_def_sylphe">33</integer>
-    <integer name="ability_dexterite_def_sylphe">25</integer>
-    <integer name="ability_constitution_def_sylphe">18</integer>
-    <integer name="ability_intelligence_def_sylphe">3</integer>
-    <integer name="ability_sagesse_def_sylphe">15</integer>
-    <integer name="ability_charisme_def_sylphe">10</integer>
+    <integer name="ability_force_base_def_sylphe">33</integer>
+    <integer name="ability_dexterite_base_def_sylphe">25</integer>
+    <integer name="ability_constitution_base_def_sylphe">18</integer>
+    <integer name="ability_intelligence_base_def_sylphe">3</integer>
+    <integer name="ability_sagesse_base_def_sylphe">15</integer>
+    <integer name="ability_charisme_base_def_sylphe">10</integer>
     <integer name="ability_ms_def_sylphe">12</integer>
     <integer name="ability_reduc_def_sylphe">0</integer>
     <integer name="ability_reduc_elem_def_sylphe">0</integer>
-    <integer name="ability_ca_stuff_def_sylphe">3</integer>
+
+    <!-- augement perma -->
+    <integer name="ability_force_augment_def_sylphe">0</integer>
+    <integer name="ability_dexterite_augment_def_sylphe">0</integer>
+    <integer name="ability_constitution_augment_def_sylphe">0</integer>
+    <integer name="ability_intelligence_augment_def_sylphe">0</integer>
+    <integer name="ability_sagesse_augment_def_sylphe">0</integer>
+    <integer name="ability_charisme_augment_def_sylphe">0</integer>
+
 
     <!-- Resources  -->
     <integer name="resource_hp_base_def_sylphe">147</integer>
     <integer name="resource_hp_shield_def_sylphe">0</integer>
     <integer name="resource_regen_def_sylphe">0</integer>
 
-    <integer name="ability_vig_def_sylphe">12</integer>
-    <integer name="ability_ref_def_sylphe">12</integer>
-    <integer name="ability_vol_def_sylphe">12</integer>
+    <integer name="ability_vig_def_sylphe">13</integer>
+    <integer name="ability_ref_def_sylphe">13</integer>
+    <integer name="ability_vol_def_sylphe">7</integer>
+    <integer name="epic_save_def_sylphe">0</integer>
 
     <integer name="ability_rm_def_sylphe">30</integer>
-    <integer name="epic_save_def_sylphe">2</integer>
 
-    <integer name="wedge_max_lvl_spell_def_sylphe">7</integer>
 
     <!--  Rank de maitrise des compétences  -->
-    <integer name="skill_magic_art_rankDEF_sylphe">26</integer>
-    <integer name="skill_acrob_rankDEF_sylphe">0</integer>
-    <integer name="skill_craft_rankDEF_sylphe">12</integer>
-    <integer name="skill_bluff_rankDEF_sylphe">16</integer>
-    <integer name="skill_myst_rankDEF_sylphe">26</integer>
-    <integer name="skill_religion_rankDEF_sylphe">0</integer>
-    <integer name="skill_stealth_rankDEF_sylphe">0</integer>
-    <integer name="skill_diplomacy_rankDEF_sylphe">2</integer>
-    <integer name="skill_ride_rankDEF_sylphe">0</integer>
-    <integer name="skill_climb_rankDEF_sylphe">0</integer>
-    <integer name="skill_estimate_rankDEF_sylphe">8</integer>
-    <integer name="skill_escape_rankDEF_sylphe">0</integer>
-    <integer name="skill_intimidate_rankDEF_sylphe">16</integer>
-    <integer name="skill_swim_rankDEF_sylphe">0</integer>
-    <integer name="skill_percept_rankDEF_sylphe">0</integer>
-    <integer name="skill_heal_rankDEF_sylphe">0</integer>
-    <integer name="skill_psycho_rankDEF_sylphe">15</integer>
-    <integer name="skill_survival_rankDEF_sylphe">0</integer>
-    <integer name="skill_magic_item_rankDEF_sylphe">5</integer>
-    <integer name="skill_fly_rankDEF_sylphe">1</integer>
+    <integer name="skill_stealth_rankDEF_sylphe">1</integer>
+    <integer name="skill_climb_rankDEF_sylphe">1</integer>
+    <integer name="skill_intimidate_rankDEF_sylphe">0</integer>
+    <integer name="skill_percept_rankDEF_sylphe">1</integer>
+    <integer name="skill_survival_rankDEF_sylphe">18</integer>
 
     <!--  Bonus des compétences  -->
-    <integer name="skill_magic_art_bonusDEF_sylphe">3</integer>
-    <integer name="skill_acrob_bonusDEF_sylphe">0</integer>
-    <integer name="skill_craft_bonusDEF_sylphe">3</integer>
-    <integer name="skill_bluff_bonusDEF_sylphe">3</integer>
-    <integer name="skill_myst_bonusDEF_sylphe">3</integer>
-    <integer name="skill_religion_bonusDEF_sylphe">0</integer>
-    <integer name="skill_stealth_bonusDEF_sylphe">0</integer>
-    <integer name="skill_diplomacy_bonusDEF_sylphe">0</integer>
-    <integer name="skill_ride_bonusDEF_sylphe">0</integer>
-    <integer name="skill_climb_bonusDEF_sylphe">0</integer>
-    <integer name="skill_estimate_bonusDEF_sylphe">3</integer>
-    <integer name="skill_escape_bonusDEF_sylphe">0</integer>
-    <integer name="skill_intimidate_bonusDEF_sylphe">3</integer>
-    <integer name="skill_swim_bonusDEF_sylphe">0</integer>
-    <integer name="skill_percept_bonusDEF_sylphe">2</integer>
-    <integer name="skill_heal_bonusDEF_sylphe">0</integer>
-    <integer name="skill_psycho_bonusDEF_sylphe">0</integer>
-    <integer name="skill_survival_bonusDEF_sylphe">0</integer>
-    <integer name="skill_magic_item_bonusDEF_sylphe">3</integer>
-    <integer name="skill_fly_bonusDEF_sylphe">3</integer>
+    <integer name="skill_stealth_bonusDEF_sylphe">3</integer>
+    <integer name="skill_climb_bonusDEF_sylphe">3</integer>
+    <integer name="skill_intimidate_bonusDEF_sylphe">0</integer>
+    <integer name="skill_percept_bonusDEF_sylphe">3</integer>
+    <integer name="skill_survival_bonusDEF_sylphe">3</integer>
+
 
     <integer name="feat_power_atk_val_def_sylphe">4</integer>
+
     <bool name="switch_perma_resi_DEF_sylphe">true</bool>
 </resources>

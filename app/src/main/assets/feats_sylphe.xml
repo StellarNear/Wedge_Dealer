@@ -3,10 +3,10 @@
 
     <!-- DEF -->
     <feat>
-        <name>Réflexes surhumains</name>
+        <name>Volonté de fer</name>
         <type>feat_def</type>
-        <descr>Le personnage bénéficie d’un bonus de +2 aux jets de Réflexes.</descr>
-        <id>feat_inhuman_reflexes</id>
+        <descr>Le personnage bénéficie d’un bonus de +2 aux jets de Volonté.</descr>
+        <id>feat_iron_will</id>
     </feat>
 
     <feat>

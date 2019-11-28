@@ -38,7 +38,7 @@
                 android:minWidth="0dp"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
-                android:src="@drawable/ic_send_black_24dp"
+                android:src="@drawable/ic_send_primary_24dp"
                 style="?android:attr/borderlessButtonStyle"
                 android:gravity="center_vertical"
                 tools:ignore="ContentDescription"

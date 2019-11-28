@@ -4,15 +4,28 @@
 
 
     <!-- DEF -->
+    <feat>
+        <name>Réflexes surhumains</name>
+        <type>feat_def</type>
+        <descr>Le personnage bénéficie d’un bonus de +2 aux jets de Réflexes.</descr>
+        <id>feat_inhuman_reflexes</id>
+    </feat>
+    <feat>
+        <name>Volonté de fer</name>
+        <type>feat_def</type>
+        <descr>Le personnage bénéficie d’un bonus de +2 aux jets de Volonté.</descr>
+        <id>feat_iron_will</id>
+    </feat>
+    <feat>
+        <name>Vigeur surhumaine</name>
+        <type>feat_def</type>
+        <descr>Le personnage bénéficie d’un bonus de +2 aux jets de Vigeur.</descr>
+        <id>feat_inhuman_sta</id>
+    </feat>
 
 
 
     <!-- feat_otherS -->
-    <feat>
-        <name>Prestige</name>
-        <type>feat_other</type>
-        <descr>Le personnage attire des suivants et un compagnon d’armes qui se joignent à sa cause et l’accompagnent au cours de ses aventures.</descr>
-    </feat>
 
 
 

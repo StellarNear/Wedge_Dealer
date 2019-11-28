@@ -4,7 +4,14 @@
         android:key="SAVE"
         android:title="Jets de sauvegarde">
         <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
-
+        <stellarnear.wedge_companion.EditTextPreference
+            android:defaultValue="@integer/epic_save_def_sylphe"
+            android:key="epic_save_sylphe"
+            android:title="Bonus épique"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:inputType="number"
+            android:summary="Valeur : %s"/>
 
         <SwitchPreference
             android:defaultValue="@bool/switch_perma_resi_DEF_sylphe"

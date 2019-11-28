@@ -359,6 +359,7 @@ public class SettingsFragment extends PreferenceFragment {
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 pj.getInventory().getAllEquipments().reset();
+                                pj.getAllResources().reset();
                                 tools.customToast(mC,"Rafraîchissement éffectué","center");
                             }
                         })

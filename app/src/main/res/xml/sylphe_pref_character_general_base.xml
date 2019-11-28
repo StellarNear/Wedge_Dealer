@@ -1,71 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <stellarnear.wedge_companion.EditTextPreference
-        android:defaultValue="@integer/ability_force_def_sylphe"
-        android:key="ability_force_sylphe"
-        android:title="Valeur Force"
-        android:selectAllOnFocus="true"
-        android:singleLine="true"
-        android:inputType="number"
-        android:summary="Valeur : %s"/>
-    <stellarnear.wedge_companion.EditTextPreference
-        android:defaultValue="@integer/ability_dexterite_def_sylphe"
-        android:key="ability_dexterite_sylphe"
-        android:title="Valeur Dexterité"
-        android:selectAllOnFocus="true"
-        android:singleLine="true"
-        android:inputType="number"
-        android:summary="Valeur : %s"/>
-    <stellarnear.wedge_companion.EditTextPreference
-        android:defaultValue="@integer/ability_constitution_def_sylphe"
-        android:key="ability_constitution_sylphe"
-        android:title="Valeur Constitution"
-        android:selectAllOnFocus="true"
-        android:singleLine="true"
-        android:inputType="number"
-        android:summary="Valeur : %s"/>
-    <stellarnear.wedge_companion.EditTextPreference
-        android:defaultValue="@integer/ability_intelligence_def_sylphe"
-        android:key="ability_intelligence_sylphe"
-        android:title="Valeur Intelligence"
-        android:selectAllOnFocus="true"
-        android:singleLine="true"
-        android:inputType="number"
-        android:summary="Valeur : %s"/>
-    <stellarnear.wedge_companion.EditTextPreference
-        android:defaultValue="@integer/ability_sagesse_def_sylphe"
-        android:key="ability_sagesse_sylphe"
-        android:title="Valeur Sagesse"
-        android:selectAllOnFocus="true"
-        android:singleLine="true"
-        android:inputType="number"
-        android:summary="Valeur : %s"/>
-    <stellarnear.wedge_companion.EditTextPreference
-        android:defaultValue="@integer/ability_charisme_def_sylphe"
-        android:key="ability_charisme_sylphe"
-        android:title="Valeur Charisme"
-        android:selectAllOnFocus="true"
-        android:singleLine="true"
-        android:inputType="number"
-        android:summary="Valeur : %s"/>
-    <stellarnear.wedge_companion.EditTextPreference
-        android:defaultValue="@integer/ability_ms_def_sylphe"
-        android:key="ability_ms_sylphe"
-        android:title="Vitesse de déplacement"
-        android:selectAllOnFocus="true"
-        android:singleLine="true"
-        android:inputType="number"
-        android:summary="Valeur : %s m"/>
-    <stellarnear.wedge_companion.EditTextPreference
-        android:defaultValue="@integer/ability_reduc_def_sylphe"
-        android:key="ability_reduc_sylphe"
-        android:title="Réduction de dégats"
-        android:selectAllOnFocus="true"
-        android:inputType="number"
-        android:singleLine="true"
-        android:summary="Valeur : %s"/>
+    <PreferenceCategory
+        android:title="Valeur caractéristique de base\n(hors equipement et augmentations permanentes)"
+        android:summary=""
+        >
+        <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+        <stellarnear.wedge_companion.EditTextPreference
+            android:defaultValue="@integer/ability_force_base_def_sylphe"
+            android:key="ability_force_base_sylphe"
+            android:title="Valeur Force (de base)"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:inputType="number"
+            android:summary="Valeur : %s"/>
+        <stellarnear.wedge_companion.EditTextPreference
+            android:defaultValue="@integer/ability_dexterite_base_def_sylphe"
+            android:key="ability_dexterite_base_sylphe"
+            android:title="Valeur Dexterité (de base)"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:inputType="number"
+            android:summary="Valeur : %s"/>
+        <stellarnear.wedge_companion.EditTextPreference
+            android:defaultValue="@integer/ability_constitution_base_def_sylphe"
+            android:key="ability_constitution_base_sylphe"
+            android:title="Valeur Constitution (de base)"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:inputType="number"
+            android:summary="Valeur : %s"/>
+        <stellarnear.wedge_companion.EditTextPreference
+            android:defaultValue="@integer/ability_intelligence_base_def_sylphe"
+            android:key="ability_intelligence_base_sylphe"
+            android:title="Valeur Intelligence (de base)"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:inputType="number"
+            android:summary="Valeur : %s"/>
+        <stellarnear.wedge_companion.EditTextPreference
+            android:defaultValue="@integer/ability_sagesse_base_def_sylphe"
+            android:key="ability_sagesse_base_sylphe"
+            android:title="Valeur Sagesse (de base)"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:inputType="number"
+            android:summary="Valeur : %s"/>
+        <stellarnear.wedge_companion.EditTextPreference
+            android:defaultValue="@integer/ability_charisme_base_def_sylphe"
+            android:key="ability_charisme_base_sylphe"
+            android:title="Valeur Charisme (de base)"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:inputType="number"
+            android:summary="Valeur : %s"/>
 
+    </PreferenceCategory>
 
+    <PreferenceCategory
+        android:title="Augmentation permanente de caractéristique"
+        >
+        <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+        <stellarnear.wedge_companion.EditTextPreference
+            android:defaultValue="@integer/ability_force_augment_def_sylphe"
+            android:key="ability_force_augment_sylphe"
+            android:title="Valeur augmentation Force"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:inputType="number"
+            android:summary="Valeur : %s"/>
+        <stellarnear.wedge_companion.EditTextPreference
+            android:defaultValue="@integer/ability_dexterite_augment_def_sylphe"
+            android:key="ability_dexterite_augment_sylphe"
+            android:title="Valeur augmentation Dexterité"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:inputType="number"
+            android:summary="Valeur : %s"/>
+        <stellarnear.wedge_companion.EditTextPreference
+            android:defaultValue="@integer/ability_constitution_augment_def_sylphe"
+            android:key="ability_constitution_augment_sylphe"
+            android:title="Valeur augmentation Constitution"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:inputType="number"
+            android:summary="Valeur : %s"/>
+        <stellarnear.wedge_companion.EditTextPreference
+            android:defaultValue="@integer/ability_intelligence_augment_def_sylphe"
+            android:key="ability_intelligence_augment_sylphe"
+            android:title="Valeur augmentation Intelligence"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:inputType="number"
+            android:summary="Valeur : %s"/>
+        <stellarnear.wedge_companion.EditTextPreference
+            android:defaultValue="@integer/ability_sagesse_augment_def_sylphe"
+            android:key="ability_sagesse_augment_sylphe"
+            android:title="Valeur augmentation Sagesse"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:inputType="number"
+            android:summary="Valeur : %s"/>
+        <stellarnear.wedge_companion.EditTextPreference
+            android:defaultValue="@integer/ability_charisme_augment_def_sylphe"
+            android:key="ability_charisme_augment_sylphe"
+            android:title="Valeur augmentation Charisme"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:inputType="number"
+            android:summary="Valeur : %s"/>
+
+    </PreferenceCategory>
+
+    <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+    <PreferenceCategory
+        android:title="Autres caractéristiques"
+        >
+        <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+        <stellarnear.wedge_companion.EditTextPreference
+            android:defaultValue="@integer/ability_ms_def_sylphe"
+            android:key="ability_ms_sylphe"
+            android:title="Vitesse de déplacement"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:inputType="number"
+            android:summary="Valeur : %s m"/>
+        <stellarnear.wedge_companion.EditTextPreference
+            android:defaultValue="@integer/ability_reduc_def_sylphe"
+            android:key="ability_reduc_sylphe"
+            android:title="Réduction de dégats"
+            android:selectAllOnFocus="true"
+            android:inputType="number"
+            android:singleLine="true"
+            android:summary="Valeur : %s"/>
+    </PreferenceCategory>
 
 </PreferenceScreen>

@@ -111,7 +111,7 @@
         android:id="@+id/button_frag_skill_to_main"
         android:layout_width="@dimen/size_icon_main_actions075"
         android:layout_height="@dimen/size_icon_main_actions075"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:src="@drawable/skill_back"
         android:adjustViewBounds="true"

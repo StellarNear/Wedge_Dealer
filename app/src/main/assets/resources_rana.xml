@@ -12,20 +12,5 @@
         <id>resource_regen</id>
         <hide>true</hide>
     </resource>
-    <resource>
-        <shortname>Pts myth</shortname>
-        <name>Points mythiques</name>
-        <id>resource_mythic_points</id>
-    </resource>
-    <resource>
-        <shortname>Pts legs</shortname>
-        <name>Points légendaires</name>
-        <id>resource_legendary_points</id>
-    </resource>
-    <resource>
-        <name>Points héroique</name>
-        <shortname>Pts héro</shortname>
-        <id>resource_heroic</id>
-    </resource>
 
 </records>

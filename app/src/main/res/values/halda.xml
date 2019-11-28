@@ -14,16 +14,25 @@
     <integer name="prouesse_attrib_def_halda">1</integer>
 
     <!--  Stat de base du perso  -->
-    <integer name="ability_force_def_halda">10</integer>
-    <integer name="ability_dexterite_def_halda">12</integer>
-    <integer name="ability_constitution_def_halda">24</integer>
-    <integer name="ability_intelligence_def_halda">22</integer>
-    <integer name="ability_sagesse_def_halda">19</integer>
-    <integer name="ability_charisme_def_halda">31</integer>
+    <integer name="ability_force_base_def_halda">4</integer>
+    <integer name="ability_dexterite_base_def_halda">10</integer>
+    <integer name="ability_constitution_base_def_halda">18</integer>
+    <integer name="ability_intelligence_base_def_halda">16</integer>
+    <integer name="ability_sagesse_base_def_halda">13</integer>
+    <integer name="ability_charisme_base_def_halda">22</integer>
+    <!-- augement perma -->
+    <integer name="ability_force_augment_def_halda">0</integer>
+    <integer name="ability_dexterite_augment_def_halda">0</integer>
+    <integer name="ability_constitution_augment_def_halda">0</integer>
+    <integer name="ability_intelligence_augment_def_halda">0</integer>
+    <integer name="ability_sagesse_augment_def_halda">0</integer>
+    <integer name="ability_charisme_augment_def_halda">0</integer>
+
+    <!-- autre -->
     <integer name="ability_ms_def_halda">9</integer>
     <integer name="ability_reduc_def_halda">0</integer>
     <integer name="ability_reduc_elem_def_halda">0</integer>
-    <integer name="ability_ca_stuff_def_halda">5</integer>
+
 
     <!-- Resources  -->
     <integer name="resource_hp_base_def_halda">177</integer>

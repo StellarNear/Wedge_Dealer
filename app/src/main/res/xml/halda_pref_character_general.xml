@@ -2,25 +2,19 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceScreen
-        android:key="pref_character_general_base_halda"
+        android:key="halda_pref_character_general_base"
         android:icon="@drawable/ic_dna1"
         android:title="Caractéristiques de base"
         android:summary="Statistiques de base du personnage"/>
 
     <PreferenceScreen
-        android:key="pref_character_general_ressource_halda"
+        android:key="halda_pref_character_general_ressource"
         android:icon="@drawable/ic_heart_bottle"
         android:title="Ressources du personnage"
         android:summary="Points de vie/regen et points héroiques"/>
 
     <PreferenceScreen
-        android:key="pref_character_general_ca_halda"
-        android:icon="@drawable/ic_shield"
-        android:summary="Classe d'armure du personnage"
-        android:title="CA apportée par l'équipement" />
-
-    <PreferenceScreen
-        android:key="pref_character_general_save_halda"
+        android:key="halda_pref_character_general_save"
         android:icon="@drawable/ic_dodging"
         android:summary="Jets de sauvegarde"
         android:title="Tout ce qui modifie : Reflexe, Vigeur et Volonté" />

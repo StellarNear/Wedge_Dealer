@@ -3,25 +3,30 @@
 
     <!-- SLOTS Equipped -->
     <equipment>
-        <name>Anneau de la nouvelle chance/Caméléon</name>
-        <descr>Permet à son porteur de relancer un jet de dés une fois par jour Caméléon : Par une action libre le porteur de cet anneau peut se fondre dans son environnement, ce qui se traduit par +10 à son jet de discrétion.
-Par une action simple, l'anneau permet également de modifié ses traits comme à l'aide du sort déguisement sans limite d'utilisation</descr>
-        <imgId>equipped_ring1</imgId>
-        <value>95000po</value>
+        <name>Anneau de protection épique +7</name>
+        <descr>Bonus d'altération de 7 à l'armure (Abjuration)</descr>
+        <imgId>equipped_protect_ring</imgId>
+        <armor>7</armor>
+        <value>980000po</value>
         <slotId>ring1_slot</slotId>
         <equipped>true</equipped>
     </equipment>
+
     <equipment>
         <name>Anneau de résistance prismatique suprême</name>
         <descr>+30 résistance au energie destructives prisma (all elements)</descr>
-        <imgId>equipped_ring2</imgId>
+        <imgId>equipped_ring_prisma</imgId>
         <slotId>ring2_slot</slotId>
         <value>44000po</value>
         <equipped>true</equipped>
+        <abilityUp>
+            <ability_reduc_elem>30</ability_reduc_elem>
+        </abilityUp>
     </equipment>
     <equipment>
         <name>Bottes de lévitation</name>
         <descr>2 CA, vol à 6 mètres par round</descr>
+        <armor>2</armor>
         <imgId>equipped_feet</imgId>
         <slotId>feet_slot</slotId>
         <equipped>true</equipped>
@@ -33,6 +38,9 @@ Par une action simple, l'anneau permet également de modifié ses traits comme �
         <value>190000po</value>
         <slotId>neck_slot</slotId>
         <equipped>true</equipped>
+        <abilityUp>
+            <ability_rm>30</ability_rm>
+        </abilityUp>
     </equipment>
     <equipment>
         <name>Chemise du veilleur</name>
@@ -41,48 +49,54 @@ Par une action simple, l'anneau permet également de modifié ses traits comme �
 +5 en discretion (ombre)
 
 Cette armure en sombrefeuille est un signe distictif des membres du conseil druidique, Wedge l'a reçu de son père Aldaronn en prenant sa relève</descr>
-        <imgId>equipped_armor</imgId>
+        <imgId>equipped_chemise_veilleur</imgId>
+        <armor>6</armor>
+        <maxDexMod>10</maxDexMod>
         <slotId>armor_slot</slotId>
         <equipped>true</equipped>
+        <skillUp>
+            <skill_stealth>5</skill_stealth>
+        </skillUp>
     </equipment>
     <equipment>
         <name>Brassard de rapidité supérieure</name>
         <descr>Action passer un round à se concentrer pour stocker un round utilisable à tout moment pendant une minute.
 Mot d'activation : "esprit du vent" en druidique "Sylphe"</descr>
-        <imgId>equipped_wrist</imgId>
+        <imgId>equipped_wrist_rapid_sup</imgId>
         <slotId>wrist_slot</slotId>
         <equipped>true</equipped>
     </equipment>
     <equipment>
         <name>Gants</name>
         <descr>2 CA + (2 const)</descr>
+        <armor>2</armor>
         <imgId>equipped_hand</imgId>
         <slotId>hand_slot</slotId>
         <equipped>true</equipped>
+        <abilityUp>
+            <ability_consitution>2</ability_consitution>
+        </abilityUp>
     </equipment>
     <equipment>
         <name>Robe de vision totale</name>
         <descr>Rend capable de voir dans toutes les directions à la fois, grâce aux dizaines d’yeux magiques qui ornent la robe. Il bénéficie également de vision dans le noir (jusqu’à 36 m (24 c) de portée) et voit les créatures et objets invisibles ou éthérés à la même distance (36 m/24 c)).
 
  La robe de vision totale confère également un bonus d’aptitude de +10 aux tests de Perception. Son porteur conserve son bonus de Dextérité à la CAmême quand il est pris au dépourvu, et il est impossible de le prendre en tenaille. Par contre, il est incapable de se protéger des attaques de regarden détournant ou en fermant les yeux</descr>
-        <imgId>equipped_shoulder</imgId>
+        <imgId>equipped_shoulder_total_vision</imgId>
         <slotId>shoulder_slot</slotId>
         <value>120000po</value>
         <equipped>true</equipped>
+        <skillUp>
+            <skill_percept>10</skill_percept>
+        </skillUp>
     </equipment>
-    <equipment>
-        <name>Diadème du veilleur</name>
-        <descr>2 CA +10 résistance aux énergie destructives prismatique (all elements)</descr>
-        <imgId>equipped_face</imgId>
-        <slotId>face_slot</slotId>
-        <equipped>true</equipped>
-    </equipment>
+
     <equipment>
         <name>Couronne d’étoiles</name>
         <descr>Immunise aux dégats de froids et tout leurs effets annexes et aussi aux effets d'etre piégé dans l'espace ou dans le vide.
 
 Dispense le porteur du besoin de manger boire et respirer.</descr>
-        <imgId>star_crown</imgId>
+        <imgId>equipped_star_crown</imgId>
         <slotId>helm_slot</slotId>
         <value>360000po</value>
         <equipped>true</equipped>
@@ -94,21 +108,29 @@ Dispense le porteur du besoin de manger boire et respirer.</descr>
         <slotId>belt_slot</slotId>
         <value>144000po</value>
         <equipped>true</equipped>
+        <abilityUp>
+            <ability_force>6</ability_force>
+            <ability_dexterite>6</ability_dexterite>
+            <ability_constitution>6</ability_constitution>
+        </abilityUp>
     </equipment>
     <equipment>
         <name>Heimdall</name>
         <descr>+3 altération + feu intense (rune démon : forge lunaire) + foudre intense + froid intense + composite (+4) + rapide</descr>
-        <imgId>equipped_mainhand</imgId>
+        <imgId>equipped_heimdall</imgId>
         <slotId>mainhand_slot</slotId>
         <equipped>true</equipped>
         <value>288000po</value>
     </equipment>
     <equipment>
         <name>Isillirit (Chant de Lune)</name>
-        <descr>Premier éveil : +2 dex, +1 BBA</descr>
-        <imgId>equipped_offhand</imgId>
+        <descr>Premier éveil : +2 dex, +2 BBA</descr>
+        <imgId>equipped_isillirit</imgId>
         <slotId>offhand_slot</slotId>
         <equipped>true</equipped>
+        <abilityUp>
+            <ability_dexterite>2</ability_dexterite>
+        </abilityUp>
     </equipment>
 
     <!-- Hors slot -->
@@ -127,7 +149,22 @@ le combat ou à perdre 2 rounds pour redevenir un humain (Ceci déclenchant des 
 
 
     <!-- Spare -->
-
+    <equipment>
+        <name>Diadème du veilleur</name>
+        <descr>2 CA +10 résistance aux énergie destructives prismatique (all elements)</descr>
+        <imgId>unequipped_diademe_veilleur</imgId>
+        <slotId>face_slot</slotId>
+        <equipped>false</equipped>
+    </equipment>
+    <equipment>
+        <name>Anneau de la nouvelle chance/Caméléon</name>
+        <descr>Permet à son porteur de relancer un jet de dés une fois par jour Caméléon : Par une action libre le porteur de cet anneau peut se fondre dans son environnement, ce qui se traduit par +10 à son jet de discrétion.
+            Par une action simple, l'anneau permet également de modifié ses traits comme à l'aide du sort déguisement sans limite d'utilisation</descr>
+        <imgId>unequipped_cameleon_ring</imgId>
+        <value>95000po</value>
+        <slotId>ring1_slot</slotId>
+        <equipped>false</equipped>
+    </equipment>
 
     <equipment>
         <name>Bague Empathie Sauvage + Invisibilité</name>
