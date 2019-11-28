@@ -26,7 +26,7 @@ public class Equipment {
     private String slotId;
     private List<String> tags=new ArrayList<>();
     private String img_path;
-    private Boolean equiped;
+    private Boolean equiped=false;
     private Boolean limitedMaxDex=false;
     private int maxDexMod;
     private int armor=0;
@@ -153,7 +153,7 @@ public class Equipment {
                 if(node.getNodeType() == Node.ELEMENT_NODE) {
                     String name = node.getNodeName();
                     int val = tools.toInt(node.getChildNodes().item(0).getNodeValue());
-                    if(name !=null && name.equalsIgnoreCase("")&& val!=0) {
+                    if(name !=null && !name.equalsIgnoreCase("")&& val!=0) {
                         if (mapSkillUp == null) {
                             mapSkillUp = new HashMap<>();
                         }
@@ -172,6 +172,24 @@ public class Equipment {
 
     public Map<String, Integer> getMapSkillUp() {
         return mapSkillUp;
+    }
+
+    public void addMapAbilityUp(Map<String, Integer> abiMap) {
+        if (mapAbilityUp == null) {
+            mapAbilityUp = new HashMap<>();
+        }
+        for(Map.Entry<String,Integer> entry : abiMap.entrySet()) {
+            mapAbilityUp.put(entry.getKey(),entry.getValue());
+        }
+    }
+
+    public void addMapSkillUp(Map<String, Integer> skillMap) {
+        if (mapSkillUp == null) {
+            mapSkillUp = new HashMap<>();
+        }
+        for(Map.Entry<String,Integer> entry : skillMap.entrySet()) {
+            mapSkillUp.put(entry.getKey(),entry.getValue());
+        }
     }
 }
 

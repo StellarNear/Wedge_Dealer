@@ -90,8 +90,8 @@ public class TestAlertDialog {
             } else {
                 abScore = String.valueOf(modBonus);
             }
-            int sumScore=modBonus+skill.getRank()+ pj.getSkillBonus(mC,skill.getId());
-            summaryTxt="Total : "+String.valueOf(sumScore)+"\nAbilité ("+skill.getAbilityDependence().substring(8,11)+") : "+abScore+",  Maîtrise : "+skill.getRank()+",  Bonus : "+ pj.getSkillBonus(mC,skill.getId());
+            int sumScore=modBonus+pj.getSkillRank(skill.getId())+ pj.getSkillBonus(skill.getId());
+            summaryTxt="Total : "+String.valueOf(sumScore)+"\nAbilité ("+skill.getAbilityDependence().substring(8,11)+") : "+abScore+",  Maîtrise : "+pj.getSkillRank(skill.getId())+",  Bonus : "+ pj.getSkillBonus(skill.getId());
         } else {
             imgId = mC.getResources().getIdentifier(abi.getId(), "drawable", mC.getPackageName());
             titleTxt = "Test de la caractéristique :\n"+abi.getName();
@@ -246,7 +246,7 @@ public class TestAlertDialog {
         callToAction.setTextColor(mC.getColor(R.color.secondaryTextCustomDialog));
         if (mode.equalsIgnoreCase("skill")){
             resultTitle.setText("Résultat du test de compétence :");
-            int sumResult=dice.getRandValue()+skill.getRank()+ pj.getSkillBonus(mC,skill.getId())+ modBonus;
+            int sumResult=dice.getRandValue()+pj.getSkillRank(skill.getId())+ pj.getSkillBonus(skill.getId())+ modBonus;
             if(dice.getMythicDice()!=null){sumResult+=dice.getMythicDice().getRandValue();}
             TextView result = dialogView.findViewById(R.id.customDialogTestResult);
             result.setText(String.valueOf(sumResult));

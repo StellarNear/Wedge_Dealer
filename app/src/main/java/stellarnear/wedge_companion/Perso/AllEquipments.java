@@ -1,16 +1,8 @@
 package stellarnear.wedge_companion.Perso;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -24,8 +16,6 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import stellarnear.wedge_companion.CustomAlertDialog;
-import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.TinyDB;
 import stellarnear.wedge_companion.Tools;
 

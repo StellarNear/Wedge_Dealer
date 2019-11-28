@@ -100,7 +100,7 @@ public class MainActivityFragmentSkill extends Fragment {
         TextView totalTxt = new TextView(getContext());
         TextView totalTitle = returnFragView.findViewById(R.id.skillTotalTitle);
         totalTxt.setLayoutParams(totalTitle.getLayoutParams());
-        int total = pj.getAbilityMod(skill.getAbilityDependence())+skill.getRank()+pj.getSkillBonus(getContext(),skill.getId());
+        int total = pj.getAbilityMod(skill.getAbilityDependence())+pj.getSkillRank(skill.getId())+pj.getSkillBonus(skill.getId());
         totalTxt.setText(String.valueOf(total));
         totalTxt.setTypeface(null, Typeface.BOLD);
         totalTxt.setGravity(Gravity.CENTER);
@@ -120,13 +120,13 @@ public class MainActivityFragmentSkill extends Fragment {
         TextView rankTxt = new TextView(getContext());
         TextView rankTitle = returnFragView.findViewById(R.id.skillRankTitle);
         rankTxt.setLayoutParams(rankTitle.getLayoutParams());
-        rankTxt.setText(String.valueOf(skill.getRank()));
+        rankTxt.setText(String.valueOf(pj.getSkillRank(skill.getId())));
         rankTxt.setGravity(Gravity.CENTER);
 
         TextView bonusTxt = new TextView(getContext());
         TextView bonusTitle = returnFragView.findViewById(R.id.skillBonusTitle);
         bonusTxt.setLayoutParams(bonusTitle.getLayoutParams());
-        bonusTxt.setText(String.valueOf(pj.getSkillBonus(getContext(),skill.getId())));
+        bonusTxt.setText(String.valueOf(pj.getSkillBonus(skill.getId())));
         bonusTxt.setGravity(Gravity.CENTER);
 
         line.addView(nameTxt);

@@ -75,7 +75,14 @@
                 android:id="@+id/toast_textDescr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/general_margin"
                 android:text="This is the demo of Custom Toast Notification"/>
+
+            <TextView
+                android:id="@+id/toast_textStats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Statis"/>
         </LinearLayout>
     </LinearLayout>
 

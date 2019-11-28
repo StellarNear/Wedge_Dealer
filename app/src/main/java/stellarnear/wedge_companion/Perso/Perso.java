@@ -148,7 +148,19 @@ public class Perso {
         return allSkills;
     }
 
-    public Integer getSkillBonus(Context mC,String skillId) {
+    public Integer getSkillRank(String skillId) {
+        int rank=allSkills.getSkill(skillId).getRank();
+        if(skillId.equalsIgnoreCase("skill_folklore") && inventory.getAllEquipments().getEquipmentsEquiped("face_slot") !=null
+                && inventory.getAllEquipments().getEquipmentsEquiped("face_slot").getDescr().contains("folklore")){
+            rank=getAbilityScore("ability_lvl");
+        } else if(skillId.equalsIgnoreCase("skill_intimidate") && inventory.getAllEquipments().getEquipmentsEquiped("face_slot") !=null
+                && inventory.getAllEquipments().getEquipmentsEquiped("face_slot").getDescr().contains("intimidation")){
+            rank=getAbilityScore("ability_lvl");
+        }
+        return rank;
+    }
+
+    public Integer getSkillBonus(String skillId) {
         int bonusTemp = allSkills.getSkill(skillId).getBonus();
         bonusTemp+= inventory.getAllEquipments().getSkillBonus(skillId);
 

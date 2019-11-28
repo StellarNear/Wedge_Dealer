@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.Point;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
+import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -15,6 +17,7 @@ import android.widget.LinearLayout;
 public class CustomAlertDialog {
     private AlertDialog.Builder dialogBuilder;
     private AlertDialog alert;
+    private Activity mA;
     private Context mC;
     private boolean permanent=false;
     private boolean positiveButton=false;
@@ -23,6 +26,7 @@ public class CustomAlertDialog {
 
     public CustomAlertDialog(Activity mA, Context mC, View view) {
         // Set the toast and duration
+        this.mA=mA;
         this.mC=mC;
         if(mA!=null){ dialogBuilder  = new AlertDialog.Builder(mA, R.style.CustomDialog); }
         else { dialogBuilder  = new AlertDialog.Builder(mC, R.style.CustomDialog);  }
@@ -35,6 +39,11 @@ public class CustomAlertDialog {
         if(positiveButton){applyStyleToOkButton();}
         if(cancelButton){applyStyleToCancelButton();}
         setTimer();
+        Display display = mA.getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        Float factor = mC.getResources().getInteger(R.integer.percent_fullscreen_customdialog)/100f;
+        alert.getWindow().setLayout((int) (factor*size.x), (int)(factor*size.y));
     }
 
 

@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import stellarnear.wedge_companion.CustomAlertDialog;
 import stellarnear.wedge_companion.R;
@@ -24,6 +25,8 @@ public class DisplayEquipmentManager {
     private List<Equipment> listEquipments;
     private OnRefreshEventListener mListener;
     private OnSaveEventListener mListenerSave;
+    private Perso pj=PersoManager.getCurrentPJ();
+
     public DisplayEquipmentManager(Activity mA,Context mC, List<Equipment> listEquipments){
         this.mA=mA;
         this.mC=mC;
@@ -73,6 +76,23 @@ public class DisplayEquipmentManager {
         } else {
             descr.setVisibility(View.GONE);
         }
+        TextView stats = view.findViewById(R.id.toast_textStats);
+        String allAddStats="";
+        if (equi.getArmor()>0) {
+            allAddStats += "\nArmure : +" + equi.getArmor();
+        }
+        if (equi.getMapAbilityUp()!=null && equi.getMapAbilityUp().size()>0) {
+            allAddStats += "\nBonus Stats : " + makeStringLineFromMap(equi.getMapAbilityUp());
+        }
+        if (equi.getMapSkillUp()!=null && equi.getMapSkillUp().size()>0) {
+            allAddStats += "\nBonus Compétence : " + makeStringLineFromMap(equi.getMapSkillUp());
+        }
+        if (!allAddStats.equalsIgnoreCase("")) {
+            stats.setText(allAddStats);
+        } else {
+            stats.setVisibility(View.GONE);
+        }
+
         if(editable) {
             List<Equipment> spareEquipments = getSpareEquipment(equi.getSlotId());
             if (spareEquipments.size() > 0) {
@@ -84,6 +104,17 @@ public class DisplayEquipmentManager {
             }
         }
         ct.showAlert();
+    }
+
+    private String makeStringLineFromMap(Map<String, Integer> mapUp) {
+        String line="";
+        for(Map.Entry<String,Integer> entry : mapUp.entrySet()) {
+            try {
+                String nameUp = entry.getKey().contains("skill_")? pj.getAllSkills().getSkill(entry.getKey()).getName():pj.getAllAbilities().getAbi(entry.getKey()).getName();
+                line+="\n+"+entry.getValue()+" "+nameUp;
+            } catch (Exception e) {}
+        }
+        return line;
     }
 
     private void setButtonToSwap(ImageView swap, final List<Equipment> spareEquipments, final CustomAlertDialog ct) {

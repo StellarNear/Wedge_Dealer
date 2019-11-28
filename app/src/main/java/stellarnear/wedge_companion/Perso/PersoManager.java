@@ -1,13 +1,9 @@
 package stellarnear.wedge_companion.Perso;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import stellarnear.wedge_companion.R;
 
 public class PersoManager {
 

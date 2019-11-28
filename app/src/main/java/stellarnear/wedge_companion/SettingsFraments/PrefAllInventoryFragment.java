@@ -6,16 +6,22 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.preference.Preference;
 import android.preference.PreferenceCategory;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.util.Arrays;
+import java.util.Map;
 
 import stellarnear.wedge_companion.CustomAlertDialog;
 import stellarnear.wedge_companion.Perso.Equipment;
 import stellarnear.wedge_companion.Perso.Inventory;
+import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Tools;
@@ -27,11 +33,12 @@ public class PrefAllInventoryFragment {
     private Context mC;
     private Tools tools=new Tools();
     private OnRefreshEventListener mListener;
+    private Perso pj =PersoManager.getCurrentPJ();
 
     public PrefAllInventoryFragment(Activity mA,Context mC){
         this.mA=mA;
         this.mC=mC;
-        this.inventory = PersoManager.getCurrentPJ().getInventory();
+        this.inventory = pj.getInventory();
     }
 
     public void addEditableEquipment(PreferenceCategory otherList, PreferenceCategory spareList) {
@@ -88,8 +95,17 @@ public class PrefAllInventoryFragment {
             if (!equi.getSlotId().equalsIgnoreCase("")) {
                 txt += "\nEmplacement : " + translateSlotName(equi.getSlotId());
             }
+            if (equi.getArmor()>0) {
+                txt += "\nArmure : +" + equi.getArmor();
+            }
+            if (equi.getMapAbilityUp()!=null && equi.getMapAbilityUp().size()>0) {
+                txt += "\nBonus Stats : " + makeStringLineFromMap(equi.getMapAbilityUp());
+            }
+            if (equi.getMapSkillUp()!=null && equi.getMapSkillUp().size()>0) {
+                txt += "\nBonus Compétence : " + makeStringLineFromMap(equi.getMapSkillUp());
+            }
             if (!equi.getDescr().equalsIgnoreCase("")) {
-                txt += "\n" + equi.getDescr();
+                txt += "\nDescription : " + equi.getDescr();
             }
             pref.setSummary(txt);
             pref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -119,6 +135,17 @@ public class PrefAllInventoryFragment {
         }
     }
 
+    private String makeStringLineFromMap(Map<String, Integer> mapUp) {
+        String line="";
+        for(Map.Entry<String,Integer> entry : mapUp.entrySet()) {
+            try {
+                String nameUp = entry.getKey().contains("skill_")? pj.getAllSkills().getSkill(entry.getKey()).getName():pj.getAllAbilities().getAbi(entry.getKey()).getName();
+                line+="\n+"+entry.getValue()+" "+nameUp;
+            } catch (Exception e) {}
+        }
+        return line;
+    }
+
     private String translateSlotName(String slotId) { //prend l'id et renvoi le nom de slot
         String val = "";
         String[] vals = mC.getResources().getStringArray(R.array.slot_choice_val);
@@ -139,8 +166,8 @@ public class PrefAllInventoryFragment {
             pref.setKey("bag_" + equi.getName());
             pref.setTitle(equi.getName());
             String txt = "Valeur : " + equi.getValue();
-            if (!equi.getSlotId().equalsIgnoreCase("")) {
-                txt += "\nTag : " + equi.getSlotId();
+            if (equi.getTags().size()>0) {
+                txt += "\nTags : " + TextUtils.join(",", equi.getTags());
             }
             if (!equi.getDescr().equalsIgnoreCase("")) {
                 txt += "\n" + equi.getDescr();
@@ -188,8 +215,7 @@ public class PrefAllInventoryFragment {
                 String value = ((EditText) creationView.findViewById(R.id.value_item_creation)).getText().toString() + " po";
                 String tag = ((EditText) creationView.findViewById(R.id.tag_item_creation)).getText().toString();
                 String descr = ((EditText) creationView.findViewById(R.id.descr_item_creation)).getText().toString();
-                int armor = tools.toInt(((EditText) creationView.findViewById(R.id.armor_item_creation)).getText().toString());
-                Equipment equi = new Equipment(name, descr, value, "", tag, false,armor);
+                Equipment equi = new Equipment(name, descr, value, Arrays.asList(tag.split(",")));
                 inventory.getBag().createItem(equi);
                 mListener.onEvent();
                 tools.customToast(mC, equi.getName() + " ajouté !");
@@ -234,6 +260,14 @@ public class PrefAllInventoryFragment {
         LayoutInflater inflater = mA.getLayoutInflater();
         final View creationView = inflater.inflate(R.layout.custom_toast_equipment_creation, null);
         CustomAlertDialog creationEquipmentAlert = new CustomAlertDialog(mA,mC, creationView);
+
+        LinearLayout buttonAddAbi = (LinearLayout)creationView.findViewById(R.id.add_ability_create_item);
+        LinearLayout buttonAddSkill = (LinearLayout)creationView.findViewById(R.id.add_skill_create_item);
+        LinearLayout listAbi = (LinearLayout)creationView.findViewById(R.id.list_added_ability_create_item);
+        LinearLayout listSkill = (LinearLayout)creationView.findViewById(R.id.list_added_skill_create_item);
+        final PrefAllInventoryFragmentAddSelection prefSelectAdd = new PrefAllInventoryFragmentAddSelection(mA,mC,buttonAddAbi,buttonAddSkill,listAbi,listSkill);
+
+        creationView.findViewById(R.id.add_skill_create_item);
         creationEquipmentAlert.setPermanent(true);
         creationEquipmentAlert.addConfirmButton("Créer");
         creationEquipmentAlert.addCancelButton("Annuler");
@@ -248,13 +282,18 @@ public class PrefAllInventoryFragment {
                 String value = ((EditText) creationView.findViewById(R.id.value_equipment_creation)).getText().toString() + " po";
                 String descr = ((EditText) creationView.findViewById(R.id.descr_equipment_creation)).getText().toString();
                 int armor = tools.toInt(((EditText) creationView.findViewById(R.id.armor_item_creation)).getText().toString());
+
                 Equipment equi = new Equipment(name, descr, value, "equipment_" + slot + "_def", slot, equiped,armor);
+                if(prefSelectAdd.getAbiMap()!=null){equi.addMapAbilityUp(prefSelectAdd.getAbiMap());}
+                if(prefSelectAdd.getSkillMap()!=null){equi.addMapSkillUp(prefSelectAdd.getSkillMap());}
                 inventory.getAllEquipments().getDisplayManager().createEquipment(equi);
                 mListener.onEvent();
                 tools.customToast(mC, equi.getName() + " ajouté !");
             }
         });
         creationEquipmentAlert.showAlert();
+
+
         final EditText editName = ((EditText) creationView.findViewById(R.id.name_equipment_creation));
         editName.post(new Runnable() {
             public void run() {

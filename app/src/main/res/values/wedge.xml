@@ -88,7 +88,7 @@
     <integer name="skill_geo_bonusDEF">3</integer>
     <integer name="skill_nature_bonusDEF">5</integer>
     <integer name="skill_animal_bonusDEF">3</integer>
-    <integer name="skill_stealth_bonusDEF">8</integer>
+    <integer name="skill_stealth_bonusDEF">3</integer>
     <integer name="skill_diplomacy_bonusDEF">3</integer>
     <integer name="skill_ride_bonusDEF">0</integer>
     <integer name="skill_climb_bonusDEF">3</integer>
@@ -96,7 +96,7 @@
     <integer name="skill_escape_bonusDEF">3</integer>
     <integer name="skill_intimidate_bonusDEF">0</integer>
     <integer name="skill_swim_bonusDEF">0</integer>
-    <integer name="skill_percept_bonusDEF">15</integer>
+    <integer name="skill_percept_bonusDEF">5</integer>
     <integer name="skill_heal_bonusDEF">3</integer>
     <integer name="skill_psycho_bonusDEF">3</integer>
     <integer name="skill_survival_bonusDEF">5</integer>

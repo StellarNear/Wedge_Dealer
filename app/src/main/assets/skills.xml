@@ -26,6 +26,12 @@
         <id>skill_explo</id>
     </skill>
     <skill>
+        <name>Connaissance folklore local</name>
+        <abilityDependence>ability_intelligence</abilityDependence>
+        <descr>Le personnage possède des connaissances dans un domaine spécifique, qui lui permettent de répondre à des questions simples ou complexes. Folklore local (coutumes, habitants, humanoïdes, légendes, lois et traditions, personnalités).</descr>
+        <id>skill_folklore</id>
+    </skill>
+    <skill>
         <name>Connaissance géographie</name>
         <abilityDependence>ability_intelligence</abilityDependence>
         <descr>Le personnage possède des connaissances dans un domaine spécifique, qui lui permettent de répondre à des questions simples ou complexes. Géographie (climat, pays, peuples, types de terrain).</descr>

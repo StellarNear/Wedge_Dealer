@@ -57,49 +57,26 @@
     <integer name="wedge_max_lvl_spell_def_halda">7</integer>
 
     <!--  Rank de maitrise des compétences  -->
-    <integer name="skill_magic_art_rankDEF_halda">26</integer>
-    <integer name="skill_acrob_rankDEF_halda">0</integer>
-    <integer name="skill_craft_rankDEF_halda">12</integer>
-    <integer name="skill_bluff_rankDEF_halda">16</integer>
-    <integer name="skill_myst_rankDEF_halda">26</integer>
-    <integer name="skill_religion_rankDEF_halda">0</integer>
-    <integer name="skill_stealth_rankDEF_halda">0</integer>
-    <integer name="skill_diplomacy_rankDEF_halda">2</integer>
-    <integer name="skill_ride_rankDEF_halda">0</integer>
-    <integer name="skill_climb_rankDEF_halda">0</integer>
-    <integer name="skill_estimate_rankDEF_halda">8</integer>
-    <integer name="skill_escape_rankDEF_halda">0</integer>
-    <integer name="skill_intimidate_rankDEF_halda">16</integer>
-    <integer name="skill_swim_rankDEF_halda">0</integer>
-    <integer name="skill_percept_rankDEF_halda">0</integer>
-    <integer name="skill_heal_rankDEF_halda">0</integer>
-    <integer name="skill_psycho_rankDEF_halda">15</integer>
-    <integer name="skill_survival_rankDEF_halda">0</integer>
-    <integer name="skill_magic_item_rankDEF_halda">5</integer>
-    <integer name="skill_fly_rankDEF_halda">1</integer>
+    <integer name="skill_magic_art_rankDEF_halda">25</integer>
+
+    <integer name="skill_nature_rankDEF_halda">12</integer>
+    <integer name="skill_plan_rankDEF_halda">25</integer>
+
+    <integer name="skill_stealth_rankDEF_halda">25</integer>
+    <integer name="skill_diplomacy_rankDEF_halda">25</integer>
+    <integer name="skill_heal_rankDEF_halda">25</integer>
+    <integer name="skill_psycho_rankDEF_halda">25</integer>
+    <integer name="skill_survival_rankDEF_halda">25</integer>
 
     <!--  Bonus des compétences  -->
     <integer name="skill_magic_art_bonusDEF_halda">3</integer>
-    <integer name="skill_acrob_bonusDEF_halda">0</integer>
-    <integer name="skill_craft_bonusDEF_halda">3</integer>
-    <integer name="skill_bluff_bonusDEF_halda">3</integer>
-    <integer name="skill_myst_bonusDEF_halda">3</integer>
-    <integer name="skill_religion_bonusDEF_halda">0</integer>
-    <integer name="skill_stealth_bonusDEF_halda">0</integer>
-    <integer name="skill_diplomacy_bonusDEF_halda">0</integer>
-    <integer name="skill_ride_bonusDEF_halda">0</integer>
-    <integer name="skill_climb_bonusDEF_halda">0</integer>
-    <integer name="skill_estimate_bonusDEF_halda">3</integer>
-    <integer name="skill_escape_bonusDEF_halda">0</integer>
-    <integer name="skill_intimidate_bonusDEF_halda">3</integer>
-    <integer name="skill_swim_bonusDEF_halda">0</integer>
-    <integer name="skill_percept_bonusDEF_halda">2</integer>
-    <integer name="skill_heal_bonusDEF_halda">0</integer>
-    <integer name="skill_psycho_bonusDEF_halda">0</integer>
-    <integer name="skill_survival_bonusDEF_halda">0</integer>
-    <integer name="skill_magic_item_bonusDEF_halda">3</integer>
-    <integer name="skill_fly_bonusDEF_halda">3</integer>
-
+    <integer name="skill_nature_bonusDEF_halda">3</integer>
+    <integer name="skill_plan_bonusDEF_halda">3</integer>
+    <integer name="skill_stealth_bonusDEF_halda">3</integer>
+    <integer name="skill_diplomacy_bonusDEF_halda">3</integer>
+    <integer name="skill_heal_bonusDEF_halda">3</integer>
+    <integer name="skill_psycho_bonusDEF_halda">3</integer>
+    <integer name="skill_survival_bonusDEF_halda">3</integer>
 
     <integer name="attack_att_epic_DEF_halda">1</integer>
     <integer name="attack_dmg_epic_DEF_halda">0</integer>

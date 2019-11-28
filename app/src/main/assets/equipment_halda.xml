@@ -38,8 +38,9 @@
 
 
     <equipment>
-        <name>Bandeau de supériorité mentale</name>
-        <descr>+6 Intelligence, Sagesse et Charisme</descr>
+        <name>Bandeau de supériorité mentale +6</name>
+        <descr>+6 Intelligence, Sagesse et Charisme
+Rang maximisés pour les jets de folklore local et intimidation</descr>
         <imgId>equipped_headband_mental</imgId>
         <slotId>face_slot</slotId>
         <equipped>true</equipped>
