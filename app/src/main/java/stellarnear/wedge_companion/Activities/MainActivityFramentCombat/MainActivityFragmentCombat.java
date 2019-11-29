@@ -19,6 +19,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import stellarnear.wedge_companion.Activities.MainActivityFragment;
 import stellarnear.wedge_companion.DisplayRolls;
@@ -77,9 +78,7 @@ public class MainActivityFragmentCombat extends Fragment {
         if (container != null) {
             container.removeAllViews();
         }
-
         mainPage = inflater.inflate(R.layout.fragment_main_attack, container, false);
-
         ImageButton buttonMain = (ImageButton) mainPage.findViewById(R.id.button_frag_combat_to_main);
         animate(buttonMain);
         View.OnClickListener listnerBackToMain = new View.OnClickListener() {
@@ -127,7 +126,7 @@ public class MainActivityFragmentCombat extends Fragment {
             @Override
             public boolean onTouch(View arg0, MotionEvent arg1) {
                 mainPage.setBackground(ori_background);
-                hideButtons(0);
+                hideButtons(3);
                 startPreRand();
                 mainPage.setOnTouchListener(null);
                 return true;//always return true to consume event
@@ -187,6 +186,8 @@ public class MainActivityFragmentCombat extends Fragment {
                             .setIcon(android.R.drawable.ic_menu_help)
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int whichButton) {
+                                    rollList = new RollFactory(getActivity(),getContext(),mode).getRollList();
+                                    preRandValues = new PreRandValues(getContext(), mainPage, rollList);
                                     startRandAtk();
                                 }
                             })
@@ -198,14 +199,6 @@ public class MainActivityFragmentCombat extends Fragment {
 
     private void clearStep(Integer step) {
         switch (step) {
-            case 0:
-                if (mainPage.getBackground() != ori_background) {
-                    mainPage.setBackground(ori_background);
-                }
-                mainPage.setOnTouchListener(null);
-                if (preRandValues != null) {
-                    preRandValues.hideViews();
-                }
             case 1:
                 if (postRandValues != null) {
                     postRandValues.hideViews();
@@ -230,7 +223,8 @@ public class MainActivityFragmentCombat extends Fragment {
     }
 
     private void startPreRand() {
-        clearStep(0);
+        //clearStep(0);
+        ((ImageView)mainPage.findViewById(R.id.background_blank_combat)).setImageDrawable(null);
         rollList = new RollFactory(getActivity(),getContext(),mode).getRollList();
         preRandValues = new PreRandValues(getContext(), mainPage, rollList);
         fragmentCombatBonusPanel.addRollData(preRandValues,rollList);
@@ -253,14 +247,21 @@ public class MainActivityFragmentCombat extends Fragment {
                 simpleAtk.animate().scaleX(2).scaleY(2).alpha(0).setDuration(1000).start();
                 barrageShot.animate().translationXBy(200).setDuration(1000).start();
                 animate(fragmentCombatBonusPanel.getButton());
+                if(pj.getResourceValue("resource_lynx_eye")>0){fragmentCombatBonusPanel.show();}
                 break;
             case 2:
                 simpleAtk.animate().translationXBy(-200).setDuration(1000).start();
                 barrageShot.animate().scaleX(2).scaleY(2).alpha(0).setDuration(1000).start();
                 animate(fragmentCombatBonusPanel.getButton());
+                if(pj.getResourceValue("resource_lynx_eye")>0){fragmentCombatBonusPanel.show();}
+                break;
+            case 3:
+                simpleAtk.animate().translationXBy(-200).setDuration(1000).start();
+                barrageShot.animate().translationXBy(200).setDuration(1000).start();
+                animate(fragmentCombatBonusPanel.getButton());
+                if(pj.getResourceValue("resource_lynx_eye")>0){fragmentCombatBonusPanel.show();}
                 break;
         }
-        if(pj.getResourceValue("resource_lynx_eye")>0){fragmentCombatBonusPanel.show();}
     }
 
     private void startRandAtk() {

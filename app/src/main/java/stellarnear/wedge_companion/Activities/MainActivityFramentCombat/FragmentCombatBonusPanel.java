@@ -34,6 +34,7 @@ public class FragmentCombatBonusPanel {
     private ImageButton buttonAdd;
     private LinearLayout bonusPanelRollList;
     private TextView bonusPanelRangePicker;
+    private TextView nUsageLynxRemaning;
     private View pannel;
     private int basicRange;
     public Perso pj= PersoManager.getCurrentPJ();
@@ -45,6 +46,8 @@ public class FragmentCombatBonusPanel {
         buttonAdd =(ImageButton) mainPage.findViewById(R.id.fab_add_atk);
         pannel = mainPage.findViewById(R.id.add_bonus_linear);
         bonusPanelRollList = mainPage.findViewById(R.id.bonus_panel_roll_list);
+        nUsageLynxRemaning = mainPage.findViewById(R.id.lynx_eye_remaning);
+        nUsageLynxRemaning.setText("Utilisations restantes : "+pj.getAllResources().getResource("resource_lynx_eye").getCurrent());
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -132,6 +135,7 @@ public class FragmentCombatBonusPanel {
                                     check.setOnClickListener(null);
                                     preRandValues.refresh();
                                     resLynxEye.spend(1);
+                                    nUsageLynxRemaning.setText("Utilisations restantes : "+pj.getAllResources().getResource("resource_lynx_eye").getCurrent());
                                     tools.customToast(mC, resLynxEye.getName() + " lancée !\n"+
                                             "Il te reste "+resLynxEye.getCurrent()+" utilisations", "center");
                                     new PostData(mC, new PostDataElement("Utilisation de la capacité\n" +

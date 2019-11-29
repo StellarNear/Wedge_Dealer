@@ -22,7 +22,12 @@
         <descr>Le personnage bénéficie d’un bonus de +2 aux jets de Vigeur.</descr>
         <id>feat_inhuman_sta</id>
     </feat>
-
+    <feat>
+        <name>Robustesse</name>
+        <type>feat_def</type>
+        <descr>Le personnage bénéficie d’un bonus de +3 point de vie puis +1 par niveau.</descr>
+        <id>feat_robust</id>
+    </feat>
 
 
     <!-- feat_otherS -->

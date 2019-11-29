@@ -7,57 +7,6 @@
     android:background="@color/colorBackground"
     tools:context="stellarnear.wedge_companion.Activities.MainActivityFramentCombat.MainActivityFragmentCombat">
 
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_damage_detail"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_gravity="bottom|center"
-        android:layout_marginBottom="10dp"
-        android:visibility="gone"
-        app:backgroundTint="@android:color/darker_gray"
-        app:srcCompat="@drawable/ic_more_horiz_black_24dp" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_damage"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_gravity="bottom|center"
-        android:layout_marginBottom="10dp"
-        app:backgroundTint="@android:color/holo_red_light"
-        app:srcCompat="@drawable/ic_flare_black_24dp" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabAtk"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_gravity="bottom|center"
-        android:layout_marginBottom="10dp"
-        app:backgroundTint="@android:color/white"
-        app:srcCompat="@drawable/ic_filter_center_focus_black_24dp" />
-
-    <ImageButton
-        android:id="@+id/button_simple_atk"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_gravity="bottom|start"
-        android:adjustViewBounds="true"
-        android:backgroundTint="@android:color/transparent"
-        android:scaleType="fitCenter"
-        app:srcCompat="@drawable/simple_atk"
-        tools:ignore="ContentDescription" />
-
-    <ImageButton
-        android:id="@+id/button_barrage_shot"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_gravity="bottom|end"
-        android:adjustViewBounds="true"
-        android:backgroundTint="@android:color/transparent"
-        android:scaleType="fitCenter"
-        app:srcCompat="@drawable/barrage_shot"
-        tools:ignore="ContentDescription" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -80,10 +29,18 @@
         </LinearLayout>
 
         <RelativeLayout
+
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1">
-
+            <ImageView
+                android:id="@+id/background_blank_combat"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/wedge_loaded"
+                android:background="@color/colorBackground"/>
             <LinearLayout
                 android:layout_alignParentTop="true"
                 android:layout_width="match_parent"
@@ -250,6 +207,13 @@
                     android:textStyle="bold"
                     android:text="Oeil de lynx"/>
                 <TextView
+                    android:id="@+id/lynx_eye_remaning"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:textStyle="italic"
+                    android:text="Utilisations restantes : x"/>
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
@@ -293,6 +257,55 @@
 
 
     </LinearLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_damage_detail"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="10dp"
+        android:visibility="gone"
+        app:backgroundTint="@android:color/darker_gray"
+        app:srcCompat="@drawable/ic_more_horiz_black_24dp" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_damage"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="10dp"
+        app:backgroundTint="@android:color/holo_red_light"
+        app:srcCompat="@drawable/ic_flare_black_24dp" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabAtk"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="10dp"
+        app:backgroundTint="@android:color/white"
+        app:srcCompat="@drawable/ic_filter_center_focus_black_24dp" />
+
+    <ImageButton
+        android:id="@+id/button_simple_atk"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_gravity="bottom|start"
+        android:adjustViewBounds="true"
+        android:backgroundTint="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/simple_atk"
+        tools:ignore="ContentDescription" />
+
+    <ImageButton
+        android:id="@+id/button_barrage_shot"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_gravity="bottom|end"
+        android:adjustViewBounds="true"
+        android:backgroundTint="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/barrage_shot"
+        tools:ignore="ContentDescription" />
 
     <ImageButton
         tools:ignore="ContentDescription"

@@ -25,7 +25,6 @@ import android.widget.FrameLayout;
 
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
-import stellarnear.wedge_companion.Tools;
 
 public class PetActivity extends AppCompatActivity {
     private FrameLayout mainFrameFrag;
@@ -62,7 +61,6 @@ public class PetActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         getSupportActionBar().show();
-        new Tools().customToast(getApplicationContext(),"Companion animal selectionné : "+PersoManager.getCurrentNamePJ(),"center");
         toolbar.setTitle("Companion animal : "+PersoManager.getCurrentNamePJ());
         int drawableId=getResources().getIdentifier("background_banner"+PersoManager.getCurrentPJ().getID(), "drawable", getPackageName());
         toolbar.setBackground(getDrawable(drawableId));

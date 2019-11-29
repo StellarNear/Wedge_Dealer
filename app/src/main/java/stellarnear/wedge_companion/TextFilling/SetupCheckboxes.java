@@ -3,6 +3,7 @@ package stellarnear.wedge_companion.TextFilling;
 import android.content.Context;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.CheckBox;
@@ -47,7 +48,11 @@ public class SetupCheckboxes {
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1);
             frame.setLayoutParams(params);
             if (!roll.isInvalid() && !roll.isFailed()) {
-                frame.addView(roll.getHitCheckbox());
+                CheckBox check = roll.getHitCheckbox();
+                if (check.getParent()!= null) {
+                    ((ViewGroup)check.getParent()).removeView(check);
+                }
+                frame.addView(check);
             }
             ((LinearLayout)mainView.findViewById(R.id.mainLinearHitCheckbox)).addView(frame);
         }
@@ -61,6 +66,9 @@ public class SetupCheckboxes {
                 frame.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
                 if (!roll.isInvalid() && !roll.isFailed() && roll.isCrit()) {
                     CheckBox check = roll.getCritCheckbox();
+                    if (check.getParent()!= null) {
+                        ((ViewGroup)check.getParent()).removeView(check);
+                    }
                     frame.addView(check);
                     Animation animCheck = AnimationUtils.loadAnimation(mC, R.anim.zoomin);
                     check.startAnimation(animCheck);

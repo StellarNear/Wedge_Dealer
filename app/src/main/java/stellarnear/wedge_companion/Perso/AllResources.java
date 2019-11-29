@@ -30,9 +30,8 @@ import stellarnear.wedge_companion.Tools;
 public class AllResources {
     private Context mC;
     private AllAbilities allAbilities;
-    private Inventory inventory;
+    private AllFeats allFeats;
     private AllCapacities allCapacities;
-    private AllMythicCapacities allMythicCapacities;
     private Map<String, Resource> mapIDRes = new HashMap<>();
     private List<Resource> listResources = new ArrayList<>();
     private SpellsRanksManager rankManager=null;
@@ -40,12 +39,11 @@ public class AllResources {
     private Tools tools = new Tools();
     private String pjID="";
 
-    public AllResources(Context mC,AllAbilities allAbilities,Inventory inventory,AllCapacities allCapacities,AllMythicCapacities allMythicCapacities,String pjID) {
+    public AllResources(Context mC,AllFeats allFeats,AllAbilities allAbilities,AllCapacities allCapacities,String pjID) {
         this.mC = mC;
+        this.allFeats=allFeats;
         this.allAbilities=allAbilities;
-        this.inventory=inventory;
         this.allCapacities=allCapacities;
-        this.allMythicCapacities=allMythicCapacities;
         this.pjID=pjID;
         settings = PreferenceManager.getDefaultSharedPreferences(mC);
         try {
@@ -120,11 +118,18 @@ public class AllResources {
 
 
         // Partie from capacities
+        addCapacitiesResources();
+    }
+
+    private void addCapacitiesResources() {
         for(Capacity cap : allCapacities.getAllCapacitiesList()){
-            if (cap.getDailyUse()>0){
-                Boolean testable = true;
-                if(cap.getId().equalsIgnoreCase("capacity_lynx_eye")){testable=false;}
-                Resource capaRes = new Resource(cap.getName(),cap.getShortname(),testable,false,cap.getId().replace("capacity_","resource_"),mC,pjID);
+            if (cap.getDailyUse()>0 && cap.isActive() && getResource(cap.getId().replace("capacity_", "resource_"))==null){
+                //on test si elle es tpas deja presente pour la pertie rebuild  de refreshCapaListResources
+                boolean testable = true;
+                boolean hide=false;
+                if(cap.getId().equalsIgnoreCase("capacity_lynx_eye")){testable=false;hide=true;}
+                else if(cap.getId().equalsIgnoreCase("capacity_animal_form")){testable=false;hide=true;}
+                Resource capaRes = new Resource(cap.getName(),cap.getShortname(),testable,hide,cap.getId().replace("capacity_","resource_"),mC,pjID);
                 capaRes.setFromCapacity(cap.getDailyUse(),cap.getDescr());
                 listResources.add(capaRes);
                 mapIDRes.put(capaRes.getId(), capaRes);
@@ -188,6 +193,7 @@ public class AllResources {
         } else if(pjID.equalsIgnoreCase("halda")){
             hpMythPerGrad=4; //hierophante mythique
         }
+        if(allFeats.featIsActive("feat_robust")){ hpPool += 3+allAbilities.getAbi("ability_lvl").getValue();}
         hpPool += hpMythPerGrad*readResource("mythic_tier");
         hpPool += allAbilities.getAbi("ability_constitution").getMod()*allAbilities.getAbi("ability_lvl").getValue();
         getResource("resource_hp").setMax(hpPool);
@@ -218,7 +224,11 @@ public class AllResources {
     }
 
     public void halfSleepReset() {
-        getResource("resource_mythic_points").resetCurrent();
+        try {
+            getResource("resource_mythic_points").resetCurrent();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public boolean checkSpellAvailable(Integer selected_rank) {
@@ -247,5 +257,18 @@ public class AllResources {
         buildResourcesList();
         refreshMaxs();
         resetCurrent();
+    }
+
+    public void refreshCapaListResources() {
+        List<Resource> tempListIterate = new ArrayList<>(listResources);
+
+        for(Resource res : tempListIterate){
+            if(res.isFromCapacity() && !allCapacities.capacityIsActive(res.getId().replace("resource_", "capacity_"))){  //si la capacité n'est plus active on remove la resource
+                listResources.remove(res);
+                mapIDRes.remove(res.getId(),res);
+            }
+        }
+
+        addCapacitiesResources();
     }
 }

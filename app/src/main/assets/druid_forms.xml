@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<records>
+    <form>
+        <name>Anaconda Géant</name>
+        <type>animal</type>
+        <form_capacity>capacity_id</form_capacity>
+        <ability_change>
+            <ability>ability_ms</ability>
+            <ability_value>36</ability_value>
+        </ability_change>
+        <id>form_anaconda</id>
+    </form>
+
+
+
+
+
+</records>

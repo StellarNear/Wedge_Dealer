@@ -22,6 +22,10 @@
         <name>Points légendaires</name>
         <id>resource_legendary_points</id>
     </resource>
-
+    <resource>
+        <name>Rangs de Sorts</name>
+        <shortname>Sorts</shortname>
+        <id>resource_display_rank</id>
+    </resource>
 
 </records>

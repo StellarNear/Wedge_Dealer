@@ -45,17 +45,17 @@ public class Perso {
     public Perso(Context mC,String pjID) {
         this.mC=mC;
         this.prefs= PreferenceManager.getDefaultSharedPreferences(mC);
-
         stats = new Stats(mC,pjID);
         hallOfFame=new HallOfFame(mC,pjID);
-        allFeats = new AllFeats(mC,pjID);
         allCapacities = new AllCapacities(mC,pjID);
         allMythicFeats = new AllMythicFeats(mC,pjID);
         allMythicCapacities = new AllMythicCapacities(mC,pjID);
+
         allSkills = new AllSkills(mC,pjID);
         inventory = new Inventory(mC,pjID);
+        allFeats = new AllFeats(mC,pjID);
         allAbilities = new AllAbilities(mC,inventory,pjID);
-        allResources = new AllResources(mC,allAbilities,inventory,allCapacities,allMythicCapacities,pjID);
+        allResources = new AllResources(mC,allFeats,allAbilities,allCapacities,pjID);
         this.pjID=pjID;
     }
 

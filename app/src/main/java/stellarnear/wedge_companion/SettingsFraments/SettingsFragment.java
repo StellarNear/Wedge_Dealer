@@ -67,6 +67,7 @@ public class SettingsFragment extends PreferenceFragment {
                     if (key.contains("spell_rank_")|| key.contains("spell_conv_rank_")){
                         if(pj.getAllResources().getRankManager()!=null){pj.getAllResources().getRankManager().refreshMax();}
                     }
+                    if (key.contains("switch_capacity_")){pj.getAllResources().refreshCapaListResources();}
                 }
             };
 
@@ -172,13 +173,11 @@ public class SettingsFragment extends PreferenceFragment {
                 case "pref_character_spells":
                     PreferenceCategory spellCat = (PreferenceCategory) findPreference("tier_spell");
                     prefSpellRankFragment.addSpellRanks(spellCat);
-
                     setHasOptionsMenu(true);
                     break;
                 case "pref_character_feat":
                     BuildMetaList.resetMetas();
                     BuildSpellList.resetSpellList();
-                    pj.getAllFeats().reset();
                     PreferenceCategory magic = (PreferenceCategory) findPreference("Magie");
                     PreferenceCategory atk = (PreferenceCategory) findPreference("Attaque");
                     PreferenceCategory def = (PreferenceCategory) findPreference("Défense");
@@ -199,7 +198,6 @@ public class SettingsFragment extends PreferenceFragment {
                     PreferenceCategory atkMythFeat = (PreferenceCategory) findPreference("Attaque");
                     PreferenceCategory defMythFeat = (PreferenceCategory) findPreference("Défense");
                     PreferenceCategory otherMythFeat = (PreferenceCategory) findPreference("Autre");
-
                     prefMythicFeatFragment.addMythicFeatsList(magicMythFeat,atkMythFeat,defMythFeat,otherMythFeat);
                     setHasOptionsMenu(true);
                     break;
@@ -208,7 +206,6 @@ public class SettingsFragment extends PreferenceFragment {
                     PreferenceCategory allMythCapa = (PreferenceCategory) findPreference("Universelle");
                     PreferenceCategory champMythCapa = (PreferenceCategory) findPreference("Champion");
                     PreferenceCategory hieroMythCapa = (PreferenceCategory) findPreference("Hiérophante");
-
                     prefMythicCapaFragment.addMythicCapaList(commonMythCapa,allMythCapa,champMythCapa,hieroMythCapa);
                     setHasOptionsMenu(true);
                     break;
@@ -424,9 +421,10 @@ public class SettingsFragment extends PreferenceFragment {
     // Second level PreferenceScreens
     if (key.equals("second_level_key_0")) {        // do something...    }       */
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onStop() {
+        super.onStop();
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mC);
         prefs.unregisterOnSharedPreferenceChangeListener(listener);
+        listener=null;
     }
 }
