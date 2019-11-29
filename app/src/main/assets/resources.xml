@@ -22,10 +22,6 @@
         <name>Points légendaires</name>
         <id>resource_legendary_points</id>
     </resource>
-    <resource>
-        <name>Points héroique</name>
-        <shortname>Pts héro</shortname>
-        <id>resource_heroic</id>
-    </resource>
+
 
 </records>

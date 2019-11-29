@@ -65,7 +65,7 @@ public class SettingsFragment extends PreferenceFragment {
                         prefSpellRankFragment.refresh();
                     }
                     if (key.contains("spell_rank_")|| key.contains("spell_conv_rank_")){
-                        pj.getAllResources().getRankManager().refreshMax();
+                        if(pj.getAllResources().getRankManager()!=null){pj.getAllResources().getRankManager().refreshMax();}
                     }
                 }
             };
@@ -205,9 +205,9 @@ public class SettingsFragment extends PreferenceFragment {
                     break;
                 case "pref_mythic_capa":
                     PreferenceCategory commonMythCapa = (PreferenceCategory) findPreference("Commun");
-                    PreferenceCategory allMythCapa = (PreferenceCategory) findPreference("Voie Universelle");
-                    PreferenceCategory champMythCapa = (PreferenceCategory) findPreference("Voie du Champion");
-                    PreferenceCategory hieroMythCapa = (PreferenceCategory) findPreference("Voie du Hiérophante");
+                    PreferenceCategory allMythCapa = (PreferenceCategory) findPreference("Universelle");
+                    PreferenceCategory champMythCapa = (PreferenceCategory) findPreference("Champion");
+                    PreferenceCategory hieroMythCapa = (PreferenceCategory) findPreference("Hiérophante");
 
                     prefMythicCapaFragment.addMythicCapaList(commonMythCapa,allMythCapa,champMythCapa,hieroMythCapa);
                     setHasOptionsMenu(true);
@@ -275,10 +275,8 @@ public class SettingsFragment extends PreferenceFragment {
                 AlertDialog.Builder alert = new AlertDialog.Builder(mC);
                 final EditText edittext = new EditText(mA);
                 edittext.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_SIGNED);
-
                 alert.setMessage("Nombre de points d'experiences à ajouter");
                 alert.setTitle("Ajout d'experience");
-
                 alert.setView(edittext);
                 alert.setIcon(R.drawable.ic_upgrade);
                 alert.setPositiveButton("Ajouter", new DialogInterface.OnClickListener() {

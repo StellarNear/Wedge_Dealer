@@ -55,8 +55,8 @@ public class AllMythicCapacities {
                     Element element2 = (Element) node;
                     MythicCapacity MythicCapacity=new MythicCapacity(
                             readValue("name", element2),
-                            readValue("descr", element2),
                             readValue("type", element2),
+                            readValue("descr", element2),
                             readValue("id", element2),
                             mC,
                             pjID);

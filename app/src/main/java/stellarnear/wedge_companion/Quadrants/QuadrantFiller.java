@@ -1,7 +1,9 @@
 package stellarnear.wedge_companion.Quadrants;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Handler;
@@ -27,6 +29,8 @@ import stellarnear.wedge_companion.Perso.Ability;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.Perso.Resource;
+import stellarnear.wedge_companion.PostData;
+import stellarnear.wedge_companion.PostDataElement;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.TestAlertDialog;
 import stellarnear.wedge_companion.Tools;
@@ -263,21 +267,66 @@ public class QuadrantFiller {
         });
     }
 
-    private void setListner(View text,final Resource res) { //constructeur ressoruce pour Healthbar
-        text.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                HealthDialog healthDialog = new HealthDialog(mA,mC);
-                healthDialog.setRefreshEventListener(new HealthDialog.OnRefreshEventListener() {
-                    public void onEvent() {
-                        List<Resource> abiRes= pj.getAllResources().getResourcesListDisplay();
-                        injectStatsRes(abiRes, quadrantFullMain, "full"); //refresh le full
-                        buildAllMini(); //refresh les mini
+    private void setListner(View text,final Resource res) { //constructeur ressoruce pour Healthbar et Forme ani
+        if(res.getId().equalsIgnoreCase("resource_hp")) {
+            text.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    HealthDialog healthDialog = new HealthDialog(mA, mC);
+                    healthDialog.setRefreshEventListener(new HealthDialog.OnRefreshEventListener() {
+                        public void onEvent() {
+                            List<Resource> abiRes = pj.getAllResources().getResourcesListDisplay();
+                            injectStatsRes(abiRes, quadrantFullMain, "full"); //refresh le full
+                            buildAllMini(); //refresh les mini
+                        }
+                    });
+                    healthDialog.showAlertDialog();
+                }
+            });
+        } else if(res.getId().equalsIgnoreCase("resource_animal_form")){ //forme animale
+            text.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    /*   TODO les formes animales druide ! :D
+                    DruidFormDialog druidForm = new DruidFormDialog(mA, mC);
+                    druidForm.setRefreshEventListener(new HealthDialog.OnRefreshEventListener() {
+                        public void onEvent() {
+                            List<Resource> abiRes = pj.getAllResources().getResourcesListDisplay();
+                            injectStatsRes(abiRes, quadrantFullMain, "full"); //refresh le full
+                            buildAllMini(); //refresh les mini
+                        }
+                    });
+                    druidForm.showAlertDialog();
+
+                     */
+                }
+            });
+        } else if(res.isFromCapacity()){
+            text.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(pj.getAllResources().getResource(res.getId()).getCurrent()>0) {
+                        new AlertDialog.Builder(mC)
+                                .setTitle("Demande de confirmation")
+                                .setMessage("Confirmes-tu la dépense d'une utilisation de " + res.getName() + " ?")
+                                .setIcon(android.R.drawable.ic_menu_help)
+                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                        pj.getAllResources().getResource(res.getId()).spend(1);
+                                        new PostData(mC, new PostDataElement("Utilisation de la capacité\n" + res.getName(), res.getCapaDescr()));
+                                        tools.customToast(mC, res.getName() + " lancée !", "center");
+                                        List<Resource> abiRes = pj.getAllResources().getResourcesListDisplay();
+                                        injectStatsRes(abiRes, quadrantFullMain, "full"); //refresh le full
+                                        buildAllMini(); //refresh les mini
+                                    }
+                                })
+                                .setNegativeButton(android.R.string.no, null).show();
+                    } else {
+                        tools.customToast(mC,"Tu n'as plus d'utilisation journalière...");
                     }
-                });
-                healthDialog.showAlertDialog();
-            }
-        });
+                }
+            });
+        }
     }
 
     private void switchViewNext() {

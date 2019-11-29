@@ -1,4 +1,4 @@
-package stellarnear.wedge_companion.Activities;
+package stellarnear.wedge_companion.Activities.MainActivityFramentCombat;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -20,6 +20,7 @@ import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageButton;
 
+import stellarnear.wedge_companion.Activities.MainActivityFragment;
 import stellarnear.wedge_companion.DisplayRolls;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
@@ -47,10 +48,13 @@ public class MainActivityFragmentCombat extends Fragment {
     private ImageButton simpleAtk;
     private ImageButton barrageShot;
 
+    private FragmentCombatBonusPanel fragmentCombatBonusPanel;
+
     private RollList rollList;
     private RollList selectedRolls;
     private boolean firstDmgRoll = true;
     private boolean firstAtkRoll = true;
+
     private String mode;
 
     private PreRandValues preRandValues;
@@ -99,7 +103,6 @@ public class MainActivityFragmentCombat extends Fragment {
     }
 
     private void animate(final ImageButton buttonMain) {
-
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
@@ -110,8 +113,6 @@ public class MainActivityFragmentCombat extends Fragment {
                 buttonMain.startAnimation(anim);
             }
         }, getResources().getInteger(R.integer.translationFragDuration));
-
-
     }
 
     private void unlockOrient() {
@@ -133,6 +134,10 @@ public class MainActivityFragmentCombat extends Fragment {
             }
         });
 
+        // panneau bonus (lynx et range)
+        fragmentCombatBonusPanel= new FragmentCombatBonusPanel(getContext(),mainPage);
+
+         // boutons d'attaques
         simpleAtk = mainPage.findViewById(R.id.button_simple_atk);
         simpleAtk.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,10 +153,10 @@ public class MainActivityFragmentCombat extends Fragment {
         barrageShot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(pj.getAllResources().getResource("mythic_points").getCurrent()>=1) {
+                if(pj.getAllResources().getResource("resource_mythic_points").getCurrent()>=1) {
                     mode = "barrage_shot";
                     hideButtons(2);
-                    pj.getAllResources().getResource("mythic_points").spend(1);
+                    pj.getAllResources().getResource("resource_mythic_points").spend(1);
                     new PostData(getContext(),new PostDataElement("Lancement de tir de barrage mythique","-1pt mythique"));
                     tools.customToast(getContext(),"Il te reste "+ pj.getResourceValue("resource_mythic_points")+" points mythiques","center");
                     startPreRand();
@@ -226,8 +231,10 @@ public class MainActivityFragmentCombat extends Fragment {
 
     private void startPreRand() {
         clearStep(0);
-        this.rollList = new RollFactory(getActivity(),getContext(),mode).getRollList();
+        rollList = new RollFactory(getActivity(),getContext(),mode).getRollList();
         preRandValues = new PreRandValues(getContext(), mainPage, rollList);
+        fragmentCombatBonusPanel.addRollData(preRandValues,rollList);
+        // ajout du panneau additionel (lynx_eye etc)
         if (damages != null) {
             damages.hideViews();
         }
@@ -236,30 +243,36 @@ public class MainActivityFragmentCombat extends Fragment {
     private void hideButtons(int buttonClicked) {
         simpleAtk.setOnClickListener(null);
         barrageShot.setOnClickListener(null);
-
         switch (buttonClicked){
             case 0:
                 simpleAtk.animate().translationXBy(-200).setDuration(1000).start();
                 barrageShot.animate().translationXBy(200).setDuration(1000).start();
+                animate(fragmentCombatBonusPanel.getButton());
                 break;
             case 1:
                 simpleAtk.animate().scaleX(2).scaleY(2).alpha(0).setDuration(1000).start();
                 barrageShot.animate().translationXBy(200).setDuration(1000).start();
+                animate(fragmentCombatBonusPanel.getButton());
                 break;
             case 2:
                 simpleAtk.animate().translationXBy(-200).setDuration(1000).start();
                 barrageShot.animate().scaleX(2).scaleY(2).alpha(0).setDuration(1000).start();
+                animate(fragmentCombatBonusPanel.getButton());
                 break;
         }
+        if(pj.getResourceValue("resource_lynx_eye")>0){fragmentCombatBonusPanel.show();}
     }
 
     private void startRandAtk() {
+        fragmentCombatBonusPanel.hide();
         firstAtkRoll = false;
         firstDmgRoll = true;
         showDivider();
         fabAtk.animate().setDuration(1000).translationX(-400).start();       //decale le bouton à gauche pour l'apparition du suivant
         Snackbar.make(mainPage, "Lancement des dés en cours... ", Snackbar.LENGTH_SHORT).show();
-        startPreRand();
+        if(preRandValues==null){
+            startPreRand();
+        }
         if (postRandValues != null) {
             postRandValues.hideViews();
         }

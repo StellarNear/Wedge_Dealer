@@ -55,7 +55,7 @@ public class Perso {
         allSkills = new AllSkills(mC,pjID);
         inventory = new Inventory(mC,pjID);
         allAbilities = new AllAbilities(mC,inventory,pjID);
-        allResources = new AllResources(mC,allAbilities,inventory,allMythicCapacities,pjID);
+        allResources = new AllResources(mC,allAbilities,inventory,allCapacities,allMythicCapacities,pjID);
         this.pjID=pjID;
     }
 
@@ -181,6 +181,9 @@ public class Perso {
                         break;
                 }
             }
+        }
+        if((skillId.equalsIgnoreCase("skill_nature")||skillId.equalsIgnoreCase("skill_survival")) && getAllCapacities().capacityIsActive("capacity_natural_instinct")){
+            bonusTemp+=2;
         }
 
         if(inventory.getAllEquipments().testIfNameItemIsEquipped("Pierre porte bonheur")){

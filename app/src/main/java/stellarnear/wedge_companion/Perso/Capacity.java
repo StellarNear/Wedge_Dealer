@@ -10,16 +10,22 @@ import android.preference.PreferenceManager;
 
 public class Capacity {
     private String name;
+    private String shortname;
     private String type;
     private String descr;
     private String id;
     private Context mC;
     private String pjID;
+    private int dailyUse;
+    private int value;
 
-    public Capacity(String name, String type, String descr, String id, Context mC,String pjID){
+    public Capacity(String name,String shortname, String type, String descr, String id,int dailyUse,int value, Context mC,String pjID){
         this.name=name;
+        this.shortname=shortname;
         this.type=type;
         this.descr=descr;
+        this.dailyUse=dailyUse;
+        this.value=value;
         this.id=id;
         this.mC=mC;
         this.pjID=pjID;
@@ -27,6 +33,10 @@ public class Capacity {
 
     public String getName() {
         return name;
+    }
+
+    public String getShortname() {
+        return shortname;
     }
 
     public String getType() {
@@ -41,6 +51,10 @@ public class Capacity {
         return id;
     }
 
+    public int getDailyUse() {
+        return dailyUse;
+    }
+
     public boolean isActive(){
         boolean active = false;
         try {
@@ -49,4 +63,9 @@ public class Capacity {
         } catch ( Exception e) {}
         return active;
     }
+
+    public int getValue() {
+        return value;
+    }
+
 }

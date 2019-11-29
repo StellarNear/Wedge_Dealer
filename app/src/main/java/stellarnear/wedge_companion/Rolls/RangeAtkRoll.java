@@ -8,7 +8,8 @@ import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Rolls.Dices.Dice;
 
 public class RangeAtkRoll extends AtkRoll {
-
+    private boolean lynxBoosted=false;
+    private int rangeMalus;
     public RangeAtkRoll(Activity mA, Context mC, Integer base) {
         super( mA, mC, base);
     }
@@ -43,6 +44,12 @@ public class RangeAtkRoll extends AtkRoll {
         }
         if(this.mode.equalsIgnoreCase("barrage_shot")){
             bonusAtkRange+=tools.toInt(settings.getString("mythic_tier", String.valueOf(mC.getResources().getInteger(R.integer.mythic_tier_def))));
+        }
+        if(lynxBoosted){
+            bonusAtkRange+=pj.getAllCapacities().getCapacity("capacity_lynx_eye").getValue();
+        }
+        if(rangeMalus>0){
+            bonusAtkRange-=rangeMalus;
         }
         return bonusAtkRange;
     }
@@ -87,5 +94,13 @@ public class RangeAtkRoll extends AtkRoll {
         if (atkDice.getRandValue() >= critMin) { //c'est possiblement un crit
             this.crit = true;
         }
+    }
+
+    public void lynxEyeBoost() {
+        lynxBoosted=true;
+    }
+
+    public void rangeMalus(int malus) {
+        rangeMalus=malus;
     }
 }

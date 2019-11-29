@@ -3,10 +3,10 @@
 
     <!-- _halda -->
 
-    <integer name="money_plat_def_halda">142</integer>
-    <integer name="money_gold_def_halda">252724</integer>
+    <integer name="money_plat_def_halda">0</integer>
+    <integer name="money_gold_def_halda">433</integer>
     <integer name="money_silver_def_halda">0</integer>
-    <integer name="money_copper_def_halda">81</integer>
+    <integer name="money_copper_def_halda">0</integer>
 
     <integer name="attack_att_epic_def_halda">2</integer>
     <integer name="attack_dmg_epic_def_halda">0</integer>

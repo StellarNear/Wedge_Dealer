@@ -16,6 +16,8 @@ import java.util.Map;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import stellarnear.wedge_companion.Tools;
+
 /**
  * Created by jchatron on 26/12/2017.
  */
@@ -25,6 +27,7 @@ public class AllCapacities {
     private List<Capacity> allCapacities = new ArrayList<>();
     private Map<String,Capacity> mapIdcapacity =new HashMap<>();
     private String pjID="";
+    private Tools tools=new Tools();
 
     public AllCapacities(Context mC,String pjID)
     {
@@ -55,9 +58,12 @@ public class AllCapacities {
                     Element element2 = (Element) node;
                     Capacity Capacity=new Capacity(
                             readValue("name", element2),
-                            readValue("descr", element2),
+                            readValue("shortname", element2),
                             readValue("type", element2),
+                            readValue("descr", element2),
                             readValue("id", element2),
+                            tools.toInt(readValue("dailyuse", element2)),
+                            tools.toInt(readValue("value", element2)),
                             mC,
                             pjID);
                     allCapacities.add(Capacity);

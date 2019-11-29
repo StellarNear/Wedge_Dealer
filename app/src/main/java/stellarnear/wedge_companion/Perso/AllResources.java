@@ -31,6 +31,7 @@ public class AllResources {
     private Context mC;
     private AllAbilities allAbilities;
     private Inventory inventory;
+    private AllCapacities allCapacities;
     private AllMythicCapacities allMythicCapacities;
     private Map<String, Resource> mapIDRes = new HashMap<>();
     private List<Resource> listResources = new ArrayList<>();
@@ -39,10 +40,11 @@ public class AllResources {
     private Tools tools = new Tools();
     private String pjID="";
 
-    public AllResources(Context mC,AllAbilities allAbilities,Inventory inventory,AllMythicCapacities allMythicCapacities,String pjID) {
+    public AllResources(Context mC,AllAbilities allAbilities,Inventory inventory,AllCapacities allCapacities,AllMythicCapacities allMythicCapacities,String pjID) {
         this.mC = mC;
         this.allAbilities=allAbilities;
         this.inventory=inventory;
+        this.allCapacities=allCapacities;
         this.allMythicCapacities=allMythicCapacities;
         this.pjID=pjID;
         settings = PreferenceManager.getDefaultSharedPreferences(mC);
@@ -61,6 +63,7 @@ public class AllResources {
         listResources = new ArrayList<>();
         mapIDRes = new HashMap<>();
         try {
+            // Partie from assets
             String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
             InputStream is = mC.getAssets().open("resources"+extendID+".xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -94,22 +97,39 @@ public class AllResources {
             e.printStackTrace();
         }
 
-        rankManager=new SpellsRanksManager(mC,pjID);
-        rankManager.setRefreshEventListener(new SpellsRanksManager.OnHighTierChange() {
-            @Override
-            public void onEvent() {
-                buildResourcesList();
+
+        // Partie sort
+        Resource displaySpellResource = getResource("resource_display_rank");
+        if(displaySpellResource!=null){ //ca veut dire que dans asset resource ona souhaité cette resource
+            listResources.remove(displaySpellResource); // on le refait dessous
+            rankManager=new SpellsRanksManager(mC,pjID);
+            rankManager.setRefreshEventListener(new SpellsRanksManager.OnHighTierChange() {
+                @Override
+                public void onEvent() {
+                    buildResourcesList();
+                }
+            });
+            for (Resource res : rankManager.getSpellTiers()){
+                listResources.add(res);
+                mapIDRes.put(res.getId(), res);
             }
-        });
-        for (Resource res : rankManager.getSpellTiers()){
-            listResources.add(res);
-            mapIDRes.put(res.getId(), res);
+            Resource display_spell = new Resource("Rang de sorts","Sorts",false,false,"resource_display_rank",mC,pjID);
+            listResources.add(display_spell);
+            mapIDRes.put(display_spell.getId(), display_spell);
         }
 
 
-        Resource display_spell = new Resource("Rang de sorts","Sorts",false,false,"resource_display_rank",mC,pjID);
-        listResources.add(display_spell);
-        mapIDRes.put(display_spell.getId(), display_spell);
+        // Partie from capacities
+        for(Capacity cap : allCapacities.getAllCapacitiesList()){
+            if (cap.getDailyUse()>0){
+                Boolean testable = true;
+                if(cap.getId().equalsIgnoreCase("capacity_lynx_eye")){testable=false;}
+                Resource capaRes = new Resource(cap.getName(),cap.getShortname(),testable,false,cap.getId().replace("capacity_","resource_"),mC,pjID);
+                capaRes.setFromCapacity(cap.getDailyUse(),cap.getDescr());
+                listResources.add(capaRes);
+                mapIDRes.put(capaRes.getId(), capaRes);
+            }
+        }
     }
 
     public String readValue(String tag, Element element) {
@@ -174,13 +194,15 @@ public class AllResources {
 
         try {
             getResource("resource_regen").setMax(readResource("resource_regen"));
-            getResource("resource_heroic").setMax(readResource("resource_heroic"));
+        } catch (Exception e) { }
+        try {
             getResource("resource_mythic_points").setMax(3+2*readResource("mythic_tier"));
+        } catch (Exception e) { }
+        try {
             getResource("resource_legendary_points").setMax(readResource("legendary_points"));
-        } catch (Exception e) {
-        }
+        } catch (Exception e) { }
 
-        rankManager.refreshMax();
+        if(rankManager!=null){rankManager.refreshMax();}
     }
 
     private void loadCurrent() {
@@ -212,7 +234,7 @@ public class AllResources {
     }
 
     public void refresh() {
-        rankManager.refreshRanks();
+        if(rankManager!=null){rankManager.refreshRanks();}
         refreshMaxs();
         loadCurrent();
     }

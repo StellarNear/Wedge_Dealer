@@ -46,6 +46,7 @@
                 android:layout_height="0dp"
                 android:background="@drawable/background_border_pet_attack"
                 android:orientation="horizontal"
+                android:gravity="center"
                 android:layout_weight="13"
                 android:weightSum="10">
                 <LinearLayout

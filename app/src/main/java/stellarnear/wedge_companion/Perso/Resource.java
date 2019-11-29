@@ -18,9 +18,11 @@ public class Resource {
     private int shield=0;//pour les hps
     private boolean testable;
     private boolean hide;
+    private boolean fromCapacity=false;
     private Drawable img;
     private SharedPreferences settings;
     private String pjID="";
+    private String capaDescr="";
 
     public Resource(String name, String shortname, Boolean testable, Boolean hide, String id, Context mC,String pjID) {
         this.name = name;
@@ -31,8 +33,11 @@ public class Resource {
         this.id = id;
         this.settings = PreferenceManager.getDefaultSharedPreferences(mC);
         int imgId = mC.getResources().getIdentifier(id, "drawable", mC.getPackageName());
+        int imgIdCapa =mC.getResources().getIdentifier(id.replace("resource_","capacity_"), "drawable", mC.getPackageName()); // pour les resoruces issue de capa
         if (imgId != 0) {
             this.img = mC.getDrawable(imgId);
+        } else if( imgIdCapa!= 0) {
+            this.img = mC.getDrawable(imgIdCapa);
         } else {
             this.img = null;
         }
@@ -51,6 +56,20 @@ public class Resource {
     public void setMax(int max) {
         this.max = max;
         if(this.current>this.max){this.current=this.max;saveCurrentToSettings();}
+    }
+
+    public void setFromCapacity(int maxUse, String capaDescr){
+        this.fromCapacity=true;
+        this.capaDescr=capaDescr;
+        setMax(maxUse);
+    }
+
+    public String getCapaDescr() {
+        return capaDescr;
+    }
+
+    public boolean isFromCapacity() {
+        return fromCapacity;
     }
 
     public Integer getMax() {

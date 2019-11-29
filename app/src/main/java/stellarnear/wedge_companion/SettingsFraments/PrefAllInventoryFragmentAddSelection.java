@@ -86,10 +86,6 @@ public class PrefAllInventoryFragmentAddSelection {
     private void popupAbiSelectValue(final int which) {
         final Ability selectedAbi = pj.getAllAbilities().getAbilitiesList().get(which);
         final EditText input = new EditText(mC);
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
-        input.setLayoutParams(lp);
         input.setInputType(InputType.TYPE_CLASS_NUMBER);
         new AlertDialog.Builder(mA)
                 .setView(input)
@@ -147,10 +143,6 @@ public class PrefAllInventoryFragmentAddSelection {
     private void popupSkillSelectValue(final int which) {
         final Skill selectedSkill = pj.getAllSkills().getSkillsList().get(which);
         final EditText input = new EditText(mC);
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
-        input.setLayoutParams(lp);
         input.setInputType(InputType.TYPE_CLASS_NUMBER);
         new AlertDialog.Builder(mA)
                 .setView(input)

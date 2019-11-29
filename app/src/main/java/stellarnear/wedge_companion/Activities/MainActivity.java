@@ -30,7 +30,6 @@ import java.util.TimerTask;
 
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
-import stellarnear.wedge_companion.Tools;
 
 public class MainActivity extends AppCompatActivity {
     private boolean loading = false;
@@ -80,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setLoadCompleteListner(final View back) {
         Timer timerRefreshLoading = new Timer();
+        int firstDelay = settings.getBoolean("switch_fake_long_load",  getResources().getBoolean(R.bool.switch_fake_long_load_DEF)) ? 2500 : 500;
         timerRefreshLoading.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
@@ -94,9 +94,9 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public boolean onTouch(View arg0, MotionEvent arg1) {
                                     if(!touched) {
-                                        unlockOrient();
                                         touched = true;
                                         buildMainPage();
+                                        unlockOrient();
                                     }
                                     return true;//always return true to consume event
                                 }
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                     });
                 }
             }
-        }, 1000, 500);
+        }, firstDelay, 500);
     }
 
     private void buildMainPage() {
@@ -126,7 +126,6 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         getSupportActionBar().show();
-        new Tools().customToast(getApplicationContext(),"Personnage selectionné : "+PersoManager.getCurrentNamePJ(),"center");
         toolbar.setTitle(PersoManager.getCurrentNamePJ()+" companion");
         int drawableId=getResources().getIdentifier("background_banner"+PersoManager.getCurrentPJ().getID(), "drawable", getPackageName());
         toolbar.setBackground(getDrawable(drawableId));

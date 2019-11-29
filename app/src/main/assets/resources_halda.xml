@@ -18,14 +18,9 @@
         <id>resource_mythic_points</id>
     </resource>
     <resource>
-        <shortname>Pts legs</shortname>
-        <name>Points légendaires</name>
-        <id>resource_legendary_points</id>
-    </resource>
-    <resource>
-        <name>Points héroique</name>
-        <shortname>Pts héro</shortname>
-        <id>resource_heroic</id>
+        <name>Rangs de Sorts</name>
+        <shortname>Sorts</shortname>
+        <id>resource_display_rank</id>
     </resource>
 
 </records>

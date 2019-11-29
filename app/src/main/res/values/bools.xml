@@ -15,6 +15,7 @@
 
     <!-- Autre -->
     <bool name="switch_autoclose_dialog_DEF">true</bool>
+    <bool name="switch_fake_long_load_DEF">true</bool>
 
     <!-- Mythic -->
 
@@ -39,6 +40,8 @@
     <bool name="meta_arrow_switch_def">true</bool>
     <bool name="meta_delay_switch_def">true</bool>
     <bool name="meta_duration_switch_def">true</bool>
+
+
 
 
 </resources>

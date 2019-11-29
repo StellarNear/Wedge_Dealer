@@ -165,4 +165,15 @@ public class Roll {
         return nthAtkRoll;
     }
 
+    public void lynxEyeBoost() {
+        if (this instanceof RangedRoll){
+            ((RangeAtkRoll) atkRoll).lynxEyeBoost();
+        }
+    }
+
+    public void rangeMalus(int malus) {
+        if (this instanceof RangedRoll){
+            ((RangeAtkRoll) atkRoll).rangeMalus(malus);
+        }
+    }
 }

@@ -48,4 +48,8 @@ public class PreRandValues {
             ((LinearLayout)mainView.findViewById(R.id.mainLinearPreRand)).addView(scoreBox);
         }
     }
+
+    public void refresh() {
+        addPreRandValues();
+    }
 }
