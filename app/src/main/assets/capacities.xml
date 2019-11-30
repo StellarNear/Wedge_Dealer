@@ -60,6 +60,12 @@
         <dailyuse>3</dailyuse>
     </capacity>
 
+    <capacity>
+        <name>Mille visages</name>
+        <type>druid</type>
+        <descr>Le druide acquiert le pouvoir surnaturel de se transformer à volonté, comme s’il utilisait le sort modification d’apparence, mais uniquement lorsqu’il est sous sa forme normale.</descr>
+    </capacity>
+
     <!-- archer -->
 
     <capacity>

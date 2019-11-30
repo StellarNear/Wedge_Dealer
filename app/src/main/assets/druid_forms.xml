@@ -3,11 +3,8 @@
     <form>
         <name>Anaconda Géant</name>
         <type>animal</type>
-        <form_capacity>capacity_id</form_capacity>
-        <ability_change>
-            <ability>ability_ms</ability>
-            <ability_value>36</ability_value>
-        </ability_change>
+        <size>G</size>
+        <form_capacity>id1</form_capacity>
         <id>form_anaconda</id>
     </form>
 
