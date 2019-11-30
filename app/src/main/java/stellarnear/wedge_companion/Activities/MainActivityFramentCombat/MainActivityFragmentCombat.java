@@ -49,7 +49,7 @@ public class MainActivityFragmentCombat extends Fragment {
     private ImageButton simpleAtk;
     private ImageButton barrageShot;
 
-    private FragmentCombatBonusPanel fragmentCombatBonusPanel;
+    private MainActivityFragmentCombatBonusPanel mainActivityFragmentCombatBonusPanel;
 
     private RollList rollList;
     private RollList selectedRolls;
@@ -134,7 +134,7 @@ public class MainActivityFragmentCombat extends Fragment {
         });
 
         // panneau bonus (lynx et range)
-        fragmentCombatBonusPanel= new FragmentCombatBonusPanel(getContext(),mainPage);
+        mainActivityFragmentCombatBonusPanel = new MainActivityFragmentCombatBonusPanel(getContext(),mainPage);
 
          // boutons d'attaques
         simpleAtk = mainPage.findViewById(R.id.button_simple_atk);
@@ -227,7 +227,7 @@ public class MainActivityFragmentCombat extends Fragment {
         ((ImageView)mainPage.findViewById(R.id.background_blank_combat)).setImageDrawable(null);
         rollList = new RollFactory(getActivity(),getContext(),mode).getRollList();
         preRandValues = new PreRandValues(getContext(), mainPage, rollList);
-        fragmentCombatBonusPanel.addRollData(preRandValues,rollList);
+        mainActivityFragmentCombatBonusPanel.addRollData(preRandValues,rollList);
         // ajout du panneau additionel (lynx_eye etc)
         if (damages != null) {
             damages.hideViews();
@@ -241,31 +241,34 @@ public class MainActivityFragmentCombat extends Fragment {
             case 0:
                 simpleAtk.animate().translationXBy(-200).setDuration(1000).start();
                 barrageShot.animate().translationXBy(200).setDuration(1000).start();
-                animate(fragmentCombatBonusPanel.getButton());
+                animate(mainActivityFragmentCombatBonusPanel.getButton());
                 break;
             case 1:
                 simpleAtk.animate().scaleX(2).scaleY(2).alpha(0).setDuration(1000).start();
                 barrageShot.animate().translationXBy(200).setDuration(1000).start();
-                animate(fragmentCombatBonusPanel.getButton());
-                if(pj.getResourceValue("resource_lynx_eye")>0){fragmentCombatBonusPanel.show();}
+                animate(mainActivityFragmentCombatBonusPanel.getButton());
+                if(pj.getResourceValue("resource_lynx_eye")>0){
+                    mainActivityFragmentCombatBonusPanel.show();}
                 break;
             case 2:
                 simpleAtk.animate().translationXBy(-200).setDuration(1000).start();
                 barrageShot.animate().scaleX(2).scaleY(2).alpha(0).setDuration(1000).start();
-                animate(fragmentCombatBonusPanel.getButton());
-                if(pj.getResourceValue("resource_lynx_eye")>0){fragmentCombatBonusPanel.show();}
+                animate(mainActivityFragmentCombatBonusPanel.getButton());
+                if(pj.getResourceValue("resource_lynx_eye")>0){
+                    mainActivityFragmentCombatBonusPanel.show();}
                 break;
             case 3:
                 simpleAtk.animate().translationXBy(-200).setDuration(1000).start();
                 barrageShot.animate().translationXBy(200).setDuration(1000).start();
-                animate(fragmentCombatBonusPanel.getButton());
-                if(pj.getResourceValue("resource_lynx_eye")>0){fragmentCombatBonusPanel.show();}
+                animate(mainActivityFragmentCombatBonusPanel.getButton());
+                if(pj.getResourceValue("resource_lynx_eye")>0){
+                    mainActivityFragmentCombatBonusPanel.show();}
                 break;
         }
     }
 
     private void startRandAtk() {
-        fragmentCombatBonusPanel.hide();
+        mainActivityFragmentCombatBonusPanel.hide();
         firstAtkRoll = false;
         firstDmgRoll = true;
         showDivider();

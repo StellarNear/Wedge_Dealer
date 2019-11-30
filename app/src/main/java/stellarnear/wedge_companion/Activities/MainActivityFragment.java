@@ -40,15 +40,19 @@ public class MainActivityFragment extends Fragment {
 
         returnFragView= inflater.inflate(R.layout.fragment_main, container, false);
 
+        ImageButton fabSkill = (ImageButton) returnFragView.findViewById(R.id.button_frag_to_skill);
+        setButtonActivity(fabSkill, new MainActivityFragmentSkill(), R.animator.infromleftfrag,R.animator.outfadefrag,"frag_skill");
+        Animation left = AnimationUtils.loadAnimation(getContext(),R.anim.infromleft);
+        fabSkill.startAnimation(left);
+
         ImageButton fabCombat = (ImageButton) returnFragView.findViewById(R.id.button_frag_to_combat);
         setButtonActivity(fabCombat,new MainActivityFragmentCombat(),R.animator.infrombotfrag,R.animator.outfadefrag,"frag_combat");
         Animation top = AnimationUtils.loadAnimation(getContext(),R.anim.infromtop);
         fabCombat.startAnimation(top);
 
-        ImageButton fabSkill = (ImageButton) returnFragView.findViewById(R.id.button_frag_to_skill);
-        setButtonActivity(fabSkill, new MainActivityFragmentSkill(), R.animator.infromleftfrag,R.animator.outfadefrag,"frag_skill");
-        Animation left = AnimationUtils.loadAnimation(getContext(),R.anim.infromleft);
-        fabSkill.startAnimation(left);
+        ImageButton fabForm = (ImageButton) returnFragView.findViewById(R.id.button_frag_to_form);
+        setButtonActivity(fabForm,new MainActivityFragmentForm(),R.animator.infrombotfrag,R.animator.outfadefrag,"frag_combat");
+        fabForm.startAnimation(top);
 
         ImageButton fabCast = (ImageButton) returnFragView.findViewById(R.id.button_frag_to_spell);
         setButtonActivity(fabCast,new MainActivityFragmentSpell(),R.animator.infromrightfrag,R.animator.outfadefrag,"frag_spell");
@@ -80,14 +84,15 @@ public class MainActivityFragment extends Fragment {
         View tooltip1 = returnFragView.findViewById(R.id.textCombatActionTooltip);
         View tooltip2 = returnFragView.findViewById(R.id.textSkillActionTooltip);
         View tooltip3 = returnFragView.findViewById(R.id.textSpellActionTooltip);
-
+        View tooltip4 = returnFragView.findViewById(R.id.textFormActionTooltip);
         tooltip1.setVisibility(View.VISIBLE);
         tooltip2.setVisibility(View.VISIBLE);
         tooltip3.setVisibility(View.VISIBLE);
-
+        tooltip4.setVisibility(View.VISIBLE);
         tooltip1.startAnimation(fadeIn);
         tooltip2.startAnimation(fadeIn);
         tooltip3.startAnimation(fadeIn);
+        tooltip4.startAnimation(fadeIn);
     }
 
     private void popInQuadrant(Context mC,Activity mA) {

@@ -101,4 +101,27 @@ public class AllForms {
         }
         return active;
     }
+
+
+    /*
+    TODO
+
+    vegetal
+    régénération 5. Si cette forme ne peut pas bouger, la vitesse de déplacement du personnage est réduite à 1,50 m (1 case) et il perd toute autre possibilité de mouvement. Si la créature est immunisée ou possède une résistance à un élément, le personnage gagne un résistance de 20 contre cet élément.
+    Si la créature est vulnérable à un élément, le personnage le devient aussi.
+
+    Animal
+    Si la créature est immunisée ou résistante contre un type d’énergie, le personnage gagne 20 points de résistance contre ce type d’énergie. En revanche, si elle est vulnérable,
+     le personnage l’est aussi.
+
+Magic
+pour les souffle DD = 10+ lvl/2 + mod const   9m range
+
+    ELEMENTAIRE
+     Pour les capa tout elementaire a ca : Ce sort fonctionne comme corps élémentaire III mais il permet aussi au lanceur de sorts de se transformer en élémentaire d’air,
+        d’eau, de feu ou de terre de taille TG. Ses aptitudes dépendent du type d’élémentaire choisi. De plus, le personnage est immunisé contre les saignements, les coups critiques
+         et les attaques sournoises tant qu’il est sous forme élémentaire et il gagne une résistance RD 5/—.
+
+     */
+
 }

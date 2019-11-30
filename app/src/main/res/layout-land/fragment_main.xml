@@ -11,6 +11,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/general_margin"
         android:layout_marginStart="@dimen/general_margin"
         android:clipChildren="false"
         android:gravity="center"
@@ -23,9 +24,9 @@
             android:layout_width="@dimen/size_icon_main_actions"
             android:layout_height="@dimen/size_icon_main_actions"
             android:adjustViewBounds="true"
-            android:backgroundTint="@android:color/transparent"
+            android:background="@null"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/mire_test"
+            android:src="@drawable/mire_test"
             tools:ignore="ContentDescription" />
 
         <TextView
@@ -43,6 +44,7 @@
         android:gravity="center"
         android:orientation="vertical"
         android:clipChildren="false"
+        android:layout_marginTop="@dimen/general_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,9 +55,9 @@
             android:layout_width="@dimen/size_icon_main_actions"
             android:layout_height="@dimen/size_icon_main_actions"
             android:adjustViewBounds="true"
-            android:backgroundTint="@android:color/transparent"
+            android:background="@null"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/mire_test"
+            android:src="@drawable/mire_test"
             tools:ignore="ContentDescription" />
 
         <TextView

@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="stellarnear.wedge_companion.Activities.MainActivityFragmentForm">
+
+
+    <LinearLayout
+        android:id="@+id/linearFormFrag"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_icon_main_actions075"
+            android:orientation="horizontal"
+            android:background="@drawable/bar_gradient_main_subfragments"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textColor="?attr/colorBackground"
+                android:textSize="20sp"
+                android:text="Changement de forme" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:id="@+id/formMainLinear"
+            android:orientation="vertical"
+            android:weightSum="11"
+            android:background="?attr/colorBackground">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="Forme actuelle : normale"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Capacités passives :"/>
+
+                    <LinearLayout
+                        android:id="@+id/linear_form_passives"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_height="0dp"
+                        android:orientation="vertical"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Capacités actives :"/>
+                    <LinearLayout
+                        android:id="@+id/linear_form_actives"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_height="0dp"
+                        android:orientation="vertical"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="7"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Selection de forme :"/>
+                <LinearLayout
+                    android:layout_margin="@dimen/general_margin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:clipChildren="false"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:id="@+id/button_form_animal"
+                            android:layout_width="@dimen/size_icon_main_actions"
+                            android:layout_height="@dimen/size_icon_main_actions"
+                            android:adjustViewBounds="true"
+                            android:background="@null"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/mire_test"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:id="@+id/textSkillActionTooltip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="animaux"
+                            android:textSize="@dimen/size_text_main_actions" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:clipChildren="false">
+
+                        <ImageButton
+                            android:id="@+id/button_form_magical"
+                            android:layout_width="@dimen/size_icon_main_actions"
+                            android:layout_height="@dimen/size_icon_main_actions"
+                            android:adjustViewBounds="true"
+                            android:background="@null"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/mire_test"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:id="@+id/textCombatActionTooltip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="magique"
+                            android:textSize="@dimen/size_text_main_actions" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:clipChildren="false">
+
+                        <ImageButton
+                            android:id="@+id/button_form_vegetal"
+                            android:layout_width="@dimen/size_icon_main_actions"
+                            android:layout_height="@dimen/size_icon_main_actions"
+                            android:adjustViewBounds="true"
+                            android:background="@null"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/mire_test"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:id="@+id/textFormActionTooltip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="végétale"
+                            android:textSize="@dimen/size_text_main_actions" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:clipChildren="false">
+
+                        <ImageButton
+                            android:id="@+id/button_form_vermin"
+                            android:layout_width="@dimen/size_icon_main_actions"
+                            android:layout_height="@dimen/size_icon_main_actions"
+                            android:adjustViewBounds="true"
+                            android:background="@null"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/mire_test"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:id="@+id/textSpellActionTooltip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="élémentaire"
+                            android:textSize="@dimen/size_text_main_actions" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <ViewFlipper
+                    android:layout_margin="@dimen/general_margin"
+                    android:id="@+id/form_flipper"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+
+
+
+
+    <ImageButton
+        tools:ignore="ContentDescription"
+        android:id="@+id/button_frag_form_to_main"
+        android:layout_width="@dimen/size_icon_main_actions075"
+        android:layout_height="@dimen/size_icon_main_actions075"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/mire_test"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:padding="@dimen/general_margin"
+        android:background="@null"/>
+
+
+</android.support.constraint.ConstraintLayout>

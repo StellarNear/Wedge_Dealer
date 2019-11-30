@@ -27,7 +27,7 @@ import stellarnear.wedge_companion.Rolls.RollList;
 import stellarnear.wedge_companion.TextFilling.PreRandValues;
 import stellarnear.wedge_companion.Tools;
 
-public class FragmentCombatBonusPanel {
+public class MainActivityFragmentCombatBonusPanel {
     private Context mC;
     private RollList rollList;
     private PreRandValues preRandValues;
@@ -41,7 +41,7 @@ public class FragmentCombatBonusPanel {
     private boolean addBonusPanelIsVisible=false;
     private Tools tools=new Tools();
     
-    public FragmentCombatBonusPanel(Context mC, View mainPage){
+    public MainActivityFragmentCombatBonusPanel(Context mC, View mainPage){
         this.mC=mC;
         buttonAdd =(ImageButton) mainPage.findViewById(R.id.fab_add_atk);
         pannel = mainPage.findViewById(R.id.add_bonus_linear);

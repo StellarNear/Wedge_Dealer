@@ -1,14 +1,83 @@
 <?xml version="1.0"?>
 <records>
+    <!-- animal -->
+
+
+    <!-- magique -->
     <form>
-        <name>Anaconda Géant</name>
-        <type>animal</type>
+        <name>Kirin</name>
+        <type>magic</type>
         <size>G</size>
-        <form_capacity>id1</form_capacity>
-        <id>form_anaconda</id>
+        <passive_capacity>fly,smell,black_vision_18,nocturn_vision</passive_capacity>
+        <active_capacity>
+            <breath>
+                <damage>roundUp(lvl/2)</damage>
+                <cooldown>1d4</cooldown>
+            </breath>
+        </active_capacity>
+        <resistance>shock,fire,cold</resistance>
+        <attack>
+            <bois>1d8</bois>
+            <sabot>1d6</sabot>
+            <sabot>1d6</sabot>
+        </attack>
+        <id>form_kirin</id>
+    </form>
+
+    <form>
+        <name>Sleipnir</name>
+        <type>magic</type>
+        <size>G</size>
+        <passive_capacity>fly,black_vision_18,nocturn_vision</passive_capacity>
+        <active_capacity>
+            <breath>
+                <damage>Sort rayon prismatique</damage>
+                <cooldown>1d6</cooldown>
+            </breath>
+            <stample>1d8DD23</stample>
+        </active_capacity>
+        <resistance>shock,poison,cold</resistance>
+        <attack>
+            <morsure>1d8</morsure>
+            <sabot>1d8</sabot>
+            <sabot>1d8</sabot>
+            <sabot>1d8</sabot>
+            <sabot>1d8</sabot>
+        </attack>
+        <id>form_sleipnir</id>
     </form>
 
 
+
+    <!-- elementaire -->
+    <form>
+        <name>Élémentaire de feu</name>
+        <type>elemental</type>
+        <size>TG</size>
+        <passive_capacity>black_vision_18</passive_capacity>
+        <active_capacity>
+            <combustion>2d10DD22</combustion>
+        </active_capacity>
+        <vulnerability>cold</vulnerability>
+        <resistance>fire</resistance>
+        <attack>
+            <base>2d8</base>
+            <base>2d8</base>
+        </attack>
+        <id>form_fire_elem</id>
+    </form>
+
+    <form>
+        <name>Élémentaire de terre</name>
+        <type>elemental</type>
+        <size>TG</size>
+        <passive_capacity>black_vision_18,earth_swim,bump</passive_capacity>
+        <attack>
+            <base>2d10</base>
+            <base>2d10</base>
+        </attack>
+        <id>form_earth_elem</id>
+    </form>
 
 
 

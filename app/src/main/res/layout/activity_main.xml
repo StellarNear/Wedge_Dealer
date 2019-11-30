@@ -84,7 +84,6 @@
                     android:layout_height="@dimen/size_icon_main_rota"
                     android:layout_gravity="center_vertical|right"
                     android:scaleType="fitCenter"
-
                     app:srcCompat="@drawable/rotate_right" />
 
                 <ImageButton
