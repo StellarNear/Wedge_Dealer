@@ -19,6 +19,7 @@ import android.widget.TextView;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.Rolls.Dices.Dice;
+import stellarnear.wedge_companion.Spells.CalculationSpell;
 import stellarnear.wedge_companion.Spells.Spell;
 
 
@@ -57,7 +58,7 @@ public class TestRMAlertDialog {
         title.setText(titleTxt);
 
 
-        sumScore= calculationSpell.casterLevelSR(spell);
+        sumScore= calculationSpell.casterLevel(spell);
         robe = pj.getInventory().getAllEquipments().getEquipmentsEquiped("armor_slot").getName().equalsIgnoreCase("Robe d'archimage grise");
         if(robe){
             sumScore+=2;
@@ -67,7 +68,7 @@ public class TestRMAlertDialog {
         summary.setText(summaryTxt);
 
         String summaryDetail="";
-        summaryDetail="NLS : "+String.valueOf(calculationSpell.casterLevelSR(spell))+" "; //oui c'est moche il faut gerer tout les calcul au niveau du perso proprement ...
+        summaryDetail="NLS : "+String.valueOf(calculationSpell.casterLevel(spell))+" "; //oui c'est moche il faut gerer tout les calcul au niveau du perso proprement ...
 
         if(robe){ summaryDetail+=", Robe d'archimage grise (+2)";}
 
@@ -197,7 +198,7 @@ public class TestRMAlertDialog {
                 bestRand=valDice;
             }
 
-        int sumResult=bestRand+ calculationSpell.casterLevelSR(spell);
+        int sumResult=bestRand+ calculationSpell.casterLevel(spell);
 
         if(robe){sumResult+=2;}
 

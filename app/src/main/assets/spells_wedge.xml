@@ -1,0 +1,799 @@
+<?xml version="1.0"?>
+<records>
+    <spell>
+        <name>Destruction de mort-vivant</name>
+        <descr>Rayon d’énergie positive. Le personnage doit réussir une attaque de contact à distance pour atteindre le mort-vivant.</descr>
+        <dice_type>6</dice_type>
+        <cap_dice>1</cap_dice>
+        <dmg_type>aucun</dmg_type>
+        <contact>distance</contact>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <rm>true</rm>
+        <save_type>aucun</save_type>
+        <compo>V,G</compo>
+        <rank>0</rank>
+    </spell>
+
+    
+      <spell>
+        <name>Détection de la magie</name>
+          <id>detect_magic</id>
+        <descr>Grâce à ce sort, le personnage peut repérer les auras magiques. Les informations fournies par détection de la magie dépendent du temps que le personnage passe à étudier le sujet et ou la zone. Premier round : présence ou absence d’auras magiques. Deuxième round : nombre d’auras magiques et intensité de la plus puissante. Troisième round : intensité et emplacement précis de chaque aura</descr>
+        <range>18m</range>
+        <cast_time>simple</cast_time>
+        <duration>1min/lvl</duration>
+        <compo>V,G</compo>
+        <rank>0</rank>
+    </spell>
+    
+    <spell>
+        <name>Lecture de la magie</name>
+        <id>read_magic</id>
+        <descr>Grâce à ce sort, le personnage peut lire les inscriptions magiques normalement incompréhensibles (celles des parchemins, livres magiques, armes, etc.).</descr>
+        <range>personnelle</range>
+        <cast_time>simple</cast_time>
+        <duration>10min/lvl</duration>
+        <compo>V,G,M</compo>
+        <rank>0</rank>
+    </spell>
+    
+    <spell>
+        <name>Lumière</name>
+        <descr>Lancé sur un objet, ce sort le fait briller comme la lumière d’une torche, ce qui lui permet d’éclairer jusqu’à six mètres. Tous les sorts de lumière contrent et dissipent les sorts d’obscurité de niveau inférieur ou égal.</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>10min/lvl</duration>
+        <compo>V,M</compo>
+        <rank>0</rank>
+    </spell>
+    <spell>
+        <name>Manipulation à distance</name>
+        <descr>Le lanceur de sorts peut le soulever et le déplacer un objet pesant jusqu’à 2,5 kg et n’étant porté ou tenu par personne. Par une action de mouvement, il peut déplacer l’objet de 4,50 m au maximum.</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>concentration</duration>
+        <compo>V,G</compo>
+        <rank>0</rank>
+    </spell>
+    <spell>
+        <name>Message</name>
+        <descr>Chuchoter des messages à 1cible/niveau. Les personnes alentour discernent le message si elles réussissent un test de Perception DD 25. Le personnage indique du doigt toutes les créatures à inclure dans le sort. Le message est entendu par tous les destinataires, dans les limites de portée. Le sort est bloqué par un silence d’origine magique, 30 cm de pierre, 2,5 cm de métal, une feuille de plomb, ou 90 cm de bois ou de terre.</descr>
+        <range>moyenne</range>
+        <cast_time>simple</cast_time>
+        <duration>10min/lvl</duration>
+        <compo>V,G,M</compo>
+        <rank>0</rank>
+    </spell>
+    <spell>
+        <name>Ouverture/fermeture</name>
+        <descr>Permet d'ouvrir un objet pesant jusqu’à 15 kg ou une porte, un coffre, une boîte, une fenêtre, un sac, une bourse, une bouteille ou tout autre récipient. Il échoue automatiquement si l’objet dispose d’un mécanisme de fermeture (barre, serrure fermée, etc.).</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V,G,M</compo>
+        <rank>0</rank>
+    </spell>
+
+    <spell>
+        <name>Rayon de givre</name>
+        <descr>Un rayon de givre jaillit du doigt tendu du mage, qui doit réussir une attaque de contact à distance pour atteindre sa cible.</descr>
+        <dice_type>3</dice_type>
+        <cap_dice>1</cap_dice>
+        <dmg_type>froid</dmg_type>
+        <contact>distance</contact>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <rm>true</rm>
+        <save_type>aucun</save_type>
+        <compo>V,G</compo>
+        <rank>0</rank>
+    </spell>
+
+    <spell>
+        <name>Résistance</name>
+        <id>resistance</id>
+        <descr>Ce sort protège la cible en lui offrant temporairement un bonus de résistance de +1 aux jets de sauvegarde.</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>1min</duration>
+        <compo>V,G,M</compo>
+        <rank>0</rank>
+    </spell>
+
+      <spell>
+        <name>Alarme</name>
+        <descr>Alarme audible(18m), Alarme mentale(1.5km). Alarme audible La sonnerie est audible ou mentale suivant la décision du jeteur de sorts.</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>2h/lvl</duration>
+        <compo>V,G,M</compo>
+        <rank>1</rank>
+    </spell>
+    
+    <spell>
+        <name>Bouclier</name>
+        <id>shield</id>
+        <descr>Bouclier conférant un bonus de bouclier de +4 à la CA. S’agissant d’un effet de force, ce bonus agit face aux attaques de contact à distance intangibles. Il ne présente ni malus d’armure aux tests ni risque d’échec des sorts profanes.</descr>
+        <range>personnelle</range>
+        <cast_time>simple</cast_time>
+        <duration>1min/lvl</duration>
+        <compo>V,G,M+</compo>
+        <rank>1</rank>
+    </spell>
+
+      <spell>
+        <name>Charme personne</name>
+        <descr>Charme-personne ne s’utilise que sur les humanoïdes. La créature affectée considère le lanceur de sorts comme son meilleur ami. Néanmoins si elle est menacée par le personnage ou ses compagnons, elle bénéficie d’un bonus de +5 au jet de sauvegarde.</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>1h/lvl</duration>
+        <compo>V,G</compo>
+            <rm>true</rm>
+        <save_type>Vol[annule]</save_type>
+        <rank>1</rank>
+    </spell>
+    
+    <spell>
+        <name>Coup au but</name>
+        <id>true_strike</id>
+        <descr>Bonus de +20 au prochain jet d'attaque. De plus, il n’a aucune chance de manquer une cible camouflée.</descr>
+        <range>personnelle</range>
+        <cast_time>simple</cast_time>
+        <duration>1round</duration>
+        <compo>V,M</compo>
+        <rank>1</rank>
+    </spell>
+
+    <spell>
+        <name>Décharge électrique</name>
+        <descr>Attaque de contact au corps à corps qui, en cas de réussite inflige des dégâts. Si la cible porte une armure métallique (ou porte une arme faite principalement de métal), le lanceur de sorts bénéficie d’un bonus de +3 au jet d’attaque.</descr>
+        <dice_type>6</dice_type>
+        <n_dice_per_lvl>1</n_dice_per_lvl>
+        <cap_dice>5</cap_dice>
+        <contact>melee</contact>
+        <dmg_type>foudre</dmg_type>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V,G</compo>
+        <rm>true</rm>
+        <save_type>aucun</save_type>
+        <rank>1</rank>
+    </spell>
+
+    <spell>
+        <name>Projectiles magiques</name>
+        <descr>Tire 5 projectiles faisant chaqu'un des dégâts. Le projectile touche automatiquement, même si la créature visée se trouve au corps à corps ou bénéficie d’un camouflage ou d’un abri autre que total.</descr>
+        <n_sub_spell>5</n_sub_spell>
+        <dmg_type>aucun</dmg_type>
+        <rank>1</rank>
+    </spell>
+    <spell>
+        <id>Projectiles magiques_sub</id>
+        <name>Projectile magique</name>
+        <descr>Le projectile touche automatiquement, même si la créature visée se trouve au corps à corps ou bénéficie d’un camouflage ou d’un abri autre que total.  Il peut répartir ses différents projectiles entre plusieurs cibles, mais chacun ne peut atteindre qu’un seul adversaire. Il doit indiquer toutes ses cibles avant d’effectuer d’éventuels tests de résistance à la magie ou de faire ses jets de dégâts.</descr>
+        <dice_type>4</dice_type>
+        <flat_dmg>1</flat_dmg>
+        <cap_dice>1</cap_dice>
+        <dmg_type>aucun</dmg_type>
+        <range>moyenne</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V,G</compo>
+        <rm>true</rm>
+        <save_type>aucun</save_type>
+        <rank>1</rank>
+    </spell>
+
+    <spell>
+        <name>Déblocage</name>
+        <descr>Ouvre une porte, un coffre ou boîte ne faisant pas plus de 1 m²/niveau. Le personnage doit effectuer un test de niveau de lanceur de sorts contre le DD du verrou, avec un bonus de +10. S’il réussit, il ouvre jusqu’à deux éléments de fermeture. Ce sort ouvre également les passages secrets, les boîtes et les coffres.</descr>
+        <range>moyenne</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V</compo>
+        <rank>2</rank>
+    </spell>
+    
+    <spell>
+        <name>Détection de l'invisibilité</name>
+        <id>detect_invi</id>
+        <descr>Ce sort permet au personnage de repérer les objets et les créatures invisibles situés dans son champ de vision, ainsi que celles qui sont éthérées, comme si elles étaient visibles.</descr>
+        <range>personnelle</range>
+        <cast_time>simple</cast_time>
+        <duration>10min/lvl</duration>
+        <compo>V,G,M</compo>
+        <rank>2</rank>
+    </spell>
+
+    <spell>
+        <name>Flou</name>
+        <id>blur</id>
+        <descr>La cible bénéficie d’un camouflage (20 % de chances que les attaques le ratent). Détection de l’invisibilité ne contre pas flou, mais vision lucide, si.</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>1min/lvl</duration>
+        <compo>V</compo>
+        <rank>2</rank>
+    </spell>
+    
+    <spell>
+        <name>Main spectrale</name>
+        <descr>Permet de lancer à distance des sorts de contact de bas niveau. Tant que le sort persiste, le personnage peut lancer n’importe quel sort de contact à distance du 4e niveau ou moins par l’intermédiaire de la main spectrale, qui lui confère un bonus de +2 au jet d’attaque de contact au corps à corps.</descr>
+        <range>moyenne</range>
+        <cast_time>simple</cast_time>
+        <duration>1min/lvl</duration>
+        <compo>V,G</compo>
+        <rank>2</rank>
+    </spell>
+
+    <spell>
+        <name>Rayons ardents</name>
+        <descr>Attaque de contact à distance qui, en cas de réussite lance 3 rayons infligeant chacun des dégâts. Peut viser une ou plusieurs cibles, mais tous doivent viser des sujets situés à 9 m ou moins les uns des autres.</descr>
+        <n_sub_spell>3</n_sub_spell>
+        <dmg_type>feu</dmg_type>
+        <rank>2</rank>
+    </spell>
+
+    <spell>
+        <id>Rayons ardents_sub</id>
+        <name>Rayon ardent</name>
+        <descr>Ce rayon inflige 4d6 points de dégâts de feu. On les tire simultanément sur une ou plusieurs cibles, mais tous doivent viser des sujets situés à 9 m ou moins les uns des autres..</descr>
+        <dice_type>6</dice_type>
+        <cap_dice>4</cap_dice>
+        <contact>distance</contact>
+        <dmg_type>feu</dmg_type>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V,G</compo>
+        <rm>true</rm>
+        <save_type>aucun</save_type>
+        <rank>2</rank>
+    </spell>
+
+
+    <spell>
+        <name>Simulacre de vie</name>
+        <descr>Tant que ce sort fait effet, il gagne un nombre de points de vie temporaires égal à 1d10 +1 par niveau de lanceur de sorts (+10 maximum).</descr>
+        <range>personnelle</range>
+        <cast_time>simple</cast_time>
+        <duration>1h/lvl</duration>
+        <compo>V,G,M</compo>
+        <rank>2</rank>
+    </spell>
+
+
+    <spell>
+        <name>Baiser du vampire</name>
+        <descr>Attaque de contact au corps à corps, le lanceur de sorts gagne autant de points de vie temporaires. Ces points de vie ne peuvent toutefois dépasser le nombre actuel de points de vie de la cible + sa valeur de Constitution (ce qui peut suffire à la tuer). Les points de vie temporaires disparaissent au bout d’une heure.</descr>
+        <dice_type>6</dice_type>
+        <cap_dice>10</cap_dice>
+        <n_dice_per_lvl>0.5</n_dice_per_lvl>
+        <dmg_type>aucun</dmg_type>
+        <range>contact</range>
+        <contact>melee</contact>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V,G</compo>
+        <rm>true</rm>
+        <save_type>aucun</save_type>
+        <rank>3</rank>
+    </spell>
+    
+    <spell>
+        <name>Boule de feu</name>
+        <descr>Boule de feu dont la zone de l'explostion est de 6m de rayon. Le personnage désigne la cible du doigt et choisit l’endroit où il souhaite que l’explosion se produise. </descr>
+        <dice_type>6</dice_type>
+        <cap_dice>10</cap_dice>
+        <n_dice_per_lvl>1</n_dice_per_lvl>
+        <dmg_type>feu</dmg_type>
+        <range>longue</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <area>6m</area>
+        <compo>V,G,M</compo>
+        <rm>true</rm>
+        <save_type>ref[1/2]</save_type>
+        <rank>3</rank>
+    </spell>
+
+
+    <spell>
+        <name>Don des langues</name>
+        <id>all_languages</id>
+        <descr>Ce sort donne à la créature touchée la capacité de parler et de comprendre le langage de n’importe quelle créature intelligente</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>10min/lvl</duration>
+        <compo>V,G,M</compo>
+           <rm>true</rm>
+        <save_type>vol[annule]</save_type>
+        <rank>3</rank>
+    </spell>
+
+    <spell>
+        <name>Éclair</name>
+        <descr>Violente décharge électrique qui inflige des dégâts d’électricité à toutes les créatures situées en ligne droite jusqu'à 36m.</descr>
+        <dice_type>6</dice_type>
+        <cap_dice>10</cap_dice>
+        <n_dice_per_lvl>1</n_dice_per_lvl>
+        <dmg_type>foudre</dmg_type>
+        <range>36m</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V,G,M</compo>
+        <rm>true</rm>
+        <save_type>ref[1/2]</save_type>
+        <rank>3</rank>
+    </spell>
+    
+     <spell>
+        <name>Protection contre les énérgies destructives</name>
+        <descr>Bouclier de 12pts/lvl (max +120). Ce sort offre une immunité temporaire contre le type d’énergie sélectionné (acide, électricité, feu, froid ou son).</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>10min/lvl</duration>
+        <compo>V,G</compo>
+         <rm>true</rm>
+        <save_type>vig[annule]</save_type>
+        <rank>3</rank>
+    </spell>
+
+    <spell>
+        <name>Immortalité</name>
+        <descr>Empêche la cible de mourir en subissant des pertes de points de vie. Ce sort n’empêche pas la mort infligée par des sources autres que celles qui infligent des dégâts en termes de points de vie. Les sorts qui soignent les points de dégâts affectent normalement la créature.</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>1round/lvl</duration>
+        <compo>V,G</compo>
+        <rank>4</rank>
+    </spell>
+
+     <spell>
+        <name>Invisibilité suprême</name>
+        <descr>La créature touchée devient invisible. Une créature invisible et immobile bénéficie d’un bonus de +40 aux tests de Discrétion. Ce bonus est réduit à +20 si la créature se déplace.</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>1round/lvl</duration>
+        <compo>V,G,M+</compo>
+        <rank>4</rank>
+    </spell>
+    
+    
+    <spell>
+        <name>Liberté de mouvement</name>
+        <id>free_movement</id>
+        <descr>Permet de se déplacer et de combattre normalement, même si elle subit les effets d’un sort ou d’une magie qui réduit ses déplacements. Le sujet peut également se déplacer et attaquer normalement quand il se trouve sous l’eau.</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>10min/lvl</duration>
+        <compo>V,G,M</compo>
+             <rm>true</rm>
+        <save_type>vol[annule]</save_type>
+        <rank>4</rank>
+    </spell>
+    
+      <spell>
+        <name>Malédiction</name>
+        <descr>Le personnage choisit l’effet qu’il souhaite produire parmi les trois suivants :
+-6 à une valeur de caractéristique (1 minimum) OU 
+Malus de -4 aux jets d’attaque, aux jets de sauvegarde, aux tests de caractéristique et aux tests de compétence OU
+Chaque fois que son tour de jeu arrive, la victime a 50% de chances de pouvoir agir normalement. Sinon, elle ne fait rien.</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>permanente</duration>
+        <compo>V,G</compo>
+           <rm>true</rm>
+        <save_type>vol[annule]</save_type>
+        <rank>4</rank>
+    </spell>
+
+      <spell>
+        <name>Peau de pierre</name>
+          <id>stone_skin</id>
+        <descr>Bouclier de 10pts/lvl (max 150). Protection contre les attaques physiques qui se traduit par une réduction des dégâts de 10/adamantium.</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>10min/lvl</duration>
+        <compo>V,G,M+</compo>
+        <rm>true</rm>
+        <save_type>vol[annule]</save_type>
+        <rank>4</rank>
+    </spell>
+   
+
+
+    <spell>
+        <name>Simulacre de vie supérieur</name>
+        <id>fake_life_sup</id>
+        <descr>Gagne un nombre de points de vie temporaires égal à 2d10 +1 par niveau de lanceur de sorts (+20 maximum).</descr>
+        <range>personnelle</range>
+        <cast_time>simple</cast_time>
+        <duration>1h/lvl</duration>
+        <compo>V,G,M</compo>
+        <rank>4</rank>
+    </spell>
+
+  
+
+
+
+    
+ <spell>
+        <name>Annulation d'echantement</name>
+        <descr>Cibles jusqu’à 1 créature/niveau, à moins de 9 m. Ce sort annule les enchantements, transmutations et malédictions actifs sur la cible. Le personnage fait un test de niveau de lanceur de sorts (1d20 + son niveau de lanceur de sorts, maximum +15) contre un DD égal à 11 + niveau de lanceur de sorts de l’effet.</descr>
+        <range>courte</range>
+        <cast_time>1min</cast_time>
+        <duration>instant</duration>
+        <compo>V,G</compo>
+        <rank>5</rank>
+    </spell>
+
+    <spell>
+        <name>Cône de froid</name>
+        <descr>Cône de froid crée une vague de froid glacial naissant dans la main tendue du magicien et prenant la forme d’un cône. Toutes les créatures situées dans la zone d’effet subissent les dégâts de froid.</descr>
+        <dice_type>6</dice_type>
+        <cap_dice>15</cap_dice>
+        <n_dice_per_lvl>1</n_dice_per_lvl>
+        <dmg_type>froid</dmg_type>
+        <range>18m</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V,G,M</compo>
+        <rm>true</rm>
+        <save_type>ref[1/2]</save_type>
+        <rank>5</rank>
+    </spell>
+    
+    <spell>
+        <name>Echolocalisation</name>
+        <id>echolocalisation</id>
+        <descr>Procure vision aveugle dans un rayon de 12 mètres. Le personnage ne peut pas utiliser ce pouvoir s'il est sourd et il ne détecte rien dans une zone de silence.</descr>
+        <range>personnelle</range>
+        <cast_time>simple</cast_time>
+        <duration>10min/lvl</duration>
+        <compo>V</compo>
+        <rank>5</rank>
+    </spell>
+
+    <spell>
+        <name>Jet d'acide</name>
+        <descr>Un jet d’acide jaillit de la main tendue du personnage et inflige des dégâts d’acide à toutes les créatures situées dans la zone (ligne 18m). L’acide continue de brûler pendant 1 round et inflige la moitié des dégâts pour toute créature qui a raté son jet de sauvegarde contre le sort (un second jet de Réflexes, fait au tour de la créature, annule les dégâts supplémentaires).</descr>
+        <dice_type>6</dice_type>
+        <cap_dice>15</cap_dice>
+        <n_dice_per_lvl>1</n_dice_per_lvl>
+        <dmg_type>acide</dmg_type>
+        <range>18m</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V,G,M+</compo>
+        <rm>true</rm>
+        <save_type>ref[1/2]</save_type>
+        <rank>5</rank>
+    </spell>ta
+
+
+    <spell>
+        <name>Lien télépathique</name>
+        <id>mind_link</id>
+        <descr>Cibles le jeteur de sorts et 1 créature consentante/3 niveaux, distantes de moins de 9 m. Ce sort de divination génère un lien télépathique entre plusieurs créatures dont l’Intelligence doit au moins être égale ou supérieure à 3.</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>10min/lvl</duration>
+        <compo>V,G,M</compo>
+        <rank>5</rank>
+    </spell>
+
+    <spell>
+        <name>Permanence</name>
+        <descr>Ce sort rend permanent l’effet de certains autres sorts. En fonction du sort, il faut avoir atteint un certain niveau et payer un certain nombre de po en poussière de diamant.</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>permanente</duration>
+        <compo>V,G,M+</compo>
+        <rank>5</rank>
+    </spell>
+
+  
+
+    <spell>
+        <name>Désintégration</name>
+        <descr>Attaque de contact à distance. Si le rayon réduit une créature à 0 point de vie ou moins, celle-ci est désintégrée. Son équipement n’est cependant pas affecté.</descr>
+        <dice_type>6</dice_type>
+        <cap_dice>40</cap_dice>
+        <n_dice_per_lvl>2</n_dice_per_lvl>
+        <dmg_type>aucun</dmg_type>
+        <contact>distance</contact>
+        <range>moyenne</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V,G,M</compo>
+        <rm>true</rm>
+        <save_type>vig[5d6]</save_type>
+        <rank>6</rank>
+    </spell>
+    
+
+
+    <spell>
+        <name>Dissipation suprême</name>
+        <descr>Cible ou zone d’effet 1 jeteur de sorts, 1 créature ou 1 objet, ou bien rayonnement de 6 m de rayon. Dissipation suprême peut servir de trois manières différentes : dissipation ciblée, dissipation de zone ou contresort.</descr>
+        <range>moyenne</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <rm>false</rm>
+        <save_type>aucun</save_type>
+        <compo>V,G</compo>
+        <rank>6</rank>
+    </spell>
+
+    <spell>
+        <name>Double illusoire</name>
+        <descr>Le double illusoire persiste tant que le personnage se concentre sur le sort et pendant 3 rounds après cela. L’invisibilité suprême, elle, dure 1 round par niveau, indépendamment de la concentration.</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>1round/lvl</duration>
+        <compo>G</compo>
+        <rank>6</rank>
+    </spell>
+
+    <spell>
+        <name>Éclair multiple</name>
+        <descr>Un éclair qui multiple se divise dès qu’il frappe sa première cible. Puis il se divise pour toucher au maximum 20 cibles infligeant autant de dégats à ces cibles. Le DD du jet de Réflexes des éclairs secondaires est réduit de 2 points par rapport à celui de l’éclair originel.</descr>
+        <dice_type>6</dice_type>
+        <cap_dice>20</cap_dice>
+        <n_dice_per_lvl>1</n_dice_per_lvl>
+        <dmg_type>foudre</dmg_type>
+        <range>longue</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V,G,M</compo>
+        <rm>true</rm>
+        <save_type>ref[1/2]</save_type>
+        <rank>6</rank>
+    </spell>
+
+    <spell>
+        <name>Doigt de mort</name>
+        <descr>Ce sort inflige 10 points de dégâts par niveau de lanceur de sorts. Si la cible réussit son jet de sauvegarde, elle perd seulement 3d6 points de vie+1 par niveau de lanceur de sorts.</descr>
+        <dice_type>lvl</dice_type>
+        <n_dice_per_lvl>10</n_dice_per_lvl>
+        <dmg_type>aucun</dmg_type>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V,G</compo>
+        <rm>true</rm>
+        <save_type>vig[3d6(+1/lvl)]</save_type>
+        <rank>7</rank>
+    </spell>
+
+   
+    <spell>
+        <name>Manoir somptueux</name>
+        <descr>Seules les créatures désignées lors de l’incantation peuvent la franchir et le portail se ferme et devient invisible quand le personnage pénètre dans le manoir.</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>2h/lvl</duration>
+        <compo>V,G,M+</compo>
+        <rank>7</rank>
+    </spell>
+    <spell>
+        <name>Renvoi des sorts</name>
+        <id>reflect_spell</id>
+        <descr>Les sorts et effets magiques qui prennent le personnage pour cible (et seulement ceux-là) sont renvoyés sur celui qui les a lancés. Les sorts de zone ne sont pas affectés, pas plus que les sorts à effet. Cette protection est inefficace contre les sorts de contact. L’abjuration renvoie de sept à dix (1d4+6) niveaux de sort (ce chiffre est déterminé en secret). Chaque sort retourné à l’envoyeur est retranché à ce nombre.</descr>
+        <range>personnelle</range>
+        <cast_time>simple</cast_time>
+        <duration>10min/lvl</duration>
+        <compo>V,G,M</compo>
+        <rank>7</rank>
+    </spell>
+     <spell>
+        <name>Teleportation suprême</name>
+        <descr>Ce sort transporte instantanément le personnage sur les lieux de son choix. quelque soit la distance à parcourir mais le personnage ne peut pas se rendre dans un autre plan d’existence. De plus, il n’a pas besoin de connaître sa destination, même s’il doit tout de même disposer d’une description fiable de l’endroit. Dans le cas contraire (ou si on l’a trompé), il disparaît et réapparaît aussitôt à son lieu de départ.</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V</compo>
+        <rank>7</rank>
+    </spell>
+    
+    
+
+
+    <spell>
+        <name>Animation suspendue</name>
+        <descr>Le lanceur de sorts doit toucher sa cible à l’aide d’une attaque de contact au corps à corps. S’il réussit, son adversaire se retrouve en état de stase. Pour ce dernier le temps cesse de s’écouler et plus rien ne l’affecte.</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>permanente</duration>
+        <contact>melee</contact>
+        <compo>V,G,M+</compo>
+        <rm>true</rm>
+        <save_type>vig[annule]</save_type>
+        <rank>8</rank>
+    </spell>
+    
+    <spell>
+        <name>Esprit impénétrable</name>
+        <id>impenetrable_mind</id>
+        <descr>Tous les sorts et objets qui permettent de recueillir des renseignements à son sujet grâce à la divination comme détection du Mal, localisation de créature, scrutation et détection de l’invisibilité. Ce sort offre aussi un bonus de résistance de +8 aux jets de sauvegarde contre tous les effets et sorts mentaux.</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>24h</duration>
+        <compo>V,G</compo>
+        <rank>8</rank>
+    </spell>
+
+
+    <spell>
+        <name>Localisation suprême</name>
+        <descr>Pour localiser une créature grâce à ce sort, le lanceur de sort doit l’avoir déjà vue ou avoir possédé un objet qui lui a appartenu. Seuls esprit impénétrable ou l’intervention directe d’un dieu permettent d’empêcher le lanceur de sorts d’apprendre ce qu’il cherche à savoir via ce sort.</descr>
+        <range>illimitée</range>
+        <cast_time>10min</cast_time>
+        <duration>instant</duration>
+        <compo>V,G</compo>
+        <rm>false</rm>
+        <save_type>aucun</save_type>
+        <rank>8</rank>
+    </spell>
+
+    <spell>
+        <name>Moment de préscience</name>
+        <id>prescience_moment</id>
+        <descr>Une seule fois pendant toute la durée du sort et il donne un bonus d’intuition égal au niveau de lanceur de sorts (maximum +25) à un jet d’attaque, un jet de manœuvre de combat, un test de caractéristique ou de compétence opposé, ou un jet de sauvegarde.  Si besoin, il est même possible de l’activer au tour de jeu d’un autre personnage. </descr>
+        <range>personnelle</range>
+        <cast_time>simple</cast_time>
+        <duration>1h/lvl</duration>
+        <compo>V,G</compo>
+        <rank>8</rank>
+    </spell>
+
+    <spell>
+        <name>Nuées d'orage</name>
+        <descr>Des éclairs jaillissent dans toutes les directions. Ils n'abîment pas la végétation naturelle ni les créatures que le personnage souhaite exclure. Infligeant des dégâts et étourdi pendant 1 round. Un jet de sauvegarde réussi réduit ces dégâts de moitié et annule l'étourdissement.</descr>
+        <dice_type>8</dice_type>
+        <cap_dice>20</cap_dice>
+        <n_dice_per_lvl>1</n_dice_per_lvl>
+        <dmg_type>foudre</dmg_type>
+        <range>9m</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V,G,M</compo>
+        <rm>true</rm>
+        <save_type>vig[1/2]</save_type>
+        <rank>8</rank>
+    </spell>
+
+    <spell>
+        <name>Absorption d'énergie</name>
+        <descr>Attaque de contact à distance. En cas de succès, la cible acquiert 2d4 niveaux négatifs temporaires. Vingt-quatre heures après avoir été affecté par le sort, le sujet doit effectuer un jet de Vigueur (contre le DD du sort) par niveau négatif acquis. A chaque jet de sauvegarde réussi, un niveau négatif disparaît sans plus de conséquences. En cas d’échec, le niveau négatif devient permanent.</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <contact>distance</contact>
+        <compo>V,G</compo>
+        <save_type>vig[partiel]</save_type>
+        <rank>9</rank>
+    </spell>
+
+    <spell>
+        <name>Arrêt du temps</name>
+        <descr>Le personnage peut agir pendant 1d4+1 rounds de temps apparent. Feu, froid, gaz et autres, qu’ils soient magiques ou non, l’affectent toujours. Tant que l’arrêt du temps dure, les autres créatures sont invulnérables aux attaques et aux sorts du personnage. Tant que l’arrêt du temps dure, les autres créatures sont invulnérables aux attaques et aux sorts du personnage.</descr>
+        <range>personnelle</range>
+        <cast_time>simple</cast_time>
+        <duration>1d4+1rounds</duration>
+        <compo>V</compo>
+        <rank>9</rank>
+    </spell>
+
+    <spell>
+        <name>Délivrance</name>
+        <descr>Tous les sorts et effets limitant les capacités de mouvement de la cible sont immédiatement suspendus. Cela inclut animation suspendue, dédale, emprisonnement, enchevêtrement, entrave, l’étourdissement, l’immobilisation, lenteur, la paralysie, la pétrification, sommeil et toile d’araignée. Pour délivrer une victime de dédale ou emprisonnement, il faut connaître son nom et son passé et lancer le sort à l’endroit où elle a été enfermée ou bannie.</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V,G</compo>
+        <save_type>vol[annule]</save_type>
+        <rm>true</rm>
+        <rank>9</rank>
+    </spell>
+
+    <spell>
+        <name>Disjonction</name>
+        <descr>Tous les effets et objets magiques dans 12m ou un objet magique. Les sorts et effets magiques sont déconstruits et détruits, ce qui y met un terme comme s’ils avaient été affectés par une dissipation de la magie. Les objets magiques permanents doivent réussir un jet de Volonté pour éviter de devenir des objets ordinaires pendant la durée du sort. Il est également possible de cibler ce sort sur un unique objet (-5 au jet).</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V</compo>
+        <duration>1min/lvl</duration>
+        <save_type>vol[annule]</save_type>
+        <rank>9</rank>
+    </spell>
+
+    <spell>
+        <name>Nuée de météores</name>
+        <descr>Avec une attaque de contact à distance projète quatre sphères, toute créature frappée par l’une des sphères subit 2d6 points de dégâts contondants (pas de jet de sauvegarde) et subit un malus de -4 au jet de sauvegarde sur les explosions suivantes. Chaque sphere explose sous la forme d’une étendue de 12 m de rayon et inflige 6d6 points de dégâts de feu (jet de reflexe par explosion pour demi-dégats la resistance ne s'aplique qu'une fois).</descr>
+        <dmg_type>feu</dmg_type>
+        <n_sub_spell>4</n_sub_spell>
+        <rank>9</rank>
+    </spell>
+    <spell>
+        <id>Nuée de météores_sub</id>
+        <name>Météore</name>
+        <descr>Si l'attaque de contact à distance touche, la cible subit 2d6 points de dégâts contondants (pas de jet de sauvegarde) et subit un malus de -4 au jet de sauvegarde sur l'explosion suivante.</descr>
+        <range>longue</range>
+        <dice_type>6</dice_type>
+        <cap_dice>2</cap_dice>
+        <dmg_type>feu</dmg_type>
+        <cast_time>simple</cast_time>
+        <compo>V,G</compo>
+        <duration>instant</duration>
+        <contact>distance</contact>
+        <rm>true</rm>
+        <rank>9</rank>
+    </spell>
+    <spell>
+        <id>Nuée de météores_sub</id>
+        <name>Explosion</name>
+        <descr>Explosion de 12 m de rayon et inflige 6d6 points de dégâts de feu (jet de reflexe pour demi-dégats la resistance ne s'applique qu'une fois si d'autre il y a d'autre météores sur la meme cible).</descr>
+        <range>longue</range>
+        <dice_type>6</dice_type>
+        <cap_dice>6</cap_dice>
+        <dmg_type>feu</dmg_type>
+        <cast_time>simple</cast_time>
+        <compo>V,G</compo>
+        <area>12m</area>
+        <duration>instant</duration>
+        <rm>true</rm>
+        <save_type>ref[1/2]</save_type>
+        <rank>9</rank>
+    </spell>
+
+    <spell>
+        <name>Prémonition</name>
+        <id>premonition</id>
+        <descr>Averti dès qu’un péril menace la cible. +2 à la CA et aux jets de Réflexes si personnelle.</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>10min/lvl</duration>
+        <compo>V,G,M</compo>
+        <rank>9</rank>
+    </spell>
+    <spell>
+       <name>Présence écrasante</name>
+        <descr>Cible une créature/niveau qui ne doivent pas être distantes de plus de 9 m les unes des autres. Si les cibles ratent leur jet de sauvegarde, elles tombent à genoux et se prosternent devant le personnage, en pensant s’incliner devant une présence divine.</descr>
+        <range>moyenne</range>
+        <cast_time>simple</cast_time>
+        <duration>1round/lvl</duration>
+        <compo>V,G,M</compo>
+        <rm>true</rm>
+        <save_type>vol[annule]</save_type>
+        <rank>9</rank>
+    </spell>
+
+    <spell>
+        <name>Souhait</name>
+        <descr>Souhait est le sort ultime des magiciens et des ensorceleurs. Il suffit en effet au personnage d’exprimer un souhait pour que le tissu de la réalité se modifie selon leurs désirs. Mais même un sort aussi puissant a ses limites.</descr>
+        <cast_time>simple</cast_time>
+        <compo>V,G,M++</compo>
+        <rank>9</rank>
+    </spell>
+
+    <spell>
+        <name>Vent de la vengeance</name>
+        <descr>Entourre le personnage d'une tonade de vent surnaturel. De plus, quand une créature frappe le personnage au corps à corps, ce dernier peut ordonner aux vents de fouetter l'attaquant par une action immédiate. La créature doit réussir un jet de Vigueur ou recevoir 5d8 points de dégâts contondants et tomber à terre. Vitesse de vol de 18 mètres. Permet de voler et de respirer sous l'eau ou dans l'espace.</descr>
+        <range>personnelle</range>
+        <cast_time>simple</cast_time>
+        <duration>1min/lvl</duration>
+        <save_type>vig[1/2]</save_type>
+         <rm>false</rm>
+        <compo>V,G</compo>
+        <rank>9</rank>
+    </spell>
+
+</records>

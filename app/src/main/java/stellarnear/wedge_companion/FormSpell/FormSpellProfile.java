@@ -1,8 +1,7 @@
-package stellarnear.wedge_companion.Spells;
+package stellarnear.wedge_companion.FormSpell;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,21 +11,22 @@ import android.widget.TextView;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
+import stellarnear.wedge_companion.Spells.DisplayedText;
 import stellarnear.wedge_companion.Tools;
 
-public class SpellProfile {
+public class FormSpellProfile {
     private Activity mA;
     private Context mC;
-    private Spell spell;
+    private FormPower spell;
     private View profile;
-    private CalculationSpell calculationSpell =new CalculationSpell();
+    private FormCalculationSpell calculationSpell =new FormCalculationSpell();
     private DisplayedText displayText =new DisplayedText();
-    private SpellProfileManager profileManager;
+    private FormSpellProfileManager profileManager;
     private OnRefreshEventListener mListener;
     private Perso pj = PersoManager.getCurrentPJ();
     private Tools tools=new Tools();
 
-    public SpellProfile(Spell spell){
+    public FormSpellProfile(FormPower spell){
         this.spell=spell;
     }
 
@@ -43,8 +43,8 @@ public class SpellProfile {
     private void init() {
         LayoutInflater inflater = mA.getLayoutInflater();
         profile = inflater.inflate(R.layout.spell_profile, null);
-        profileManager = new SpellProfileManager(mA,mC,spell,profile);
-        profileManager.setRefreshEventListener(new SpellProfileManager.OnRefreshEventListener() {
+        profileManager = new FormSpellProfileManager(mA,mC,spell,profile);
+        profileManager.setRefreshEventListener(new FormSpellProfileManager.OnRefreshEventListener() {
             @Override
             public void onEvent() {
                 buildProfile();
@@ -69,14 +69,6 @@ public class SpellProfile {
         });
 
         testSpellForColorTitle();
-
-        ((TextView)profile.findViewById(R.id.current_rank)).setText("(rang : "+ calculationSpell.currentRank(spell)+")");
-
-        if(!pj.getAllResources().checkSpellAvailable(calculationSpell.currentRank(spell))){
-            ((TextView)profile.findViewById(R.id.current_rank)).setTextColor(Color.RED);
-        }else {
-            ((TextView)profile.findViewById(R.id.current_rank)).setTextColor(Color.BLACK);
-        }
 
         ((TextView)profile.findViewById(R.id.description)).setText(spell.getDescr());
         ((TextView)profile.findViewById(R.id.description)).postDelayed(new Runnable() {
@@ -109,29 +101,17 @@ public class SpellProfile {
 
     private String printInfo() {
         String text = "";
-        if (calculationSpell.nDice(spell)>0) {
-            text += "Dégats:" + displayText.damageTxt(spell) + ", ";
+        if (spell.getFlat_dmg()>0) {
+            text += "Dégats:" + spell.getFlat_dmg() + ", ";
         }
         if (!spell.getDmg_type().equals("")) {
             text += "Typ:" + spell.getDmg_type() + ", ";
         }
         if (!spell.getRange().equals("")) {
-            text += "Portée:" + displayText.rangeTxt(spell)+ ", ";
+            text += "Portée:" + spell.getRange()+ ", ";
         }
         if (!spell.getArea().equals("")) {
             text += "Zone:" + spell.getArea()+ ", ";
-        }
-        if (!displayText.compoTxt(mC,spell).equalsIgnoreCase("")) {
-            text += "Compos:" + displayText.compoTxt(mC,spell) + ", ";
-        }
-        if (!spell.getCast_time().equals("")) {
-            text += "Cast:" + calculationSpell.getCastTimeTxt(spell) + ", ";
-        }
-        if (!spell.getDuration().equals("") && !spell.getDuration().equalsIgnoreCase("instant")) {
-            text += "Durée:" + displayText.durationTxt(spell) + ", ";
-        }
-        if (!spell.hasRM()||spell.hasRM()) {
-            text += "RM:" + (spell.hasRM() ? "oui":"non") + ", ";
         }
         String resistance;
         if (spell.getSave_type().equals("aucun") || spell.getSave_type().equals("")) {

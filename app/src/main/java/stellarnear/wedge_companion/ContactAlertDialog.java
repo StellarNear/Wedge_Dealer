@@ -21,6 +21,7 @@ import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.Rolls.Dices.Dice;
 import stellarnear.wedge_companion.Rolls.Dices.WheelDicePicker;
+import stellarnear.wedge_companion.Spells.CalculationSpell;
 import stellarnear.wedge_companion.Spells.Spell;
 
 public class ContactAlertDialog {

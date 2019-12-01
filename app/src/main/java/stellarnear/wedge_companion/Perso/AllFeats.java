@@ -35,6 +35,7 @@ public class AllFeats {
 
     private void buildFeatsList() {
         allFeatsList = new ArrayList<>();
+        mapIdFeat=new HashMap<>();
         try {
             String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
             InputStream is = mC.getAssets().open("feats"+extendID+".xml");

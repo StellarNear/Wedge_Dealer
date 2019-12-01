@@ -1,4 +1,4 @@
-package stellarnear.wedge_companion.Spells;
+package stellarnear.wedge_companion.FormSpell;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -7,17 +7,19 @@ import android.preference.PreferenceManager;
 import java.util.ArrayList;
 import java.util.List;
 
+import stellarnear.wedge_companion.Spells.CalculationSpell;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
+import stellarnear.wedge_companion.Spells.Spell;
 import stellarnear.wedge_companion.Tools;
 
-public class DisplayedText {
+public class FormDisplayedText {
     private Perso pj = PersoManager.getCurrentPJ();
     private Tools tools=new Tools();
     private CalculationSpell calculationSpell =new CalculationSpell();
 
-    public DisplayedText(){  }
+    public FormDisplayedText(){  }
 
     public String damageTxt(Spell spell) {
 

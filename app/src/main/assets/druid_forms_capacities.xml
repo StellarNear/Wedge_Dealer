@@ -1,47 +1,72 @@
 <?xml version="1.0"?>
 <records>
-    <passive_capacity>
+    <capacity>
         <name>Creusement</name>
         <value>27m</value>
         <descr>Le sujet peut se déplacer en creusant dans le sable, la terre meuble ou les graviers à une vitesse de 4,50 mètres (ou 3 mètres s’il porte une armure lourde ou intermédiaire ou une charge lourde ou intermédiaire) ou à une vitesse de 1,50 mètre dans la roche. Le sujet peut attaquer ou lancer des sorts normalement. Une créature qui creuse ne peut pas charger ni courir. Les matériaux friables s’effondrent derrière la cible 1 round après son passage dans la zone. Ce sort ne permet pas au personnage de respirer sous terre. Quand il traverse des matériaux meubles, il doit donc retenir son souffle et faire de petites étapes sinon, il risque de suffoquer.</descr>
-        <type>def</type>
+        <type>passive</type>
         <id>form_capacity_dig</id>
-    </passive_capacity>
+    </capacity>
 
 
-    <passive_capacity>
+    <capacity>
         <name>Regen</name>
         <value>5</value>
         <descr>Le sujet peut se déplacer en creusant dans le sable, la terre meuble ou les graviers à une vitesse de 4,50 mètres (ou 3 mètres s’il porte une armure lourde ou intermédiaire ou une charge lourde ou intermédiaire) ou à une vitesse de 1,50 mètre dans la roche. Le sujet peut attaquer ou lancer des sorts normalement. Une créature qui creuse ne peut pas charger ni courir. Les matériaux friables s’effondrent derrière la cible 1 round après son passage dans la zone. Ce sort ne permet pas au personnage de respirer sous terre. Quand il traverse des matériaux meubles, il doit donc retenir son souffle et faire de petites étapes sinon, il risque de suffoquer.</descr>
-        <type>def</type>
+        <type>passive</type>
         <id>form_capacity_regen</id>
-    </passive_capacity>
+    </capacity>
 
 
-    <passive_capacity>
+    <capacity>
         <name>Nage dans la terre</name>
         <descr>Lorsqu'un élémentaire de Terre se déplace par creusement, il peut traverser la pierre, la terre et quasiment n'importe quel autre type de sol (mais pas le métal) aussi facilement que s'il était un poisson nageant dans l'eau. S'il est protégé contre les dégâts de feu, il peut même traverser la lave. Il ne laisse aucun tunnel et aucune ouverture dans son sillage. Il ne crée pas de vibration ni aucun autre signe trahissant sa présence.</descr>
-        <type>other</type>
+        <type>passive</type>
         <id>form_capacity_earth_swim</id>
-    </passive_capacity>
-
-<passive_capacity>
-    <name>Repousser</name>
-    <descr>Les créatures qui disposent de cette capacité peuvent choisir de réaliser un test de manoeuvre (sans que cela ne nécessite d’action supplémentaire) lorsqu’elles parviennent à toucher un adversaire avec une attaque spécifique (un coup brutal généralement). Si le test réussit, l’adversaire est repoussé. Cela fonctionne comme une bousculade mais la distance parcourue est fixée par la capacité.</descr>
-    <type>atk</type>
-    <id>form_capacity_earth_bump</id>
-</passive_capacity>
+    </capacity>
 
 
     <!-- active -->
 
-    <active_capacity>
+    <capacity>
+        <name>Repousser</name>
+        <descr>Les créatures qui disposent de cette capacité peuvent choisir de réaliser un test de manoeuvre (sans que cela ne nécessite d’action supplémentaire) lorsqu’elles parviennent à toucher un adversaire avec une attaque spécifique (un coup brutal généralement). Si le test réussit, l’adversaire est repoussé. Cela fonctionne comme une bousculade mais la distance parcourue est fixée par la capacité.</descr>
+        <type>active</type>
+        <id>form_capacity_bump</id>
+    </capacity>
+
+    <capacity>
+        <name>Pietinnement</name>
+        <descr>Peut renverser ses adversaires et les piétiner sous les sabots.</descr>
+        <type>active</type>
+        <id>form_capacity_stample</id>
+    </capacity>
+
+
+    <capacity>
         <name>Combustion</name>
         <descr>Lorsque les créatures qui disposent de cette capacité touchent un adversaire au corps à corps, elles lui infligent des dégâts de feu en plus des dégâts normaux. L’adversaire doit réussir un jet de Réflexes pour éviter de prendre feu et de subir les dégâts indiqués pendant 1d4 rounds supplémentaires au début de son tour (le DD vaut 10 + la moitié du nombre de DV raciaux de la créature qui incinère + son modificateur de Constitution). Si l’adversaire prend feu, il peut tenter un nouveau jet de sauvegarde par la suite mais cela lui prend une action complexe. S’il se couche et roule au sol, il bénéficie d’un bonus de +4 à ce jet de sauvegarde. Lorsqu’un adversaire touche avec une arme naturelle ou une attaque à mains nues une créature qui dispose de cette capacité, il subit des dégâts de feu comme s’il avait été touché par la créature en question. Il doit également effectuer un jet de Réflexes pour éviter de prendre feu.</descr>
-        <type>atk</type>
+        <type>active</type>
         <id>form_capacity_combustion</id>
-    </active_capacity>
+    </capacity>
 
+    <!-- souffles -->
+
+    <capacity>
+        <name>Souffle de feu</name>
+        <id>form_capacity_kirin_breath</id>
+        <descr>Blabla conne de feu.</descr>
+        <type>active</type>
+        <powerid>powerform_kirin_breath</powerid>
+    </capacity>
+
+    <capacity>
+        <name>Souffle prismatique</name>
+        <id>form_capacity_prisma_breath</id>
+        <descr>Blabla random 1d8.</descr>
+        <type>active</type>
+       <!-- TODO pas de powerid le faire à l'endroi où pon l'appel pour determiner quel power appelé-->
+    </capacity>
 
 
 </records>

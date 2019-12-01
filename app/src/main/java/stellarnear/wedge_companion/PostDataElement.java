@@ -6,10 +6,12 @@ import java.util.Locale;
 
 import stellarnear.wedge_companion.Elems.Elem;
 import stellarnear.wedge_companion.Elems.ElemsManager;
+import stellarnear.wedge_companion.FormSpell.FormPower;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.Rolls.Dices.Dice;
 import stellarnear.wedge_companion.Rolls.Roll;
 import stellarnear.wedge_companion.Rolls.RollList;
+import stellarnear.wedge_companion.Spells.CalculationSpell;
 import stellarnear.wedge_companion.Spells.Spell;
 
 
@@ -166,6 +168,17 @@ public class PostDataElement {
             } else {
                 this.result="Dégâts : "+spell.getDmgResult();
             }
+        }
+    }
+
+    public PostDataElement(FormPower spell){
+        SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.FRANCE);
+        this.date=formater.format(new Date());
+        this.typeEvent="Lancement sort de forme animale "+spell.getName();
+        if(spell.getDmg_type().equalsIgnoreCase("")){
+            this.result="Lancé !";
+        } else {
+            this.result="Dégâts : "+spell.getDmgResult();
         }
     }
 

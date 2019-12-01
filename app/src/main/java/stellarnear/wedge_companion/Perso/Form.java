@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by jchatron on 04/01/2018.
  */
@@ -11,10 +14,13 @@ import android.preference.PreferenceManager;
 public class Form {
     private String name;
     private String type;
+    private String size;
     private String descr;
     private String id;
+    private List<FormCapacity> listPassiveCapacities= new ArrayList<>();
+    private List<FormCapacity> listActivesCapacities= new ArrayList<>();
+
     private Context mC;
-    private boolean active;
 
     public Form(String name, String type, String descr, String id, Context mC){
         this.name=name;
@@ -40,12 +46,24 @@ public class Form {
         return id;
     }
 
-    public boolean isActive(){
-       return active;
+    public String getSize() {
+        return size;
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
+    public void setListActivesCapacities(List<FormCapacity> listActivesCapacities) {
+        this.listActivesCapacities = listActivesCapacities;
+    }
+
+    public void setListPassiveCapacities(List<FormCapacity> listPassiveCapacities) {
+        this.listPassiveCapacities = listPassiveCapacities;
+    }
+
+    public List<FormCapacity> getListActivesCapacities() {
+        return listActivesCapacities;
+    }
+
+    public List<FormCapacity> getListPassiveCapacities() {
+        return listPassiveCapacities;
     }
 }
 

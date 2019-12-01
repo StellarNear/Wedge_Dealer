@@ -1,4 +1,4 @@
-package stellarnear.wedge_companion.Spells;
+package stellarnear.wedge_companion.FormSpell;
 
 import android.content.Context;
 import android.support.design.widget.Snackbar;
@@ -9,12 +9,13 @@ import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.PostData;
 import stellarnear.wedge_companion.PostDataElement;
 import stellarnear.wedge_companion.R;
+import stellarnear.wedge_companion.Spells.CalculationSpell;
 import stellarnear.wedge_companion.Tools;
 
 
-public class SliderBuilder {
+public class FormSliderBuilder {
     private Perso pj = PersoManager.getCurrentPJ();
-    private Spell spell;
+    private FormPower spell;
     private Context mC;
     private boolean slided=false;
     private CalculationSpell calculationSpell =new CalculationSpell();
@@ -22,7 +23,7 @@ public class SliderBuilder {
     private SeekBar seek;
     private Tools tools=new Tools();
 
-    public SliderBuilder(Context mC,Spell spell){
+    public FormSliderBuilder(Context mC, FormPower spell){
         this.mC=mC;
         this.spell=spell;
     }
@@ -34,15 +35,9 @@ public class SliderBuilder {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 if (seekBar.getProgress() > 75) {
                     seekBar.setProgress(100);
-                    if (spell.getRank() != 0 && pj.getResourceValue("spell_rank_" + calculationSpell.currentRank(spell)) <1) {
-                        seekBar.setProgress(1);
-                        tools.customToast(mC,"Tu n'as pas d'emplacement de sort "+ calculationSpell.currentRank(spell)+" de disponible...","center");
-                    } else if(!spell.isCast() && spell.isMyth() && pj.getResourceValue("resource_mythic_points") <1){
-                        seekBar.setProgress(1);
-                        tools.customToast(mC, "Il ne te reste aucun point mythique pour lancer ce sort Mythique","center");
-                    } else {
+
                         startCasting();
-                    }
+
                 } else {
                     seekBar.setProgress(1);
                 }
@@ -74,18 +69,6 @@ public class SliderBuilder {
 
     public void spendCast() {
         if(!spell.isCast()) {
-            slided=true;
-            if(spell.getRank()==0){new PostData(mC,new PostDataElement(spell));} //pour quand meme signalé les grauit
-            if (spell.getRank() > 0) {
-                pj.castSpell(spell);
-            }
-            if (spell.isMyth()) {
-                pj.getAllResources().getResource("resource_mythic_points").spend(1);
-                new PostData(mC,new PostDataElement("Lancement sort mythique","-1pt mythique"));
-                tools.customToast(mC, "Sort Mythique\nIl te reste " + pj.getResourceValue("resource_mythic_points") + " point(s) mythique(s)", "center");
-            }
-        } else if(!slided) {
-            slided=true;
             new PostData(mC,new PostDataElement(spell)); // pour les sous sorts on peut avoir un sous sort pas lancé mais pas posté
         }
     }

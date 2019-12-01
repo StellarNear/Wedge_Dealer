@@ -11,7 +11,7 @@
         <passive_capacity>fly,smell,black_vision_18,nocturn_vision</passive_capacity>
         <active_capacity>
             <breath>
-                <damage>roundUp(lvl/2)</damage>
+                <capacityid>form_capacity_kirin_breath</capacityid>
                 <cooldown>1d4</cooldown>
             </breath>
         </active_capacity>
@@ -30,11 +30,14 @@
         <size>G</size>
         <passive_capacity>fly,black_vision_18,nocturn_vision</passive_capacity>
         <active_capacity>
-            <breath>
-                <damage>Sort rayon prismatique</damage>
-                <cooldown>1d6</cooldown>
-            </breath>
-            <stample>1d8DD23</stample>
+            <capacityid>form_capacity_prisma_breath</capacityid>
+            <cooldown>1d6</cooldown>
+            <dailyuse>3</dailyuse>
+        </active_capacity>
+        <active_capacity>
+            <capacityid>form_capacity_stample</capacityid>
+            <damage>1d8</damage>
+            <savetype>dmd</savetype>
         </active_capacity>
         <resistance>shock,poison,cold</resistance>
         <attack>
@@ -52,11 +55,13 @@
     <!-- elementaire -->
     <form>
         <name>Élémentaire de feu</name>
-        <type>elemental</type>
+        <type>elemental_fire</type>
         <size>TG</size>
         <passive_capacity>black_vision_18</passive_capacity>
         <active_capacity>
-            <combustion>2d10DD22</combustion>
+            <capacityid>form_capacity_combustion</capacityid>
+            <damage>2d10</damage>
+            <savetype>ref</savetype>
         </active_capacity>
         <vulnerability>cold</vulnerability>
         <resistance>fire</resistance>
@@ -69,7 +74,7 @@
 
     <form>
         <name>Élémentaire de terre</name>
-        <type>elemental</type>
+        <type>elemental_earth</type>
         <size>TG</size>
         <passive_capacity>black_vision_18,earth_swim,bump</passive_capacity>
         <attack>

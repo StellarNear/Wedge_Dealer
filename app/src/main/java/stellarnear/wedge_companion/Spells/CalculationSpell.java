@@ -1,4 +1,4 @@
-package stellarnear.wedge_companion;
+package stellarnear.wedge_companion.Spells;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -12,6 +12,7 @@ import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.Spells.Metamagic;
 import stellarnear.wedge_companion.Spells.Spell;
 import stellarnear.wedge_companion.Spells.SpellList;
+import stellarnear.wedge_companion.Tools;
 
 public class CalculationSpell {
     private Perso pj = PersoManager.getCurrentPJ();
@@ -35,16 +36,6 @@ public class CalculationSpell {
 
 
     public int casterLevel(Spell spell){
-        int val= pj.getCasterLevel();
-        if(spell.getMetaList().metaIdIsActive("meta_heighten")){
-            val+=spell.getMetaList().getMetaByID("meta_heighten").getnCast() * spell.getMetaList().getMetaByID("meta_heighten").getUprank();
-        }
-
-        return val;
-    }
-
-
-    public int casterLevelSR(Spell spell){
         int val= pj.getCasterLevel();
         if(spell.getMetaList().metaIdIsActive("meta_heighten")){
             val+=spell.getMetaList().getMetaByID("meta_heighten").getnCast() * spell.getMetaList().getMetaByID("meta_heighten").getUprank();

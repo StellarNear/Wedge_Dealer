@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import stellarnear.wedge_companion.CalculationAtk;
-import stellarnear.wedge_companion.CalculationSpell;
+import stellarnear.wedge_companion.Spells.CalculationSpell;
 import stellarnear.wedge_companion.HallOfFame;
 import stellarnear.wedge_companion.PostData;
 import stellarnear.wedge_companion.PostDataElement;

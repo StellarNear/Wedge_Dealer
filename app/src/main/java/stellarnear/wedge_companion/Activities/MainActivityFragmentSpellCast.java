@@ -11,7 +11,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import stellarnear.wedge_companion.CalculationSpell;
+import stellarnear.wedge_companion.Spells.CalculationSpell;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Spells.SelectedSpells;
 import stellarnear.wedge_companion.Spells.Spell;
