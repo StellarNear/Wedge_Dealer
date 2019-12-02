@@ -46,12 +46,14 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/linear_frag_to_combat"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:clipChildren="false">
+            android:clipChildren="false"
+            android:visibility="gone">
 
             <ImageButton
                 android:id="@+id/button_frag_to_combat"
@@ -72,6 +74,35 @@
                 android:textSize="@dimen/size_text_main_actions" />
 
         </LinearLayout>
+        <LinearLayout
+            android:id="@+id/linear_frag_to_canal"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:clipChildren="false"
+            android:visibility="gone">
+
+            <ImageButton
+                android:id="@+id/button_frag_to_canal"
+                android:layout_width="@dimen/size_icon_main_actions"
+                android:layout_height="@dimen/size_icon_main_actions"
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/mire_test"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/textCanalActionTooltip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:text="canalisation"
+                android:textSize="@dimen/size_text_main_actions" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linear_frag_to_form"
@@ -80,7 +111,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:clipChildren="false">
+            android:clipChildren="false"
+            android:visibility="gone">
 
             <ImageButton
                 android:id="@+id/button_frag_to_form"

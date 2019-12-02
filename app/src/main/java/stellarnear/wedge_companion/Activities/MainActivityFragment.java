@@ -49,12 +49,19 @@ public class MainActivityFragment extends Fragment {
         Animation left = AnimationUtils.loadAnimation(getContext(),R.anim.infromleft);
         fabSkill.startAnimation(left);
 
-        ImageButton fabCombat = (ImageButton) returnFragView.findViewById(R.id.button_frag_to_combat);
-        setButtonActivity(fabCombat,new MainActivityFragmentCombat(),R.animator.infrombotfrag,R.animator.outfadefrag,"frag_combat");
-        Animation top = AnimationUtils.loadAnimation(getContext(),R.anim.infromtop);
-        fabCombat.startAnimation(top);
+        Animation top = AnimationUtils.loadAnimation(getContext(), R.anim.infromtop);
+        if(pj.getID().equalsIgnoreCase("")) {
+            ((LinearLayout) returnFragView.findViewById(R.id.linear_frag_to_combat)).setVisibility(View.VISIBLE);
+            ImageButton fabCombat = (ImageButton) returnFragView.findViewById(R.id.button_frag_to_combat);
+            setButtonActivity(fabCombat, new MainActivityFragmentCombat(), R.animator.infrombotfrag, R.animator.outfadefrag, "frag_combat");
+            fabCombat.startAnimation(top);
+        } else {
+            //todo canalisation
+            ((LinearLayout) returnFragView.findViewById(R.id.linear_frag_to_canal)).setVisibility(View.VISIBLE);
+        }
 
         if(pj.getID().equalsIgnoreCase("")) {
+            ((LinearLayout) returnFragView.findViewById(R.id.linear_frag_to_form)).setVisibility(View.VISIBLE);
             ImageButton fabForm = (ImageButton) returnFragView.findViewById(R.id.button_frag_to_form);
             if(pj.getAllForms().hasActiveForm()){
                 String type = pj.getAllForms().getCurrentForm().getType().contains("elemental") ? "elemental": pj.getAllForms().getCurrentForm().getType();
@@ -67,10 +74,7 @@ public class MainActivityFragment extends Fragment {
             }
             setButtonActivity(fabForm, new MainActivityFragmentForm(), R.animator.infrombotfrag, R.animator.outfadefrag, "frag_combat");
             fabForm.startAnimation(top);
-        } else {
-            ((LinearLayout) returnFragView.findViewById(R.id.linear_frag_to_form)).setVisibility(View.GONE);
         }
-
 
         ImageButton fabCast = (ImageButton) returnFragView.findViewById(R.id.button_frag_to_spell);
         setButtonActivity(fabCast,new MainActivityFragmentSpell(),R.animator.infromrightfrag,R.animator.outfadefrag,"frag_spell");
@@ -103,14 +107,17 @@ public class MainActivityFragment extends Fragment {
         View tooltip2 = returnFragView.findViewById(R.id.textSkillActionTooltip);
         View tooltip3 = returnFragView.findViewById(R.id.textSpellActionTooltip);
         View tooltip4 = returnFragView.findViewById(R.id.textFormActionTooltip);
+        View tooltip5 = returnFragView.findViewById(R.id.textCanalActionTooltip);
         tooltip1.setVisibility(View.VISIBLE);
         tooltip2.setVisibility(View.VISIBLE);
         tooltip3.setVisibility(View.VISIBLE);
         tooltip4.setVisibility(View.VISIBLE);
+        tooltip5.setVisibility(View.VISIBLE);
         tooltip1.startAnimation(fadeIn);
         tooltip2.startAnimation(fadeIn);
         tooltip3.startAnimation(fadeIn);
         tooltip4.startAnimation(fadeIn);
+        tooltip5.startAnimation(fadeIn);
     }
 
     private void popInQuadrant(Context mC,Activity mA) {

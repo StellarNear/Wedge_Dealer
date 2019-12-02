@@ -98,6 +98,14 @@ public class MainActivityFragmentCombat extends Fragment {
 
         setupScreen();
 
+        if(pj.getAllForms().hasActiveForm()){
+            try {
+                int imgId = getResources().getIdentifier(pj.getAllForms().getCurrentForm().getId(), "drawable", getContext().getPackageName());
+                ((ImageView)mainPage.findViewById(R.id.background_blank_combat)).setImageDrawable(getResources().getDrawable(imgId));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         return mainPage;
     }
 
