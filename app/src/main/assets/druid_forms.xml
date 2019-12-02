@@ -1,43 +1,31 @@
 <?xml version="1.0"?>
 <records>
     <!-- animal -->
-
+    <form>
+        <name>Anaconda géant</name>
+        <type>animal</type>
+        <size>TG</size>
+        <passive_capacity>smell,nocturne_vision</passive_capacity>
+        <active_capacity>
+            <capacityid>grip</capacityid>
+            <capacityid>constriction</capacityid>
+        </active_capacity>
+        <attack>
+            <morsure>4d6</morsure>
+        </attack>
+        <id>form_anaconda</id>
+    </form>
 
     <!-- magique -->
-    <form>
-        <name>Kirin</name>
-        <type>magic</type>
-        <size>G</size>
-        <passive_capacity>fly,smell,black_vision_18,nocturn_vision</passive_capacity>
-        <active_capacity>
-            <breath>
-                <capacityid>form_capacity_kirin_breath</capacityid>
-                <cooldown>1d4</cooldown>
-            </breath>
-        </active_capacity>
-        <resistance>shock,fire,cold</resistance>
-        <attack>
-            <bois>1d8</bois>
-            <sabot>1d6</sabot>
-            <sabot>1d6</sabot>
-        </attack>
-        <id>form_kirin</id>
-    </form>
 
     <form>
         <name>Sleipnir</name>
         <type>magic</type>
         <size>G</size>
-        <passive_capacity>fly,black_vision_18,nocturn_vision</passive_capacity>
+        <passive_capacity>fly,black_vision_animal,nocturne_vision</passive_capacity>
         <active_capacity>
-            <capacityid>form_capacity_prisma_breath</capacityid>
-            <cooldown>1d6</cooldown>
-            <dailyuse>3</dailyuse>
-        </active_capacity>
-        <active_capacity>
-            <capacityid>form_capacity_stample</capacityid>
-            <damage>1d8</damage>
-            <savetype>dmd</savetype>
+            <capacityid>sleipnir_breath</capacityid>
+            <capacityid>sleipnir_stample</capacityid>
         </active_capacity>
         <resistance>shock,poison,cold</resistance>
         <attack>
@@ -52,16 +40,86 @@
 
 
 
+    <form>
+        <name>Kirin</name>
+        <type>magic</type>
+        <size>G</size>
+        <passive_capacity>fly,smell,black_vision_animal,nocturne_vision</passive_capacity>
+        <active_capacity>
+                <capacityid>kirin_breath</capacityid>
+        </active_capacity>
+        <resistance>shock,fire,cold</resistance>
+        <attack>
+            <bois>1d8</bois>
+            <sabot>1d6</sabot>
+            <sabot>1d6</sabot>
+        </attack>
+        <id>form_kirin</id>
+    </form>
+
+    <form>
+        <name>Kudagitsune</name>
+        <type>magic</type>
+        <size>TP</size>
+        <passive_capacity>black_vision_animal,nocturne_vision</passive_capacity>
+        <id>form_kudagitsune</id>
+    </form>
+
+    <form>
+        <name>Cheval draconique</name>
+        <type>magic</type>
+        <size>G</size>
+        <passive_capacity>black_vision_animal,nocturne_vision</passive_capacity>
+        <active_capacity>
+            <capacityid>dragon_horse_breath</capacityid>
+        </active_capacity>
+        <attack>
+            <sabot>2d6</sabot>
+            <sabot>2d6</sabot>
+        </attack>
+        <id>form_dragon_horse</id>
+    </form>
+
     <!-- elementaire -->
+
+
+    <form>
+        <name>Élémentaire d'air</name>
+        <type>elemental_water</type>
+        <size>TG</size>
+        <passive_capacity>black_vision_elemental,fly</passive_capacity>
+        <active_capacity>
+            <capacityid>air_vortex</capacityid> <!--todo-->
+        </active_capacity>
+        <attack>
+            <base>2d8</base>
+            <base>2d8</base>
+        </attack>
+        <id>form_air_elem</id>
+    </form>
+
+    <form>
+        <name>Élémentaire d'eau</name>
+        <type>elemental_water</type>
+        <size>TG</size>
+        <passive_capacity>black_vision_elemental,swim,aquatic_respiration</passive_capacity>
+        <active_capacity>
+            <capacityid>water_vortex</capacityid> <!--todo-->
+        </active_capacity>
+        <attack>
+            <base>2d10</base>
+            <base>2d10</base>
+        </attack>
+        <id>form_water_elem</id>
+    </form>
+
     <form>
         <name>Élémentaire de feu</name>
         <type>elemental_fire</type>
         <size>TG</size>
-        <passive_capacity>black_vision_18</passive_capacity>
+        <passive_capacity>black_vision_elemental</passive_capacity>
         <active_capacity>
-            <capacityid>form_capacity_combustion</capacityid>
-            <damage>2d10</damage>
-            <savetype>ref</savetype>
+                <capacityid>combustion</capacityid>
         </active_capacity>
         <vulnerability>cold</vulnerability>
         <resistance>fire</resistance>
@@ -76,12 +134,26 @@
         <name>Élémentaire de terre</name>
         <type>elemental_earth</type>
         <size>TG</size>
-        <passive_capacity>black_vision_18,earth_swim,bump</passive_capacity>
+        <passive_capacity>black_vision_elemental,earth_swim,bump</passive_capacity>
         <attack>
             <base>2d10</base>
             <base>2d10</base>
         </attack>
         <id>form_earth_elem</id>
+    </form>
+
+
+    <!-- vegetal -->
+    <form>
+        <name>Saguaroi</name>
+        <type>vegetal</type>
+        <size>M</size>
+        <passive_capacity>nocturne_vision,regen</passive_capacity>
+        <attack>
+            <base>1d6</base>
+            <base>1d6</base>
+        </attack>
+        <id>form_saguaroi</id>
     </form>
 
 

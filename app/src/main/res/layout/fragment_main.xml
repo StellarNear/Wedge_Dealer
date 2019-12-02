@@ -16,118 +16,120 @@
         android:layout_margin="@dimen/general_margin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
         android:clipChildren="false"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <ImageButton
-            android:id="@+id/button_frag_to_skill"
-            android:layout_width="@dimen/size_icon_main_actions"
-            android:layout_height="@dimen/size_icon_main_actions"
-            android:adjustViewBounds="true"
-            android:background="@null"
-            android:scaleType="fitCenter"
-            android:src="@drawable/mire_test"
-            tools:ignore="ContentDescription" />
-
-        <TextView
-            android:id="@+id/textSkillActionTooltip"
-            android:layout_width="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:text="compétences"
-            android:textSize="@dimen/size_text_main_actions" />
-    </LinearLayout>
+            android:clipChildren="false"
+            android:gravity="center"
+            android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:clipChildren="false">
+            <ImageButton
+                android:id="@+id/button_frag_to_skill"
+                android:layout_width="@dimen/size_icon_main_actions"
+                android:layout_height="@dimen/size_icon_main_actions"
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/skill"
+                tools:ignore="ContentDescription" />
 
-        <ImageButton
-            android:id="@+id/button_frag_to_combat"
-            android:layout_width="@dimen/size_icon_main_actions"
-            android:layout_height="@dimen/size_icon_main_actions"
-            android:adjustViewBounds="true"
-            android:background="@null"
-            android:scaleType="fitCenter"
-            android:src="@drawable/mire_test"
-            tools:ignore="ContentDescription" />
+            <TextView
+                android:id="@+id/textSkillActionTooltip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:text="compétences"
+                android:textSize="@dimen/size_text_main_actions" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/textCombatActionTooltip"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:text="combat"
-            android:textSize="@dimen/size_text_main_actions" />
+            android:gravity="center"
+            android:orientation="vertical"
+            android:clipChildren="false">
 
-    </LinearLayout>
+            <ImageButton
+                android:id="@+id/button_frag_to_combat"
+                android:layout_width="@dimen/size_icon_main_actions"
+                android:layout_height="@dimen/size_icon_main_actions"
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/combat"
+                tools:ignore="ContentDescription" />
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:clipChildren="false">
+            <TextView
+                android:id="@+id/textCombatActionTooltip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:text="combat"
+                android:textSize="@dimen/size_text_main_actions" />
 
-        <ImageButton
-            android:id="@+id/button_frag_to_form"
-            android:layout_width="@dimen/size_icon_main_actions"
-            android:layout_height="@dimen/size_icon_main_actions"
-            android:adjustViewBounds="true"
-            android:background="@null"
-            android:scaleType="fitCenter"
-            android:src="@drawable/mire_test"
-            tools:ignore="ContentDescription" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/textFormActionTooltip"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/linear_frag_to_form"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:text="formes"
-            android:textSize="@dimen/size_text_main_actions" />
+            android:gravity="center"
+            android:orientation="vertical"
+            android:clipChildren="false">
 
-    </LinearLayout>
+            <ImageButton
+                android:id="@+id/button_frag_to_form"
+                android:layout_width="@dimen/size_icon_main_actions"
+                android:layout_height="@dimen/size_icon_main_actions"
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/form"
+                tools:ignore="ContentDescription" />
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:clipChildren="false">
+            <TextView
+                android:id="@+id/textFormActionTooltip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:text="formes"
+                android:textSize="@dimen/size_text_main_actions" />
 
-        <ImageButton
-            android:id="@+id/button_frag_to_spell"
-            android:layout_width="@dimen/size_icon_main_actions"
-            android:layout_height="@dimen/size_icon_main_actions"
-            android:adjustViewBounds="true"
-            android:background="@null"
-            android:scaleType="fitCenter"
-            android:src="@drawable/mire_test"
-            tools:ignore="ContentDescription" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/textSpellActionTooltip"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:text="sorts"
-            android:textSize="@dimen/size_text_main_actions" />
+            android:gravity="center"
+            android:orientation="vertical"
+            android:clipChildren="false">
+
+            <ImageButton
+                android:id="@+id/button_frag_to_spell"
+                android:layout_width="@dimen/size_icon_main_actions"
+                android:layout_height="@dimen/size_icon_main_actions"
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/spell"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/textSpellActionTooltip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:text="sorts"
+                android:textSize="@dimen/size_text_main_actions" />
 
 
-    </LinearLayout>
+        </LinearLayout>
 
     </LinearLayout>
 

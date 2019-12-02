@@ -313,7 +313,7 @@
         android:layout_width="@dimen/size_icon_main_actions075"
         android:layout_height="@dimen/size_icon_main_actions075"
         android:layout_gravity="start|top"
-        android:src="@drawable/mire_test"
+        android:src="@drawable/combat_back"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
         android:padding="@dimen/general_margin"

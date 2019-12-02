@@ -8,11 +8,22 @@
         <n_dice_per_lvl>0.5</n_dice_per_lvl>
         <dmg_type>feu</dmg_type>
         <area>cône 4.5m</area>
-        <cooldown>1d4 round</cooldown>
         <duration>instant</duration>
         <save_type>ref</save_type>
         <id>powerform_kirin_breath</id>
     </power>
+
+    <power>
+        <name>Souffle de galce</name>
+        <dice_type>6</dice_type>
+        <n_dice_per_lvl>0.5</n_dice_per_lvl>
+        <dmg_type>feu</dmg_type>
+        <area>cône 9m</area>
+        <duration>instant</duration>
+        <save_type>ref</save_type>
+        <id> powerform_dragon_horse_breath</id>
+    </power>
+
 
     <!-- autre -->
     <power>

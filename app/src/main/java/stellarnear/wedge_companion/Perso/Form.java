@@ -22,9 +22,10 @@ public class Form {
 
     private Context mC;
 
-    public Form(String name, String type, String descr, String id, Context mC){
+    public Form(String name, String type,String size, String descr, String id, Context mC){
         this.name=name;
         this.type=type;
+        this.size=size;
         this.descr=descr;
         this.id=id;
         this.mC=mC;

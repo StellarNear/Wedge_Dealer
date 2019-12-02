@@ -51,7 +51,7 @@
                 android:id="@+id/back_main_from_spell"
                 android:layout_width="@dimen/size_icon_main_actions075"
                 android:layout_height="@dimen/size_icon_main_actions075"
-                android:src="@drawable/mire_test"
+                android:src="@drawable/spell_back"
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
                 android:padding="@dimen/general_margin"

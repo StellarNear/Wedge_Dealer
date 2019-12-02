@@ -37,21 +37,68 @@
             android:orientation="vertical"
             android:weightSum="11"
             android:background="?attr/colorBackground">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:gravity="center"
-                android:layout_weight="1"
-                android:text="Forme actuelle : normale"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="3"
-                android:orientation="horizontal">
+                android:gravity="center"
+                android:layout_weight="1">
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Forme actuelle :"/>
+                    <TextView
+                        android:id="@+id/form_current_form"
+                        android:layout_width="wrap_content"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Aucune"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Utiilisation restantes :"/>
+                    <TextView
+                        android:id="@+id/form_remaning_text"
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:gravity="center"
+                        android:text="X"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
                         android:layout_width="match_parent"
@@ -63,7 +110,7 @@
                         android:id="@+id/linear_form_passives"
                         android:layout_width="match_parent"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="center_horizontal"
                         android:layout_height="0dp"
                         android:orientation="vertical"/>
                 </LinearLayout>
@@ -71,7 +118,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
                         android:layout_width="match_parent"
@@ -82,7 +129,7 @@
                         android:id="@+id/linear_form_actives"
                         android:layout_width="match_parent"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="center_horizontal"
                         android:layout_height="0dp"
                         android:orientation="vertical"/>
                 </LinearLayout>
@@ -118,14 +165,14 @@
                             android:adjustViewBounds="true"
                             android:background="@null"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/mire_test"
+                            android:src="@drawable/form_animal"
                             tools:ignore="ContentDescription" />
 
                         <TextView
                             android:id="@+id/textSkillActionTooltip"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="animaux"
+                            android:text="animal"
                             android:textSize="@dimen/size_text_main_actions" />
                     </LinearLayout>
 
@@ -144,7 +191,7 @@
                             android:adjustViewBounds="true"
                             android:background="@null"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/mire_test"
+                            android:src="@drawable/form_magic"
                             tools:ignore="ContentDescription" />
 
                         <TextView
@@ -171,7 +218,7 @@
                             android:adjustViewBounds="true"
                             android:background="@null"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/mire_test"
+                            android:src="@drawable/form_vegetal"
                             tools:ignore="ContentDescription" />
 
                         <TextView
@@ -192,13 +239,13 @@
                         android:clipChildren="false">
 
                         <ImageButton
-                            android:id="@+id/button_form_vermin"
+                            android:id="@+id/button_form_elemental"
                             android:layout_width="@dimen/size_icon_main_actions"
                             android:layout_height="@dimen/size_icon_main_actions"
                             android:adjustViewBounds="true"
                             android:background="@null"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/mire_test"
+                            android:src="@drawable/form_elemental"
                             tools:ignore="ContentDescription" />
 
                         <TextView
@@ -216,7 +263,15 @@
                     android:id="@+id/form_flipper"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/form_current_form_background_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/wedge_loaded"/>
+
+                </ViewFlipper>
 
             </LinearLayout>
 
@@ -240,7 +295,7 @@
         android:layout_height="@dimen/size_icon_main_actions075"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/mire_test"
+        android:src="@drawable/form_back"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
         android:padding="@dimen/general_margin"

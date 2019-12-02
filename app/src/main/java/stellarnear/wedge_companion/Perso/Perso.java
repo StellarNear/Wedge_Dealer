@@ -30,6 +30,7 @@ public class Perso {
 
     private AllAbilities allAbilities;
     private AllFeats allFeats;
+    private AllForms allForms;
     private AllCapacities allCapacities;
     private AllSkills allSkills;
     private AllMythicFeats allMythicFeats;
@@ -48,10 +49,13 @@ public class Perso {
         stats = new Stats(mC,pjID);
         hallOfFame=new HallOfFame(mC,pjID);
         allCapacities = new AllCapacities(mC,pjID);
-        allMythicFeats = new AllMythicFeats(mC,pjID);
-        allMythicCapacities = new AllMythicCapacities(mC,pjID);
-
         allSkills = new AllSkills(mC,pjID);
+        if(pjID.equalsIgnoreCase("")|| pjID.equalsIgnoreCase("halda")){
+            allMythicFeats = new AllMythicFeats(mC,pjID);
+            allMythicCapacities = new AllMythicCapacities(mC,pjID);
+        }
+        if(pjID.equalsIgnoreCase("")){allForms=new AllForms(mC);}
+
         inventory = new Inventory(mC,pjID);
         allFeats = new AllFeats(mC,pjID);
         allAbilities = new AllAbilities(mC,inventory,pjID);
@@ -87,6 +91,10 @@ public class Perso {
 
     public AllResources getAllResources() {
         return this.allResources;
+    }
+
+    public AllForms getAllForms() {
+        return allForms;
     }
 
     public Integer getResourceValue(String resId){
@@ -236,7 +244,7 @@ public class Perso {
                 if (bonusRm>abiScore) { abiScore = bonusRm; }
                 if (bonusRmGlobal>abiScore) { abiScore = bonusRmGlobal; }
             } else  if (abiId.equalsIgnoreCase("ability_init")) {
-                if(getAllMythicCapacities().mythicCapacityIsActive("mythiccapacity_init")) {
+                if(getAllMythicCapacities()!=null && getAllMythicCapacities().mythicCapacityIsActive("mythiccapacity_init")) {
                     int valDefTierID = mC.getResources().getIdentifier("mythic_tier_def" + suffix, "integer", mC.getPackageName());
                     int currentTier = tools.toInt(prefs.getString("mythic_tier"+suffix, String.valueOf(mC.getResources().getInteger(valDefTierID))));
                     if(getAllMythicFeats().mythicFeatsIsActive("mythicfeat_parangon")){

@@ -26,7 +26,7 @@
             android:adjustViewBounds="true"
             android:background="@null"
             android:scaleType="fitCenter"
-            android:src="@drawable/mire_test"
+            android:src="@drawable/skill"
             tools:ignore="ContentDescription" />
 
         <TextView
@@ -57,7 +57,7 @@
             android:adjustViewBounds="true"
             android:background="@null"
             android:scaleType="fitCenter"
-            android:src="@drawable/mire_test"
+            android:src="@drawable/combat_land"
             tools:ignore="ContentDescription" />
 
         <TextView

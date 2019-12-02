@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_margin="@dimen/general_margin"
+        android:id="@+id/form_info_RelativeLayout"
+        android:background="@drawable/background_border_dialog"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:weightSum="6">
+
+        <ImageView
+            android:id="@+id/form_info_image"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/mire_test"
+            android:layout_gravity="center"
+            android:scaleType="fitCenter"
+            android:layout_margin="6dp"
+            android:layout_weight="2"
+            />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:layout_weight="4">
+
+            <TextView
+                android:id="@+id/form_info_textName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|center_horizontal"
+                android:textAlignment="center"
+                android:layout_marginBottom="@dimen/general_margin"
+                android:text="PM is here"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/black"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                >
+                <TextView
+                    android:id="@+id/form_info_textType"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:text="Type : blabla"/>
+                <TextView
+                    android:id="@+id/form_info_textSize"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:text="Taille : blabla"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/general_margin"
+                >
+                <TextView
+                    android:id="@+id/form_info_textResi"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:text="Résistance :\nblabla"/>
+                <TextView
+                    android:id="@+id/form_info_textVuln"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:text="Vulnérabilité :\nblabla"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_marginTop="@dimen/general_margin"
+                android:id="@+id/form_info_textAtk"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:text="Attaque : balba (xd8) blabla2 (xd6)" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/general_margin"
+                >
+                <LinearLayout
+                    android:id="@+id/form_info_passiveCapasLinear"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:textSize="12sp"
+                        android:layout_height="wrap_content"
+                        android:text="Capacités passives :"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/form_info_passiveActivesLinear"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:text="Capacités actives :"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>

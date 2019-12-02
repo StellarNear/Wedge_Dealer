@@ -315,7 +315,7 @@
         android:layout_height="@dimen/size_icon_main_actions075"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/mire_test"
+        android:src="@drawable/combat_land_back"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
         android:padding="@dimen/general_margin"

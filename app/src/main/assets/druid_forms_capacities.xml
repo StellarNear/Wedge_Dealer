@@ -1,8 +1,46 @@
 <?xml version="1.0"?>
 <records>
+
+    <!-- capa générale  -->
+
     <capacity>
-        <name>Creusement</name>
-        <value>27m</value>
+        <name>Vision nocturne</name>
+        <descr>Les personnages dotés de vision nocturne ont une rétine tellement sensible que leur acuité visuelle exacerbée leur permet de voir deux fois plus loin que la normale dans des conditions de faible éclairage (clarté de la lune ou des étoiles, torche, etc.). La vision nocturne permet de voir en couleur.</descr>
+        <type>passive</type>
+        <id>form_capacity_nocturne_vision</id>
+    </capacity>
+
+    <capacity>
+        <name>Odorat</name>
+        <descr>La créature peut déceler la présence de l’autre. Si elle est à moins de 1,50 m de la source de l’odeur, la créature peut trouver sa position avec précision même sans la voir. Il est possible de pister des traces à l’odeur (test de Survie). Si la piste est récente, le DD du test est généralement de 10 (quel que soit le terrain sur lequel l’adversaire est passé). Une créature suivant les traces à l’odeur n’est pas affectée par l'état des surfaces ou la mauvaise visibilité.  Une créature ayant le pouvoir odorat peut identifier les odeurs familières aussi précisément que les humains le font avec des spectacles visuels familiers.</descr>
+        <type>passive</type>
+        <id>form_capacity_smell</id>
+    </capacity>
+
+    <capacity>
+        <name>Vision dans le noir 27m</name>
+        <descr>La vision dans le noir est un pouvoir extraordinaire offrant la possibilité de voir en l’absence de source de lumière. La portée est indiquée dans la description de chaque créature. La vision dans le noir se fait uniquement en noir et blanc (elle ne permet pas de distinguer les couleurs).</descr>
+        <type>passive</type>
+        <id>form_capacity_black_vision_animal</id>
+    </capacity>
+
+    <capacity>
+        <name>Vision dans le noir 18m</name>
+        <descr>La vision dans le noir est un pouvoir extraordinaire offrant la possibilité de voir en l’absence de source de lumière. La portée est indiquée dans la description de chaque créature. La vision dans le noir se fait uniquement en noir et blanc (elle ne permet pas de distinguer les couleurs).</descr>
+        <type>passive</type>
+        <id>form_capacity_black_vision_elemental</id>
+    </capacity>
+
+
+    <capacity>
+        <name>Vol 36m</name>
+        <descr>Lorsque le personnage vole (grâce à des ailes ou par magie), il sait le faire avec agilité. Il peut réaliser des manœuvres aériennes complexes ou dangereuses.</descr>
+        <type>passive</type>
+        <id>form_capacity_fly</id>
+    </capacity>
+
+    <capacity>
+        <name>Creusement 27m</name>
         <descr>Le sujet peut se déplacer en creusant dans le sable, la terre meuble ou les graviers à une vitesse de 4,50 mètres (ou 3 mètres s’il porte une armure lourde ou intermédiaire ou une charge lourde ou intermédiaire) ou à une vitesse de 1,50 mètre dans la roche. Le sujet peut attaquer ou lancer des sorts normalement. Une créature qui creuse ne peut pas charger ni courir. Les matériaux friables s’effondrent derrière la cible 1 round après son passage dans la zone. Ce sort ne permet pas au personnage de respirer sous terre. Quand il traverse des matériaux meubles, il doit donc retenir son souffle et faire de petites étapes sinon, il risque de suffoquer.</descr>
         <type>passive</type>
         <id>form_capacity_dig</id>
@@ -10,13 +48,26 @@
 
 
     <capacity>
-        <name>Regen</name>
-        <value>5</value>
-        <descr>Le sujet peut se déplacer en creusant dans le sable, la terre meuble ou les graviers à une vitesse de 4,50 mètres (ou 3 mètres s’il porte une armure lourde ou intermédiaire ou une charge lourde ou intermédiaire) ou à une vitesse de 1,50 mètre dans la roche. Le sujet peut attaquer ou lancer des sorts normalement. Une créature qui creuse ne peut pas charger ni courir. Les matériaux friables s’effondrent derrière la cible 1 round après son passage dans la zone. Ce sort ne permet pas au personnage de respirer sous terre. Quand il traverse des matériaux meubles, il doit donc retenir son souffle et faire de petites étapes sinon, il risque de suffoquer.</descr>
+        <name>Regen (5)</name>
+        <descr>Les  blessures guérissent à un rythme constant (à la manière des créatures dotées de la capacité de guérison accélérée) mais, en plus de cela, elles ne peuvent pas mourir tant que leur régénération est active (elles tombent quand même inconscientes lorsque leur nombre de points de vie passe sous 0). Certains types d’attaque (le feu et l’acide bien souvent ; la description précise lesquels) interrompent leur régénération pendant un round. Au cours de ce round, la guérison ne se produit pas et la créature peut mourir normalement.</descr>
         <type>passive</type>
         <id>form_capacity_regen</id>
     </capacity>
 
+    <capacity>
+        <name>Nage 36m</name>
+        <descr>Se déplace dans l'eau de maniere naturelle à 36m par round.</descr>
+        <type>passive</type>
+        <id>form_capacity_swim</id>
+    </capacity>
+
+
+    <capacity>
+        <name>Respiration aquatique</name>
+        <descr>Les créatures affectées respirent sans mal sous l’eau. Si le personnage décide d’en faire bénéficier plusieurs compagnons, il doit diviser la durée indiquée par le nombre d’individus affectés. Ce sort n’empêche pas les créatures de respirer à l’air libre.</descr>
+        <type>passive</type>
+        <id>form_capacity_aquatic_respiration</id>
+    </capacity>
 
     <capacity>
         <name>Nage dans la terre</name>
@@ -29,17 +80,25 @@
     <!-- active -->
 
     <capacity>
+        <name>Etreinte</name>
+        <descr>Si une créature touche un adversaire elle lui inflige des dégâts normaux et peut tenter de l’agripper par une action libre qui ne provoque pas d’attaque d’opportunité. Si la créature parvient à agripper son adversaire, elle ne lui occasionne pas pour autant des dégâts supplémentaires, à moins qu’elle ne dispose également de la capacité de constriction. Si elle n’a pas cette capacité, elle inflige à sa victime des dégâts équivalents à ceux de l’attaque initiale chaque fois qu’elle réussit un test de manoeuvre au cours des rounds qui suivent. Si elle possède la capacité de constriction, les dégâts de constriction (indiqués dans la description) s’ajoutent à ceux mentionnés plus haut. Les créatures qui possèdent la capacité d’étreinte reçoivent un bonus de +4 aux tests de BMO pour agripper un adversaire ou maintenir une prise</descr>
+        <type>active</type>
+        <savetype>dmd</savetype>
+        <id>form_capacity_grip</id>
+    </capacity>
+
+    <capacity>
+        <name>Constriction</name>
+        <descr>Les créatures qui disposent de cette attaque spéciale peuvent écraser un adversaire et lui infliger des dégâts de type contondant lorsqu’elles réussissent un test de manoeuvre (ces dégâts viennent s’ajouter aux dégâts et aux autres effets résultant de la réussite de ce test). La quantité de dégâts est mentionnée dans la description. En règle générale, elle est égale aux dégâts que l’attaque de corps à corps de la créature inflige.</descr>  <type>active</type>
+        <damage>4d6</damage>
+        <id>form_capacity_constriction</id>
+    </capacity>
+
+    <capacity>
         <name>Repousser</name>
         <descr>Les créatures qui disposent de cette capacité peuvent choisir de réaliser un test de manoeuvre (sans que cela ne nécessite d’action supplémentaire) lorsqu’elles parviennent à toucher un adversaire avec une attaque spécifique (un coup brutal généralement). Si le test réussit, l’adversaire est repoussé. Cela fonctionne comme une bousculade mais la distance parcourue est fixée par la capacité.</descr>
         <type>active</type>
         <id>form_capacity_bump</id>
-    </capacity>
-
-    <capacity>
-        <name>Pietinnement</name>
-        <descr>Peut renverser ses adversaires et les piétiner sous les sabots.</descr>
-        <type>active</type>
-        <id>form_capacity_stample</id>
     </capacity>
 
 
@@ -47,26 +106,51 @@
         <name>Combustion</name>
         <descr>Lorsque les créatures qui disposent de cette capacité touchent un adversaire au corps à corps, elles lui infligent des dégâts de feu en plus des dégâts normaux. L’adversaire doit réussir un jet de Réflexes pour éviter de prendre feu et de subir les dégâts indiqués pendant 1d4 rounds supplémentaires au début de son tour (le DD vaut 10 + la moitié du nombre de DV raciaux de la créature qui incinère + son modificateur de Constitution). Si l’adversaire prend feu, il peut tenter un nouveau jet de sauvegarde par la suite mais cela lui prend une action complexe. S’il se couche et roule au sol, il bénéficie d’un bonus de +4 à ce jet de sauvegarde. Lorsqu’un adversaire touche avec une arme naturelle ou une attaque à mains nues une créature qui dispose de cette capacité, il subit des dégâts de feu comme s’il avait été touché par la créature en question. Il doit également effectuer un jet de Réflexes pour éviter de prendre feu.</descr>
         <type>active</type>
+        <damage>2d10</damage>
+        <savetype>ref</savetype>
         <id>form_capacity_combustion</id>
     </capacity>
 
-    <!-- souffles -->
+
+    <!-- capa de formes précise -->
 
     <capacity>
         <name>Souffle de feu</name>
         <id>form_capacity_kirin_breath</id>
         <descr>Blabla conne de feu.</descr>
         <type>active</type>
+        <cooldown>1d4</cooldown>
         <powerid>powerform_kirin_breath</powerid>
     </capacity>
 
     <capacity>
         <name>Souffle prismatique</name>
-        <id>form_capacity_prisma_breath</id>
+        <id>form_capacity_sleipnir_breath</id>
         <descr>Blabla random 1d8.</descr>
         <type>active</type>
-       <!-- TODO pas de powerid le faire à l'endroi où pon l'appel pour determiner quel power appelé-->
+        <cooldown>1d6</cooldown>
+        <dailyuse>3</dailyuse>
+        <powerid>powerform_prisma_ray_random</powerid>
     </capacity>
 
+    <capacity>
+        <name>Pietinnement</name>
+        <descr>Peut renverser ses adversaires et les piétiner sous les sabots.</descr>
+        <type>active</type>
+        <damage>1d8</damage>
+        <savetype>dmd</savetype>
+        <id>form_capacity_sleipnir_stample</id>
+    </capacity>
+
+
+
+    <capacity>
+        <name>Souffle de glace</name>
+        <id>form_capacity_dragon_horse_breath</id>
+        <descr>Par une action simple, un cheval draconique peut exhaler un cône de glace ou crée une région de brouillard qui persiste pendant 1 minute (et fonctionne comme un sort de nappe de brouillard) ou encore créer une bourrasque de vents violents dans la zone affectée. Le cheval draconique peut utiliser son souffle une fois tous les 1d4 rounds.</descr>
+        <type>active</type>
+        <cooldown>1d4</cooldown>
+        <powerid>powerform_dragon_horse_breath</powerid>
+    </capacity>
 
 </records>

@@ -6,6 +6,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -19,6 +20,8 @@ import android.widget.LinearLayout;
 import java.util.List;
 
 import stellarnear.wedge_companion.Activities.MainActivityFramentCombat.MainActivityFragmentCombat;
+import stellarnear.wedge_companion.Perso.Perso;
+import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.Quadrants.QuadrantManager;
 import stellarnear.wedge_companion.R;
 
@@ -26,7 +29,8 @@ import stellarnear.wedge_companion.R;
  * A placeholder fragment containing a simple view.
  */
 public class MainActivityFragment extends Fragment {
-    View returnFragView;
+    private View returnFragView;
+    private Perso pj = PersoManager.getCurrentPJ();
     public MainActivityFragment() {
     }
 
@@ -50,9 +54,23 @@ public class MainActivityFragment extends Fragment {
         Animation top = AnimationUtils.loadAnimation(getContext(),R.anim.infromtop);
         fabCombat.startAnimation(top);
 
-        ImageButton fabForm = (ImageButton) returnFragView.findViewById(R.id.button_frag_to_form);
-        setButtonActivity(fabForm,new MainActivityFragmentForm(),R.animator.infrombotfrag,R.animator.outfadefrag,"frag_combat");
-        fabForm.startAnimation(top);
+        if(pj.getID().equalsIgnoreCase("")) {
+            ImageButton fabForm = (ImageButton) returnFragView.findViewById(R.id.button_frag_to_form);
+            if(pj.getAllForms().hasActiveForm()){
+                String type = pj.getAllForms().getCurrentForm().getType().contains("elemental") ? "elemental": pj.getAllForms().getCurrentForm().getType();
+                int imgId = getResources().getIdentifier("form_"+type, "drawable", getContext().getPackageName());
+                try {
+                    fabForm.setImageDrawable(getResources().getDrawable(imgId));
+                } catch (Resources.NotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+            setButtonActivity(fabForm, new MainActivityFragmentForm(), R.animator.infrombotfrag, R.animator.outfadefrag, "frag_combat");
+            fabForm.startAnimation(top);
+        } else {
+            ((LinearLayout) returnFragView.findViewById(R.id.linear_frag_to_form)).setVisibility(View.GONE);
+        }
+
 
         ImageButton fabCast = (ImageButton) returnFragView.findViewById(R.id.button_frag_to_spell);
         setButtonActivity(fabCast,new MainActivityFragmentSpell(),R.animator.infromrightfrag,R.animator.outfadefrag,"frag_spell");

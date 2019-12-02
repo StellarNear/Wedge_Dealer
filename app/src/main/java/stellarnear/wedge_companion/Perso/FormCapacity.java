@@ -18,31 +18,26 @@ public class FormCapacity {
     private String id;
     private Context mC;
     private int dailyUse;
-    private int value;
-    private FormPower power=null;
+    private String cooldown;
 
-    public FormCapacity(String name, String shortname, String type, String descr, String id, int dailyUse, int value, Context mC){
+    private String powerId;
+    private String damage;
+    private String saveType;
+
+    public FormCapacity(String name, String shortname, String type, String descr, String id, int dailyUse, String cooldown,String damage,String saveType,String powerid, Context mC){
         this.name=name;
         this.shortname=shortname;
         this.type=type;
         this.descr=descr;
         this.dailyUse=dailyUse;
-        this.value=value;
+        this.cooldown=cooldown;
+        this.damage=damage;
+        this.saveType=saveType;
+        this.powerId=powerid;
         this.id=id;
         this.mC=mC;
     }
 
-    public FormCapacity(String name, String shortname, String type, String descr, String id, int dailyUse,FormPower power, int value, Context mC){
-        this.name=name;
-        this.shortname=shortname;
-        this.type=type;
-        this.descr=descr;
-        this.dailyUse=dailyUse;
-        this.power=power;
-        this.value=value;
-        this.id=id;
-        this.mC=mC;
-    }
 
     public String getName() {
         return name;
@@ -68,11 +63,19 @@ public class FormCapacity {
         return dailyUse;
     }
 
-    public int getValue() {
-        return value;
+    public boolean hasPower(){
+        return !powerId.equalsIgnoreCase("");
     }
 
-    public FormPower getPower() {
-        return power;
+    public String getPowerId() {
+        return powerId;
+    }
+
+    public boolean hasDamage(){
+        return !damage.equalsIgnoreCase("");
+    }
+
+    public String getDamage() {
+        return damage;
     }
 }
