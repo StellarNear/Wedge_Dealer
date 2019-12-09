@@ -36,9 +36,10 @@
             <ImageView
                 android:id="@+id/background_blank_combat"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerInParent="true"
-                android:scaleType="fitCenter"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
                 android:src="@drawable/wedge_loaded"
                 android:background="@color/colorBackground"/>
             <LinearLayout
