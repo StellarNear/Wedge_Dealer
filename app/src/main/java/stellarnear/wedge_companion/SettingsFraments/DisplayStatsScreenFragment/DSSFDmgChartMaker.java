@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import stellarnear.wedge_companion.Elems.ElemsManager;
+import stellarnear.wedge_companion.Elems.AttacksElemsManager;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
@@ -32,7 +32,7 @@ public class DSSFDmgChartMaker {
     private Perso pj = PersoManager.getCurrentPJ();
     private BarChart chart;
     private Context mC;
-    private ElemsManager elems;
+    private AttacksElemsManager elems;
     private Map<String,CheckBox> mapElemCheckbox=new HashMap<>();
     private List<String> elemsSelected;
     private Boolean barGroupMode=false;
@@ -47,7 +47,7 @@ public class DSSFDmgChartMaker {
     public DSSFDmgChartMaker(BarChart chart, Map<String,CheckBox> mapElemCheckbox, Context mC) {
         this.chart=chart;
         this.mapElemCheckbox=mapElemCheckbox;
-        this.elems=ElemsManager.getInstance(mC);
+        this.elems= AttacksElemsManager.getInstance(mC);
         this.mC=mC;
 
         this.sizeStep=tools.toInt(PreferenceManager.getDefaultSharedPreferences(mC).getString("display_stats_bin", String.valueOf(mC.getResources().getInteger(R.integer.display_stats_bin_def))));

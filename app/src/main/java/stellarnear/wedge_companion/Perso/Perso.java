@@ -3,11 +3,18 @@ package stellarnear.wedge_companion.Perso;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
 
 import java.util.Arrays;
 import java.util.List;
 
 import stellarnear.wedge_companion.CalculationAtk;
+import stellarnear.wedge_companion.Elems.Elem;
+import stellarnear.wedge_companion.Elems.SpellsElemsManager;
 import stellarnear.wedge_companion.Spells.CalculationSpell;
 import stellarnear.wedge_companion.HallOfFame;
 import stellarnear.wedge_companion.PostData;
@@ -218,6 +225,8 @@ public class Perso {
 
         if (allAbilities.getAbi(abiId) != null) {
             abiScore = allAbilities.getAbi(abiId).getValue();
+            if(allForms!=null && allForms.hasActiveForm()){abiScore+=allForms.getFormAbilityModif(abiId);}
+
             if(abiId.equalsIgnoreCase("ability_dexterite")) {
                 try {
                     int isilDefId = mC.getResources().getIdentifier("isillirit_switch_def" + suffix, "bool", mC.getPackageName());
@@ -309,9 +318,24 @@ public class Perso {
                 }
             } else if(abiId.equalsIgnoreCase("ability_bmo")||abiId.equalsIgnoreCase("ability_dmd")){
                 abiScore+=getBaseAtk();
+            } else if(abiId.equalsIgnoreCase("ability_reduc_elem") && allForms!=null){
+                abiScore+=allForms.getMaxResistBonus();
             }
         }
         return abiScore;
+    }
+
+    public Spanned getResistsValueLongFormat() {
+        Spanned result= new SpannableString("");
+        for(Elem elem : SpellsElemsManager.getInstance(mC).getElems()){
+            if(result.length()>0){result=(Spanned) TextUtils.concat(result,"/");}
+            int valueFromAbi = ((ElementalReducAbility)allAbilities.getAbi("ability_reduc_elem")).getMapElemReduc().get(elem.getKey());
+            int valueFromForm = allForms!=null? allForms.getResistBonus(elem.getKey()) : 0;
+            Spannable span = new SpannableString(String.valueOf(valueFromAbi+valueFromForm));
+            span.setSpan(new ForegroundColorSpan(elem.getColorIdDark()),0,span.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            result=(Spanned)TextUtils.concat(result,span);
+        }
+        return result;
     }
 
     private int getBaseAtk() {

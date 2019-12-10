@@ -7,26 +7,27 @@ import java.util.List;
 
 import stellarnear.wedge_companion.R;
 
-public class ElemsManager {
+public class SpellsElemsManager {
     private Context mC;
-    private static ElemsManager instance;
+    private static SpellsElemsManager instance;
 
     private List<Elem> listElems;
 
-    public ElemsManager(Context mC){
+    public SpellsElemsManager(Context mC){
         listElems=new ArrayList<>();
-        listElems.add(new Elem("","physique",mC.getColor(R.color.phy),mC.getColor(R.color.recent_phy),R.drawable.phy_logo));
-        listElems.add(new Elem("fire","feu",mC.getColor(R.color.fire),mC.getColor(R.color.recent_fire),R.drawable.fire_logo));
-        listElems.add(new Elem("shock","foudre",mC.getColor(R.color.shock),mC.getColor(R.color.recent_shock),R.drawable.shock_logo));
-        listElems.add(new Elem("frost","froid",mC.getColor(R.color.frost),mC.getColor(R.color.recent_frost),R.drawable.frost_logo));
+        listElems.add(new Elem("acid","acide",mC.getColor(R.color.acide),mC.getColor(R.color.acide_dark)));
+        listElems.add(new Elem("fire","feu",mC.getColor(R.color.feu),mC.getColor(R.color.feu_dark)));
+        listElems.add(new Elem("shock","foudre",mC.getColor(R.color.foudre),mC.getColor(R.color.foudre_dark)));
+        listElems.add(new Elem("frost","froid",mC.getColor(R.color.frost),mC.getColor(R.color.recent_frost)));
+        listElems.add(new Elem("sound","son",mC.getColor(R.color.aucun),mC.getColor(R.color.aucun_dark)));
     }
 
-    public static ElemsManager getInstance(Context context) {
-        if (instance==null){instance=new ElemsManager(context);}
+    public static SpellsElemsManager getInstance(Context context) {
+        if (instance==null){instance=new SpellsElemsManager(context);}
         return instance;
     }
 
-    public static ElemsManager getInstance() {
+    public static SpellsElemsManager getInstance() {
         return instance;
     }
 
@@ -51,7 +52,7 @@ public class ElemsManager {
     }
 
     public int getColorIdRecent(String elemKey){
-        return getElementByKey(elemKey).getColorIdRecent();
+        return getElementByKey(elemKey).getColorIdDark();
     }
 
     private Elem getElementByKey(String elemKey) {

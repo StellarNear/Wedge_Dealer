@@ -11,16 +11,16 @@ import stellarnear.wedge_companion.R;
  */
 
 public class Ability {
-    private String name;
-    private String type;
-    private String descr;
-    private String id;
-    private Context mC;
-    private Drawable img;
-    private String shortname;
-    private int value=0;
-    private boolean testable;
-    private boolean focusable;
+    protected String name;
+    protected String type;
+    protected String descr;
+    protected String id;
+    protected Context mC;
+    protected Drawable img;
+    protected String shortname;
+    protected int value=0;
+    protected boolean testable;
+    protected boolean focusable;
 
     public Ability(String name, String shortname, String type, String descr,Boolean testable,Boolean focusable, String id, Context mC) {
         this.name = name;

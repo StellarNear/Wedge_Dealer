@@ -26,6 +26,7 @@ import stellarnear.wedge_companion.Activities.MainActivity;
 import stellarnear.wedge_companion.Activities.PetActivity;
 import stellarnear.wedge_companion.HealthDialog;
 import stellarnear.wedge_companion.Perso.Ability;
+import stellarnear.wedge_companion.Perso.ElementalReducAbility;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.Perso.Resource;
@@ -148,7 +149,7 @@ public class QuadrantFiller {
         if (mode.equalsIgnoreCase("mini")){
             text.setText(abi.getShortname()+" : ");
         } else {
-            text.setText(abi.getName()+" : ");
+                text.setText(abi.getName() + " : ");
         }
         ((ImageView) subLabel.findViewById(R.id.sub_element_quadrant_mini_label_icon)).setImageDrawable(abi.getImg());
 
@@ -169,10 +170,13 @@ public class QuadrantFiller {
             }
             txt2=String.valueOf(pj.getAbilityScore(abi.getId()))+ " ("+abScore+")";
         } else {
-            txt2=String.valueOf(pj.getAbilityScore(abi.getId()));
+                txt2 = String.valueOf(pj.getAbilityScore(abi.getId()));
         }
-
-        text2.setText(txt2);
+        if(abi.getId().equalsIgnoreCase("ability_reduc_elem") && mode.equalsIgnoreCase("full")){
+            text2.setText(pj.getResistsValueLongFormat());
+        } else {
+            text2.setText(txt2);
+        }
         line.addView(subValue);
         if(mode.equalsIgnoreCase("full") && abi.isTestable()){
             setListner(subLabel,abi);
@@ -281,24 +285,6 @@ public class QuadrantFiller {
                         }
                     });
                     healthDialog.showAlertDialog();
-                }
-            });
-        } else if(res.getId().equalsIgnoreCase("resource_animal_form")){ //forme animale
-            text.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    /*   TODO les formes animales druide ! :D
-                    DruidFormDialog druidForm = new DruidFormDialog(mA, mC);
-                    druidForm.setRefreshEventListener(new HealthDialog.OnRefreshEventListener() {
-                        public void onEvent() {
-                            List<Resource> abiRes = pj.getAllResources().getResourcesListDisplay();
-                            injectStatsRes(abiRes, quadrantFullMain, "full"); //refresh le full
-                            buildAllMini(); //refresh les mini
-                        }
-                    });
-                    druidForm.showAlertDialog();
-
-                     */
                 }
             });
         } else if(res.isFromCapacity()){

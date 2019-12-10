@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import stellarnear.wedge_companion.Elems.ElemsManager;
+import stellarnear.wedge_companion.Elems.AttacksElemsManager;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
@@ -37,7 +37,7 @@ public class DSSFDmg {
 
     private Context mC;
     private View mainView;
-    private ElemsManager elems;
+    private AttacksElemsManager elems;
     private Map<String,CheckBox> mapElemCheckbox=new HashMap<>();
     private StatsList selectedStats=new StatsList();
     private int infoTxtSize = 12;
@@ -47,7 +47,7 @@ public class DSSFDmg {
     public DSSFDmg(View mainView, Context mC) {
         this.mainView = mainView;
         this.mC = mC;
-        this.elems=ElemsManager.getInstance(mC);
+        this.elems= AttacksElemsManager.getInstance(mC);
 
         TextView nAtkTxt = mainView.findViewById(R.id.nDmgTxt);
         nAtkTxt.setText(pj.getStats().getStatsList().getNDmgTot() + " jets de dégâts");

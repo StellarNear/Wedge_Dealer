@@ -70,16 +70,16 @@
     <color name="end_gradient_button_basic">#80FFFFFF</color>
     <color name="gray50">#808080</color>
 
-    <color name="aucun">#F2F2F2</color>
-    <color name="aucun_dark">#A4A4A4</color>
+    <color name="aucun">#C6C6C6</color>
+    <color name="aucun_dark">#8A8A8A</color>
     <color name="feu">#F79F81</color>
     <color name="feu_dark">#FF0000</color>
     <color name="froid">#819FF7</color>
     <color name="froid_dark">#013ADF</color>
     <color name="foudre">#E0ECF8</color>
     <color name="foudre_dark">#2ECCFA</color>
-    <color name="acide">#d4f7d9</color>
-    <color name="acide_dark">#3cdd54</color>
+    <color name="acide">#3cdd54</color>
+    <color name="acide_dark">#009907</color>
     <color name="lightgray">#dddddd</color>
 
     <attr name="start_gradient_title_bar_main_skill" format="reference" />

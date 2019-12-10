@@ -7,14 +7,14 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import stellarnear.wedge_companion.Elems.ElemsManager;
+import stellarnear.wedge_companion.Elems.AttacksElemsManager;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Rolls.ProbaFromDiceRand;
 import stellarnear.wedge_companion.Rolls.RollList;
 
 public class PetRangesAndProba {
     private Context mC;
-    private ElemsManager elems;
+    private AttacksElemsManager elems;
     private View mainPage;
     private ProbaFromDiceRand probaForRolls;
     private RollList selectedRolls;
@@ -23,7 +23,7 @@ public class PetRangesAndProba {
         this.mC = mC;
         this.selectedRolls = selectedRolls;
         this.mainPage = mainPage;
-        this.elems=ElemsManager.getInstance(mC);
+        this.elems= AttacksElemsManager.getInstance(mC);
         this.probaForRolls = new ProbaFromDiceRand(selectedRolls);
         showViews();
         addRanges();

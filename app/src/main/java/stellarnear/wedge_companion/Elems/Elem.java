@@ -17,11 +17,18 @@ public class Elem {
         this.drawableId=drawableId;
     }
 
+    public Elem(String key, String name, int colorId,int colorIdRecent){
+        this.key=key;
+        this.name=name;
+        this.colorId=colorId;
+        this.colorIdRecent=colorIdRecent;
+    }
+
     public int getColorId() {
         return colorId;
     }
 
-    public int getColorIdRecent() {
+    public int getColorIdDark() {
         return colorIdRecent;
     }
 

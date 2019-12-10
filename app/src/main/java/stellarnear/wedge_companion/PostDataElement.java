@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import stellarnear.wedge_companion.Elems.Elem;
-import stellarnear.wedge_companion.Elems.ElemsManager;
+import stellarnear.wedge_companion.Elems.AttacksElemsManager;
 import stellarnear.wedge_companion.FormSpell.FormPower;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.Rolls.Dices.Dice;
@@ -98,7 +98,7 @@ public class PostDataElement {
         String resultTxt="";
 
         int totalSum = 0;
-        ElemsManager elems = ElemsManager.getInstance();
+        AttacksElemsManager elems = AttacksElemsManager.getInstance();
         if(elems!=null) {
             for (Elem elem : elems.getElems()) {
                 int sumElem = atkRolls.getDmgSumFromType(elem.getKey());

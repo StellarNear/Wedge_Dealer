@@ -13,12 +13,14 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import stellarnear.wedge_companion.Attack.Attack;
 import stellarnear.wedge_companion.FormSpell.FormPower;
 import stellarnear.wedge_companion.Tools;
 
@@ -38,6 +40,7 @@ public class AllForms {
     private List<FormPower> allPowersList = new ArrayList<>();
     private Map<String, FormPower> mapIdPower =new HashMap<>();
 
+    private AllFormsAbiModifCalculation modifCalculation=new AllFormsAbiModifCalculation();
     private Tools tools=new Tools();
 
     public AllForms(Context mC)
@@ -142,10 +145,13 @@ public class AllForms {
                             readValue("type", element2),
                             readValue("size", element2),
                             readValue("descr", element2),
+                            readValue("vulnerability", element2),
+                            readValue("resistance", element2),
                             readValue("id", element2),
                             mC);
                     addPassivesCapa(form,element2);
                     addActivesCapa(form,element2);
+                    addAttacks(form,element2);
                     allFormsList.add(form);
                     mapIdForm.put(form.getId(),form);
                 }
@@ -154,6 +160,20 @@ public class AllForms {
         } catch (Exception e) {
             Log.d("FormBuilding_form",e.getMessage());
             e.printStackTrace();
+        }
+    }
+
+    private void addAttacks(Form form, Element element2) {
+        if(element2.getElementsByTagName("attack").getLength()>0) {
+            List<Attack> allAtks = new ArrayList<>();
+            NodeList nodeList = element2.getElementsByTagName("attack").item(0).getChildNodes();
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                Node attackNode = nodeList.item(i);
+                if (attackNode.getNodeType() == Node.ELEMENT_NODE) { // on a une capa active
+                    allAtks.add(new Attack(attackNode.getNodeName(),attackNode.getChildNodes().item(0).getNodeValue()));
+                }
+            }
+            form.setListAttacks(allAtks);
         }
     }
 
@@ -234,256 +254,13 @@ public class AllForms {
         return currentForm !=null;
     }
 
-    public int getAbilityModif(String abiId){
-        int val=0;
-        try {
-            switch (currentForm.getType()){
-                case "animal":
-                    switch (currentForm.getSize()){
-                        case "Min":
-                            switch (abiId){
-                                case "ability_dexterite":
-                                    val=6;
-                                    break;
-                                case "ability_force":
-                                    val=-4;
-                                    break;
-                                case "ability_ca":
-                                    val=1;
-                                    break;
-                            }
-                            break;
-                        case "TP":
-                            switch (abiId){
-                                case "ability_dexterite":
-                                    val=4;
-                                    break;
-                                case "ability_force":
-                                    val=-2;
-                                    break;
-                                case "ability_ca":
-                                    val=1;
-                                    break;
-                            }
-                            break;
-                        case "P":
-                            switch (abiId){
-                                case "ability_dexterite":
-                                    val=2;
-                                    break;
-                                case "ability_ca":
-                                    val=1;
-                                    break;
-                            }
-                            break;
-                        case "M":
-                            switch (abiId){
-                                case "ability_force":
-                                    val=2;
-                                    break;
-                                case "ability_ca":
-                                    val=2;
-                                    break;
-                            }
-                            break;
-                        case "G":
-                            switch (abiId){
-                                case "ability_dexterite":
-                                    val=-2;
-                                    break;
-                                case "ability_force":
-                                    val=4;
-                                    break;
-                                case "ability_ca":
-                                    val=4;
-                                    break;
-                            }
-                            break;
-                        case "TG":
-                            switch (abiId){
-                                case "ability_dexterite":
-                                    val=-4;
-                                    break;
-                                case "ability_force":
-                                    val=6;
-                                    break;
-                                case "ability_ca":
-                                    val=6;
-                                    break;
-                            }
-                            break;
-                    }
-                    break;
-                case "magical":
-                    switch (currentForm.getSize()){
-                        case "TP":
-                            switch (abiId){
-                                case "ability_dexterite":
-                                    val=8;
-                                    break;
-                                case "ability_force":
-                                    val=-2;
-                                    break;
-                                case "ability_ca":
-                                    val=3;
-                                    break;
-                            }
-                            break;
-                        case "P":
-                            switch (abiId){
-                                case "ability_dexterite":
-                                    val=4;
-                                    break;
-                                case "ability_ca":
-                                    val=2;
-                                    break;
-                            }
-                            break;
-                        case "M":
-                            switch (abiId){
-                                case "ability_force":
-                                    val=4;
-                                    break;
-                                case "ability_ca":
-                                    val=4;
-                                    break;
-                            }
-                            break;
-                        case "G":
-                            switch (abiId){
-                                case "ability_dexterite":
-                                    val=-2;
-                                    break;
-                                case "ability_constitution":
-                                    val=2;
-                                    break;
-                                case "ability_force":
-                                    val=6;
-                                    break;
-                                case "ability_ca":
-                                    val=6;
-                                    break;
-                            }
-                            break;
-                    }
-                    break;
-                case "vegetal":
-                    switch (currentForm.getSize()){
-                        case "P":
-                            switch (abiId){
-                                case "ability_constitution":
-                                    val=2;
-                                    break;
-                                case "ability_ca":
-                                    val=2;
-                                    break;
-                            }
-                            break;
-                        case "M":
-                            switch (abiId){
-                                case "ability_force":
-                                    val=2;
-                                    break;
-                                case "ability_ca":
-                                    val=2;
-                                    break;
-                                case "ability_constitution":
-                                    val=2;
-                                    break;
-                            }
-                            break;
-                        case "G":
-                            switch (abiId){
-                                case "ability_constitution":
-                                    val=2;
-                                    break;
-                                case "ability_force":
-                                    val=4;
-                                    break;
-                                case "ability_ca":
-                                    val=4;
-                                    break;
-                            }
-                            break;
-                        case "TG":
-                            switch (abiId){
-                                case "ability_dexterite":
-                                    val=-2;
-                                    break;
-                                case "ability_constitution":
-                                    val=4;
-                                    break;
-                                case "ability_force":
-                                    val=8;
-                                    break;
-                                case "ability_ca":
-                                    val=6;
-                                    break;
-                            }
-                            break;
-                    }
-                    break;
-                case "elemental_air":
-                    switch (abiId){
-                        case "ability_dexterite":
-                            val=6;
-                            break;
-                        case "ability_force":
-                            val=4;
-                            break;
-                        case "ability_ca":
-                            val=4;
-                            break;
-                    }
-                    break;
-                case "elemental_water":
-                    switch (abiId){
-                        case "ability_dexterite":
-                            val=-2;
-                            break;
-                        case "ability_constitution":
-                            val=8;
-                            break;
-                        case "ability_force":
-                            val=4;
-                            break;
-                        case "ability_ca":
-                            val=6;
-                            break;
-                    }
-                    break;
-                case "elemental_fire":
-                    switch (abiId){
-                        case "ability_dexterite":
-                            val=6;
-                            break;
-                        case "ability_constitution":
-                            val=4;
-                            break;
-                        case "ability_ca":
-                            val=4;
-                            break;
-                    }
-                    break;
-                case "elemental_earth":
-                    switch (abiId){
-                        case "ability_dexterite":
-                            val=-2;
-                            break;
-                        case "ability_constitution":
-                            val=4;
-                            break;
-                        case "ability_force":
-                            val=8;
-                            break;
-                        case "ability_ca":
-                            val=6;
-                            break;
-                    }
-                    break;
-            }
-        } catch (Exception e){}
-        return val;
+    public int getFormAbilityModif(String abiId){
+        return modifCalculation.getCurrentAbilityModif(currentForm,abiId);
+    }
+
+    public int getFormAbilityModif(Form form,String abiId){
+        if(form==null){form=currentForm;}
+        return modifCalculation.getCurrentAbilityModif(form,abiId);
     }
 
     public Form getCurrentForm() {
@@ -492,9 +269,11 @@ public class AllForms {
 
     public List<Form> getFormOfType(String type) {
         List<Form> listForm =new ArrayList<>();
-        for(Form form:allFormsList){
-            if(form.getType().contains(type)){ //contain pour les elemental fire water etc
-                listForm.add(form);
+        if(!type.equalsIgnoreCase("")) {
+            for (Form form : allFormsList) {
+                if (form.getType().contains(type)) { //contain pour les elemental fire water etc
+                    listForm.add(form);
+                }
             }
         }
         return listForm;
@@ -504,17 +283,50 @@ public class AllForms {
         currentForm=form;
     }
 
+    public String getFormAbiModText(Form... formOptional) {
+        Form form = formOptional.length > 0 ? formOptional[0] : null;
+        LinkedHashMap<String,String> mapIDsNames= new LinkedHashMap<>();
+        mapIDsNames.put("ability_force","For"); mapIDsNames.put("ability_dexterite","Dex"); mapIDsNames.put("ability_constitution","Con"); mapIDsNames.put("ability_ca","CA");
+
+        String result="";
+        for(LinkedHashMap.Entry<String,String> entry : mapIDsNames.entrySet()) {
+            int modVal=0;
+            if(form==null){modVal=getFormAbilityModif(entry.getKey());}else {modVal=getFormAbilityModif(form,entry.getKey());}
+            if(modVal!=0){
+                if(!result.equalsIgnoreCase("")){ result+=", ";}
+                String modTxt=modVal>0? "+"+modVal:String.valueOf(modVal);
+                result+=entry.getValue()+modTxt;
+            }
+        }
+        return result.equalsIgnoreCase("") ? "-" : result;
+    }
+
+    public void unform() {
+        currentForm=null;
+    }
+
+    public int getResistBonus(String elemKey) {
+        int res=0;
+        if(currentForm!=null){
+            res=currentForm.getElementResist(elemKey);
+        }
+        return res;
+    }
+
+    public int getMaxResistBonus() {
+        int res=0;
+        if(currentForm!=null){
+            res=currentForm.getMaxElementResist();
+        }
+        return res;
+    }
+
 
     /*
     TODO
 
     vegetal
-    régénération 5. Si cette forme ne peut pas bouger, la vitesse de déplacement du personnage est réduite à 1,50 m (1 case) et il perd toute autre possibilité de mouvement. Si la créature est immunisée ou possède une résistance à un élément, le personnage gagne un résistance de 20 contre cet élément.
-    Si la créature est vulnérable à un élément, le personnage le devient aussi.
-
-    Animal
-    Si la créature est immunisée ou résistante contre un type d’énergie, le personnage gagne 20 points de résistance contre ce type d’énergie. En revanche, si elle est vulnérable,
-     le personnage l’est aussi.
+    TODO régénération 5. Si cette forme ne peut pas bouger, la vitesse de déplacement du personnage est réduite à 1,50 m (1 case) et il perd toute autre possibilité de mouvement. Si la créature est immunisée ou possède une résistance à un élément, le personnage gagne un résistance de 20 contre cet élément.
 
 Magic
 pour les souffle DD = 10+ lvl/2 + mod const   9m range
@@ -522,7 +334,7 @@ pour les souffle DD = 10+ lvl/2 + mod const   9m range
     ELEMENTAIRE
      Pour les capa tout elementaire a ca : Ce sort fonctionne comme corps élémentaire III mais il permet aussi au lanceur de sorts de se transformer en élémentaire d’air,
         d’eau, de feu ou de terre de taille TG. Ses aptitudes dépendent du type d’élémentaire choisi. De plus, le personnage est immunisé contre les saignements, les coups critiques
-         et les attaques sournoises tant qu’il est sous forme élémentaire et il gagne une résistance RD 5/—.
+         et les attaques sournoises tant qu’il est sous forme élémentaire et il gagne une résistance TODO RD 5/—.
 
      */
 

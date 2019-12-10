@@ -56,7 +56,7 @@ public class DisplayEquipmentManager {
 
     private void customInfo(Equipment equi) {
         LayoutInflater inflater = mA.getLayoutInflater();
-        View view = inflater.inflate(R.layout.custom_toast_info, (ViewGroup) mA.findViewById(R.id.toast_RelativeLayout));
+        View view = inflater.inflate(R.layout.custom_toast_info_equipment, (ViewGroup) mA.findViewById(R.id.toast_RelativeLayout));
         CustomAlertDialog ct = new CustomAlertDialog(mA, mC, view);
         ct.clickToHide(view.findViewById(R.id.toast_LinearLayout));
 

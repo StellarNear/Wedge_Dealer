@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import stellarnear.wedge_companion.Elems.ElemsManager;
+import stellarnear.wedge_companion.Elems.AttacksElemsManager;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
@@ -32,7 +32,7 @@ public class DSSFGraph {
     private Perso pj = PersoManager.getCurrentPJ();
     private Context mC;
     private View mainView;
-    private ElemsManager elems;
+    private AttacksElemsManager elems;
     private List<String> elemsSelected;
     private Map<Integer,StatsList> mapNHitStats = new HashMap<>();
     private Map<Integer,StatsList> mapNCritStats = new HashMap<>();
@@ -48,7 +48,7 @@ public class DSSFGraph {
     public DSSFGraph(View mainView, Context mC) {
         this.mainView = mainView;
         this.mC = mC;
-        this.elems= ElemsManager.getInstance(mC);
+        this.elems= AttacksElemsManager.getInstance(mC);
         CheckBox checkPhy = mainView.findViewById(R.id.line_type_phy);
         CheckBox checkFire = mainView.findViewById(R.id.line_type_fire);
         CheckBox checkShock = mainView.findViewById(R.id.line_type_shock);

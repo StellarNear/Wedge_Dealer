@@ -10,12 +10,13 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 import java.util.List;
 
+import stellarnear.wedge_companion.Activities.MainActivity;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.Rolls.Dices.Dice;
 import stellarnear.wedge_companion.Tools;
 
-public class Roll {
+public abstract class Roll {
     protected AtkRoll atkRoll;
     protected List<DmgRoll> dmgRollList; //on peut avoir plusieurs fleches de degat par jet d'attaque
     protected int nthAtkRoll;
@@ -29,7 +30,11 @@ public class Roll {
     public Roll(Activity mA, Context mC, Integer atkBase) {
         this.mA=mA;
         this.mC=mC;
-        this.atkRoll=new AtkRoll(mA,mC,atkBase);
+        if(mA instanceof MainActivity){
+            this.atkRoll=new RangeAtkRoll(mA,mC,atkBase);
+        } else {
+            this.atkRoll=new MeleeAtkRoll(mA,mC,atkBase);
+        }
         this.dmgRollList=new ArrayList<>();
         settings = PreferenceManager.getDefaultSharedPreferences(mC);
     }
@@ -47,16 +52,7 @@ public class Roll {
         this.mode=mode; //les dmgroll sont pas encore présent
     }
 
-    public void setDmgRand() {
-        if (this.dmgRollList.isEmpty() && !isMissed()){
-            this.dmgRollList.add(new DmgRoll(mA,mC,atkRoll.isCritConfirmed(),atkRoll.getAtkDice().getRandValue()==20));
-            for(DmgRoll dmgRoll:this.dmgRollList){
-                dmgRoll.setMode(mode);
-                dmgRoll.setDmgRand();
-            }
-        }
-    }
-
+    public abstract void setDmgRand(); //defini dans les deux sous type
 
     public List<DmgRoll> getDmgRollList(){
         return this.dmgRollList;
@@ -116,7 +112,6 @@ public class Roll {
         for(DmgRoll dmgRoll:this.dmgRollList){
             diceList.add(dmgRoll.getDmgDiceList().filterWithNface(nFace));
         }
-
         return diceList;
     }
 
@@ -160,20 +155,11 @@ public class Roll {
         return atkRoll.isMissed();
     }
 
-
     public int getNthAtkRoll() {
         return nthAtkRoll;
     }
 
-    public void lynxEyeBoost() {
-        if (this instanceof RangedRoll){
-            ((RangeAtkRoll) atkRoll).lynxEyeBoost();
-        }
-    }
+    public abstract void rangeMalus(int malus);
 
-    public void rangeMalus(int malus) {
-        if (this instanceof RangedRoll){
-            ((RangeAtkRoll) atkRoll).rangeMalus(malus);
-        }
-    }
+    public abstract void lynxEyeBoost();
 }

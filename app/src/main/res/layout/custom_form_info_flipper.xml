@@ -32,6 +32,7 @@
             android:orientation="vertical"
             android:layout_gravity="center"
             android:textAlignment="center"
+            android:layout_margin="@dimen/general_margin"
             android:layout_weight="4">
 
             <TextView
@@ -71,29 +72,66 @@
                 android:gravity="center"
                 android:layout_marginTop="@dimen/general_margin"
                 >
+                <LinearLayout
+                    android:id="@+id/form_info_layResi"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:text="Résistance :"/>
                 <TextView
                     android:id="@+id/form_info_textResi"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_width="match_parent"
                     android:gravity="center"
                     android:layout_height="wrap_content"
-                    android:text="Résistance :\nblabla"/>
+                    android:text="blabla"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/form_info_layVuln"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:text="Vulnérabilité :"/>
                 <TextView
                     android:id="@+id/form_info_textVuln"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_width="match_parent"
                     android:gravity="center"
                     android:layout_height="wrap_content"
-                    android:text="Vulnérabilité :\nblabla"/>
+                    android:text="blabla"/>
+                </LinearLayout>
             </LinearLayout>
 
-            <TextView
+            <LinearLayout
+                android:id="@+id/form_info_layAtk"
                 android:layout_marginTop="@dimen/general_margin"
-                android:id="@+id/form_info_textAtk"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                >
+            <TextView
+                android:layout_width="wrap_content"
                 android:gravity="center"
                 android:layout_height="wrap_content"
-                android:text="Attaque : balba (xd8) blabla2 (xd6)" />
+                android:text="Attaques : " />
+                <TextView
+                    android:id="@+id/form_info_textAtk"
+                    android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:layout_height="wrap_content"
+                    android:text="balba (xd8) blabla2 (xd6)" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -116,7 +154,7 @@
                         android:text="Capacités passives :"/>
                 </LinearLayout>
                 <LinearLayout
-                    android:id="@+id/form_info_passiveActivesLinear"
+                    android:id="@+id/form_info_activesCapasLinear"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"

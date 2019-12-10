@@ -30,4 +30,12 @@ public class RangedRoll extends Roll {
         }
     }
 
+    public void lynxEyeBoost() {
+            ((RangeAtkRoll) atkRoll).lynxEyeBoost();
+    }
+
+    public void rangeMalus(int malus) {
+            ((RangeAtkRoll) atkRoll).rangeMalus(malus);
+    }
+
 }

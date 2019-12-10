@@ -63,15 +63,28 @@ public class AllAbilities {
                 Node node = nList.item(i);
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element element2 = (Element) node;
-                    Ability abi = new Ability(
-                            readValue("name", element2),
-                            readValue("shortname", element2),
-                            readValue("type", element2),
-                            readValue("descr", element2),
-                            tools.toBool(readValue("testable", element2)),
-                            tools.toBool(readValue("focusable", element2)),
-                            readValue("id", element2),
-                            mC);
+                    Ability abi;
+                    if(!readValue("id", element2).equalsIgnoreCase("ability_reduc_elem")) {
+                        abi = new Ability(
+                                readValue("name", element2),
+                                readValue("shortname", element2),
+                                readValue("type", element2),
+                                readValue("descr", element2),
+                                tools.toBool(readValue("testable", element2)),
+                                tools.toBool(readValue("focusable", element2)),
+                                readValue("id", element2),
+                                mC);
+                    } else {
+                        abi = new ElementalReducAbility(
+                                readValue("name", element2),
+                                readValue("shortname", element2),
+                                readValue("type", element2),
+                                readValue("descr", element2),
+                                tools.toBool(readValue("testable", element2)),
+                                tools.toBool(readValue("focusable", element2)),
+                                readValue("id", element2),
+                                mC);
+                    }
                     listAbilities.add(abi);
                     mapIDAbi.put(abi.getId(), abi);
                 }

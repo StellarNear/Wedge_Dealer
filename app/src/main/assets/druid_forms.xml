@@ -27,7 +27,7 @@
             <capacityid>sleipnir_breath</capacityid>
             <capacityid>sleipnir_stample</capacityid>
         </active_capacity>
-        <resistance>shock,poison,cold</resistance>
+        <resistance>shock,acid,frost</resistance>
         <attack>
             <morsure>1d8</morsure>
             <sabot>1d8</sabot>
@@ -48,7 +48,7 @@
         <active_capacity>
                 <capacityid>kirin_breath</capacityid>
         </active_capacity>
-        <resistance>shock,fire,cold</resistance>
+        <resistance>shock,fire,frost</resistance>
         <attack>
             <bois>1d8</bois>
             <sabot>1d6</sabot>
@@ -121,7 +121,7 @@
         <active_capacity>
                 <capacityid>combustion</capacityid>
         </active_capacity>
-        <vulnerability>cold</vulnerability>
+        <vulnerability>frost</vulnerability>
         <resistance>fire</resistance>
         <attack>
             <base>2d8</base>

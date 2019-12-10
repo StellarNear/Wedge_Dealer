@@ -34,29 +34,29 @@ public class PetRollFactory {
         int baseAtk=new CalculationAtk(mC).getBaseAtk();
         if (this.mode.equalsIgnoreCase("fullround")) {
             if(pj.getID().equalsIgnoreCase("sylphe")) {
-                Roll roll1 = new Roll(mA, mC, baseAtk);
+                Roll roll1 = new MeleeRoll(mA, mC, baseAtk);
                 roll1.setMode("claw");
                 this.rollList.add(roll1);
-                Roll roll2 = new Roll(mA, mC, baseAtk);
+                Roll roll2 = new MeleeRoll(mA, mC, baseAtk);
                 roll2.setMode("claw");
                 this.rollList.add(roll2);
-                Roll roll3 = new Roll(mA, mC, baseAtk);
+                Roll roll3 = new MeleeRoll(mA, mC, baseAtk);
                 roll3.setMode("bite");
                 this.rollList.add(roll3);
-                Roll roll4 = new Roll(mA, mC, baseAtk);
+                Roll roll4 = new MeleeRoll(mA, mC, baseAtk);
                 roll4.setMode("claw");
                 this.rollList.add(roll4);
-                Roll roll5 = new Roll(mA, mC, baseAtk);
+                Roll roll5 = new MeleeRoll(mA, mC, baseAtk);
                 roll5.setMode("claw");
                 this.rollList.add(roll5);
             } else {
-                Roll roll1 = new Roll(mA, mC, baseAtk);
+                Roll roll1 = new MeleeRoll(mA, mC, baseAtk);
                 roll1.setMode("claw");
                 this.rollList.add(roll1);
-                Roll roll2 = new Roll(mA, mC, baseAtk);
+                Roll roll2 = new MeleeRoll(mA, mC, baseAtk);
                 roll2.setMode("claw");
                 this.rollList.add(roll2);
-                Roll roll3 = new Roll(mA, mC, baseAtk);
+                Roll roll3 = new MeleeRoll(mA, mC, baseAtk);
                 roll3.setMode("bite");
                 this.rollList.add(roll3);
             }
@@ -67,23 +67,23 @@ public class PetRollFactory {
                 nCount++;
             }
         } else if(this.mode.equalsIgnoreCase("leap") && pj.getAllCapacities().capacityIsActive("leap")) {
-            Roll roll1 = new Roll(mA, mC, baseAtk);
+            Roll roll1 = new MeleeRoll(mA, mC, baseAtk);
             roll1.setMode("leapclaw");
             this.rollList.add(roll1);
-            Roll roll2 = new Roll(mA, mC, baseAtk);
+            Roll roll2 = new MeleeRoll(mA, mC, baseAtk);
             roll2.setMode("leapclaw");
             this.rollList.add(roll2);
-            Roll roll3 = new Roll(mA, mC, baseAtk);
+            Roll roll3 = new MeleeRoll(mA, mC, baseAtk);
             roll3.setMode("leapbite");
             this.rollList.add(roll3);
-            Roll roll4 = new Roll(mA, mC, baseAtk);
+            Roll roll4 = new MeleeRoll(mA, mC, baseAtk);
             roll4.setMode("leapclaw");
             this.rollList.add(roll4);
-            Roll roll5 = new Roll(mA, mC, baseAtk);
+            Roll roll5 = new MeleeRoll(mA, mC, baseAtk);
             roll5.setMode("leapclaw");
             this.rollList.add(roll5);
         } else {
-            Roll roll = new Roll(mA, mC, baseAtk);
+            Roll roll = new MeleeRoll(mA, mC, baseAtk);
             this.rollList.add(roll);
         }
     }

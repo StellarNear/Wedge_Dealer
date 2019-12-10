@@ -54,8 +54,6 @@ public class RangeAtkRoll extends AtkRoll {
         return bonusAtkRange;
     }
 
-
-
     //getters
 
     public Integer getPreRandValue() {

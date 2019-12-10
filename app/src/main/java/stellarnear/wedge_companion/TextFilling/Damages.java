@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import stellarnear.wedge_companion.Elems.ElemsManager;
+import stellarnear.wedge_companion.Elems.AttacksElemsManager;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
@@ -25,7 +25,7 @@ public class Damages {
     private Context mC;
     private View mainView;
     private RollList selectedRolls;
-    private ElemsManager elems;
+    private AttacksElemsManager elems;
     private Perso pj = PersoManager.getCurrentPJ();
 
     private Tools tools = new Tools();
@@ -35,7 +35,7 @@ public class Damages {
         this.mC = mC;
         this.mainView = mainView;
         this.selectedRolls = selectedRolls;
-        this.elems=ElemsManager.getInstance(mC);
+        this.elems= AttacksElemsManager.getInstance(mC);
 
         clearAllViews();
         addDamage();

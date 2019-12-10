@@ -8,6 +8,8 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
@@ -25,9 +27,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import stellarnear.wedge_companion.CustomAlertDialog;
 import stellarnear.wedge_companion.Perso.Form;
 import stellarnear.wedge_companion.Perso.FormCapacity;
 import stellarnear.wedge_companion.Perso.Perso;
@@ -45,6 +50,7 @@ public class MainActivityFragmentForm extends Fragment {
     private View returnFragView;
     private ViewFlipper flipper;
     private Map<View,Form> mapViewForm=new HashMap<>();
+    private List<ImageView> listImgCategories = new ArrayList<>();
     private Tools tools=new Tools();
     private float x1Gesture, x2Gesture;
     private long t1Gesture, t2Gesture;
@@ -101,22 +107,77 @@ public class MainActivityFragmentForm extends Fragment {
             }
         });
 
-        setFillButton(returnFragView.findViewById(R.id.button_form_animal),"animal");
-        setFillButton(returnFragView.findViewById(R.id.button_form_magical),"magic");
-        setFillButton(returnFragView.findViewById(R.id.button_form_vegetal),"vegetal");
-        setFillButton(returnFragView.findViewById(R.id.button_form_elemental),"elemental");
+        returnFragView.findViewById(R.id.button_frag_form_unform).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(pj.getAllForms().hasActiveForm()){
+                    new AlertDialog.Builder(getActivity())
+                            .setIcon(R.drawable.ic_warning_black_24dp)
+                            .setTitle("Changement de forme")
+                            .setMessage("Veux tu annuler ta forme actuelle : " + pj.getAllForms().getCurrentForm().getName() + " ?")
+                            .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                  unform();
+                                }
+                            })
+                            .setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                }
+                            }).show();
+                } else {
+                    unform();
+                }
+            }
+        });
 
+        listImgCategories.add((ImageView)returnFragView.findViewById(R.id.button_form_animal));
+        listImgCategories.add((ImageView)returnFragView.findViewById(R.id.button_form_magical));
+        listImgCategories.add((ImageView)returnFragView.findViewById(R.id.button_form_vegetal));
+        listImgCategories.add((ImageView)returnFragView.findViewById(R.id.button_form_elemental));
+        setFillButton(listImgCategories.get(0),"animal");setFillButton(listImgCategories.get(1),"magic"); setFillButton(listImgCategories.get(2),"vegetal"); setFillButton(listImgCategories.get(3),"elemental");
         refreshPageInfos();
+        setupMainImagebackStartup();
 
-        if(pj.getAllForms().hasActiveForm()){
+        return returnFragView;
+    }
+
+    private void unform() {
+        pj.getAllForms().unform();
+        select(null);
+        setFillFlipperWithFormType(""); //vide le flipper
+        refreshPageInfos();
+        setupMainImagebackStartup();
+    }
+
+    private void setupMainImagebackStartup() {
+        ((TextView) returnFragView.findViewById(R.id.form_modif_carac)).setText(pj.getAllForms().getFormAbiModText());
+        if(pj.getAllForms().hasActiveForm() && returnFragView.findViewById(R.id.form_current_form_background_image)!=null){
             try {
+                switch (pj.getAllForms().getCurrentForm().getType()){
+                    case "animal":
+                        select(listImgCategories.get(0));
+                        break;
+                    case "magic":
+                        select(listImgCategories.get(1));
+                        break;
+                    case "vegetal":
+                        select(listImgCategories.get(2));
+                        break;
+                    case "elemental":
+                        select(listImgCategories.get(3));
+                        break;
+                }
                 int imgId = getResources().getIdentifier(pj.getAllForms().getCurrentForm().getId(), "drawable", getContext().getPackageName());
                 ((ImageView)returnFragView.findViewById(R.id.form_current_form_background_image)).setImageDrawable(getResources().getDrawable(imgId));
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        } else {
+            ((ImageView)returnFragView.findViewById(R.id.form_current_form_background_image)).setImageDrawable(getResources().getDrawable(R.drawable.wedge_loaded));
+            returnFragView.findViewById(R.id.form_current_form_background_image).setVisibility(View.VISIBLE);
         }
-        return returnFragView;
     }
 
 
@@ -127,27 +188,88 @@ public class MainActivityFragmentForm extends Fragment {
         ((TextView)returnFragView.findViewById(R.id.form_remaning_text)).setText(String.valueOf(pj.getResourceValue("resource_animal_form")));
         addCurrentPassiveCapa((LinearLayout)returnFragView.findViewById(R.id.linear_form_passives));
         addCurrentActiveCapa((LinearLayout)returnFragView.findViewById(R.id.linear_form_actives));
+        if(form!=null && form.getAtkTxt().length()>0) {
+            returnFragView.findViewById(R.id.form_current_atks_lay).setVisibility(View.VISIBLE);
+            ((TextView) returnFragView.findViewById(R.id.form_current_atks_text)).setText(form.getAtkTxt());
+        } else {
+            returnFragView.findViewById(R.id.form_current_atks_lay).setVisibility(View.GONE);
+        }
     }
 
-    private void setFillButton(View viewById, final String type) {
+    private void setFillButton(final View viewById, final String type) {
         viewById.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setFillFlipperWithFormType(type);
+                refreshAbiModifText();
+                select(viewById);
             }
         });
     }
 
+    private void select(View viewById) {
+        for(ImageView view : listImgCategories){
+            if(view!=viewById && viewById !=null){ //le different de null pour quand on select rien on réaffiche tout
+                ColorMatrix matrix = new ColorMatrix();
+                matrix.setSaturation(0);
+                ColorMatrixColorFilter filter = new ColorMatrixColorFilter(matrix);
+                view.setColorFilter(filter);
+            } else {
+                ColorMatrix matrix = new ColorMatrix();
+                matrix.setSaturation(1);
+                ColorMatrixColorFilter filter = new ColorMatrixColorFilter(matrix);
+                view.setColorFilter(filter);
+            }
+        }
+    }
+
     private void setFillFlipperWithFormType(String type) {
         flipper.removeAllViews();
+        returnFragView.findViewById(R.id.form_current_form_background_image).setVisibility(View.GONE);
         mapViewForm=new HashMap<>();
         for(final Form form :pj.getAllForms().getFormOfType(type)){
             View formView = getActivity().getLayoutInflater().inflate(R.layout.custom_form_info_flipper,flipper,false);
             ((TextView)formView.findViewById(R.id.form_info_textName)).setText(form.getName());
-            ((TextView)formView.findViewById(R.id.form_info_textType)).setText("Type :\n"+form.getType());
-            ((TextView)formView.findViewById(R.id.form_info_textSize)).setText("Taille :\n"+form.getSize());
-            //((TextView)view.findViewById(R.id.form_info_textResi)).setText("Résistance : "+form.getResistanceTxt());
-            //TODO ((TextView)view.findViewById(R.id.form_info_textVuln)).setText("Vunérabilité : "+form.getVulnerabilityTxt());
+            ((TextView)formView.findViewById(R.id.form_info_textType)).setText("Type : "+form.getTypeTxt());
+            ((TextView)formView.findViewById(R.id.form_info_textSize)).setText("Taille : "+form.getSize());
+            if(form.getAtkTxt().length()>0) {
+                ((TextView) formView.findViewById(R.id.form_info_textAtk)).setText(form.getAtkTxt());
+            } else {
+                formView.findViewById(R.id.form_info_layAtk).setVisibility(View.GONE);
+            }
+            if(form.getResistsValueLongFormat().length()>0){
+                ((TextView)formView.findViewById(R.id.form_info_textResi)).setText(form.getResistsValueLongFormat());
+            } else {
+                formView.findViewById(R.id.form_info_layResi).setVisibility(View.GONE);
+            }
+            if(form.getVulnerability().length()>0){
+                ((TextView)formView.findViewById(R.id.form_info_textVuln)).setText(form.getVulnerability());
+            } else {
+                formView.findViewById(R.id.form_info_layVuln).setVisibility(View.GONE);
+            }
+            if(form.getListPassiveCapacities().size()>0){
+                String allCapas="";
+                for(FormCapacity capa:form.getListPassiveCapacities()){
+                    if(!allCapas.equalsIgnoreCase("")){allCapas+=", ";}
+                    allCapas+=capa.getName();
+                }
+                TextView textCapa = new TextView(mC);textCapa.setText(allCapas);textCapa.setTextSize(10);textCapa.setGravity(Gravity.CENTER);
+                ((LinearLayout)formView.findViewById(R.id.form_info_passiveCapasLinear)).addView(textCapa);
+            } else {
+                formView.findViewById(R.id.form_info_passiveCapasLinear).setVisibility(View.GONE);
+            }
+            if(form.getListActivesCapacities().size()>0){
+                String allCapas="";
+                for(FormCapacity capa:form.getListActivesCapacities()){
+                    if(!allCapas.equalsIgnoreCase("")){allCapas+=", ";}
+                    allCapas+=capa.getName();
+                }
+                TextView textCapa = new TextView(mC);textCapa.setText(allCapas);textCapa.setTextSize(10);textCapa.setGravity(Gravity.CENTER);
+                ((LinearLayout)formView.findViewById(R.id.form_info_activesCapasLinear)).addView(textCapa);
+            } else {
+                formView.findViewById(R.id.form_info_activesCapasLinear).setVisibility(View.GONE);
+            }
+
             try {
                 int imgId = getResources().getIdentifier(form.getId(), "drawable", getContext().getPackageName());
                 ((ImageView)formView.findViewById(R.id.form_info_image)).setImageDrawable(mC.getDrawable(imgId));
@@ -165,6 +287,7 @@ public class MainActivityFragmentForm extends Fragment {
         Animation out =  AnimationUtils.loadAnimation(mC,R.anim.outtoleft);
         flipper.setInAnimation(in);  flipper.setOutAnimation(out);
         flipper.showNext();
+        refreshAbiModifText();
     }
     private void flipPrevious() {
         flipper.clearAnimation();
@@ -172,6 +295,11 @@ public class MainActivityFragmentForm extends Fragment {
         Animation out =  AnimationUtils.loadAnimation(mC,R.anim.outtoright);
         flipper.setInAnimation(in);  flipper.setOutAnimation(out);
         flipper.showPrevious();
+        refreshAbiModifText();
+    }
+
+    private void refreshAbiModifText() {
+        ((TextView) returnFragView.findViewById(R.id.form_modif_carac)).setText(pj.getAllForms().getFormAbiModText(mapViewForm.get(flipper.getCurrentView())));
     }
 
     private void popUpchangeForm() {
@@ -213,20 +341,40 @@ public class MainActivityFragmentForm extends Fragment {
 
     private void addCurrentPassiveCapa(LinearLayout linear) {
         linear.removeAllViews();
-        if(pj.getAllForms().getCurrentForm()==null){
+        Form currentForm=pj.getAllForms().getCurrentForm();
+        if(currentForm==null){
             linear.addView(textViewFormated("Aucune"));
         } else {
-            for (final FormCapacity formCapacity : pj.getAllForms().getCurrentForm().getListPassiveCapacities()) {
+            for (final FormCapacity formCapacity : currentForm.getListPassiveCapacities()) {
                 TextView text = textViewFormated(formCapacity.getName());
                 text.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        tools.customToast(getContext(), formCapacity.getDescr(), "center");
+                        popupLongTooltip( formCapacity);
                     }
                 });
                 linear.addView(text);
             }
+            if(currentForm.getResistsValueLongFormat().length()>0){
+                TextView text = textViewFormated("");
+                text.setText(currentForm.getResistsValueLongFormat()); //avec spannable pas string
+                linear.addView(text);
+            }
+            if(currentForm.getVulnerability().length()>0){
+                TextView text = textViewFormated("Vulnérabilité : "+currentForm.getVulnerability());
+                linear.addView(text);
+            }
         }
+    }
+
+    private void popupLongTooltip(FormCapacity capa){
+        View tooltip = getActivity().getLayoutInflater().inflate(R.layout.custom_toast_info_form_capacity, null);
+        CustomAlertDialog tooltipAlert = new CustomAlertDialog(getActivity(), mC, tooltip);
+        tooltipAlert.setPermanent(true);
+        ((TextView)tooltip.findViewById(R.id.toast_textName)).setText(capa.getName());
+        ((TextView)tooltip.findViewById(R.id.toast_textDescr)).setText(capa.getDescr());
+        tooltipAlert.clickToHide(tooltip.findViewById(R.id.toast_LinearLayout));
+        tooltipAlert.showAlert();
     }
 
     private TextView textViewFormated(String textTxt) {
@@ -250,7 +398,7 @@ public class MainActivityFragmentForm extends Fragment {
                 text.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        tools.customToast(getContext(), formCapacity.getDescr(), "center");
+                        popupLongTooltip( formCapacity);
                     }
                 });
                 linear.addView(text);

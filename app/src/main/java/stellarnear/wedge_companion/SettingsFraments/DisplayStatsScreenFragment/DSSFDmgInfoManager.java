@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import java.util.Map;
 
-import stellarnear.wedge_companion.Elems.ElemsManager;
+import stellarnear.wedge_companion.Elems.AttacksElemsManager;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
@@ -23,7 +23,7 @@ public class DSSFDmgInfoManager {
 
     private Context mC;
     private View mainView;
-    private ElemsManager elems;
+    private AttacksElemsManager elems;
     private Map<String, CheckBox> mapElemCheckbox;
     private StatsList selectedStats=new StatsList();
     private String selectedBracket;
@@ -34,7 +34,7 @@ public class DSSFDmgInfoManager {
 
     public DSSFDmgInfoManager(View mainView, Map<String,CheckBox> mapElemCheckbox, Context mC) {
         this.mainView = mainView;
-        this.elems=ElemsManager.getInstance(mC);
+        this.elems= AttacksElemsManager.getInstance(mC);
         this.mapElemCheckbox=mapElemCheckbox;
         this.mC = mC;
 
