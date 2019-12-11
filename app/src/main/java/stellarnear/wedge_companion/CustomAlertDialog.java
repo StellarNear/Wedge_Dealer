@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.view.Display;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -22,6 +23,7 @@ public class CustomAlertDialog {
     private boolean permanent=false;
     private boolean positiveButton=false;
     private boolean cancelButton=false;
+    private String mode;
     private OnAcceptEventListener mListener;
 
     public CustomAlertDialog(Activity mA, Context mC, View view) {
@@ -39,11 +41,8 @@ public class CustomAlertDialog {
         if(positiveButton){applyStyleToOkButton();}
         if(cancelButton){applyStyleToCancelButton();}
         setTimer();
-        Display display = mA.getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        Float factor = mC.getResources().getInteger(R.integer.percent_fullscreen_customdialog)/100f;
-        alert.getWindow().setLayout((int) (factor*size.x), (int)(factor*size.y));
+        alert.getWindow().setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        alert.getWindow().setGravity(Gravity.CENTER);
     }
 
 

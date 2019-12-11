@@ -26,7 +26,6 @@ import stellarnear.wedge_companion.Activities.MainActivity;
 import stellarnear.wedge_companion.Activities.PetActivity;
 import stellarnear.wedge_companion.HealthDialog;
 import stellarnear.wedge_companion.Perso.Ability;
-import stellarnear.wedge_companion.Perso.ElementalReducAbility;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.Perso.Resource;
@@ -233,12 +232,12 @@ public class QuadrantFiller {
             column2txt= pj.getAllResources().getRankManager().getPercentAvail();
 
         } else {
-            column2txt = String.valueOf(pj.getResourceValue(res.getId()));
+            column2txt = String.valueOf(pj.getCurrentResourceValue(res.getId()));
             if (mode.equalsIgnoreCase("mini") && res.getId().equalsIgnoreCase("resource_hp")) {
-                column2txt = String.valueOf(pj.getAllResources().getResource(res.getId()).getCurrent() + pj.getAllResources().getResource(res.getId()).getShield());
+                column2txt = String.valueOf(pj.getCurrentResourceValue(res.getId()) + pj.getAllResources().getResource(res.getId()).getShield());
             }
             if (mode.equalsIgnoreCase("full") && res.getId().equalsIgnoreCase("resource_hp")) {
-                column2txt = String.valueOf(pj.getAllResources().getResource(res.getId()).getCurrent());
+                column2txt = String.valueOf(pj.getCurrentResourceValue(res.getId()));
                 if (pj.getAllResources().getResource(res.getId()).getShield() > 0) {
                     column2txt += " (" + String.valueOf(pj.getAllResources().getResource(res.getId()).getShield()) + ")";
                 }
@@ -291,7 +290,7 @@ public class QuadrantFiller {
             text.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(pj.getAllResources().getResource(res.getId()).getCurrent()>0) {
+                    if(pj.getCurrentResourceValue(res.getId())>0) {
                         new AlertDialog.Builder(mC)
                                 .setTitle("Demande de confirmation")
                                 .setMessage("Confirmes-tu la dépense d'une utilisation de " + res.getName() + " ?")

@@ -1,6 +1,9 @@
 package stellarnear.wedge_companion.Attack;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import stellarnear.wedge_companion.Perso.FormCapacity;
 import stellarnear.wedge_companion.Tools;
 
@@ -11,7 +14,7 @@ public class Attack {
     private int nDice=0;
     private int flatDmg=0;
     private String damageTxt;
-    private FormCapacity capacity;
+    private List<FormCapacity> capacityList =new ArrayList<>();
     private Tools tools=new Tools();
 
     public Attack( String name, String damageTxt){
@@ -22,7 +25,7 @@ public class Attack {
             this.diceType=tools.toInt(damageTxt.split("d")[1]);
         }
         if(damageTxt.contains("+")){
-            this.flatDmg=tools.toInt(damageTxt.split("+")[1]);
+            this.flatDmg=tools.toInt(damageTxt.split("\\+")[1]);
         }
     }
 
@@ -46,16 +49,16 @@ public class Attack {
         return damageTxt;
     }
 
-    public void setCapacity(FormCapacity capacity) { //TODO
-        this.capacity = capacity;
+    public void addCapacity(FormCapacity capacity) {
+        this.capacityList.add(capacity);
     }
 
-    public FormCapacity getCapacity() {
-        return capacity;
+    public List<FormCapacity> getCapacities() {
+        return capacityList;
     }
 
     public boolean hasPower() {
-        return capacity!=null;
+        return capacityList !=null && capacityList.size()>0;
     }
 }
 

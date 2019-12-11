@@ -71,8 +71,8 @@ public class ImgForDice {
                         .setIcon(R.drawable.ic_warning_black_24dp)
                         .setTitle("Montée en puissance")
                         .setMessage("Ressources :\n\n" +
-                                "Point(s) mythique restant(s) : "+ pj.getResourceValue("resource_mythic_points")+"\n" +
-                                "Point(s) légendaire restant(s) : "+pj.getResourceValue("legendary_points"))
+                                "Point(s) mythique restant(s) : "+ pj.getCurrentResourceValue("resource_mythic_points")+"\n" +
+                                "Point(s) légendaire restant(s) : "+pj.getCurrentResourceValue("legendary_points"))
                         .setNeutralButton("Aucune", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -97,9 +97,9 @@ public class ImgForDice {
     private void launchingMythicDice(String mode) {
         int points=0;
         if(mode.equalsIgnoreCase("légendaire")){
-            points = pj.getResourceValue("resource_legendary_points");
+            points = pj.getCurrentResourceValue("resource_legendary_points");
         } else {
-            points = pj.getResourceValue("resource_mythic_points");
+            points = pj.getCurrentResourceValue("resource_mythic_points");
         }
 
         if (points > 0 && dice.getMythicDice()==null) {

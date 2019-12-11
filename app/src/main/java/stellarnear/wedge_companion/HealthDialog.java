@@ -60,11 +60,11 @@ public class HealthDialog {
             }
         });
         Button regen = dialogView.findViewById(R.id.button_healthDialog_regen);
-        regen.setText("régén (+"+ pj.getResourceValue("resource_regen")+")" );
+        regen.setText("régén (+"+ pj.getCurrentResourceValue("resource_regen")+")" );
         regen.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int regen= pj.getResourceValue("resource_regen");
+                int regen= pj.getCurrentResourceValue("resource_regen");
                 pj.getAllResources().getResource("resource_hp").earn(regen);
                 animateText(regen);
                 setHealthWidth();
@@ -151,7 +151,7 @@ public class HealthDialog {
 
                 }
                 if(mode.equalsIgnoreCase("heal")){
-                    int over = pj.getAllResources().getResource("resource_hp").getCurrent()+val- pj.getAllResources().getResource("resource_hp").getMax();
+                    int over = pj.getCurrentResourceValue("resource_hp")+val- pj.getAllResources().getResource("resource_hp").getMax();
                     pj.getAllResources().getResource("resource_hp").earn(val);
                     animateText(val);
                     if (over > 0){
@@ -226,16 +226,16 @@ public class HealthDialog {
     private void setHealthWidth() {
         TextView textLife = dialogView.findViewById(R.id.healthDialogHealth);
         TextView textLifeTitle = dialogView.findViewById(R.id.healthDialogHealthTitle);
-        //Double percent = 100.0*pj.getResourceValue("resource_hp")/pj.getAllResources().getResource("resource_hp").getMax();
+        //Double percent = 100.0*pj.getCurrentResourceValue("resource_hp")/pj.getAllResources().getResource("resource_hp").getMax();
         String txt;
         String txtTitle;
         int shield = pj.getAllResources().getResource("resource_hp").getShield();
         if(shield>0){
-            txt= pj.getResourceValue("resource_hp")+"/"+ pj.getAllResources().getResource("resource_hp").getMax();
+            txt= pj.getCurrentResourceValue("resource_hp")+"/"+ pj.getAllResources().getResource("resource_hp").getMax();
             txt+= " ("+shield+")";
             txtTitle="Vie restante (points de vie temporaires) :";
         } else {
-            txt= pj.getResourceValue("resource_hp")+"/"+ pj.getAllResources().getResource("resource_hp").getMax();
+            txt= pj.getCurrentResourceValue("resource_hp")+"/"+ pj.getAllResources().getResource("resource_hp").getMax();
             txtTitle="Vie restante :";
         }
         textLife.setText(txt);
@@ -255,7 +255,7 @@ public class HealthDialog {
                 } else {
                     height = (int) (oriHeight * 1.0); //en landscape on a pas le sgargouilles
                 }
-                Double coef = (double) pj.getResourceValue("resource_hp")/ pj.getAllResources().getResource("resource_hp").getMax();
+                Double coef = (double) pj.getCurrentResourceValue("resource_hp")/ pj.getAllResources().getResource("resource_hp").getMax();
                 if(coef<0d){coef=0d;} //pour les hp negatif
                 if(coef>1d){coef=1d;}
                 para.width=(int) (coef*oriWidth);

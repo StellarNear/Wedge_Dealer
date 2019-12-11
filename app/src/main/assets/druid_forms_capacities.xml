@@ -80,17 +80,12 @@
     <!-- active -->
 
     <capacity>
-        <name>Etreinte</name>
-        <descr>Si une créature touche un adversaire elle lui inflige des dégâts normaux et peut tenter de l’agripper par une action libre qui ne provoque pas d’attaque d’opportunité. Si la créature parvient à agripper son adversaire, elle ne lui occasionne pas pour autant des dégâts supplémentaires, à moins qu’elle ne dispose également de la capacité de constriction. Si elle n’a pas cette capacité, elle inflige à sa victime des dégâts équivalents à ceux de l’attaque initiale chaque fois qu’elle réussit un test de manoeuvre au cours des rounds qui suivent. Si elle possède la capacité de constriction, les dégâts de constriction (indiqués dans la description) s’ajoutent à ceux mentionnés plus haut. Les créatures qui possèdent la capacité d’étreinte reçoivent un bonus de +4 aux tests de BMO pour agripper un adversaire ou maintenir une prise</descr>
+        <name>Etreinte et Constriction</name>
+        <descr>Si une créature touche un adversaire elle lui inflige des dégâts normaux et peut tenter de l’agripper par une action libre qui ne provoque pas d’attaque d’opportunité. Les créatures qui possèdent la capacité d’étreinte reçoivent un bonus de +4 aux tests de BMO pour agripper un adversaire ou maintenir une prise. Les créatures qui disposent de cette attaque spéciale peuvent écraser un adversaire et lui infliger des dégâts de type contondant lorsqu’elles réussissent un test de manoeuvre (ces dégâts viennent s’ajouter aux dégâts et aux autres effets résultant de la réussite de ce test). La quantité de dégâts est mentionnée dans la description. En règle générale, elle est égale aux dégâts que l’attaque de corps à corps de la créature inflige.</descr>
         <type>active</type>
-        <savetype>dmd</savetype>
-        <id>form_capacity_grip</id>
-    </capacity>
-
-    <capacity>
-        <name>Constriction</name>
-        <descr>Les créatures qui disposent de cette attaque spéciale peuvent écraser un adversaire et lui infliger des dégâts de type contondant lorsqu’elles réussissent un test de manoeuvre (ces dégâts viennent s’ajouter aux dégâts et aux autres effets résultant de la réussite de ce test). La quantité de dégâts est mentionnée dans la description. En règle générale, elle est égale aux dégâts que l’attaque de corps à corps de la créature inflige.</descr>  <type>active</type>
         <damage>4d6</damage>
+        <savetype>dmd</savetype>
+        <type>active</type>
         <id>form_capacity_constriction</id>
     </capacity>
 
@@ -112,8 +107,17 @@
     </capacity>
 
 
-    <!-- capa de formes précise -->
+    <!-- capa Elementaires  -->
+    <capacity>
+        <name>Corps élémentaire</name>
+        <descr>Le personnage est immunisé contre les saignements, les coups critiques et les attaques sournoises tant qu’il est sous forme élémentaire et il gagne une résistance RD 5/—.</descr>
+        <type>passive</type>
+        <id>form_capacity_elemental_body</id>
+    </capacity>
 
+
+
+    <!-- capa de formes précise -->
     <capacity>
         <name>Souffle de feu</name>
         <id>form_capacity_kirin_breath</id>
@@ -141,8 +145,6 @@
         <savetype>dmd</savetype>
         <id>form_capacity_sleipnir_stample</id>
     </capacity>
-
-
 
     <capacity>
         <name>Souffle de glace</name>

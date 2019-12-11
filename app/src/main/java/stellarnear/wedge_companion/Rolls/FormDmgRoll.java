@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 
 import stellarnear.wedge_companion.Attack.Attack;
+import stellarnear.wedge_companion.Perso.FormCapacity;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.Rolls.Dices.Dice;
 
@@ -22,7 +23,16 @@ public class FormDmgRoll extends DmgRoll {
             dice.rand(manualDiceDmg);
         }
         if(attack.hasPower()){
-            tools.customToast(mC,"N'oublies pas d'utiliser la capacité "+attack.getCapacity().getName());
+            String message;
+            if(attack.getCapacities().size()==1){
+                message="N'oublies pas d'utiliser la capacité "+attack.getCapacities().get(0).getName();
+            } else {
+                message="N'oublies pas d'utiliser les capacités ";
+                for(FormCapacity capa : attack.getCapacities()){
+                    message+=" "+capa.getName();
+                }
+            }
+            tools.customToast(mC,message,"center");
         }
     }
 

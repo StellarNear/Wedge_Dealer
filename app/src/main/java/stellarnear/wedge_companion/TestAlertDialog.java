@@ -218,10 +218,12 @@ public class TestAlertDialog {
     }
 
     private void endSkillCalculation(final Dice dice) {
+        /*
         List<String> listSave = Arrays.asList("ability_ref","ability_vig","ability_vol");
         if(abi!=null && listSave.contains(abi.getId())){
             //dice.setLegendarySurge(true); //la bague permet d'avoir un jet legendaire de montée en pusisance sur les jets de sauv
         }
+         */
 
         FrameLayout resultDice= dialogView.findViewById(R.id.customDialogTestResultDice);
         resultDice.removeAllViews();
@@ -270,4 +272,6 @@ public class TestAlertDialog {
         }
         new PostData(mC,new PostDataElement(modePostData,dice,sumResultPostData));
     }
+
+
 }

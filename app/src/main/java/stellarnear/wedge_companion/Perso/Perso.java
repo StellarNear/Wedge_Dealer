@@ -104,11 +104,14 @@ public class Perso {
         return allForms;
     }
 
-    public Integer getResourceValue(String resId){
+    public Integer getCurrentResourceValue(String resId){
         Resource res = allResources.getResource(resId);
         Integer value=0;
         if(res!=null){
             value=res.getCurrent();
+            if(resId.equalsIgnoreCase("resource_regen")&&allForms!=null&&allForms.hasActiveForm()&&allForms.getCurrentForm().hasCapacity("form_capacity_regen")){
+                value+=5;
+            }
         }
         return value;
     }
@@ -235,10 +238,10 @@ public class Perso {
                     }
                 } catch (Exception e) { }
             }else if (abiId.equalsIgnoreCase("ability_ca")) {
+                abiScore = 10;
                 abiScore += tools.toInt(prefs.getString("bonus_global_temp_ca",String.valueOf(0)));
                 abiScore += tools.toInt(prefs.getString("bonus_temp_ca"+suffix,String.valueOf(0)));
                 int dexMod=getAbilityMod("ability_dexterite");
-
                 if(inventory.getAllEquipments().hasArmorDexLimitation() && inventory.getAllEquipments().getArmorDexLimitation()<dexMod){
                     abiScore+=inventory.getAllEquipments().getArmorDexLimitation();
                 } else {
@@ -253,6 +256,7 @@ public class Perso {
                 if (bonusRm>abiScore) { abiScore = bonusRm; }
                 if (bonusRmGlobal>abiScore) { abiScore = bonusRmGlobal; }
             } else  if (abiId.equalsIgnoreCase("ability_init")) {
+                abiScore=getAbilityMod("ability_dexterite");
                 if(getAllMythicCapacities()!=null && getAllMythicCapacities().mythicCapacityIsActive("mythiccapacity_init")) {
                     int valDefTierID = mC.getResources().getIdentifier("mythic_tier_def" + suffix, "integer", mC.getPackageName());
                     int currentTier = tools.toInt(prefs.getString("mythic_tier"+suffix, String.valueOf(mC.getResources().getInteger(valDefTierID))));
@@ -317,7 +321,20 @@ public class Perso {
                     }
                 }
             } else if(abiId.equalsIgnoreCase("ability_bmo")||abiId.equalsIgnoreCase("ability_dmd")){
-                abiScore+=getBaseAtk();
+                abiScore=getBaseAtk();
+                if(abiId.equalsIgnoreCase("ability_bmo")){
+                    abiScore+=getAbilityMod("ability_force");
+                    if(allForms!=null && allForms.hasActiveForm() && allForms.getCurrentForm().hasCapacity("form_capacity_constriction")){
+                        abiScore+=4;
+                    }
+                }
+                if(abiId.equalsIgnoreCase("ability_dmd")){
+                    abiScore+=getAbilityMod("ability_force");
+                    abiScore+=getAbilityMod("ability_dexterite");
+                    abiScore+=10;
+                }
+            } else if(abiId.equalsIgnoreCase("ability_reduc") && allForms!=null && allForms.hasActiveForm() && allForms.getCurrentForm().hasCapacity("form_capacity_elemental_body")){
+                abiScore+=5;
             } else if(abiId.equalsIgnoreCase("ability_reduc_elem") && allForms!=null){
                 abiScore+=allForms.getMaxResistBonus();
             }

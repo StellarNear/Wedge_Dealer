@@ -313,7 +313,7 @@ public class SettingsFragment extends PreferenceFragment {
                 navigate();
                 break;
             case "spend_myth_point":
-                if( pj.getResourceValue("resource_mythic_points")>0) {
+                if( pj.getCurrentResourceValue("resource_mythic_points")>0) {
                     new AlertDialog.Builder(mC)
                             .setTitle("Demande de confirmation")
                             .setMessage("Confirmes-tu la dépense d'un point mythique ?")
@@ -322,7 +322,7 @@ public class SettingsFragment extends PreferenceFragment {
                                 public void onClick(DialogInterface dialog, int whichButton) {
                                     pj.getAllResources().getResource("resource_mythic_points").spend(1);
                                     new PostData(mC,new PostDataElement("Utilisation d'un pouvoir mythique","Dépense d' un point mythique"));
-                                    tools.customToast(mC,"Il te reste "+pj.getResourceValue("resource_mythic_points")+" point(s) mythique(s)","center");
+                                    tools.customToast(mC,"Il te reste "+pj.getCurrentResourceValue("resource_mythic_points")+" point(s) mythique(s)","center");
                                 }
                             })
                             .setNegativeButton(android.R.string.no, null).show();

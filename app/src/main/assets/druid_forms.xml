@@ -85,7 +85,7 @@
         <name>Élémentaire d'air</name>
         <type>elemental_water</type>
         <size>TG</size>
-        <passive_capacity>black_vision_elemental,fly</passive_capacity>
+        <passive_capacity>elemental_body,black_vision_elemental,fly</passive_capacity>
         <active_capacity>
             <capacityid>air_vortex</capacityid> <!--todo-->
         </active_capacity>
@@ -100,7 +100,7 @@
         <name>Élémentaire d'eau</name>
         <type>elemental_water</type>
         <size>TG</size>
-        <passive_capacity>black_vision_elemental,swim,aquatic_respiration</passive_capacity>
+        <passive_capacity>elemental_body,black_vision_elemental,swim,aquatic_respiration</passive_capacity>
         <active_capacity>
             <capacityid>water_vortex</capacityid> <!--todo-->
         </active_capacity>
@@ -115,7 +115,7 @@
         <name>Élémentaire de feu</name>
         <type>elemental_fire</type>
         <size>TG</size>
-        <passive_capacity>black_vision_elemental</passive_capacity>
+        <passive_capacity>elemental_body,black_vision_elemental</passive_capacity>
         <active_capacity>
                 <capacityid>combustion</capacityid>
         </active_capacity>
@@ -132,7 +132,7 @@
         <name>Élémentaire de terre</name>
         <type>elemental_earth</type>
         <size>TG</size>
-        <passive_capacity>black_vision_elemental,earth_swim,bump</passive_capacity>
+        <passive_capacity>elemental_body,black_vision_elemental,earth_swim,bump</passive_capacity>
         <attack>
             <base>2d10</base>
             <base>2d10</base>

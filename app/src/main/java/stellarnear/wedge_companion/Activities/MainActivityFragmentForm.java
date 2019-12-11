@@ -35,6 +35,7 @@ import java.util.Map;
 import stellarnear.wedge_companion.CustomAlertDialog;
 import stellarnear.wedge_companion.Perso.Form;
 import stellarnear.wedge_companion.Perso.FormCapacity;
+import stellarnear.wedge_companion.Perso.FormCapacityLauncher;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
@@ -185,7 +186,7 @@ public class MainActivityFragmentForm extends Fragment {
         Form form = pj.getAllForms().getCurrentForm();
         String name="Aucune"; if(form!=null){name=form.getName();}
         ((TextView)returnFragView.findViewById(R.id.form_current_form)).setText(name);
-        ((TextView)returnFragView.findViewById(R.id.form_remaning_text)).setText(String.valueOf(pj.getResourceValue("resource_animal_form")));
+        ((TextView)returnFragView.findViewById(R.id.form_remaning_text)).setText(String.valueOf(pj.getCurrentResourceValue("resource_animal_form")));
         addCurrentPassiveCapa((LinearLayout)returnFragView.findViewById(R.id.linear_form_passives));
         addCurrentActiveCapa((LinearLayout)returnFragView.findViewById(R.id.linear_form_actives));
         if(form!=null && form.getAtkTxt().length()>0) {
@@ -310,7 +311,7 @@ public class MainActivityFragmentForm extends Fragment {
                     .setTitle("Changement de forme")
                     .setMessage("Veux tu changer ta forme en " + form.getName() + " ?"
                             + "\n\nHors combat en utilisant l'orbe de pooka (1min)" +
-                            "\nEn consomant un changement de forme (restant : " + pj.getResourceValue("resource_animal_form") + ")")
+                            "\nEn consomant un changement de forme (restant : " + pj.getCurrentResourceValue("resource_animal_form") + ")")
                     .setNeutralButton("Annuler", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -319,7 +320,7 @@ public class MainActivityFragmentForm extends Fragment {
                     .setPositiveButton("Normal", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            if(pj.getResourceValue("resource_animal_form")>0) {
+                            if(pj.getCurrentResourceValue("resource_animal_form")>0) {
                                 pj.getAllResources().getResource("resource_animal_form").spend(1);
                                 pj.getAllForms().changeFormTo(form);
                                 refreshPageInfos();
@@ -367,14 +368,27 @@ public class MainActivityFragmentForm extends Fragment {
         }
     }
 
-    private void popupLongTooltip(FormCapacity capa){
+    private void popupLongTooltip(final FormCapacity capa){
         View tooltip = getActivity().getLayoutInflater().inflate(R.layout.custom_toast_info_form_capacity, null);
-        CustomAlertDialog tooltipAlert = new CustomAlertDialog(getActivity(), mC, tooltip);
+        final CustomAlertDialog tooltipAlert = new CustomAlertDialog(getActivity(), mC, tooltip);
         tooltipAlert.setPermanent(true);
         ((TextView)tooltip.findViewById(R.id.toast_textName)).setText(capa.getName());
         ((TextView)tooltip.findViewById(R.id.toast_textDescr)).setText(capa.getDescr());
+        if(capa.getType().equalsIgnoreCase("active")){
+            tooltip.findViewById(R.id.button_use_capacity).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    tooltipAlert.dismissAlert();
+                    launchCapacity(capa);
+                }
+            });
+        } else {tooltip.findViewById(R.id.button_use_capacity).setVisibility(View.GONE);}
         tooltipAlert.clickToHide(tooltip.findViewById(R.id.toast_LinearLayout));
         tooltipAlert.showAlert();
+    }
+
+    private void launchCapacity(FormCapacity capa) {
+        new FormCapacityLauncher(getActivity(),mC,capa);
     }
 
     private TextView textViewFormated(String textTxt) {

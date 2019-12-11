@@ -75,7 +75,7 @@ public class Damages {
                 addElementDamage(elem);
             }
         }
-        
+
         if (totalSum>0){
             if(pj.getAllForms()==null || !pj.getAllForms().hasActiveForm() ){pj.getStats().storeStatsFromRolls(selectedRolls);}       //storing results
             showViews();

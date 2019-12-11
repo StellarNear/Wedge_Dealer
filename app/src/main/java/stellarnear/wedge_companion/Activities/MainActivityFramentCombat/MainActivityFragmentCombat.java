@@ -151,12 +151,12 @@ public class MainActivityFragmentCombat extends Fragment {
         barrageShot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(pj.getAllResources().getResource("resource_mythic_points").getCurrent()>=1) {
+                if(pj.getCurrentResourceValue("resource_mythic_points")>=1) {
                     mode = "barrage_shot";
                     hideButtons(2);
                     pj.getAllResources().getResource("resource_mythic_points").spend(1);
                     new PostData(getContext(),new PostDataElement("Lancement de tir de barrage mythique","-1pt mythique"));
-                    tools.customToast(getContext(),"Il te reste "+ pj.getResourceValue("resource_mythic_points")+" points mythiques","center");
+                    tools.customToast(getContext(),"Il te reste "+ pj.getCurrentResourceValue("resource_mythic_points")+" points mythiques","center");
                     startPreRand();
                 } else { tools.customToast(getContext(),"Tu n'as pas assez de points mythiques","center"); }
             }
@@ -252,21 +252,21 @@ public class MainActivityFragmentCombat extends Fragment {
                 simpleAtk.animate().scaleX(2).scaleY(2).alpha(0).setDuration(1000).start();
                 barrageShot.animate().translationXBy(200).setDuration(1000).start();
                 animate(mainActivityFragmentCombatBonusPanel.getButton());
-                if(pj.getResourceValue("resource_lynx_eye")>0){
+                if(pj.getCurrentResourceValue("resource_lynx_eye")>0){
                     mainActivityFragmentCombatBonusPanel.show();}
                 break;
             case 2:
                 simpleAtk.animate().translationXBy(-200).setDuration(1000).start();
                 barrageShot.animate().scaleX(2).scaleY(2).alpha(0).setDuration(1000).start();
                 animate(mainActivityFragmentCombatBonusPanel.getButton());
-                if(pj.getResourceValue("resource_lynx_eye")>0){
+                if(pj.getCurrentResourceValue("resource_lynx_eye")>0){
                     mainActivityFragmentCombatBonusPanel.show();}
                 break;
             case 3:
                 simpleAtk.animate().translationXBy(-200).setDuration(1000).start();
                 barrageShot.animate().translationXBy(200).setDuration(1000).start();
                 animate(mainActivityFragmentCombatBonusPanel.getButton());
-                if(pj.getResourceValue("resource_lynx_eye")>0){
+                if(pj.getCurrentResourceValue("resource_lynx_eye")>0){
                     mainActivityFragmentCombatBonusPanel.show();}
                 break;
         }

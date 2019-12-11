@@ -172,7 +172,19 @@ public class AllForms {
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Node attackNode = nodeList.item(i);
                 if (attackNode.getNodeType() == Node.ELEMENT_NODE) { // on a une capa active
-                    allAtks.add(new Attack(attackNode.getNodeName(),attackNode.getChildNodes().item(0).getNodeValue()));
+                    Attack atk =new Attack(attackNode.getNodeName(),attackNode.getChildNodes().item(0).getNodeValue());
+                    List<String> allAttackCapa=Arrays.asList("form_capacity_constriction","form_capacity_grip","form_capacity_bump","form_capacity_combustion");
+                    for(FormCapacity passive:form.getListPassiveCapacities()){
+                        if(allAttackCapa.contains(passive.getId())){
+                            atk.addCapacity(passive);
+                        }
+                    }
+                    for(FormCapacity active:form.getListActivesCapacities()){
+                        if(allAttackCapa.contains(active.getId())){
+                            atk.addCapacity(active);
+                        }
+                    }
+                    allAtks.add(atk);
                 }
             }
             form.setListAttacks(allAtks);
@@ -329,16 +341,13 @@ public class AllForms {
     /*
     TODO
 
-    vegetal
-    TODO régénération 5. Si cette forme ne peut pas bouger, la vitesse de déplacement du personnage est réduite à 1,50 m (1 case) et il perd toute autre possibilité de mouvement. Si la créature est immunisée ou possède une résistance à un élément, le personnage gagne un résistance de 20 contre cet élément.
-
 Magic
 pour les souffle DD = 10+ lvl/2 + mod const   9m range
 
     ELEMENTAIRE
      Pour les capa tout elementaire a ca : Ce sort fonctionne comme corps élémentaire III mais il permet aussi au lanceur de sorts de se transformer en élémentaire d’air,
         d’eau, de feu ou de terre de taille TG. Ses aptitudes dépendent du type d’élémentaire choisi. De plus, le personnage est immunisé contre les saignements, les coups critiques
-         et les attaques sournoises tant qu’il est sous forme élémentaire et il gagne une résistance TODO RD 5/—.
+         et les attaques sournoises tant qu’il est sous forme élémentaire et il gagne une résistance RD 5/—.
 
      */
 

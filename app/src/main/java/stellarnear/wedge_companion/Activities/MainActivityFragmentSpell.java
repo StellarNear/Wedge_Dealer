@@ -144,7 +144,7 @@ public class MainActivityFragmentSpell extends Fragment {
 
             String tier_txt="Tier "+i;
 
-            String titre_tier=tier_txt +" ["+ pj.getResourceValue("spell_rank_"+i)+" restant(s)]";
+            String titre_tier=tier_txt +" ["+ pj.getCurrentResourceValue("spell_rank_"+i)+" restant(s)]";
             if (i==0){titre_tier=tier_txt +" [illimité]";}
             SpannableString titre=  new SpannableString(titre_tier);
             titre.setSpan(new RelativeSizeSpan(0.65f), tier_txt.length(),titre_tier.length(), 0);
@@ -166,10 +166,10 @@ public class MainActivityFragmentSpell extends Fragment {
             int orientation = getResources().getConfiguration().orientation;  //1 pour portrait et 2 paysage
             side_txt.setTextColor(Color.DKGRAY);
             if (orientation==1) {
-                side_txt.setText("T" + i + "\n(" + pj.getResourceValue("spell_rank_"+i) + ")");
+                side_txt.setText("T" + i + "\n(" + pj.getCurrentResourceValue("spell_rank_"+i) + ")");
                 if (i==0){side_txt.setText("T"+i+"\n("+ DecimalFormatSymbols.getInstance().getInfinity()+")");}
             } else {
-                side_txt.setText("T" + i + " (" + pj.getResourceValue("spell_rank_"+i) + ")");
+                side_txt.setText("T" + i + " (" + pj.getCurrentResourceValue("spell_rank_"+i) + ")");
                 if (i==0){side_txt.setText("T"+i+" ("+ DecimalFormatSymbols.getInstance().getInfinity()+")");}
             }
 
@@ -188,7 +188,7 @@ public class MainActivityFragmentSpell extends Fragment {
             side_txt.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
-                    if(pj.getResourceValue("resource_mythic_points")>0) {
+                    if(pj.getCurrentResourceValue("resource_mythic_points")>0) {
 
                         new AlertDialog.Builder(getContext())
                                 .setTitle("Arcane libre")
@@ -202,7 +202,7 @@ public class MainActivityFragmentSpell extends Fragment {
 
                                         pj.getAllResources().getResource("resource_mythic_points").spend(1);
                                         new PostData(getContext(),new PostDataElement("Lancement sort arcane libre","-1pt mythique"));
-                                        Toast toast = Toast.makeText(getContext(), "Il te reste " + pj.getResourceValue("resource_mythic_points") + " point(s) mythique(s)", Toast.LENGTH_SHORT);
+                                        Toast toast = Toast.makeText(getContext(), "Il te reste " + pj.getCurrentResourceValue("resource_mythic_points") + " point(s) mythique(s)", Toast.LENGTH_SHORT);
                                         toast.setGravity(Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 0);
                                         toast.show();
                                     }
@@ -317,10 +317,10 @@ public class MainActivityFragmentSpell extends Fragment {
 
     private void prepareSpell(final CheckBox check, final Spell spell) {
         if(spell.isMyth()){
-            if(pj.getResourceValue("resource_mythic_points")>0) {
+            if(pj.getCurrentResourceValue("resource_mythic_points")>0) {
                 new AlertDialog.Builder(getContext())
                         .setTitle("Demande de confirmation")
-                        .setMessage("Point(s) mythique(s) avant lancement des sorts : " + pj.getResourceValue("resource_mythic_points") + "\n" +
+                        .setMessage("Point(s) mythique(s) avant lancement des sorts : " + pj.getCurrentResourceValue("resource_mythic_points") + "\n" +
                                 "\nVeux tu préparer la version mythique du sort " + spell.getName() + "\n(cela coûtera 1 pt) ?")
                         .setIcon(android.R.drawable.ic_menu_help)
                         .setPositiveButton("oui", new DialogInterface.OnClickListener() {

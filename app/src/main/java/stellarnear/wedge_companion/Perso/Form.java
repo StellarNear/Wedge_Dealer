@@ -178,5 +178,20 @@ public class Form {
     public List<Attack> getAllAtks() {
         return allAtks;
     }
+
+    public boolean hasCapacity(String capaId) {
+        boolean val=false;
+        for(FormCapacity passive:listPassiveCapacities){
+         if(passive.getId().equalsIgnoreCase(capaId))   {
+             val=true;
+         }
+        }
+        for(FormCapacity active:listActivesCapacities){
+            if(active.getId().equalsIgnoreCase(capaId))   {
+                val=true;
+            }
+        }
+        return val;
+    }
 }
 

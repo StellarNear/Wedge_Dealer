@@ -126,16 +126,6 @@ public class AllAbilities {
                 val = readAbility(abi.getId()+"_base"); //on prend que la valeur de base + augement perma le reste est faut au niveau du perso avec le stuff
                 val += readAbility(abi.getId()+"_augment");
                 val += inventory.getAllEquipments().getAbiBonus(abi.getId());
-            } else if (abi.getId().equalsIgnoreCase("ability_ca")) {
-                val = 10; //la ca de base pour les calcul du reste on fait ca au niveau du perso pour prendre compte de la ca equipement et max dex mod etc
-            } else if (abi.getId().equalsIgnoreCase("ability_bmo")) {
-                val = getAbi("ability_force").getMod();
-            } else if (abi.getId().equalsIgnoreCase("ability_dmd")) {
-                val = getAbi("ability_force").getMod() + 10 + getAbi("ability_dexterite").getMod();
-            } else if (abi.getId().equalsIgnoreCase("ability_init")) {
-                val = getAbi("ability_dexterite").getMod();
-            } else if (abi.getId().equalsIgnoreCase("ability_equipment")) {
-                //on laisse à 0 le nombre de piece de stuff est calculer au niveau du perso
             } else if (abi.getId().equalsIgnoreCase("ability_lvl") && !pjID.equalsIgnoreCase("")){ //pour les autre que wedge !
                 switch (pjID){
                     case "halda":

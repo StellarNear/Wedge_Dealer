@@ -13,6 +13,7 @@ import java.io.InputStream;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.Tools;
 
 
@@ -42,7 +43,7 @@ public class BuildSpellList extends AppCompatActivity {
 
     private void addSpells(Context mC, String mode) {
         try {
-            InputStream is = mC.getAssets().open("spells"+mode+".xml");
+            InputStream is = mC.getAssets().open("spells"+mode+PersoManager.getPJSuffix()+".xml");
 
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();

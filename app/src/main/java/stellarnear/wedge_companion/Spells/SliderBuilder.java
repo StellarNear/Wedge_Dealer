@@ -34,10 +34,10 @@ public class SliderBuilder {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 if (seekBar.getProgress() > 75) {
                     seekBar.setProgress(100);
-                    if (spell.getRank() != 0 && pj.getResourceValue("spell_rank_" + calculationSpell.currentRank(spell)) <1) {
+                    if (spell.getRank() != 0 && pj.getCurrentResourceValue("spell_rank_" + calculationSpell.currentRank(spell)) <1) {
                         seekBar.setProgress(1);
                         tools.customToast(mC,"Tu n'as pas d'emplacement de sort "+ calculationSpell.currentRank(spell)+" de disponible...","center");
-                    } else if(!spell.isCast() && spell.isMyth() && pj.getResourceValue("resource_mythic_points") <1){
+                    } else if(!spell.isCast() && spell.isMyth() && pj.getCurrentResourceValue("resource_mythic_points") <1){
                         seekBar.setProgress(1);
                         tools.customToast(mC, "Il ne te reste aucun point mythique pour lancer ce sort Mythique","center");
                     } else {
@@ -82,7 +82,7 @@ public class SliderBuilder {
             if (spell.isMyth()) {
                 pj.getAllResources().getResource("resource_mythic_points").spend(1);
                 new PostData(mC,new PostDataElement("Lancement sort mythique","-1pt mythique"));
-                tools.customToast(mC, "Sort Mythique\nIl te reste " + pj.getResourceValue("resource_mythic_points") + " point(s) mythique(s)", "center");
+                tools.customToast(mC, "Sort Mythique\nIl te reste " + pj.getCurrentResourceValue("resource_mythic_points") + " point(s) mythique(s)", "center");
             }
         } else if(!slided) {
             slided=true;
