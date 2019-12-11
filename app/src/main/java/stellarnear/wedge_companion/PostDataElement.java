@@ -1,5 +1,7 @@
 package stellarnear.wedge_companion;
 
+import android.widget.TextView;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -7,6 +9,10 @@ import java.util.Locale;
 import stellarnear.wedge_companion.Elems.Elem;
 import stellarnear.wedge_companion.Elems.AttacksElemsManager;
 import stellarnear.wedge_companion.FormSpell.FormPower;
+import stellarnear.wedge_companion.Perso.AllForms;
+import stellarnear.wedge_companion.Perso.Form;
+import stellarnear.wedge_companion.Perso.FormCapacity;
+import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.Rolls.Dices.Dice;
 import stellarnear.wedge_companion.Rolls.Roll;
@@ -168,6 +174,45 @@ public class PostDataElement {
             } else {
                 this.result="Dégâts : "+spell.getDmgResult();
             }
+        }
+    }
+
+    public PostDataElement(Form form){
+        SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.FRANCE);
+        this.date=formater.format(new Date());
+        if(form==null){
+            this.typeEvent = "Retour à la forme normale";
+            this.result = "Druide Archer-sylvestre !" ;
+        } else {
+            this.typeEvent = "Changement de forme en " + form.getName();
+            Perso pj = PersoManager.getCurrentPJ();
+            this.result = pj.getAllForms().getFormAbiModText(form);
+            String detailTxt = "";
+            for (FormCapacity capa : form.getListActivesCapacities()) {
+                if (!detailTxt.equalsIgnoreCase("")) {
+                    detailTxt += ", ";
+                }
+                detailTxt += capa.getName();
+            }
+            for (FormCapacity capa : form.getListPassiveCapacities()) {
+                if (!detailTxt.equalsIgnoreCase("")) {
+                    detailTxt += ", ";
+                }
+                detailTxt += capa.getName();
+            }
+            if (form.getResistsValueLongFormat().length() > 0) {
+                if (!detailTxt.equalsIgnoreCase("")) {
+                    detailTxt += ", ";
+                }
+                detailTxt += form.getResistsValueLongFormat();
+            }
+            if (form.getVulnerability().length() > 0) {
+                if (!detailTxt.equalsIgnoreCase("")) {
+                    detailTxt += ", ";
+                }
+                detailTxt += "Vulnérabilité : " + form.getVulnerability();
+            }
+            this.detail = detailTxt;
         }
     }
 

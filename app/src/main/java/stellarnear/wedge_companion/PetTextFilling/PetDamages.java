@@ -76,10 +76,11 @@ public class PetDamages {
             }
         }
 
-        //storing results
-        pj.getStats().storeStatsFromRolls(selectedRolls);
+
+
 
         if (totalSum>0){
+            pj.getStats().storeStatsFromRolls(selectedRolls);     //storing results
             showViews();
             ((TextView) mainView.findViewById(R.id.mainLinearDmgTitle)).setText("Dégâts : "+String.valueOf(totalSum));
             checkHighscore(totalSum);

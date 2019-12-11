@@ -1,6 +1,7 @@
 package stellarnear.wedge_companion.Attack;
 
 
+import stellarnear.wedge_companion.Perso.FormCapacity;
 import stellarnear.wedge_companion.Tools;
 
 public class Attack {
@@ -10,6 +11,7 @@ public class Attack {
     private int nDice=0;
     private int flatDmg=0;
     private String damageTxt;
+    private FormCapacity capacity;
     private Tools tools=new Tools();
 
     public Attack( String name, String damageTxt){
@@ -42,6 +44,18 @@ public class Attack {
 
     public String getDmgTxt() {
         return damageTxt;
+    }
+
+    public void setCapacity(FormCapacity capacity) { //TODO
+        this.capacity = capacity;
+    }
+
+    public FormCapacity getCapacity() {
+        return capacity;
+    }
+
+    public boolean hasPower() {
+        return capacity!=null;
     }
 }
 

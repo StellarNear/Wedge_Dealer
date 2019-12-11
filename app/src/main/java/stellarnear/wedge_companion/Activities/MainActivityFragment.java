@@ -20,6 +20,7 @@ import android.widget.LinearLayout;
 import java.util.List;
 
 import stellarnear.wedge_companion.Activities.MainActivityFramentCombat.MainActivityFragmentCombat;
+import stellarnear.wedge_companion.Activities.MainActivityFramentCombat.MainActivityFragmentFormCombat;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.Quadrants.QuadrantManager;
@@ -53,7 +54,12 @@ public class MainActivityFragment extends Fragment {
         if(pj.getID().equalsIgnoreCase("")) {
             ((LinearLayout) returnFragView.findViewById(R.id.linear_frag_to_combat)).setVisibility(View.VISIBLE);
             ImageButton fabCombat = (ImageButton) returnFragView.findViewById(R.id.button_frag_to_combat);
-            setButtonActivity(fabCombat, new MainActivityFragmentCombat(), R.animator.infrombotfrag, R.animator.outfadefrag, "frag_combat");
+
+            if(pj.getAllForms()!=null && pj.getAllForms().hasActiveForm()){
+                setButtonActivity(fabCombat, new MainActivityFragmentFormCombat(), R.animator.infrombotfrag, R.animator.outfadefrag, "frag_form_combat");
+            } else {
+                setButtonActivity(fabCombat, new MainActivityFragmentCombat(), R.animator.infrombotfrag, R.animator.outfadefrag, "frag_combat");
+            }
             fabCombat.startAnimation(top);
         } else {
             //todo canalisation

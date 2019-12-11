@@ -29,7 +29,7 @@ import stellarnear.wedge_companion.PostData;
 import stellarnear.wedge_companion.PostDataElement;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Rolls.Roll;
-import stellarnear.wedge_companion.Rolls.RollFactory;
+import stellarnear.wedge_companion.Rolls.RangeRollFactory;
 import stellarnear.wedge_companion.Rolls.RollList;
 import stellarnear.wedge_companion.TextFilling.Damages;
 import stellarnear.wedge_companion.TextFilling.PostRandValues;
@@ -97,15 +97,6 @@ public class MainActivityFragmentCombat extends Fragment {
         buttonMain.setOnClickListener(listnerBackToMain);
 
         setupScreen();
-
-        if(pj.getAllForms().hasActiveForm()){
-            try {
-                int imgId = getResources().getIdentifier(pj.getAllForms().getCurrentForm().getId(), "drawable", getContext().getPackageName());
-                ((ImageView)mainPage.findViewById(R.id.background_blank_combat)).setImageDrawable(getResources().getDrawable(imgId));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
         return mainPage;
     }
 
@@ -144,7 +135,7 @@ public class MainActivityFragmentCombat extends Fragment {
         // panneau bonus (lynx et range)
         mainActivityFragmentCombatBonusPanel = new MainActivityFragmentCombatBonusPanel(getContext(),mainPage);
 
-         // boutons d'attaques
+        // boutons d'attaques
         simpleAtk = mainPage.findViewById(R.id.button_simple_atk);
         simpleAtk.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -194,8 +185,7 @@ public class MainActivityFragmentCombat extends Fragment {
                             .setIcon(android.R.drawable.ic_menu_help)
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int whichButton) {
-                                    rollList = new RollFactory(getActivity(),getContext(),mode).getRollList();
-                                    preRandValues = new PreRandValues(getContext(), mainPage, rollList);
+                                    preRandValues = null;
                                     startRandAtk();
                                 }
                             })
@@ -207,6 +197,14 @@ public class MainActivityFragmentCombat extends Fragment {
 
     private void clearStep(Integer step) {
         switch (step) {
+            case 0:
+                if (mainPage.getBackground() != null) {
+                    mainPage.setBackground(null);
+                }
+                mainPage.setOnTouchListener(null);
+                if (preRandValues != null) {
+                    preRandValues.hideViews();
+                }
             case 1:
                 if (postRandValues != null) {
                     postRandValues.hideViews();
@@ -231,9 +229,9 @@ public class MainActivityFragmentCombat extends Fragment {
     }
 
     private void startPreRand() {
-        //clearStep(0);
+        clearStep(0);
         ((ImageView)mainPage.findViewById(R.id.background_blank_combat)).setImageDrawable(null);
-        rollList = new RollFactory(getActivity(),getContext(),mode).getRollList();
+        rollList = new RangeRollFactory(getActivity(), getContext(), mode).getRollList();
         preRandValues = new PreRandValues(getContext(), mainPage, rollList);
         mainActivityFragmentCombatBonusPanel.addRollData(preRandValues,rollList);
         // ajout du panneau additionel (lynx_eye etc)
@@ -249,7 +247,6 @@ public class MainActivityFragmentCombat extends Fragment {
             case 0:
                 simpleAtk.animate().translationXBy(-200).setDuration(1000).start();
                 barrageShot.animate().translationXBy(200).setDuration(1000).start();
-                animate(mainActivityFragmentCombatBonusPanel.getButton());
                 break;
             case 1:
                 simpleAtk.animate().scaleX(2).scaleY(2).alpha(0).setDuration(1000).start();
@@ -282,7 +279,7 @@ public class MainActivityFragmentCombat extends Fragment {
         showDivider();
         fabAtk.animate().setDuration(1000).translationX(-400).start();       //decale le bouton à gauche pour l'apparition du suivant
         Snackbar.make(mainPage, "Lancement des dés en cours... ", Snackbar.LENGTH_SHORT).show();
-        if(preRandValues==null){
+        if (preRandValues == null) {
             startPreRand();
         }
         if (postRandValues != null) {

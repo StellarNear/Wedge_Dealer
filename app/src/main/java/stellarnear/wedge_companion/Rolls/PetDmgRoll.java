@@ -11,9 +11,9 @@ import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Rolls.Dices.Dice;
 import stellarnear.wedge_companion.Tools;
 
-public class MeleeDmgRoll extends DmgRoll {
+public class PetDmgRoll extends DmgRoll {
 
-    public MeleeDmgRoll(Activity mA, Context mC, Boolean critConfirmed, Boolean naturalCrit) {
+    public PetDmgRoll(Activity mA, Context mC, Boolean critConfirmed, Boolean naturalCrit) {
         super(mA, mC, critConfirmed, naturalCrit);
     }
 

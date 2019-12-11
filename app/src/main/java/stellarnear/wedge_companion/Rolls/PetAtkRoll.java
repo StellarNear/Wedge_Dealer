@@ -16,9 +16,9 @@ import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Rolls.Dices.Dice;
 import stellarnear.wedge_companion.Tools;
 
-public class MeleeAtkRoll extends AtkRoll {
+public class PetAtkRoll extends AtkRoll {
 
-    public MeleeAtkRoll(Activity mA, Context mC, Integer base) {
+    public PetAtkRoll(Activity mA, Context mC, Integer base) {
         super(mA, mC, base);
     }
 

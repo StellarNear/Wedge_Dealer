@@ -14,7 +14,7 @@ import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Tools;
 
-public class RollFactory {
+public class RangeRollFactory {
 
     private Activity mA;
     private Context mC;
@@ -24,7 +24,7 @@ public class RollFactory {
     private Tools tools=new Tools();
     private Perso pj= PersoManager.getCurrentPJ();
 
-    public RollFactory(Activity mA,Context mC,String mode){
+    public RangeRollFactory(Activity mA, Context mC, String mode){
         this.mA=mA;
         this.mC=mC;
         this.mode=mode;

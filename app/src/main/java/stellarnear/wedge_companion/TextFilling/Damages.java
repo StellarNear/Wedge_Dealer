@@ -75,11 +75,9 @@ public class Damages {
                 addElementDamage(elem);
             }
         }
-
-        //storing results
-        pj.getStats().storeStatsFromRolls(selectedRolls);
-
+        
         if (totalSum>0){
+            if(pj.getAllForms()==null || !pj.getAllForms().hasActiveForm() ){pj.getStats().storeStatsFromRolls(selectedRolls);}       //storing results
             showViews();
             ((TextView) mainView.findViewById(R.id.mainLinearDmgTitle)).setText("Dégâts : "+String.valueOf(totalSum));
             checkHighscore(totalSum);

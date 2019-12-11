@@ -18,7 +18,7 @@ import stellarnear.wedge_companion.Tools;
 
 public abstract class Roll {
     protected AtkRoll atkRoll;
-    protected List<DmgRoll> dmgRollList; //on peut avoir plusieurs fleches de degat par jet d'attaque
+    protected List<DmgRoll> dmgRollList=new ArrayList<>(); //on peut avoir plusieurs fleches de degat par jet d'attaque
     protected int nthAtkRoll;
     protected Activity mA;
     protected Context mC;
@@ -30,12 +30,6 @@ public abstract class Roll {
     public Roll(Activity mA, Context mC, Integer atkBase) {
         this.mA=mA;
         this.mC=mC;
-        if(mA instanceof MainActivity){
-            this.atkRoll=new RangeAtkRoll(mA,mC,atkBase);
-        } else {
-            this.atkRoll=new MeleeAtkRoll(mA,mC,atkBase);
-        }
-        this.dmgRollList=new ArrayList<>();
         settings = PreferenceManager.getDefaultSharedPreferences(mC);
     }
 

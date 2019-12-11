@@ -22,6 +22,8 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import stellarnear.wedge_companion.Attack.Attack;
 import stellarnear.wedge_companion.FormSpell.FormPower;
+import stellarnear.wedge_companion.PostData;
+import stellarnear.wedge_companion.PostDataElement;
 import stellarnear.wedge_companion.Tools;
 
 /**
@@ -281,6 +283,7 @@ public class AllForms {
 
     public void changeFormTo(Form form) {
         currentForm=form;
+        new PostData(mC,new PostDataElement(form));
     }
 
     public String getFormAbiModText(Form... formOptional) {
@@ -303,6 +306,7 @@ public class AllForms {
 
     public void unform() {
         currentForm=null;
+        new PostData(mC,new PostDataElement((Form)null));
     }
 
     public int getResistBonus(String elemKey) {
