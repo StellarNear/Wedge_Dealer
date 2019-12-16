@@ -216,6 +216,15 @@ public class PostDataElement {
         }
     }
 
+    public PostDataElement(FormCapacity capa, int sumResult) {
+        SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.FRANCE);
+        this.date=formater.format(new Date());
+        this.typeEvent="Lancement capacité "+capa.getName();
+        this.detail=capa.getDescr();
+        this.result="Dégâts : "+sumResult;
+    }
+
+
     public PostDataElement(FormPower spell){
         SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.FRANCE);
         this.date=formater.format(new Date());
@@ -226,6 +235,7 @@ public class PostDataElement {
             this.result="Dégâts : "+spell.getDmgResult();
         }
     }
+
 
     public String getDetail() {
         return detail;

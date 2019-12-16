@@ -51,7 +51,7 @@ public class SpellsElemsManager {
         return getElementByKey(elemKey).getColorId();
     }
 
-    public int getColorIdRecent(String elemKey){
+    public int getColorIdDark(String elemKey){
         return getElementByKey(elemKey).getColorIdDark();
     }
 

@@ -1,7 +1,6 @@
 package stellarnear.wedge_companion.FormSpell;
 
 import android.content.Context;
-import android.support.design.widget.Snackbar;
 import android.widget.SeekBar;
 
 import stellarnear.wedge_companion.Perso.Perso;
@@ -17,8 +16,6 @@ public class FormSliderBuilder {
     private Perso pj = PersoManager.getCurrentPJ();
     private FormPower spell;
     private Context mC;
-    private boolean slided=false;
-    private CalculationSpell calculationSpell =new CalculationSpell();
     private OnCastEventListener mListener;
     private SeekBar seek;
     private Tools tools=new Tools();
@@ -35,9 +32,7 @@ public class FormSliderBuilder {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 if (seekBar.getProgress() > 75) {
                     seekBar.setProgress(100);
-
                         startCasting();
-
                 } else {
                     seekBar.setProgress(1);
                 }
@@ -63,12 +58,11 @@ public class FormSliderBuilder {
     private void startCasting() {
         spendCast();
         mListener.onEvent();
-        Snackbar.make(seek, "Lancement du sort : " + spell.getName(), Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
     }
 
     public void spendCast() {
         if(!spell.isCast()) {
+            spell.cast();
             new PostData(mC,new PostDataElement(spell)); // pour les sous sorts on peut avoir un sous sort pas lancé mais pas posté
         }
     }

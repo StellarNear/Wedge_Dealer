@@ -24,11 +24,9 @@ public class FormSpellProfileManager {
     private View profile;
     private ViewFlipper panel;
     private Boolean resultDisplayed =false; //pour aps revenir au panneau central si le sort a ses dégats affiché
-    private CustomAlertDialog metaPopup;
     private Tools tools=new Tools();
     private FormSliderBuilder sliderBuild;
     private OnRefreshEventListener mListener;
-    private String position="info";
 
     public FormSpellProfileManager(Activity mA, Context mC, FormPower spell, View profileView){
         this.mA=mA;
@@ -37,17 +35,10 @@ public class FormSpellProfileManager {
         profile = profileView;
         panel = ((ViewFlipper)profile.findViewById(R.id.view_flipper));
         buildProfileMechanisms();
-        panel.setDisplayedChild(1);
+        panel.setDisplayedChild(0);
     }
 
     private void buildProfileMechanisms(){
-
-
-        if(spell.isCast()){
-            ((LinearLayout)profile.findViewById(R.id.metamagic)).setEnabled(false);
-            ((TextView)profile.findViewById(R.id.text_meta)).setTextColor(Color.GRAY);
-            ((ImageView)profile.findViewById(R.id.symbol_meta)).getDrawable().mutate().setColorFilter(Color.GRAY,PorterDuff.Mode.SRC_IN);
-        }
 
         //Slider
         if(sliderBuild==null) {
@@ -56,10 +47,10 @@ public class FormSpellProfileManager {
             sliderBuild.setCastEventListener(new FormSliderBuilder.OnCastEventListener() {
                 @Override
                 public void onEvent() {
-                    ((LinearLayout) profile.findViewById(R.id.fourth_panel)).removeAllViews();
-                    new FormResultBuilder(mA, mC, spell).addResults((LinearLayout) profile.findViewById(R.id.fourth_panel));
+                    ((LinearLayout) profile.findViewById(R.id.result_panel)).removeAllViews();
+                    new FormResultBuilder(mA, mC, spell).addResults((LinearLayout) profile.findViewById(R.id.result_panel));
                     resultDisplayed = true;
-                    movePanelTo("dmg");
+                    movePanelToDmg();
                     if (mListener != null) {
                         mListener.onEvent();
                     }
@@ -68,53 +59,13 @@ public class FormSpellProfileManager {
         }
     }
 
-    private void movePanelTo(String toPosition) {
-        if(!this.position.equalsIgnoreCase(toPosition)) {
-            Animation in=null;Animation out=null;
-            int indexChild=1;
-            switch (this.position) {
-                case "elem":
-                    out = AnimationUtils.loadAnimation(mC, R.anim.outtoleft);
-                    break;
-                case "info":
-                    if(toPosition.equalsIgnoreCase("elem")){
-                        out = AnimationUtils.loadAnimation(mC, R.anim.outtoright);
-                    } else {
-                        out = AnimationUtils.loadAnimation(mC, R.anim.outtoleft);
-                    }
-                    break;
-                case "arcane":
-                    out = AnimationUtils.loadAnimation(mC, R.anim.outtoright);
-                    break;
-            }
-            switch (toPosition) {
-                case "elem":
-                    in = AnimationUtils.loadAnimation(mC, R.anim.infromleft);
-                    indexChild=0;
-                    break;
-                case "info":
-                    if(this.position.equalsIgnoreCase("elem")){
-                        in = AnimationUtils.loadAnimation(mC, R.anim.infromright);
-                    } else {
-                        in = AnimationUtils.loadAnimation(mC, R.anim.infromleft);
-                    }
-                    indexChild=1;
-                    break;
-                case  "arcane":
-                    in = AnimationUtils.loadAnimation(mC, R.anim.infromright);
-                    indexChild=2;
-                    break;
-                case "dmg":
-                    in = AnimationUtils.loadAnimation(mC, R.anim.infromright);
-                    indexChild=3;
-                    break;
-            }
+    private void movePanelToDmg() {
+           Animation out=null;
+        Animation in = AnimationUtils.loadAnimation(mC, R.anim.infromright);
             panel.clearAnimation();
             panel.setInAnimation(in);
             panel.setOutAnimation(out);
-            panel.setDisplayedChild(indexChild);
-            this.position = toPosition;
-        }
+            panel.setDisplayedChild(1);
     }
 
     public void refreshProfileMechanisms() {

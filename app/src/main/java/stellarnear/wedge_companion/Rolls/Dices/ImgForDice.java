@@ -42,7 +42,7 @@ public class ImgForDice {
         if (!wasRand) {
             int drawableId;
             if (dice.getRandValue() > 0) {
-                drawableId = mC.getResources().getIdentifier("d" + dice.getnFace() + "_" + String.valueOf(dice.getRandValue()) + (dice.getElement().equalsIgnoreCase("aucun")?"":dice.getElement()), "drawable", mC.getPackageName());
+                drawableId = mC.getResources().getIdentifier("d" + dice.getnFace() + "_" + String.valueOf(dice.getRandValue()) + (dice.getElement().equalsIgnoreCase("none")?"":dice.getElement()), "drawable", mC.getPackageName());
                 wasRand=true;
             } else {
                 drawableId = mC.getResources().getIdentifier("d" + dice.getnFace() + "_main", "drawable", mC.getPackageName());

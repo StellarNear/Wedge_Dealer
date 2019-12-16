@@ -48,10 +48,47 @@ public class AllForms {
     public AllForms(Context mC)
     {
         this.mC = mC;
-        buildFormCapacityList();
         buildPowerList();
+        buildFormCapacityList();
         buildFormList();
     }
+
+    private void buildPowerList() {
+        allPowersList =new ArrayList<>();
+        mapIdPower =new HashMap<>();
+        try {
+            InputStream is = mC.getAssets().open("power_form.xml");
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(is);
+            Element element=doc.getDocumentElement();
+            element.normalize();
+            NodeList nList = doc.getElementsByTagName("power");
+            for (int i=0; i<nList.getLength(); i++) {
+                Node node = nList.item(i);
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element element2 = (Element) node;
+                    FormPower formPower = new FormPower(readValue("id",element2),
+                            readValue("name",element2),
+                            readValue("descr",element2),
+                            readValue("effect",element2),
+                            readValue("dmg_type",element2),
+                            readValue("dice_type",element2),
+                            tools.toDouble(readValue("n_dice_per_lvl",element2)),
+                            tools.toInt(readValue("cap_dice",element2)),
+                            tools.toInt(readValue("flat_dmg",element2)),
+                            readValue("range",element2),
+                            readValue("area",element2),
+                            readValue("cast_time",element2),
+                            readValue("save_type",element2),
+                            mC);
+                    allPowersList.add(formPower);
+                    mapIdPower.put(formPower.getID(), formPower);
+                }
+            }
+        } catch (Exception e) {    Log.d("FormBuilding_power",e.getMessage());e.printStackTrace();}
+    }
+
 
     private void buildFormCapacityList() {
         allFormsCapacitiesList = new ArrayList<>();
@@ -80,6 +117,17 @@ public class AllForms {
                             readValue("savetype", element2),
                             readValue("powerid", element2),
                             mC);
+                    if(formCapacityapacity.hasPowerID()){
+                        if(formCapacityapacity.getPowerId().contains("prisma")){
+                            List<String> allrays= Arrays.asList("orange","yellow","red","violet","indigo","blue","green");
+                            for(String ray : allrays){
+                                formCapacityapacity.addPower(mapIdPower.get("powerform_prisma_ray_"+ray));
+                            }
+                        } else {
+                            formCapacityapacity.addPower(mapIdPower.get(formCapacityapacity.getPowerId()));
+                        }
+
+                    }
                     allFormsCapacitiesList.add(formCapacityapacity);
                     mapIdFormCapacities.put(formCapacityapacity.getId(),formCapacityapacity);
                 }
@@ -89,42 +137,6 @@ public class AllForms {
             Log.d("FormBuilding_capa",e.getMessage());
             e.printStackTrace();
         }
-    }
-
-    private void buildPowerList() {
-        allPowersList =new ArrayList<>();
-        mapIdPower =new HashMap<>();
-        try {
-            InputStream is = mC.getAssets().open("power_form.xml");
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(is);
-            Element element=doc.getDocumentElement();
-            element.normalize();
-            NodeList nList = doc.getElementsByTagName("power");
-            for (int i=0; i<nList.getLength(); i++) {
-                Node node = nList.item(i);
-                if (node.getNodeType() == Node.ELEMENT_NODE) {
-                    Element element2 = (Element) node;
-                    FormPower formPower = new FormPower(readValue("id",element2),
-                            readValue("name",element2),
-                            readValue("descr",element2),
-                            readValue("effect",element2),
-                            readValue("dmg_type",element2),
-                            readValue("dice_type_type",element2),
-                            tools.toDouble(readValue("n_dice_per_lvl",element2)),
-                            tools.toInt(readValue("cap_dice",element2)),
-                            tools.toInt(readValue("flat_dmg",element2)),
-                            readValue("range",element2),
-                            readValue("area",element2),
-                            readValue("cast_time",element2),
-                            readValue("save_type",element2),
-                            mC);
-                    allPowersList.add(formPower);
-                    mapIdPower.put(formPower.getID(), formPower);
-                }
-            }
-        } catch (Exception e) {    Log.d("FormBuilding_power",e.getMessage());e.printStackTrace();}
     }
 
     private void buildFormList() {
@@ -336,19 +348,4 @@ public class AllForms {
         }
         return res;
     }
-
-
-    /*
-    TODO
-
-Magic
-pour les souffle DD = 10+ lvl/2 + mod const   9m range
-
-    ELEMENTAIRE
-     Pour les capa tout elementaire a ca : Ce sort fonctionne comme corps élémentaire III mais il permet aussi au lanceur de sorts de se transformer en élémentaire d’air,
-        d’eau, de feu ou de terre de taille TG. Ses aptitudes dépendent du type d’élémentaire choisi. De plus, le personnage est immunisé contre les saignements, les coups critiques
-         et les attaques sournoises tant qu’il est sous forme élémentaire et il gagne une résistance RD 5/—.
-
-     */
-
 }

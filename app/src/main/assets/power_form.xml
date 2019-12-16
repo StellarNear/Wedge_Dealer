@@ -5,8 +5,9 @@
     <power>
         <name>Souffle de feu</name>
         <dice_type>6</dice_type>
+        <descr>Exhale de l’énergie ou un autre effet magique sous la forme d’un cône, d’une ligne ou d’un nuage. Le plus souvent, les attaques de souffle infligent des dégâts d’un type d’énergie spécifique.</descr>
         <n_dice_per_lvl>0.5</n_dice_per_lvl>
-        <dmg_type>feu</dmg_type>
+        <dmg_type>fire</dmg_type>
         <area>cône 4.5m</area>
         <duration>instant</duration>
         <save_type>ref</save_type>
@@ -14,14 +15,14 @@
     </power>
 
     <power>
-        <name>Souffle de galce</name>
+        <name>Souffle de glace</name>
         <dice_type>6</dice_type>
         <n_dice_per_lvl>0.5</n_dice_per_lvl>
-        <dmg_type>feu</dmg_type>
+        <dmg_type>frost</dmg_type>
         <area>cône 9m</area>
         <duration>instant</duration>
         <save_type>ref</save_type>
-        <id> powerform_dragon_horse_breath</id>
+        <id>powerform_dragon_horse_breath</id>
     </power>
 
 
@@ -29,7 +30,7 @@
     <power>
         <name>Rayon Rouge</name>
         <flat_dmg>20</flat_dmg>
-        <dmg_type>feu</dmg_type>
+        <dmg_type>fire</dmg_type>
         <range>9m</range>
         <duration>instant</duration>
         <save_type>ref</save_type>
@@ -39,7 +40,7 @@
     <power>
         <name>Rayon Orange</name>
         <flat_dmg>40</flat_dmg>
-        <dmg_type>acide</dmg_type>
+        <dmg_type>acid</dmg_type>
         <range>9m</range>
         <duration>instant</duration>
         <save_type>ref</save_type>
@@ -49,11 +50,11 @@
     <power>
         <name>Rayon Jaune</name>
         <flat_dmg>40</flat_dmg>
-        <dmg_type>foudre</dmg_type>
+        <dmg_type>shock</dmg_type>
         <range>9m</range>
         <duration>instant</duration>
         <save_type>ref</save_type>
-        <id>powerform_prisma_ray_orange</id>
+        <id>powerform_prisma_ray_yellow</id>
     </power>
 
     <power>
@@ -82,7 +83,6 @@
         <name>Rayon Indigo</name>
         <effect>Aliénation mentale</effect>
         <descr>La créature affectée souffre en permanence de l’effet du sort confusion. Délivrance des malédictions est insuffisant pour soigner un individu frappé d’aliénation mentale. Un sort tel que guérison suprême, miracle, restauration suprême, souhait ou souhait limité est nécessaire pour lui permettre de recouvrer ses facultés.</descr>
-        <effect>Pétrification</effect>
         <range>9m</range>
         <duration>instant</duration>
         <save_type>vol</save_type>

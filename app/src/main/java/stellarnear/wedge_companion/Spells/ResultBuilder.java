@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import stellarnear.wedge_companion.DisplayRolls;
+import stellarnear.wedge_companion.Elems.SpellsElemsManager;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
@@ -87,6 +88,7 @@ public class ResultBuilder {
                 }
             }
             ((TextView)resultTemplate.findViewById(R.id.highscore)).setText("(record:"+String.valueOf(spell.getHighscore())+")");
+            resultTemplate.findViewById(R.id.highscore).setVisibility(View.VISIBLE);
             int sumDmg =diceList.getSum();
             if(spell.getFlat_dmg()>0){sumDmg+=spell.getFlat_dmg();}
             if(spell.isCrit()){
@@ -134,26 +136,12 @@ public class ResultBuilder {
     }
 
     private void setSpellColor() {
-        switch (spell.getDmg_type()){
-            case "froid":
-                spellColorId =mC.getColor(R.color.froid_dark);
-                break;
-
-            case "feu":
-                spellColorId =mC.getColor(R.color.feu_dark);
-                break;
-
-            case "foudre":
-                spellColorId =mC.getColor(R.color.foudre_dark);
-                break;
-
-            case "acide":
-                spellColorId =mC.getColor(R.color.acide_dark);
-                break;
-
-            default:
-                spellColorId=mC.getColor(R.color.aucun_dark);
-                break;
+        SpellsElemsManager spellsElemsManager= SpellsElemsManager.getInstance(mC);
+        try {
+            spellColorId=spellsElemsManager.getColorIdDark(spell.getDmg_type());
+        } catch (Exception e) {
+            spellColorId=mC.getColor(R.color.aucun_dark);
+            e.printStackTrace();
         }
     }
 }

@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import stellarnear.wedge_companion.FormSpell.FormPower;
 
 /**
@@ -21,6 +24,7 @@ public class FormCapacity {
     private String cooldown;
 
     private String powerId;
+    private List<FormPower> powerList=new ArrayList<>();
     private String damage;
     private String saveType;
 
@@ -63,8 +67,20 @@ public class FormCapacity {
         return dailyUse;
     }
 
-    public boolean hasPower(){
+    public boolean hasPowerID(){
         return !powerId.equalsIgnoreCase("");
+    }
+
+    public boolean hasPower(){
+        return powerList.size()>0;
+    }
+
+    public String getCooldown() {
+        return cooldown;
+    }
+
+    public String getSaveType() {
+        return saveType;
     }
 
     public String getPowerId() {
@@ -77,5 +93,13 @@ public class FormCapacity {
 
     public String getDamage() {
         return damage;
+    }
+
+    public void addPower(FormPower formPower) {
+        this.powerList.add(formPower);
+    }
+
+    public List<FormPower> getPowerList() {
+        return powerList;
     }
 }

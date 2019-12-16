@@ -131,9 +131,7 @@ public class FormPower {
     }
 
     public FormSpellProfile getProfile() {
-        if(this.spellProfile==null){
-            this.spellProfile=new FormSpellProfile(this);
-        }
+            this.spellProfile=new FormSpellProfile(this); //on lance que des nouveau power
         return this.spellProfile;
     }
 

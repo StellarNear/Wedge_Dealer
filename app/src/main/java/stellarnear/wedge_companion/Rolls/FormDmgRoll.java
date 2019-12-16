@@ -52,7 +52,7 @@ public class FormDmgRoll extends DmgRoll {
 
     public int getBonusDmg() { //par defaut aucun bonus
         int calcBonusDmg = 0;
-        calcBonusDmg+= pj.getAbilityMod("ability_force");
+        calcBonusDmg += pj.getAbilityMod("ability_force");
         calcBonusDmg += tools.toInt(settings.getString("bonus_global_dmg_temp", String.valueOf(0)));
         calcBonusDmg += tools.toInt(settings.getString("bonus_dmg_temp"+PersoManager.getPJSuffix(), String.valueOf(0)));
         return calcBonusDmg;

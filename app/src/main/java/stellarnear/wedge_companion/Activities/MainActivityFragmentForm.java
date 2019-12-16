@@ -404,7 +404,7 @@ public class MainActivityFragmentForm extends Fragment {
 
     private void addCurrentActiveCapa(LinearLayout linear) {
         linear.removeAllViews();
-        if(pj.getAllForms().getCurrentForm()==null){
+        if(pj.getAllForms().getCurrentForm()==null || pj.getAllForms().getCurrentForm().getListActivesCapacities().size()==0){
             linear.addView(textViewFormated("Aucune"));
         } else {
             for (final FormCapacity formCapacity : pj.getAllForms().getCurrentForm().getListActivesCapacities()) {

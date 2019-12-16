@@ -1,7 +1,11 @@
 package stellarnear.wedge_companion.FormSpell;
 
+import java.util.Arrays;
+import java.util.List;
+
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
+import stellarnear.wedge_companion.Spells.Spell;
 import stellarnear.wedge_companion.Tools;
 
 public class FormCalculationSpell {
@@ -34,8 +38,31 @@ public class FormCalculationSpell {
         return pj.getAbilityScore("ability_lvl");
     }
 
-    public String range(FormPower spell) {
-        return  spell.getRange();
+    public Double range(FormPower spell) {
+        String range=spell.getRange();
+        List<String> rangesLvl = Arrays.asList("contact", "courte", "moyenne", "longue" );
+
+        Double distDouble =-1.0;
+        int indexRange = rangesLvl.indexOf(range);
+        if (indexRange>=0) {
+            Integer lvl = pj.getAbilityScore("ability_lvl");
+            if(indexRange>=rangesLvl.size()){indexRange=rangesLvl.size()-1;}
+            switch(rangesLvl.get(indexRange)) {
+                case ("contact"):
+                    distDouble=0.0;
+                    break;
+                case ("courte"):
+                    distDouble=7.5+1.5*(lvl/2.0);
+                    break;
+                case ("moyenne"):
+                    distDouble=30.0+3.0*lvl;
+                    break;
+                case ("longue"):
+                    distDouble=120.0+lvl*12.0;
+                    break;
+            }
+        }
+        return distDouble;
     }
 
 

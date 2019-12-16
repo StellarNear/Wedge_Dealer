@@ -4,12 +4,27 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+
 import stellarnear.wedge_companion.CustomAlertDialog;
+import stellarnear.wedge_companion.FormCapacityAlertDialog;
+import stellarnear.wedge_companion.FormSpell.FormPower;
+import stellarnear.wedge_companion.PostData;
+import stellarnear.wedge_companion.PostDataElement;
 import stellarnear.wedge_companion.R;
+import stellarnear.wedge_companion.Rolls.Dices.Dice;
 import stellarnear.wedge_companion.TestAlertDialog;
+import stellarnear.wedge_companion.Tools;
 
 /**
  * Created by jchatron on 11/12/2019.
@@ -20,13 +35,12 @@ public class FormCapacityLauncher {
     private Context mC;
     private FormCapacity capa;
     private Perso pj= PersoManager.getCurrentPJ();
+    private Tools tools=new Tools();
     public FormCapacityLauncher(Activity mA, Context mC,FormCapacity capa){
         this.mA=mA;
         this.mC=mC;
         this.capa=capa;
-        if(capa.hasPower()){
-            customPowerAlert();
-        } else if (capa.getId().equalsIgnoreCase("form_capacity_constriction")) {
+        if (capa.getSaveType().equalsIgnoreCase("dmd")) {
             Ability bmo=pj.getAllAbilities().getAbi("ability_bmo");
             final TestAlertDialog testAlertDialog = new TestAlertDialog(mA, mC, bmo);
             testAlertDialog.setRefreshEventListener(new TestAlertDialog.OnRefreshEventListener() {
@@ -35,8 +49,8 @@ public class FormCapacityLauncher {
                     askForConfirm();
                 }
             });
-        } else { //todo lancer direct les degats
-            popupAlert();
+        } else {
+            directDealDamage();
         }
 
     }
@@ -49,7 +63,7 @@ public class FormCapacityLauncher {
                 .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //todo lancer les degat capa
+                        directDealDamage();
                     }
                 })
                 .setNegativeButton("Non", new DialogInterface.OnClickListener() {
@@ -60,16 +74,10 @@ public class FormCapacityLauncher {
                 }).show();
     }
 
-    private void customPowerAlert() { //todo affiche avec cooldown et le spell
+    private void directDealDamage() {
+        final FormCapacityAlertDialog tooltipAlert = new FormCapacityAlertDialog(mA, mC, capa);
     }
 
-    private void popupAlert() {
-        View tooltip = mA.getLayoutInflater().inflate(R.layout.custom_toast_info_form_capacity, null);
-        final CustomAlertDialog tooltipAlert = new CustomAlertDialog(mA, mC, tooltip);
-        tooltipAlert.setPermanent(true);
-        ((TextView)tooltip.findViewById(R.id.toast_textName)).setText(capa.getName());
-        ((TextView)tooltip.findViewById(R.id.toast_textDescr)).setText(capa.getDescr());
-    }
 
 
 }

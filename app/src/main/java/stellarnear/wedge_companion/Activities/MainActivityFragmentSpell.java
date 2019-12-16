@@ -419,15 +419,15 @@ public class MainActivityFragmentSpell extends Fragment {
 
 
     public void setSpellLineColor(LinearLayout line,Spell spell) {
-        if (spell.getDmg_type().equals("aucun")) {
+        if (spell.getDmg_type().equals("none")) {
             line.setBackground(getContext().getDrawable(R.drawable.background_spell_line_noelem));
-        } else if (spell.getDmg_type().equals("feu")) {
+        } else if (spell.getDmg_type().equals("fire")) {
             line.setBackground(getContext().getDrawable(R.drawable.background_spell_line_fire));
-        } else if (spell.getDmg_type().equals("foudre")) {
+        } else if (spell.getDmg_type().equals("shock")) {
             line.setBackground(getContext().getDrawable(R.drawable.background_spell_line_shock));
-        } else if (spell.getDmg_type().equals("froid")) {
+        } else if (spell.getDmg_type().equals("frost")) {
             line.setBackground(getContext().getDrawable(R.drawable.background_spell_line_frost));
-        } else if (spell.getDmg_type().equals("acide")) {
+        } else if (spell.getDmg_type().equals("acid")) {
             line.setBackground(getContext().getDrawable(R.drawable.background_spell_line_acid));
         } else {
             //line.setBackground(getContext().getDrawable(R.drawable.background_spell_line_nodmg));

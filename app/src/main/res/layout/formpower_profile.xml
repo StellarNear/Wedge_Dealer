@@ -1,0 +1,139 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/general_margin"
+        android:background="@drawable/spell_background"
+        android:clipToPadding="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/title_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@drawable/round_corner_title"
+            >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/spell_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="Dummy Longest Spell Title"
+                    android:maxWidth="210dp"
+                    android:ellipsize="marquee"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:fadingEdge="horizontal"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
+                    />
+
+                <TextView
+                    android:id="@+id/current_rank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/general_margin"
+                    android:text="(rang : 6)"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <ViewFlipper
+            android:id="@+id/view_flipper"
+            android:layout_width="match_parent"
+            android:focusableInTouchMode="false"
+            android:layout_height="@dimen/height_spell_profile">
+
+            <LinearLayout
+                android:id="@+id/main_panel"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_spell_profile"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/general_margin"
+                    android:singleLine="true"
+                    android:ellipsize="marquee"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:fadingEdge="horizontal"
+                    android:text="Descriptif super long qui remplit bien plus qu'un ecran et qui normalement va tourner aeaeaze" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="4px"
+                    android:layout_marginStart="@dimen/bordure_spell_background"
+                    android:layout_marginEnd="@dimen/bordure_spell_background"
+                    android:background="@color/gray" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:minHeight="50dp"
+                    android:weightSum="5"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/infos"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/general_margin"
+                        android:text="Dégats:xdx, Type:bla, Portée:33m, Compo:V.G, Cast:simple, Durée:instant, RM:oui, Sauvegarde:aucun"
+                        android:textAlignment="center" />
+
+                </LinearLayout>
+
+
+
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <SeekBar
+                        android:id="@+id/slider"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/round_corner_slide"
+                        android:layout_weight="1"
+                        android:progress="1"
+                        android:max="100"
+                        android:minHeight="30dp"
+                        android:thumb="@drawable/thumb_unselect" />
+
+                </FrameLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/result_panel"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_spell_profile"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical"/>
+
+        </ViewFlipper>
+    </LinearLayout>
+</RelativeLayout>

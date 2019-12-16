@@ -14,5 +14,5 @@
 
     <stroke
         android:width="@dimen/bordure_spell_background"
-        android:color="@color/darker_gray" />   <!---->
+        android:color="?attr/colorPrimaryDark" />   <!---->
 </shape>

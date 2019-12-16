@@ -83,8 +83,8 @@
         <name>Etreinte et Constriction</name>
         <descr>Si une créature touche un adversaire elle lui inflige des dégâts normaux et peut tenter de l’agripper par une action libre qui ne provoque pas d’attaque d’opportunité. Les créatures qui possèdent la capacité d’étreinte reçoivent un bonus de +4 aux tests de BMO pour agripper un adversaire ou maintenir une prise. Les créatures qui disposent de cette attaque spéciale peuvent écraser un adversaire et lui infliger des dégâts de type contondant lorsqu’elles réussissent un test de manoeuvre (ces dégâts viennent s’ajouter aux dégâts et aux autres effets résultant de la réussite de ce test). La quantité de dégâts est mentionnée dans la description. En règle générale, elle est égale aux dégâts que l’attaque de corps à corps de la créature inflige.</descr>
         <type>active</type>
-        <damage>4d6</damage>
-        <savetype>dmd</savetype>
+        <damage>4d6+2FOR</damage>
+        <savetype>DMD</savetype>
         <type>active</type>
         <id>form_capacity_constriction</id>
     </capacity>
@@ -102,7 +102,7 @@
         <descr>Lorsque les créatures qui disposent de cette capacité touchent un adversaire au corps à corps, elles lui infligent des dégâts de feu en plus des dégâts normaux. L’adversaire doit réussir un jet de Réflexes pour éviter de prendre feu et de subir les dégâts indiqués pendant 1d4 rounds supplémentaires au début de son tour (le DD vaut 10 + la moitié du nombre de DV raciaux de la créature qui incinère + son modificateur de Constitution). Si l’adversaire prend feu, il peut tenter un nouveau jet de sauvegarde par la suite mais cela lui prend une action complexe. S’il se couche et roule au sol, il bénéficie d’un bonus de +4 à ce jet de sauvegarde. Lorsqu’un adversaire touche avec une arme naturelle ou une attaque à mains nues une créature qui dispose de cette capacité, il subit des dégâts de feu comme s’il avait été touché par la créature en question. Il doit également effectuer un jet de Réflexes pour éviter de prendre feu.</descr>
         <type>active</type>
         <damage>2d10</damage>
-        <savetype>ref</savetype>
+        <savetype>REF</savetype>
         <id>form_capacity_combustion</id>
     </capacity>
 
@@ -141,8 +141,8 @@
         <name>Pietinnement</name>
         <descr>Peut renverser ses adversaires et les piétiner sous les sabots.</descr>
         <type>active</type>
-        <damage>1d8</damage>
-        <savetype>dmd</savetype>
+        <damage>1d8+2FOR</damage>
+        <savetype>DMD</savetype>
         <id>form_capacity_sleipnir_stample</id>
     </capacity>
 
