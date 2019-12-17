@@ -76,26 +76,23 @@
         <id>form_capacity_earth_swim</id>
     </capacity>
 
+    <capacity>
+        <name>Repousser</name>
+        <descr>Les créatures qui disposent de cette capacité peuvent choisir de réaliser un test de manoeuvre (sans que cela ne nécessite d’action supplémentaire) lorsqu’elles parviennent à toucher un adversaire avec une attaque spécifique (un coup brutal généralement). Si le test réussit, l’adversaire est repoussé. Cela fonctionne comme une bousculade mais la distance parcourue est fixée par la capacité.</descr>
+        <type>passive</type>
+        <id>form_capacity_bump</id>
+    </capacity>
 
     <!-- active -->
 
     <capacity>
         <name>Etreinte et Constriction</name>
         <descr>Si une créature touche un adversaire elle lui inflige des dégâts normaux et peut tenter de l’agripper par une action libre qui ne provoque pas d’attaque d’opportunité. Les créatures qui possèdent la capacité d’étreinte reçoivent un bonus de +4 aux tests de BMO pour agripper un adversaire ou maintenir une prise. Les créatures qui disposent de cette attaque spéciale peuvent écraser un adversaire et lui infliger des dégâts de type contondant lorsqu’elles réussissent un test de manoeuvre (ces dégâts viennent s’ajouter aux dégâts et aux autres effets résultant de la réussite de ce test). La quantité de dégâts est mentionnée dans la description. En règle générale, elle est égale aux dégâts que l’attaque de corps à corps de la créature inflige.</descr>
-        <type>active</type>
         <damage>4d6+2FOR</damage>
         <savetype>DMD</savetype>
         <type>active</type>
         <id>form_capacity_constriction</id>
     </capacity>
-
-    <capacity>
-        <name>Repousser</name>
-        <descr>Les créatures qui disposent de cette capacité peuvent choisir de réaliser un test de manoeuvre (sans que cela ne nécessite d’action supplémentaire) lorsqu’elles parviennent à toucher un adversaire avec une attaque spécifique (un coup brutal généralement). Si le test réussit, l’adversaire est repoussé. Cela fonctionne comme une bousculade mais la distance parcourue est fixée par la capacité.</descr>
-        <type>active</type>
-        <id>form_capacity_bump</id>
-    </capacity>
-
 
     <capacity>
         <name>Combustion</name>
@@ -121,7 +118,7 @@
     <capacity>
         <name>Souffle de feu</name>
         <id>form_capacity_kirin_breath</id>
-        <descr>Blabla conne de feu.</descr>
+        <descr>Exhale de l’énergie ou un autre effet magique sous la forme d’un cône, d’une ligne ou d’un nuage. Le plus souvent, les attaques de souffle infligent des dégâts d’un type d’énergie spécifique. Elles autorisent un jet de Réflexes pour réduire les dégâts de moitié (le DD est égal à 10 + la moitié du nombre de DV raciaux de la créature qui souffle + son modificateur de Constitution.</descr>
         <type>active</type>
         <cooldown>1d4</cooldown>
         <powerid>powerform_kirin_breath</powerid>
@@ -130,7 +127,7 @@
     <capacity>
         <name>Souffle prismatique</name>
         <id>form_capacity_sleipnir_breath</id>
-        <descr>Blabla random 1d8.</descr>
+        <descr>Le sleipnir peut cracher un cône de 9 mètres de lumière scintillante aux couleurs de l’arc-en-ciel. Toutes les créatures présentes dans la zone sont touchées au hasard par l’un des différents rayons, comme pour un sort de rayons prismatiques (DD 22, 1/2 dégâts ou annule). Le sleipnir peut utiliser cette capacité une fois tous les 1d6 rounds, jusqu’à trois fois par jour. Le DD du jet de sauvegarde est basé sur la Constitution.</descr>
         <type>active</type>
         <cooldown>1d6</cooldown>
         <dailyuse>3</dailyuse>

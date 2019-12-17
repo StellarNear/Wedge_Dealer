@@ -7,14 +7,14 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import stellarnear.wedge_companion.Elems.AttacksElemsManager;
+import stellarnear.wedge_companion.Elems.ElemsManager;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Rolls.ProbaFromDiceRand;
 import stellarnear.wedge_companion.Rolls.RollList;
 
 public class RangesAndProba {
     private Context mC;
-    private AttacksElemsManager elems;
+    private ElemsManager elems;
     private View mainPage;
     private ProbaFromDiceRand probaForRolls;
     private RollList selectedRolls;
@@ -23,7 +23,7 @@ public class RangesAndProba {
         this.mC = mC;
         this.selectedRolls = selectedRolls;
         this.mainPage = mainPage;
-        this.elems= AttacksElemsManager.getInstance(mC);
+        this.elems= ElemsManager.getInstance(mC);
         this.probaForRolls = new ProbaFromDiceRand(selectedRolls);
         showViews();
         addRanges();
@@ -44,7 +44,7 @@ public class RangesAndProba {
 
     private void addRanges() {
         ((LinearLayout) mainPage.findViewById(R.id.mainLinearRangeDmg)).removeAllViews();
-        for (String elem : elems.getListKeys()) {
+        for (String elem : elems.getListKeysWedgeDamage()) {
             if (selectedRolls.getDmgSumFromType(elem) > 0) {
                 probaForRolls.getRange(elem);
                 LinearLayout sumBox = new LinearLayout(mC);
@@ -53,7 +53,7 @@ public class RangesAndProba {
                 TextView rangeTxt = new TextView(mC);
                 rangeTxt.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                 rangeTxt.setGravity(Gravity.CENTER);
-                rangeTxt.setTextColor(elems.getColorId(elem));
+                rangeTxt.setTextColor(elems.getColorIdDark(elem));
                 rangeTxt.setTextSize(15);
                 rangeTxt.setText(probaForRolls.getRange(elem));
                 sumBox.addView(rangeTxt);
@@ -64,7 +64,7 @@ public class RangesAndProba {
 
     private void addProbas() {
         ((LinearLayout) mainPage.findViewById(R.id.mainLinearProbaDmg)).removeAllViews();
-        for (String elem : elems.getListKeys()) {
+        for (String elem : elems.getListKeysWedgeDamage()) {
             if (selectedRolls.getDmgSumFromType(elem) > 0) {
                 probaForRolls.getRange(elem);
                 LinearLayout sumBox = new LinearLayout(mC);
@@ -73,7 +73,7 @@ public class RangesAndProba {
                 TextView probaTextview = new TextView(mC);
                 probaTextview.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                 probaTextview.setGravity(Gravity.CENTER);
-                probaTextview.setTextColor(elems.getColorId(elem));
+                probaTextview.setTextColor(elems.getColorIdDark(elem));
                 probaTextview.setTextSize(15);
                 String probaTxt=probaForRolls.getProba(elem);
                 if (elem.equalsIgnoreCase("") && selectedRolls.haveAnyCritConfirmed()){

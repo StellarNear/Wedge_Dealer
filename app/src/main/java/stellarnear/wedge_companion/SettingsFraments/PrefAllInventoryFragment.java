@@ -99,7 +99,7 @@ public class PrefAllInventoryFragment {
                 txt += "\nArmure : +" + equi.getArmor();
             }
             if (equi.getMapAbilityUp()!=null && equi.getMapAbilityUp().size()>0) {
-                txt += "\nBonus Stats : " + makeStringLineFromMap(equi.getMapAbilityUp());
+                txt += "\nBonus SpellStats : " + makeStringLineFromMap(equi.getMapAbilityUp());
             }
             if (equi.getMapSkillUp()!=null && equi.getMapSkillUp().size()>0) {
                 txt += "\nBonus Compétence : " + makeStringLineFromMap(equi.getMapSkillUp());

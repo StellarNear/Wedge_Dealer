@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import stellarnear.wedge_companion.Elems.ElemsManager;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
@@ -96,11 +97,13 @@ public class SpellProfile {
         }else  if (spell.getDmg_type().equals("fire")) {
             gd=mC.getDrawable(R.drawable.round_corner_title_fire);
         }else if (spell.getDmg_type().equals("shock")) {
-            gd=mC.getDrawable(R.drawable.round_corner_title_thunder);
+            gd=mC.getDrawable(R.drawable.round_corner_title_shock);
         }else if (spell.getDmg_type().equals("frost")) {
-            gd=mC.getDrawable(R.drawable.round_corner_title_cold);
+            gd=mC.getDrawable(R.drawable.round_corner_title_frost);
         } else if (spell.getDmg_type().equals("acid")) {
             gd=mC.getDrawable(R.drawable.round_corner_title_acid);
+        } else if (spell.getDmg_type().equals("heal")) {
+            gd=mC.getDrawable(R.drawable.round_corner_title_heal);
         } else {
             gd=mC.getDrawable(R.drawable.round_corner_title);
         }
@@ -110,10 +113,12 @@ public class SpellProfile {
     private String printInfo() {
         String text = "";
         if (calculationSpell.nDice(spell)>0) {
-            text += "Dégats:" + displayText.damageTxt(spell) + ", ";
+            if(spell.getDmg_type().equalsIgnoreCase("heal")){
+                text += "Soins:" + displayText.damageTxt(spell) + ", ";
+            } else { text += "Dégats:" + displayText.damageTxt(spell) + ", "; }
         }
         if (!spell.getDmg_type().equals("")) {
-            text += "Type:" + spell.getDmg_type() + ", ";
+            text += "Type:" + ElemsManager.getInstance(mC).getName(spell.getDmg_type()) + ", ";
         }
         if (!spell.getRange().equals("")) {
             text += "Portée:" + displayText.rangeTxt(spell)+ ", ";

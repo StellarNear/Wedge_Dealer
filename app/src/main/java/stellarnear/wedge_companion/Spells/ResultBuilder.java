@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import stellarnear.wedge_companion.DisplayRolls;
-import stellarnear.wedge_companion.Elems.SpellsElemsManager;
+import stellarnear.wedge_companion.Elems.ElemsManager;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
@@ -87,10 +87,11 @@ public class ResultBuilder {
                     dice.rand(false);
                 }
             }
+            if(spell.getDmg_type().equalsIgnoreCase("heal")){((TextView)resultTemplate.findViewById(R.id.damage_title)).setText("Soins :");}
             ((TextView)resultTemplate.findViewById(R.id.highscore)).setText("(record:"+String.valueOf(spell.getHighscore())+")");
             resultTemplate.findViewById(R.id.highscore).setVisibility(View.VISIBLE);
             int sumDmg =diceList.getSum();
-            if(spell.getFlat_dmg()>0){sumDmg+=spell.getFlat_dmg();}
+            if(calculationSpell.getFlatDmg(spell)>0){sumDmg+=calculationSpell.getFlatDmg(spell);}
             if(spell.isCrit()){
                 addExplo((LinearLayout) resultTemplate.findViewById(R.id.damage_top_icon));
                 addExplo((LinearLayout) resultTemplate.findViewById(R.id.damage_bot_icon));
@@ -136,9 +137,9 @@ public class ResultBuilder {
     }
 
     private void setSpellColor() {
-        SpellsElemsManager spellsElemsManager= SpellsElemsManager.getInstance(mC);
+        ElemsManager elemsManager = ElemsManager.getInstance(mC);
         try {
-            spellColorId=spellsElemsManager.getColorIdDark(spell.getDmg_type());
+            spellColorId= elemsManager.getColorIdDark(spell.getDmg_type());
         } catch (Exception e) {
             spellColorId=mC.getColor(R.color.aucun_dark);
             e.printStackTrace();

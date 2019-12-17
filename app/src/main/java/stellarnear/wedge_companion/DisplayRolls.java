@@ -65,11 +65,10 @@ public class DisplayRolls {
                 line.setOrientation(LinearLayout.HORIZONTAL);
                 line.setGravity(Gravity.CENTER_VERTICAL);
 
-                TextView flatDamage = new TextView(mC);
-                flatDamage.setTextSize(20);
-                flatDamage.setTextColor(Color.DKGRAY);
-                flatDamage.setText(String.valueOf(dmgRoll.getBonusDmg()));
-                line.addView(flatDamage);
+                for (Dice dice : dmgRoll.getDmgDiceList().getList()){
+                    ImageView diceImg = dice.getImg();
+                    line.addView(diceImg);
+                }
 
                 TextView plus = new TextView(mC);
                 plus.setTextSize(16);
@@ -77,10 +76,12 @@ public class DisplayRolls {
                 plus.setText("+");
                 line.addView(plus);
 
-                for (Dice dice : dmgRoll.getDmgDiceList().getList()){
-                    ImageView diceImg = dice.getImg();
-                    line.addView(diceImg);
-                }
+                TextView flatDamage = new TextView(mC);
+                flatDamage.setTextSize(20);
+                flatDamage.setTextColor(Color.DKGRAY);
+                flatDamage.setText(String.valueOf(dmgRoll.getBonusDmg()));
+                line.addView(flatDamage);
+
                 scrollLinear.addView(line);
             }
         }

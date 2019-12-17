@@ -18,13 +18,14 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import stellarnear.wedge_companion.Elems.AttacksElemsManager;
+import stellarnear.wedge_companion.Elems.ElemsManager;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
@@ -36,7 +37,7 @@ public class DSSFTime {
     private Perso pj = PersoManager.getCurrentPJ();
     private Context mC;
     private View mainView;
-    private AttacksElemsManager elems;
+    private ElemsManager elems;
     private List<String> elemsSelected;
     private LinkedHashMap<String, StatsList> mapDatetxtStatslist = new LinkedHashMap<>();
     private List<String> labelList=new ArrayList<>();
@@ -49,7 +50,7 @@ public class DSSFTime {
     public DSSFTime(View mainView, Context mC) {
         this.mainView = mainView;
         this.mC = mC;
-        this.elems= AttacksElemsManager.getInstance(mC);
+        this.elems= ElemsManager.getInstance(mC);
         CheckBox checkPhy = mainView.findViewById(R.id.line_type_time_phy);
         CheckBox checkFire = mainView.findViewById(R.id.line_type_time_fire);
         CheckBox checkShock = mainView.findViewById(R.id.line_type_time_shock);
@@ -60,7 +61,7 @@ public class DSSFTime {
     }
 
     private void setCheckboxListeners() {
-        for(String elem : elems.getListKeys()){
+        for(String elem : elems.getListKeysWedgeDamage()){
             mapElemCheckbox.get(elem).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -115,7 +116,7 @@ public class DSSFTime {
 
     private void calculateElemToShow() {
         elemsSelected = new ArrayList<>();
-        for (String elem : elems.getListKeys()) {
+        for (String elem : elems.getListKeysWedgeDamage()) {
             if (mapElemCheckbox.get(elem).isChecked()) {
                 elemsSelected.add(elem);
             }
@@ -259,7 +260,7 @@ public class DSSFTime {
 
     // Resets
     public void reset() {
-        for(String elem : elems.getListKeys()){
+        for(String elem : elems.getListKeysWedgeDamage()){
             mapElemCheckbox.get(elem).setChecked(true);
         }
         resetChartAtk();

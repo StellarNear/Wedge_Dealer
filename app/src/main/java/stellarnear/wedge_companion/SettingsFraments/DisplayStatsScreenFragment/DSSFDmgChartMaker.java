@@ -16,11 +16,12 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import stellarnear.wedge_companion.Elems.AttacksElemsManager;
+import stellarnear.wedge_companion.Elems.ElemsManager;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
@@ -32,7 +33,7 @@ public class DSSFDmgChartMaker {
     private Perso pj = PersoManager.getCurrentPJ();
     private BarChart chart;
     private Context mC;
-    private AttacksElemsManager elems;
+    private ElemsManager elems;
     private Map<String,CheckBox> mapElemCheckbox=new HashMap<>();
     private List<String> elemsSelected;
     private Boolean barGroupMode=false;
@@ -47,9 +48,8 @@ public class DSSFDmgChartMaker {
     public DSSFDmgChartMaker(BarChart chart, Map<String,CheckBox> mapElemCheckbox, Context mC) {
         this.chart=chart;
         this.mapElemCheckbox=mapElemCheckbox;
-        this.elems= AttacksElemsManager.getInstance(mC);
+        this.elems= ElemsManager.getInstance(mC);
         this.mC=mC;
-
         this.sizeStep=tools.toInt(PreferenceManager.getDefaultSharedPreferences(mC).getString("display_stats_bin", String.valueOf(mC.getResources().getInteger(R.integer.display_stats_bin_def))));
         initChart();
     }
@@ -87,7 +87,7 @@ public class DSSFDmgChartMaker {
 
     private void calculateElemToShow() {
         elemsSelected=new ArrayList<>();
-        for(String elem : elems.getListKeys()){
+        for(String elem : elems.getListKeysWedgeDamage()){
             if(mapElemCheckbox.get(elem).isChecked()){
                 elemsSelected.add(elem);
             }
@@ -248,7 +248,7 @@ public class DSSFDmgChartMaker {
         if(elem.equalsIgnoreCase("all")){
             lineColor=mC.getColor(R.color.recent_stat);
         } else {
-            lineColor=elems.getColorIdRecent(elem);
+            lineColor=elems.getColorIdDark(elem);
         }
 
         int iStep=((sumDmg - minRound) / sizeStep);

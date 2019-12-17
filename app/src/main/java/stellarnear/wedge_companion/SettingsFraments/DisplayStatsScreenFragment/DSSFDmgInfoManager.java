@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import java.util.Map;
 
-import stellarnear.wedge_companion.Elems.AttacksElemsManager;
+import stellarnear.wedge_companion.Elems.ElemsManager;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
@@ -23,7 +23,7 @@ public class DSSFDmgInfoManager {
 
     private Context mC;
     private View mainView;
-    private AttacksElemsManager elems;
+    private ElemsManager elems;
     private Map<String, CheckBox> mapElemCheckbox;
     private StatsList selectedStats=new StatsList();
     private String selectedBracket;
@@ -34,7 +34,7 @@ public class DSSFDmgInfoManager {
 
     public DSSFDmgInfoManager(View mainView, Map<String,CheckBox> mapElemCheckbox, Context mC) {
         this.mainView = mainView;
-        this.elems= AttacksElemsManager.getInstance(mC);
+        this.elems= ElemsManager.getInstance(mC);
         this.mapElemCheckbox=mapElemCheckbox;
         this.mC = mC;
 
@@ -90,7 +90,7 @@ public class DSSFDmgInfoManager {
         TextView titleMax = createTextElement("max");
         lineMax.addView(titleMax);
 
-        for (String elem : elems.getListKeys()) {
+        for (String elem : elems.getListKeysWedgeDamage()) {
             if (mapElemCheckbox.get(elem).isChecked()) {
                 int colorInt = elems.getColorId(elem);
                 TextView telemMin = createTextElement(String.valueOf(selectedStats.getMinDmgElem(elem)));
@@ -124,7 +124,7 @@ public class DSSFDmgInfoManager {
         TextView titlePercent = createTextElement(">=%");
         linePercent.addView(titlePercent);
 
-        for (String elem : elems.getListKeys()) {
+        for (String elem : elems.getListKeysWedgeDamage()) {
             if (mapElemCheckbox.get(elem).isChecked()) {
                 int colorInt = elems.getColorId(elem);
                 TextView telemScore = createTextElement(String.valueOf(selectedStats.getLastStat().getElemSumDmg().get(elem)));

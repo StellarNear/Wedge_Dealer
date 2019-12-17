@@ -11,6 +11,8 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import stellarnear.wedge_companion.Perso.Perso;
+import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.Spells.CalculationSpell;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Spells.SelectedSpells;
@@ -21,7 +23,7 @@ import stellarnear.wedge_companion.Tools;
 
 
 public class MainActivityFragmentSpellCast extends Fragment {
-
+    private Perso pj= PersoManager.getCurrentPJ();
     private SpellList selectedSpells;
     private Tools tools=new Tools();
     private CalculationSpell calculationSpell =new CalculationSpell();
@@ -100,6 +102,7 @@ public class MainActivityFragmentSpellCast extends Fragment {
             }
         }
         if(end){
+            pj.getSpellStats().storeSpellStatsFromRolls(selectedSpells);
             tools.customToast(getContext(),"Plus de sort à lancer");
         }
     }

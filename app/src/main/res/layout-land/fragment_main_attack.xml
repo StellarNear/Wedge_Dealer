@@ -206,7 +206,7 @@
                         android:text="Dégâts :"
                         android:textSize="15sp"
                         android:textColor="@color/colorPrimaryDark"
-                        android:visibility="visible"/>
+                        android:visibility="gone"/>
 
                     <LinearLayout
                         android:id="@+id/mainLinearDmg"

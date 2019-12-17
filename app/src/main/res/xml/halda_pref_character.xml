@@ -13,7 +13,7 @@
         android:summary="Statistiques relatives au combat"/>
 
     <PreferenceScreen
-        android:key="pref_character_spells"
+        android:key="halda_pref_character_spells"
         android:icon="@drawable/ic_spell_book"
         android:title="Nombre de sorts par jour"
         android:summary="Valeurs de base du nombre de sorts journaliers par rang"/>

@@ -13,6 +13,11 @@
         <hide>true</hide>
     </resource>
     <resource>
+        <shortname>Canal</shortname>
+        <name>Canalisation</name>
+        <id>resource_canalisation</id>
+    </resource>
+    <resource>
         <shortname>Pts myth</shortname>
         <name>Points mythiques</name>
         <id>resource_mythic_points</id>

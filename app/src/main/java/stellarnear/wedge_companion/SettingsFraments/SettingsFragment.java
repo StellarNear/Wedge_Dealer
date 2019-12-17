@@ -61,10 +61,10 @@ public class SettingsFragment extends PreferenceFragment {
             new OnSharedPreferenceChangeListener() {
                 @Override
                 public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
-                    if (key.equalsIgnoreCase("highest_tier_spell") || key.equalsIgnoreCase("highest_tier_spell_conv") ) {
+                    if (key.contains("highest_tier_spell")) {
                         prefSpellRankFragment.refresh();
                     }
-                    if (key.contains("spell_rank_")|| key.contains("spell_conv_rank_")){
+                    if (key.contains("spell_rank_")){
                         if(pj.getAllResources().getRankManager()!=null){pj.getAllResources().getRankManager().refreshMax();}
                     }
                     if (key.contains("switch_capacity_")){pj.getAllResources().refreshCapaListResources();}
@@ -88,7 +88,7 @@ public class SettingsFragment extends PreferenceFragment {
             this.histoPrefKeys.add("pref");
         }
 
-        findPreference("pref_stats").setSummary("Record actuel : "+settings.getString("highscore"+pj.getID(),"0"));
+        findPreference(PersoManager.getPJPrefix()+"pref_stats").setSummary("Record actuel : "+settings.getString("highscore"+PersoManager.getPJSuffix(),"0"));
 
         this.histoTitle.add("Paramètres");
         this.prefAllInventoryFragment =new PrefAllInventoryFragment(mA,mC);
@@ -170,6 +170,7 @@ public class SettingsFragment extends PreferenceFragment {
                     BigInteger xp = tools.toBigInt(settings.getString("current_xp", String.valueOf(getContext().getResources().getInteger(R.integer.current_xp_def))));
                     prefXpFragment.checkLevel(xp);
                     break;
+                case "halda_pref_character_spells":
                 case "pref_character_spells":
                     PreferenceCategory spellCat = (PreferenceCategory) findPreference("tier_spell");
                     prefSpellRankFragment.addSpellRanks(spellCat);
@@ -230,7 +231,7 @@ public class SettingsFragment extends PreferenceFragment {
         addPreferencesFromResource(xmlID);
 
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(currentPageTitle);
-        findPreference("pref_stats").setSummary("Record actuel : "+settings.getString("highscore"+pj.getID(),"0"));
+        findPreference(PersoManager.getPJPrefix()+"pref_stats").setSummary("Record actuel : "+settings.getString("highscore"+PersoManager.getPJSuffix(),"0"));
     }
 
     private void loadPage() {

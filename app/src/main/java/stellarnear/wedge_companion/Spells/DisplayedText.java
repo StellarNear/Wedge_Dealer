@@ -22,19 +22,19 @@ public class DisplayedText {
     public String damageTxt(Spell spell) {
 
         String dmg= calculationSpell.nDice(spell)+"d"+ calculationSpell.diceType(spell);
-        if(spell.getFlat_dmg()>0){dmg+="+"+spell.getFlat_dmg();}
+        if(calculationSpell.getFlatDmg(spell)>0){dmg+="+"+calculationSpell.getFlatDmg(spell);}
 
         if(spell.getDice_type().contains("lvl")){
             Integer dmg_int = calculationSpell.nDice(spell);
             dmg = String.valueOf(dmg_int);
-            if(spell.getFlat_dmg()>0){dmg_int+=spell.getFlat_dmg();}
+            if(calculationSpell.getFlatDmg(spell)>0){dmg_int+=calculationSpell.getFlatDmg(spell);}
         } else  if(spell.getMetaList().metaIdIsActive("meta_perfect")){
             Integer dmg_int = calculationSpell.nDice(spell) * calculationSpell.diceType(spell) *2;
-            if(spell.getFlat_dmg()>0){dmg_int+=spell.getFlat_dmg();}
+            if(calculationSpell.getFlatDmg(spell)>0){dmg_int+=calculationSpell.getFlatDmg(spell);}
             dmg = String.valueOf(dmg_int);
         }else  if(spell.getMetaList().metaIdIsActive("meta_max")) {
             Integer dmg_int = calculationSpell.nDice(spell) * calculationSpell.diceType(spell);
-            if(spell.getFlat_dmg()>0){dmg_int+=spell.getFlat_dmg();}
+            if(calculationSpell.getFlatDmg(spell)>0){dmg_int+=calculationSpell.getFlatDmg(spell);}
             dmg = String.valueOf(dmg_int);
         }
         return dmg;

@@ -64,6 +64,9 @@ public class MainActivityFragment extends Fragment {
         } else {
             //todo canalisation
             ((LinearLayout) returnFragView.findViewById(R.id.linear_frag_to_canal)).setVisibility(View.VISIBLE);
+            ImageButton fabCanalisation= (ImageButton) returnFragView.findViewById(R.id.button_frag_to_canal);
+            fabCanalisation.startAnimation(top);
+            setButtonActivity(fabCanalisation, new MainActivityFragmentCanalisation(), R.animator.infrombotfrag, R.animator.outfadefrag, "frag_canalisation");
         }
 
         if(pj.getID().equalsIgnoreCase("")) {

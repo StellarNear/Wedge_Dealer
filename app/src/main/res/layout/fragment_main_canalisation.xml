@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="stellarnear.wedge_companion.Activities.MainActivityFragmentCanalisation">
+
+    <LinearLayout
+        android:id="@+id/linearKiFrag"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="@dimen/size_icon_main_actions075"
+             android:orientation="vertical"
+             android:background="@drawable/bar_gradient_main_subfragments"
+             android:gravity="center">
+             <TextView
+                 android:id="@+id/mainPanelTitle"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:gravity="center"
+                 android:textStyle="bold"
+                 android:textColor="@color/colorBackground"
+                 android:textSize="19sp"
+                 android:text="Canalisation d'énergie" />
+
+             <TextView
+                 android:id="@+id/mainPanelKicount"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:gravity="center"
+                 android:textColor="@color/colorBackground"
+                 android:textSize="16sp"
+                 android:text="(xx utilisations restants)" />
+
+         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/canalTitleLine"
+            android:weightSum="10"
+            android:orientation="horizontal"
+            android:background="@color/title_skill_color_background">
+
+            <TextView
+                android:id="@+id/canalNameTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/title_skill_color_text"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:text="Capacité" />
+            <TextView
+                android:textColor="@color/title_skill_color_text"
+                android:id="@+id/canalEffectTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="15sp"
+                android:layout_weight="6"
+                android:textStyle="bold"
+                android:text="Effet" />
+            <TextView
+                android:textColor="@color/title_skill_color_text"
+                android:id="@+id/canalCostTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:text="Coût" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/canalFragmentContentLinear"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            >
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageButton
+        tools:ignore="ContentDescription"
+        android:id="@+id/button_frag_canal_to_main"
+        android:layout_width="@dimen/size_icon_main_actions075"
+        android:layout_height="@dimen/size_icon_main_actions075"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/canalisation_back"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:padding="@dimen/general_margin"
+        android:background="@null"/>
+
+</android.support.constraint.ConstraintLayout>

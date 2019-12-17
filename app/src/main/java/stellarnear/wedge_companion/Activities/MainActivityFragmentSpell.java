@@ -429,8 +429,8 @@ public class MainActivityFragmentSpell extends Fragment {
             line.setBackground(getContext().getDrawable(R.drawable.background_spell_line_frost));
         } else if (spell.getDmg_type().equals("acid")) {
             line.setBackground(getContext().getDrawable(R.drawable.background_spell_line_acid));
-        } else {
-            //line.setBackground(getContext().getDrawable(R.drawable.background_spell_line_nodmg));
+        } else if (spell.getDmg_type().equals("heal"))  {
+            line.setBackground(getContext().getDrawable(R.drawable.background_spell_line_heal));
         }
 
     }

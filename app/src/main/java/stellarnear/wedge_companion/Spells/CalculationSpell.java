@@ -176,4 +176,17 @@ public class CalculationSpell {
         return contact;
     }
 
+    public int getFlatDmg(Spell spell) {
+        int val=0;
+        if(spell.getFlat_dmg().contains("/lvl")){
+            int valFlatLeveled=tools.toInt(spell.getFlat_dmg().split("/lvl")[0])*pj.getAbilityScore("ability_lvl");
+            if (valFlatLeveled>spell.getFlat_cap() && !pj.getAllCapacities().capacityIsActive("revelation_improved_heal")){
+                valFlatLeveled=spell.getFlat_cap();
+            }
+            val=valFlatLeveled;
+        } else {
+            val=tools.toInt(spell.getFlat_dmg());
+        }
+        return val;
+    }
 }

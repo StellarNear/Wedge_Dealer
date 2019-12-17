@@ -14,7 +14,7 @@ import java.util.Map;
 
 import stellarnear.wedge_companion.Attack.Attack;
 import stellarnear.wedge_companion.Elems.Elem;
-import stellarnear.wedge_companion.Elems.SpellsElemsManager;
+import stellarnear.wedge_companion.Elems.ElemsManager;
 
 /**
  * Created by jchatron on 04/01/2018.
@@ -31,7 +31,7 @@ public class Form {
     private List<FormCapacity> listActivesCapacities= new ArrayList<>();
     private Map<String,Integer> mapElementIDResist =new HashMap<>();
     private String vulnerability="";
-    private SpellsElemsManager elementManager;
+    private ElemsManager elementManager;
 
     private Context mC;
 
@@ -42,7 +42,7 @@ public class Form {
         this.descr=descr;
         this.id=id;
         this.mC=mC;
-        this.elementManager=SpellsElemsManager.getInstance(mC);
+        this.elementManager= ElemsManager.getInstance(mC);
 
         if(!resistance.equalsIgnoreCase("")){
             for(String elemKey:resistance.split(",")){
@@ -136,9 +136,9 @@ public class Form {
 
     public int getMaxElementResist() {
         int val =0;
-        for(Elem elem : elementManager.getElems()){
+        for(String elemId : elementManager.getResistElems()){
             try {
-                int elemval = mapElementIDResist.get(elem.getKey());
+                int elemval = mapElementIDResist.get(elemId);
                 if(elemval>val){val=elemval;}
             } catch (Exception e) {
                 e.printStackTrace();
@@ -149,13 +149,13 @@ public class Form {
 
     public Spanned getResistsValueLongFormat() {
         Spanned result= new SpannableString("");
-        for(Elem elem : SpellsElemsManager.getInstance(mC).getElems()){
+        for(String elemId : elementManager.getResistElems()){
 
-            int valueFromForm = getElementResist(elem.getKey());
+            int valueFromForm = getElementResist(elemId);
             if(valueFromForm>0) {
                 if(result.length()>0){result=(Spanned) TextUtils.concat(result,"/");}
-                Spannable span = new SpannableString(String.valueOf(valueFromForm)+" "+elem.getName());
-                span.setSpan(new ForegroundColorSpan(elem.getColorIdDark()), 0, span.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                Spannable span = new SpannableString(String.valueOf(valueFromForm)+" "+elementManager.getName(elemId));
+                span.setSpan(new ForegroundColorSpan(elementManager.getColorIdDark(elemId)), 0, span.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 result = (Spanned) TextUtils.concat(result, span);
             }
         }

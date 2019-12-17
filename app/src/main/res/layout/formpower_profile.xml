@@ -40,16 +40,6 @@
                     android:textColor="@color/black"
                     android:textSize="22sp"
                     />
-
-                <TextView
-                    android:id="@+id/current_rank"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/general_margin"
-                    android:text="(rang : 6)"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
             </LinearLayout>
         </RelativeLayout>
 

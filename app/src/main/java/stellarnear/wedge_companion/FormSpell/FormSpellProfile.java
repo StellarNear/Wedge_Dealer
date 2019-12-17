@@ -8,10 +8,10 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import stellarnear.wedge_companion.Elems.ElemsManager;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
-import stellarnear.wedge_companion.Spells.DisplayedText;
 import stellarnear.wedge_companion.Tools;
 
 public class FormSpellProfile {
@@ -88,9 +88,9 @@ public class FormSpellProfile {
         }else  if (spell.getDmg_type().equals("fire")) {
             gd=mC.getDrawable(R.drawable.round_corner_title_fire);
         }else if (spell.getDmg_type().equals("shock")) {
-            gd=mC.getDrawable(R.drawable.round_corner_title_thunder);
+            gd=mC.getDrawable(R.drawable.round_corner_title_shock);
         }else if (spell.getDmg_type().equals("frost")) {
-            gd=mC.getDrawable(R.drawable.round_corner_title_cold);
+            gd=mC.getDrawable(R.drawable.round_corner_title_frost);
         } else if (spell.getDmg_type().equals("acid")) {
             gd=mC.getDrawable(R.drawable.round_corner_title_acid);
         } else {
@@ -105,7 +105,7 @@ public class FormSpellProfile {
             text += "Dégats:" + displayText.damageTxt(spell) + ", ";
         }
         if (!spell.getDmg_type().equals("")) {
-            text += "Typ:" + spell.getDmg_type() + ", ";
+            text += "Type:" + ElemsManager.getInstance(mC).getName(spell.getDmg_type()) + ", ";
         }
         if (!spell.getRange().equals("")) {
             text += "Portée:" + displayText.rangeTxt(spell)+ ", ";

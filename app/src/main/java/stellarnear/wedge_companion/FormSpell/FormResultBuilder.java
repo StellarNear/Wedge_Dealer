@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import stellarnear.wedge_companion.DisplayRolls;
-import stellarnear.wedge_companion.Elems.SpellsElemsManager;
+import stellarnear.wedge_companion.Elems.ElemsManager;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
@@ -88,9 +88,9 @@ public class FormResultBuilder {
     }
 
     private void setSpellColor() {
-        SpellsElemsManager spellsElemsManager= SpellsElemsManager.getInstance(mC);
+        ElemsManager elemsManager = ElemsManager.getInstance(mC);
         try {
-            spellColorId=spellsElemsManager.getColorIdDark(spell.getDmg_type());
+            spellColorId= elemsManager.getColorIdDark(spell.getDmg_type());
         } catch (Exception e) {
             spellColorId=mC.getColor(R.color.aucun_dark);
             e.printStackTrace();

@@ -41,6 +41,8 @@ import java.util.List;
 import java.util.Map;
 
 import stellarnear.wedge_companion.Perso.Equipment;
+import stellarnear.wedge_companion.Stats.SpellStats.SpellStat;
+import stellarnear.wedge_companion.Stats.SpellStats.SpellStatsList;
 import stellarnear.wedge_companion.Stats.Stat;
 import stellarnear.wedge_companion.Stats.StatsList;
 
@@ -654,5 +656,26 @@ public class TinyDB {
             objStrings.add(gson.toJson(obj));
         }
         putListString(key, objStrings);
+    }
+
+    public void putSpellStats(String key, SpellStatsList spellStatsList) {
+        checkForNullKey(key);
+        Gson gson = new Gson();
+        ArrayList<String> objStrings = new ArrayList<String>();
+        for (SpellStat obj : spellStatsList.asList()) {
+            objStrings.add(gson.toJson(obj));
+        }
+        putListString(key, objStrings);
+    }
+
+    public SpellStatsList getSpellStats(String key) {
+        Gson gson = new Gson();
+        ArrayList<String> objStrings = getListString(key);
+        SpellStatsList objects = new SpellStatsList();
+        for (String jObjString : objStrings) {
+            SpellStat value = gson.fromJson(jObjString, SpellStat.class);
+            objects.add(value);
+        }
+        return objects;
     }
 }

@@ -30,7 +30,7 @@ public class SpellsRanksManager {
         try {
             String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
             int resId = mC.getResources().getIdentifier("highest_tier_spell_def"+extendID, "integer", mC.getPackageName());
-            int newHighTier= newHighTier = tools.toInt(settings.getString("highest_tier_spell"+ extendID,String.valueOf(mC.getResources().getInteger(resId))));
+            int newHighTier= tools.toInt(settings.getString("highest_tier_spell"+ extendID,String.valueOf(mC.getResources().getInteger(resId))));
             if(highestSpellRank!=newHighTier){
                 highestSpellRank = newHighTier;
                 refreshAllTiers();

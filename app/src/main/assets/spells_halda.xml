@@ -1,29 +1,44 @@
 <?xml version="1.0"?>
 <records>
     <spell>
-        <name>Destruction de mort-vivant</name>
-        <descr>Rayon d’énergie positive. Le personnage doit réussir une attaque de contact à distance pour atteindre le mort-vivant.</descr>
-        <dice_type>6</dice_type>
-        <cap_dice>1</cap_dice>
-        <dmg_type>aucun</dmg_type>
-        <contact>distance</contact>
-        <range>courte</range>
+        <name>Assistance divine</name>
+        <descr>Ce sort fournit à la créature une assistance divine momentanée, se traduisant par un bonus d’aptitude de +1 sur un jet d’attaque, un jet de sauvegarde ou un test de compétence. La cible doit choisir d’utiliser ou non son bonus avant de jeter le dé.</descr>
+        <range>contact</range>
         <cast_time>simple</cast_time>
         <duration>instant</duration>
         <rm>true</rm>
-        <save_type>aucun</save_type>
         <compo>V,G</compo>
         <rank>0</rank>
     </spell>
 
-    
+    <spell>
+        <name>Création d'eau</name>
+        <descr>Ce sort donne naissance une eau pure et potable, semblable à l’eau de pluie. Elle apparaît dans n’importe quel récipient capable de l’accueillir, ou au-dessus d’une zone trois fois plus large (ce qui permet de créer une fine pluie ou de remplir plusieurs récipients de taille moindre). L’eau non-consommée disparaît au bout d’une journée.</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <rm>true</rm>
+        <compo>V,G</compo>
+        <rank>0</rank>
+    </spell>
+
       <spell>
         <name>Détection de la magie</name>
-          <id>detect_magic</id>
         <descr>Grâce à ce sort, le personnage peut repérer les auras magiques. Les informations fournies par détection de la magie dépendent du temps que le personnage passe à étudier le sujet et ou la zone. Premier round : présence ou absence d’auras magiques. Deuxième round : nombre d’auras magiques et intensité de la plus puissante. Troisième round : intensité et emplacement précis de chaque aura</descr>
         <range>18m</range>
         <cast_time>simple</cast_time>
         <duration>1min/lvl</duration>
+        <compo>V,G</compo>
+        <rank>0</rank>
+    </spell>
+
+
+    <spell>
+        <name>Détection du poison</name>
+        <descr>Ce sort indique si une créature, un objet ou un lieu a été empoisonné ou est toxique. Un test de Sagesse de DD 20 permet de déterminer la nature exacte du poison. Le sort fonctionne à travers les barrières si celles-ci ne sont pas trop épaisses : il est bloqué par 30 cm de pierre, 2,5 cm de métal, une mince feuille de plomb ou 90 cm de bois ou de terre.</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
         <compo>V,G</compo>
         <rank>0</rank>
     </spell>
@@ -38,7 +53,7 @@
         <compo>V,G,M</compo>
         <rank>0</rank>
     </spell>
-    
+
     <spell>
         <name>Lumière</name>
         <descr>Lancé sur un objet, ce sort le fait briller comme la lumière d’une torche, ce qui lui permet d’éclairer jusqu’à six mètres. Tous les sorts de lumière contrent et dissipent les sorts d’obscurité de niveau inférieur ou égal.</descr>
@@ -48,53 +63,21 @@
         <compo>V,M</compo>
         <rank>0</rank>
     </spell>
-    <spell>
-        <name>Manipulation à distance</name>
-        <descr>Le lanceur de sorts peut le soulever et le déplacer un objet pesant jusqu’à 2,5 kg et n’étant porté ou tenu par personne. Par une action de mouvement, il peut déplacer l’objet de 4,50 m au maximum.</descr>
-        <range>courte</range>
-        <cast_time>simple</cast_time>
-        <duration>concentration</duration>
-        <compo>V,G</compo>
-        <rank>0</rank>
-    </spell>
-    <spell>
-        <name>Message</name>
-        <descr>Chuchoter des messages à 1cible/niveau. Les personnes alentour discernent le message si elles réussissent un test de Perception DD 25. Le personnage indique du doigt toutes les créatures à inclure dans le sort. Le message est entendu par tous les destinataires, dans les limites de portée. Le sort est bloqué par un silence d’origine magique, 30 cm de pierre, 2,5 cm de métal, une feuille de plomb, ou 90 cm de bois ou de terre.</descr>
-        <range>moyenne</range>
-        <cast_time>simple</cast_time>
-        <duration>10min/lvl</duration>
-        <compo>V,G,M</compo>
-        <rank>0</rank>
-    </spell>
-    <spell>
-        <name>Ouverture/fermeture</name>
-        <descr>Permet d'ouvrir un objet pesant jusqu’à 15 kg ou une porte, un coffre, une boîte, une fenêtre, un sac, une bourse, une bouteille ou tout autre récipient. Il échoue automatiquement si l’objet dispose d’un mécanisme de fermeture (barre, serrure fermée, etc.).</descr>
-        <range>courte</range>
-        <cast_time>simple</cast_time>
-        <duration>instant</duration>
-        <compo>V,G,M</compo>
-        <rank>0</rank>
-    </spell>
+
 
     <spell>
-        <name>Rayon de givre</name>
-        <descr>Un rayon de givre jaillit du doigt tendu du mage, qui doit réussir une attaque de contact à distance pour atteindre sa cible.</descr>
-        <dice_type>3</dice_type>
-        <cap_dice>1</cap_dice>
-        <dmg_type>froid</dmg_type>
-        <contact>distance</contact>
-        <range>courte</range>
+        <name>Purification de nourriture et d'eau</name>
+        <descr>Ce sort transforme la nourriture avariée et l’eau croupie en denrées saines mais il ne les empêche pas de pourrir à nouveau. La purification de nourriture et d’eau annule les pouvoirs de l’eau maudite et des breuvages ou aliments similaires. En revanche, le sort reste sans effet sur les potions magiques et les créatures, quelles qu’elles soient.</descr>
+        <range>3m</range>
         <cast_time>simple</cast_time>
         <duration>instant</duration>
         <rm>true</rm>
-        <save_type>aucun</save_type>
         <compo>V,G</compo>
         <rank>0</rank>
     </spell>
 
     <spell>
         <name>Résistance</name>
-        <id>resistance</id>
         <descr>Ce sort protège la cible en lui offrant temporairement un bonus de résistance de +1 aux jets de sauvegarde.</descr>
         <range>contact</range>
         <cast_time>simple</cast_time>
@@ -103,90 +86,101 @@
         <rank>0</rank>
     </spell>
 
-      <spell>
-        <name>Alarme</name>
-        <descr>Alarme audible(18m), Alarme mentale(1.5km). Alarme audible La sonnerie est audible ou mentale suivant la décision du jeteur de sorts.</descr>
-        <range>courte</range>
-        <cast_time>simple</cast_time>
-        <duration>2h/lvl</duration>
-        <compo>V,G,M</compo>
-        <rank>1</rank>
-    </spell>
-    
     <spell>
-        <name>Bouclier</name>
-        <id>shield</id>
-        <descr>Bouclier conférant un bonus de bouclier de +4 à la CA. S’agissant d’un effet de force, ce bonus agit face aux attaques de contact à distance intangibles. Il ne présente ni malus d’armure aux tests ni risque d’échec des sorts profanes.</descr>
-        <range>personnelle</range>
-        <cast_time>simple</cast_time>
-        <duration>1min/lvl</duration>
-        <compo>V,G,M+</compo>
-        <rank>1</rank>
-    </spell>
-
-      <spell>
-        <name>Charme personne</name>
-        <descr>Charme-personne ne s’utilise que sur les humanoïdes. La créature affectée considère le lanceur de sorts comme son meilleur ami. Néanmoins si elle est menacée par le personnage ou ses compagnons, elle bénéficie d’un bonus de +5 au jet de sauvegarde.</descr>
+        <name>Stabilisation</name>
+        <descr>Quand le personnage lance ce sort, il vise une créature ayant -1 point de vie ou moins. Cette créature se stabilise alors automatiquement et ne perd pas d’autres points de vie. Si, par la suite, elle reçoit de nouveaux dégâts, elle agonise de nouveau.</descr>
         <range>courte</range>
         <cast_time>simple</cast_time>
-        <duration>1h/lvl</duration>
+        <duration>instant</duration>
         <compo>V,G</compo>
-            <rm>true</rm>
-        <save_type>Vol[annule]</save_type>
-        <rank>1</rank>
-    </spell>
-    
-    <spell>
-        <name>Coup au but</name>
-        <id>true_strike</id>
-        <descr>Bonus de +20 au prochain jet d'attaque. De plus, il n’a aucune chance de manquer une cible camouflée.</descr>
-        <range>personnelle</range>
-        <cast_time>simple</cast_time>
-        <duration>1round</duration>
-        <compo>V,M</compo>
-        <rank>1</rank>
+        <rank>0</rank>
     </spell>
 
     <spell>
-        <name>Décharge électrique</name>
-        <descr>Attaque de contact au corps à corps qui, en cas de réussite inflige des dégâts. Si la cible porte une armure métallique (ou porte une arme faite principalement de métal), le lanceur de sorts bénéficie d’un bonus de +3 au jet d’attaque.</descr>
-        <dice_type>6</dice_type>
+        <name>Soins légers</name>
+        <descr>En posant les mains sur une créature vivante, le personnage lui transmet de l’énergie positive et lui rend 1d8 points de vie +1 par niveau de lanceur de sorts (jusqu’à un maximum de +5).</descr>
+        <dice_type>8</dice_type>
         <n_dice_per_lvl>1</n_dice_per_lvl>
         <cap_dice>5</cap_dice>
-        <contact>melee</contact>
-        <dmg_type>foudre</dmg_type>
+        <flat_dmg>1/lvl</flat_dmg>
+        <flat_cap>5</flat_cap>
+        <dmg_type>heal</dmg_type>
         <range>contact</range>
         <cast_time>simple</cast_time>
         <duration>instant</duration>
         <compo>V,G</compo>
         <rm>true</rm>
-        <save_type>aucun</save_type>
         <rank>1</rank>
     </spell>
 
     <spell>
-        <name>Projectiles magiques</name>
-        <descr>Tire 5 projectiles faisant chaqu'un des dégâts. Le projectile touche automatiquement, même si la créature visée se trouve au corps à corps ou bénéficie d’un camouflage ou d’un abri autre que total.</descr>
-        <n_sub_spell>5</n_sub_spell>
-        <dmg_type>aucun</dmg_type>
+        <name>Bouclier de la foi</name>
+        <descr>Ce sort fait apparaître autour du bénéficiaire une aura scintillante repoussant les attaques. Bouclier de la foi confère un bonus de parade de +2 à la CA, +1 tous les six niveaux de lanceur de sorts (jusqu’à un bonus maximum de +5 au niveau 18).</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>1min/lvl</duration>
+        <compo>V,G,M</compo>
+        <rm>true</rm>
         <rank>1</rank>
     </spell>
+
     <spell>
-        <id>Projectiles magiques_sub</id>
-        <name>Projectile magique</name>
-        <descr>Le projectile touche automatiquement, même si la créature visée se trouve au corps à corps ou bénéficie d’un camouflage ou d’un abri autre que total.  Il peut répartir ses différents projectiles entre plusieurs cibles, mais chacun ne peut atteindre qu’un seul adversaire. Il doit indiquer toutes ses cibles avant d’effectuer d’éventuels tests de résistance à la magie ou de faire ses jets de dégâts.</descr>
-        <dice_type>4</dice_type>
-        <flat_dmg>1</flat_dmg>
-        <cap_dice>1</cap_dice>
-        <dmg_type>aucun</dmg_type>
-        <range>moyenne</range>
-        <cast_time>simple</cast_time>
+        <name>Connaître son ennemi</name>
+        <descr>Le personnage communie avec le divin et réfléchit sur un type de créature rencontré la veille. Il peut faire un test de Connaissances concernant ce type de créature avec un bonus d’intuition de +10.</descr>
+        <range>personnelle</range>
+        <cast_time>1min</cast_time>
         <duration>instant</duration>
         <compo>V,G</compo>
-        <rm>true</rm>
-        <save_type>aucun</save_type>
         <rank>1</rank>
     </spell>
+
+    <spell>
+        <name>Détection des morts-vivants</name>
+        <descr>Détecter les auras spécifiques des morts-vivants. Premier round : présence ou absence d’auras de morts-vivants. Deuxième round : nombre d’auras de morts-vivants dans la zone étudiée et intensité de l’aura la plus puissante. Troisième round : intensité et emplacement de chacune des auras. Si une aura se trouve en-dehors du champ de vision du lanceur de sorts, il apprend la direction dans laquelle elle se trouve mais pas son emplacement exact.</descr>
+        <range>18m</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <save_type>none</save_type>
+        <rm>false</rm>
+        <compo>V,G</compo>
+        <rank>1</rank>
+    </spell>
+
+
+    <spell>
+        <name>Dissipation de la fièvre</name>
+        <descr>Le personnage calme la maladie et la nausée de sa cible, ce qui lui donne un bonus de moral de +4 aux jets de sauvegarde contre la maladie, la nausée et la fièvre. Si la cible est déjà soumise à l’un de ces effets quand elle reçoit le sort, l’effet est supprimé pendant toute la durée du sort.</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>10min/lvl</duration>
+        <compo>V,G</compo>
+        <rank>1</rank>
+    </spell>
+
+    <spell>
+        <name>Dissipation de la fièvre</name>
+        <descr>Ce sort permet de redonner confiance au sujet, ce qui lui confère un bonus de moral de +4 aux jets de sauvegarde contre la terreur pendant dix minutes. S’il est déjà sous l’influence d’un sort ou effet de terreur, celui-ci est réprimé pendant toute la durée de regain d’assurance. Regain d’assurance contre et dissipe frayeur.</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>10min</duration>
+        <compo>V,G</compo>
+        <rank>1</rank>
+    </spell>
+
+    <spell>
+        <name>Sanctuaire</name>
+        <descr>Une fois le personnage protégé par sanctuaire, tout adversaire tentant de l’attaquer ou de le prendre pour cible avec un sort doit tout d’abord réussir un jet de Volonté. En cas de réussite, il n’est pas affecté par le sort et peut agir normalement, sinon, il ne peut pas attaquer le personnage (mais il perd tout de même l’action correspondante) et ne peut lui faire le moindre mal tant que dure le sort. Les créatures qui n’agressent pas le personnage ne sont pas affectées par sanctuaire. Le sort n’empêche pas l’individu protégé d’être affecté par des sorts de zone. Le bénéficiaire peut agir à sa guise et lancer librement des sorts qui ne sont pas offensifs, mais s’il attaque qui que ce soit, le sort cesse aussitôt.</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>1round/lvl</duration>
+        <save_type>vol[annule]</save_type>
+        <compo>V,G</compo>
+        <rank>1</rank>
+    </spell>
+
+
+
+    <!-- Todo rank 2 et + -->
 
     <spell>
         <name>Déblocage</name>
@@ -234,7 +228,7 @@
         <name>Rayons ardents</name>
         <descr>Attaque de contact à distance qui, en cas de réussite lance 3 rayons infligeant chacun des dégâts. Peut viser une ou plusieurs cibles, mais tous doivent viser des sujets situés à 9 m ou moins les uns des autres.</descr>
         <n_sub_spell>3</n_sub_spell>
-        <dmg_type>feu</dmg_type>
+        <dmg_type>fire</dmg_type>
         <rank>2</rank>
     </spell>
 
@@ -245,13 +239,13 @@
         <dice_type>6</dice_type>
         <cap_dice>4</cap_dice>
         <contact>distance</contact>
-        <dmg_type>feu</dmg_type>
+        <dmg_type>fire</dmg_type>
         <range>courte</range>
         <cast_time>simple</cast_time>
         <duration>instant</duration>
         <compo>V,G</compo>
         <rm>true</rm>
-        <save_type>aucun</save_type>
+        <save_type>none</save_type>
         <rank>2</rank>
     </spell>
 
@@ -273,14 +267,14 @@
         <dice_type>6</dice_type>
         <cap_dice>10</cap_dice>
         <n_dice_per_lvl>0.5</n_dice_per_lvl>
-        <dmg_type>aucun</dmg_type>
+        <dmg_type>none</dmg_type>
         <range>contact</range>
         <contact>melee</contact>
         <cast_time>simple</cast_time>
         <duration>instant</duration>
         <compo>V,G</compo>
         <rm>true</rm>
-        <save_type>aucun</save_type>
+        <save_type>none</save_type>
         <rank>3</rank>
     </spell>
     
@@ -290,7 +284,7 @@
         <dice_type>6</dice_type>
         <cap_dice>10</cap_dice>
         <n_dice_per_lvl>1</n_dice_per_lvl>
-        <dmg_type>feu</dmg_type>
+        <dmg_type>fire</dmg_type>
         <range>longue</range>
         <cast_time>simple</cast_time>
         <duration>instant</duration>
@@ -321,7 +315,7 @@
         <dice_type>6</dice_type>
         <cap_dice>10</cap_dice>
         <n_dice_per_lvl>1</n_dice_per_lvl>
-        <dmg_type>foudre</dmg_type>
+        <dmg_type>shock</dmg_type>
         <range>36m</range>
         <cast_time>simple</cast_time>
         <duration>instant</duration>
@@ -439,7 +433,7 @@ Chaque fois que son tour de jeu arrive, la victime a 50% de chances de pouvoir a
         <dice_type>6</dice_type>
         <cap_dice>15</cap_dice>
         <n_dice_per_lvl>1</n_dice_per_lvl>
-        <dmg_type>froid</dmg_type>
+        <dmg_type>frost</dmg_type>
         <range>18m</range>
         <cast_time>simple</cast_time>
         <duration>instant</duration>
@@ -466,7 +460,7 @@ Chaque fois que son tour de jeu arrive, la victime a 50% de chances de pouvoir a
         <dice_type>6</dice_type>
         <cap_dice>15</cap_dice>
         <n_dice_per_lvl>1</n_dice_per_lvl>
-        <dmg_type>acide</dmg_type>
+        <dmg_type>acid</dmg_type>
         <range>18m</range>
         <cast_time>simple</cast_time>
         <duration>instant</duration>
@@ -506,7 +500,7 @@ Chaque fois que son tour de jeu arrive, la victime a 50% de chances de pouvoir a
         <dice_type>6</dice_type>
         <cap_dice>40</cap_dice>
         <n_dice_per_lvl>2</n_dice_per_lvl>
-        <dmg_type>aucun</dmg_type>
+        <dmg_type>none</dmg_type>
         <contact>distance</contact>
         <range>moyenne</range>
         <cast_time>simple</cast_time>
@@ -526,7 +520,7 @@ Chaque fois que son tour de jeu arrive, la victime a 50% de chances de pouvoir a
         <cast_time>simple</cast_time>
         <duration>instant</duration>
         <rm>false</rm>
-        <save_type>aucun</save_type>
+        <save_type>none</save_type>
         <compo>V,G</compo>
         <rank>6</rank>
     </spell>
@@ -547,7 +541,7 @@ Chaque fois que son tour de jeu arrive, la victime a 50% de chances de pouvoir a
         <dice_type>6</dice_type>
         <cap_dice>20</cap_dice>
         <n_dice_per_lvl>1</n_dice_per_lvl>
-        <dmg_type>foudre</dmg_type>
+        <dmg_type>shock</dmg_type>
         <range>longue</range>
         <cast_time>simple</cast_time>
         <duration>instant</duration>
@@ -562,7 +556,7 @@ Chaque fois que son tour de jeu arrive, la victime a 50% de chances de pouvoir a
         <descr>Ce sort inflige 10 points de dégâts par niveau de lanceur de sorts. Si la cible réussit son jet de sauvegarde, elle perd seulement 3d6 points de vie+1 par niveau de lanceur de sorts.</descr>
         <dice_type>lvl</dice_type>
         <n_dice_per_lvl>10</n_dice_per_lvl>
-        <dmg_type>aucun</dmg_type>
+        <dmg_type>none</dmg_type>
         <range>courte</range>
         <cast_time>simple</cast_time>
         <duration>instant</duration>
@@ -638,7 +632,7 @@ Chaque fois que son tour de jeu arrive, la victime a 50% de chances de pouvoir a
         <duration>instant</duration>
         <compo>V,G</compo>
         <rm>false</rm>
-        <save_type>aucun</save_type>
+        <save_type>none</save_type>
         <rank>8</rank>
     </spell>
 
@@ -659,7 +653,7 @@ Chaque fois que son tour de jeu arrive, la victime a 50% de chances de pouvoir a
         <dice_type>8</dice_type>
         <cap_dice>20</cap_dice>
         <n_dice_per_lvl>1</n_dice_per_lvl>
-        <dmg_type>foudre</dmg_type>
+        <dmg_type>shock</dmg_type>
         <range>9m</range>
         <cast_time>simple</cast_time>
         <duration>instant</duration>
@@ -718,7 +712,7 @@ Chaque fois que son tour de jeu arrive, la victime a 50% de chances de pouvoir a
     <spell>
         <name>Nuée de météores</name>
         <descr>Avec une attaque de contact à distance projète quatre sphères, toute créature frappée par l’une des sphères subit 2d6 points de dégâts contondants (pas de jet de sauvegarde) et subit un malus de -4 au jet de sauvegarde sur les explosions suivantes. Chaque sphere explose sous la forme d’une étendue de 12 m de rayon et inflige 6d6 points de dégâts de feu (jet de reflexe par explosion pour demi-dégats la resistance ne s'aplique qu'une fois).</descr>
-        <dmg_type>feu</dmg_type>
+        <dmg_type>fire</dmg_type>
         <n_sub_spell>4</n_sub_spell>
         <rank>9</rank>
     </spell>
@@ -729,7 +723,7 @@ Chaque fois que son tour de jeu arrive, la victime a 50% de chances de pouvoir a
         <range>longue</range>
         <dice_type>6</dice_type>
         <cap_dice>2</cap_dice>
-        <dmg_type>feu</dmg_type>
+        <dmg_type>fire</dmg_type>
         <cast_time>simple</cast_time>
         <compo>V,G</compo>
         <duration>instant</duration>
@@ -744,7 +738,7 @@ Chaque fois que son tour de jeu arrive, la victime a 50% de chances de pouvoir a
         <range>longue</range>
         <dice_type>6</dice_type>
         <cap_dice>6</cap_dice>
-        <dmg_type>feu</dmg_type>
+        <dmg_type>fire</dmg_type>
         <cast_time>simple</cast_time>
         <compo>V,G</compo>
         <area>12m</area>

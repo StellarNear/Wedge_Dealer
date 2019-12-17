@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import stellarnear.wedge_companion.Elems.Elem;
-import stellarnear.wedge_companion.Elems.AttacksElemsManager;
+import stellarnear.wedge_companion.Elems.ElemsManager;
 import stellarnear.wedge_companion.FormSpell.FormPower;
 import stellarnear.wedge_companion.Perso.AllForms;
 import stellarnear.wedge_companion.Perso.Form;
@@ -104,16 +104,16 @@ public class PostDataElement {
         String resultTxt="";
 
         int totalSum = 0;
-        AttacksElemsManager elems = AttacksElemsManager.getInstance();
+        ElemsManager elems = ElemsManager.getInstance();
         if(elems!=null) {
-            for (Elem elem : elems.getElems()) {
-                int sumElem = atkRolls.getDmgSumFromType(elem.getKey());
+            for (String elem : elems.getListKeysWedgeDamage()) {
+                int sumElem = atkRolls.getDmgSumFromType(elem);
                 if (sumElem > 0) {
                     if (!resultTxt.equalsIgnoreCase("")) {
                         resultTxt += ", ";
                     }
                     totalSum += sumElem;
-                    resultTxt += sumElem + " " + elem.getName();
+                    resultTxt += sumElem + " " + elems.getName(elem);
                 }
             }
             if (!resultTxt.equalsIgnoreCase("")) {

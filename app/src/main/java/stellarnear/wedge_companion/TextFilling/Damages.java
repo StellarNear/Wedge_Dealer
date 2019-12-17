@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import stellarnear.wedge_companion.Elems.AttacksElemsManager;
+import stellarnear.wedge_companion.Elems.ElemsManager;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
@@ -25,7 +25,7 @@ public class Damages {
     private Context mC;
     private View mainView;
     private RollList selectedRolls;
-    private AttacksElemsManager elems;
+    private ElemsManager elems;
     private Perso pj = PersoManager.getCurrentPJ();
 
     private Tools tools = new Tools();
@@ -35,7 +35,7 @@ public class Damages {
         this.mC = mC;
         this.mainView = mainView;
         this.selectedRolls = selectedRolls;
-        this.elems= AttacksElemsManager.getInstance(mC);
+        this.elems= ElemsManager.getInstance(mC);
 
         clearAllViews();
         addDamage();
@@ -65,7 +65,7 @@ public class Damages {
 
     private void addDamage() {
         int totalSum = 0;
-        for (String elem : elems.getListKeys()) {
+        for (String elem : elems.getListKeysWedgeDamage()) {
             for (Roll roll : selectedRolls.getList()) {
                 roll.setDmgRand();
             }
@@ -114,7 +114,7 @@ public class Damages {
         sumTxt.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         sumTxt.setGravity(Gravity.CENTER);
         sumTxt.setTypeface(null, Typeface.BOLD);
-        sumTxt.setTextColor(elems.getColorId(elem));
+        sumTxt.setTextColor(elems.getColorIdDark(elem));
         sumTxt.setTextSize(35);
         sumTxt.setText(String.valueOf(selectedRolls.getDmgSumFromType(elem)));
         sumBox.addView(sumTxt);
@@ -123,9 +123,9 @@ public class Damages {
 
     private void checkHighscore(int sumDmg) {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
-        int currentHigh = new Tools().toInt(settings.getString("highscore", "0"));
+        int currentHigh = new Tools().toInt(settings.getString("highscore"+PersoManager.getPJSuffix(), "0"));
         if (currentHigh < sumDmg) {
-            settings.edit().putString("highscore",String.valueOf(sumDmg)).apply();
+            settings.edit().putString("highscore"+PersoManager.getPJSuffix(),String.valueOf(sumDmg)).apply();
             Tools tools = new Tools();
             tools.playVideo(mA,mC,"/raw/explosion");
             tools.customToast(mC, String.valueOf(sumDmg) + " dégats !\nC'est un nouveau record !", "center");

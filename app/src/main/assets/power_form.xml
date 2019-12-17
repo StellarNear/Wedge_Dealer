@@ -10,18 +10,19 @@
         <dmg_type>fire</dmg_type>
         <area>cône 4.5m</area>
         <duration>instant</duration>
-        <save_type>ref</save_type>
+        <save_type>REF</save_type>
         <id>powerform_kirin_breath</id>
     </power>
 
     <power>
         <name>Souffle de glace</name>
         <dice_type>6</dice_type>
+        <descr>Exhale de l’énergie ou un autre effet magique sous la forme d’un cône, d’une ligne ou d’un nuage. Le plus souvent, les attaques de souffle infligent des dégâts d’un type d’énergie spécifique.</descr>
         <n_dice_per_lvl>0.5</n_dice_per_lvl>
         <dmg_type>frost</dmg_type>
         <area>cône 9m</area>
         <duration>instant</duration>
-        <save_type>ref</save_type>
+        <save_type>REF</save_type>
         <id>powerform_dragon_horse_breath</id>
     </power>
 
@@ -29,72 +30,73 @@
     <!-- autre -->
     <power>
         <name>Rayon Rouge</name>
+        <descr>Rayon de lumière tourbillonnante qui jaillit. Infligeant des dégâts.</descr>
         <flat_dmg>20</flat_dmg>
         <dmg_type>fire</dmg_type>
         <range>9m</range>
         <duration>instant</duration>
-        <save_type>ref</save_type>
+        <save_type>REF</save_type>
         <id>powerform_prisma_ray_red</id>
     </power>
 
     <power>
         <name>Rayon Orange</name>
+        <descr>Rayon de lumière tourbillonnante qui jaillit. Infligeant des dégâts.</descr>
         <flat_dmg>40</flat_dmg>
         <dmg_type>acid</dmg_type>
         <range>9m</range>
         <duration>instant</duration>
-        <save_type>ref</save_type>
+        <save_type>REF</save_type>
         <id>powerform_prisma_ray_orange</id>
     </power>
 
     <power>
         <name>Rayon Jaune</name>
         <flat_dmg>40</flat_dmg>
+        <descr>Rayon de lumière tourbillonnante qui jaillit. Infligeant des dégâts.</descr>
         <dmg_type>shock</dmg_type>
         <range>9m</range>
         <duration>instant</duration>
-        <save_type>ref</save_type>
+        <save_type>REF</save_type>
         <id>powerform_prisma_ray_yellow</id>
     </power>
 
     <power>
         <name>Rayon Vert</name>
-        <effect>Poison (fréquence 1/round pendant 6 rounds)
+        <descr>Poison (fréquence 1/round pendant 6 rounds)
             effet primaire : mort
-            effet secondaire : 1 Con/round (guérison 2 réussites consécutives)</effect>
+            effet secondaire : 1 Con/round (guérison 2 réussites consécutives)</descr>
         <range>9m</range>
         <duration>instant</duration>
-        <save_type>vig</save_type>
+        <save_type>VIG</save_type>
         <id>powerform_prisma_ray_green</id>
     </power>
 
     <power>
         <name>Rayon Bleu</name>
-        <effect>Pétrification</effect>
-        <descr>La cible et tout son équipement se transforment en statue de pierre. Si cette statue est endommagée, le sujet souffre de mutilations similaires si on le ramène un jour à son état normal. La victime n’est pas morte (son âme ne quitte pas son corps) mais elle n’a rien de vivant (même si on la sonde à l’aide d’un sort tel que perception de la mort). Pétrification ne fonctionne que sur les êtres de chair.</descr>
+        <descr>Pétrification. La cible et tout son équipement se transforment en statue de pierre. Si cette statue est endommagée, le sujet souffre de mutilations similaires si on le ramène un jour à son état normal. La victime n’est pas morte (son âme ne quitte pas son corps) mais elle n’a rien de vivant (même si on la sonde à l’aide d’un sort tel que perception de la mort). Pétrification ne fonctionne que sur les êtres de chair.</descr>
         <range>9m</range>
         <duration>instant</duration>
-        <save_type>vig</save_type>
+        <save_type>VIG</save_type>
         <id>powerform_prisma_ray_blue</id>
     </power>
 
 
     <power>
         <name>Rayon Indigo</name>
-        <effect>Aliénation mentale</effect>
-        <descr>La créature affectée souffre en permanence de l’effet du sort confusion. Délivrance des malédictions est insuffisant pour soigner un individu frappé d’aliénation mentale. Un sort tel que guérison suprême, miracle, restauration suprême, souhait ou souhait limité est nécessaire pour lui permettre de recouvrer ses facultés.</descr>
+        <descr>Aliénation mentale. La créature affectée souffre en permanence de l’effet du sort confusion. Délivrance des malédictions est insuffisant pour soigner un individu frappé d’aliénation mentale. Un sort tel que guérison suprême, miracle, restauration suprême, souhait ou souhait limité est nécessaire pour lui permettre de recouvrer ses facultés.</descr>
         <range>9m</range>
         <duration>instant</duration>
-        <save_type>vol</save_type>
+        <save_type>VOL</save_type>
         <id>powerform_prisma_ray_indigo</id>
     </power>
 
     <power>
         <name>Rayon Violet</name>
-        <effect>Cible bannie dans un autre plan</effect>
+        <descr>Cible bannie dans un autre plan</descr>
         <range>9m</range>
         <duration>instant</duration>
-        <save_type>vol</save_type>
+        <save_type>VOL</save_type>
         <id>powerform_prisma_ray_violet</id>
     </power>
 

@@ -92,7 +92,7 @@
     </string-array>
 
 
-    <!-- Stats -->
+    <!-- SpellStats -->
     <string-array name="stat_bin">
         <item>10</item>
         <item>25</item>

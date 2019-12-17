@@ -80,6 +80,15 @@
     <color name="foudre_dark">#2ECCFA</color>
     <color name="acide">#3cdd54</color>
     <color name="acide_dark">#009907</color>
+    <color name="no_dmg">#0B272B</color>
+    <color name="no_dmg_dark">#030F10</color>
+
+    <color name="all_stat">#13823E</color>
+    <color name="all_recent_stat">#003A17</color>
+
+    <color name="contact_miss_stat">#cccccc</color>
+    <color name="resist_stat">#005580</color>
+
     <color name="lightgray">#dddddd</color>
 
     <attr name="start_gradient_title_bar_main_skill" format="reference" />
@@ -107,6 +116,10 @@
 
     <color name="start_gradient_skill">#ffffff</color>
     <color name="end_gradient_skill">#e6e6e6</color>
+    <color name="start_gradient_canal_selected_capacity">#ffffff</color>
+    <color name="end_gradient_canal_selected_capacity">#00b33c</color>
+    <color name="end_gradient_ki">#e6e6e6</color>
+    <color name="start_gradient_ki">#ffffff</color>
 
 
 </resources>

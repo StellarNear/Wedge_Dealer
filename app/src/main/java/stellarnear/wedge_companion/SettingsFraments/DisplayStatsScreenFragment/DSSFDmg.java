@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import stellarnear.wedge_companion.Elems.AttacksElemsManager;
+import stellarnear.wedge_companion.Elems.ElemsManager;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
@@ -37,7 +37,7 @@ public class DSSFDmg {
 
     private Context mC;
     private View mainView;
-    private AttacksElemsManager elems;
+    private ElemsManager elems;
     private Map<String,CheckBox> mapElemCheckbox=new HashMap<>();
     private StatsList selectedStats=new StatsList();
     private int infoTxtSize = 12;
@@ -47,7 +47,7 @@ public class DSSFDmg {
     public DSSFDmg(View mainView, Context mC) {
         this.mainView = mainView;
         this.mC = mC;
-        this.elems= AttacksElemsManager.getInstance(mC);
+        this.elems= ElemsManager.getInstance(mC);
 
         TextView nAtkTxt = mainView.findViewById(R.id.nDmgTxt);
         nAtkTxt.setText(pj.getStats().getStatsList().getNDmgTot() + " jets de dégâts");
@@ -69,7 +69,7 @@ public class DSSFDmg {
     }
 
     private void setCheckboxListeners() {
-        for(String elem : elems.getListKeys()){
+        for(String elem : elems.getListKeysWedgeDamage()){
             mapElemCheckbox.get(elem).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -149,7 +149,7 @@ public class DSSFDmg {
             list=pj.getStats().getStatsList();
         }
         int totalDmg=list.getSumDmgTot();
-        for(String elem : elems.getListKeys()) {
+        for(String elem : elems.getListKeysWedgeDamage()) {
             if (mapElemCheckbox.get(elem).isChecked()) {
                 float percent = 100f * (list.getSumDmgTotElem(elem) / (float) totalDmg);
                 if (percent > 0f) {
@@ -168,7 +168,7 @@ public class DSSFDmg {
     // Resets
 
     public void reset() {
-        for(String elem : elems.getListKeys()){
+        for(String elem : elems.getListKeysWedgeDamage()){
             mapElemCheckbox.get(elem).setChecked(true);
         }
         chartMaker.resetChart();

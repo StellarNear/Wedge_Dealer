@@ -292,10 +292,10 @@ public class QuadrantFiller {
                 public void onClick(View v) {
                     if(pj.getCurrentResourceValue(res.getId())>0) {
                         new AlertDialog.Builder(mC)
-                                .setTitle("Demande de confirmation")
-                                .setMessage("Confirmes-tu la dépense d'une utilisation de " + res.getName() + " ?")
+                                .setTitle("Utilisation de "+res.getName())
+                                .setMessage(res.getCapaDescr())
                                 .setIcon(android.R.drawable.ic_menu_help)
-                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                .setPositiveButton("Utiliser", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int whichButton) {
                                         pj.getAllResources().getResource(res.getId()).spend(1);
                                         new PostData(mC, new PostDataElement("Utilisation de la capacité\n" + res.getName(), res.getCapaDescr()));
@@ -305,7 +305,7 @@ public class QuadrantFiller {
                                         buildAllMini(); //refresh les mini
                                     }
                                 })
-                                .setNegativeButton(android.R.string.no, null).show();
+                                .setNegativeButton("Annuler", null).show();
                     } else {
                         tools.customToast(mC,"Tu n'as plus d'utilisation journalière...");
                     }

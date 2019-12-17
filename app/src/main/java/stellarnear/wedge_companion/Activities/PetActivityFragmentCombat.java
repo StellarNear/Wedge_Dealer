@@ -123,6 +123,8 @@ public class PetActivityFragmentCombat extends Fragment {
             }
         });
 
+        //todo les bouton simple attack et leap (only sylphe)
+
         fabAtk = (ImageButton) mainPage.findViewById(R.id.fabAtk);
         setListenerFabAtk();
         fabDmg = (ImageButton) mainPage.findViewById(R.id.fab_damage);

@@ -14,12 +14,13 @@ import java.util.List;
 
 import stellarnear.wedge_companion.CalculationAtk;
 import stellarnear.wedge_companion.Elems.Elem;
-import stellarnear.wedge_companion.Elems.SpellsElemsManager;
+import stellarnear.wedge_companion.Elems.ElemsManager;
 import stellarnear.wedge_companion.Spells.CalculationSpell;
 import stellarnear.wedge_companion.HallOfFame;
 import stellarnear.wedge_companion.PostData;
 import stellarnear.wedge_companion.PostDataElement;
 import stellarnear.wedge_companion.Spells.Spell;
+import stellarnear.wedge_companion.Stats.SpellStats.SpellStats;
 import stellarnear.wedge_companion.Stats.Stats;
 import stellarnear.wedge_companion.Tools;
 
@@ -33,11 +34,13 @@ public class Perso {
     private Inventory inventory;
     private AllResources allResources;
     private Stats stats;
+    private SpellStats spellStats;
     private HallOfFame hallOfFame;
 
     private AllAbilities allAbilities;
     private AllFeats allFeats;
     private AllForms allForms;
+    private AllCanalisationCapacities allCanalisationCapacities;
     private AllCapacities allCapacities;
     private AllSkills allSkills;
     private AllMythicFeats allMythicFeats;
@@ -60,8 +63,14 @@ public class Perso {
         if(pjID.equalsIgnoreCase("")|| pjID.equalsIgnoreCase("halda")){
             allMythicFeats = new AllMythicFeats(mC,pjID);
             allMythicCapacities = new AllMythicCapacities(mC,pjID);
+            spellStats = new SpellStats(mC,pjID);
+            if(pjID.equalsIgnoreCase("")){ //wedge
+                allForms=new AllForms(mC);
+            } else {  //halda
+                allCanalisationCapacities=new AllCanalisationCapacities(mC);
+            }
         }
-        if(pjID.equalsIgnoreCase("")){allForms=new AllForms(mC);}
+
 
         inventory = new Inventory(mC,pjID);
         allFeats = new AllFeats(mC,pjID);
@@ -102,6 +111,10 @@ public class Perso {
 
     public AllForms getAllForms() {
         return allForms;
+    }
+
+    public AllCanalisationCapacities getAllCanalisationCapacities() {
+        return allCanalisationCapacities;
     }
 
     public Integer getCurrentResourceValue(String resId){
@@ -157,6 +170,9 @@ public class Perso {
         return stats;
     }
 
+    public SpellStats getSpellStats() {
+        return spellStats;
+    }
 
     public HallOfFame getHallOfFame() {
         return hallOfFame;
@@ -344,12 +360,13 @@ public class Perso {
 
     public Spanned getResistsValueLongFormat() {
         Spanned result= new SpannableString("");
-        for(Elem elem : SpellsElemsManager.getInstance(mC).getElems()){
+        ElemsManager elems=ElemsManager.getInstance(mC);
+        for(String elemId : elems.getResistElems()){
             if(result.length()>0){result=(Spanned) TextUtils.concat(result,"/");}
-            int valueFromAbi = ((ElementalReducAbility)allAbilities.getAbi("ability_reduc_elem")).getMapElemReduc().get(elem.getKey());
-            int valueFromForm = allForms!=null? allForms.getResistBonus(elem.getKey()) : 0;
+            int valueFromAbi = ((ElementalReducAbility)allAbilities.getAbi("ability_reduc_elem")).getMapElemReduc().get(elemId);
+            int valueFromForm = allForms!=null? allForms.getResistBonus(elemId) : 0;
             Spannable span = new SpannableString(String.valueOf(valueFromAbi+valueFromForm));
-            span.setSpan(new ForegroundColorSpan(elem.getColorIdDark()),0,span.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            span.setSpan(new ForegroundColorSpan(elems.getColorIdDark(elemId)),0,span.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             result=(Spanned)TextUtils.concat(result,span);
         }
         return result;
@@ -401,8 +418,12 @@ public class Perso {
     public void reset() {
         this.allFeats.reset();
         this.allCapacities.reset();
-        this.allMythicFeats.reset();
-        this.allMythicCapacities.reset();
+        if(allMythicFeats!=null){
+            this.allMythicFeats.reset();
+        }
+        if(allMythicCapacities!=null){
+            this.allMythicCapacities.reset();
+        }
         this.allAbilities.reset();
         this.allResources.reset();
         this.allSkills.reset();

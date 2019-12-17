@@ -74,7 +74,13 @@ public class FormCapacityAlertDialog {
         });
         fillStats((TextView)dialogView.findViewById(R.id.customDialogCapaStats));
         addPowers((TextView)dialogView.findViewById(R.id.customDialogCapaPower),capa.getPowerList());
-        // todo icon.setImageDrawable(mC.getDrawable(imgId));
+
+        int imgId = mC.getResources().getIdentifier(capa.getId(), "drawable", mC.getPackageName());
+        try {
+            ((ImageView)dialogView.findViewById(R.id.customDialogCapaIcon)).setImageDrawable(mC.getDrawable(imgId));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         Button diceroll = dialogView.findViewById(R.id.button_customDialog_launch);
         diceroll.setOnClickListener( new View.OnClickListener() {
@@ -192,9 +198,7 @@ public class FormCapacityAlertDialog {
                 for(FormPower power : selectedPower){
                     line.addView(power.getProfile().getProfile(mA,mC));
                 }
-                //todo add x spell fonction de la liste power
             } else {
-                //todo add le spell
                 LinearLayout line = new LinearLayout(mC); line.setGravity(Gravity.CENTER); line.setOrientation(LinearLayout.VERTICAL);
                 fram.addView(line);
                 for(FormPower power : capa.getPowerList()){

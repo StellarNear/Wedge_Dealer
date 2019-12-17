@@ -13,7 +13,7 @@
     <integer name="prouesse_def_halda">0</integer>
     <integer name="prouesse_attrib_def_halda">1</integer>
 
-    <!--  Stat de base du perso  -->
+    <!--  SpellStat de base du perso  -->
     <integer name="ability_force_base_def_halda">4</integer>
     <integer name="ability_dexterite_base_def_halda">10</integer>
     <integer name="ability_constitution_base_def_halda">18</integer>

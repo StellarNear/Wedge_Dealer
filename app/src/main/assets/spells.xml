@@ -5,7 +5,7 @@
         <descr>Rayon d’énergie positive. Le personnage doit réussir une attaque de contact à distance pour atteindre le mort-vivant.</descr>
         <dice_type>6</dice_type>
         <cap_dice>1</cap_dice>
-        <dmg_type>aucun</dmg_type>
+        <dmg_type>none</dmg_type>
         <contact>distance</contact>
         <range>courte</range>
         <cast_time>simple</cast_time>
@@ -81,7 +81,7 @@
         <descr>Un rayon de givre jaillit du doigt tendu du mage, qui doit réussir une attaque de contact à distance pour atteindre sa cible.</descr>
         <dice_type>3</dice_type>
         <cap_dice>1</cap_dice>
-        <dmg_type>froid</dmg_type>
+        <dmg_type>frost</dmg_type>
         <contact>distance</contact>
         <range>courte</range>
         <cast_time>simple</cast_time>
@@ -154,7 +154,7 @@
         <n_dice_per_lvl>1</n_dice_per_lvl>
         <cap_dice>5</cap_dice>
         <contact>melee</contact>
-        <dmg_type>foudre</dmg_type>
+        <dmg_type>shock</dmg_type>
         <range>contact</range>
         <cast_time>simple</cast_time>
         <duration>instant</duration>
@@ -168,7 +168,7 @@
         <name>Projectiles magiques</name>
         <descr>Tire 5 projectiles faisant chaqu'un des dégâts. Le projectile touche automatiquement, même si la créature visée se trouve au corps à corps ou bénéficie d’un camouflage ou d’un abri autre que total.</descr>
         <n_sub_spell>5</n_sub_spell>
-        <dmg_type>aucun</dmg_type>
+        <dmg_type>none</dmg_type>
         <rank>1</rank>
     </spell>
     <spell>
@@ -178,7 +178,7 @@
         <dice_type>4</dice_type>
         <flat_dmg>1</flat_dmg>
         <cap_dice>1</cap_dice>
-        <dmg_type>aucun</dmg_type>
+        <dmg_type>none</dmg_type>
         <range>moyenne</range>
         <cast_time>simple</cast_time>
         <duration>instant</duration>
@@ -234,7 +234,7 @@
         <name>Rayons ardents</name>
         <descr>Attaque de contact à distance qui, en cas de réussite lance 3 rayons infligeant chacun des dégâts. Peut viser une ou plusieurs cibles, mais tous doivent viser des sujets situés à 9 m ou moins les uns des autres.</descr>
         <n_sub_spell>3</n_sub_spell>
-        <dmg_type>feu</dmg_type>
+        <dmg_type>fire</dmg_type>
         <rank>2</rank>
     </spell>
 
@@ -245,7 +245,7 @@
         <dice_type>6</dice_type>
         <cap_dice>4</cap_dice>
         <contact>distance</contact>
-        <dmg_type>feu</dmg_type>
+        <dmg_type>fire</dmg_type>
         <range>courte</range>
         <cast_time>simple</cast_time>
         <duration>instant</duration>
@@ -273,7 +273,7 @@
         <dice_type>6</dice_type>
         <cap_dice>10</cap_dice>
         <n_dice_per_lvl>0.5</n_dice_per_lvl>
-        <dmg_type>aucun</dmg_type>
+        <dmg_type>none</dmg_type>
         <range>contact</range>
         <contact>melee</contact>
         <cast_time>simple</cast_time>
@@ -290,7 +290,7 @@
         <dice_type>6</dice_type>
         <cap_dice>10</cap_dice>
         <n_dice_per_lvl>1</n_dice_per_lvl>
-        <dmg_type>feu</dmg_type>
+        <dmg_type>fire</dmg_type>
         <range>longue</range>
         <cast_time>simple</cast_time>
         <duration>instant</duration>
@@ -321,7 +321,7 @@
         <dice_type>6</dice_type>
         <cap_dice>10</cap_dice>
         <n_dice_per_lvl>1</n_dice_per_lvl>
-        <dmg_type>foudre</dmg_type>
+        <dmg_type>shock</dmg_type>
         <range>36m</range>
         <cast_time>simple</cast_time>
         <duration>instant</duration>
@@ -439,7 +439,7 @@ Chaque fois que son tour de jeu arrive, la victime a 50% de chances de pouvoir a
         <dice_type>6</dice_type>
         <cap_dice>15</cap_dice>
         <n_dice_per_lvl>1</n_dice_per_lvl>
-        <dmg_type>froid</dmg_type>
+        <dmg_type>frost</dmg_type>
         <range>18m</range>
         <cast_time>simple</cast_time>
         <duration>instant</duration>
@@ -466,7 +466,7 @@ Chaque fois que son tour de jeu arrive, la victime a 50% de chances de pouvoir a
         <dice_type>6</dice_type>
         <cap_dice>15</cap_dice>
         <n_dice_per_lvl>1</n_dice_per_lvl>
-        <dmg_type>acide</dmg_type>
+        <dmg_type>acid</dmg_type>
         <range>18m</range>
         <cast_time>simple</cast_time>
         <duration>instant</duration>
@@ -506,7 +506,7 @@ Chaque fois que son tour de jeu arrive, la victime a 50% de chances de pouvoir a
         <dice_type>6</dice_type>
         <cap_dice>40</cap_dice>
         <n_dice_per_lvl>2</n_dice_per_lvl>
-        <dmg_type>aucun</dmg_type>
+        <dmg_type>none</dmg_type>
         <contact>distance</contact>
         <range>moyenne</range>
         <cast_time>simple</cast_time>
@@ -547,7 +547,7 @@ Chaque fois que son tour de jeu arrive, la victime a 50% de chances de pouvoir a
         <dice_type>6</dice_type>
         <cap_dice>20</cap_dice>
         <n_dice_per_lvl>1</n_dice_per_lvl>
-        <dmg_type>foudre</dmg_type>
+        <dmg_type>shock</dmg_type>
         <range>longue</range>
         <cast_time>simple</cast_time>
         <duration>instant</duration>
@@ -562,7 +562,7 @@ Chaque fois que son tour de jeu arrive, la victime a 50% de chances de pouvoir a
         <descr>Ce sort inflige 10 points de dégâts par niveau de lanceur de sorts. Si la cible réussit son jet de sauvegarde, elle perd seulement 3d6 points de vie+1 par niveau de lanceur de sorts.</descr>
         <dice_type>lvl</dice_type>
         <n_dice_per_lvl>10</n_dice_per_lvl>
-        <dmg_type>aucun</dmg_type>
+        <dmg_type>none</dmg_type>
         <range>courte</range>
         <cast_time>simple</cast_time>
         <duration>instant</duration>
@@ -659,7 +659,7 @@ Chaque fois que son tour de jeu arrive, la victime a 50% de chances de pouvoir a
         <dice_type>8</dice_type>
         <cap_dice>20</cap_dice>
         <n_dice_per_lvl>1</n_dice_per_lvl>
-        <dmg_type>foudre</dmg_type>
+        <dmg_type>shock</dmg_type>
         <range>9m</range>
         <cast_time>simple</cast_time>
         <duration>instant</duration>
@@ -718,7 +718,7 @@ Chaque fois que son tour de jeu arrive, la victime a 50% de chances de pouvoir a
     <spell>
         <name>Nuée de météores</name>
         <descr>Avec une attaque de contact à distance projète quatre sphères, toute créature frappée par l’une des sphères subit 2d6 points de dégâts contondants (pas de jet de sauvegarde) et subit un malus de -4 au jet de sauvegarde sur les explosions suivantes. Chaque sphere explose sous la forme d’une étendue de 12 m de rayon et inflige 6d6 points de dégâts de feu (jet de reflexe par explosion pour demi-dégats la resistance ne s'aplique qu'une fois).</descr>
-        <dmg_type>feu</dmg_type>
+        <dmg_type>fire</dmg_type>
         <n_sub_spell>4</n_sub_spell>
         <rank>9</rank>
     </spell>
@@ -729,7 +729,7 @@ Chaque fois que son tour de jeu arrive, la victime a 50% de chances de pouvoir a
         <range>longue</range>
         <dice_type>6</dice_type>
         <cap_dice>2</cap_dice>
-        <dmg_type>feu</dmg_type>
+        <dmg_type>fire</dmg_type>
         <cast_time>simple</cast_time>
         <compo>V,G</compo>
         <duration>instant</duration>
@@ -744,7 +744,7 @@ Chaque fois que son tour de jeu arrive, la victime a 50% de chances de pouvoir a
         <range>longue</range>
         <dice_type>6</dice_type>
         <cap_dice>6</cap_dice>
-        <dmg_type>feu</dmg_type>
+        <dmg_type>fire</dmg_type>
         <cast_time>simple</cast_time>
         <compo>V,G</compo>
         <area>12m</area>

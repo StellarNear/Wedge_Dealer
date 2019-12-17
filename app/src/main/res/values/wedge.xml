@@ -18,7 +18,7 @@
     <integer name="prouesse_attrib_def">4</integer>
     <integer name="attack_range_DEF">100</integer>
 
-    <!--  Stat de base du perso  -->
+    <!--  SpellStat de base du perso  -->
     <integer name="ability_lvl_def">27</integer>
     <integer name="current_xp_def">34288997</integer>
 

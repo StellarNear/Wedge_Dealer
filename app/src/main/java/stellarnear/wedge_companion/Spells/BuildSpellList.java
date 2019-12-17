@@ -19,20 +19,31 @@ import stellarnear.wedge_companion.Tools;
 
 public class BuildSpellList extends AppCompatActivity {
 
-    private static BuildSpellList instance=null;
+    private static BuildSpellList instanceWedge=null;
+    private static BuildSpellList instanceHada=null;
 
     public SpellList allSpells = null;
     private Tools tools=new Tools();
 
     public static BuildSpellList getInstance(Context mC) {  //pour eviter de relire le xml à chaque fois
-        if (instance==null){
-            instance = new BuildSpellList(mC);
+        BuildSpellList instance=null;
+        if(PersoManager.getCurrentNamePJ().equalsIgnoreCase("wedge")){
+            if (instanceWedge==null){
+                instanceWedge = new BuildSpellList(mC);
+            }
+            instance=instanceWedge;
+        } else {
+            if (instanceHada==null){
+                instanceHada = new BuildSpellList(mC);
+            }
+            instance=instanceHada;
         }
         return instance;
     }
 
     public static void resetSpellList() {
-        instance = null;
+        instanceWedge = null;
+        instanceHada = null;
     }
 
     private BuildSpellList(Context mC){  // on construit la liste qu'une fois dans MainActivityFragmentSpell donc pas besoin de singleton
@@ -69,7 +80,8 @@ public class BuildSpellList extends AppCompatActivity {
                             tools.toDouble(getValue("n_dice_per_lvl",element2)),
                             tools.toInt(getValue("cap_dice",element2)),
                             getValue("dmg_type",element2),
-                            tools.toInt(getValue("flat_dmg",element2)),
+                            getValue("flat_dmg",element2),
+                            tools.toInt(getValue("flat_cap",element2)),
                             getValue("range",element2),
                             getValue("contact",element2),
                             getValue("area",element2),

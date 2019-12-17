@@ -192,6 +192,9 @@ public class AllResources {
             hpMythPerGrad=5; //champion mythique
         } else if(pjID.equalsIgnoreCase("halda")){
             hpMythPerGrad=4; //hierophante mythique
+            int maxCanal=1+allAbilities.getAbi("ability_charisme").getMod();
+            if(allCapacities.capacityIsActive("epic_revelation_canal")){maxCanal*=2;}
+            getResource("resource_canalisation").setMax(maxCanal);
         }
         if(allFeats.featIsActive("feat_robust")){ hpPool += 3+allAbilities.getAbi("ability_lvl").getValue();}
         hpPool += hpMythPerGrad*readResource("mythic_tier");

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<records>
+    <canalcapacity>
+        <name>Ailes de lumières</name>
+        <cost>3</cost>
+        <descr>Devient un être angélique avec une paire d’aile munie de plumes de lumières, gagne les bonus :
+            - une vitesse de vol de 30m
+            - vision dans le noir à 20m
+            - Immunité à l’acide le froid et pétrification
+            - Bonus de +4 aux jets contre les poisons
+            - Cercle magique contre le Mal
+            - Globe d'invulnérabilité partielle
+            Dure 1 minute par d6 que la canalisation.</descr>
+        <id>canalcapacity_light_wing</id>
+    </canalcapacity>
+
+    <canalcapacity>
+        <name>Canalisation d'énergie conditionnée</name>
+        <cost>1</cost>
+        <descr>Dépenser une utilisation de pouvoir mythique en même temps qu’une utilisation de son aptitude de canalisation d’énergie pour retarder sa canalisation d’énergie afin qu’elle s’active sous certaines conditions prédéterminées.  Il peut exclure des cibles qu’il doit nommer à cet instant. Seule une utilisation de cette aptitude peut être en attente de déclenchement en même temps ; si le personnage l’utilise à nouveau, la précédente prend fin.</descr>
+        <shortdescr>Dépense aussi un point mythique.
+            Retarde sa canalisation d’énergie afin qu’elle s’active sous certaines conditions prédéterminées. Seule une utilisation de cette aptitude peut être en attente.</shortdescr>
+        <id>canalcapacity_step</id>
+    </canalcapacity>
+
+    <canalcapacity>
+        <name>Canalisation d'énergie</name>
+        <cost>1</cost>
+        <descr>L’énergie canalisée crée un rayonnement qui affecte toutes les créatures d’un type donné (soit vivants, soit morts-vivants) dans un rayon de 9 m. La quantité de dégâts infligés ou de points de vie soignés est égale à 1d6 points plus 1d6 points par tranche de deux niveaux (2d6 au niveau 3, 3d6 au niveau 5 et ainsi de suite). Les créatures qui sont blessées par l’énergie canalisée bénéficient d’un jet de Volonté pour diminuer les dégâts de moitié. Le DD de ce jet de sauvegarde vaut 10 + la moitié du niveau + le modificateur de Charisme. Les créatures qui sont soignées par l’énergie canalisée ne peuvent dépasser leur nombre maximal de points de vie : les points de vie excédentaires sont perdus. L'oracle peut utiliser canalisation une fois par jour plus le modificateur de charisme. Cela requiert une action simple qui ne provoque pas d’attaque d’opportunité. Le prêtre peut choisir que cet effet l’affecte également ou pas.</descr>
+        <shortdescr>L’énergie canalisée dans un rayon de 9m. Soigne 1d6 points plus 1d6 points par tranche de deux niveaux.</shortdescr>
+        <id>canalcapacity_heal</id>
+    </canalcapacity>
+
+</records>
