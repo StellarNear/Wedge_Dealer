@@ -19,9 +19,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.Arrays;
-import java.util.List;
-
 import stellarnear.wedge_companion.Perso.Ability;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;

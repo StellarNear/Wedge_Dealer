@@ -1,15 +1,11 @@
 package stellarnear.wedge_companion;
 
-import android.widget.TextView;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import stellarnear.wedge_companion.Elems.Elem;
 import stellarnear.wedge_companion.Elems.ElemsManager;
 import stellarnear.wedge_companion.FormSpell.FormPower;
-import stellarnear.wedge_companion.Perso.AllForms;
 import stellarnear.wedge_companion.Perso.Form;
 import stellarnear.wedge_companion.Perso.FormCapacity;
 import stellarnear.wedge_companion.Perso.Perso;

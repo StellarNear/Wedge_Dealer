@@ -78,7 +78,7 @@ public class ResultBuilder {
             checkHighScore(sumDmg);
         } else {
             final DiceList diceList = new DiceList();
-            List<Integer> listDiceAllowed = Arrays.asList(3,4,6,8,10);
+            List<Integer> listDiceAllowed = Arrays.asList(3,4,6,8,10,12);
             if (listDiceAllowed.contains(calculationSpell.diceType(spell))){
                 for(int i = 1; i<= calculationSpell.nDice(spell); i++){
                     diceList.add(new Dice(mA,mC, calculationSpell.diceType(spell),spell.getDmg_type()));

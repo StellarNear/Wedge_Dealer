@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 import java.util.List;
 
-import stellarnear.wedge_companion.Activities.MainActivity;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.Rolls.Dices.Dice;

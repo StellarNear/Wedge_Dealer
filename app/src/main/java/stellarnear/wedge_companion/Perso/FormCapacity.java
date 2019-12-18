@@ -1,8 +1,6 @@
 package stellarnear.wedge_companion.Perso;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
 import java.util.ArrayList;
 import java.util.List;

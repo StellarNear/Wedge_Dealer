@@ -36,7 +36,6 @@ public class SpellProfileManager {
     private Tools tools=new Tools();
     private SliderBuilder sliderBuild;
     private OnRefreshEventListener mListener;
-    private String position="info";
 
     public SpellProfileManager(Activity mA, Context mC, Spell spell,View profileView){
         this.mA=mA;
@@ -45,13 +44,13 @@ public class SpellProfileManager {
         profile = profileView;
         panel = ((ViewFlipper)profile.findViewById(R.id.view_flipper));
         buildProfileMechanisms();
-        panel.setDisplayedChild(1);
+        panel.setDisplayedChild(0);
     }
 
     private void buildProfileMechanisms(){
         if(spell.isFailed() || spell.contactFailed()){
-            triggerFail("fail");
-        } else if(!this.position.equalsIgnoreCase("info") && !resultDisplayed){movePanelTo("info");}
+            triggerFail();
+        }
 
         if(spell.hasPassedRM() || !spell.hasRM()){
             profile.findViewById(R.id.sr_test_img).setVisibility(View.GONE);
@@ -94,10 +93,10 @@ public class SpellProfileManager {
             sliderBuild.setCastEventListener(new SliderBuilder.OnCastEventListener() {
                 @Override
                 public void onEvent() {
-                    ((LinearLayout) profile.findViewById(R.id.fourth_panel)).removeAllViews();
-                    new ResultBuilder(mA, mC, spell).addResults((LinearLayout) profile.findViewById(R.id.fourth_panel));
+                    ((LinearLayout) profile.findViewById(R.id.result_panel)).removeAllViews();
+                    new ResultBuilder(mA, mC, spell).addResults((LinearLayout) profile.findViewById(R.id.result_panel));
                     resultDisplayed = true;
-                    movePanelTo("dmg");
+                    movePanelToDmg();
                     if (mListener != null) {
                         mListener.onEvent();
                     }
@@ -127,66 +126,25 @@ public class SpellProfileManager {
         }
     }
 
-    public void triggerFail(String mode) {
-        ((LinearLayout)profile.findViewById(R.id.fourth_panel)).removeAllViews();
+    public void triggerFail() {
+        ((LinearLayout)profile.findViewById(R.id.result_panel)).removeAllViews();
         TextView txt_view = new TextView(mC);
         txt_view.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         String message = "Le sort a raté..." ;
         txt_view.setText(message);
         txt_view.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
-        ((LinearLayout)profile.findViewById(R.id.fourth_panel)).addView(txt_view);
+        ((LinearLayout)profile.findViewById(R.id.result_panel)).addView(txt_view);
         sliderBuild.spendCast();
         resultDisplayed =true;
-        movePanelTo("dmg");
+        movePanelToDmg();
     }
 
-    private void movePanelTo(String toPosition) {
-        if(!this.position.equalsIgnoreCase(toPosition)) {
-            Animation in=null;Animation out=null;
-            int indexChild=1;
-            switch (this.position) {
-                case "elem":
-                    out = AnimationUtils.loadAnimation(mC, R.anim.outtoleft);
-                    break;
-                case "info":
-                    if(toPosition.equalsIgnoreCase("elem")){
-                        out = AnimationUtils.loadAnimation(mC, R.anim.outtoright);
-                    } else {
-                        out = AnimationUtils.loadAnimation(mC, R.anim.outtoleft);
-                    }
-                    break;
-                case "arcane":
-                    out = AnimationUtils.loadAnimation(mC, R.anim.outtoright);
-                    break;
-            }
-            switch (toPosition) {
-                case "elem":
-                    in = AnimationUtils.loadAnimation(mC, R.anim.infromleft);
-                    indexChild=0;
-                    break;
-                case "info":
-                    if(this.position.equalsIgnoreCase("elem")){
-                        in = AnimationUtils.loadAnimation(mC, R.anim.infromright);
-                    } else {
-                        in = AnimationUtils.loadAnimation(mC, R.anim.infromleft);
-                    }
-                    indexChild=1;
-                    break;
-                case  "arcane":
-                    in = AnimationUtils.loadAnimation(mC, R.anim.infromright);
-                    indexChild=2;
-                    break;
-                case "dmg":
-                    in = AnimationUtils.loadAnimation(mC, R.anim.infromright);
-                    indexChild=3;
-                    break;
-            }
+    private void movePanelToDmg() {
+            Animation in=AnimationUtils.loadAnimation(mC, R.anim.infromright);Animation out=AnimationUtils.loadAnimation(mC, R.anim.outtoleft);
             panel.clearAnimation();
             panel.setInAnimation(in);
             panel.setOutAnimation(out);
-            panel.setDisplayedChild(indexChild);
-            this.position = toPosition;
-        }
+            panel.setDisplayedChild(1);
     }
 
     private void makeMetaPopup(Spell spell) {

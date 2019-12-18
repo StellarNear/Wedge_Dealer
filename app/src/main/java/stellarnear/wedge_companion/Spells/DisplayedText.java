@@ -26,8 +26,8 @@ public class DisplayedText {
 
         if(spell.getDice_type().contains("lvl")){
             Integer dmg_int = calculationSpell.nDice(spell);
-            dmg = String.valueOf(dmg_int);
             if(calculationSpell.getFlatDmg(spell)>0){dmg_int+=calculationSpell.getFlatDmg(spell);}
+            dmg = String.valueOf(dmg_int);
         } else  if(spell.getMetaList().metaIdIsActive("meta_perfect")){
             Integer dmg_int = calculationSpell.nDice(spell) * calculationSpell.diceType(spell) *2;
             if(calculationSpell.getFlatDmg(spell)>0){dmg_int+=calculationSpell.getFlatDmg(spell);}
@@ -89,9 +89,25 @@ public class DisplayedText {
             }
             if(spell.getMetaList().metaIdIsActive("meta_duration")){ result=result*2; }
             dura = result+duration_unit;
+            if(result>1){dura+="s";}
         }
         return dura;
     }
 
 
+    public String areaTxt(Spell spell) {
+        String valBase=spell.getArea();
+        String valResult=valBase;
+        String unit="";
+        if(valBase.contains("/lvl")){
+            Integer result= tools.toInt(valBase.replaceAll("[^0-9?!]",""));
+            Integer lvl =  calculationSpell.casterLevel(spell);
+            result = result * lvl;
+            unit = valBase.replaceAll("/lvl","").replaceAll("[0-9?!]","");
+            valResult = result+unit;
+            if(result>1){valResult+="s";}
+        }
+
+        return valResult;
+    }
 }

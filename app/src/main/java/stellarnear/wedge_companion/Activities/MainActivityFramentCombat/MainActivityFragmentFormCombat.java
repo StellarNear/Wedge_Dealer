@@ -29,7 +29,6 @@ import stellarnear.wedge_companion.PostData;
 import stellarnear.wedge_companion.PostDataElement;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Rolls.FormRollFactory;
-import stellarnear.wedge_companion.Rolls.RangeRollFactory;
 import stellarnear.wedge_companion.Rolls.Roll;
 import stellarnear.wedge_companion.Rolls.RollList;
 import stellarnear.wedge_companion.TextFilling.Damages;

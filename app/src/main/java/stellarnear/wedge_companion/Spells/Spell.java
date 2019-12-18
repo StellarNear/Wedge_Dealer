@@ -26,6 +26,7 @@ public class Spell {
     private String normalSpellId; // pour les sorts mythic
 
     private String  descr;
+    private String shortDescr;
     private String  dice_type;
     private Double  n_dice_per_lvl;
     private int     cap_dice;
@@ -73,6 +74,7 @@ public class Spell {
         this.normalSpellId=spell.normalSpellId;
         this.name=spell.name;
         this.descr=spell.descr;
+        this.shortDescr=spell.shortDescr;
         this.dice_type=spell.dice_type;
         this.n_dice_per_lvl=spell.n_dice_per_lvl;
         this.cap_dice=spell.cap_dice;
@@ -96,7 +98,7 @@ public class Spell {
         this.settings=spell.settings;
     }
 
-    public Spell(String id,String mythic,String normalSpellId, String name, String descr,Integer n_sub_spell, String dice_type, Double n_dice_per_lvl, int cap_dice, String dmg_type,String flat_dmg,int flat_cap, String range,String contact,String area, String cast_time, String duration, String compo, String rm, String save_type, int rank,Context mC){
+    public Spell(String id,String mythic,String normalSpellId, String name, String descr, String shortDescr,Integer n_sub_spell, String dice_type, Double n_dice_per_lvl, int cap_dice, String dmg_type,String flat_dmg,int flat_cap, String range,String contact,String area, String cast_time, String duration, String compo, String rm, String save_type, int rank,Context mC){
         settings = PreferenceManager.getDefaultSharedPreferences(mC);
         if(id.equalsIgnoreCase("")){
             this.id=name;
@@ -107,6 +109,7 @@ public class Spell {
         this.normalSpellId=normalSpellId;
         this.name=name;
         this.descr=descr;
+        this.shortDescr=shortDescr;
         this.n_sub_spell=n_sub_spell;
         this.dice_type=dice_type;
         this.n_dice_per_lvl=n_dice_per_lvl;
@@ -168,9 +171,14 @@ public class Spell {
     public String  getName(){
         return this.name;
     }
-    public String  getDescr(){
-        return this.descr;
+    public String getShortDescr(){
+        return this.shortDescr.equalsIgnoreCase("")? this.descr : this.shortDescr;
     }
+
+    public String getDescr() {
+        return descr;
+    }
+
     public String getDice_type(){
         return this.dice_type;
     }

@@ -2,19 +2,9 @@ package stellarnear.wedge_companion.Rolls;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import android.view.View;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.ImageView;
 
 import stellarnear.wedge_companion.CalculationAtk;
-import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
-import stellarnear.wedge_companion.R;
-import stellarnear.wedge_companion.Rolls.Dices.Dice;
-import stellarnear.wedge_companion.Tools;
 
 public class PetAtkRoll extends AtkRoll {
 

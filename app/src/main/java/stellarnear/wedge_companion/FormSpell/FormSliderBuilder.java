@@ -8,7 +8,6 @@ import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.PostData;
 import stellarnear.wedge_companion.PostDataElement;
 import stellarnear.wedge_companion.R;
-import stellarnear.wedge_companion.Spells.CalculationSpell;
 import stellarnear.wedge_companion.Tools;
 
 

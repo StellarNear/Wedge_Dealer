@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Map;
 
 import stellarnear.wedge_companion.Attack.Attack;
-import stellarnear.wedge_companion.Elems.Elem;
 import stellarnear.wedge_companion.Elems.ElemsManager;
 
 /**

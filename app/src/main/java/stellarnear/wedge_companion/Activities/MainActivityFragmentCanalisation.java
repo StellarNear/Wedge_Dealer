@@ -3,12 +3,10 @@ package stellarnear.wedge_companion.Activities;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
-import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -19,18 +17,14 @@ import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.NumberPicker;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
 import stellarnear.wedge_companion.Perso.CanalisationCapacity;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
-import stellarnear.wedge_companion.PostData;
-import stellarnear.wedge_companion.PostDataElement;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Tools;
 

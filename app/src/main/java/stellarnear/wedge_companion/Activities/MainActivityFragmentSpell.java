@@ -231,9 +231,7 @@ public class MainActivityFragmentSpell extends Fragment {
                 spellLine.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast toast = Toast.makeText(getContext(), spell.getDescr(), Toast.LENGTH_LONG);
-                        toast.setGravity(Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 0);
-                        toast.show();
+                        tools.customToast(getContext(),spell.getShortDescr(),"center");
                     }
                 });
                 spellLine.setOrientation(LinearLayout.HORIZONTAL);
@@ -255,7 +253,7 @@ public class MainActivityFragmentSpell extends Fragment {
                         checkbox.setChecked(!checkbox.isChecked());
                     }
                 });
-                spellLine.addView(spellName);
+                spellLine.addView(spellName);  //todo add le type utilitaire buff etc ? et portée et mysterere comme sur la feuilel papier
                 final Spell mythicSpell = listAllSpell.getMythicSpells().getNormalSpellFromID(spell.getID());
                 if (mythicSpell!=null){
                     LinearLayout mythLine =  new LinearLayout(getContext());
@@ -278,7 +276,7 @@ public class MainActivityFragmentSpell extends Fragment {
                     img.setOnLongClickListener(new View.OnLongClickListener() {
                         @Override
                         public boolean onLongClick(View view) {
-                            tools.customToast(getContext(),mythicSpell.getDescr(),"center");
+                            tools.customToast(getContext(),mythicSpell.getShortDescr(),"center");
                             return true;
                         }
                     });

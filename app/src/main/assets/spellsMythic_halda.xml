@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<records>
+
+    <spell>
+        <mythic>true</mythic>
+        <name>Souffle de vie(M)</name>
+        <normalSpellId>Souffle de vie</normalSpellId>
+        <descr>Le sort soigne 5d12 points de dégâts + 1 point par niveau de lanceur de sorts (+25 maximum). Il peut ramener à la vie une créature morte à cause d’une perte de pv depuis 2 rounds au maximum. Si la cible a été tuée par un effet de mort qui autorise un jet de sauvegarde, ce sort lui permet d’effectuer un autre jet de sauvegarde contre cet effet. Si cette sauvegarde réussit, la créature revient à la vie avec -10 pv plus le montant de points soignés grâce à ce sort.</descr>     <range>contact</range>
+        <dice_type>12</dice_type>
+        <cap_dice>5</cap_dice>
+        <flat_dmg>1/lvl</flat_dmg>
+        <flat_cap>25</flat_cap>
+        <dmg_type>heal</dmg_type>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V,G</compo>
+        <rank>5</rank>
+    </spell>
+
+</records>

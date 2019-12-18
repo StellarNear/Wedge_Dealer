@@ -1,17 +1,7 @@
 package stellarnear.wedge_companion.FormSpell;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import stellarnear.wedge_companion.Spells.CalculationSpell;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
-import stellarnear.wedge_companion.R;
-import stellarnear.wedge_companion.Spells.Spell;
 import stellarnear.wedge_companion.Tools;
 
 public class FormDisplayedText {
@@ -22,8 +12,6 @@ public class FormDisplayedText {
     public FormDisplayedText(){  }
 
     public String damageTxt(FormPower spell) {
-
-
         String dmg="";
         if(calculationSpell.nDice(spell)>0){dmg+=calculationSpell.nDice(spell)+"d"+ calculationSpell.diceType(spell);}
 
@@ -34,8 +22,8 @@ public class FormDisplayedText {
 
         if(spell.getDice_type().contains("lvl")){
             Integer dmg_int = calculationSpell.nDice(spell);
-            dmg = String.valueOf(dmg_int);
             if(spell.getFlat_dmg()>0){dmg_int+=spell.getFlat_dmg();}
+            dmg = String.valueOf(dmg_int);
         }
         return dmg;
     }

@@ -1,26 +1,6 @@
 package stellarnear.wedge_companion.Perso;
 
 
-import android.content.Context;
-import android.util.Log;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
-import stellarnear.wedge_companion.FormSpell.FormPower;
 import stellarnear.wedge_companion.Tools;
 
 /**

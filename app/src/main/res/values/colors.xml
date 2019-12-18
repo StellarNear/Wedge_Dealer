@@ -21,7 +21,7 @@
     <color name="black">#000000</color>
 
     <color name="colorAccent">#e81741</color>
-    <color name="darker_gray">@android:color/darker_gray</color>
+    <color name="darker_gray">#505050</color>
     <color name="gray">#808080</color>
     <!-- end style -->
 

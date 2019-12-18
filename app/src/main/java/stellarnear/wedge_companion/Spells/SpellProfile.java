@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import stellarnear.wedge_companion.CustomAlertDialog;
 import stellarnear.wedge_companion.Elems.ElemsManager;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
@@ -65,7 +66,7 @@ public class SpellProfile {
         ((TextView)profile.findViewById(R.id.spell_name)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tools.customToast(mC,spell.getDescr(),"center");
+                popupLongText(spell.getDescr());
             }
         });
 
@@ -79,7 +80,7 @@ public class SpellProfile {
             ((TextView)profile.findViewById(R.id.current_rank)).setTextColor(Color.BLACK);
         }
 
-        ((TextView)profile.findViewById(R.id.description)).setText(spell.getDescr());
+        ((TextView)profile.findViewById(R.id.description)).setText(spell.getShortDescr());
         ((TextView)profile.findViewById(R.id.description)).postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -88,6 +89,15 @@ public class SpellProfile {
         }, 1500);
 
         ((TextView)profile.findViewById(R.id.infos)).setText(printInfo());
+    }
+
+    private void popupLongText(String descr) {
+        View tooltip = mA.getLayoutInflater().inflate(R.layout.custom_toast_info_lone_text, null);
+        final CustomAlertDialog tooltipAlert = new CustomAlertDialog(mA, mC, tooltip);
+        tooltipAlert.setPermanent(true);
+        ((TextView)tooltip.findViewById(R.id.toast_textDescr)).setText(descr);
+        tooltipAlert.clickToHide(tooltip.findViewById(R.id.toast_LinearLayout));
+        tooltipAlert.showAlert();
     }
 
     private void testSpellForColorTitle() {
@@ -124,7 +134,7 @@ public class SpellProfile {
             text += "Portée:" + displayText.rangeTxt(spell)+ ", ";
         }
         if (!spell.getArea().equals("")) {
-            text += "Zone:" + spell.getArea()+ ", ";
+            text += "Zone:" + displayText.areaTxt(spell)+ ", ";
         }
         if (!displayText.compoTxt(mC,spell).equalsIgnoreCase("")) {
             text += "Compos:" + displayText.compoTxt(mC,spell) + ", ";

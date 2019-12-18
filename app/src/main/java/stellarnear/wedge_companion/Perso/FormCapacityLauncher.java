@@ -4,25 +4,9 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.view.Gravity;
-import android.view.View;
-import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-
-import stellarnear.wedge_companion.CustomAlertDialog;
 import stellarnear.wedge_companion.FormCapacityAlertDialog;
-import stellarnear.wedge_companion.FormSpell.FormPower;
-import stellarnear.wedge_companion.PostData;
-import stellarnear.wedge_companion.PostDataElement;
 import stellarnear.wedge_companion.R;
-import stellarnear.wedge_companion.Rolls.Dices.Dice;
 import stellarnear.wedge_companion.TestAlertDialog;
 import stellarnear.wedge_companion.Tools;
 

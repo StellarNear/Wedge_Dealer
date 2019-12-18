@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 
 import stellarnear.wedge_companion.CalculationAtk;
-import stellarnear.wedge_companion.Perso.PersoManager;
 
 public class FormAtkRoll extends AtkRoll {
 

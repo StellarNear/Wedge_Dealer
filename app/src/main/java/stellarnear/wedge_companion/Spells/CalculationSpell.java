@@ -9,9 +9,6 @@ import java.util.List;
 
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
-import stellarnear.wedge_companion.Spells.Metamagic;
-import stellarnear.wedge_companion.Spells.Spell;
-import stellarnear.wedge_companion.Spells.SpellList;
 import stellarnear.wedge_companion.Tools;
 
 public class CalculationSpell {
@@ -49,9 +46,8 @@ public class CalculationSpell {
         if(spell.getN_dice_per_lvl()==0.0){
             val = spell.getCap_dice();
         }else {
-            if ((casterLevel(spell) * spell.getN_dice_per_lvl() > spell.getCap_dice()) && (spell.getCap_dice() != 0)) {
+            if ((casterLevel(spell) * spell.getN_dice_per_lvl() > spell.getCap_dice()) && (spell.getCap_dice() != 0) && !pj.getAllCapacities().capacityIsActive("revelation_improved_heal")) {
                 val = spell.getCap_dice();
-
             } else {
                 val = (int) (casterLevel(spell) * spell.getN_dice_per_lvl());
             }
@@ -145,7 +141,11 @@ public class CalculationSpell {
                     nRapide += 1;
                     break;
                 default:
-                    nComplexe+=tools.toInt(getCastTimeTxt(spell).replace("min",""))*60/6;  //converti le nombre de minute en round
+                    if(getCastTimeTxt(spell).contains("round")){
+                        nComplexe += tools.toInt(getCastTimeTxt(spell).replace("rounds", "").replace("round", ""));
+                    } else if(getCastTimeTxt(spell).contains("min")) {
+                        nComplexe += tools.toInt(getCastTimeTxt(spell).replace("min", "")) * 60 / 6;  //converti le nombre de minute en round
+                    }
                     break;
             }
         }

@@ -5,7 +5,6 @@ import java.util.List;
 
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
-import stellarnear.wedge_companion.Spells.Spell;
 import stellarnear.wedge_companion.Tools;
 
 public class FormCalculationSpell {

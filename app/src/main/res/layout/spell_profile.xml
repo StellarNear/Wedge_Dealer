@@ -59,74 +59,8 @@
             android:focusableInTouchMode="false"
             android:layout_height="@dimen/height_spell_profile">
 
-
             <LinearLayout
-                android:id="@+id/first_panel"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/height_spell_profile"
-                android:orientation="vertical">
-                <LinearLayout
-                    android:id="@+id/convert_elem_slots"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:layout_margin="@dimen/general_margin"
-                    android:gravity="center"
-                    android:orientation="horizontal"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="4px"
-                    android:layout_marginStart="@dimen/bordure_spell_background"
-                    android:layout_marginEnd="@dimen/bordure_spell_background"
-                    android:background="@color/gray" />
-
-                <LinearLayout
-                    android:id="@+id/convert_elem_choices"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:layout_margin="@dimen/general_margin"
-                    android:gravity="center"
-                    android:orientation="horizontal"/>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="4px"
-                    android:layout_marginStart="@dimen/bordure_spell_background"
-                    android:layout_marginEnd="@dimen/bordure_spell_background"
-                    android:background="@color/gray" />
-
-                <LinearLayout
-                    android:id="@+id/convert_elem_result"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:layout_margin="@dimen/general_margin"
-                    android:gravity="center"
-                    android:orientation="horizontal"/>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="4px"
-                    android:layout_marginStart="@dimen/bordure_spell_background"
-                    android:layout_marginEnd="@dimen/bordure_spell_background"
-                    android:background="@color/gray" />
-
-                <LinearLayout
-                    android:id="@+id/convert_elem_confirm"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:layout_margin="@dimen/general_margin"
-                    android:gravity="center"
-                    android:orientation="horizontal"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/second_panel"
+                android:id="@+id/info_panel"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_spell_profile"
                 android:orientation="vertical">
@@ -261,75 +195,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/third_panel"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/height_spell_profile"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:id="@+id/convert_slots"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:layout_margin="@dimen/general_margin"
-                    android:gravity="center"
-                    android:orientation="horizontal"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="4px"
-                    android:layout_marginStart="@dimen/bordure_spell_background"
-                    android:layout_marginEnd="@dimen/bordure_spell_background"
-                    android:background="@color/gray" />
-
-                <LinearLayout
-                    android:id="@+id/convert_choices"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:layout_margin="@dimen/general_margin"
-                    android:gravity="center"
-                    android:orientation="horizontal"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="4px"
-                    android:layout_marginStart="@dimen/bordure_spell_background"
-                    android:layout_marginEnd="@dimen/bordure_spell_background"
-                    android:background="@color/gray" />
-
-                <LinearLayout
-                    android:id="@+id/convert_result"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:layout_margin="@dimen/general_margin"
-                    android:gravity="center"
-                    android:orientation="horizontal"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="4px"
-                    android:layout_marginStart="@dimen/bordure_spell_background"
-                    android:layout_marginEnd="@dimen/bordure_spell_background"
-                    android:background="@color/gray" />
-
-                <LinearLayout
-                    android:id="@+id/convert_confirm"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:layout_margin="@dimen/general_margin"
-                    android:gravity="center"
-                    android:orientation="horizontal"/>
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:id="@+id/fourth_panel"
+                android:id="@+id/result_panel"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_spell_profile"
                 android:layout_gravity="center"

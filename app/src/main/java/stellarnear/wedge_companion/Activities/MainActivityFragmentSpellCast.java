@@ -13,8 +13,8 @@ import android.widget.TextView;
 
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
-import stellarnear.wedge_companion.Spells.CalculationSpell;
 import stellarnear.wedge_companion.R;
+import stellarnear.wedge_companion.Spells.CalculationSpell;
 import stellarnear.wedge_companion.Spells.SelectedSpells;
 import stellarnear.wedge_companion.Spells.Spell;
 import stellarnear.wedge_companion.Spells.SpellList;

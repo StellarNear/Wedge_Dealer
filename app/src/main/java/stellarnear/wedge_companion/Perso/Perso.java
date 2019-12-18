@@ -13,12 +13,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import stellarnear.wedge_companion.CalculationAtk;
-import stellarnear.wedge_companion.Elems.Elem;
 import stellarnear.wedge_companion.Elems.ElemsManager;
-import stellarnear.wedge_companion.Spells.CalculationSpell;
 import stellarnear.wedge_companion.HallOfFame;
 import stellarnear.wedge_companion.PostData;
 import stellarnear.wedge_companion.PostDataElement;
+import stellarnear.wedge_companion.Spells.CalculationSpell;
 import stellarnear.wedge_companion.Spells.Spell;
 import stellarnear.wedge_companion.Stats.SpellStats.SpellStats;
 import stellarnear.wedge_companion.Stats.Stats;

@@ -75,6 +75,7 @@ public class BuildSpellList extends AppCompatActivity {
                             getValue("normalSpellId",element2),
                             getValue("name",element2),
                             getValue("descr",element2),
+                            getValue("shortdescr",element2),
                             tools.toInt(getValue("n_sub_spell",element2)),
                             getValue("dice_type",element2),
                             tools.toDouble(getValue("n_dice_per_lvl",element2)),

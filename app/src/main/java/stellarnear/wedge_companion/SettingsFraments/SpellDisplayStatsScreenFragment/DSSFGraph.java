@@ -25,7 +25,6 @@ import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Stats.SpellStats.SpellStat;
-import stellarnear.wedge_companion.Stats.SpellStats.SpellStats;
 import stellarnear.wedge_companion.Tools;
 
 

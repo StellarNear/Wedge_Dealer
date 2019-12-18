@@ -111,4 +111,14 @@
         <item>Montagne</item>
         <item>Sous-terrain</item>
     </string-array>
+
+
+    <integer name="spell_rank_1_def">7</integer>
+    <integer name="spell_rank_2_def">6</integer>
+    <integer name="spell_rank_3_def">6</integer>
+    <integer name="spell_rank_4_def">6</integer>
+    <integer name="spell_rank_5_def">5</integer>
+    <integer name="spell_rank_6_def">3</integer>
+    <integer name="spell_rank_7_def">3</integer>
+
 </resources>

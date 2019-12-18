@@ -2,18 +2,13 @@ package stellarnear.wedge_companion.FormSpell;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
-import android.widget.TextView;
 import android.widget.ViewFlipper;
 
-import stellarnear.wedge_companion.CustomAlertDialog;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Tools;
 

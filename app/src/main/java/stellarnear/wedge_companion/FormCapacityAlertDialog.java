@@ -3,12 +3,8 @@ package stellarnear.wedge_companion;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.graphics.Point;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
-import android.text.SpannableString;
-import android.text.style.RelativeSizeSpan;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -25,13 +21,10 @@ import java.util.List;
 import java.util.Random;
 
 import stellarnear.wedge_companion.FormSpell.FormPower;
-import stellarnear.wedge_companion.Perso.Ability;
 import stellarnear.wedge_companion.Perso.FormCapacity;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
-import stellarnear.wedge_companion.Perso.Skill;
 import stellarnear.wedge_companion.Rolls.Dices.Dice;
-import stellarnear.wedge_companion.Spells.SpellProfile;
 
 public class FormCapacityAlertDialog {
     private Perso pj = PersoManager.getCurrentPJ();

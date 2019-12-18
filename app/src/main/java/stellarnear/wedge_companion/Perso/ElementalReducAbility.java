@@ -5,7 +5,6 @@ import android.content.Context;
 import java.util.HashMap;
 import java.util.Map;
 
-import stellarnear.wedge_companion.Elems.Elem;
 import stellarnear.wedge_companion.Elems.ElemsManager;
 
 

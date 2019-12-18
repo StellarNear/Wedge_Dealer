@@ -41,7 +41,6 @@
     <integer name="resource_heroic_def_halda">2</integer>
     <integer name="resource_legendary_points_def_halda">4</integer>
 
-    <integer name="highest_tier_spell_def_halda">7</integer>
 
     <integer name="mythic_tier_def_halda">1</integer>
     <integer name="mythic_dice_def_halda">6</integer>
@@ -83,4 +82,19 @@
     <bool name="switch_perma_resi_DEF_halda">true</bool>
 
     <string name="jet_att_def_halda">15,10,5</string>
+
+
+    <integer name="highest_tier_spell_def_halda">11</integer>
+
+    <integer name="spell_rank_1_def_halda">9</integer>
+    <integer name="spell_rank_2_def_halda">9</integer>
+    <integer name="spell_rank_3_def_halda">8</integer>
+    <integer name="spell_rank_4_def_halda">8</integer>
+    <integer name="spell_rank_5_def_halda">8</integer>
+    <integer name="spell_rank_6_def_halda">8</integer>
+    <integer name="spell_rank_7_def_halda">7</integer>
+    <integer name="spell_rank_8_def_halda">7</integer>
+    <integer name="spell_rank_9_def_halda">7</integer>
+    <integer name="spell_rank_10_def_halda">7</integer>
+    <integer name="spell_rank_11_def_halda">4</integer>
 </resources>

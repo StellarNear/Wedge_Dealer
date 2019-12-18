@@ -1,25 +1,11 @@
 package stellarnear.wedge_companion.FormSpell;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.view.View;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import stellarnear.wedge_companion.CompositeListner;
-import stellarnear.wedge_companion.Spells.BuildMetaList;
 import stellarnear.wedge_companion.Spells.Cast;
 import stellarnear.wedge_companion.Spells.DmgType;
-import stellarnear.wedge_companion.Spells.MetaList;
-import stellarnear.wedge_companion.Spells.SpellProfile;
 import stellarnear.wedge_companion.Tools;
 
 

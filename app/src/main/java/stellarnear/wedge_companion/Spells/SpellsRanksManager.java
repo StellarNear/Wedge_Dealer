@@ -65,16 +65,17 @@ public class SpellsRanksManager {
     private int readResourceMax(String key) {
         int val=0;
         int defId=0;
+        String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
         try {
-            defId = mC.getResources().getIdentifier(key.toLowerCase() + "_def", "integer", mC.getPackageName());
+            defId = mC.getResources().getIdentifier(key.toLowerCase() + "_def"+extendID, "integer", mC.getPackageName());
         } catch (Exception e) {
             e.printStackTrace();
         }
         try {  //deux trycatch different car on peut ne pas avoir de valeur def defini mais une valeur manuelle dans les settings
             if(defId!=0){
-                val=tools.toInt(settings.getString(key.toLowerCase(), String.valueOf(mC.getResources().getInteger(defId))));
+                val=tools.toInt(settings.getString(key.toLowerCase()+extendID, String.valueOf(mC.getResources().getInteger(defId))));
             } else {
-                val=tools.toInt(settings.getString(key.toLowerCase(), "0"));
+                val=tools.toInt(settings.getString(key.toLowerCase()+extendID, "0"));
             }
         } catch (Resources.NotFoundException e) {
             e.printStackTrace();

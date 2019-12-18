@@ -37,7 +37,7 @@ public class PrefSpellRankFragment {
         spell.removeAll();
         for (Resource res : rankManager.getSpellTiers()) {
             EditTextPreference text = new EditTextPreference(mC, InputType.TYPE_CLASS_NUMBER);
-            text.setKey(res.getId());
+            text.setKey(res.getId()+PersoManager.getPJSuffix());
             text.setTitle(res.getShortname());
             text.setSummary(res.getName()+" : %s");
             text.setDefaultValue(String.valueOf(readDef(res.getId())));
@@ -48,7 +48,7 @@ public class PrefSpellRankFragment {
     private int readDef(String key) {
         int val=0;
         try {
-            int defId = mC.getResources().getIdentifier(key.toLowerCase() + "_def", "integer", mC.getPackageName());
+            int defId = mC.getResources().getIdentifier(key.toLowerCase() + "_def"+PersoManager.getPJSuffix(), "integer", mC.getPackageName());
             val=tools.toInt(String.valueOf(mC.getResources().getInteger(defId)));
         } catch (Exception e) {
             e.printStackTrace();
