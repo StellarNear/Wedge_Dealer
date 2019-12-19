@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.Snackbar;
@@ -55,6 +56,18 @@ public class MainActivityFragmentSpell extends Fragment {
 
     private Tools tools=new Tools();
 
+    private Drawable mystSymbol;
+    private Drawable utilSymbol;
+    private Drawable buffSymbol;
+    private Drawable combatBuffSymbol;
+    private Drawable healSymbol;
+
+    private Drawable contactRange;
+    private Drawable shortRange;
+    private Drawable averageRange;
+    private Drawable longRange;
+
+
     public MainActivityFragmentSpell() {
     }
 
@@ -68,6 +81,16 @@ public class MainActivityFragmentSpell extends Fragment {
 
         returnFragView= inflater.inflate(R.layout.fragment_main_cast, container, false);
 
+        mystSymbol=tools.resize(getContext(), R.drawable.ic_myst_symbol, getContext().getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
+        utilSymbol=tools.resize(getContext(), R.drawable.ic_util_symbol, getContext().getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
+        buffSymbol=tools.resize(getContext(), R.drawable.ic_buff_symbol, getContext().getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
+        combatBuffSymbol=tools.resize(getContext(), R.drawable.ic_combat_buff_symbol, getContext().getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
+        healSymbol=tools.resize(getContext(), R.drawable.ic_heal_symbol, getContext().getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
+
+        contactRange=tools.resize(getContext(), R.drawable.ic_contact_range_symbol, getContext().getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
+        shortRange=tools.resize(getContext(), R.drawable.ic_short_range_symbol, getContext().getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
+        averageRange=tools.resize(getContext(), R.drawable.ic_average_range_symbol, getContext().getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
+        longRange=tools.resize(getContext(), R.drawable.ic_long_range_symbol, getContext().getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
 
         buildPage1();
 
@@ -227,7 +250,7 @@ public class MainActivityFragmentSpell extends Fragment {
             if (rank_list.size()==0){ continue;}
 
             for(final Spell spell : rank_list.asList()){
-                LinearLayout spellLine = new LinearLayout(getContext());
+                LinearLayout spellLine = new LinearLayout(getContext()); spellLine.setGravity(Gravity.CENTER_VERTICAL);
                 spellLine.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -244,7 +267,10 @@ public class MainActivityFragmentSpell extends Fragment {
                 setAddingSpell(checkbox,spell);
                 setCheckBoxColor(checkbox);
                 spellLine.addView(checkbox);
-                TextView spellName = new TextView(getContext());
+
+                addSpellTypeIcons(spell,spellLine);
+                int pxMaging = getContext().getResources().getDimensionPixelSize(R.dimen.general_margin);
+                TextView spellName = new TextView(getContext()); spellName.setPadding(pxMaging,0,0,0);
                 spellName.setText(spell.getName());
                 spellName.setTextColor(Color.BLACK);
                 spellName.setOnClickListener(new View.OnClickListener() {
@@ -253,13 +279,13 @@ public class MainActivityFragmentSpell extends Fragment {
                         checkbox.setChecked(!checkbox.isChecked());
                     }
                 });
-                spellLine.addView(spellName);  //todo add le type utilitaire buff etc ? et portée et mysterere comme sur la feuilel papier
+                spellLine.addView(spellName);
                 final Spell mythicSpell = listAllSpell.getMythicSpells().getNormalSpellFromID(spell.getID());
                 if (mythicSpell!=null){
                     LinearLayout mythLine =  new LinearLayout(getContext());
                     mythLine.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT,1));
-                    int px = (int) TypedValue.applyDimension( TypedValue.COMPLEX_UNIT_DIP, getResources().getDimension(R.dimen.general_margin),    getResources().getDisplayMetrics()    );
-                    mythLine.setPadding(0,0,px,0);
+
+                    mythLine.setPadding(0,0,pxMaging,0);
                     mythLine.setGravity(Gravity.RIGHT|Gravity.CENTER_VERTICAL);
                     final CheckBox checkMyth = new CheckBox(getContext());
                     setCheckBoxColor(checkMyth);
@@ -285,6 +311,51 @@ public class MainActivityFragmentSpell extends Fragment {
                 }
                 Tiers.addView(spellLine);
             }
+        }
+    }
+
+    private void addSpellTypeIcons(Spell spell, LinearLayout spellLine) {
+        ImageView logo = new ImageView(getContext());
+        switch (spell.getType()){
+            case "heal":
+                logo.setImageDrawable(healSymbol);
+                break;
+            case "buff":
+                logo.setImageDrawable(buffSymbol);
+                break;
+            case "combatbuff":
+                logo.setImageDrawable(combatBuffSymbol);
+                break;
+            case "util":
+                logo.setImageDrawable(utilSymbol);
+                break;
+            default:
+                logo.setImageDrawable(getContext().getDrawable(R.drawable.mire_test));
+                break;
+        }
+        spellLine.addView(logo);
+
+        ImageView range = new ImageView(getContext());
+        switch (spell.getRange()){
+            case "contact":
+                range.setImageDrawable(contactRange);
+                break;
+            case "courte":
+                range.setImageDrawable(shortRange);
+                break;
+            case "moyenne":
+                range.setImageDrawable(averageRange);
+                break;
+            case "longue":
+                range.setImageDrawable(longRange);
+                break;
+        }
+        spellLine.addView(range);
+
+        if(spell.isFromMystery()){
+            ImageView logoMyst = new ImageView(getContext());
+            logoMyst.setImageDrawable(mystSymbol);
+            spellLine.addView(logoMyst);
         }
     }
 

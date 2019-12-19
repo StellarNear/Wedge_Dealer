@@ -2,6 +2,12 @@
 <records>
 
     <capacity>
+        <name>Odorat</name>
+        <type>Trait</type>
+        <descr>Ce pouvoir permet à la créature de sentir la venue de ses adversaires, de repérer ceux qui se cachent ou de les pister à l’odeur. Elle peut identifier les odeurs familières, de la même façon que les humains sont capables de reconnaître ce qu’ils ont déjà vu.</descr>
+    </capacity>
+
+    <capacity>
         <name>Vision nocturne</name>
         <type>Trait</type>
         <descr>Voit deux fois plus loin que les humains en condition de faible éclairage.</descr>
@@ -13,6 +19,13 @@
         <type>other</type>
         <descr>En sautant sur la cible l'animal peut effectuer une attaque à outrance (et se servir de ses pates arrières). Il bénificie alors d'un bonus de +2 aux jets d'attaques.</descr>
         <id>capacity_leap</id>
+    </capacity>
+
+    <capacity>
+        <name>Etreinte</name>
+        <type>other</type>
+        <descr>Si une créature dotée de cette particularité parvient à toucher un adversaire avec l’attaque indiquée (une attaque de griffes ou de morsure généralement), elle lui inflige des dégâts normaux et peut tenter de l’agripper par une action libre qui ne provoque pas d’attaque d’opportunité.</descr>
+        <id>capacity_grip</id>
     </capacity>
 
     <capacity>

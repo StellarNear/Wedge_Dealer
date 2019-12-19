@@ -19,6 +19,9 @@ public class PetDmgRoll extends DmgRoll {
         for (Dice dice : allDiceList.getList()) {
             dice.rand(manualDiceDmg);
         }
+        if(pj.getAllCapacities().capacityIsActive("capacity_grip")) {
+            tools.customToast(mC, "Tu peux faire une étreinte avec un test BMO");
+        }
     }
 
     private void setCritMultiplier() {

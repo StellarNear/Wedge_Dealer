@@ -254,6 +254,13 @@ public class Perso {
                 } catch (Exception e) { }
             }else if (abiId.equalsIgnoreCase("ability_ca")) {
                 abiScore = 10;
+                if(pjID.equalsIgnoreCase("sylphe")|| pjID.equalsIgnoreCase("rana")){
+                    int defNatArmorID = mC.getResources().getIdentifier("natural_armor_def" + suffix, "integer", mC.getPackageName());
+                    abiScore += tools.toInt(prefs.getString("natural_armor"+suffix,String.valueOf(mC.getResources().getInteger(defNatArmorID))));
+                    int bonusNatArmorID = mC.getResources().getIdentifier("bonus_natural_armor_def" + suffix, "integer", mC.getPackageName());
+                    abiScore += tools.toInt(prefs.getString("bonus_natural_armor"+suffix,String.valueOf(mC.getResources().getInteger(bonusNatArmorID))));
+                    if(allFeats.featIsActive("feat_natural_armor_up")){abiScore+=1;}
+                }
                 abiScore += tools.toInt(prefs.getString("bonus_global_temp_ca",String.valueOf(0)));
                 abiScore += tools.toInt(prefs.getString("bonus_temp_ca"+suffix,String.valueOf(0)));
                 int dexMod=getAbilityMod("ability_dexterite");

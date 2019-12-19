@@ -12,7 +12,7 @@
     <integer name="translationFragDuration">500</integer>
 
     <integer name="add_gold_def">0</integer>
-
+    <integer name="bonus_natural_armor_def_sylphe">18</integer>
 
 
 </resources>

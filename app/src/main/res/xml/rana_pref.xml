@@ -45,7 +45,7 @@
 
         <PreferenceScreen
             android:icon="@drawable/ic_trophy_cup"
-            android:key="pref_stats"
+            android:key="rana_pref_stats"
             android:title="Statistiques"
             android:summary="Record actuel : XXXX"/>
 

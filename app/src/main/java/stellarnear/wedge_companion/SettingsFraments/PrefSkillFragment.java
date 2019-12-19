@@ -2,6 +2,7 @@ package stellarnear.wedge_companion.SettingsFraments;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.preference.PreferenceCategory;
 import android.text.InputType;
 
@@ -28,7 +29,12 @@ public class PrefSkillFragment {
             pref.setKey(skill.getId() + "_rank"+pj.getID());
             pref.setTitle(skill.getName());
             int rankDefId = mC.getResources().getIdentifier(skill.getId() + "_rankDEF"+pj.getID(), "integer", mC.getPackageName());
-            int rankDef = mC.getResources().getInteger(rankDefId);
+            int rankDef = 0;
+            try {
+                rankDef = mC.getResources().getInteger(rankDefId);
+            } catch (Resources.NotFoundException e) {
+                e.printStackTrace();
+            }
             pref.setDefaultValue(String.valueOf(rankDef));
             pref.setSummary("Valeur : %s");
             rank.addPreference(pref);

@@ -71,11 +71,13 @@ public class BuildSpellList extends AppCompatActivity {
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element element2 = (Element) node;
                     allSpells.add(new Spell(getValue("id",element2),
-                            getValue("mythic",element2),
+                            tools.toBool(getValue("mythic",element2)),
+                            tools.toBool(getValue("from_mystery",element2)),
                             getValue("normalSpellId",element2),
                             getValue("name",element2),
                             getValue("descr",element2),
                             getValue("shortdescr",element2),
+                            getValue("type",element2),
                             tools.toInt(getValue("n_sub_spell",element2)),
                             getValue("dice_type",element2),
                             tools.toDouble(getValue("n_dice_per_lvl",element2)),

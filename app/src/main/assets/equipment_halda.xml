@@ -97,6 +97,19 @@ Rang maximisés pour les jets de folklore local et intimidation</descr>
         <equipped>true</equipped>
     </equipment>
 
+    <equipment>
+        <name>Cape de résistance (+4)</name>
+        <descr>4 de resistance à tout le sjets de sauvegarde</descr>
+        <imgId>equipped_cloak</imgId>
+        <slotId>shoulder_slot</slotId>
+        <abilityUp>
+            <ability_ref>4</ability_ref>
+            <ability_vig>4</ability_vig>
+            <ability_vol>4</ability_vol>
+        </abilityUp>
+        <equipped>true</equipped>
+    </equipment>
+
     <!-- Hors slot -->
 
 

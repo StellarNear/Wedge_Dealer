@@ -55,5 +55,7 @@
 
 
     <integer name="feat_power_atk_val_def_rana">4</integer>
+    <integer name="natural_armor_def_rana">8</integer>
+    <integer name="bonus_natural_armor_def_rana">16</integer>
     <bool name="switch_perma_resi_DEF_rana">true</bool>
 </resources>

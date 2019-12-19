@@ -10,6 +10,20 @@
     </feat>
 
     <feat>
+        <name>Port d'armure intérmédiaire</name>
+        <type>feat_def</type>
+        <descr>Le personnage est formé au port des armures intermédiaires.</descr>
+        <id>feat_armor_med_gear</id>
+    </feat>
+
+    <feat>
+        <name>Combat en aveugle</name>
+        <type>feat_atk</type>
+        <descr>Lors d’un combat au corps à corps, à chaque fois que le personnage rate son adversaire à cause de son camouflage, il peut à nouveau jeter 1d100 afin de savoir s’il touche. Un adversaire invisible ne bénéficie d’aucun avantage offensif contre le personnage. Autrement dit, ce dernier ne perd pas son bonus de Dextérité à la CA et son adversaire n’a pas droit au bonus habituel de +2 accordé aux créatures invisibles.</descr>
+        <id>feat_blind_fight</id>
+    </feat>
+
+    <feat>
         <name>Science du critique</name>
         <type>feat_atk</type>
         <descr>La zone de critique de l’arme choisie est doublée.</descr>
@@ -53,4 +67,29 @@
         <descr>Les dégats de la morsure passent de 1d8 à 2d6</descr>
         <id>feat_natural_weapon_sup_bite</id>
     </feat>
+
+    <feat>
+        <name>Science de l'initiative</name>
+        <type>feat_other</type>
+        <descr>+4 au test d'initiative</descr>
+        <id>feat_init_sup</id>
+    </feat>
+
+    <feat>
+        <name>Esquive totale</name>
+        <type>feat_def</type>
+        <descr>Lorsque le compagnon animal est soumis à un effet qui autorise un jet de Réflexes pour réduire les dégâts de moitié, il ne subit aucun dégât s’il réussit son jet de sauvegarde.</descr>
+        <id>feat_total_evade</id>
+    </feat>
+
+    <feat>
+        <name>Esquive extraordinaire</name>
+        <type>feat_def</type>
+        <descr>Lorsque le compagnon animal est soumis à une attaque qui autorise un jet de Réflexes pour réduire les dégâts de moitié, il ne subit aucun dégât s’il réussit son jet de sauvegarde et seulement la moitié des dégâts dans le cas contraire.</descr>
+        <id>feat_extra_evade</id>
+    </feat>
+
+
+
+
 </records>

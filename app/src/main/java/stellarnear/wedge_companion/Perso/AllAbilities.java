@@ -125,7 +125,6 @@ public class AllAbilities {
             if(allBasicAbi.contains(abi.getId())) {
                 val = readAbility(abi.getId()+"_base"); //on prend que la valeur de base + augement perma le reste est faut au niveau du perso avec le stuff
                 val += readAbility(abi.getId()+"_augment");
-                val += inventory.getAllEquipments().getAbiBonus(abi.getId());
             } else if (abi.getId().equalsIgnoreCase("ability_lvl") && !pjID.equalsIgnoreCase("")){ //pour les autre que wedge !
                 switch (pjID){
                     case "halda":
@@ -138,9 +137,10 @@ public class AllAbilities {
                         val=2 + (int) Math.round((PersoManager.getMainPJLevel()-2-1)*0.75 - 0.25);
                         break;
                 }
-            } else {
+            }else {
                 val = readAbility(abi.getId());
             }
+            val += inventory.getAllEquipments().getAbiBonus(abi.getId());
             abi.setValue(val);
         }
     }

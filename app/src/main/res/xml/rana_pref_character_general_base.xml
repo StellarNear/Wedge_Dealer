@@ -118,6 +118,22 @@
         >
         <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
         <stellarnear.wedge_companion.EditTextPreference
+            android:defaultValue="@integer/natural_armor_def_rana"
+            android:key="natural_armor_rana"
+            android:title="Armure naturelle"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:inputType="number"
+            android:summary="Valeur : %s"/>
+        <stellarnear.wedge_companion.EditTextPreference
+            android:defaultValue="@integer/bonus_natural_armor_def_rana"
+            android:key="bonus_natural_armor_rana"
+            android:title="Bonus armure naturelle"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:inputType="number"
+            android:summary="Valeur : %s"/>
+        <stellarnear.wedge_companion.EditTextPreference
             android:defaultValue="@integer/ability_ms_def_rana"
             android:key="ability_ms_rana"
             android:title="Vitesse de déplacement"

@@ -82,7 +82,7 @@ public class DisplayEquipmentManager {
             allAddStats += "\nArmure : +" + equi.getArmor();
         }
         if (equi.getMapAbilityUp()!=null && equi.getMapAbilityUp().size()>0) {
-            allAddStats += "\nBonus SpellStats : " + makeStringLineFromMap(equi.getMapAbilityUp());
+            allAddStats += "\nBonus Stats : " + makeStringLineFromMap(equi.getMapAbilityUp());
         }
         if (equi.getMapSkillUp()!=null && equi.getMapSkillUp().size()>0) {
             allAddStats += "\nBonus Compétence : " + makeStringLineFromMap(equi.getMapSkillUp());

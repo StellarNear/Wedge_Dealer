@@ -53,6 +53,7 @@
 
 
     <integer name="feat_power_atk_val_def_sylphe">4</integer>
+    <integer name="natural_armor_def_sylphe">9</integer>
 
     <bool name="switch_perma_resi_DEF_sylphe">true</bool>
 </resources>

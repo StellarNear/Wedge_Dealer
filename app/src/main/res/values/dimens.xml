@@ -50,6 +50,7 @@
     <dimen name="icon_main_dices_pet_size">40dp</dimen>
     <dimen name="size_button_healthDialog_land">75dp</dimen>
     <dimen name="icon_canalcapacities_list">50dp</dimen>
+    <dimen name="logo_spell_type">25dp</dimen>
 
 
 </resources>

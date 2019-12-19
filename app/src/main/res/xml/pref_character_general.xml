@@ -16,7 +16,7 @@
     <PreferenceScreen
         android:key="pref_character_general_save"
         android:icon="@drawable/ic_dodging"
-        android:summary="Jets de sauvegarde"
-        android:title="Tout ce qui modifie : Reflexe, Vigeur et Volonté" />
+        android:title="Jets de sauvegarde"
+        android:summary="Tout ce qui modifie : Reflexe, Vigeur et Volonté" />
 
 </PreferenceScreen>

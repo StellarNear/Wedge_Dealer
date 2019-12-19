@@ -10,6 +10,7 @@
         <rm>true</rm>
         <compo>V,G</compo>
         <rank>0</rank>
+        <type>buff</type>
     </spell>
 
     <spell>
@@ -22,6 +23,7 @@
         <rm>true</rm>
         <compo>V,G</compo>
         <rank>0</rank>
+        <type>util</type>
     </spell>
 
       <spell>
@@ -33,6 +35,7 @@
         <duration>1min/lvl</duration>
         <compo>V,G</compo>
         <rank>0</rank>
+          <type>util</type>
     </spell>
 
 
@@ -45,6 +48,7 @@
         <duration>instant</duration>
         <compo>V,G</compo>
         <rank>0</rank>
+        <type>util</type>
     </spell>
     
     <spell>
@@ -56,6 +60,7 @@
         <duration>10min/lvl</duration>
         <compo>V,G,M</compo>
         <rank>0</rank>
+        <type>util</type>
     </spell>
 
     <spell>
@@ -67,6 +72,7 @@
         <duration>10min/lvl</duration>
         <compo>V,M</compo>
         <rank>0</rank>
+        <type>util</type>
     </spell>
 
 
@@ -80,6 +86,7 @@
         <rm>true</rm>
         <compo>V,G</compo>
         <rank>0</rank>
+        <type>util</type>
     </spell>
 
     <spell>
@@ -91,6 +98,7 @@
         <duration>1min</duration>
         <compo>V,G,M</compo>
         <rank>0</rank>
+        <type>buff</type>
     </spell>
 
     <spell>
@@ -102,6 +110,7 @@
         <duration>instant</duration>
         <compo>V,G</compo>
         <rank>0</rank>
+        <type>heal</type>
     </spell>
 
     <spell>
@@ -118,6 +127,7 @@
         <compo>V,G</compo>
         <rm>true</rm>
         <rank>1</rank>
+        <type>heal</type>
     </spell>
 
     <spell>
@@ -130,6 +140,7 @@
         <compo>V,G,M</compo>
         <rm>true</rm>
         <rank>1</rank>
+        <type>buff</type>
     </spell>
 
     <spell>
@@ -141,6 +152,7 @@
         <duration>instant</duration>
         <compo>V,G</compo>
         <rank>1</rank>
+        <type>util</type>
     </spell>
 
     <spell>
@@ -154,6 +166,8 @@
         <rm>false</rm>
         <compo>V,G</compo>
         <rank>1</rank>
+        <type>util</type>
+        <from_mystery>true</from_mystery>
     </spell>
 
 
@@ -166,6 +180,7 @@
         <duration>10min/lvl</duration>
         <compo>V,G</compo>
         <rank>1</rank>
+        <type>buff</type>
     </spell>
 
     <spell>
@@ -177,6 +192,7 @@
         <duration>10min</duration>
         <compo>V,G</compo>
         <rank>1</rank>
+        <type>buff</type>
     </spell>
 
     <spell>
@@ -189,6 +205,7 @@
         <save_type>vol[annule]</save_type>
         <compo>V,G</compo>
         <rank>1</rank>
+        <type>buff</type>
     </spell>
 
 
@@ -206,6 +223,7 @@
         <compo>V,G</compo>
         <rm>true</rm>
         <rank>2</rank>
+        <type>heal</type>
     </spell>
 
     <spell>
@@ -217,6 +235,7 @@
         <duration>instant</duration>
         <compo>V,G,M</compo>
         <rank>2</rank>
+        <type>util</type>
     </spell>
 
     <spell>
@@ -228,6 +247,7 @@
         <duration>instant</duration>
         <compo>V,G</compo>
         <rank>2</rank>
+        <type>buff</type>
     </spell>
 
     <spell>
@@ -239,6 +259,7 @@
         <duration>1round</duration>
         <compo>V</compo>
         <rank>2</rank>
+        <type>combatbuff</type>
     </spell>
 
     <spell>
@@ -250,6 +271,7 @@
         <duration>1min/lvl</duration>
         <compo>V,G</compo>
         <rank>2</rank>
+        <type>buff</type>
     </spell>
 
     <spell>
@@ -261,6 +283,7 @@
         <duration>1h/lvl</duration>
         <compo>V,G</compo>
         <rank>2</rank>
+        <type>buff</type>
     </spell>
 
     <spell>
@@ -272,6 +295,8 @@
         <duration>instant</duration>
         <compo>V,G</compo>
         <rank>2</rank>
+        <type>buff</type>
+        <from_mystery>true</from_mystery>
     </spell>
 
     <spell>
@@ -288,6 +313,7 @@
         <compo>V,G</compo>
         <rm>true</rm>
         <rank>3</rank>
+        <type>heal</type>
     </spell>
 
     <spell>
@@ -299,6 +325,7 @@
         <duration>instant</duration>
         <compo>V,G</compo>
         <rank>3</rank>
+        <type>buff</type>
     </spell>
 
     <spell>
@@ -310,6 +337,7 @@
         <duration>10min/lvl</duration>
         <compo>V,G</compo>
         <rank>3</rank>
+        <type>buff</type>
     </spell>
 
     <spell>
@@ -321,6 +349,7 @@
         <duration>10min/lvl</duration>
         <compo>V,G</compo>
         <rank>3</rank>
+        <type>buff</type>
     </spell>
 
     <spell>
@@ -332,6 +361,7 @@
         <duration>1min/lvl</duration>
         <compo>V,G</compo>
         <rank>3</rank>
+        <type>buff</type>
     </spell>
 
 
@@ -349,6 +379,7 @@
         <compo>V,G</compo>
         <rm>true</rm>
         <rank>4</rank>
+        <type>heal</type>
     </spell>
 
     <spell>
@@ -371,6 +402,7 @@
         <duration>1round/lvl</duration>
         <compo>V,G</compo>
         <rank>4</rank>
+        <type>combatbuff</type>
     </spell>
 
 
@@ -383,6 +415,7 @@
         <duration>1round/lvl</duration>
         <compo>V,G</compo>
         <rank>4</rank>
+        <type>util</type>
     </spell>
 
     <spell>
@@ -394,6 +427,7 @@
         <duration>10min/lvl</duration>
         <compo>V,G,M</compo>
         <rank>4</rank>
+        <type>buff</type>
     </spell>
 
     <spell>
@@ -405,6 +439,8 @@
         <duration>10min/lvl</duration>
         <compo>V,G,M</compo>
         <rank>4</rank>
+        <type>buff</type>
+        <from_mystery>true</from_mystery>
     </spell>
 
     <spell>
@@ -416,6 +452,7 @@
         <duration>10min/lvl</duration>
         <compo>V,G,M</compo>
         <rank>4</rank>
+        <type>buff</type>
     </spell>
 
     <spell>
@@ -427,6 +464,7 @@
         <duration>1min/lvl</duration>
         <compo>V,G</compo>
         <rank>4</rank>
+        <type>buff</type>
     </spell>
 
     <spell>
@@ -438,6 +476,8 @@
         <duration>instant</duration>
         <compo>V,G,M+(100po ou 1000po de pousière de diamant)</compo>
         <rank>4</rank>
+        <type>buff</type>
+        <from_mystery>true</from_mystery>
     </spell>
 
 
@@ -456,6 +496,7 @@
         <compo>V,G</compo>
         <rm>true</rm>
         <rank>5</rank>
+        <type>heal</type>
     </spell>
 
     <spell>
@@ -468,6 +509,7 @@
         <duration>2h/lvl</duration>
         <compo>V,G,M</compo>
         <rank>5</rank>
+        <type>util</type>
     </spell>
 
     <spell>
@@ -480,6 +522,7 @@
         <duration>instant</duration>
         <compo>V,G</compo>
         <rank>5</rank>
+        <type>util</type>
     </spell>
 
     <spell>
@@ -497,6 +540,7 @@
         <duration>1round/lvl</duration>
         <compo>V,G</compo>
         <rank>5</rank>
+        <type>heal</type>
     </spell>
 
 
@@ -514,6 +558,7 @@
         <duration>instant</duration>
         <compo>G</compo>
         <rank>5</rank>
+        <type>heal</type>
     </spell>
 
     <spell>
@@ -530,6 +575,8 @@
         <duration>instant</duration>
         <compo>V,G</compo>
         <rank>5</rank>
+        <type>heal</type>
+        <from_mystery>true</from_mystery>
     </spell>
 
     <spell>
@@ -547,6 +594,7 @@
         <compo>V,G</compo>
         <rm>true</rm>
         <rank>6</rank>
+        <type>heal</type>
     </spell>
 
     <spell>
@@ -559,6 +607,7 @@
         <duration>1h/lvl</duration>
         <compo>V,G</compo>
         <rank>6</rank>
+        <type>buff</type>
     </spell>
 
     <spell>
@@ -580,6 +629,7 @@
         <save_type>none</save_type>
         <compo>V,G</compo>
         <rank>6</rank>
+        <type>buff</type>
     </spell>
 
 
@@ -593,6 +643,7 @@
         <duration>1min/lvl</duration>
         <compo>V,G,M</compo>
         <rank>6</rank>
+        <type>buff</type>
     </spell>
 
     <spell>
@@ -608,6 +659,8 @@
         <duration>instant</duration>
         <compo>V,G</compo>
         <rank>6</rank>
+        <type>heal</type>
+        <from_mystery>true</from_mystery>
     </spell>
 
     <spell>
@@ -620,6 +673,7 @@
         <duration>1h/lvl</duration>
         <compo>V,G</compo>
         <rank>6</rank>
+        <type>buff</type>
     </spell>
 
     <spell>
@@ -637,6 +691,8 @@
         <compo>V,G</compo>
         <rm>true</rm>
         <rank>7</rank>
+        <type>heal</type>
+        <type>heal</type>
     </spell>
 
     <spell>
@@ -651,6 +707,7 @@
         <rm>true</rm>
         <save_type>vol[annule]</save_type>
         <rank>7</rank>
+        <type>combatbuff</type>
     </spell>
 
     <spell>
@@ -662,6 +719,7 @@
         <duration>instant</duration>
         <compo>V,G</compo>
         <rank>7</rank>
+        <type>heal</type>
     </spell>
 
     <spell>
@@ -673,6 +731,8 @@
         <duration>instant</duration>
         <compo>V,G,M+(5kpo poussière de diamant)</compo>
         <rank>7</rank>
+        <type>buff</type>
+        <from_mystery>true</from_mystery>
     </spell>
 
     <spell>
@@ -684,6 +744,7 @@
         <duration>instant</duration>
         <compo>V,G,M+(diamant 10kpo)</compo>
         <rank>7</rank>
+        <type>util</type>
     </spell>
 
     <spell>
@@ -701,6 +762,7 @@
         <compo>V,G</compo>
         <rm>true</rm>
         <rank>8</rank>
+        <type>heal</type>
     </spell>
 
     <spell>
@@ -721,6 +783,7 @@
         <duration>1round/lvl</duration>
         <compo>V,G</compo>
         <rank>8</rank>
+        <type>combatbuff</type>
     </spell>
 
     <spell>
@@ -741,6 +804,7 @@
         <duration>1round/lvl</duration>
         <compo>V,G</compo>
         <rank>8</rank>
+        <type>combatbuff</type>
     </spell>
 
 
@@ -762,6 +826,7 @@
         <duration>1round/lvl</duration>
         <compo>V,G</compo>
         <rank>8</rank>
+        <type>combatbuff</type>
     </spell>
 
     <spell>
@@ -779,9 +844,9 @@
         <duration>1round/lvl</duration>
         <compo>V,G</compo>
         <rank>8</rank>
+        <type>combatbuff</type>
     </spell>
 
-    <!-- Todo rank 8 et + -->
 
     <spell>
         <name>Guérison suprême de groupe</name>
@@ -797,6 +862,8 @@
         <duration>instant</duration>
         <compo>V,G</compo>
         <rank>9</rank>
+        <type>heal</type>
+        <from_mystery>true</from_mystery>
     </spell>
 
     <spell>
@@ -807,6 +874,8 @@
         <duration>1round/lvl</duration>
         <compo>V,G,M+(diamant 25kpo)</compo>
         <rank>9</rank>
+        <type>util</type>
+        <from_mystery>true</from_mystery>
     </spell>
 
 
@@ -830,6 +899,7 @@ Mais le personnage peut également faire une requête particulièrement importan
         <compo>V,G</compo>
         <rm>true</rm>
         <rank>9</rank>
+        <type>util</type>
     </spell>
 
     <spell>
@@ -844,6 +914,7 @@ Mais le personnage peut également faire une requête particulièrement importan
         <rm>true</rm>
         <save_type>vol[annule]</save_type>
         <rank>9</rank>
+        <type>combatbuff</type>
     </spell>
 
     <spell>
@@ -854,6 +925,7 @@ Mais le personnage peut également faire une requête particulièrement importan
         <cast_time>simple</cast_time>
         <compo>V,G</compo>
         <rank>9</rank>
+        <type>buff</type>
     </spell>
 
 
@@ -869,6 +941,7 @@ Mais le personnage peut également faire une requête particulièrement importan
         <duration>instant</duration>
         <compo>V,G</compo>
         <rank>9</rank>
+        <type>util</type>
     </spell>
 
 
@@ -882,6 +955,7 @@ Mais le personnage peut également faire une requête particulièrement importan
         <rm>false</rm>
         <compo>V,G</compo>
         <rank>9</rank>
+        <type>combatbuff</type>
     </spell>
 
 </records>

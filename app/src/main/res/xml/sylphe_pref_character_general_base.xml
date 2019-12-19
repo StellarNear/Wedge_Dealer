@@ -118,6 +118,22 @@
         >
         <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
         <stellarnear.wedge_companion.EditTextPreference
+            android:defaultValue="@integer/natural_armor_def_sylphe"
+            android:key="natural_armor_sylphe"
+            android:title="Armure naturelle"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:inputType="number"
+            android:summary="Valeur : %s"/>
+        <stellarnear.wedge_companion.EditTextPreference
+            android:defaultValue="@integer/bonus_natural_armor_def_sylphe"
+            android:key="bonus_natural_armor_sylphe"
+            android:title="Bonus armure naturelle"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:inputType="number"
+            android:summary="Valeur : %s"/>
+        <stellarnear.wedge_companion.EditTextPreference
             android:defaultValue="@integer/ability_ms_def_sylphe"
             android:key="ability_ms_sylphe"
             android:title="Vitesse de déplacement"
