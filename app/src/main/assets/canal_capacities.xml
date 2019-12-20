@@ -3,14 +3,14 @@
     <canalcapacity>
         <name>Ailes de lumières</name>
         <cost>3</cost>
-        <descr>Devient un être angélique avec une paire d’aile munie de plumes de lumières, gagne les bonus :
-            - une vitesse de vol de 30m
-            - vision dans le noir à 20m
-            - Immunité à l’acide le froid et pétrification
-            - Bonus de +4 aux jets contre les poisons
-            - Cercle magique contre le Mal
-            - Globe d'invulnérabilité partielle
-            Dure 1 minute par d6 que la canalisation.</descr>
+        <descr>Devient un être angélique avec une paire d’aile de lumières, gagne :
+- une vitesse de vol de 30m
+- vision dans le noir à 20m
+- Immunité à l’acide le froid et pétrification
+- Bonus de +4 aux jets contre les poisons
+- Cercle magique contre le Mal
+- Globe d'invulnérabilité partielle
+Dure 1 min/d6 de la canalisation.</descr>
         <id>canalcapacity_light_wing</id>
     </canalcapacity>
 
@@ -18,9 +18,8 @@
         <name>Canalisation d'énergie conditionnée</name>
         <cost>1</cost>
         <descr>Dépenser une utilisation de pouvoir mythique en même temps qu’une utilisation de son aptitude de canalisation d’énergie pour retarder sa canalisation d’énergie afin qu’elle s’active sous certaines conditions prédéterminées.  Il peut exclure des cibles qu’il doit nommer à cet instant. Seule une utilisation de cette aptitude peut être en attente de déclenchement en même temps ; si le personnage l’utilise à nouveau, la précédente prend fin.</descr>
-        <shortdescr>Dépense aussi un point mythique.
-            Retarde sa canalisation d’énergie afin qu’elle s’active sous certaines conditions prédéterminées. Seule une utilisation de cette aptitude peut être en attente.</shortdescr>
-        <id>canalcapacity_step</id>
+        <shortdescr>Dépense aussi un point mythique. Retarde sa canalisation d’énergie afin qu’elle s’active sous certaines conditions prédéterminées. Seule une utilisation de cette aptitude peut être en attente.</shortdescr>
+        <id>canalcapacity_heal_trigger</id>
     </canalcapacity>
 
     <canalcapacity>

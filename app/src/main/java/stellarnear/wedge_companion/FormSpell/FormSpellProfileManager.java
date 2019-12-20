@@ -34,7 +34,6 @@ public class FormSpellProfileManager {
     }
 
     private void buildProfileMechanisms(){
-
         //Slider
         if(sliderBuild==null) {
             sliderBuild = new FormSliderBuilder(mC, spell);
@@ -55,12 +54,12 @@ public class FormSpellProfileManager {
     }
 
     private void movePanelToDmg() {
-           Animation out=null;
+        Animation out=null;
         Animation in = AnimationUtils.loadAnimation(mC, R.anim.infromright);
-            panel.clearAnimation();
-            panel.setInAnimation(in);
-            panel.setOutAnimation(out);
-            panel.setDisplayedChild(1);
+        panel.clearAnimation();
+        panel.setInAnimation(in);
+        panel.setOutAnimation(out);
+        panel.setDisplayedChild(1);
     }
 
     public void refreshProfileMechanisms() {

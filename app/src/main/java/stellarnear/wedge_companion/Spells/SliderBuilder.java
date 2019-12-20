@@ -66,8 +66,8 @@ public class SliderBuilder {
     }
 
     private void startCasting() {
+        mListener.onEvent(); //build les resultat à faire avant de spend le cast car ca PostEvent (et il faut avoir setDMg dans le spell
         spendCast();
-        mListener.onEvent();
         Snackbar.make(seek, "Lancement du sort : " + spell.getName(), Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
     }

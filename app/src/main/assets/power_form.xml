@@ -64,8 +64,8 @@
     <power>
         <name>Rayon Vert</name>
         <descr>Poison (fréquence 1/round pendant 6 rounds)
-            effet primaire : mort
-            effet secondaire : 1 Con/round (guérison 2 réussites consécutives)</descr>
+effet primaire : mort
+effet secondaire : 1 Con/round (guérison 2 réussites consécutives)</descr>
         <range>9m</range>
         <duration>instant</duration>
         <save_type>VIG</save_type>

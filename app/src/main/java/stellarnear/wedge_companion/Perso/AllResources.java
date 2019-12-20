@@ -98,7 +98,7 @@ public class AllResources {
 
         // Partie sort
         Resource displaySpellResource = getResource("resource_display_rank");
-        if(displaySpellResource!=null){ //ca veut dire que dans asset resource ona souhaité cette resource
+        if(displaySpellResource!=null){ //ca veut dire que dans asset resource on a souhaité cette resource
             listResources.remove(displaySpellResource); // on le refait dessous
             rankManager=new SpellsRanksManager(mC,pjID);
             rankManager.setRefreshEventListener(new SpellsRanksManager.OnHighTierChange() {
@@ -116,9 +116,15 @@ public class AllResources {
             mapIDRes.put(display_spell.getId(), display_spell);
         }
 
-
         // Partie from capacities
         addCapacitiesResources();
+
+        if(pjID.equalsIgnoreCase("halda")){
+            Resource resourceCanalTriger = new Resource("Canalisation Programmable","Trigger Canal",false,true,"resource_heal_trigger",mC,pjID);
+            resourceCanalTriger.setMax(1);
+            listResources.add(resourceCanalTriger);
+            mapIDRes.put(resourceCanalTriger.getId(), resourceCanalTriger);
+        }
     }
 
     private void addCapacitiesResources() {
@@ -227,10 +233,10 @@ public class AllResources {
     }
 
     public void halfSleepReset() {
-        try {
-            getResource("resource_mythic_points").resetCurrent();
-        } catch (Exception e) {
-            e.printStackTrace();
+        for (Resource res : listResources) {
+            if(res.isFromCapacity()||res.getId().equalsIgnoreCase("resource_mythic_points")||res.getId().equalsIgnoreCase("resource_canalisation")) {
+                res.resetCurrent();
+            }
         }
     }
 

@@ -55,8 +55,9 @@ public class FormSliderBuilder {
     }
 
     private void startCasting() {
+        mListener.onEvent();//build les resultat à faire avant de spend le cast car ca PostEvent (et il faut avoir setDMg dans le spell
         spendCast();
-        mListener.onEvent();
+
     }
 
     public void spendCast() {

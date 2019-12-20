@@ -22,9 +22,12 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import stellarnear.wedge_companion.CanalisationAlertDialog;
 import stellarnear.wedge_companion.Perso.CanalisationCapacity;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
+import stellarnear.wedge_companion.PostData;
+import stellarnear.wedge_companion.PostDataElement;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Tools;
 
@@ -122,10 +125,21 @@ public class MainActivityFragmentCanalisation extends Fragment {
             summary.setTextSize(12);
             summary.setPadding(getResources().getDimensionPixelSize(R.dimen.general_margin),0,0,0);
             String descr = canalCapa.getShortdescr();
-            if(canalCapa.getId().equalsIgnoreCase("canalcapacity_step")){
-                int dist = 120+12* pj.getAbilityScore("ability_lvl");
-                descr+="\nDistance : "+dist+"m";
+            if(canalCapa.getId().equalsIgnoreCase("canalcapacity_heal")){
+                int nDice = 1+(pj.getAbilityScore("ability_lvl")-1)/2;
+                descr+="\n\nSoigne : "+nDice+"d6";
+                if(pj.getAllCapacities().capacityIsActive("epic_revelation_canal")){
+                    descr+="+4";
+                    descr=descr.replace("9m","13m");
+                }
+            } else if(canalCapa.getId().equalsIgnoreCase("canalcapacity_heal_trigger")){
+                if(pj.getCurrentResourceValue("resource_heal_trigger")>0){
+                    descr+="\n\nCanalisation programmée à dépenser !";
+                } else {
+                    descr+="\n\nAucune canalisation programmée";
+                }
             }
+
             summary.setText(descr);
             lineCapa.addView(summary);
 
@@ -180,18 +194,36 @@ public class MainActivityFragmentCanalisation extends Fragment {
             valid.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                        pj.getAllResources().getResource("resource_canalisation").spend(canalCapaSelected.getCost());
-                        //todo new PostData(getContext(),new PostDataElement(canalCapaSelected));
                         String txt = "Lancement de : " + canalCapaSelected.getName();
                         if (canalCapaSelected.getId().equalsIgnoreCase("canalcapacity_heal")) {
-                            int heal = pj.getAbilityScore("ability_lvl");
-                            pj.getAllResources().getResource("resource_hp").earn(heal);
-                            txt += " (+" + heal + "pv)";
+                            launchCanalDialog(canalCapaSelected);
+                            Snackbar snackbar = Snackbar.make(view, txt, Snackbar.LENGTH_LONG);
+                            snackbar.show();
+                        } else if(canalCapaSelected.getId().equalsIgnoreCase("canalcapacity_heal_trigger")){
+                            if( pj.getCurrentResourceValue("resource_heal_trigger")>0){
+                                new PostData(getContext(),new PostDataElement("Déclenchement de "+canalCapaSelected.getName(),"Lancement d'une canalisation automatique"));
+                                pj.getAllResources().getResource("resource_heal_trigger").spend(1);
+                                launchCanalDialog(canalCapaSelected);
+                                Snackbar snackbar = Snackbar.make(view, txt, Snackbar.LENGTH_LONG);
+                                snackbar.show();
+                            } else if(pj.getCurrentResourceValue("resource_mythic_points")>0){
+                                new PostData(getContext(),new PostDataElement("Initialisation de "+canalCapaSelected.getName(),"Programmation d'une canalisation automatique\n(-1 pt mythique)"));
+                                pj.getAllResources().getResource("resource_mythic_points").spend(1);
+                                pj.getAllResources().getResource("resource_heal_trigger").earn(1);
+                                Snackbar snackbar = Snackbar.make(view, txt, Snackbar.LENGTH_LONG);
+                                snackbar.show();
+                                backToMain();
+                            } else {
+                                tools.customToast(getContext(),"Tu n'as plus de point mythique","center");
+                            }
+                        } else {
+                            pj.getAllResources().getResource("resource_canalisation").spend(canalCapaSelected.getCost());
+                            new PostData(getContext(),new PostDataElement(canalCapaSelected));
+                            Snackbar snackbar = Snackbar.make(view, txt, Snackbar.LENGTH_LONG);
+                            snackbar.show();
+                            backToMain();
                         }
 
-                        Snackbar snackbar = Snackbar.make(view, txt, Snackbar.LENGTH_LONG);
-                        snackbar.show();
-                        backToMain();
                 }
             });
         } else {
@@ -199,10 +231,20 @@ public class MainActivityFragmentCanalisation extends Fragment {
             valid.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    tools.customToast(getContext(),"Tu n'as pas assez de points de Ki pour faire cela","center");
+                    tools.customToast(getContext(),"Tu n'as plus d'utilisation de canalisation d'énergie","center");
                 }
             });
         }
+    }
+
+    private void launchCanalDialog(CanalisationCapacity canal) {
+        CanalisationAlertDialog alertDialog = new CanalisationAlertDialog(getActivity(),getContext(),canal);
+        alertDialog.setRefreshEventListener(new CanalisationAlertDialog.OnRefreshEventListener() {
+            @Override
+            public void onEvent() {
+                backToMain();
+            }
+        });
 
 
     }
@@ -213,7 +255,6 @@ public class MainActivityFragmentCanalisation extends Fragment {
     }
 
     private void animate(final ImageButton buttonMain) {
-
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {

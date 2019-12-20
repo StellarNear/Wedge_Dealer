@@ -6,6 +6,7 @@ import java.util.Locale;
 
 import stellarnear.wedge_companion.Elems.ElemsManager;
 import stellarnear.wedge_companion.FormSpell.FormPower;
+import stellarnear.wedge_companion.Perso.CanalisationCapacity;
 import stellarnear.wedge_companion.Perso.Form;
 import stellarnear.wedge_companion.Perso.FormCapacity;
 import stellarnear.wedge_companion.Perso.Perso;
@@ -32,6 +33,7 @@ public class PostDataElement {
             initDmg(rolls);
         }
     }
+
 
     private void initAtk(RollList atkRolls){
         SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.FRANCE);
@@ -168,7 +170,11 @@ public class PostDataElement {
             if(spell.getDmg_type().equalsIgnoreCase("")){
                 this.result="Lancé !";
             } else {
-                this.result="Dégâts : "+spell.getDmgResult();
+                if(spell.getDmg_type().equalsIgnoreCase("heal")){
+                    this.result = "Soins : " + spell.getDmgResult();
+                } else {
+                    this.result = "Dégâts : " + spell.getDmgResult();
+                }
             }
         }
     }
@@ -220,16 +226,39 @@ public class PostDataElement {
         this.result="Dégâts : "+sumResult;
     }
 
-
     public PostDataElement(FormPower spell){
         SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.FRANCE);
         this.date=formater.format(new Date());
         this.typeEvent="Lancement sort de forme animale "+spell.getName();
+        this.detail=spell.getDescr();
         if(spell.getDmg_type().equalsIgnoreCase("")){
             this.result="Lancé !";
         } else {
             this.result="Dégâts : "+spell.getDmgResult();
         }
+    }
+
+
+    public PostDataElement(CanalisationCapacity canalCapaSelected) {
+        SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.FRANCE);
+        this.date=formater.format(new Date());
+        this.typeEvent="Lancement capacité d'energie "+canalCapaSelected.getName();
+        this.detail="Cout : "+canalCapaSelected.getCost()+" canalisation";
+        this.result=canalCapaSelected.getShortdescr();
+        if(PersoManager.getCurrentPJ().getAllCapacities().capacityIsActive("epic_revelation_canal")){
+            this.result=result.replace("9m","13m");
+        }
+    }
+
+    public PostDataElement(CanalisationCapacity canal, int sumResult) {
+        SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.FRANCE);
+        this.date=formater.format(new Date());
+        this.typeEvent="Lancement capacité "+canal.getName();
+        this.detail=canal.getShortdescr();
+        if(PersoManager.getCurrentPJ().getAllCapacities().capacityIsActive("epic_revelation_canal")){
+            this.detail=detail.replace("9m","13m");
+        }
+        this.result="Résultat : "+sumResult;
     }
 
 
