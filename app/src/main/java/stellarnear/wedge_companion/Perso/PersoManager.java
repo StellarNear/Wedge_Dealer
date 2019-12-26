@@ -105,5 +105,7 @@ public class PersoManager {
         return currentID.equalsIgnoreCase("") ? "" : currentID+"_";
     }
 
-
+    public static int getWedgeMaxSpellTier() {
+        return currentMapPJ.get("Wedge").getAllResources().getRankManager().getHighestTier();
+    }
 }

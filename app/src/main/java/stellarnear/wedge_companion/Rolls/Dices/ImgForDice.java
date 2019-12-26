@@ -31,6 +31,7 @@ public class ImgForDice {
     private Tools tools = new Tools();
     private Perso pj = PersoManager.getCurrentPJ();
     private boolean wasRand=false;
+    private boolean canBeLegendarySurge=false;
 
     public ImgForDice(Dice dice, Activity mA, Context mC) {
         this.mA = mA;
@@ -51,7 +52,9 @@ public class ImgForDice {
             this.img.setImageDrawable(tools.resize(mC, drawableId, mC.getResources().getDimensionPixelSize(R.dimen.icon_main_dices_wheel_size)));
 
             if (dice.getnFace() == 20) {
-                setMythicSurge(); //on assigne un lsitener pour creer le des mythique si clic sur l'image du dès
+                if(pj.getAllResources().getResource("resource_mythic_points")!=null && pj.getAllResources().getResource("resource_mythic_points").getMax()>0) {
+                    setMythicSurge(); //on assigne un lsitener pour creer le des mythique si clic sur l'image du dès
+                }
             }
         }
         return this.img;
@@ -67,12 +70,9 @@ public class ImgForDice {
         this.img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new AlertDialog.Builder(mA)
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(mA)
                         .setIcon(R.drawable.ic_warning_black_24dp)
                         .setTitle("Montée en puissance")
-                        .setMessage("Ressources :\n\n" +
-                                "Point(s) mythique restant(s) : "+ pj.getCurrentResourceValue("resource_mythic_points")+"\n" +
-                                "Point(s) légendaire restant(s) : "+pj.getCurrentResourceValue("legendary_points"))
                         .setNeutralButton("Aucune", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -83,13 +83,20 @@ public class ImgForDice {
                             public void onClick(DialogInterface dialog, int which) {
                                 launchingMythicDice("mythique");
                             }
-                        })
-                        .setNegativeButton("Legendaire", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                launchingMythicDice("légendaire");
-                            }
-                        }).show();
+                        });
+                String message = "Ressources :\n\n" +
+                        "Point(s) mythique restant(s) : "+ pj.getCurrentResourceValue("resource_mythic_points");
+                if(canBeLegendarySurge && pj.getAllResources().getResource("resource_legendary_points")!=null && pj.getAllResources().getResource("resource_legendary_points").getMax()>0){
+                    message+="\nPoint(s) légendaire restant(s) : "+pj.getCurrentResourceValue("resource_legendary_points");
+                    alertDialogBuilder.setNegativeButton("Legendaire", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            launchingMythicDice("légendaire");
+                        }
+                    });
+                }
+                alertDialogBuilder.setMessage(message);
+                alertDialogBuilder.show();
             }
         });
     }
@@ -106,7 +113,7 @@ public class ImgForDice {
             SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
             if(mode.equalsIgnoreCase("légendaire")){
                 surgeDice=new Dice(mA, mC, tools.toInt(settings.getString("legendary_dice",String.valueOf(mC.getResources().getInteger(R.integer.legendary_dice_def)))));
-                pj.getAllResources().getResource("legendary_points").spend(1);
+                pj.getAllResources().getResource("resource_legendary_points").spend(1);
             } else {
                 surgeDice=new Dice(mA, mC, tools.toInt(settings.getString("mythic_dice",String.valueOf(mC.getResources().getInteger(R.integer.mythic_dice_def)))));
                 pj.getAllResources().getResource("resource_mythic_points").spend(1);
@@ -164,5 +171,9 @@ public class ImgForDice {
         toast.setView(linear);
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.show();
+    }
+
+    public void canBeLegendarySurge() {
+        this.canBeLegendarySurge=true;
     }
 }

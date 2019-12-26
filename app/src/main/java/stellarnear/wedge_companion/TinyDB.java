@@ -41,6 +41,9 @@ import java.util.List;
 import java.util.Map;
 
 import stellarnear.wedge_companion.Perso.Equipment;
+import stellarnear.wedge_companion.Spells.GuardianList;
+import stellarnear.wedge_companion.Spells.Spell;
+import stellarnear.wedge_companion.Spells.SpellList;
 import stellarnear.wedge_companion.Stats.SpellStats.SpellStat;
 import stellarnear.wedge_companion.Stats.SpellStats.SpellStatsList;
 import stellarnear.wedge_companion.Stats.Stat;
@@ -674,6 +677,48 @@ public class TinyDB {
         SpellStatsList objects = new SpellStatsList();
         for (String jObjString : objStrings) {
             SpellStat value = gson.fromJson(jObjString, SpellStat.class);
+            objects.add(value);
+        }
+        return objects;
+    }
+
+    public void putListEchoSpells(String key, SpellList echoList) {
+        checkForNullKey(key);
+        Gson gson = new Gson();
+        ArrayList<String> objStrings = new ArrayList<String>();
+        for (Spell obj : echoList.asList()) {
+            objStrings.add(gson.toJson(obj));
+        }
+        putListString(key, objStrings);
+    }
+
+    public SpellList getListEchoSpells(String key) {
+        Gson gson = new Gson();
+        ArrayList<String> objStrings = getListString(key);
+        SpellList objects = new SpellList();
+        for (String jObjString : objStrings) {
+            Spell value = gson.fromJson(jObjString, Spell.class);
+            objects.add(value);
+        }
+        return objects;
+    }
+
+    public void putListGuardianSpellsCondition(String key, List<GuardianList.PairSpellCondition> guardianList) {
+        checkForNullKey(key);
+        Gson gson = new Gson();
+        ArrayList<String> objStrings = new ArrayList<String>();
+        for (GuardianList.PairSpellCondition obj : guardianList) {
+            objStrings.add(gson.toJson(obj));
+        }
+        putListString(key, objStrings);
+    }
+
+    public List<GuardianList.PairSpellCondition> getListGuardianSpellsCondition(String key) {
+        Gson gson = new Gson();
+        ArrayList<String> objStrings = getListString(key);
+        List<GuardianList.PairSpellCondition> objects = new ArrayList<>();
+        for (String jObjString : objStrings) {
+            GuardianList.PairSpellCondition value = gson.fromJson(jObjString, GuardianList.PairSpellCondition.class);
             objects.add(value);
         }
         return objects;

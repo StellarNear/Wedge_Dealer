@@ -15,6 +15,7 @@ import stellarnear.wedge_companion.Rolls.Dices.Dice;
 import stellarnear.wedge_companion.Rolls.Roll;
 import stellarnear.wedge_companion.Rolls.RollList;
 import stellarnear.wedge_companion.Spells.CalculationSpell;
+import stellarnear.wedge_companion.Spells.Metamagic;
 import stellarnear.wedge_companion.Spells.Spell;
 
 
@@ -158,6 +159,12 @@ public class PostDataElement {
 
         this.typeEvent="Lancement sort "+spell.getName() +" (rang:"+new CalculationSpell().currentRank(spell)+")";
 
+        if(spell.getMetaList().hasAnyMetaActive()){
+            this.detail="Métamagies:";
+            for(Metamagic meta : spell.getMetaList().getAllActivesMetas().asList()){
+                this.detail+=meta.getName()+"(+"+meta.getUprank()*meta.getnCast()+")";
+            }
+        }
         if(spell.isFailed()||spell.contactFailed()){
             String failPostData="-";
             if(spell.isFailed()){
@@ -245,7 +252,7 @@ public class PostDataElement {
         this.typeEvent="Lancement capacité d'energie "+canalCapaSelected.getName();
         this.detail="Cout : "+canalCapaSelected.getCost()+" canalisation";
         this.result=canalCapaSelected.getShortdescr();
-        if(PersoManager.getCurrentPJ().getAllCapacities().capacityIsActive("epic_revelation_canal")){
+        if(PersoManager.getCurrentPJ().getAllCapacities().capacityIsActive("capacity_epic_revelation_canal")){
             this.result=result.replace("9m","13m");
         }
     }
@@ -255,7 +262,7 @@ public class PostDataElement {
         this.date=formater.format(new Date());
         this.typeEvent="Lancement capacité "+canal.getName();
         this.detail=canal.getShortdescr();
-        if(PersoManager.getCurrentPJ().getAllCapacities().capacityIsActive("epic_revelation_canal")){
+        if(PersoManager.getCurrentPJ().getAllCapacities().capacityIsActive("capacity_epic_revelation_canal")){
             this.detail=detail.replace("9m","13m");
         }
         this.result="Résultat : "+sumResult;

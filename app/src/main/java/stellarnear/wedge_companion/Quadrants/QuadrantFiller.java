@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
+import java.text.DecimalFormatSymbols;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -148,7 +149,7 @@ public class QuadrantFiller {
         if (mode.equalsIgnoreCase("mini")){
             text.setText(abi.getShortname()+" : ");
         } else {
-                text.setText(abi.getName() + " : ");
+            text.setText(abi.getName() + " : ");
         }
         ((ImageView) subLabel.findViewById(R.id.sub_element_quadrant_mini_label_icon)).setImageDrawable(abi.getImg());
 
@@ -169,7 +170,7 @@ public class QuadrantFiller {
             }
             txt2=String.valueOf(pj.getAbilityScore(abi.getId()))+ " ("+abScore+")";
         } else {
-                txt2 = String.valueOf(pj.getAbilityScore(abi.getId()));
+            txt2 = String.valueOf(pj.getAbilityScore(abi.getId()));
         }
         if(abi.getId().equalsIgnoreCase("ability_reduc_elem") && mode.equalsIgnoreCase("full")){
             text2.setText(pj.getResistsValueLongFormat());
@@ -232,7 +233,11 @@ public class QuadrantFiller {
             column2txt= pj.getAllResources().getRankManager().getPercentAvail();
 
         } else {
-            column2txt = String.valueOf(pj.getCurrentResourceValue(res.getId()));
+            if (res.isInfinite()) {
+                column2txt = String.valueOf(DecimalFormatSymbols.getInstance().getInfinity());
+            } else{
+                column2txt = String.valueOf(pj.getCurrentResourceValue(res.getId()));
+            }
             if (mode.equalsIgnoreCase("mini") && res.getId().equalsIgnoreCase("resource_hp")) {
                 column2txt = String.valueOf(pj.getCurrentResourceValue(res.getId()) + pj.getAllResources().getResource(res.getId()).getShield());
             }
@@ -290,14 +295,14 @@ public class QuadrantFiller {
             text.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(pj.getCurrentResourceValue(res.getId())>0) {
+                    if(res.isInfinite() || pj.getCurrentResourceValue(res.getId())>0) {
                         new AlertDialog.Builder(mC)
                                 .setTitle("Utilisation de "+res.getName())
                                 .setMessage(res.getCapaDescr())
                                 .setIcon(android.R.drawable.ic_menu_help)
                                 .setPositiveButton("Utiliser", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int whichButton) {
-                                        pj.getAllResources().getResource(res.getId()).spend(1);
+                                        if(!res.isInfinite()){pj.getAllResources().getResource(res.getId()).spend(1);}
                                         new PostData(mC, new PostDataElement("Utilisation de la capacité\n" + res.getName(), res.getCapaDescr()));
                                         tools.customToast(mC, res.getName() + " lancée !", "center");
                                         List<Resource> abiRes = pj.getAllResources().getResourcesListDisplay();

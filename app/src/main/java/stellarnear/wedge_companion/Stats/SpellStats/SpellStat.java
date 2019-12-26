@@ -1,5 +1,7 @@
 package stellarnear.wedge_companion.Stats.SpellStats;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,8 +20,6 @@ public class SpellStat {
     private List<Integer> rankAllMiss =new ArrayList<>();
     private List<Integer> rankContactMiss =new ArrayList<>();
     private List<Integer> rankCrit =new ArrayList<>();
-    private List<Integer> rankGlaeBoost =new ArrayList<>();
-    private List<Integer> rankGlaeFail =new ArrayList<>();
     private List<Integer> rankResist =new ArrayList<>();
     private Date date=null;
     private UUID uuid;
@@ -135,16 +135,8 @@ public class SpellStat {
         return rankCrit;
     }
 
-    public  List<Integer> getListGlaeBoost() {
-        return rankGlaeBoost;
-    }
-
     public  List<Integer> getListContactMiss() {
         return rankContactMiss;
-    }
-
-    public  List<Integer> getListGlaeFail() {
-        return rankGlaeFail;
     }
 
     public  List<Integer> getListResist() {

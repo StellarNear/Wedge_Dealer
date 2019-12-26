@@ -2,7 +2,7 @@
 <records>
     <capacity>
         <name>Ancien guerrier</name>
-        <type>other</type>
+        <type>Trait</type>
         <descr>Lorsqu’il était enfant, le personnage a dévoué de longues heures aux entraînements militaires. Même si le temps les a réduits à l’état de souvenirs, il reste prompt à réagir en cas de problème. Il gagne un bonus de trait de +2 aux tests d’initiative.</descr>
         <id>capacity_old_warrior</id>
     </capacity>
@@ -11,40 +11,40 @@
     <!-- druide -->
     <capacity>
         <name>Pacte avec la nature</name>
-        <type>druid</type>
+        <type>Druide</type>
         <descr>Le druide bénéficie d’un bonus de +2 aux tests de Connaissances (nature) et de Survie.</descr>
         <id>capacity_natural_instinct</id>
     </capacity>
 
     <capacity>
         <name>Instinct naturel</name>
-        <type>druid</type>
+        <type>Druide</type>
         <descr>Le druide un lien se crée entre le druide et la nature, lien qui peut prendre une des deux formes suivantes. Compagnon  animal Sylphe.</descr>
     </capacity>
 
 
     <capacity>
         <name>Empathie sauvage</name>
-        <type>druid</type>
+        <type>Druide</type>
         <descr>Un druide peut améliorer l’attitude d’un animal. Cette aptitude suit les mêmes règles que les tests de Diplomatie. Compagnon  animal Sylphe. Un druide peut également utiliser cette aptitude pour influencer une créature magique dont la valeur d’Intelligence est de 1 ou 2 mais son test subit alors un malus de -4.</descr>
     </capacity>
 
     <capacity>
         <name>Déplacement facilité</name>
-        <type>druid</type>
+        <type>Druide</type>
         <descr>Le druide se déplace sans la moindre gêne dans toutes sortes de taillis, y compris les fourrés, les buissons (même épineux) et les autres zones de végétation dense.</descr>
     </capacity>
 
 
     <capacity>
         <name>Environnement de prédilection (Arpenteur de monde)</name>
-        <type>druid</type>
+        <type>Druide</type>
         <descr>L’arpenteur de monde gagne le pouvoir de rôdeur environnement de prédilection. Il utilise son niveau de druide comme niveau de rôdeur. S’il possède des niveaux dans les deux classes, il les cumule quand il s’agit de déterminer les effets de ce pouvoir.</descr>
     </capacity>
 
     <capacity>
         <name>Forme animale</name>
-        <type>druid</type>
+        <type>Druide</type>
         <dailyuse>10</dailyuse>
         <shortname>Forme</shortname>
         <id>capacity_animal_form</id>
@@ -53,7 +53,7 @@
 
     <capacity>
         <name>Sentier d’arbres</name>
-        <type>druid</type>
+        <type>Druide</type>
         <descr>Le druide peut, trois fois par jour, entrer dans un arbre et se téléporter dans un autre, comme avec voyage par les arbres. De plus, un arpenteur de monde peut utiliser le sentier d’arbres pour arriver dans un arbre de même type que celui de départ mais situé dans un rayon de 150 km.</descr>
         <id>capacity_tree_path</id>
         <shortname>Sentier</shortname>
@@ -62,7 +62,7 @@
 
     <capacity>
         <name>Mille visages</name>
-        <type>druid</type>
+        <type>Druide</type>
         <descr>Le druide acquiert le pouvoir surnaturel de se transformer à volonté, comme s’il utilisait le sort modification d’apparence, mais uniquement lorsqu’il est sous sa forme normale.</descr>
     </capacity>
 
@@ -70,19 +70,19 @@
 
     <capacity>
         <name>Flèche magique</name>
-        <type>archer</type>
+        <type>Archer</type>
         <descr>Toute flèche normale tirée par l'archer sylvestre devient magique et acquiert un bonus d'altération de +1. Contrairement aux armes magiques normales, ces flèches ne coûtent ni argent ni points d'expérience au personnage. Par contre, elles ne fonctionnent que pour lui. Tous les niveaux impairs d'archer sylvestre, ses flèches deviennent plus puissantes (+1 au niveau 1, +2 au niveau 3, etc)</descr>
     </capacity>
 
     <capacity>
         <name>Flèche naturalisée</name>
-        <type>archer</type>
+        <type>Archer</type>
         <descr>L'archer sylvestre acquiert le pouvoir de placer un sort sur une flèche, soit qu'il pourrait lancer en tant que druide, soit en assistant un autre lanceur de sort (+2 rank "métamagie" pour le lanceur). Le niveaux du sort placé ne peut excéder le niveau de sort maximum connu par le druide. Tout sort placé sur une flèche de cette manière est alors considéré comme lancé. Les flèches naturalisées ne restent activent que 24h. Toute flèche de ce type est considérée comme une flèche de type magique. Ceci ne change en rien le fonctionnement de la flèche (jet d'attaque...) Utiliser ce pouvoir est une action complexe.</descr>
     </capacity>
 
     <capacity>
         <name>Oeil de lynx</name>
-        <type>archer</type>
+        <type>Archer</type>
         <dailyuse>13</dailyuse>
         <value>7</value>
         <id>capacity_lynx_eye</id>
@@ -91,7 +91,7 @@
 
     <capacity>
         <name>Flèche de phase</name>
-        <type>archer</type>
+        <type>Archer</type>
         <dailyuse>2</dailyuse>
         <shortname>Phase</shortname>
         <id>capacity_phase_arrow</id>
@@ -100,7 +100,7 @@
 
     <capacity>
         <name>Pluie de flèches</name>
-        <type>archer</type>
+        <type>Archer</type>
         <shortname>Pluie</shortname>
         <dailyuse>2</dailyuse>
         <id>capacity_arrow_rain</id>
@@ -109,7 +109,7 @@
 
     <capacity>
         <name>Flèche vengeresse</name>
-        <type>archer</type>
+        <type>Archer</type>
         <dailyuse>1</dailyuse>
         <shortname>Vengeresse</shortname>
         <id>capacity_revenge_nature_arrow</id>
@@ -118,7 +118,7 @@
 
     <capacity>
         <name>Oeil exercé</name>
-        <type>archer</type>
+        <type>Archer</type>
         <descr>L'archer sylvestre obtient le don Science du critique il voit alors la plage de chance de réaliser des attaques critiques doubler. Pour les monstres qu'il a déjà rencontrés (à la discrétion du MJ) cette plage est triplée à la place (soit 18-20 pour l'arc).</descr>
     </capacity>
 

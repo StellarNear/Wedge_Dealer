@@ -16,6 +16,7 @@ import java.util.List;
 
 import stellarnear.wedge_companion.CompositeListner;
 import stellarnear.wedge_companion.Perso.PersoManager;
+import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Tools;
 
 
@@ -54,8 +55,6 @@ public class Spell {
     private boolean fromMystery;
 
     private int     n_sub_spell;
-
-    private SharedPreferences settings;
 
     private MetaList metaList;
 
@@ -99,11 +98,9 @@ public class Spell {
         this.dmg_type=new DmgType(spell.dmg_type);
         this.metaList=new MetaList(spell.metaList);
         this.cast =new Cast();
-        this.settings=spell.settings;
     }
 
     public Spell(String id,boolean mythic,boolean fromMystery,String normalSpellId, String name, String descr, String shortDescr,String type,Integer n_sub_spell, String dice_type, Double n_dice_per_lvl, int cap_dice, String dmg_type,String flat_dmg,int flat_cap, String range,String contact,String area, String cast_time, String duration, String compo, String rm, String save_type, int rank,Context mC){
-        settings = PreferenceManager.getDefaultSharedPreferences(mC);
         if(id.equalsIgnoreCase("")){
             this.id=name;
         } else {
@@ -132,12 +129,12 @@ public class Spell {
         this.rm=rm;
         this.save_type=save_type;
         this.rank=rank;
-        /* TODO perfect sort heal halda
-        if (this.id.equalsIgnoreCase("Désintégration") || this.normalSpellId.equalsIgnoreCase("Désintégration")) {
-            if (settings.getBoolean("perfect_desint", mC.getResources().getBoolean(R.bool.perfect_desint_def))) {
+        if (this.id.equalsIgnoreCase("intense_cure")) {
+            SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
+            if (settings.getBoolean("intense_cure_perfect_spell_switch", mC.getResources().getBoolean(R.bool.intense_cure_perfect_spell_switch_def))) {
                 this.perfect=true;
             }
-        } */
+        }
         this.metaList= BuildMetaList.getInstance(mC).getMetaList();
         this.cast =new Cast();
     }
@@ -251,8 +248,9 @@ public class Spell {
         return this.n_sub_spell;
     }
 
-    public boolean isHighscore(int val){
+    public boolean isHighscore(int val,Context mC){
         boolean returnVal=false;
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
         int highscore=settings.getInt(this.id+"_highscore",0);
         if(val>highscore){
             returnVal=true;
@@ -265,7 +263,8 @@ public class Spell {
         return returnVal;
     }
 
-    public int getHighscore(){
+    public int getHighscore(Context mC){
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
         int highscore=settings.getInt(this.id+"_highscore",0);
         return highscore;
     }
@@ -282,43 +281,12 @@ public class Spell {
 
         final CheckBox check = metaList.getMetaByID(metaId).getCheckBox(mA, mC);
 
-        if(metaId.equalsIgnoreCase("meta_heighten") ){
-            CompositeListner compoList = new CompositeListner();
-            compoList.addOnclickListener(metaList.getMetaByID(metaId).getOnChangeListener());
-            compoList.addOnclickListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                    if ( rank+metaList.getMetaByID("meta_heighten").getnCast()>9){
-                        metaList.getMetaByID("meta_heighten").desactive();
-                    }
-                }
-            });
-
-            check.setOnCheckedChangeListener(compoList);
-                if (this.rank>=9 || this.rank+metaList.getMetaByID("meta_heighten").getnCast()>=9 ){
-            check.setEnabled(false);}
-        }
-
-        if(metaId.equalsIgnoreCase("meta_focus") && (this.save_type.equalsIgnoreCase("") || this.save_type.equalsIgnoreCase("aucun"))){
-            check.setEnabled(false);
-        }
-
         if(metaId.equalsIgnoreCase("meta_extend") && !this.dmg_type.getDmgType().equalsIgnoreCase("") &&  this.dice_type.equalsIgnoreCase("lvl")){
             check.setEnabled(false);
         }
 
-        // TODO faire int maxLevelWedge= tools.toInt(settings.getString("wedge_max_lvl_spell",String.valueOf(mC.getResources().getInteger(R.integer.wedge_max_lvl_spell_def))));
-        int maxLevelWedge=2;
+        int maxLevelWedge=PersoManager.getWedgeMaxSpellTier();
         if(this.rank> maxLevelWedge && metaId.equalsIgnoreCase("meta_arrow")){
-            check.setEnabled(false);
-        }
-
-        if(this.dmg_type.getDmgType().equalsIgnoreCase("") && metaId.equalsIgnoreCase("meta_enhance")){
-            check.setEnabled(false);
-        }
-
-        List<String> rangesDisable = Arrays.asList("contact","personnelle");
-        if(rangesDisable.contains(this.range) && metaId.equalsIgnoreCase("meta_select")){
             check.setEnabled(false);
         }
 
@@ -326,14 +294,16 @@ public class Spell {
         if(!rangesAccepted.contains(this.range) && metaId.equalsIgnoreCase("meta_range")){
             check.setEnabled(false);
         }
-        List<String> durationDisable = Arrays.asList("instant","permanente");
-        if(durationDisable.contains(this.duration) && metaId.equalsIgnoreCase("meta_duration")){
-            check.setEnabled(false);
-        }
         if(!this.cast_time.equalsIgnoreCase("simple") && metaId.equalsIgnoreCase("meta_quicken")){
             check.setEnabled(false);
         }
         if(!this.compoList.contains("V") && metaId.equalsIgnoreCase("meta_silent")){
+            check.setEnabled(false);
+        }
+        if(!this.compoList.contains("G") && metaId.equalsIgnoreCase("meta_static")){
+            check.setEnabled(false);
+        }
+        if(this.rank==0 && metaId.equalsIgnoreCase("meta_echo")){
             check.setEnabled(false);
         }
         if(this.perfect && this.rank+metaList.getMetaByID(metaId).getUprank()<=9){
@@ -388,8 +358,14 @@ public class Spell {
         return bindedParent;
     }
 
-    public void cast(){
+    public void cast(Context mC){
         cast.cast();
+        if(metaList.metaIdIsActive("meta_echo")){
+            EchoList.getInstance(mC).addEcho(this);
+        }
+        if(metaList.metaIdIsActive("meta_guardian")){
+            GuardianList.getInstance(mC).addGuardian(this);
+        }
     }
 
     public void setFailed(){
@@ -438,4 +414,5 @@ public class Spell {
     public int getDmgResult() {
        return this.dmgResult;
     }
+
 }

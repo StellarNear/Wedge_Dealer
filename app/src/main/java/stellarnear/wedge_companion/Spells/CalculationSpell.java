@@ -9,35 +9,25 @@ import java.util.List;
 
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
+import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Tools;
 
 public class CalculationSpell {
     private Perso pj = PersoManager.getCurrentPJ();
     private Tools tools=new Tools();
 
-    public CalculationSpell(){  }
+    public CalculationSpell(){}
 
     public int saveVal(Spell spell){
         int val=10;
         val+= pj.getAbilityMod("ability_charisme");
         val+=spell.getRank();
-        if(spell.getMetaList().metaIdIsActive("meta_heighten")){
-            val+=spell.getMetaList().getMetaByID("meta_heighten").getnCast() * spell.getMetaList().getMetaByID("meta_heighten").getUprank();
-        }
-        if(spell.getMetaList().metaIdIsActive("meta_focus")){
-            val+=2;
-        }
-
         return val;
     }
 
 
     public int casterLevel(Spell spell){
         int val= pj.getCasterLevel();
-        if(spell.getMetaList().metaIdIsActive("meta_heighten")){
-            val+=spell.getMetaList().getMetaByID("meta_heighten").getnCast() * spell.getMetaList().getMetaByID("meta_heighten").getUprank();
-        }
-
         return val;
     }
 
@@ -46,14 +36,11 @@ public class CalculationSpell {
         if(spell.getN_dice_per_lvl()==0.0){
             val = spell.getCap_dice();
         }else {
-            if ((casterLevel(spell) * spell.getN_dice_per_lvl() > spell.getCap_dice()) && (spell.getCap_dice() != 0) && !pj.getAllCapacities().capacityIsActive("revelation_improved_heal")) {
+            if ((casterLevel(spell) * spell.getN_dice_per_lvl() > spell.getCap_dice()) && (spell.getCap_dice() != 0) && !pj.getAllCapacities().capacityIsActive("capacity_revelation_improved_heal")) {
                 val = spell.getCap_dice();
             } else {
                 val = (int) (casterLevel(spell) * spell.getN_dice_per_lvl());
             }
-        }
-        if(spell.getMetaList().metaIdIsActive("meta_enhance") && tools.toInt(spell.getDice_type())==8){ //car on passe à 2d6
-            val = val * 2;
         }
         if(spell.getMetaList().metaIdIsActive("meta_extend")){
             val = (int)(val * 1.5);
@@ -63,26 +50,27 @@ public class CalculationSpell {
 
     public int diceType(Spell spell){
         int val = tools.toInt(spell.getDice_type());
-        if(spell.getMetaList().metaIdIsActive("meta_enhance")){
-            if(val==4){
-                val=6;
-            } else if(val==6){
-                val=8;
-            } else if(val==8) {
-                val = 6;
-            }
-        }
         return val;
     }
 
     public int currentRank(Spell spell){
         int val=spell.getRank();
+        int upRankFromMeta=0;
         for(Metamagic meta : spell.getMetaList().filterActive().asList()){
             //une méta peut etre gratuite venant de conversion arcanique ou de perfectin magique
             boolean metaFreePerfect = spell.getPerfectMetaId().equalsIgnoreCase(meta.getId());
-            if( !(  metaFreePerfect ) ){
-                val += meta.getUprank()*meta.getnCast();
+            if( !metaFreePerfect && !(meta.getId().equalsIgnoreCase("meta_arrow") && pj.getID().equalsIgnoreCase(""))){ //la meta arrow est gratuite pour wedge
+                upRankFromMeta += meta.getUprank()*meta.getnCast();
             }
+        }
+
+        if(spell.isFromMystery()&&pj.getAllCapacities().capacityIsActive("capacity_unraveled_mystery")){
+            int valReduc = pj.getAllCapacities().getCapacity("capacity_unraveled_mystery").getValue();
+            if(upRankFromMeta-valReduc>0){
+                val+=upRankFromMeta-valReduc;
+            }
+        } else {
+            val+=upRankFromMeta;
         }
         return val;
     }
@@ -117,15 +105,13 @@ public class CalculationSpell {
         return distDouble;
     }
 
-    public int calcRounds(Context mC, SpellList spellList) {
+    public int calcRounds(SpellList spellList) {
         int sumAction = 0;
         int nComplexe = 0;
         int nSimple = 0;
         int nRapide = 0;
         int nSpells = 0;
         int nRound = 0;
-        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
-
         for (Spell spell : spellList.asList()) {
             nSpells += 1;
             switch (getCastTimeTxt(spell)) {
@@ -180,7 +166,7 @@ public class CalculationSpell {
         int val=0;
         if(spell.getFlat_dmg().contains("/lvl")){
             int valFlatLeveled=tools.toInt(spell.getFlat_dmg().split("/lvl")[0])*pj.getAbilityScore("ability_lvl");
-            if (valFlatLeveled>spell.getFlat_cap() && !pj.getAllCapacities().capacityIsActive("revelation_improved_heal")){
+            if (valFlatLeveled>spell.getFlat_cap() && !pj.getAllCapacities().capacityIsActive("capacity_revelation_improved_heal")){
                 valFlatLeveled=spell.getFlat_cap();
             }
             val=valFlatLeveled;

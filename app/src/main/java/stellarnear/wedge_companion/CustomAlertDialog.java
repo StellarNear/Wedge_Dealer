@@ -21,7 +21,7 @@ public class CustomAlertDialog {
     private boolean permanent=false;
     private boolean positiveButton=false;
     private boolean cancelButton=false;
-    private String mode;
+    private String mode="";
     private OnAcceptEventListener mListener;
 
     public CustomAlertDialog(Activity mA, Context mC, View view) {
@@ -39,7 +39,15 @@ public class CustomAlertDialog {
         if(positiveButton){applyStyleToOkButton();}
         if(cancelButton){applyStyleToCancelButton();}
         setTimer();
-        alert.getWindow().setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        int height=LinearLayout.LayoutParams.WRAP_CONTENT;
+        int width=LinearLayout.LayoutParams.WRAP_CONTENT;
+        if(mode.contains("width")){
+            width=LinearLayout.LayoutParams.MATCH_PARENT;
+        }
+        if(mode.contains("height")){
+            height=LinearLayout.LayoutParams.MATCH_PARENT;
+        }
+        alert.getWindow().setLayout(width,height);
         alert.getWindow().setGravity(Gravity.CENTER);
     }
 
@@ -98,7 +106,9 @@ public class CustomAlertDialog {
     public void addConfirmButton(String txt) {
         dialogBuilder.setPositiveButton(txt, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                mListener.onEvent();
+                if(mListener!=null) {
+                    mListener.onEvent();
+                }
             }
         });
         positiveButton=true;
@@ -111,6 +121,10 @@ public class CustomAlertDialog {
             }
         });
         cancelButton=true;
+    }
+
+    public void setFill(String fill) {
+        this.mode+=fill;
     }
 
     public interface OnAcceptEventListener {

@@ -41,8 +41,8 @@
         <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
 
         <stellarnear.wedge_companion.EditTextPreference
-            android:defaultValue="@integer/legendary_points_def"
-            android:key="legendary_points"
+            android:defaultValue="@integer/resource_legendary_points_def"
+            android:key="resource_legendary_points"
             android:title="Points légendaires"
             android:singleLine="true"
             android:inputType="number"

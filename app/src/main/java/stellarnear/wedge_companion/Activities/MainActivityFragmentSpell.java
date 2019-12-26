@@ -41,6 +41,8 @@ import stellarnear.wedge_companion.PostData;
 import stellarnear.wedge_companion.PostDataElement;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Spells.BuildSpellList;
+import stellarnear.wedge_companion.Spells.EchoList;
+import stellarnear.wedge_companion.Spells.GuardianList;
 import stellarnear.wedge_companion.Spells.SelectedSpells;
 import stellarnear.wedge_companion.Spells.Spell;
 import stellarnear.wedge_companion.Spells.SpellList;
@@ -152,8 +154,9 @@ public class MainActivityFragmentSpell extends Fragment {
 
 
     private void buildPage1() {
-        listAllSpell= BuildSpellList.getInstance(getContext()).getSpellList();
+        testEchosAndGuardians();
 
+        listAllSpell= BuildSpellList.getInstance(getContext()).getSpellList();
         int max_tier=pj.getAllResources().getRankManager().getHighestTier();
         for(int i=0;i<=max_tier;i++){
             final ScrollView scroll_tier=(ScrollView) returnFragView.findViewById(R.id.main_scroll_relat);
@@ -180,8 +183,6 @@ public class MainActivityFragmentSpell extends Fragment {
 
             // side bar
             LinearLayout side=(LinearLayout) returnFragView.findViewById(R.id.side_bar);
-            side.setElevation(10);
-            side.setBackground(getContext().getDrawable(R.drawable.background_side_bar));
             final TextView side_txt=new TextView(getContext());
             side_txt.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             side_txt.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT,1));
@@ -311,6 +312,66 @@ public class MainActivityFragmentSpell extends Fragment {
                 }
                 Tiers.addView(spellLine);
             }
+        }
+    }
+
+    private void testEchosAndGuardians() {
+        if(EchoList.getInstance(getContext()).hasEcho() || GuardianList.getInstance(getContext()).hasGuardian()){
+            returnFragView.findViewById(R.id.special_spellslists_bar).setVisibility(View.VISIBLE);
+            addEchosAndGuardians((LinearLayout)returnFragView.findViewById(R.id.special_spellslists_bar));
+        } else {
+            returnFragView.findViewById(R.id.special_spellslists_bar).setVisibility(View.GONE);
+        }
+    }
+
+    private void addEchosAndGuardians(LinearLayout linear) {
+        linear.removeAllViews();
+        if(EchoList.getInstance(getContext()).hasEcho()){
+            TextView echo = new TextView(getContext());
+            String title = EchoList.getInstance(getContext()).getEchoList().size()+" Écho";
+            if(EchoList.getInstance(getContext()).getEchoList().size()>1){ title+="s magiques";}else { title+=" magique";}
+            echo.setText(title);
+            echo.setTextSize(18);
+            echo.setTextColor(getContext().getColor(R.color.colorPrimaryDarkhalda));
+            echo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    EchoList.getInstance(getContext()).popupList(getActivity(),getContext());
+                }
+            });
+            EchoList.getInstance(getContext()).setRefreshEventListener(new EchoList.OnRefreshEventListener() {
+                @Override
+                public void onEvent() {
+                    testEchosAndGuardians();
+                }
+            });
+            linear.addView(echo);
+        }
+        if(GuardianList.getInstance(getContext()).hasGuardian()){
+            TextView guardian = new TextView(getContext());
+            if(EchoList.getInstance(getContext()).hasEcho()){
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                params.setMargins(getResources().getDimensionPixelSize(R.dimen.general_margin), 0, 0, 0);
+                guardian.setLayoutParams(params);
+            }
+            String title = GuardianList.getInstance(getContext()).getGuardianList().size()+" Sort";
+            if(GuardianList.getInstance(getContext()).getGuardianList().size()>1){ title+="s gardiens";}else { title+=" gardien";}
+            guardian.setText(title);
+            guardian.setTextSize(18);
+            guardian.setTextColor(getContext().getColor(R.color.colorPrimaryDarkhalda));
+            guardian.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    GuardianList.getInstance(getContext()).popupList(getActivity(),getContext());
+                }
+            });
+            GuardianList.getInstance(getContext()).setRefreshEventListener(new GuardianList.OnRefreshEventListener() {
+                @Override
+                public void onEvent() {
+                    testEchosAndGuardians();
+                }
+            });
+            linear.addView(guardian);
         }
     }
 

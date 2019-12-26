@@ -367,6 +367,7 @@
 
     <spell>
         <name>Soins intensifs</name>
+        <id>intense_cure</id>
         <descr>En posant les mains sur une créature vivante, le personnage lui transmet de l’énergie positive et lui rend 4d8 points de vie +1 par niveau de lanceur de sorts (jusqu’à un maximum de +20).</descr>
         <dice_type>8</dice_type>
         <cap_dice>4</cap_dice>

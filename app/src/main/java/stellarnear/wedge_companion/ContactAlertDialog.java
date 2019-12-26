@@ -33,7 +33,7 @@ public class ContactAlertDialog {
     private View dialogView;
     private View dialogViewWheelPicker;
     private String mode;
-    private CalculationSpell calculationSpell =new CalculationSpell();
+    private CalculationSpell calculationSpell;
     private int sumScore;
     private Spell spell;
     private Dice dice;
@@ -48,6 +48,7 @@ public class ContactAlertDialog {
         this.mA=mA;
         this.mC=mC;
         this.spell=spell;
+        calculationSpell=new CalculationSpell();
         this.mode = calculationSpell.getContact(spell);
         this.sumScore = 0;
         buildAlertDialog();

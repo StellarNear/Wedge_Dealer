@@ -28,4 +28,10 @@
         <id>resource_display_rank</id>
     </resource>
 
+    <resource>
+        <name>Récupération héroïque</name>
+        <hide>true</hide>
+        <id>resource_heroic_recovery</id>
+    </resource>
+
 </records>

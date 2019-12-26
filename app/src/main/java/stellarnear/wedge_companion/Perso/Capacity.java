@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import stellarnear.wedge_companion.Tools;
+
 /**
  * Created by jchatron on 26/12/2017.
  */
@@ -16,10 +18,10 @@ public class Capacity {
     private String id;
     private Context mC;
     private String pjID;
-    private int dailyUse;
+    private String dailyUse;
     private int value;
 
-    public Capacity(String name,String shortname, String type, String descr, String id,int dailyUse,int value, Context mC,String pjID){
+    public Capacity(String name,String shortname, String type, String descr, String id,String dailyUse,int value, Context mC,String pjID){
         this.name=name;
         this.shortname=shortname;
         this.type=type;
@@ -51,7 +53,7 @@ public class Capacity {
         return id;
     }
 
-    public int getDailyUse() {
+    public String getDailyUse() {
         return dailyUse;
     }
 
@@ -68,4 +70,7 @@ public class Capacity {
         return value;
     }
 
+    public void setValue(int val) {
+        this.value=val;
+    }
 }

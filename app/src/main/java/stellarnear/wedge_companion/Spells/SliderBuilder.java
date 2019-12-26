@@ -17,7 +17,7 @@ public class SliderBuilder {
     private Spell spell;
     private Context mC;
     private boolean slided=false;
-    private CalculationSpell calculationSpell =new CalculationSpell();
+    private CalculationSpell calculationSpell;
     private OnCastEventListener mListener;
     private SeekBar seek;
     private Tools tools=new Tools();
@@ -25,6 +25,7 @@ public class SliderBuilder {
     public SliderBuilder(Context mC,Spell spell){
         this.mC=mC;
         this.spell=spell;
+         calculationSpell=new CalculationSpell();
     }
 
     public void setSlider(final SeekBar seek){
@@ -77,7 +78,7 @@ public class SliderBuilder {
             slided=true;
             if(spell.getRank()==0){new PostData(mC,new PostDataElement(spell));} //pour quand meme signalé les grauit
             if (spell.getRank() > 0) {
-                pj.castSpell(spell);
+                pj.castSpell(spell,mC);
             }
             if (spell.isMyth()) {
                 pj.getAllResources().getResource("resource_mythic_points").spend(1);

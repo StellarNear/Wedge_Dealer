@@ -16,6 +16,7 @@ import java.util.Map;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Tools;
 
 /**
@@ -56,18 +57,21 @@ public class AllCapacities {
                 Node node = nList.item(i);
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element element2 = (Element) node;
-                    Capacity Capacity=new Capacity(
+                    Capacity capacity=new Capacity(
                             readValue("name", element2),
                             readValue("shortname", element2),
                             readValue("type", element2),
                             readValue("descr", element2),
                             readValue("id", element2),
-                            tools.toInt(readValue("dailyuse", element2)),
+                            readValue("dailyuse", element2),
                             tools.toInt(readValue("value", element2)),
                             mC,
                             pjID);
-                    allCapacities.add(Capacity);
-                    mapIdcapacity.put(Capacity.getId(),Capacity);
+                    if(capacity.getId().equalsIgnoreCase("capacity_unraveled_mystery")){
+                        capacity.setValue(mC.getResources().getInteger(R.integer.capacity_unraveled_mystery_metamagic_reduc_def));
+                    }
+                    allCapacities.add(capacity);
+                    mapIdcapacity.put(capacity.getId(),capacity);
                 }
             }
             is.close();

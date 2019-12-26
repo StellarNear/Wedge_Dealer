@@ -38,9 +38,6 @@
     <integer name="resource_hp_base_def_halda">177</integer>
     <integer name="resource_hp_shield_def_halda">0</integer>
     <integer name="resource_regen_def_halda">0</integer>
-    <integer name="resource_heroic_def_halda">2</integer>
-    <integer name="resource_legendary_points_def_halda">4</integer>
-
 
     <integer name="mythic_tier_def_halda">1</integer>
     <integer name="mythic_dice_def_halda">6</integer>
@@ -53,14 +50,11 @@
     <integer name="ability_rm_def_halda">0</integer>
     <integer name="epic_save_def_halda">2</integer>
 
-    <integer name="wedge_max_lvl_spell_def_halda">7</integer>
-
     <!--  Rank de maitrise des compétences  -->
     <integer name="skill_magic_art_rankDEF_halda">25</integer>
-
+    <integer name="skill_history_rankDEF_halda">10</integer>
     <integer name="skill_nature_rankDEF_halda">12</integer>
     <integer name="skill_plan_rankDEF_halda">25</integer>
-
     <integer name="skill_stealth_rankDEF_halda">25</integer>
     <integer name="skill_diplomacy_rankDEF_halda">25</integer>
     <integer name="skill_heal_rankDEF_halda">25</integer>
@@ -79,10 +73,10 @@
 
     <integer name="attack_att_epic_DEF_halda">1</integer>
     <integer name="attack_dmg_epic_DEF_halda">0</integer>
+
     <bool name="switch_perma_resi_DEF_halda">true</bool>
 
     <string name="jet_att_def_halda">15,10,5</string>
-
 
     <integer name="highest_tier_spell_def_halda">11</integer>
 
@@ -97,4 +91,29 @@
     <integer name="spell_rank_9_def_halda">7</integer>
     <integer name="spell_rank_10_def_halda">7</integer>
     <integer name="spell_rank_11_def_halda">4</integer>
+
+
+    <integer name="capacity_unraveled_mystery_metamagic_reduc_def">2</integer>
+
+    <!-- metas -->
+
+
+    <bool name="meta_silent_switch_def">true</bool>
+    <bool name="materiel_switch_def">true</bool>
+    <bool name="materiel_epic_switch_def">false</bool>
+    <bool name="meta_quicken_switch_def">true</bool>
+    <bool name="meta_max_switch_def">true</bool>
+    <bool name="meta_extend_switch_def">true</bool>
+    <bool name="meta_range_switch_def">true</bool>
+
+
+    <bool name="meta_arrow_switch_def">true</bool>
+
+
+    <bool name="intense_cure_perfect_spell_switch_def">true</bool>
+    <bool name="meta_static_switch_def">true</bool>
+    <bool name="meta_bolstering_switch_def">true</bool>
+    <bool name="meta_guardian_switch_def">true</bool>
+
+
 </resources>

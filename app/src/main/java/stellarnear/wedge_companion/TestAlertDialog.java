@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
 import android.view.Display;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -266,6 +268,23 @@ public class TestAlertDialog {
 
             callToAction.setText("Fin du test de caractéristique");
             modePostData="Test caractéristique "+abi.getName();sumResultPostData=sumResult;
+
+            if(abi.getId().equalsIgnoreCase("ability_vig") && pj.getCurrentResourceValue("resource_heroic_recovery")>0) {
+                callToAction.setText("Tu peux relancer une fois le test");
+                callToAction.setTextColor(Color.BLACK);
+                callToAction.setTextSize(18);
+                callToAction.setGravity(Gravity.CENTER);
+                callToAction.setCompoundDrawablesWithIntrinsicBounds(mC.getDrawable(R.drawable.refresh), null, null, null);
+                callToAction.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        pj.getAllResources().getResource("resource_heroic_recovery").spend(1);
+                        new PostData(mC, new PostDataElement("Dépense de Récupération héroïque", "-"));
+                        alertDialog.cancel();
+                        new TestAlertDialog(mA, mC, abi);
+                    }
+                });
+            }
         }
         new PostData(mC,new PostDataElement(modePostData,dice,sumResultPostData));
     }

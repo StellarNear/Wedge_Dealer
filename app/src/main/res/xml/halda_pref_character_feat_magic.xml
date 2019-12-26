@@ -1,0 +1,74 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreference
+        android:defaultValue="@bool/meta_guardian_switch_def"
+        android:key="meta_guardian_switch"
+        android:summary="Un sort gardien reste inactif jusqu'au moment où les conditions formulées lors du lancement du sort sont présentes. Le déclenchement peut même interrompre des actions en cours pour peu que cela ait été formulé en condition d'activation."
+        android:title="Sort Gardien (+6)" />
+
+    <SwitchPreference
+        android:defaultValue="@bool/meta_quicken_switch_def"
+        android:key="meta_quicken_switch"
+        android:summary="Lance le sort par une action rapide"
+        android:title="Incantation rapide (+4)" />
+
+      <SwitchPreference
+        android:defaultValue="@bool/meta_quicken_switch_def"
+        android:key="meta_echo_switch"
+        android:summary="Peut le lancer le sort une seconde fois dans la même journée. Aucun effet permettant au personnage de préparer à nouveau ou de relancer un sort n'est utilisable avec Écho magique. La seconde incantation ne nécessite pas de dépenser un emplacement de sort utilisable. Un écho magique utilise un emplacement de sort de trois niveaux de plus que le niveau réel du sort."
+        android:title="Écho magique (+3)" />
+
+    <SwitchPreference
+        android:defaultValue="@bool/meta_max_switch_def"
+        android:key="meta_max_switch"
+        android:summary="Les variables du sort maximisées"
+        android:title="Quintessence des sorts (+3)" />
+
+    <SwitchPreference
+        android:defaultValue="@bool/meta_extend_switch_def"
+        android:key="meta_extend_switch"
+        android:summary="Augmente les variables des sorts de 50% et les soins donnes des points de vies temporaires"
+        android:title="Caresse de la Lune (+2)" />
+
+    <SwitchPreference
+        android:defaultValue="@bool/meta_bolstering_switch_def"
+        android:key="meta_bolstering_switch"
+        android:summary="Donne un bouclier de 2 points de vie / niveau de lanceur de sort. Dure 1min/niveau. Chaque cible ne peut avoir qu'un bouclier de soutien actif en même temps."
+        android:title="Sort de soutien (+2)" />
+
+    <SwitchPreference
+        android:defaultValue="@bool/meta_range_switch_def"
+        android:key="meta_range_switch"
+        android:summary="Augmente la portée d’un sort d’une ou de plusieurs catégories."
+        android:title="Sort éloigné (+1)" />
+
+    <SwitchPreference
+        android:defaultValue="@bool/meta_silent_switch_def"
+        android:key="meta_silent_switch"
+        android:summary="Le personnage peut lancer un sort sans émettre le moindre son"
+        android:title="Sort silencieux (+1)" />
+
+    <SwitchPreference
+        android:defaultValue="@bool/meta_static_switch_def"
+        android:key="meta_static_switch"
+        android:summary="Le personnage peut lancer un sort sans faire de mouvement"
+        android:title="Sort statique (+1)" />
+
+    <SwitchPreference
+        android:defaultValue="@bool/intense_cure_perfect_spell_switch_def"
+        android:key="intense_cure_perfect_spell_switch"
+        android:summary="Chaque fois qu’il lance ce sort, il peut appliquer un des dons de métamagie qu’il connaît sans modifier le niveau du sort ni le temps d’incantation tant que le niveau modifié du sort ne dépasse pas le 9ème niveau."
+        android:title="Perfection magique (Soins intensifs)" />
+
+    <SwitchPreference
+        android:defaultValue="@bool/materiel_switch_def"
+        android:key="materiel_switch"
+        android:summary="Pas besoin de composantes matérielles jusqu'à une valeur d'1po pour lancer un sort"
+        android:title="Dispense de compo matérielles" />
+
+    <SwitchPreference
+        android:defaultValue="@bool/materiel_epic_switch_def"
+        android:key="materiel_epic_switch"
+        android:summary="Pas besoin de composantes matérielles jusqu'à une valeur de 15000 po pour lancer un sort"
+        android:title="Dispense de compo matérielles Epique" />
+</PreferenceScreen>

@@ -26,9 +26,9 @@ public class PrefSkillFragment {
     public void addSkillsList(PreferenceCategory rank,PreferenceCategory bonus ) {
         for (Skill skill : pj.getAllSkills().getSkillsList()) {
             EditTextPreference pref = new EditTextPreference(mC, InputType.TYPE_CLASS_TEXT);
-            pref.setKey(skill.getId() + "_rank"+pj.getID());
+            pref.setKey(skill.getId() + "_rank"+PersoManager.getPJSuffix());
             pref.setTitle(skill.getName());
-            int rankDefId = mC.getResources().getIdentifier(skill.getId() + "_rankDEF"+pj.getID(), "integer", mC.getPackageName());
+            int rankDefId = mC.getResources().getIdentifier(skill.getId() + "_rankDEF"+PersoManager.getPJSuffix(), "integer", mC.getPackageName());
             int rankDef = 0;
             try {
                 rankDef = mC.getResources().getInteger(rankDefId);
@@ -39,10 +39,15 @@ public class PrefSkillFragment {
             pref.setSummary("Valeur : %s");
             rank.addPreference(pref);
             EditTextPreference pref_bonus = new EditTextPreference(mC, InputType.TYPE_CLASS_TEXT);
-            pref_bonus.setKey(skill.getId() + "_bonus"+pj.getID());
+            pref_bonus.setKey(skill.getId() + "_bonus"+PersoManager.getPJSuffix());
             pref_bonus.setTitle(skill.getName());
-            int bonusDefId = mC.getResources().getIdentifier(skill.getId() + "_bonusDEF"+pj.getID(), "integer", mC.getPackageName());
-            int bonusDef = mC.getResources().getInteger(bonusDefId);
+            int bonusDefId = mC.getResources().getIdentifier(skill.getId() + "_bonusDEF"+PersoManager.getPJSuffix(), "integer", mC.getPackageName());
+            int bonusDef = 0;
+            try {
+                bonusDef = mC.getResources().getInteger(bonusDefId);
+            } catch (Resources.NotFoundException e) {
+                e.printStackTrace();
+            }
             pref_bonus.setDefaultValue(String.valueOf(bonusDef));
             pref_bonus.setSummary("Valeur : %s");
             bonus.addPreference(pref_bonus);

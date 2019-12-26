@@ -26,7 +26,7 @@ public class MainActivityFragmentSpellCast extends Fragment {
     private Perso pj= PersoManager.getCurrentPJ();
     private SpellList selectedSpells;
     private Tools tools=new Tools();
-    private CalculationSpell calculationSpell =new CalculationSpell();
+    private CalculationSpell calculationSpell ;
     private TextView round;
     private LinearLayout mainLin;
     private View returnFragView;
@@ -47,6 +47,7 @@ public class MainActivityFragmentSpellCast extends Fragment {
 
         mainLin = (LinearLayout) returnFragView.findViewById(R.id.linear2);
         round = (TextView) returnFragView.findViewById(R.id.n_round);
+        calculationSpell=new CalculationSpell();
 
         ((ImageButton) returnFragView.findViewById(R.id.back_spell_from_spell_cast)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +91,7 @@ public class MainActivityFragmentSpellCast extends Fragment {
     }
 
     private void refreshRound() {
-        int nRound = calculationSpell.calcRounds(getContext(), selectedSpells);
+        int nRound = calculationSpell.calcRounds( selectedSpells);
         round.setText("["+nRound+" round"+(nRound>1 ? "s":"")+"]");
     }
 

@@ -15,7 +15,7 @@
 
     <capacity>
         <name>Etreinte</name>
-        <type>other</type>
+        <type>Autre</type>
         <descr>Si une créature dotée de cette particularité parvient à toucher un adversaire avec l’attaque indiquée (une attaque de griffes ou de morsure généralement), elle lui inflige des dégâts normaux et peut tenter de l’agripper par une action libre qui ne provoque pas d’attaque d’opportunité.</descr>
         <id>capacity_grip</id>
     </capacity>

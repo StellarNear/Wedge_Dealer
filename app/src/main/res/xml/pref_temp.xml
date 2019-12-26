@@ -66,6 +66,15 @@
         android:inputType="number"
         android:title="Bonus à la résisitance magique"
         />
+
+    <stellarnear.wedge_companion.EditTextPreference
+        android:defaultValue="0"
+        android:key="NLS_bonus"
+        android:title="Bonus au NLS"
+        android:selectAllOnFocus="true"
+        android:inputType="number"
+        android:singleLine="true"
+        android:summary="Valeur : %s"/>
     
     <PreferenceScreen
         android:key="reset_temp"

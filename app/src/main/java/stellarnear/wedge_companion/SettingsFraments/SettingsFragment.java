@@ -176,6 +176,7 @@ public class SettingsFragment extends PreferenceFragment {
                     prefSpellRankFragment.addSpellRanks(spellCat);
                     setHasOptionsMenu(true);
                     break;
+                case "halda_pref_character_feat":
                 case "pref_character_feat":
                     BuildMetaList.resetMetas();
                     BuildSpellList.resetSpellList();
@@ -187,11 +188,7 @@ public class SettingsFragment extends PreferenceFragment {
                     setHasOptionsMenu(true);
                     break;
                 case "pref_character_capa":
-                    PreferenceCategory druid = (PreferenceCategory) findPreference("Druide");
-                    PreferenceCategory archer = (PreferenceCategory) findPreference("Archer-Sylvestre");
-                    PreferenceCategory oracle = (PreferenceCategory) findPreference("Oracle");
-                    PreferenceCategory otherCapa = (PreferenceCategory) findPreference("Autre");
-                    prefCapaFragment.addCapaList(druid,archer,oracle,otherCapa);
+                    prefCapaFragment.addCapaList(getPreferenceScreen());
                     setHasOptionsMenu(true);
                     break;
                 case "pref_mythic_feat":
@@ -203,11 +200,7 @@ public class SettingsFragment extends PreferenceFragment {
                     setHasOptionsMenu(true);
                     break;
                 case "pref_mythic_capa":
-                    PreferenceCategory commonMythCapa = (PreferenceCategory) findPreference("Commun");
-                    PreferenceCategory allMythCapa = (PreferenceCategory) findPreference("Universelle");
-                    PreferenceCategory champMythCapa = (PreferenceCategory) findPreference("Champion");
-                    PreferenceCategory hieroMythCapa = (PreferenceCategory) findPreference("Hiérophante");
-                    prefMythicCapaFragment.addMythicCapaList(commonMythCapa,allMythCapa,champMythCapa,hieroMythCapa);
+                    prefMythicCapaFragment.addMythicCapaList(getPreferenceScreen());
                     setHasOptionsMenu(true);
                     break;
                 case "pref_character_skill":

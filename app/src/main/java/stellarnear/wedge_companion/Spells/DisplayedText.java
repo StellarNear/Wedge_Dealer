@@ -15,9 +15,9 @@ import stellarnear.wedge_companion.Tools;
 public class DisplayedText {
     private Perso pj = PersoManager.getCurrentPJ();
     private Tools tools=new Tools();
-    private CalculationSpell calculationSpell =new CalculationSpell();
+    private CalculationSpell calculationSpell=new CalculationSpell();
 
-    public DisplayedText(){  }
+    public DisplayedText(){ }
 
     public String damageTxt(Spell spell) {
 
@@ -28,11 +28,7 @@ public class DisplayedText {
             Integer dmg_int = calculationSpell.nDice(spell);
             if(calculationSpell.getFlatDmg(spell)>0){dmg_int+=calculationSpell.getFlatDmg(spell);}
             dmg = String.valueOf(dmg_int);
-        } else  if(spell.getMetaList().metaIdIsActive("meta_perfect")){
-            Integer dmg_int = calculationSpell.nDice(spell) * calculationSpell.diceType(spell) *2;
-            if(calculationSpell.getFlatDmg(spell)>0){dmg_int+=calculationSpell.getFlatDmg(spell);}
-            dmg = String.valueOf(dmg_int);
-        }else  if(spell.getMetaList().metaIdIsActive("meta_max")) {
+        } else  if(spell.getMetaList().metaIdIsActive("meta_max")) {
             Integer dmg_int = calculationSpell.nDice(spell) * calculationSpell.diceType(spell);
             if(calculationSpell.getFlatDmg(spell)>0){dmg_int+=calculationSpell.getFlatDmg(spell);}
             dmg = String.valueOf(dmg_int);
@@ -65,6 +61,9 @@ public class DisplayedText {
         if(valList.contains("V")&&spell.getMetaList().metaIdIsActive("meta_silent")){
             valList.remove("V");
         }
+        if(valList.contains("G")&&spell.getMetaList().metaIdIsActive("meta_static")){
+            valList.remove("G");
+        }
         String txt ="";
         for (String str : valList){
             txt+=str+", ";
@@ -87,7 +86,6 @@ public class DisplayedText {
                 result = result * lvl;
                 duration_unit = dura.replaceAll("/lvl","").replaceAll("[0-9?!]","");
             }
-            if(spell.getMetaList().metaIdIsActive("meta_duration")){ result=result*2; }
             dura = result+duration_unit;
             if(result>1){dura+="s";}
         }

@@ -18,6 +18,7 @@ public class Dice {
     private boolean rolled=false;
     private boolean delt=false;
     private boolean canCrit=false;
+    private boolean canBeLegendarySurge=false;
     private Tools tools= new Tools();
 
     private Dice mythicDice; //si c'est un d20 il a un dés mythic attaché
@@ -50,6 +51,10 @@ public class Dice {
         }
     }
 
+    public void canBeLegendarySurge() {
+        this.canBeLegendarySurge=true;
+    }
+
     public interface OnRefreshEventListener {
         void onEvent();
     }
@@ -68,6 +73,7 @@ public class Dice {
 
     public ImageView getImg() {
         if(imgForDice==null){imgForDice = new ImgForDice(this,mA,mC);}
+        if(canBeLegendarySurge){imgForDice.canBeLegendarySurge();}
         return imgForDice.getImg();
     }
 

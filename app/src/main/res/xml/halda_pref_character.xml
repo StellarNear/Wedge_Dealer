@@ -26,7 +26,7 @@
        />
 
     <PreferenceScreen
-        android:key="pref_character_feat"
+        android:key="halda_pref_character_feat"
         android:icon="@drawable/ic_playlist_add_check_black_24dp"
         android:title="Dons actifs"
         android:summary="Ensemble des dons connus et/ou actifs"

@@ -21,8 +21,8 @@ public class SpellProfile {
     private Context mC;
     private Spell spell;
     private View profile;
-    private CalculationSpell calculationSpell =new CalculationSpell();
-    private DisplayedText displayText =new DisplayedText();
+    private CalculationSpell calculationSpell ;
+    private DisplayedText displayText;
     private SpellProfileManager profileManager;
     private OnRefreshEventListener mListener;
     private Perso pj = PersoManager.getCurrentPJ();
@@ -33,6 +33,8 @@ public class SpellProfile {
     }
 
     public View getProfile(Activity mA,Context mC){
+        displayText=new DisplayedText();
+        calculationSpell=new CalculationSpell();
         if(this.profile==null){
             this.mA=mA;
             this.mC=mC;

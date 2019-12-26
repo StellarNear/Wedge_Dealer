@@ -47,14 +47,16 @@
     <integer name="resource_hp_shield_def">0</integer>
     <integer name="resource_regen_def">0</integer>
     <integer name="resource_heroic_def">2</integer>
+
+    <integer name="mythic_tier_def">2</integer>
+    <integer name="mythic_dice_def">6</integer>
+
     <integer name="resource_legendary_points_def">4</integer>
+    <integer name="legendary_dice_def">8</integer>
 
     <integer name="highest_tier_spell_def">7</integer>
 
-    <integer name="mythic_tier_def">2</integer>
-    <integer name="legendary_points_def">4</integer>
-    <integer name="mythic_dice_def">6</integer>
-    <integer name="legendary_dice_def">8</integer>
+
 
     <integer name="ability_ref_def">10</integer>
     <integer name="ability_vig_def">14</integer>
@@ -118,5 +120,8 @@
     <integer name="spell_rank_5_def">5</integer>
     <integer name="spell_rank_6_def">3</integer>
     <integer name="spell_rank_7_def">3</integer>
+
+
+    <bool name="switch_perma_resi_DEF">true</bool>
 
 </resources>

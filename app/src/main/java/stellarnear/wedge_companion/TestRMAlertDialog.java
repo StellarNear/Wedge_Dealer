@@ -29,7 +29,7 @@ public class TestRMAlertDialog {
     private AlertDialog alertDialog;
     private View dialogView;
     private Spell spell;
-    private CalculationSpell calculationSpell =new CalculationSpell();
+    private CalculationSpell calculationSpell ;
     private int sumScore;
     private OnRefreshEventListener mListener;
     private boolean robe=false;
@@ -43,6 +43,7 @@ public class TestRMAlertDialog {
         this.mC=mC;
         this.spell = spell;
         this.sumScore = 0;
+        calculationSpell=new CalculationSpell();
         buildAlertDialog();
     }
 

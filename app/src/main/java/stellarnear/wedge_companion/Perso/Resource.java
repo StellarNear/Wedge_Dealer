@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.preference.PreferenceManager;
 
+import stellarnear.wedge_companion.Tools;
+
 /**
  * Created by jchatron on 04/01/2018.
  */
@@ -19,6 +21,8 @@ public class Resource {
     private boolean testable;
     private boolean hide;
     private boolean fromCapacity=false;
+    private boolean fromSpell=false;
+    private boolean infinite=false;
     private Drawable img;
     private SharedPreferences settings;
     private String pjID="";
@@ -58,10 +62,26 @@ public class Resource {
         if(this.current>this.max){this.current=this.max;saveCurrentToSettings();}
     }
 
-    public void setFromCapacity(int maxUse, String capaDescr){
+    public void setFromCapacity(String maxUse, String capaDescr){
         this.fromCapacity=true;
         this.capaDescr=capaDescr;
-        setMax(maxUse);
+        if(maxUse.equalsIgnoreCase("infinite")){
+            this.infinite=true;
+        } else {
+            setMax(new Tools().toInt(maxUse));
+        }
+    }
+
+    public boolean isInfinite() {
+        return infinite;
+    }
+
+    public void setFromSpell() {
+        this.fromSpell=true;
+    }
+
+    public boolean isSpellResource() {
+        return this.fromSpell;
     }
 
     public String getCapaDescr() {
@@ -129,7 +149,8 @@ public class Resource {
     }
 
     public void loadCurrentFromSettings() {
-        int currentVal = settings.getInt(this.id + "_current"+pjID, -99);
+        String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
+        int currentVal = settings.getInt(this.id + "_current"+extendID, -99);
         if (currentVal != -99) {
             this.current = currentVal;
         } else {
@@ -138,7 +159,8 @@ public class Resource {
     }
 
     private void saveCurrentToSettings() {
-        settings.edit().putInt(this.id + "_current"+pjID, this.current).apply();
+        String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
+        settings.edit().putInt(this.id + "_current"+extendID, this.current).apply();
     }
 
 
@@ -170,5 +192,7 @@ public class Resource {
             saveCurrentToSettings();
         }
     }
+
+
 }
 

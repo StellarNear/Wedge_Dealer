@@ -63,15 +63,14 @@ public class Skill {
     }
 
     private void refreshRank() {
-        int valTemp=0;
+        int valDef=0;
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
+        String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
         try {
-            SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
-            String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
             int valDefId = mC.getResources().getIdentifier(this.id+"_rankDEF"+extendID, "integer", mC.getPackageName());
-            int valDef = mC.getResources().getInteger(valDefId);
-            valTemp = tools.toInt(settings.getString(this.id+"_rank"+extendID, String.valueOf(valDef)));
+            valDef = mC.getResources().getInteger(valDefId);
         } catch ( Exception e) {}
-        this.rank = valTemp;
+        this.rank = tools.toInt(settings.getString(this.id+"_rank"+extendID, String.valueOf(valDef)));
     }
 
     public int getRank(){
@@ -79,15 +78,14 @@ public class Skill {
     }
 
     private void refreshBonus() {
-        int bonusTemp=0;
+        int bonusDef=0;
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
+        String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
         try {
-            SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
-            String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
             int bonusDefId = mC.getResources().getIdentifier(this.id+"_bonusDEF"+extendID, "integer", mC.getPackageName());
-            int bonusDef = mC.getResources().getInteger(bonusDefId);
-            bonusTemp = tools.toInt(settings.getString(this.id+"_bonus"+extendID, String.valueOf(bonusDef)));
+            bonusDef = mC.getResources().getInteger(bonusDefId);
         } catch ( Exception e) {}
-        this.bonus= bonusTemp;
+        this.bonus= tools.toInt(settings.getString(this.id+"_bonus"+extendID, String.valueOf(bonusDef)));
     }
 
     public int getBonus(){

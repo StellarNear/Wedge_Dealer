@@ -1,41 +1,69 @@
 <?xml version="1.0"?>
 <records>
     <!-- feat_magic -->
+
     <feat>
-        <name>Science du contresort</name>
+        <name>Mystérieuse perspicacité</name>
         <type>feat_magic</type>
-        <descr>Permet de contrer un sort avec un sort de la même école et d’un niveau supérieur.</descr>
+        <descr>Gagne deux révélations d'un second Mystère (Lune)</descr>
+        <id>feat_heroic_recovery</id>
+    </feat>
+    <feat>
+        <name>Mystérieuse perspicacité 2</name>
+        <type>feat_magic</type>
+        <descr>Gagne deux révélations d'un second Mystère (Lune)</descr>
+        <id>feat_heroic_recovery</id>
     </feat>
 
     <feat>
-        <name>Parade de sorts</name>
+        <name>Ailes de lumières</name>
         <type>feat_magic</type>
-        <descr>Renvoyer un sort contré vers le lanceur.</descr>
+        <descr>Devient un être angélique avec une paire d’aile de lumières, gagne :
+- une vitesse de vol de 30m
+- vision dans le noir à 20m
+- Immunité à l’acide le froid et pétrification
+- Bonus de +4 aux jets contre les poisons
+- Cercle magique contre le Mal
+- Globe d'invulnérabilité partielle
+Dure 1 min/d6 de la canalisation.</descr>
+        <id>feat_light_wing</id>
     </feat>
-
 
     <!-- DEF -->
+
+
+
+
     <feat>
-        <name>Réflexes surhumains</name>
+        <name>Dure à cuire</name>
         <type>feat_def</type>
-        <descr>Le personnage bénéficie d’un bonus de +2 aux jets de Réflexes.</descr>
-        <id>feat_inhuman_reflexes</id>
+        <descr>Le personnage est particulièrement difficile à tuer. Ses blessures se stabilisent automatiquement quand il est grièvement blessé mais, en plus, même aux portes de la mort, il reste conscient et peut continuer de bouger.</descr>
+        <id>feat_hard_boiled</id>
     </feat>
 
+    <feat>
+        <name>Endurance</name>
+        <type>feat_def</type>
+        <id>feat_stamina</id>
+        <descr> Le personnage bénéficie d’un bonus de +4 à chacun des tests et jets de sauvegarde suivants :
+test de Natation pour résister à des dégâts temporaires dus à la fatigue,
+tests de Constitution pour continuer à courir,
+tests de Constitution pour éviter les dégâts non-létaux infligés par une marche forcée,
+tests de Constitution pour retenir sa respiration,
+tests de Constitution pour éviter les dégâts non-létaux infligés par la famine ou la soif,
+jets de Vigueur pour éviter les dégâts non-létaux infligés par les climats chauds ou froids et
+jets de Vigueur pour résister aux dégâts infligés par l’asphyxie.
+Le personnage peut également dormir en armure légère ou intermédiaire sans être fatigué le lendemain.</descr>
+    </feat>
 
 
     <!-- feat_otherS -->
-    <feat>
-        <name>Prestige</name>
-        <type>feat_other</type>
-        <descr>Le personnage attire des suivants et un compagnon d’armes qui se joignent à sa cause et l’accompagnent au cours de ses aventures.</descr>
-    </feat>
 
     <feat>
-        <name>Création d'objets merveilleux</name>
+        <name>Récupération héroïque</name>
         <type>feat_other</type>
-        <descr>Le personnage sait fabriquer des objets merveilleux, un type d’objets magiques. Le personnage peut fabriquer une grande variété d’objets merveilleux. Le processus de fabrication prend un jour par tranche de 1000 po du prix de base de l’objet. Le personnage doit acheter les matières premières nécessaires à la moitié de leur prix de base (Voir la page sur la création d'objets magiques).</descr>
+        <descr>Une fois par jour, par une action simple, le personnage peut tenter un nouveau jet de sauvegarde contre une condition débilitante ou une affliction qui l’affecte et qui impose un jet de Vigueur. Si ce nouveau jet de sauvegarde échoue, aucun effet supplémentaire n’est appliqué. Dans le cas contraire, il compte comme une réussite pour déterminer si le personnage parvient à se débarrasser de l’affliction (comme un poison ou une maladie). Le personnage ne peut pas utiliser ce don pour combattre les effets instantanés, les effets qui n’autorisent aucun jet de sauvegarde, ni ceux qui imposent autre chose qu’un jet de Vigueur.</descr>
+        <id>feat_heroic_recovery</id>
     </feat>
-
 
 </records>

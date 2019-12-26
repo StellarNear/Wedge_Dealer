@@ -128,7 +128,7 @@ public class MainActivityFragmentCanalisation extends Fragment {
             if(canalCapa.getId().equalsIgnoreCase("canalcapacity_heal")){
                 int nDice = 1+(pj.getAbilityScore("ability_lvl")-1)/2;
                 descr+="\n\nSoigne : "+nDice+"d6";
-                if(pj.getAllCapacities().capacityIsActive("epic_revelation_canal")){
+                if(pj.getAllCapacities().capacityIsActive("capacity_epic_revelation_canal")){
                     descr+="+4";
                     descr=descr.replace("9m","13m");
                 }

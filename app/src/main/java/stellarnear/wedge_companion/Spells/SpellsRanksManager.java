@@ -48,6 +48,7 @@ public class SpellsRanksManager {
             int val = readResourceMax( rankRes.getId());
             rankRes.setMax(val);
             rankRes.setCurrent(readResourceCurrent(rankRes.getId()));
+            rankRes.setFromSpell();
             spellTiers.add(rankRes);
         }
     }
@@ -55,7 +56,8 @@ public class SpellsRanksManager {
     private int readResourceCurrent(String id) {
         int val=0;
         try {
-            val=settings.getInt(id + "_current",  0);
+            String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
+            val=settings.getInt(id + "_current"+extendID,  0);
         } catch (Exception e) {
             e.printStackTrace();
         }

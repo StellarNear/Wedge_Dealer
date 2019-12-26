@@ -12,6 +12,7 @@ public class RangeAtkRoll extends AtkRoll {
     private int rangeMalus;
     public RangeAtkRoll(Activity mA, Context mC, Integer base) {
         super( mA, mC, base);
+        this.atkDice.canBeLegendarySurge();
     }
 
     private int getBonusRangeAtk() {

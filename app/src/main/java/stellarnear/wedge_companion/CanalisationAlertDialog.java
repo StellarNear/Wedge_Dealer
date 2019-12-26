@@ -112,7 +112,7 @@ public class CanalisationAlertDialog {
             line.addView(dice.getImg());
             sum+=dice.getRandValue();
         }
-        if(pj.getAllCapacities().capacityIsActive("epic_revelation_canal")){
+        if(pj.getAllCapacities().capacityIsActive("capacity_epic_revelation_canal")){
             int flatDmg=4;
             TextView flat=new TextView(mC); flat.setTextSize(20); flat.setTextColor(mC.getColor(R.color.colorPrimaryDark));
             flat.setText("+"+flatDmg);

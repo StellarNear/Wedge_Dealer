@@ -18,6 +18,8 @@ import stellarnear.wedge_companion.HallOfFame;
 import stellarnear.wedge_companion.PostData;
 import stellarnear.wedge_companion.PostDataElement;
 import stellarnear.wedge_companion.Spells.CalculationSpell;
+import stellarnear.wedge_companion.Spells.EchoList;
+import stellarnear.wedge_companion.Spells.GuardianList;
 import stellarnear.wedge_companion.Spells.Spell;
 import stellarnear.wedge_companion.Stats.SpellStats.SpellStats;
 import stellarnear.wedge_companion.Stats.Stats;
@@ -50,7 +52,6 @@ public class Perso {
     private Tools tools=new Tools();
     private Context mC;
     private SharedPreferences prefs;
-    private CalculationSpell calculationSpell =new CalculationSpell();
 
     public Perso(Context mC,String pjID) {
         this.mC=mC;
@@ -69,8 +70,6 @@ public class Perso {
                 allCanalisationCapacities=new AllCanalisationCapacities(mC);
             }
         }
-
-
         inventory = new Inventory(mC,pjID);
         allFeats = new AllFeats(mC,pjID);
         allAbilities = new AllAbilities(mC,inventory,pjID);
@@ -136,19 +135,16 @@ public class Perso {
         allResources.castSpell(selected_rank);
     }
 
-    public void castSpell(Spell spell) {
+    public void castSpell(Spell spell,Context context) {
         if (!spell.isCast()){
-            spell.cast();
-            allResources.castSpell(calculationSpell.currentRank(spell));
+            spell.cast(context);
+            allResources.castSpell(new CalculationSpell().currentRank(spell));
             new PostData(mC,new PostDataElement(spell));
         }
     }
 
     public int getCasterLevel() {
         int val= getAbilityScore("ability_lvl");
-        if (prefs.getBoolean("karma_switch",false)){
-            val+=4;
-        }
         String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
         val+=tools.toInt(prefs.getString("NLS_bonus"+extendID,String.valueOf(0)));
         return val;
@@ -219,21 +215,6 @@ public class Perso {
             bonusTemp+=2;
         }
 
-        if(inventory.getAllEquipments().testIfNameItemIsEquipped("Pierre porte bonheur")){
-            bonusTemp+=1;
-        }
-        if(skillId.equalsIgnoreCase("skill_estimate")) {
-            Equipment gant = inventory.getAllEquipments().getEquipmentsEquiped("hand_slot");
-            if (gant != null && gant.getName().equalsIgnoreCase("Gant d'estimation")) {
-                bonusTemp += 3;
-            }
-        } else if(skillId.equalsIgnoreCase("skill_stealth")) {
-            Equipment boot = inventory.getAllEquipments().getEquipmentsEquiped("equipment_feet");
-            if (boot != null && boot.getName().equalsIgnoreCase("Bottes elfiques")) {
-                bonusTemp += 5;
-            }
-        }
-
         return bonusTemp;
     }
 
@@ -263,11 +244,16 @@ public class Perso {
                 }
                 abiScore += tools.toInt(prefs.getString("bonus_global_temp_ca",String.valueOf(0)));
                 abiScore += tools.toInt(prefs.getString("bonus_temp_ca"+suffix,String.valueOf(0)));
-                int dexMod=getAbilityMod("ability_dexterite");
-                if(inventory.getAllEquipments().hasArmorDexLimitation() && inventory.getAllEquipments().getArmorDexLimitation()<dexMod){
-                    abiScore+=inventory.getAllEquipments().getArmorDexLimitation();
+                int abiMod=0;
+                if(allCapacities.capacityIsActive("capacity_revelation_prophetic_armor")){
+                    abiMod = getAbilityMod("ability_charisme");
                 } else {
-                    abiScore+=dexMod;
+                    abiMod = getAbilityMod("ability_dexterite");
+                }
+                if (inventory.getAllEquipments().hasArmorDexLimitation() && inventory.getAllEquipments().getArmorDexLimitation() < abiMod) {
+                    abiScore += inventory.getAllEquipments().getArmorDexLimitation();
+                } else {
+                    abiScore += abiMod;
                 }
                 abiScore+=inventory.getAllEquipments().getArmorBonus();
             } else if (abiId.equalsIgnoreCase("ability_equipment")) {
@@ -320,10 +306,6 @@ public class Perso {
                 int valDefPermaId = mC.getResources().getIdentifier("switch_perma_resi_DEF"+suffix, "bool", mC.getPackageName());
                 if (prefs.getBoolean("switch_perma_resi"+suffix,mC.getResources().getBoolean(valDefPermaId))) {
                     abiScore+=1;
-                }
-                Equipment torse= inventory.getAllEquipments().getEquipmentsEquiped("armor_slot") ;
-                if (torse!=null && torse.getName().equalsIgnoreCase("Robe d'archimage grise")) {  //TODO la cape de halda
-                    abiScore+=4;
                 }
 
                 if (abiId.equalsIgnoreCase("ability_ref")){
@@ -406,6 +388,8 @@ public class Perso {
     public void sleep() {
         resetTemp();
         refresh();
+        EchoList.getInstance(mC).resetEcho();
+        GuardianList.getInstance(mC).resetGuardian();
         allResources.resetCurrent();
     }
     public void halfSleep(){

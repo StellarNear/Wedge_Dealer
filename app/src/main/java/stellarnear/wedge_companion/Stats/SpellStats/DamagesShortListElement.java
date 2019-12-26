@@ -1,5 +1,7 @@
 package stellarnear.wedge_companion.Stats.SpellStats;
 
+import android.content.Context;
+
 import stellarnear.wedge_companion.Spells.CalculationSpell;
 import stellarnear.wedge_companion.Spells.Spell;
 
@@ -15,7 +17,7 @@ public class DamagesShortListElement {
         this.element=spell.getDmg_type();
         this.dmgSum=spell.getDmgResult();
         this.rank=new CalculationSpell().currentRank(spell);
-        this.nMeta=this.rank-spell.getRank();
+        this.nMeta=this.rank-spell.getRank(); //todo pas vrai avec la reduc sur sort mystere
         this.mythic=spell.isMyth();
     }
 

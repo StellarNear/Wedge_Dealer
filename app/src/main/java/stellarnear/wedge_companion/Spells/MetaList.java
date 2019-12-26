@@ -79,4 +79,25 @@ public class MetaList extends AppCompatActivity {
     public void remove(Metamagic meta) {
         this.listMeta.remove(meta);
     }
+
+    public boolean hasAnyMetaActive() {
+        boolean val=false;
+        for (Metamagic meta : this.listMeta){
+            if( meta.isActive()){
+                val=true;
+                break;
+            }
+        }
+        return val;
+    }
+
+    public MetaList getAllActivesMetas() {
+        MetaList listMetaActives = new MetaList();
+        for (Metamagic meta : this.listMeta){
+            if( meta.isActive()){
+                listMetaActives.add(meta);
+            }
+        }
+        return listMetaActives;
+    }
 }

@@ -32,7 +32,7 @@ public class ResultBuilder {
     private int spellColorId;
     private Context mC;
     private Activity mA;
-    private CalculationSpell calculationSpell =new CalculationSpell();
+    private CalculationSpell calculationSpell ;
     private DisplayedText displayedText=new DisplayedText();
     private Tools tools=new Tools();
 
@@ -41,6 +41,7 @@ public class ResultBuilder {
         this.mA=mA;
         this.mC=mC;
         this.spell=spell;
+        calculationSpell=new CalculationSpell();
         setSpellColor();
     }
 
@@ -54,7 +55,7 @@ public class ResultBuilder {
             txt_view.setText("Sortilège " + spell.getName() + " lancé !");
             txt_view.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
             resultTemplate.addView(txt_view);
-        } else if (spell.getMetaList().metaIdIsActive("meta_perfect") || spell.getMetaList().metaIdIsActive("meta_max") || !displayedText.damageTxt(spell).contains("d") ) {
+        } else if ( spell.getMetaList().metaIdIsActive("meta_max") || !displayedText.damageTxt(spell).contains("d") ) {
             resultTemplate.removeAllViews();
             TextView txt_view = new TextView(mC);
             txt_view.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
@@ -71,8 +72,11 @@ public class ResultBuilder {
             if(spell.isCrit()) {
                 addExplo(resultTemplate);
             }
-
-            txt_view.setText(sumDmg+" dégâts !");
+            if(spell.getDmg_type().equalsIgnoreCase("heal")){
+                txt_view.setText(sumDmg + " soins !");
+            } else {
+                txt_view.setText(sumDmg + " dégâts !");
+            }
             txt_view.setTextColor(spellColorId);
             spell.setDmgResult(sumDmg);
             checkHighScore(sumDmg);
@@ -88,7 +92,7 @@ public class ResultBuilder {
                 }
             }
             if(spell.getDmg_type().equalsIgnoreCase("heal")){((TextView)resultTemplate.findViewById(R.id.damage_title)).setText("Soins :");}
-            ((TextView)resultTemplate.findViewById(R.id.highscore)).setText("(record:"+String.valueOf(spell.getHighscore())+")");
+            ((TextView)resultTemplate.findViewById(R.id.highscore)).setText("(record:"+String.valueOf(spell.getHighscore(mC))+")");
             resultTemplate.findViewById(R.id.highscore).setVisibility(View.VISIBLE);
             int sumDmg =diceList.getSum();
             if(calculationSpell.getFlatDmg(spell)>0){sumDmg+=calculationSpell.getFlatDmg(spell);}
@@ -129,7 +133,7 @@ public class ResultBuilder {
     }
 
     private void checkHighScore(int sumDmg) {
-        if(spell.isHighscore(sumDmg)){
+        if(spell.isHighscore(sumDmg,mC)){
             Tools tools = new Tools();
             tools.playVideo(mA,mC,"/raw/explosion");
             tools.customToast(mC, String.valueOf(sumDmg) + " dégats !\nC'est un nouveau record !", "center");

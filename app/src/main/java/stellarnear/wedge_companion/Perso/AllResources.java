@@ -95,6 +95,11 @@ public class AllResources {
             e.printStackTrace();
         }
 
+        if(allFeats.featIsActive("feat_heroic_recovery") && getResource("resource_heroic_recovery")!=null){
+            getResource("resource_heroic_recovery").setMax(1);
+        } else if(getResource("resource_heroic_recovery")!=null){
+            getResource("resource_heroic_recovery").setMax(0);
+        }
 
         // Partie sort
         Resource displaySpellResource = getResource("resource_display_rank");
@@ -129,10 +134,9 @@ public class AllResources {
 
     private void addCapacitiesResources() {
         for(Capacity cap : allCapacities.getAllCapacitiesList()){
-            if (cap.getDailyUse()>0 && cap.isActive() && getResource(cap.getId().replace("capacity_", "resource_"))==null){
+            if ((tools.toInt(cap.getDailyUse())>0 || cap.getDailyUse().equalsIgnoreCase("infinite")) && cap.isActive() && getResource(cap.getId().replace("capacity_", "resource_"))==null){
                 //on test si elle es tpas deja presente pour la pertie rebuild  de refreshCapaListResources
-                boolean testable = true;
-                boolean hide=false;
+                boolean testable = true; boolean hide=false;
                 if(cap.getId().equalsIgnoreCase("capacity_lynx_eye")){testable=false;hide=true;}
                 else if(cap.getId().equalsIgnoreCase("capacity_animal_form")){testable=false;hide=true;}
                 Resource capaRes = new Resource(cap.getName(),cap.getShortname(),testable,hide,cap.getId().replace("capacity_","resource_"),mC,pjID);
@@ -159,7 +163,6 @@ public class AllResources {
 
     public List<Resource> getResourcesListDisplay() {
         List<Resource> list = new ArrayList<>();
-
         for (Resource res : listResources) {
             if (!res.isHidden()) {
                 list.add(res);
@@ -199,7 +202,7 @@ public class AllResources {
         } else if(pjID.equalsIgnoreCase("halda")){
             hpMythPerGrad=4; //hierophante mythique
             int maxCanal=1+allAbilities.getAbi("ability_charisme").getMod();
-            if(allCapacities.capacityIsActive("epic_revelation_canal")){maxCanal*=2;}
+            if(allCapacities.capacityIsActive("capacity_epic_revelation_canal")){maxCanal*=2;}
             getResource("resource_canalisation").setMax(maxCanal);
         }
         if(allFeats.featIsActive("feat_robust")){ hpPool += 3+allAbilities.getAbi("ability_lvl").getValue();}
@@ -214,7 +217,7 @@ public class AllResources {
             getResource("resource_mythic_points").setMax(3+2*readResource("mythic_tier"));
         } catch (Exception e) { }
         try {
-            getResource("resource_legendary_points").setMax(readResource("legendary_points"));
+            getResource("resource_legendary_points").setMax(readResource("resource_legendary_points"));
         } catch (Exception e) { }
 
         if(rankManager!=null){rankManager.refreshMax();}
@@ -234,7 +237,7 @@ public class AllResources {
 
     public void halfSleepReset() {
         for (Resource res : listResources) {
-            if(res.isFromCapacity()||res.getId().equalsIgnoreCase("resource_mythic_points")||res.getId().equalsIgnoreCase("resource_canalisation")) {
+            if(!res.isSpellResource()) {
                 res.resetCurrent();
             }
         }
