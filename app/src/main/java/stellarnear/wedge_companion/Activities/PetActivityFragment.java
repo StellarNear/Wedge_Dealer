@@ -36,6 +36,7 @@ public class PetActivityFragment extends Fragment {
         if (container != null) {
             container.removeAllViews();
         }
+        unlockOrient();
 
         returnFragView= inflater.inflate(R.layout.fragment_main, container, false);
 
@@ -112,7 +113,9 @@ public class PetActivityFragment extends Fragment {
             }
         });
     }
-
+    private void unlockOrient() {
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR);
+    }
 
     private void lockOrient() {
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);

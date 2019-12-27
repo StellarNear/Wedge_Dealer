@@ -1,5 +1,6 @@
 package stellarnear.wedge_companion.Activities;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
@@ -52,7 +53,12 @@ public class SettingsActivity extends AppCompatActivity
                 .replace(R.id.pref_content, settingsFragment)
                 .commit();
 
-
+        if(getIntent() != null && getIntent().getExtras() != null && getIntent().hasExtra("fromActivity")
+                && getIntent().getStringExtra("fromActivity").equalsIgnoreCase("PetActivity")){
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        } else {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
     }
 
     //

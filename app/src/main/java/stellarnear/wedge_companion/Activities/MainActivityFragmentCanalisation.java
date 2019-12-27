@@ -3,7 +3,6 @@ package stellarnear.wedge_companion.Activities;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
@@ -82,7 +81,6 @@ public class MainActivityFragmentCanalisation extends Fragment {
     }
 
     private void backToMain() {
-        unlockOrient();
         Fragment fragment = new MainActivityFragment();
         FragmentManager fragmentManager = getActivity().getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -247,11 +245,6 @@ public class MainActivityFragmentCanalisation extends Fragment {
         });
 
 
-    }
-
-
-    private void unlockOrient() {
-        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR);
     }
 
     private void animate(final ImageButton buttonMain) {

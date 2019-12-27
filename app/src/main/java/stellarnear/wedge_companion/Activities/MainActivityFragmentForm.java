@@ -7,7 +7,6 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.pm.ActivityInfo;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Typeface;
@@ -97,7 +96,6 @@ public class MainActivityFragmentForm extends Fragment {
         buttonMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                unlockOrient();
                 Fragment fragment = new MainActivityFragment();
                 FragmentManager fragmentManager = getActivity().getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -420,9 +418,7 @@ public class MainActivityFragmentForm extends Fragment {
         }
     }
 
-    private void unlockOrient() {
-        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR);
-    }
+
 
     private void animate(final ImageButton buttonMain) {
         Handler handler = new Handler();

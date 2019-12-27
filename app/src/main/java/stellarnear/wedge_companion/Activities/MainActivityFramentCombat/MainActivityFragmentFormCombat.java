@@ -4,7 +4,6 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
-import android.content.pm.ActivityInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -82,7 +81,6 @@ public class MainActivityFragmentFormCombat extends Fragment {
         View.OnClickListener listnerBackToMain = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                unlockOrient();
                 Fragment fragment = new MainActivityFragment();
                 FragmentManager fragmentManager = getActivity().getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -118,10 +116,6 @@ public class MainActivityFragmentFormCombat extends Fragment {
                 buttonMain.startAnimation(anim);
             }
         }, getResources().getInteger(R.integer.translationFragDuration));
-    }
-
-    private void unlockOrient() {
-        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR);
     }
 
     public void setupScreen() {

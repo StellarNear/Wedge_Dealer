@@ -6,7 +6,6 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -122,7 +121,6 @@ public class MainActivityFragmentSpell extends Fragment {
     }
 
     private void backToMain() {
-        unlockOrient();
         Fragment fragment = new MainActivityFragment();
         FragmentManager fragmentManager = getActivity().getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -148,11 +146,6 @@ public class MainActivityFragmentSpell extends Fragment {
 
 
     }
-
-    private void unlockOrient() {
-        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR);
-    }
-
 
     private void buildPage1() {
         testEchosAndGuardians();

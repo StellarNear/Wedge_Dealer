@@ -42,6 +42,7 @@ public class MainActivityFragment extends Fragment {
         if (container != null) {
             container.removeAllViews();
         }
+        unlockOrient();
 
         returnFragView= inflater.inflate(R.layout.fragment_main, container, false);
 
@@ -62,7 +63,6 @@ public class MainActivityFragment extends Fragment {
             }
             fabCombat.startAnimation(top);
         } else {
-            //todo canalisation
             ((LinearLayout) returnFragView.findViewById(R.id.linear_frag_to_canal)).setVisibility(View.VISIBLE);
             ImageButton fabCanalisation= (ImageButton) returnFragView.findViewById(R.id.button_frag_to_canal);
             fabCanalisation.startAnimation(top);
@@ -162,6 +162,9 @@ public class MainActivityFragment extends Fragment {
         });
     }
 
+    private void unlockOrient() {
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR);
+    }
 
     private void lockOrient() {
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);

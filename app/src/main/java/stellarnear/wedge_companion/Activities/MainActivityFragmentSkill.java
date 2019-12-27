@@ -3,7 +3,6 @@ package stellarnear.wedge_companion.Activities;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
@@ -59,7 +58,6 @@ public class MainActivityFragmentSkill extends Fragment {
         buttonMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                unlockOrient();
                 Fragment fragment;
                 if(getActivity() instanceof MainActivity) {
                     fragment = new MainActivityFragment();
@@ -146,10 +144,6 @@ public class MainActivityFragmentSkill extends Fragment {
                 new TestAlertDialog(getActivity(),getContext(),skill,pj.getAbilityMod(skill.getAbilityDependence()));
             }
         });
-    }
-
-    private void unlockOrient() {
-        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR);
     }
 
     private void animate(final ImageButton buttonMain) {

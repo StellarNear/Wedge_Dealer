@@ -196,9 +196,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+        setActivityFromOrientation();
+    }
 
+    private void setActivityFromOrientation() {
         final Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
-
         switch (display.getRotation()) {
             case Surface.ROTATION_0:
                 //on y est déja
@@ -227,7 +229,7 @@ public class MainActivity extends AppCompatActivity {
                 public void run() {
                     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR);
                 }
-            }, 2000);
+            }, 1000);
         }
     }
 

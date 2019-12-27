@@ -50,8 +50,7 @@
             android:clipChildren="true"
             android:gravity="center"
             android:minWidth="250dp"
-            android:orientation="horizontal"
-            android:visibility="gone">
+            android:orientation="horizontal">
 
             <FrameLayout
                 android:layout_width="0dp"

@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -151,8 +152,15 @@ public class Bag {
     }
 
     private String getMoney(String key) {
-        int money_defID = mC.getResources().getIdentifier(key+"_def", "integer", mC.getPackageName());
-        long money = tools.toLong(settings.getString(key,String.valueOf(mC.getResources().getInteger(money_defID))));
+        String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
+        int money_defID = mC.getResources().getIdentifier(key+"_def"+extendID, "integer", mC.getPackageName());
+        int money_def_val = 0;
+        try {
+            money_def_val = mC.getResources().getInteger(money_defID);
+        } catch (Resources.NotFoundException e) {
+            e.printStackTrace();
+        }
+        long money = tools.toLong(settings.getString(key+extendID,String.valueOf(money_def_val)));
         String moneyTxt=getAppedix(money);
         return moneyTxt;
     }
@@ -258,7 +266,6 @@ public class Bag {
         ca.clickToHide(view.findViewById(R.id.toast_list_title_frame));
 
         LinearLayout money = view.findViewById(R.id.toast_list_money);
-        money.setVisibility(View.VISIBLE);
         TextView title = view.findViewById(R.id.toast_list_title);
         title.setText("Inventaire du sac");
         ((TextView) view.findViewById(R.id.money_plat_text)).setText(getMoney("money_plat"));

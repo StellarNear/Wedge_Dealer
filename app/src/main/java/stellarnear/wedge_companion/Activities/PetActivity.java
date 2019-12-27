@@ -158,12 +158,8 @@ public class PetActivity extends AppCompatActivity {
                 public void run() {
                     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR);
                 }
-            }, 2000);
+            }, 1000);
         }
-    }
-
-    private void lockOrient() {
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
     private void unlockOrient() {

@@ -309,7 +309,11 @@ public class Perso {
                 }
 
                 if (abiId.equalsIgnoreCase("ability_ref")){
-                    abiScore+=getAbilityMod("ability_dexterite");
+                    if(allCapacities.capacityIsActive("capacity_revelation_prophetic_armor")){
+                        abiScore += getAbilityMod("ability_charisme");
+                    } else {
+                        abiScore += getAbilityMod("ability_dexterite");
+                    }
                     if(getAllFeats().featIsActive("feat_inhuman_reflexes")){
                         abiScore+=2;
                     }
