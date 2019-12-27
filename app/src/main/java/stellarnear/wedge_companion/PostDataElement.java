@@ -140,6 +140,15 @@ public class PostDataElement {
         this.result=resultTxt;
     }
 
+
+    public PostDataElement(String typeEvent,String detail,String resultTxt){
+        SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.FRANCE);
+        this.date=formater.format(new Date());
+        this.typeEvent=typeEvent;
+        this.detail=detail;
+        this.result=resultTxt;
+    }
+
     public PostDataElement(String typeEvent, Dice oriDice, int result){
         SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.FRANCE);
         this.date=formater.format(new Date());

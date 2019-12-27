@@ -89,15 +89,6 @@ public class SpellStatsList {
         return listSpellStats.contains(lastSpellStat);
     }
 
-
-    public int getNGlaeBoost() {
-        int tot=0;
-        for (SpellStat spellStat : listSpellStats){
-            tot+= spellStat.getListGlaeBoost().size();
-        }
-        return tot;
-    }
-
     public int getNContactMiss() {
         int tot=0;
         for (SpellStat spellStat : listSpellStats){
@@ -106,13 +97,6 @@ public class SpellStatsList {
         return tot;
     }
 
-    public int getNGlaeFail() {
-        int tot=0;
-        for (SpellStat spellStat : listSpellStats){
-            tot+= spellStat.getListGlaeFail().size();
-        }
-        return tot;
-    }
 
     public int getNResist() {
         int tot=0;
@@ -122,34 +106,10 @@ public class SpellStatsList {
         return tot;
     }
 
-    public int getNGlaeBoostForRank(int selectedRank) {
-        int tot=0;
-        for (SpellStat spellStat : listSpellStats){
-            for (int rank : spellStat.getListGlaeBoost()){
-                if(rank==selectedRank){
-                    tot++;
-                }
-            }
-        }
-        return tot;
-    }
-
     public int getNContactMissForRank(int selectedRank) {
         int tot=0;
         for (SpellStat spellStat : listSpellStats){
             for (int rank : spellStat.getListContactMiss()){
-                if(rank==selectedRank){
-                    tot++;
-                }
-            }
-        }
-        return tot;
-    }
-
-    public int getNGlaeFailForRank(int selectedRank) {
-        int tot=0;
-        for (SpellStat spellStat : listSpellStats){
-            for (int rank : spellStat.getListGlaeFail()){
                 if(rank==selectedRank){
                     tot++;
                 }

@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -215,17 +216,17 @@ public class MainActivityFragmentSpell extends Fragment {
                     if(pj.getCurrentResourceValue("resource_mythic_points")>0) {
 
                         new AlertDialog.Builder(getContext())
-                                .setTitle("Arcane libre")
-                                .setMessage("Veux tu lancer utiliser arcane libre pour lancer un sort de rang " + rank + " ?")
+                                .setTitle("Sort Inspiré")
+                                .setMessage("Veux tu lancer utiliser un sort inspiré pour lancer un sort de rang " + rank + " ?")
                                 .setIcon(android.R.drawable.ic_menu_help)
                                 .setPositiveButton("oui", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int whichButton) {
 
-                                        Snackbar.make(side_txt,"Arcane libre de rang " + rank + " lancé.\n(+2 NLS sur ce sort)", Snackbar.LENGTH_LONG)
+                                        Snackbar.make(side_txt,"Sort inspiré de rang " + rank + " lancé.\n(+2 NLS sur ce sort)", Snackbar.LENGTH_LONG)
                                                 .setAction("Action", null).show();
 
                                         pj.getAllResources().getResource("resource_mythic_points").spend(1);
-                                        new PostData(getContext(),new PostDataElement("Lancement sort arcane libre","-1pt mythique"));
+                                        new PostData(getContext(),new PostDataElement("Lancement sort inspiré","-1pt mythique"));
                                         Toast toast = Toast.makeText(getContext(), "Il te reste " + pj.getCurrentResourceValue("resource_mythic_points") + " point(s) mythique(s)", Toast.LENGTH_SHORT);
                                         toast.setGravity(Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 0);
                                         toast.show();
@@ -330,8 +331,7 @@ public class MainActivityFragmentSpell extends Fragment {
             TextView echo = new TextView(getContext());
             String title = EchoList.getInstance(getContext()).getEchoList().size()+" Écho";
             if(EchoList.getInstance(getContext()).getEchoList().size()>1){ title+="s magiques";}else { title+=" magique";}
-            echo.setText(title);
-            echo.setTextSize(18);
+            echo.setText(title); echo.setTextSize(18);echo.setTypeface(null, Typeface.BOLD);
             echo.setTextColor(getContext().getColor(R.color.colorPrimaryDarkhalda));
             echo.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -356,8 +356,7 @@ public class MainActivityFragmentSpell extends Fragment {
             }
             String title = GuardianList.getInstance(getContext()).getGuardianList().size()+" Sort";
             if(GuardianList.getInstance(getContext()).getGuardianList().size()>1){ title+="s gardiens";}else { title+=" gardien";}
-            guardian.setText(title);
-            guardian.setTextSize(18);
+            guardian.setText(title); guardian.setTextSize(18); guardian.setTypeface(null, Typeface.BOLD);
             guardian.setTextColor(getContext().getColor(R.color.colorPrimaryDarkhalda));
             guardian.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -1,7 +1,5 @@
 package stellarnear.wedge_companion.Stats.SpellStats;
 
-import android.content.Context;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

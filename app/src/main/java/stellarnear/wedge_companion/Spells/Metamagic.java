@@ -12,12 +12,12 @@ public class Metamagic {
     private String id;
     private String name;
     private String description;
-    private CheckBox check=null;
-    private OnCheckedChangeListener changeListener;
+    private transient CheckBox check=null;
+    private transient OnCheckedChangeListener changeListener;
     private int uprank;
     private boolean multicast=false;
     private int nCast;
-    private OnRefreshEventListener mListener;
+    private transient OnRefreshEventListener mListener;
 
     public Metamagic(Metamagic meta){ //pour cloner
         this.id=meta.id;

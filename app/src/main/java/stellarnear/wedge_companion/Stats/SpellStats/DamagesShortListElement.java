@@ -1,7 +1,5 @@
 package stellarnear.wedge_companion.Stats.SpellStats;
 
-import android.content.Context;
-
 import stellarnear.wedge_companion.Spells.CalculationSpell;
 import stellarnear.wedge_companion.Spells.Spell;
 

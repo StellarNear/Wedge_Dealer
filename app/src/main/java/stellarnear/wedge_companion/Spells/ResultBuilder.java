@@ -55,7 +55,25 @@ public class ResultBuilder {
             txt_view.setText("Sortilège " + spell.getName() + " lancé !");
             txt_view.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
             resultTemplate.addView(txt_view);
-        } else if ( spell.getMetaList().metaIdIsActive("meta_max") || !displayedText.damageTxt(spell).contains("d") ) {
+        }else if (spell.getDmgResult()!=0){ //les sorts echo sont déja lancés
+            resultTemplate.removeAllViews();
+            TextView txt_view = new TextView(mC);
+            txt_view.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            txt_view.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
+            if(spell.isCrit()){
+                addExplo(resultTemplate);
+            }
+            resultTemplate.addView(txt_view);
+            if(spell.isCrit()) {
+                addExplo(resultTemplate);
+            }
+            if(spell.getDmg_type().equalsIgnoreCase("heal")){
+                txt_view.setText(spell.getDmgResult() + " soins !");
+            } else {
+                txt_view.setText(spell.getDmgResult() + " dégâts !");
+            }
+            txt_view.setTextColor(spellColorId);
+        }else if ( spell.getMetaList().metaIdIsActive("meta_max") || !displayedText.damageTxt(spell).contains("d") ) {
             resultTemplate.removeAllViews();
             TextView txt_view = new TextView(mC);
             txt_view.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
@@ -102,9 +120,9 @@ public class ResultBuilder {
                 sumDmg = 2*sumDmg;
             }
 
-            ((TextView)resultTemplate.findViewById(R.id.damage)).setText(String.valueOf(sumDmg));
             spell.setDmgResult(sumDmg);
             checkHighScore(sumDmg);
+            ((TextView)resultTemplate.findViewById(R.id.damage)).setText(String.valueOf(sumDmg));
 
             ((TextView)resultTemplate.findViewById(R.id.damage)).setTextColor(spellColorId);
 

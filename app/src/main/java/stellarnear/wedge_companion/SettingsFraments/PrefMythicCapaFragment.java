@@ -9,7 +9,6 @@ import android.preference.SwitchPreference;
 import java.util.HashMap;
 import java.util.Map;
 
-import stellarnear.wedge_companion.Perso.Capacity;
 import stellarnear.wedge_companion.Perso.MythicCapacity;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;

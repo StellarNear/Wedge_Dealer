@@ -250,23 +250,19 @@ public class DSSFSpell {
     }
 
     private PieDataSet computePieDataSetDetails() {
-        float nNormal,nCrit,nGlaeBoost,nContactMiss,nGlaeFail,nResist;
+        float nNormal,nCrit,nContactMiss,nResist;
         if(rankSelectedForPieChart ==-1){
             nCrit= pj.getSpellStats().getSpellStatsList().getNCrit();
-            nGlaeBoost= pj.getSpellStats().getSpellStatsList().getNGlaeBoost();
             nContactMiss= pj.getSpellStats().getSpellStatsList().getNContactMiss();
-            nGlaeFail= pj.getSpellStats().getSpellStatsList().getNGlaeFail();
             nResist= pj.getSpellStats().getSpellStatsList().getNResist();
-            nNormal= pj.getSpellStats().getSpellStatsList().getNSpellHit()-nCrit-nGlaeBoost;
+            nNormal= pj.getSpellStats().getSpellStatsList().getNSpellHit()-nCrit;
         } else {
             nCrit= pj.getSpellStats().getSpellStatsList().getNCritForRank(rankSelectedForPieChart);
-            nGlaeBoost= pj.getSpellStats().getSpellStatsList().getNGlaeBoostForRank(rankSelectedForPieChart);
             nContactMiss= pj.getSpellStats().getSpellStatsList().getNContactMissForRank(rankSelectedForPieChart);
-            nGlaeFail= pj.getSpellStats().getSpellStatsList().getNGlaeFailForRank(rankSelectedForPieChart);
             nResist= pj.getSpellStats().getSpellStatsList().getNResistForRank(rankSelectedForPieChart);
-            nNormal= pj.getSpellStats().getSpellStatsList().getNSpellHitForRank(rankSelectedForPieChart)-nCrit-nGlaeBoost;
+            nNormal= pj.getSpellStats().getSpellStatsList().getNSpellHitForRank(rankSelectedForPieChart)-nCrit;
         }
-        float nTot=nNormal+nCrit+nGlaeBoost+nContactMiss+nGlaeFail+nResist;
+        float nTot=nNormal+nCrit+nContactMiss+nResist;
         float normalPercent=100f*(nNormal/nTot);
         float critPercent=100f*(nCrit/nTot);
         float contactMissPercent=100f*(nContactMiss/nTot);

@@ -43,8 +43,11 @@ public class SpellProfileManager {
         this.spell=spell;
         profile = profileView;
         panel = ((ViewFlipper)profile.findViewById(R.id.view_flipper));
-        buildProfileMechanisms();
         panel.setDisplayedChild(0);
+        buildProfileMechanisms();
+        if(spell.isCast()){
+            displayResult();
+        }
     }
 
     private void buildProfileMechanisms(){
@@ -93,10 +96,7 @@ public class SpellProfileManager {
             sliderBuild.setCastEventListener(new SliderBuilder.OnCastEventListener() {
                 @Override
                 public void onEvent() {
-                    ((LinearLayout) profile.findViewById(R.id.result_panel)).removeAllViews();
-                    new ResultBuilder(mA, mC, spell).addResults((LinearLayout) profile.findViewById(R.id.result_panel));
-                    resultDisplayed = true;
-                    movePanelToDmg();
+                    displayResult();
                     if (mListener != null) {
                         mListener.onEvent();
                     }
@@ -124,6 +124,13 @@ public class SpellProfileManager {
                 }
             });
         }
+    }
+
+    private void displayResult() {
+        ((LinearLayout) profile.findViewById(R.id.result_panel)).removeAllViews();
+        new ResultBuilder(mA, mC, spell).addResults((LinearLayout) profile.findViewById(R.id.result_panel));
+        resultDisplayed = true;
+        movePanelToDmg();
     }
 
     public void triggerFail() {

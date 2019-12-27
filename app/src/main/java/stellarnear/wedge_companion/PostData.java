@@ -59,8 +59,7 @@ public class PostData  {
 
                 postDataParams.put("id",id);
 
-
-                Log.e("params",postDataParams.toString());
+                Log.i("params",postDataParams.toString());
 
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setReadTimeout(15000 /* milliseconds */);

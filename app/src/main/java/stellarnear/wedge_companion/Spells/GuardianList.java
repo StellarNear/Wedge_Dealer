@@ -4,9 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import android.text.InputType;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,8 +27,6 @@ public class GuardianList {
     private static List<PairSpellCondition> guardianList;
     private CustomAlertDialog tooltipAlert;
     private OnRefreshEventListener mListener;
-    private Activity mA;
-    private Context mC;
 
     public static GuardianList getInstance(Context mC) {  //pour eviter de relire le xml à chaque fois
         if (instance==null){
@@ -42,16 +36,15 @@ public class GuardianList {
     }
 
     private GuardianList(Context mC){
-        this.mC=mC;
         try {
-            loadFromSetting();
+            loadFromSetting(mC);
         } catch (Exception e) {
             guardianList =new ArrayList<>();
             e.printStackTrace();
         }
     }
 
-    private void loadFromSetting(){
+    private void loadFromSetting(Context mC){
         TinyDB tinyDB = new TinyDB(mC);
         List<PairSpellCondition> listDB = tinyDB.getListGuardianSpellsCondition("localSaveGuardianList");
         if (listDB.size() > 0) {
@@ -65,24 +58,24 @@ public class GuardianList {
         return guardianList.size()>0;
     }
 
-    public void resetGuardian() {
+    public void resetGuardian(Context mC) {
         instance = null;
         guardianList=new ArrayList<>();
-        saveToDB();
+        saveToDB(mC);
     }
 
-    private void saveToDB() {
+    private void saveToDB(Context mC) {
         TinyDB tinyDB = new TinyDB(mC);
         tinyDB.putListGuardianSpellsCondition("localSaveGuardianList", guardianList);
     }
 
 
-    private void removeGuardian(PairSpellCondition spellCond) {
+    private void removeGuardian(PairSpellCondition spellCond,Context mC) {
         guardianList.remove(spellCond);
-        saveToDB();
+        saveToDB(mC);
     }
 
-    public void addGuardian(final Spell spell){
+    public void addGuardian(final Spell spell,final Context mC){
         AlertDialog.Builder alert = new AlertDialog.Builder(mC);
         final EditText edittext = new EditText(mC);
         alert.setMessage("Condition de déclenchement");
@@ -92,7 +85,8 @@ public class GuardianList {
         alert.setPositiveButton("Ajouter", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 guardianList.add(new PairSpellCondition(spell, edittext.getText().toString()));
-                saveToDB();
+                new PostData(mC,new PostDataElement("Enregistrement d'un sort gardien","Condition : "+ edittext.getText().toString(),"Sort : "+spell.getName()));
+                saveToDB(mC);
             }
         });
         alert.show();
@@ -103,53 +97,53 @@ public class GuardianList {
     }
 
 
-    public void popupList(Activity mA, Context context) {
-        LinearLayout line = new LinearLayout(context); line.setGravity(Gravity.CENTER); line.setOrientation(LinearLayout.VERTICAL);
+    public void popupList(Activity mA, Context mC) {
+        LinearLayout line = new LinearLayout(mC); line.setGravity(Gravity.CENTER); line.setOrientation(LinearLayout.VERTICAL);
         View tooltip = mA.getLayoutInflater().inflate(R.layout.custom_toast_special_spellslists, null);
-        tooltipAlert = new CustomAlertDialog(mA, context, tooltip);
+        tooltipAlert = new CustomAlertDialog(mA, mC, tooltip);
         tooltipAlert.setPermanent(true);
         tooltipAlert.setFill("width");
-        String title = GuardianList.getInstance(context).getGuardianList().size()+" Sort";
+        String title = GuardianList.getInstance(mC).getGuardianList().size()+" Sort";
         if(guardianList.size()>1){ title+="s gardiens";}else { title+=" gardien";}
         ((TextView)tooltip.findViewById(R.id.title)).setText(title);
-        ((ImageView)tooltip.findViewById(R.id.iconTitle)).setImageDrawable(context.getDrawable(R.drawable.ic_trigger_spell));
+        ((ImageView)tooltip.findViewById(R.id.iconTitle)).setImageDrawable(mC.getDrawable(R.drawable.ic_trigger_spell));
 
-        fillList((LinearLayout)tooltip.findViewById(R.id.linearList),context);
+        fillList(mA,mC,(LinearLayout)tooltip.findViewById(R.id.linearList));
 
         tooltipAlert.addConfirmButton("Fermer");
         tooltipAlert.showAlert();
     }
 
-    private void fillList(LinearLayout viewById,final Context context) {
+    private void fillList(final Activity mA,final Context mC,LinearLayout viewById) {
         viewById.removeAllViews();
         for(final PairSpellCondition spellCondition : guardianList){
-            TextView condTxt=new TextView(context); condTxt.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            TextView condTxt=new TextView(mC); condTxt.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             condTxt.setGravity(Gravity.CENTER);
             condTxt.setText(spellCondition.getCond());
             viewById.addView(condTxt);
 
-            LinearLayout line = new LinearLayout(context);
+            LinearLayout line = new LinearLayout(mC);
             line.setGravity(Gravity.CENTER_VERTICAL);
 
             viewById.addView(line);
-            ImageView delete = new ImageView(context);
-            delete.setImageDrawable(context.getDrawable(R.drawable.ic_trigger_spell));
+            ImageView delete = new ImageView(mC);
+            delete.setImageDrawable(mC.getDrawable(R.drawable.ic_trigger_spell));
             delete.setLayoutParams(new LinearLayout.LayoutParams(150,150));
             delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    new AlertDialog.Builder(context)
+                    new AlertDialog.Builder(mC)
                             .setTitle("Déclenchement du sort Gardien")
                             .setMessage("Confirmes-tu le déclenchement du sort gardien "+spellCondition.getSpell().getName()+" ?\n\n"+"Condition : "+spellCondition.getCond())
                             .setIcon(android.R.drawable.ic_menu_help)
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int whichButton) {
-                                    removeGuardian(spellCondition);
+                                    removeGuardian(spellCondition,mC);
                                     tooltipAlert.dismissAlert();
-                                    if(guardianList.size()>1){popupList(mA,context);}
+                                    if(guardianList.size()>1){popupList(mA,mC);}
                                     if(mListener!=null){mListener.onEvent();}
-                                    new PostData(context,new PostDataElement("Déclenchement d'un sort gardien","Sort : "+spellCondition.getSpell().getName()));
-                                    new PostData(context,new PostDataElement(spellCondition.getSpell()));
+                                    new PostData(mC,new PostDataElement("Déclenchement d'un sort gardien","Condition : "+spellCondition.getCond(),"Sort : "+spellCondition.getSpell().getName()));
+                                    new PostData(mC,new PostDataElement(spellCondition.getSpell()));
                                 }
                             })
                             .setNegativeButton(android.R.string.no, null).show();
@@ -157,7 +151,7 @@ public class GuardianList {
             });
             line.addView(delete);
 
-            View profileView = spellCondition.getSpell().getProfile().getProfile(mA,context);
+            View profileView = spellCondition.getSpell().getProfile().getProfile(mA,mC);
             if(profileView.getParent()!=null){((ViewGroup)profileView.getParent()).removeView(profileView);}
             line.addView(profileView);
         }

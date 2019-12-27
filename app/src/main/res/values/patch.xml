@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="version">"v1.0"</string>
-    <string name="time_spend">40h</string>
+    <string name="time_spend">64h</string>
     <string name="basic_infos">"Application développée pour gagner un temps considérable fin 2017."
     </string>
 

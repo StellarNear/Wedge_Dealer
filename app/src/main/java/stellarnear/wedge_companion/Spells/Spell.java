@@ -8,13 +8,11 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import stellarnear.wedge_companion.CompositeListner;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Tools;
@@ -59,13 +57,11 @@ public class Spell {
     private MetaList metaList;
 
     private boolean binded=false;
-    private Spell bindedParent =null;
+    private transient Spell bindedParent =null;
     private Cast cast;
     private boolean crit=false;
 
-    private Tools tools=new Tools();
-
-    private SpellProfile spellProfile;
+    private transient SpellProfile spellProfile;
 
     private int dmgResult=0;
 
@@ -249,6 +245,7 @@ public class Spell {
     }
 
     public boolean isHighscore(int val,Context mC){
+        Tools tools=new Tools();
         boolean returnVal=false;
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
         int highscore=settings.getInt(this.id+"_highscore",0);
@@ -361,10 +358,10 @@ public class Spell {
     public void cast(Context mC){
         cast.cast();
         if(metaList.metaIdIsActive("meta_echo")){
-            EchoList.getInstance(mC).addEcho(this);
+            EchoList.getInstance(mC).addEcho(this,mC);
         }
         if(metaList.metaIdIsActive("meta_guardian")){
-            GuardianList.getInstance(mC).addGuardian(this);
+            GuardianList.getInstance(mC).addGuardian(this,mC);
         }
     }
 

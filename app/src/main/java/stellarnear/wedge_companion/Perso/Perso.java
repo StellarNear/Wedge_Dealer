@@ -388,8 +388,8 @@ public class Perso {
     public void sleep() {
         resetTemp();
         refresh();
-        EchoList.getInstance(mC).resetEcho();
-        GuardianList.getInstance(mC).resetGuardian();
+        EchoList.getInstance(mC).resetEcho(mC);
+        GuardianList.getInstance(mC).resetGuardian(mC);
         allResources.resetCurrent();
     }
     public void halfSleep(){

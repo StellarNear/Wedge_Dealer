@@ -1,7 +1,5 @@
 package stellarnear.wedge_companion.Spells;
 
-import android.support.v7.app.AppCompatActivity;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +8,7 @@ import java.util.List;
  * Created by jchatron on 28/11/2017.
  */
 
-public class MetaList extends AppCompatActivity {
+public class MetaList {
     private List<Metamagic> listMeta = new ArrayList<>();
 
     public MetaList(){
@@ -70,10 +68,6 @@ public class MetaList extends AppCompatActivity {
             }
         }
         return val;
-    }
-
-    public void activateFromConversion(String id) {
-        getMetaByID(id).activateFromConversion();
     }
 
     public void remove(Metamagic meta) {

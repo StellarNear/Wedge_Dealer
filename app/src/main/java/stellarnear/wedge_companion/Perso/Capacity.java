@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import stellarnear.wedge_companion.Tools;
-
 /**
  * Created by jchatron on 26/12/2017.
  */
