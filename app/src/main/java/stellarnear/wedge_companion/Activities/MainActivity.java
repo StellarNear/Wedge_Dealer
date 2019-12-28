@@ -212,10 +212,14 @@ public class MainActivity extends AppCompatActivity {
                 finish();
                 break;
 
+            case Surface.ROTATION_180:
+                break;
+
             case Surface.ROTATION_270:
+                //todo help
                 //Intent intent_help = new Intent(MainActivity.this, HelpActivity.class);
                 //startActivity(intent_help);
-                finish();
+                //finish();
                 break;
         }
     }

@@ -125,14 +125,6 @@
             android:singleLine="true"
             android:inputType="number"
             android:summary="Valeur : %s m"/>
-        <stellarnear.wedge_companion.EditTextPreference
-            android:defaultValue="@integer/ability_reduc_def"
-            android:key="ability_reduc"
-            android:title="Réduction de dégats"
-            android:selectAllOnFocus="true"
-            android:inputType="number"
-            android:singleLine="true"
-            android:summary="Valeur : %s"/>
     </PreferenceCategory>
 
 </PreferenceScreen>

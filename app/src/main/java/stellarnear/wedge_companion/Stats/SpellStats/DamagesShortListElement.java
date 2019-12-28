@@ -1,6 +1,7 @@
 package stellarnear.wedge_companion.Stats.SpellStats;
 
 import stellarnear.wedge_companion.Spells.CalculationSpell;
+import stellarnear.wedge_companion.Spells.Metamagic;
 import stellarnear.wedge_companion.Spells.Spell;
 
 
@@ -15,8 +16,18 @@ public class DamagesShortListElement {
         this.element=spell.getDmg_type();
         this.dmgSum=spell.getDmgResult();
         this.rank=new CalculationSpell().currentRank(spell);
-        this.nMeta=this.rank-spell.getRank(); //todo pas vrai avec la reduc sur sort mystere
+        this.nMeta=calculateNMeta(spell);
         this.mythic=spell.isMyth();
+    }
+
+    private int calculateNMeta(Spell spell) {
+        int nMeta=0;
+        for(Metamagic meta : spell.getMetaList().asList()){
+            if(meta.isActive()){
+                nMeta+=meta.getnCast()*meta.getUprank();
+            }
+        }
+        return nMeta;
     }
 
     public String getElement() {

@@ -159,7 +159,7 @@ public class AllForms {
                             readValue("type", element2),
                             readValue("size", element2),
                             readValue("descr", element2),
-                            readValue("vulnerability", element2),
+                            readValueWithNullReturn("vulnerability", element2), //on mets pas "" mais null si y a rien pour pas que l'element physique quia  "" en clef soit considéré
                             readValue("resistance", element2),
                             readValue("id", element2),
                             mC);
@@ -257,6 +257,16 @@ public class AllForms {
             return node.getNodeValue();
         } catch (Exception e){
             return "";
+        }
+    }
+
+    public String readValueWithNullReturn(String tag, Element element) {
+        try {
+            NodeList nodeList = element.getElementsByTagName(tag).item(0).getChildNodes();
+            Node node = nodeList.item(0);
+            return node.getNodeValue();
+        } catch (Exception e){
+            return null;
         }
     }
 

@@ -138,7 +138,10 @@ public class Perso {
     public void castSpell(Spell spell,Context context) {
         if (!spell.isCast()){
             spell.cast(context);
-            allResources.castSpell(new CalculationSpell().currentRank(spell));
+            int currentRankSpell=new CalculationSpell().currentRank(spell);
+            if(currentRankSpell>0) {
+                allResources.castSpell(currentRankSpell);
+            }
             new PostData(mC,new PostDataElement(spell));
         }
     }

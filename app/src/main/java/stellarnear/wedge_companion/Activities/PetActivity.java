@@ -139,14 +139,6 @@ public class PetActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
-
-        if (display.getRotation()==Surface.ROTATION_180) {
-            /*Intent intent = new Intent(this, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            startActivity(intent);
-            finish();
-            */
-        }
     }
 
     private void checkOrientStart(int screenOrientation) {

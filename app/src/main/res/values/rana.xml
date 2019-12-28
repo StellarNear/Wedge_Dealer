@@ -21,8 +21,6 @@
 
 <!-- autre -->
     <integer name="ability_ms_def_rana">12</integer>
-    <integer name="ability_reduc_def_rana">0</integer>
-    <integer name="ability_reduc_elem_def_rana">0</integer>
 
     <!-- Resources  -->
     <integer name="resource_hp_base_def_rana">139</integer>
@@ -34,7 +32,7 @@
     <integer name="ability_vol_def_rana">6</integer>
     <integer name="epic_save_def_rana">0</integer>
 
-    <integer name="ability_rm_def_rana">30</integer>
+
 
 
     <!--  Rank de maitrise des compétences  -->

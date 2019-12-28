@@ -83,7 +83,10 @@ public class PrefGlobalSleepScreenFragment extends Preference {
             public void run() {
                 PersoManager.allSleep();
                 tools.customToast(mC, "Une nouvelle journée pleine d'aventure attend toute la petite famille !", "center");
-                new PostData(mC,new PostDataElement("Nuit de repos","Recharge des ressources journalières et sorts"));
+                new PostData(mC,new PostDataElement("Nuit de repos Globale","Recharge des ressources journalières et sorts").forceTargetSheet("Wedge"));
+                new PostData(mC,new PostDataElement("Nuit de repos Globale","Recharge des ressources journalières et sorts").forceTargetSheet("Halda"));
+                new PostData(mC,new PostDataElement("Nuit de repos Globale","Recharge des ressources journalières et sorts").forceTargetSheet("Sylphe"));
+                new PostData(mC,new PostDataElement("Nuit de repos Globale","Recharge des ressources journalières et sorts").forceTargetSheet("Ràna"));
                 Intent intent = new Intent(mC, MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 mC.startActivity(intent);
@@ -101,7 +104,10 @@ public class PrefGlobalSleepScreenFragment extends Preference {
             public void run() {
                 PersoManager.allHalfSleep();
                 tools.customToast(mC, "Une nouvelle journée pleine d'aventure attend toute la petite famille, mais sans magie...", "center");
-                new PostData(mC,new PostDataElement("Nuit de repos (sans sorts)","Recharge des ressources journalières"));
+                new PostData(mC,new PostDataElement("Nuit de repos (sans sorts) Globale","Recharge des ressources journalières").forceTargetSheet("Wedge"));
+                new PostData(mC,new PostDataElement("Nuit de repos (sans sorts) Globale","Recharge des ressources journalières").forceTargetSheet("Halda"));
+                new PostData(mC,new PostDataElement("Nuit de repos (sans sorts) Globale","Recharge des ressources journalières").forceTargetSheet("Sylphe"));
+                new PostData(mC,new PostDataElement("Nuit de repos (sans sorts) Globale","Recharge des ressources journalières").forceTargetSheet("Ràna"));
                 Intent intent = new Intent(mC,  MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 mC.startActivity(intent);

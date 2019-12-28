@@ -12,8 +12,7 @@
     <integer name="ability_sagesse_base_def_sylphe">15</integer>
     <integer name="ability_charisme_base_def_sylphe">10</integer>
     <integer name="ability_ms_def_sylphe">12</integer>
-    <integer name="ability_reduc_def_sylphe">0</integer>
-    <integer name="ability_reduc_elem_def_sylphe">0</integer>
+
 
     <!-- augement perma -->
     <integer name="ability_force_augment_def_sylphe">0</integer>
@@ -34,7 +33,6 @@
     <integer name="ability_vol_def_sylphe">7</integer>
     <integer name="epic_save_def_sylphe">0</integer>
 
-    <integer name="ability_rm_def_sylphe">30</integer>
 
 
     <!--  Rank de maitrise des compétences  -->

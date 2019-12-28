@@ -20,7 +20,7 @@ public class PetDmgRoll extends DmgRoll {
             dice.rand(manualDiceDmg);
         }
         if(pj.getAllCapacities().capacityIsActive("capacity_grip")) {
-            tools.customToast(mC, "Tu peux faire une étreinte avec un test BMO");
+            tools.customToast(mC, "Tu peux faire une étreinte avec un test BMO","center");
         }
     }
 

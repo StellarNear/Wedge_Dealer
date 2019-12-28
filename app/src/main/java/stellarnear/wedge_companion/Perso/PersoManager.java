@@ -29,8 +29,7 @@ public class PersoManager {
     }
 
     public static int getMainPJLevel() {
-        int levelWedge = currentMapPJ.get("Wedge").getAbilityScore("ability_lvl") ;
-        return levelWedge;
+        return currentMapPJ.get("Wedge").getAbilityScore("ability_lvl") ;
     }
 
     public static String getCurrentNamePJ() {
@@ -69,7 +68,7 @@ public class PersoManager {
 
     public static void allSleep() {
         currentMapPJ.get("Wedge").sleep();
-        currentMapPJ.get( "Halda").sleep();
+        currentMapPJ.get("Halda").sleep();
         currentMapPJ.get("Sylphe").sleep();
         currentMapPJ.get("Ràna").sleep();
     }
@@ -107,5 +106,12 @@ public class PersoManager {
 
     public static int getWedgeMaxSpellTier() {
         return currentMapPJ.get("Wedge").getAllResources().getRankManager().getHighestTier();
+    }
+
+    public static void refreshAllPJs() {
+        currentMapPJ.get("Wedge").refresh();
+        currentMapPJ.get("Halda").refresh();
+        currentMapPJ.get("Sylphe").refresh();
+        currentMapPJ.get("Ràna").refresh();
     }
 }

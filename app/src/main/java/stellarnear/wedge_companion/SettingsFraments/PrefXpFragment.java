@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Tools;
 
@@ -42,16 +43,16 @@ public class PrefXpFragment {
         }
 
         Integer currentLvl = tools.toInt(settings.getString("ability_lvl", String.valueOf(mC.getResources().getInteger(R.integer.ability_lvl_def))));
+        if (newLvl>currentLvl) {
+            BigInteger previousLvlXp = listXp.get(listLvl.indexOf(newLvl));
+            BigInteger nextLvlXp = listXp.get(listLvl.indexOf(newLvl + 1));
 
-        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
-        BigInteger previousLvlXp = listXp.get(listLvl.indexOf(newLvl));
-        BigInteger nextLvlXp = listXp.get(listLvl.indexOf(newLvl + 1));
+            settings.edit().putString("previous_level", previousLvlXp.toString()).apply();
+            settings.edit().putString("next_level", nextLvlXp.toString()).apply();
+            settings.edit().putString("ability_lvl", String.valueOf(newLvl)).apply();
 
-        settings.edit().putString("previous_level", previousLvlXp.toString()).apply();
-        settings.edit().putString("next_level", nextLvlXp.toString()).apply();
-        settings.edit().putString("ability_lvl", String.valueOf(newLvl)).apply();
+            PersoManager.refreshAllPJs();
 
-        if (currentLvl != newLvl) {
             tools.playVideo(mA, mC, "/raw/saiyan");
             tools.customToast(mC, "Bravo tu as atteint le niveau " + String.valueOf(newLvl));
         }

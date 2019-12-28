@@ -76,10 +76,9 @@ public class SliderBuilder {
     public void spendCast() {
         if(!spell.isCast()) {
             slided=true;
-            if(spell.getRank()==0){new PostData(mC,new PostDataElement(spell));} //pour quand meme signalé les grauit
-            if (spell.getRank() > 0) {
-                pj.castSpell(spell,mC);
-            }
+
+            pj.castSpell(spell,mC);
+
             if (spell.isMyth()) {
                 pj.getAllResources().getResource("resource_mythic_points").spend(1);
                 new PostData(mC,new PostDataElement("Lancement sort mythique","-1pt mythique"));

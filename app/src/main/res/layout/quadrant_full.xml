@@ -1,20 +1,22 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/quadrantFull"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:clipChildren="false"
     android:gravity="center">
 
     <LinearLayout
         android:id="@+id/quadrant_full_main"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/main_frag_stats_heigh_quadrant"
+        android:layout_height="0dp"
         android:layout_margin="@dimen/general_margin"
         android:clipChildren="false"
         android:background="@drawable/quadrant_basic_gradient"
         android:gravity="center"
-        android:orientation="vertical"/>
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintDimensionRatio="w,1:1"/>
 
 
     <ImageButton
@@ -25,8 +27,10 @@
         android:layout_alignParentTop="true"
         android:backgroundTint="@android:color/transparent"
         android:scaleType="fitXY"
-        app:srcCompat="@drawable/back_arrow" />
-</RelativeLayout>
+        app:srcCompat="@drawable/back_arrow"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+</android.support.constraint.ConstraintLayout>
 
 
 

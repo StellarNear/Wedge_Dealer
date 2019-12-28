@@ -140,7 +140,14 @@ public class AllAbilities {
             }else {
                 val = readAbility(abi.getId());
             }
-            val += inventory.getAllEquipments().getAbiBonus(abi.getId());
+            if(abi.getId().equalsIgnoreCase("ability_rm")){
+                int valRMInvent = inventory.getAllEquipments().getAbiBonus(abi.getId());
+                if(valRMInvent>val){
+                    val=valRMInvent;
+                }
+            } else {
+                val += inventory.getAllEquipments().getAbiBonus(abi.getId());
+            }
             abi.setValue(val);
         }
     }

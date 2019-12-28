@@ -29,7 +29,7 @@ public class Form {
     private List<FormCapacity> listPassiveCapacities= new ArrayList<>();
     private List<FormCapacity> listActivesCapacities= new ArrayList<>();
     private Map<String,Integer> mapElementIDResist =new HashMap<>();
-    private String vulnerability="";
+    private String vulnerability;
     private ElemsManager elementManager;
 
     private Context mC;
@@ -43,12 +43,12 @@ public class Form {
         this.mC=mC;
         this.elementManager= ElemsManager.getInstance(mC);
 
-        if(!resistance.equalsIgnoreCase("")){
-            for(String elemKey:resistance.split(",")){
-                mapElementIDResist.put(elemKey,20);
+        if(!resistance.equalsIgnoreCase("")) {
+            for (String elemKey : resistance.split(",")) {
+                mapElementIDResist.put(elemKey, 20);
             }
         }
-        this.vulnerability=vulnerability;
+        this.vulnerability = vulnerability;
     }
 
     public String getName() {

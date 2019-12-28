@@ -35,6 +35,11 @@ public class PostDataElement {
         }
     }
 
+    public PostDataElement forceTargetSheet(String forcedSheet){
+        targetSheet=forcedSheet;
+        return this;
+    }
+
 
     private void initAtk(RollList atkRolls){
         SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.FRANCE);

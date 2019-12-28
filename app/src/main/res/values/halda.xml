@@ -30,8 +30,6 @@
 
     <!-- autre -->
     <integer name="ability_ms_def_halda">9</integer>
-    <integer name="ability_reduc_def_halda">0</integer>
-    <integer name="ability_reduc_elem_def_halda">0</integer>
 
 
     <!-- Resources  -->
@@ -47,7 +45,6 @@
     <integer name="ability_ref_def_halda">6</integer>
     <integer name="ability_vol_def_halda">12</integer>
 
-    <integer name="ability_rm_def_halda">0</integer>
     <integer name="epic_save_def_halda">2</integer>
 
     <!--  Rank de maitrise des compétences  -->
