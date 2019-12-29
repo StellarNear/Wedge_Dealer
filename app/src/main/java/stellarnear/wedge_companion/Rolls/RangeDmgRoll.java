@@ -46,18 +46,27 @@ public class RangeDmgRoll extends DmgRoll {
         }
         allDiceList.add(dice);
 
-        if (settings.getBoolean("feu_intense_switch", mC.getResources().getBoolean(R.bool.feu_intense_switch_def))) {
+        if (settings.getBoolean("fire_blast_switch", mC.getResources().getBoolean(R.bool.fire_blast_switch_def))) {
+            allDiceList.add(new Dice(mA, mC, 6, "fire"));
             allDiceList.add(new Dice(mA, mC, 6, "fire"));
             allDiceList.add(new Dice(mA, mC, 6, "fire"));
             if (critConfirmed) {
                 switch (critMultiplier) {
                     case 5:
-                        allDiceList.add(new Dice(mA, mC, 10, "fire"));
+                        allDiceList.add(new Dice(mA, mC, 6, "fire"));
+                        allDiceList.add(new Dice(mA, mC, 6, "fire"));
+                        allDiceList.add(new Dice(mA, mC, 6, "fire"));
                     case 4:
-                        allDiceList.add(new Dice(mA, mC, 10, "fire"));
+                        allDiceList.add(new Dice(mA, mC, 6, "fire"));
+                        allDiceList.add(new Dice(mA, mC, 6, "fire"));
+                        allDiceList.add(new Dice(mA, mC, 6, "fire"));
                     case 3:
-                        allDiceList.add(new Dice(mA, mC, 10, "fire"));
-                        allDiceList.add(new Dice(mA, mC, 10, "fire"));
+                        allDiceList.add(new Dice(mA, mC, 6, "fire"));
+                        allDiceList.add(new Dice(mA, mC, 6, "fire"));
+                        allDiceList.add(new Dice(mA, mC, 6, "fire"));
+                        allDiceList.add(new Dice(mA, mC, 6, "fire"));
+                        allDiceList.add(new Dice(mA, mC, 6, "fire"));
+                        allDiceList.add(new Dice(mA, mC, 6, "fire"));
                 }
             }
         }
@@ -76,18 +85,27 @@ public class RangeDmgRoll extends DmgRoll {
                 }
             }
         }
-        if (settings.getBoolean("froid_intense_switch", mC.getResources().getBoolean(R.bool.froid_intense_switch_def))) {
+        if (settings.getBoolean("froid_intense_switch", mC.getResources().getBoolean(R.bool.ice_blast_switch_def))) {
+            allDiceList.add(new Dice(mA, mC, 6, "frost"));
             allDiceList.add(new Dice(mA, mC, 6, "frost"));
             allDiceList.add(new Dice(mA, mC, 6, "frost"));
             if (critConfirmed) {
                 switch (critMultiplier) {
                     case 5:
-                        allDiceList.add(new Dice(mA, mC, 10, "frost"));
+                        allDiceList.add(new Dice(mA, mC, 6, "frost"));
+                        allDiceList.add(new Dice(mA, mC, 6, "frost"));
+                        allDiceList.add(new Dice(mA, mC, 6, "frost"));
                     case 4:
-                        allDiceList.add(new Dice(mA, mC, 10, "frost"));
+                        allDiceList.add(new Dice(mA, mC, 6, "frost"));
+                        allDiceList.add(new Dice(mA, mC, 6, "frost"));
+                        allDiceList.add(new Dice(mA, mC, 6, "frost"));
                     case 3:
-                        allDiceList.add(new Dice(mA, mC, 10, "frost"));
-                        allDiceList.add(new Dice(mA, mC, 10, "frost"));
+                        allDiceList.add(new Dice(mA, mC, 6, "frost"));
+                        allDiceList.add(new Dice(mA, mC, 6, "frost"));
+                        allDiceList.add(new Dice(mA, mC, 6, "frost"));
+                        allDiceList.add(new Dice(mA, mC, 6, "frost"));
+                        allDiceList.add(new Dice(mA, mC, 6, "frost"));
+                        allDiceList.add(new Dice(mA, mC, 6, "frost"));
                 }
             }
         }

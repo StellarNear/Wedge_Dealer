@@ -21,20 +21,23 @@
             android:title="@string/composite" />
 
         <SwitchPreference
-            android:defaultValue="@bool/feu_intense_switch_def"
-            android:key="feu_intense_switch"
-            android:summary="@string/feu_summ"
-            android:title="@string/feu" />
+            android:defaultValue="@bool/fire_blast_switch_def"
+            android:key="fire_blast_switch"
+            android:summary="+3d6 de feu. +9d6 en crit x3 +12d6 si x4 etc"
+            android:title="Choc de feu" />
+
+        <SwitchPreference
+            android:defaultValue="@bool/ice_blast_switch_def"
+            android:key="ice_blast_switch"
+            android:summary="+3d6 de froid. +9d6 en crit x3 +12d6 si x4 etc"
+            android:title="Choc de froid" />
+
         <SwitchPreference
             android:defaultValue="@bool/foudre_intense_switch_def"
             android:key="foudre_intense_switch"
-            android:summary="@string/foudre_summ"
-            android:title="@string/foudre" />
-        <SwitchPreference
-            android:defaultValue="@bool/froid_intense_switch_def"
-            android:key="froid_intense_switch"
-            android:summary="@string/froid_summ"
-            android:title="@string/froid" />
+            android:summary="+2d6 dégâts de foudre. +2d10 en critique"
+            android:title="Foudre intense" />
+
         <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
 
         <PreferenceCategory android:title="Objet légendaire"/>

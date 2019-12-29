@@ -43,12 +43,7 @@
     <string name="magic_arrow">Flêche magique</string>
     <string name="magic_arrow_summ">Chaque flêche tirée par l\'archer sylvestre a un bonus d\'altération magique.</string>
     <string name="magic_arrow_val_title">Valeur de l\'altération</string>
-    <string name="feu">Feu intense</string>
-    <string name="feu_summ">+2d6 dégâts de feu. +2d10 en critique</string>
-    <string name="foudre">Foudre intense</string>
-    <string name="foudre_summ">+2d6 dégâts de foudre. +2d10 en critique</string>
-    <string name="froid">Froid intense</string>
-    <string name="froid_summ">+2d6 dégâts de froid. +2d10 en critique</string>
+
 
     <!-- autre -->
 

@@ -79,7 +79,7 @@ public class MainActivityFragmentForm extends Fragment {
                     case MotionEvent.ACTION_UP:
                         x2Gesture = event.getX();
                         t2Gesture = System.currentTimeMillis();
-                        if (x1Gesture == x2Gesture && (t2Gesture - t1Gesture) < 1000) {
+                        if ((Math.abs(x2Gesture-x1Gesture)<10) && (t2Gesture - t1Gesture) < 500) {
                             popUpchangeForm();
                         } else if (x1Gesture > x2Gesture) {
                             flipNext();
@@ -321,6 +321,7 @@ public class MainActivityFragmentForm extends Fragment {
                             if(pj.getCurrentResourceValue("resource_animal_form")>0) {
                                 pj.getAllResources().getResource("resource_animal_form").spend(1);
                                 pj.getAllForms().changeFormTo(form);
+                                pj.refresh(); //TODO les HP ne prenne pas ne compte le up abi des formes ... normal car abi n'as pas consience de forme on le fait au dessus (ptet faire un bonus hp enfonction de la forme ?
                                 refreshPageInfos();
                             } else {
                                 tools.customToast(mC,"Tu n'as plus d'utilisation de forme animale disponible...");
@@ -331,6 +332,7 @@ public class MainActivityFragmentForm extends Fragment {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             pj.getAllForms().changeFormTo(form);
+                            pj.refresh(); //TODO les HP ne prenne pas ne compte le up abi des formes ... normal car abi n'as pas consience de forme on le fait au dessus (ptet faire un bonus hp enfonction de la forme ?
                             refreshPageInfos();
                         }
                     }).show();

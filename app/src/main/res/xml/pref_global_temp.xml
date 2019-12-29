@@ -50,7 +50,7 @@
         />
     
     <PreferenceScreen
-        android:key="reset_temp"
+        android:key="reset_temp_global"
         android:summary="Réinitialise à zéro les valeurs temporaires"
         android:icon="@drawable/ic_undo_black_24dp"
         android:title="Reset des bonus" />

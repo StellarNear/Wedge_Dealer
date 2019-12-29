@@ -20,6 +20,7 @@ import android.widget.EditText;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import stellarnear.wedge_companion.Activities.MainActivity;
@@ -306,6 +307,10 @@ public class SettingsFragment extends PreferenceFragment {
                 pj.resetTemp();
                 navigate();
                 break;
+            case "reset_temp_global":
+                resetGlobal();
+                navigate();
+                break;
             case "spend_myth_point":
                 if( pj.getCurrentResourceValue("resource_mythic_points")>0) {
                     new AlertDialog.Builder(mC)
@@ -408,6 +413,14 @@ public class SettingsFragment extends PreferenceFragment {
         }
 
     }
+
+    private void resetGlobal() {
+        List<String> allTempList = Arrays.asList("bonus_global_dmg_temp","bonus_global_atk_temp","bonus_global_temp_ca","bonus_global_temp_save","bonus_global_temp_rm");
+        for (String temp : allTempList) {
+            settings.edit().putString(temp, "0").apply();
+        }
+    }
+
     /*
     // Top level PreferenceScreen
     if (key.equals("top_key_0")) {         changePrefScreen(R.xml.pref_general, preference.getTitle().toString()); // descend into second level    }

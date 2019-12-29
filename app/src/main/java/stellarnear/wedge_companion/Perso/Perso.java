@@ -159,9 +159,6 @@ public class Perso {
         for (String temp : allTempList) {
             prefs.edit().putString(temp+extendID, "0").apply();
         }
-        if(pjID.equalsIgnoreCase("")){
-            prefs.edit().putBoolean("switch_predil_env", false).apply();
-        }
     }
 
     public Stats getStats() {

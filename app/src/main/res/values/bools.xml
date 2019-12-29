@@ -7,9 +7,9 @@
     <bool name="isillirit_switch_def">true</bool>
 
     <!-- Enchants -->
-    <bool name="feu_intense_switch_def">true</bool>
+    <bool name="fire_blast_switch_def">true</bool>
     <bool name="foudre_intense_switch_def">true</bool>
-    <bool name="froid_intense_switch_def">true</bool>
+    <bool name="ice_blast_switch_def">true</bool>
     <bool name="magic_arrow_switch_def">true</bool>
 
 
