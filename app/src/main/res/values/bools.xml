@@ -8,8 +8,9 @@
 
     <!-- Enchants -->
     <bool name="fire_blast_switch_def">true</bool>
-    <bool name="foudre_intense_switch_def">true</bool>
     <bool name="ice_blast_switch_def">true</bool>
+    <bool name="shock_blast_switch_def">false</bool>
+    <bool name="foudre_intense_switch_def">true</bool>
     <bool name="magic_arrow_switch_def">true</bool>
 
 

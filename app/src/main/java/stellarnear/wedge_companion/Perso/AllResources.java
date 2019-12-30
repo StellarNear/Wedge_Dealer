@@ -104,7 +104,6 @@ public class AllResources {
         // Partie sort
         Resource displaySpellResource = getResource("resource_display_rank");
         if(displaySpellResource!=null){ //ca veut dire que dans asset resource on a souhaité cette resource
-            listResources.remove(displaySpellResource); // on le refait dessous
             rankManager=new SpellsRanksManager(mC,pjID);
             rankManager.setRefreshEventListener(new SpellsRanksManager.OnHighTierChange() {
                 @Override
@@ -116,9 +115,6 @@ public class AllResources {
                 listResources.add(res);
                 mapIDRes.put(res.getId(), res);
             }
-            Resource display_spell = new Resource("Rang de sorts","Sorts",false,false,"resource_display_rank",mC,pjID);
-            listResources.add(display_spell);
-            mapIDRes.put(display_spell.getId(), display_spell);
         }
 
         // Partie from capacities
@@ -134,13 +130,13 @@ public class AllResources {
 
     private void addCapacitiesResources() {
         for(Capacity cap : allCapacities.getAllCapacitiesList()){
-            if ((tools.toInt(cap.getDailyUse())>0 || cap.getDailyUse().equalsIgnoreCase("infinite")) && cap.isActive() && getResource(cap.getId().replace("capacity_", "resource_"))==null){
-                //on test si elle es tpas deja presente pour la pertie rebuild  de refreshCapaListResources
+            if ((cap.getDailyUse()>0|| cap.isInfinite()) && cap.isActive() && getResource(cap.getId().replace("capacity_", "resource_"))==null){
+                //on test si elle est pas deja presente pour la pertie rebuild  de refreshCapaListResources
                 boolean testable = true; boolean hide=false;
                 if(cap.getId().equalsIgnoreCase("capacity_lynx_eye")){testable=false;hide=true;}
                 else if(cap.getId().equalsIgnoreCase("capacity_animal_form")){testable=false;hide=true;}
                 Resource capaRes = new Resource(cap.getName(),cap.getShortname(),testable,hide,cap.getId().replace("capacity_","resource_"),mC,pjID);
-                capaRes.setFromCapacity(cap.getDailyUse(),cap.getDescr());
+                capaRes.setFromCapacity(cap);
                 listResources.add(capaRes);
                 mapIDRes.put(capaRes.getId(), capaRes);
             }
@@ -221,6 +217,12 @@ public class AllResources {
         } catch (Exception e) { }
 
         if(rankManager!=null){rankManager.refreshMax();}
+
+        for(Resource resource : listResources){
+            if(resource.isFromCapacity()){
+                resource.refreshFromCapacity();
+            }
+        }
     }
 
     private void loadCurrent() {

@@ -46,7 +46,8 @@ public class MainActivityFragmentCombatBonusPanel {
         buttonAdd =(ImageButton) mainPage.findViewById(R.id.fab_add_atk);
         pannel = mainPage.findViewById(R.id.add_bonus_linear);
         bonusPanelRollList = mainPage.findViewById(R.id.bonus_panel_roll_list);
-        nUsageLynxRemaning = mainPage.findViewById(R.id.lynx_eye_remaning);
+        nUsageLynxRemaning = mainPage.findViewById(R.id.lynx_eye_remaining);
+        ((TextView)mainPage.findViewById(R.id.lynx_eye_title)).setText("Oeil de lynx (+"+pj.getAllCapacities().getCapacity("capacity_lynx_eye").getValue()+")");
         nUsageLynxRemaning.setText("Utilisations restantes : "+pj.getCurrentResourceValue("resource_lynx_eye"));
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +73,7 @@ public class MainActivityFragmentCombatBonusPanel {
             pannel.setVisibility(View.VISIBLE);
             Animation top = AnimationUtils.loadAnimation(mC,R.anim.infromtop);
             pannel.startAnimation(top);
-            addRollsToBonusPanel();
+            if(bonusPanelRollList.getChildCount()==0){addRollsToBonusPanel();}
             addBonusPanelIsVisible=true;
         } else {
             Animation bot = AnimationUtils.loadAnimation(mC,R.anim.outtotop);
@@ -112,7 +113,6 @@ public class MainActivityFragmentCombatBonusPanel {
     }
 
     private void addRollsToBonusPanel() {
-        bonusPanelRollList.removeAllViews();
         for (final Roll roll:rollList.getList()){
             LinearLayout line =new LinearLayout(mC);
             line.setGravity(Gravity.CENTER);

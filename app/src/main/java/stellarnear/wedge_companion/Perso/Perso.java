@@ -58,7 +58,6 @@ public class Perso {
         this.prefs= PreferenceManager.getDefaultSharedPreferences(mC);
         stats = new Stats(mC,pjID);
         hallOfFame=new HallOfFame(mC,pjID);
-        allCapacities = new AllCapacities(mC,pjID);
         allSkills = new AllSkills(mC,pjID);
         if(pjID.equalsIgnoreCase("")|| pjID.equalsIgnoreCase("halda")){
             allMythicFeats = new AllMythicFeats(mC,pjID);
@@ -72,6 +71,7 @@ public class Perso {
         }
         inventory = new Inventory(mC,pjID);
         allFeats = new AllFeats(mC,pjID);
+        allCapacities = new AllCapacities(mC,pjID);
         allAbilities = new AllAbilities(mC,inventory,pjID);
         allResources = new AllResources(mC,allFeats,allAbilities,allCapacities,pjID);
         this.pjID=pjID;
@@ -80,6 +80,7 @@ public class Perso {
     public void refresh() {
         allSkills.refreshAllVals();
         allAbilities.refreshAllAbilities(); //abi d'abord car resource depend de abi
+        allCapacities.refresh();  //capa avant resource car certaine resource sont issue de capa
         allResources.refresh();
     }
 

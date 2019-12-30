@@ -37,6 +37,23 @@
         android:singleLine="true"
         android:inputType="number"
         android:summary="Valeur : %s"/>
+    <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+
+    <stellarnear.wedge_companion.EditTextPreference
+        android:defaultValue="@integer/ability_lvl_druid_def"
+        android:key="ability_lvl_druid"
+        android:title="Niveau de druide"
+        android:singleLine="true"
+        android:inputType="number"
+        android:summary="Valeur : %s"/>
+
+    <stellarnear.wedge_companion.EditTextPreference
+        android:defaultValue="@integer/ability_lvl_archer_def"
+        android:key="ability_lvl_archer"
+        android:title="Niveau d'archer-sylvestre"
+        android:singleLine="true"
+        android:inputType="number"
+        android:summary="Valeur : %s"/>
 
     <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
 

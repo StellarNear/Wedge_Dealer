@@ -33,6 +33,12 @@
             android:title="Choc de froid" />
 
         <SwitchPreference
+            android:defaultValue="@bool/shock_blast_switch_def"
+            android:key="shock_blast_switch"
+            android:summary="+3d6 de foudre. +9d6 en crit x3 +12d6 si x4 etc"
+            android:title="Choc de foudre" />
+
+        <SwitchPreference
             android:defaultValue="@bool/foudre_intense_switch_def"
             android:key="foudre_intense_switch"
             android:summary="+2d6 dégâts de foudre. +2d10 en critique"

@@ -199,16 +199,17 @@
                     android:layout_margin="@dimen/general_margin"
                     android:layout_width="@dimen/iconSizeQuadrantFull"
                     android:layout_height="@dimen/iconSizeQuadrantFull"
-                    android:src="@drawable/mire_test"/>
+                    android:src="@drawable/lynx_eye"/>
 
                 <TextView
+                    android:id="@+id/lynx_eye_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:text="Oeil de lynx"/>
                 <TextView
-                    android:id="@+id/lynx_eye_remaning"
+                    android:id="@+id/lynx_eye_remaining"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="13sp"
@@ -223,9 +224,7 @@
                     android:id="@+id/bonus_panel_roll_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                </LinearLayout>
+                    android:orientation="horizontal"/>
 
                 <TextView
                     android:layout_width="wrap_content"

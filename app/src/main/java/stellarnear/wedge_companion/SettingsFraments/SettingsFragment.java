@@ -297,6 +297,26 @@ public class SettingsFragment extends PreferenceFragment {
                     }
                 });
                 break;
+            case "ability_lvl_druid":
+                preference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                    @Override
+                    public boolean onPreferenceChange(Preference preference, Object o) {
+                        prefXpFragment.setDruidLevel(tools.toInt(o.toString()));
+                        navigate();
+                        return true;
+                    }
+                });
+                break;
+            case "ability_lvl_archer":
+                preference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                    @Override
+                    public boolean onPreferenceChange(Preference preference, Object o) {
+                        prefXpFragment.setArcherLevel(tools.toInt(o.toString()));
+                        navigate();
+                        return true;
+                    }
+                });
+                break;
             case "create_bag_item":
                 prefAllInventoryFragment.createBagItem();
                 break;

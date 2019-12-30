@@ -1,6 +1,8 @@
 package stellarnear.wedge_companion.Perso;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -42,6 +44,7 @@ public class AllCapacities {
         mapIdcapacity =new HashMap<>();
         try {
             String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
+            SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
             InputStream is = mC.getAssets().open("capacities"+extendID+".xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -64,11 +67,12 @@ public class AllCapacities {
                             readValue("descr", element2),
                             readValue("id", element2),
                             readValue("dailyuse", element2),
-                            tools.toInt(readValue("value", element2)),
+                            readValue("value", element2),
                             mC,
                             pjID);
                     if(capacity.getId().equalsIgnoreCase("capacity_unraveled_mystery")){
-                        capacity.setValue(mC.getResources().getInteger(R.integer.capacity_unraveled_mystery_metamagic_reduc_def));
+                        int valRed=tools.toInt(settings.getString("capacity_unraveled_mystery_metamagic_reduc", String.valueOf(mC.getResources().getInteger(R.integer.capacity_unraveled_mystery_metamagic_reduc_def))));
+                        capacity.setValue(valRed);
                     }
                     allCapacities.add(capacity);
                     mapIdcapacity.put(capacity.getId(),capacity);
@@ -122,5 +126,13 @@ public class AllCapacities {
             e.printStackTrace();
         }
         return val;
+    }
+
+    public void refresh() {
+        for(Capacity cap : allCapacities){
+            if(!cap.isInfinite()){
+                cap.refresh();
+            }
+        }
     }
 }

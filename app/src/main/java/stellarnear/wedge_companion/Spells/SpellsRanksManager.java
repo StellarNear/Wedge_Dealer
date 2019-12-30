@@ -44,7 +44,7 @@ public class SpellsRanksManager {
     private void refreshAllTiers() {
         spellTiers=new ArrayList<>();
         for(int rank=1;rank<=highestSpellRank;rank++){
-            Resource rankRes = new Resource("Sort disponible rang "+rank,"Sort "+rank,true,true,"spell_rank_"+rank,mC,pjID);
+            Resource rankRes = new Resource("Sort disponible rang "+rank,"Sort "+rank,false,true,"spell_rank_"+rank,mC,pjID);
             int val = readResourceMax( rankRes.getId());
             rankRes.setMax(val);
             rankRes.setCurrent(readResourceCurrent(rankRes.getId()));

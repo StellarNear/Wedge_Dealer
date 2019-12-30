@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.preference.PreferenceManager;
 
-import stellarnear.wedge_companion.Tools;
+import stellarnear.wedge_companion.R;
 
 /**
  * Created by jchatron on 04/01/2018.
@@ -23,10 +23,12 @@ public class Resource {
     private boolean fromCapacity=false;
     private boolean fromSpell=false;
     private boolean infinite=false;
-    private Drawable img;
+    private Capacity cap=null;
+    private int imgId;
     private SharedPreferences settings;
     private String pjID="";
     private String capaDescr="";
+    private Context mC;
 
     public Resource(String name, String shortname, Boolean testable, Boolean hide, String id, Context mC,String pjID) {
         this.name = name;
@@ -39,13 +41,14 @@ public class Resource {
         int imgId = mC.getResources().getIdentifier(id, "drawable", mC.getPackageName());
         int imgIdCapa =mC.getResources().getIdentifier(id.replace("resource_","capacity_"), "drawable", mC.getPackageName()); // pour les resoruces issue de capa
         if (imgId != 0) {
-            this.img = mC.getDrawable(imgId);
+            this.imgId =imgId;
         } else if( imgIdCapa!= 0) {
-            this.img = mC.getDrawable(imgIdCapa);
+            this.imgId = imgIdCapa;
         } else {
-            this.img = null;
+            this.imgId = 0;
         }
         this.pjID=pjID;
+        this.mC=mC;
     }
 
     public String getName() {
@@ -62,13 +65,20 @@ public class Resource {
         if(this.current>this.max){this.current=this.max;saveCurrentToSettings();}
     }
 
-    public void setFromCapacity(String maxUse, String capaDescr){
+    public void setFromCapacity(Capacity cap){
         this.fromCapacity=true;
-        this.capaDescr=capaDescr;
-        if(maxUse.equalsIgnoreCase("infinite")){
+        this.cap=cap;
+        this.capaDescr=cap.getDescr();
+        if(cap.isInfinite()){
             this.infinite=true;
         } else {
-            setMax(new Tools().toInt(maxUse));
+            setMax(cap.getDailyUse());
+        }
+    }
+
+    public void refreshFromCapacity(){
+        if(!cap.isInfinite()){
+            setMax(cap.getDailyUse());
         }
     }
 
@@ -174,7 +184,11 @@ public class Resource {
     }
 
     public Drawable getImg() {
-        return this.img;
+        if (imgId != 0) {
+            return mC.getDrawable(imgId);
+        } else {
+            return mC.getDrawable(R.drawable.mire_test);
+        }
     }
 
     public String getShortname() {

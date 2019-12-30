@@ -85,7 +85,7 @@ public class RangeDmgRoll extends DmgRoll {
                 }
             }
         }
-        if (settings.getBoolean("froid_intense_switch", mC.getResources().getBoolean(R.bool.ice_blast_switch_def))) {
+        if (settings.getBoolean("ice_blast_switch", mC.getResources().getBoolean(R.bool.ice_blast_switch_def))) {
             allDiceList.add(new Dice(mA, mC, 6, "frost"));
             allDiceList.add(new Dice(mA, mC, 6, "frost"));
             allDiceList.add(new Dice(mA, mC, 6, "frost"));
@@ -106,6 +106,30 @@ public class RangeDmgRoll extends DmgRoll {
                         allDiceList.add(new Dice(mA, mC, 6, "frost"));
                         allDiceList.add(new Dice(mA, mC, 6, "frost"));
                         allDiceList.add(new Dice(mA, mC, 6, "frost"));
+                }
+            }
+        }
+        if (settings.getBoolean("shock_blast_switch", mC.getResources().getBoolean(R.bool.shock_blast_switch_def))) {
+            allDiceList.add(new Dice(mA, mC, 6, "shock"));
+            allDiceList.add(new Dice(mA, mC, 6, "shock"));
+            allDiceList.add(new Dice(mA, mC, 6, "shock"));
+            if (critConfirmed) {
+                switch (critMultiplier) {
+                    case 5:
+                        allDiceList.add(new Dice(mA, mC, 6, "shock"));
+                        allDiceList.add(new Dice(mA, mC, 6, "shock"));
+                        allDiceList.add(new Dice(mA, mC, 6, "shock"));
+                    case 4:
+                        allDiceList.add(new Dice(mA, mC, 6, "shock"));
+                        allDiceList.add(new Dice(mA, mC, 6, "shock"));
+                        allDiceList.add(new Dice(mA, mC, 6, "shock"));
+                    case 3:
+                        allDiceList.add(new Dice(mA, mC, 6, "shock"));
+                        allDiceList.add(new Dice(mA, mC, 6, "shock"));
+                        allDiceList.add(new Dice(mA, mC, 6, "shock"));
+                        allDiceList.add(new Dice(mA, mC, 6, "shock"));
+                        allDiceList.add(new Dice(mA, mC, 6, "shock"));
+                        allDiceList.add(new Dice(mA, mC, 6, "shock"));
                 }
             }
         }

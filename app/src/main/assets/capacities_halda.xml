@@ -23,6 +23,16 @@
 
 
     <capacity>
+        <name>Corp d'énérgie</name>
+        <shortname>Corp</shortname>
+        <dailyuse>lvl</dailyuse>
+        <value>1d6+1/lvl</value> <!--<value>1d6+1/lvl</value> -->
+        <descr>Par une action simple, transforme son corps en énergie pure et ressemble alors à un élémentaire de feu d’un blanc doré. Sous cette forme, il devient de sous-type élémentaire et dégage une lumière chaude et accueillante qui augmente le degré de luminosité d’une catégorie. Une fois par round, si l’oracle traverse une case occupée par une créature vivante alliée ou si un allié traverse la case de l’oracle, l’allié est guéri de 1d6 points de dégâts + 1 par niveau d’oracle. Ce dernier peut utiliser ce pouvoir pour se soigner par une action de mouvement. Il peut reprendre sa forme normale par une action libre. Chaque jour, il peut rester sous forme d’énergie pendant un nombre de rounds égal à son niveau d’oracle.</descr>
+        <shortdescr>Par une action simple, transforme son corps en énergie pure. Une fois par round, si l’oracle traverse une case occupée par une créature vivante alliée ou si un allié traverse la case de l’oracle, l’allié est guéri de 1d6 points de dégâts + 1 par niveau d’oracle. Ce dernier peut utiliser ce pouvoir pour se soigner par une action de mouvement. Il peut reprendre sa forme normale par une action libre. Chaque jour, il peut rester sous forme d’énergie pendant un nombre de rounds égal à son niveau d’oracle.</shortdescr>
+        <id>capacity_revelation_light_body</id>
+    </capacity>
+
+    <capacity>
         <name>Retardement de l’affliction</name>
         <shortname>Affliction</shortname>
         <type>Révélation Vie</type>
@@ -63,7 +73,7 @@
     <capacity>
         <name>Fortune</name>
         <type>Malédiction Légaliste</type>
-        <dailyuse>4</dailyuse>
+        <dailyuse>1+(lvl-5)/6</dailyuse>
         <id>capacity_fortune</id>
         <descr>Par une action immédiate, l’oracle peut refaire un jet de d20 qu’il vient de faire avant d’en connaître le résultat. Il doit conserver le résultat du second jet, même s’il est pire que le premier. Il peut utiliser ce pouvoir une fois par jour au niveau 5 et ensuite une fois de plus tous les six niveaux.</descr>
     </capacity>
@@ -105,5 +115,7 @@
         <id>capacity_epic_revelation_canal</id>
         <descr>L'oracle séléctione une révélation (ici canalisation d'énergie). Cette révélation dure deux fois plus longtemps, la portée augemente de 50% sa zone d'effet augement de 3m, le DD de 1, tout les dégats ou soins de 4, les bonus à la CA BMO jet de reflexes ou initiative de 1, les bonus aus jets de compétence de 2.</descr>
     </capacity>
+
+
 
 </records>

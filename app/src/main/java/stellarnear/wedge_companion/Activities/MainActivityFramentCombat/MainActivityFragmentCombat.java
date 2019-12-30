@@ -127,7 +127,7 @@ public class MainActivityFragmentCombat extends Fragment {
         });
 
         // panneau bonus (lynx et range)
-        mainActivityFragmentCombatBonusPanel = new MainActivityFragmentCombatBonusPanel(getContext(),mainPage);
+        if(mainActivityFragmentCombatBonusPanel==null){mainActivityFragmentCombatBonusPanel = new MainActivityFragmentCombatBonusPanel(getContext(),mainPage);}
 
         // boutons d'attaques
         simpleAtk = mainPage.findViewById(R.id.button_simple_atk);

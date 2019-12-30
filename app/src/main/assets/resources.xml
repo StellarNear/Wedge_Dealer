@@ -24,6 +24,8 @@
     </resource>
     <resource>
         <name>Rangs de Sorts</name>
+        <testable>false</testable>
+        <hide>false</hide>
         <shortname>Sorts</shortname>
         <id>resource_display_rank</id>
     </resource>

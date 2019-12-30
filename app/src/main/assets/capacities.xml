@@ -45,7 +45,7 @@
     <capacity>
         <name>Forme animale</name>
         <type>Druide</type>
-        <dailyuse>10</dailyuse>
+        <dailyuse>(lvl_druid/2)-1+lvl_archer/3</dailyuse>
         <shortname>Forme</shortname>
         <id>capacity_animal_form</id>
         <descr>Le druide peut se transformer et changer de forme, cet effet dure au maximum une heure par niveau de druide mais le druide peut y mettre fin avant. La transformation (vers ou depuis la forme animale) est une action simple qui ne provoque pas d’attaque d’opportunité. Le druide peut également utiliser ce pouvoir pour se transformer en élémentaire de taille TG ou en créature de type plante de taille TG. Lorsqu’il prend la forme d’un élémentaire, la capacité fonctionne désormais comme le sort corps élémentaire IV. Lorsqu’il prend la forme d’une créature de type plante, elle fonctionne comme le sort de forme végétale III.</descr>
@@ -83,8 +83,8 @@
     <capacity>
         <name>Oeil de lynx</name>
         <type>Archer</type>
-        <dailyuse>13</dailyuse>
-        <value>7</value>
+        <dailyuse>lvl_archer</dailyuse>
+        <value>1+lvl_archer/2</value>
         <id>capacity_lynx_eye</id>
         <descr>L'archer sylvestre a la possibilité de se concentrer lors de ses tirs de flèches et ainsi d'augmenter leurs chances de toucher leurs cibles, il ne peut des lors plus se déplacer si il souhaite utiliser cette capacité. Il peut aussi entreprendre de toucher une partie spécifique de l'ennemi (difficulté fixée par le MJ). Il peut utiliser ce pouvoir un nombre de fois déterminé par le niveau d'archer-sylvestre par jour, et cela augmente son jet d'attaque de 1 + 1 (/2 niveaux d'archer-sylvestre), Ces flèches tirées sont considérées comme normales.</descr>
     </capacity>
@@ -92,7 +92,7 @@
     <capacity>
         <name>Flèche de phase</name>
         <type>Archer</type>
-        <dailyuse>2</dailyuse>
+        <dailyuse>1+((lvl_archer-6)/4)</dailyuse>
         <shortname>Phase</shortname>
         <id>capacity_phase_arrow</id>
         <descr>Une fois par jour, peut tirer une flèche sur une cible qu'il a déjà vue. La flèche file vers la cible en ligne droite, traversant tous les obstacles non magiques (elle est stoppée par un mur de force, un mur , de feu,...), Le jet d'attaque s'effectue normalement, mais sans compter les bonus que la cible doit à son armure et à un éventuel camouflage ou abri, Ce pouvoir est magique. Utiliser ce pouvoir est une action simple (qui comprend le tir de la flèche). Il gagne une utilisation par jour supplémentaire tout les 4 niveaux par la suite 10,14 etc)</descr>
@@ -102,7 +102,7 @@
         <name>Pluie de flèches</name>
         <type>Archer</type>
         <shortname>Pluie</shortname>
-        <dailyuse>2</dailyuse>
+        <dailyuse>1+((lvl_archer-8)/3)</dailyuse>
         <id>capacity_arrow_rain</id>
         <descr>Le personnage acquiert ce pouvoir magique qu'il peut utiliser une fois par jour, à la place de ses attaques normales. Quand il y fait appel, il tire une flèche sur chaque cible à portée (considérée comme normale), jusqu'à un maximum d'une par niveau de lanceur de sort. Toutes ces attaques utilisent son bonus de base correspondant à sa première attaque du round et il ne peut tirer plus d’ une flèche par cible. Il gagne une utilisation par jour supplémentaire tout les 3 niveaux par la suite 11,14 etc)</descr>
     </capacity>

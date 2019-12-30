@@ -4,11 +4,16 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.preference.Preference;
+import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.Arrays;
+import java.util.List;
 
 import stellarnear.wedge_companion.Activities.MainActivity;
 import stellarnear.wedge_companion.Perso.PersoManager;
@@ -83,6 +88,7 @@ public class PrefGlobalSleepScreenFragment extends Preference {
             public void run() {
                 PersoManager.allSleep();
                 tools.customToast(mC, "Une nouvelle journée pleine d'aventure attend toute la petite famille !", "center");
+                resetGlobal();
                 new PostData(mC,new PostDataElement("Nuit de repos Globale","Recharge des ressources journalières et sorts").forceTargetSheet("Wedge"));
                 new PostData(mC,new PostDataElement("Nuit de repos Globale","Recharge des ressources journalières et sorts").forceTargetSheet("Halda"));
                 new PostData(mC,new PostDataElement("Nuit de repos Globale","Recharge des ressources journalières et sorts").forceTargetSheet("Sylphe"));
@@ -92,6 +98,14 @@ public class PrefGlobalSleepScreenFragment extends Preference {
                 mC.startActivity(intent);
             }
         }, time);
+    }
+
+    private void resetGlobal() {
+        List<String> allTempList = Arrays.asList("bonus_global_dmg_temp","bonus_global_atk_temp","bonus_global_temp_ca","bonus_global_temp_save","bonus_global_temp_rm");
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getContext());
+        for (String temp : allTempList) {
+            settings.edit().putString(temp, "0").apply();
+        }
     }
 
     private void halfSleep() {
@@ -104,6 +118,7 @@ public class PrefGlobalSleepScreenFragment extends Preference {
             public void run() {
                 PersoManager.allHalfSleep();
                 tools.customToast(mC, "Une nouvelle journée pleine d'aventure attend toute la petite famille, mais sans magie...", "center");
+                resetGlobal();
                 new PostData(mC,new PostDataElement("Nuit de repos (sans sorts) Globale","Recharge des ressources journalières").forceTargetSheet("Wedge"));
                 new PostData(mC,new PostDataElement("Nuit de repos (sans sorts) Globale","Recharge des ressources journalières").forceTargetSheet("Halda"));
                 new PostData(mC,new PostDataElement("Nuit de repos (sans sorts) Globale","Recharge des ressources journalières").forceTargetSheet("Sylphe"));

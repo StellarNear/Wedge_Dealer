@@ -12,11 +12,7 @@
         <id>resource_regen</id>
         <hide>true</hide>
     </resource>
-    <resource>
-        <shortname>Canal</shortname>
-        <name>Canalisation</name>
-        <id>resource_canalisation</id>
-    </resource>
+
     <resource>
         <shortname>Pts myth</shortname>
         <name>Points mythiques</name>
@@ -24,8 +20,16 @@
     </resource>
     <resource>
         <name>Rangs de Sorts</name>
+        <testable>false</testable>
+        <hide>false</hide>
         <shortname>Sorts</shortname>
         <id>resource_display_rank</id>
+    </resource>
+
+    <resource>
+        <shortname>Canal</shortname>
+        <name>Canalisation d'énergie</name>
+        <id>resource_canalisation</id>
     </resource>
 
     <resource>
@@ -33,5 +37,4 @@
         <hide>true</hide>
         <id>resource_heroic_recovery</id>
     </resource>
-
 </records>

@@ -43,18 +43,41 @@ public class PrefXpFragment {
         }
 
         Integer currentLvl = tools.toInt(settings.getString("ability_lvl", String.valueOf(mC.getResources().getInteger(R.integer.ability_lvl_def))));
+        BigInteger previousLvlXp = listXp.get(listLvl.indexOf(newLvl));
+        BigInteger nextLvlXp = listXp.get(listLvl.indexOf(newLvl + 1));
+        settings.edit().putString("previous_level", previousLvlXp.toString()).apply();
+        settings.edit().putString("next_level", nextLvlXp.toString()).apply();
         if (newLvl>currentLvl) {
-            BigInteger previousLvlXp = listXp.get(listLvl.indexOf(newLvl));
-            BigInteger nextLvlXp = listXp.get(listLvl.indexOf(newLvl + 1));
-
-            settings.edit().putString("previous_level", previousLvlXp.toString()).apply();
-            settings.edit().putString("next_level", nextLvlXp.toString()).apply();
             settings.edit().putString("ability_lvl", String.valueOf(newLvl)).apply();
 
             PersoManager.refreshAllPJs();
 
             tools.playVideo(mA, mC, "/raw/saiyan");
             tools.customToast(mC, "Bravo tu as atteint le niveau " + String.valueOf(newLvl));
+        }
+    }
+
+    public void setDruidLevel(Integer lvl) {
+        Integer currentLvl = tools.toInt(settings.getString("ability_lvl", String.valueOf(mC.getResources().getInteger(R.integer.ability_lvl_def))));
+        if(lvl<currentLvl){
+            settings.edit().putString("ability_lvl_druid",String.valueOf(lvl)).apply();
+            settings.edit().putString("ability_lvl_archer",String.valueOf(currentLvl-lvl)).apply();
+        } else {
+            tools.customToast(mC,"Le niveau de druide doit être inférieur au niveau totale de "+currentLvl,"center");
+            settings.edit().putString("ability_lvl_druid",String.valueOf(mC.getResources().getInteger(R.integer.ability_lvl_druid_def))).apply();
+            settings.edit().putString("ability_lvl_archer",String.valueOf(mC.getResources().getInteger(R.integer.ability_lvl_archer_def))).apply();
+        }
+    }
+
+    public void setArcherLevel(Integer lvl) {
+        Integer currentLvl = tools.toInt(settings.getString("ability_lvl", String.valueOf(mC.getResources().getInteger(R.integer.ability_lvl_def))));
+        if(lvl<currentLvl){
+            settings.edit().putString("ability_lvl_archer",String.valueOf(lvl)).apply();
+            settings.edit().putString("ability_lvl_druid",String.valueOf(currentLvl-lvl)).apply();
+        } else {
+            tools.customToast(mC,"Le niveau d'archer sylvestre doit être inférieur au niveau totale de "+currentLvl,"center");
+            settings.edit().putString("ability_lvl_druid",String.valueOf(mC.getResources().getInteger(R.integer.ability_lvl_druid_def))).apply();
+            settings.edit().putString("ability_lvl_archer",String.valueOf(mC.getResources().getInteger(R.integer.ability_lvl_archer_def))).apply();
         }
     }
 }
