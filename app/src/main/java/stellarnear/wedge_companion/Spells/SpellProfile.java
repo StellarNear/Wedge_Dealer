@@ -52,7 +52,7 @@ public class SpellProfile {
             @Override
             public void onEvent() {
                 buildProfile();
-                if(mListener!=null){mListener.onEvent();} //on communique le refresh
+                if(mListener!=null){mListener.onEvent();} //on communique le refreshCalculations
             }
         });
     }

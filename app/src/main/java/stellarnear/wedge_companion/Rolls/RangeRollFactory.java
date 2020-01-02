@@ -51,6 +51,11 @@ public class RangeRollFactory {
             if (pj.getAllFeats().featIsActive("feat_rapid_fire")) {
                 allAtks.add(0, allAtks.get(0));
             }
+
+            if (pj.getAllMythicFeats().mythicFeatsIsActive("mythicfeat_rapid_shot")) {
+                allAtks.add(0, allAtks.get(0));
+            }
+
             for (Integer atk : allAtks) {
                 Roll roll = new RangedRoll(mA, mC, atk);
                 this.rollList.add(roll);

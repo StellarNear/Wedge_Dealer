@@ -16,7 +16,7 @@
     <integer name="ability_constitution_base_def_halda">18</integer>
     <integer name="ability_intelligence_base_def_halda">16</integer>
     <integer name="ability_sagesse_base_def_halda">13</integer>
-    <integer name="ability_charisme_base_def_halda">22</integer>
+    <integer name="ability_charisme_base_def_halda">25</integer>
     <!-- augement perma -->
     <integer name="ability_force_augment_def_halda">0</integer>
     <integer name="ability_dexterite_augment_def_halda">0</integer>
@@ -34,7 +34,7 @@
     <integer name="resource_hp_shield_def_halda">0</integer>
     <integer name="resource_regen_def_halda">0</integer>
 
-    <integer name="mythic_tier_def_halda">1</integer>
+    <integer name="mythic_tier_def_halda">2</integer>
     <integer name="mythic_dice_def_halda">6</integer>
 
     <integer name="resource_legendary_points_def_halda">2</integer>
@@ -90,7 +90,7 @@
     <integer name="spell_rank_8_def_halda">7</integer>
     <integer name="spell_rank_9_def_halda">7</integer>
     <integer name="spell_rank_10_def_halda">7</integer>
-    <integer name="spell_rank_11_def_halda">5</integer>
+    <integer name="spell_rank_11_def_halda">6</integer>
     <integer name="spell_rank_12_def_halda">3</integer>
 
     <integer name="capacity_unraveled_mystery_metamagic_reduc_def">2</integer>

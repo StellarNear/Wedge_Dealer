@@ -124,13 +124,17 @@ Dispense le porteur du besoin de manger boire et respirer.</descr>
     </equipment>
     <equipment>
         <name>Isillirit (Chant de Lune)</name>
-        <descr>Premier éveil : +2 dex, +2 BBA</descr>
+        <descr>Troisème éveil : +2 dex, +2 con, +2 BBA, +2 Réflexe
+
+En cas de 20 naturel le mutiplicateur de dégat augemente de deux rangs
+
+A chaque fois qu'un enneemi fait un echec critique, attaque simple possible en réponse.
+
+Lors de la premiere attaque ajoute bonus de dégat égal au jet d'initiative.</descr>
+
         <imgId>equipped_isillirit</imgId>
         <slotId>offhand_slot</slotId>
         <equipped>true</equipped>
-        <abilityUp>
-            <ability_dexterite>2</ability_dexterite>
-        </abilityUp>
     </equipment>
 
     <!-- Hors slot -->

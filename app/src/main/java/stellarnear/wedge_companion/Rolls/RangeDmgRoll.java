@@ -11,6 +11,7 @@ public class RangeDmgRoll extends DmgRoll {
 
     private int nthAtkRoll=0;
     private int nthDmgRoll=0;
+    private boolean isilliritInitBoost=false;
 
     public RangeDmgRoll(Activity mA, Context mC, Boolean critConfirmed, Boolean naturalCrit, int nthAtkRoll, int nthDmgRoll) {
         super(mA, mC, critConfirmed, naturalCrit);
@@ -34,8 +35,8 @@ public class RangeDmgRoll extends DmgRoll {
         } else {
             critMultiplier = 3;  //de base l'arc c'est *3
         }
-        if (naturalCrit && settings.getBoolean("isillirit_switch", mC.getResources().getBoolean(R.bool.isillirit_switch_def))) {
-            critMultiplier += 1;
+        if (naturalCrit && pj.getInventory().getAllEquipments().testIfNameItemIsEquipped("Isillirit (Chant de Lune)")) {
+            critMultiplier += 2;
         }
     }
 
@@ -52,6 +53,10 @@ public class RangeDmgRoll extends DmgRoll {
             allDiceList.add(new Dice(mA, mC, 6, "fire"));
             if (critConfirmed) {
                 switch (critMultiplier) {
+                    case 6:
+                        allDiceList.add(new Dice(mA, mC, 6, "fire"));
+                        allDiceList.add(new Dice(mA, mC, 6, "fire"));
+                        allDiceList.add(new Dice(mA, mC, 6, "fire"));
                     case 5:
                         allDiceList.add(new Dice(mA, mC, 6, "fire"));
                         allDiceList.add(new Dice(mA, mC, 6, "fire"));
@@ -91,6 +96,10 @@ public class RangeDmgRoll extends DmgRoll {
             allDiceList.add(new Dice(mA, mC, 6, "frost"));
             if (critConfirmed) {
                 switch (critMultiplier) {
+                    case 6:
+                        allDiceList.add(new Dice(mA, mC, 6, "frost"));
+                        allDiceList.add(new Dice(mA, mC, 6, "frost"));
+                        allDiceList.add(new Dice(mA, mC, 6, "frost"));
                     case 5:
                         allDiceList.add(new Dice(mA, mC, 6, "frost"));
                         allDiceList.add(new Dice(mA, mC, 6, "frost"));
@@ -115,6 +124,10 @@ public class RangeDmgRoll extends DmgRoll {
             allDiceList.add(new Dice(mA, mC, 6, "shock"));
             if (critConfirmed) {
                 switch (critMultiplier) {
+                    case 6:
+                        allDiceList.add(new Dice(mA, mC, 6, "shock"));
+                        allDiceList.add(new Dice(mA, mC, 6, "shock"));
+                        allDiceList.add(new Dice(mA, mC, 6, "shock"));
                     case 5:
                         allDiceList.add(new Dice(mA, mC, 6, "shock"));
                         allDiceList.add(new Dice(mA, mC, 6, "shock"));
@@ -166,9 +179,17 @@ public class RangeDmgRoll extends DmgRoll {
             calcBonusDmg += ((nthAtkRoll-1)*multiVal)+nthDmgRoll-1;
         }
 
+        if(isilliritInitBoost){
+            calcBonusDmg += settings.getInt("last_initiative_score", 0);
+        }
+
         calcBonusDmg += tools.toInt(settings.getString("epic_dmg_val", String.valueOf(mC.getResources().getInteger(R.integer.attack_dmg_epic_DEF))));
         calcBonusDmg += tools.toInt(settings.getString("bonus_global_dmg_temp", String.valueOf(0)));
         calcBonusDmg += tools.toInt(settings.getString("bonus_dmg_temp"+ PersoManager.getPJSuffix(), String.valueOf(0)));
         return calcBonusDmg;
+    }
+
+    public void makeIsilliritInitBoosted(){
+        this.isilliritInitBoost=true;
     }
 }

@@ -24,7 +24,7 @@
 
 
     <!-- Resources  -->
-    <integer name="resource_hp_base_def_sylphe">147</integer>
+    <integer name="resource_hp_base_def_sylphe">152</integer>
     <integer name="resource_hp_shield_def_sylphe">0</integer>
     <integer name="resource_regen_def_sylphe">0</integer>
 
@@ -38,14 +38,14 @@
     <!--  Rank de maitrise des compétences  -->
     <integer name="skill_stealth_rankDEF_sylphe">1</integer>
     <integer name="skill_climb_rankDEF_sylphe">1</integer>
-    <integer name="skill_intimidate_rankDEF_sylphe">0</integer>
+    <integer name="skill_intimidate_rankDEF_sylphe">1</integer>
     <integer name="skill_percept_rankDEF_sylphe">1</integer>
     <integer name="skill_survival_rankDEF_sylphe">18</integer>
 
     <!--  Bonus des compétences  -->
     <integer name="skill_stealth_bonusDEF_sylphe">3</integer>
     <integer name="skill_climb_bonusDEF_sylphe">3</integer>
-    <integer name="skill_intimidate_bonusDEF_sylphe">0</integer>
+    <integer name="skill_intimidate_bonusDEF_sylphe">3</integer>
     <integer name="skill_percept_bonusDEF_sylphe">3</integer>
     <integer name="skill_survival_bonusDEF_sylphe">3</integer>
 

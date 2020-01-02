@@ -127,12 +127,4 @@ public class AllCapacities {
         }
         return val;
     }
-
-    public void refresh() {
-        for(Capacity cap : allCapacities){
-            if(!cap.isInfinite()){
-                cap.refresh();
-            }
-        }
-    }
 }

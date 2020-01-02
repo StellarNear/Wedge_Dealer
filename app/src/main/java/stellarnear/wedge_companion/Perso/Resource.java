@@ -100,7 +100,11 @@ public class Resource {
     }
 
     public String getCapaDescr() {
-        return capaDescr;
+        String res=capaDescr;
+        if(this.cap.getValue()>0){
+            res+="\n\nValeur : "+this.cap.getValue();
+        }
+        return res;
     }
 
     public boolean isFromCapacity() {
@@ -213,5 +217,8 @@ public class Resource {
     }
 
 
+    public Capacity getCapa() {
+        return cap;
+    }
 }
 

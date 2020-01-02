@@ -12,7 +12,12 @@
         <id>mythicfeat_crit_science</id>
     </feat>
 
-
+    <feat>
+        <name>Tir rapide</name>
+        <descr>Lorsqu’il utilise Tir rapide, le personnage peut soit ignorer le malus de -2 aux jets d’attaque imposé par le don, soit effectuer deux attaques supplémentaires au lieu d’une seule.</descr>
+        <type>feat_atk</type>
+        <id>mythicfeat_rapid_shot</id>
+    </feat>
 
     <!-- DEF -->
 

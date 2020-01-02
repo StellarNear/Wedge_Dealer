@@ -26,7 +26,7 @@
         <name>Corp d'énérgie</name>
         <shortname>Corp</shortname>
         <dailyuse>lvl</dailyuse>
-        <value>1d6+1/lvl</value> <!--<value>1d6+1/lvl</value> -->
+        <value>1d6+1/lvl</value>
         <descr>Par une action simple, transforme son corps en énergie pure et ressemble alors à un élémentaire de feu d’un blanc doré. Sous cette forme, il devient de sous-type élémentaire et dégage une lumière chaude et accueillante qui augmente le degré de luminosité d’une catégorie. Une fois par round, si l’oracle traverse une case occupée par une créature vivante alliée ou si un allié traverse la case de l’oracle, l’allié est guéri de 1d6 points de dégâts + 1 par niveau d’oracle. Ce dernier peut utiliser ce pouvoir pour se soigner par une action de mouvement. Il peut reprendre sa forme normale par une action libre. Chaque jour, il peut rester sous forme d’énergie pendant un nombre de rounds égal à son niveau d’oracle.</descr>
         <shortdescr>Par une action simple, transforme son corps en énergie pure. Une fois par round, si l’oracle traverse une case occupée par une créature vivante alliée ou si un allié traverse la case de l’oracle, l’allié est guéri de 1d6 points de dégâts + 1 par niveau d’oracle. Ce dernier peut utiliser ce pouvoir pour se soigner par une action de mouvement. Il peut reprendre sa forme normale par une action libre. Chaque jour, il peut rester sous forme d’énergie pendant un nombre de rounds égal à son niveau d’oracle.</shortdescr>
         <id>capacity_revelation_light_body</id>

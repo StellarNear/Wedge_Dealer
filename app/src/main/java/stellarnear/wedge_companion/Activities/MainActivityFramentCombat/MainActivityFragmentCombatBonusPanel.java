@@ -16,12 +16,16 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.Perso.Resource;
 import stellarnear.wedge_companion.PostData;
 import stellarnear.wedge_companion.PostDataElement;
 import stellarnear.wedge_companion.R;
+import stellarnear.wedge_companion.Rolls.RangeDmgRoll;
+import stellarnear.wedge_companion.Rolls.RangedRoll;
 import stellarnear.wedge_companion.Rolls.Roll;
 import stellarnear.wedge_companion.Rolls.RollList;
 import stellarnear.wedge_companion.TextFilling.PreRandValues;
@@ -41,7 +45,7 @@ public class MainActivityFragmentCombatBonusPanel {
     private boolean addBonusPanelIsVisible=false;
     private Tools tools=new Tools();
     
-    public MainActivityFragmentCombatBonusPanel(Context mC, View mainPage){
+    public MainActivityFragmentCombatBonusPanel(final Context mC, View mainPage){
         this.mC=mC;
         buttonAdd =(ImageButton) mainPage.findViewById(R.id.fab_add_atk);
         pannel = mainPage.findViewById(R.id.add_bonus_linear);
@@ -63,6 +67,31 @@ public class MainActivityFragmentCombatBonusPanel {
             @Override
             public void onClick(View view) {
                 selectAdditionRange();
+            }
+        });
+
+        final int bonusInit=settings.getInt("last_initiative_score", 0);
+        ((TextView)mainPage.findViewById(R.id.text_isillirit_init_bonus)).setText("+"+bonusInit+" dégâts à la premiere attaque");
+
+        final CheckBox boostInitCheck = mainPage.findViewById(R.id.checkbox_isillirit_init_bonus);
+        boostInitCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Resource resLynxEye = pj.getAllResources().getResource("resource_lynx_eye");
+                new AlertDialog.Builder(mC)
+                        .setTitle("Demande de confirmation")
+                        .setMessage("Voulez vous utiliser la capacité d'Isillirit de boost de dégats lié à l'initiative ?")
+                        .setIcon(android.R.drawable.ic_menu_help)
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                tools.customToast(mC, "Boost de " +bonusInit+" de dégâts lancé !", "center");
+                                ((RangedRoll)rollList.get(0)).makeIsilliritInitBoosted();
+                                boostInitCheck.setEnabled(false);
+                                boostInitCheck.setOnClickListener(null);
+                                new PostData(mC, new PostDataElement("Utilisation de la capacité d'Isillirit de boost de dégats lié à l'initiative", bonusInit+" bonus de dégâts sur le premiere attaque"));
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, null).show();
             }
         });
     }

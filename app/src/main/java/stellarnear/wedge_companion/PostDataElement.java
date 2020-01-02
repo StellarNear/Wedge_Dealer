@@ -7,6 +7,7 @@ import java.util.Locale;
 import stellarnear.wedge_companion.Elems.ElemsManager;
 import stellarnear.wedge_companion.FormSpell.FormPower;
 import stellarnear.wedge_companion.Perso.CanalisationCapacity;
+import stellarnear.wedge_companion.Perso.Capacity;
 import stellarnear.wedge_companion.Perso.Form;
 import stellarnear.wedge_companion.Perso.FormCapacity;
 import stellarnear.wedge_companion.Perso.Perso;
@@ -236,6 +237,16 @@ public class PostDataElement {
                 detailTxt += "Vulnérabilité : " + form.getVulnerability();
             }
             this.detail = detailTxt;
+        }
+    }
+
+    public PostDataElement(Capacity capa) {
+        SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.FRANCE);
+        this.date=formater.format(new Date());
+        this.typeEvent="Lancement capacité "+capa.getName();
+        this.detail=capa.getDescr();
+        if(capa.getValue()>0) {
+            this.result = "Valeur : " + capa.getValue();
         }
     }
 

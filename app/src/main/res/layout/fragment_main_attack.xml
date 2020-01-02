@@ -194,20 +194,26 @@
                 android:orientation="vertical"
                 android:visibility="gone">
 
-
-                <ImageView
-                    android:layout_margin="@dimen/general_margin"
-                    android:layout_width="@dimen/iconSizeQuadrantFull"
-                    android:layout_height="@dimen/iconSizeQuadrantFull"
-                    android:src="@drawable/lynx_eye"/>
-
-                <TextView
-                    android:id="@+id/lynx_eye_title"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:text="Oeil de lynx"/>
+                    android:gravity="center"
+                    >
+
+                    <ImageView
+                        android:layout_margin="@dimen/general_margin"
+                        android:layout_width="@dimen/iconSizeQuadrantFull"
+                        android:layout_height="@dimen/iconSizeQuadrantFull"
+                        android:src="@drawable/lynx_eye"/>
+
+                    <TextView
+                        android:id="@+id/lynx_eye_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:text="Oeil de lynx"/>
+                </LinearLayout>
                 <TextView
                     android:id="@+id/lynx_eye_remaining"
                     android:layout_width="wrap_content"
@@ -238,8 +244,34 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
-                    android:layout_marginBottom="@dimen/general_margin"
                     android:text="100m"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/general_margin"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:text="Isillirit bonus de dégât lié à l'initiative" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/general_margin"
+                    android:gravity="center">
+                    <CheckBox
+                        android:id="@+id/checkbox_isillirit_init_bonus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:id="@+id/text_isillirit_init_bonus"
+                        android:text="dégâts première attaque" />
+
+                </LinearLayout>
+
             </LinearLayout>
 
             <ImageButton

@@ -114,4 +114,8 @@ public class PersoManager {
         currentMapPJ.get("Sylphe").refresh();
         currentMapPJ.get("Ràna").refresh();
     }
+
+    public static Perso getPJ(String s) {
+        return currentMapPJ.get(s);
+    }
 }

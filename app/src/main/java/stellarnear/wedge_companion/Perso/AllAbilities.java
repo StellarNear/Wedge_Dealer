@@ -150,6 +150,10 @@ public class AllAbilities {
             } else {
                 val += inventory.getAllEquipments().getAbiBonus(abi.getId());
             }
+            if((abi.getId().equalsIgnoreCase("ability_dexterite") || abi.getId().equalsIgnoreCase("ability_constitution") )
+             && inventory.getAllEquipments().testIfNameItemIsEquipped("Isillirit (Chant de Lune)")) {
+                val += 2;
+            }
             if(allForms!=null&& allForms.hasActiveForm()){
                 val+=allForms.getFormAbilityModif(abi.getId());
             }

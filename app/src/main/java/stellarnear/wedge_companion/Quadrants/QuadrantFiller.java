@@ -284,8 +284,8 @@ public class QuadrantFiller {
                     healthDialog.setRefreshEventListener(new HealthDialog.OnRefreshEventListener() {
                         public void onEvent() {
                             List<Resource> abiRes = pj.getAllResources().getResourcesListDisplay();
-                            injectStatsRes(abiRes, quadrantFullMain, "full"); //refresh le full
-                            buildAllMini(); //refresh les mini
+                            injectStatsRes(abiRes, quadrantFullMain, "full"); //refreshCalculations le full
+                            buildAllMini(); //refreshCalculations les mini
                         }
                     });
                     healthDialog.showAlertDialog();
@@ -303,11 +303,12 @@ public class QuadrantFiller {
                                 .setPositiveButton("Utiliser", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int whichButton) {
                                         if(!res.isInfinite()){pj.getAllResources().getResource(res.getId()).spend(1);}
-                                        new PostData(mC, new PostDataElement("Utilisation de la capacité\n" + res.getName(), res.getCapaDescr()));
+                                        new PostData(mC, new PostDataElement(res.getCapa()));
                                         tools.customToast(mC, res.getName() + " lancée !", "center");
-                                        List<Resource> abiRes = pj.getAllResources().getResourcesListDisplay();
-                                        injectStatsRes(abiRes, quadrantFullMain, "full"); //refresh le full
-                                        buildAllMini(); //refresh les mini
+
+                                        List<Resource> abiRes = pj.getAllResources().getResourcesListDisplay();//refreshCalculations le full
+                                        injectStatsRes(abiRes, quadrantFullMain, "full"); //refreshCalculations le full
+                                        buildAllMini(); //refreshCalculations les mini
                                     }
                                 })
                                 .setNegativeButton("Annuler", null).show();

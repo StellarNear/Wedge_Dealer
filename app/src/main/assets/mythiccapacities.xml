@@ -27,6 +27,13 @@
     </mythiccapacity>
 
     <mythiccapacity>
+        <name>Rétablissement</name>
+        <descr>Le personnage récupère la totalité de ses points de vie après huit heures de repos. De plus, en dépensant une utilisation de pouvoir mythique et en se reposant une heure, il récupère un nombre de points de vie égal à la moitié de son montant maximum de points de vie (ce montant ne peut être dépassé) et régénère une utilisation de l’une de ses aptitudes de classe qui a un nombre d’utilisations quotidiennes limité (telle que la rage du barbare, les représentions bardiques, les sorts par jour, etc.). Ce repos compte comme une période de sommeil de huit heures et permet donc de récupérer ce type d’aptitudes. Il ne permet pas de récupérer des utilisations de pouvoir mythique ou d’aptitudes mythiques dont le nombre d’utilisations quotidiennes est limité.</descr>
+        <id>mythiccapacity_recover</id>
+        <type>Commun</type>
+    </mythiccapacity>
+
+    <mythiccapacity>
         <name>Il y a toujours une chance</name>
         <descr>Le personnage ne rate plus automatiquement lorsqu’il obtient un 1 aux jets d’attaque.</descr>
         <type>Champion</type>

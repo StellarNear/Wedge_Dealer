@@ -108,6 +108,16 @@
     </capacity>
 
     <capacity>
+        <name>Flèche salvatrice</name>
+        <type>Archer</type>
+        <shortname>Salvatrice</shortname>
+        <dailyuse>ability_sagesse</dailyuse>
+        <id>capacity_heal_arrow</id>
+        <value>(skill_heal+skill_survival)/2</value>
+        <descr>Lance une flèche salvatrice, à raison de son modificateur de sagesse par jour. Cette flèche soigne sa cible d'un montant égal à (premiers soins + survie )/2. Incanter cette flèche et la décocher se fait à la place du tir d'une flèche normale et la remplace.</descr>
+    </capacity>
+
+    <capacity>
         <name>Flèche vengeresse</name>
         <type>Archer</type>
         <dailyuse>1</dailyuse>

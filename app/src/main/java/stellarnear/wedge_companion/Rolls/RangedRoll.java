@@ -7,6 +7,7 @@ import stellarnear.wedge_companion.R;
 
 public class RangedRoll extends Roll {
 
+    private boolean isilliritInitBoost=false;
     public RangedRoll(Activity mA, Context mC, Integer atkBase) {
         super(mA,mC,atkBase);
         this.atkRoll=new RangeAtkRoll(mA,mC,atkBase);
@@ -24,6 +25,10 @@ public class RangedRoll extends Roll {
                 }
             }
 
+            if(isilliritInitBoost){
+                ((RangeDmgRoll)dmgRollList.get(0)).makeIsilliritInitBoosted();
+            }
+
             for(DmgRoll dmgRoll:this.dmgRollList){
                 dmgRoll.setDmgRand();
             }
@@ -38,4 +43,7 @@ public class RangedRoll extends Roll {
             ((RangeAtkRoll) atkRoll).rangeMalus(malus);
     }
 
+    public void makeIsilliritInitBoosted() {
+        this.isilliritInitBoost=true;
+    }
 }

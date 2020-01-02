@@ -23,7 +23,7 @@
     <integer name="ability_ms_def_rana">12</integer>
 
     <!-- Resources  -->
-    <integer name="resource_hp_base_def_rana">139</integer>
+    <integer name="resource_hp_base_def_rana">147</integer>
     <integer name="resource_hp_shield_def_rana">0</integer>
     <integer name="resource_regen_def_rana">0</integer>
 
@@ -38,7 +38,7 @@
     <!--  Rank de maitrise des compétences  -->
     <integer name="skill_stealth_rankDEF_rana">4</integer>
     <integer name="skill_climb_rankDEF_rana">4</integer>
-    <integer name="skill_intimidate_rankDEF_rana">4</integer>
+    <integer name="skill_intimidate_rankDEF_rana">5</integer>
     <integer name="skill_percept_rankDEF_rana">4</integer>
     <integer name="skill_survival_rankDEF_rana">4</integer>
 

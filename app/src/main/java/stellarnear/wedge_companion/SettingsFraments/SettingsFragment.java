@@ -258,7 +258,7 @@ public class SettingsFragment extends PreferenceFragment {
                         settings.edit().putString("money_gold"+PersoManager.getPJSuffix(), String.valueOf(gold + tools.toInt(o.toString()))).apply();
                         settings.edit().putString("add_gold", String.valueOf(0)).apply();
                         getPreferenceScreen().removeAll();
-                        addPreferencesFromResource(R.xml.pref_inventory_money); //pour refresh le current
+                        addPreferencesFromResource(R.xml.pref_inventory_money); //pour refreshCalculations le current
                         return true;
                     }
                 });

@@ -11,12 +11,14 @@ import android.text.style.ForegroundColorSpan;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 import stellarnear.wedge_companion.CalculationAtk;
 import stellarnear.wedge_companion.Elems.ElemsManager;
 import stellarnear.wedge_companion.HallOfFame;
 import stellarnear.wedge_companion.PostData;
 import stellarnear.wedge_companion.PostDataElement;
+import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Spells.CalculationSpell;
 import stellarnear.wedge_companion.Spells.EchoList;
 import stellarnear.wedge_companion.Spells.GuardianList;
@@ -55,10 +57,12 @@ public class Perso {
 
     public Perso(Context mC,String pjID) {
         this.mC=mC;
+        this.pjID=pjID;
         this.prefs= PreferenceManager.getDefaultSharedPreferences(mC);
+
         stats = new Stats(mC,pjID);
         hallOfFame=new HallOfFame(mC,pjID);
-        allSkills = new AllSkills(mC,pjID);
+
         if(pjID.equalsIgnoreCase("")|| pjID.equalsIgnoreCase("halda")){
             allMythicFeats = new AllMythicFeats(mC,pjID);
             allMythicCapacities = new AllMythicCapacities(mC,pjID);
@@ -72,17 +76,14 @@ public class Perso {
         inventory = new Inventory(mC,pjID);
         allFeats = new AllFeats(mC,pjID);
         allCapacities = new AllCapacities(mC,pjID);
+        allSkills = new AllSkills(mC,pjID);
         allAbilities = new AllAbilities(mC,inventory,allForms,pjID);
+        computeCapacities(); // on a besoin de skill et abi pour les usages et valeur des capas
         allResources = new AllResources(mC,allFeats,allAbilities,allCapacities,pjID);
-        this.pjID=pjID;
+
     }
 
-    public void refresh() {
-        allSkills.refreshAllVals();
-        allAbilities.refreshAllAbilities(); //abi d'abord car resource depend de abi
-        allCapacities.refresh();  //capa avant resource car certaine resource sont issue de capa
-        allResources.refresh();
-    }
+    // Getters
 
     public String getID() {
         return pjID;
@@ -112,54 +113,16 @@ public class Perso {
         return allForms;
     }
 
+    public AllFeats getAllFeats() {
+        return allFeats;
+    }
+
     public AllCanalisationCapacities getAllCanalisationCapacities() {
         return allCanalisationCapacities;
     }
 
-    public Integer getCurrentResourceValue(String resId){
-        Resource res = allResources.getResource(resId);
-        Integer value=0;
-        if(res!=null){
-            value=res.getCurrent();
-            if(resId.equalsIgnoreCase("resource_regen")&&allForms!=null&&allForms.hasActiveForm()&&allForms.getCurrentForm().hasCapacity("form_capacity_regen")){
-                value+=5;
-            }
-        }
-        return value;
-    }
-
     public Inventory getInventory() {
         return inventory;
-    }
-
-    public void castSpell(Integer selected_rank) {
-        allResources.castSpell(selected_rank);
-    }
-
-    public void castSpell(Spell spell,Context context) {
-        if (!spell.isCast()){
-            spell.cast(context);
-            int currentRankSpell=new CalculationSpell().currentRank(spell);
-            if(currentRankSpell>0) {
-                allResources.castSpell(currentRankSpell);
-            }
-            new PostData(mC,new PostDataElement(spell));
-        }
-    }
-
-    public int getCasterLevel() {
-        int val= getAbilityScore("ability_lvl");
-        String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
-        val+=tools.toInt(prefs.getString("NLS_bonus"+extendID,String.valueOf(0)));
-        return val;
-    }
-
-    public void resetTemp() {
-        List<String> allTempList = Arrays.asList("NLS_bonus","bonus_dmg_temp","bonus_atk_temp","bonus_temp_ca","bonus_temp_save","bonus_temp_rm");
-        String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
-        for (String temp : allTempList) {
-            prefs.edit().putString(temp+extendID, "0").apply();
-        }
     }
 
     public Stats getStats() {
@@ -176,6 +139,29 @@ public class Perso {
 
     public AllSkills getAllSkills() {
         return allSkills;
+    }
+
+    // getters avec calcul cross perso
+
+    public int getCasterLevel() {
+        int val= getAbilityScore("ability_lvl");
+        String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
+        val+=tools.toInt(prefs.getString("NLS_bonus"+extendID,String.valueOf(0)));
+
+        //todo pour wedge calculer avec le 3/4 archer sylv + full drudie
+        return val;
+    }
+
+    public Integer getCurrentResourceValue(String resId){
+        Resource res = allResources.getResource(resId);
+        Integer value=0;
+        if(res!=null){
+            value=res.getCurrent();
+            if(resId.equalsIgnoreCase("resource_regen")&&allForms!=null&&allForms.hasActiveForm()&&allForms.getCurrentForm().hasCapacity("form_capacity_regen")){
+                value+=5;
+            }
+        }
+        return value;
     }
 
     public Integer getSkillRank(String skillId) {
@@ -226,15 +212,7 @@ public class Perso {
         if (allAbilities.getAbi(abiId) != null) {
             abiScore = allAbilities.getAbi(abiId).getValue();
             if(allForms!=null && allForms.hasActiveForm()){abiScore+=allForms.getFormAbilityModif(abiId);}
-
-            if(abiId.equalsIgnoreCase("ability_dexterite")) {
-                try {
-                    int isilDefId = mC.getResources().getIdentifier("isillirit_switch_def" + suffix, "bool", mC.getPackageName());
-                    if (prefs.getBoolean("isillirit_switch" + suffix, mC.getResources().getBoolean(isilDefId))) {
-                        abiScore += 2;
-                    }
-                } catch (Exception e) { }
-            }else if (abiId.equalsIgnoreCase("ability_ca")) {
+            if (abiId.equalsIgnoreCase("ability_ca")) {
                 abiScore = 10;
                 if(pjID.equalsIgnoreCase("sylphe")|| pjID.equalsIgnoreCase("rana")){
                     int defNatArmorID = mC.getResources().getIdentifier("natural_armor_def" + suffix, "integer", mC.getPackageName());
@@ -318,6 +296,9 @@ public class Perso {
                     if(getAllFeats().featIsActive("feat_inhuman_reflexes")){
                         abiScore+=2;
                     }
+                    if(inventory.getAllEquipments().testIfNameItemIsEquipped("Isillirit (Chant de Lune)")) {
+                        abiScore += 2;
+                    }
                 } else if (abiId.equalsIgnoreCase("ability_vig")){
                     abiScore+=getAbilityMod("ability_constitution");
                     if(getAllFeats().featIsActive("feat_inhuman_sta")){
@@ -389,8 +370,112 @@ public class Perso {
         return abiMod;
     }
 
-    public AllFeats getAllFeats() {
-        return allFeats;
+    // calculs
+
+    private void computeCapacities() {
+        for(Capacity cap : allCapacities.getAllCapacitiesList()){
+            if(!cap.isInfinite()){
+                calculDailyUsage(cap);
+            }
+            calculValue(cap);
+        }
+    }
+
+    private void calculDailyUsage(Capacity cap) {
+        if(!cap.getDailyUseString().equalsIgnoreCase("")){
+            int dailyUse=0;
+            if(tools.toInt(cap.getDailyUseString())==0){
+                SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
+                int mainPJlvl=getAbilityScore("ability_lvl");
+                int druidLvl=tools.toInt(settings.getString( "ability_lvl_druid", String.valueOf(mC.getResources().getInteger(R.integer.ability_lvl_druid_def))));
+                int archerLvl=tools.toInt(settings.getString( "ability_lvl_archer", String.valueOf(mC.getResources().getInteger(R.integer.ability_lvl_archer_def))));
+                switch (cap.getDailyUseString()){
+                    case "lvl":
+                        dailyUse =mainPJlvl;
+                        break;
+                    case "lvl_archer":
+                        dailyUse =archerLvl;
+                        break;
+                    case "lvl_druid":
+                        dailyUse =druidLvl;
+                        break;
+                    case "(lvl_druid/2)-1+lvl_archer/3":
+                        dailyUse = ((int)(druidLvl/2))-1+((int)(archerLvl/3));
+                        break;
+                    case "1+((lvl_archer-6)/4)":
+                        dailyUse =1+((int)((archerLvl-6)/4));
+                        break;
+                    case "1+((lvl_archer-8)/3)":
+                        dailyUse =1+((int)((archerLvl-8)/3));
+                        break;
+                    case "ability_sagesse":
+                        dailyUse =getAbilityMod("ability_sagesse");
+                        break;
+                    // Partie Halda
+                    case "1+(lvl-5)/6":
+                        dailyUse =1+((int)((mainPJlvl-5)/6));
+                        break;
+                }
+            } else {
+                dailyUse=tools.toInt(cap.getDailyUseString());
+            }
+            cap.setDailyUse(dailyUse);
+        }
+    }
+
+    private void calculValue(Capacity cap) {
+        if(!cap.getValueString().equalsIgnoreCase("")) {
+            int value=0;
+            if (tools.toInt(cap.getValueString()) == 0) {
+                int mainPJlvl = getAbilityScore("ability_lvl");
+                int druidLvl = tools.toInt(prefs.getString("ability_lvl_druid", String.valueOf(mC.getResources().getInteger(R.integer.ability_lvl_druid_def))));
+                int archerLvl = tools.toInt(prefs.getString("ability_lvl_archer", String.valueOf(mC.getResources().getInteger(R.integer.ability_lvl_archer_def))));
+                switch (cap.getValueString()) {
+                    case "lvl":
+                        value = mainPJlvl;
+                        break;
+                    case "1+lvl_archer/2":
+                        value = 1 + ((int) (archerLvl / 2));
+                        break;
+                    case "(skill_heal+skill_survival)/2":
+                        int valueSurv =getSkillRank("skill_survival") + getSkillBonus("skill_survival") + getAbilityMod(getAllSkills().getSkill("skill_survival").getAbilityDependence());
+                        int valueheal =getSkillRank("skill_heal") + getSkillBonus("skill_heal") + getAbilityMod(getAllSkills().getSkill("skill_heal").getAbilityDependence());
+                        value = (valueSurv+valueheal)/2;
+                        break;
+
+                    //halda
+                    case "1d6+1/lvl":
+                        value = 1 + new Random().nextInt(6) + mainPJlvl;
+                        break;
+                }
+            } else {
+                value = tools.toInt(cap.getValueString());
+            }
+            cap.setValue(value);
+        }
+
+    }
+
+    // actions
+
+    public void castSpell(Spell spell,Context context) {
+        if (!spell.isCast()){
+            spell.cast(context);
+            int currentRankSpell=new CalculationSpell().currentRank(spell);
+            if(currentRankSpell>0) {
+                allResources.castSpell(currentRankSpell);
+            }
+            new PostData(mC,new PostDataElement(spell));
+        }
+    }
+
+    // actions refresh ,  sleep et resets
+
+    public void refresh() {
+        allSkills.refreshAllVals();
+        allAbilities.refreshAllAbilities(); //abi d'abord car resource depend de abi mais apres allskills car en depends
+        computeCapacities(); //capa avant resource car certaine resource sont issue de capa apres abilities car on en a besoin
+        allResources.refresh();
     }
 
     public void sleep() {
@@ -399,11 +484,17 @@ public class Perso {
         EchoList.getInstance(mC).resetEcho(mC);
         GuardianList.getInstance(mC).resetGuardian(mC);
         allResources.resetCurrent();
+        if(allMythicCapacities.getMythiccapacity("mythiccapacity_recover").isActive()){
+            allResources.getResource("resource_hp").fullHeal();
+        }
     }
     public void halfSleep(){
         resetTemp();
         refresh();
         allResources.halfSleepReset();
+        if(allMythicCapacities.getMythiccapacity("mythiccapacity_recover").isActive()){
+            allResources.getResource("resource_hp").fullHeal();
+        }
     }
 
     public void loadFromSave(){
@@ -427,7 +518,7 @@ public class Perso {
         this.allSkills.reset();
         resetTemp();
         refresh();
-        allResources.resetCurrent();
+        sleep();
     }
 
     public void hardReset(){
@@ -435,5 +526,13 @@ public class Perso {
         this.hallOfFame.reset();
         this.inventory.reset();
         reset();
+    }
+
+    public void resetTemp() {
+        List<String> allTempList = Arrays.asList("NLS_bonus","bonus_dmg_temp","bonus_atk_temp","bonus_temp_ca","bonus_temp_save","bonus_temp_rm");
+        String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
+        for (String temp : allTempList) {
+            prefs.edit().putString(temp+extendID, "0").apply();
+        }
     }
 }

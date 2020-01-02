@@ -263,9 +263,14 @@ public class TestAlertDialog {
             } else {
                 sumResult=dice.getRandValue()+ pj.getAbilityScore(abi.getId());
             }
+
             if(dice.getMythicDice()!=null){sumResult+=dice.getMythicDice().getRandValue();}
             TextView result = dialogView.findViewById(R.id.customDialogTestResult);
             result.setText(String.valueOf(sumResult));
+
+            if(abi.getId().equalsIgnoreCase("ability_init")){
+                PreferenceManager.getDefaultSharedPreferences(mC).edit().putInt("last_initiative_score",sumResult).apply();
+            }
 
             callToAction.setText("Fin du test de caractéristique");
             modePostData="Test caractéristique "+abi.getName();sumResultPostData=sumResult;
