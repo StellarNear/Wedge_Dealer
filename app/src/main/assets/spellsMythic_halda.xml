@@ -17,4 +17,22 @@
         <rank>5</rank>
     </spell>
 
+    <spell>
+        <mythic>true</mythic>
+        <normalSpellId>Régénération</normalSpellId>
+        <name>Régénération (M)</name>
+        <shortdescr>Prend un round, régénère les partie perdues et ramène à la vie. Procure une régénération à la cible. Fait repousser les membres tranchés, rend 4d8 points de vie, +1/niveau (max. +35).</shortdescr>
+        <descr>Devient une action simple. Le sort dissipe les états préjudiciables aveuglé, ébloui et assourdi. La cible bénéficie d’une régénération égale au grade du personnage. Si la cible est morte par amputation ou décapitation lors du round précédent, le sort régénère les parties du corps perdues et ramène la créature à la vie.</descr>     <range>contact</range>
+        <dice_type>8</dice_type>
+        <cap_dice>4</cap_dice>
+        <flat_dmg>1/lvl</flat_dmg>
+        <flat_cap>35</flat_cap>
+        <dmg_type>heal</dmg_type>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V,G</compo>
+        <rank>7</rank>
+        <type>heal</type>
+    </spell>
+
 </records>

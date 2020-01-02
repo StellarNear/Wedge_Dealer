@@ -23,5 +23,24 @@
         android:inputType="number"
         android:summary="Valeur : d%s"/>
 
+    <PreferenceCategory android:title="Objet légendaire (Cape)"/>
+    <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+
+    <stellarnear.wedge_companion.EditTextPreference
+        android:defaultValue="@integer/resource_legendary_points_def_halda"
+        android:key="resource_legendary_points_halda"
+        android:title="Points légendaires"
+        android:singleLine="true"
+        android:inputType="number"
+        android:summary="Valeur : %s"/>
+
+    <stellarnear.wedge_companion.EditTextPreference
+        android:defaultValue="@integer/legendary_dice_def_halda"
+        android:key="legendary_dice_halda"
+        android:title="Dès de montée en puissance"
+        android:singleLine="true"
+        android:inputType="number"
+        android:summary="Valeur : d%s"/>
+
 
 </PreferenceScreen>

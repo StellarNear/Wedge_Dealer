@@ -72,7 +72,7 @@ public class Perso {
         inventory = new Inventory(mC,pjID);
         allFeats = new AllFeats(mC,pjID);
         allCapacities = new AllCapacities(mC,pjID);
-        allAbilities = new AllAbilities(mC,inventory,pjID);
+        allAbilities = new AllAbilities(mC,inventory,allForms,pjID);
         allResources = new AllResources(mC,allFeats,allAbilities,allCapacities,pjID);
         this.pjID=pjID;
     }
@@ -327,6 +327,9 @@ public class Perso {
                     abiScore+=getAbilityMod("ability_sagesse");
                     if(getAllFeats().featIsActive("feat_iron_will")){
                         abiScore+=2;
+                    }
+                    if(getAllFeats().featIsActive("feat_epic_will")){
+                        abiScore+=4;
                     }
                 }
             } else if(abiId.equalsIgnoreCase("ability_bmo")||abiId.equalsIgnoreCase("ability_dmd")){

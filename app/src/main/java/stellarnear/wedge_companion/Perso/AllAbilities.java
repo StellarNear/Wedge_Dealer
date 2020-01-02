@@ -32,13 +32,15 @@ public class AllAbilities {
     private Map<String, Ability> mapIDAbi = new HashMap<>();
     private List<Ability> listAbilities= new ArrayList<>();
     private Inventory inventory;
+    private AllForms allForms;
     private Context mC;
     private Tools tools=new Tools();
     private String pjID="";
 
-    public AllAbilities(Context mC,Inventory inventory,String pjID) {
+    public AllAbilities(Context mC,Inventory inventory,AllForms allForms,String pjID) {
         this.mC = mC;
         this.inventory=inventory;
+        this.allForms=allForms;
         this.pjID=pjID;
         buildAbilitiesList();
         refreshAllAbilities();
@@ -137,7 +139,7 @@ public class AllAbilities {
                         val=2 + (int) Math.round((PersoManager.getMainPJLevel()-2-1)*0.75 - 0.25);
                         break;
                 }
-            }else {
+            }   else {
                 val = readAbility(abi.getId());
             }
             if(abi.getId().equalsIgnoreCase("ability_rm")){
@@ -147,6 +149,9 @@ public class AllAbilities {
                 }
             } else {
                 val += inventory.getAllEquipments().getAbiBonus(abi.getId());
+            }
+            if(allForms!=null&& allForms.hasActiveForm()){
+                val+=allForms.getFormAbilityModif(abi.getId());
             }
             abi.setValue(val);
         }

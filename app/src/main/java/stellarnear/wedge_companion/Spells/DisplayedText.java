@@ -98,11 +98,11 @@ public class DisplayedText {
         String valResult=valBase;
         String unit="";
         if(valBase.contains("/lvl")){
-            Integer result= tools.toInt(valBase.replaceAll("[^0-9?!]",""));
+            Double result= tools.toDouble(valBase.replaceAll("[^.^0-9?!]",""));
             Integer lvl =  calculationSpell.casterLevel(spell);
             result = result * lvl;
-            unit = valBase.replaceAll("/lvl","").replaceAll("[0-9?!]","");
-            valResult = result+unit;
+            unit = valBase.replaceAll("/lvl","").replaceAll("[.0-9?!]","");
+            valResult = result.intValue()+unit;
             if(result>1){valResult+="s";}
         }
 

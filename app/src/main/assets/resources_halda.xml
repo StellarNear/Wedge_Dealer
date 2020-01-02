@@ -19,6 +19,11 @@
         <id>resource_mythic_points</id>
     </resource>
     <resource>
+        <shortname>Pts legs</shortname>
+        <name>Points légendaires</name>
+        <id>resource_legendary_points</id>
+    </resource>
+    <resource>
         <name>Rangs de Sorts</name>
         <testable>false</testable>
         <hide>false</hide>

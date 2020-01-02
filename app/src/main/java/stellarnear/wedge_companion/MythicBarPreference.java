@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import stellarnear.wedge_companion.Perso.PersoManager;
+
 
 public class MythicBarPreference extends Preference {
     private Tools tools=new Tools();
@@ -45,7 +47,8 @@ public class MythicBarPreference extends Preference {
                 ImageView overlayBar = mainBar.findViewById(R.id.mythic_bar_overlay);
                 int oriWidth = overlayBar.getMeasuredWidth();
                 int oriHeight = overlayBar.getMeasuredHeight();
-                int currentTier = tools.toInt(settings.getString("mythic_tier", String.valueOf(getContext().getResources().getInteger(R.integer.mythic_tier_def))));
+                int idValDef=  getContext().getResources().getIdentifier("mythic_tier_def"+ PersoManager.getPJSuffix(), "integer", getContext().getPackageName());
+                int currentTier = tools.toInt(settings.getString("mythic_tier"+ PersoManager.getPJSuffix(), String.valueOf(getContext().getResources().getInteger(idValDef))));
 
                 Double coef = (double) currentTier / 10;
                 if (coef < 0d) {

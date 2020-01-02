@@ -21,6 +21,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.Arrays;
+import java.util.List;
+
 import stellarnear.wedge_companion.Perso.Ability;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
@@ -217,12 +220,10 @@ public class TestAlertDialog {
     }
 
     private void endSkillCalculation(final Dice dice) {
-        /*
         List<String> listSave = Arrays.asList("ability_ref","ability_vig","ability_vol");
-        if(abi!=null && listSave.contains(abi.getId())){
-            //dice.setLegendarySurge(true); //la bague permet d'avoir un jet legendaire de montée en pusisance sur les jets de sauv
+        if(abi!=null && listSave.contains(abi.getId()) && pj.getID().equalsIgnoreCase("halda")){ //y a que la cape d'halda qui marche sur les jet de save
+            dice.canBeLegendarySurge();
         }
-         */
 
         FrameLayout resultDice= dialogView.findViewById(R.id.customDialogTestResultDice);
         resultDice.removeAllViews();

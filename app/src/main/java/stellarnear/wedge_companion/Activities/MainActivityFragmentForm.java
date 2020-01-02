@@ -321,7 +321,7 @@ public class MainActivityFragmentForm extends Fragment {
                             if(pj.getCurrentResourceValue("resource_animal_form")>0) {
                                 pj.getAllResources().getResource("resource_animal_form").spend(1);
                                 pj.getAllForms().changeFormTo(form);
-                                pj.refresh(); //TODO les HP ne prenne pas ne compte le up abi des formes ... normal car abi n'as pas consience de forme on le fait au dessus (ptet faire un bonus hp enfonction de la forme ?
+                                pj.refresh();
                                 refreshPageInfos();
                             } else {
                                 tools.customToast(mC,"Tu n'as plus d'utilisation de forme animale disponible...");
@@ -332,7 +332,7 @@ public class MainActivityFragmentForm extends Fragment {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             pj.getAllForms().changeFormTo(form);
-                            pj.refresh(); //TODO les HP ne prenne pas ne compte le up abi des formes ... normal car abi n'as pas consience de forme on le fait au dessus (ptet faire un bonus hp enfonction de la forme ?
+                            pj.refresh();
                             refreshPageInfos();
                         }
                     }).show();

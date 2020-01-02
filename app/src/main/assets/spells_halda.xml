@@ -665,6 +665,19 @@
     </spell>
 
     <spell>
+        <name>Mot de rappel</name>
+        <shortdescr>Téléporte instantanément le personnage dans son sanctuaire (zone préétablie de 3m de coté). Il n’y a pas de limite de distance. Le lanceur de sorts peut emporter avec lui une créature consentante de taille M tous les trois niveaux de lanceur de sorts.</shortdescr>
+        <descr>Téléporte instantanément le personnage dans son sanctuaire (zone préétablie de 3m de coté). Le point d’arrivée précis prend la forme d’une zone prévue pour l’occasion de trois mètres (2 cases) de côté ou moins. Il n’y a pas de limite de distance à l’utilisation de ce sort au sein d’un même plan. Le lanceur de sorts peut emporter avec lui des objets, tant qu’il ne dépasse pas sa charge maximale. Il peut également téléporter une créature consentante de taille M ou inférieure (portant équipement et objets dans la limite de sa charge maximale) tous les trois niveaux de lanceur de sorts.</descr>
+        <range>illimitée</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <area>0.333333créature/lvl</area>
+        <compo>V</compo>
+        <rank>6</rank>
+        <type>util</type>
+    </spell>
+
+    <spell>
         <name>Vent divin</name>
         <shortdescr>Transforme les cibles en vapeur et les emporte rapidement.</shortdescr>
         <descr>Ce sort permet au personnage de transformer sa substance propre et de prendre la consistance des nuages, ce qui permet de se déplacer à grande vitesse dans les airs (comme avec le sort état gazeux). Le personnage peut emmener avec lui d’autres créatures, chacune pouvant agir indépendamment. Chaque transformation prend 5 rounds.</descr>
@@ -716,6 +729,11 @@
         <shortdescr>Fait repousser les membres tranchés, rend 4d8 points de vie, +1/niveau (max. +35).</shortdescr>
         <descr>Ce sort fait repousser les membres tranchés (doigt, orteil, main, pied, bras, jambe, queue, ou même tête pour une créature en ayant plusieurs), ressoude les os brisés et reconstitue les organes détruits. Une fois le sort lancé, la régénération prend 1 round si les membres tranchés sont appliqués contre la plaie ou 2d10 rounds s’ils sont absents. De plus, le sujet récupère 4d8 points de vie, +1 par niveau de lanceur de sorts (jusqu’à un maximum de +35). Le sort le débarrasse de toute fatigue et/ou épuisement et élimine les dégâts non-létaux.</descr>
         <range>contact</range>
+        <dice_type>8</dice_type>
+        <cap_dice>4</cap_dice>
+        <flat_dmg>1/lvl</flat_dmg>
+        <flat_cap>35</flat_cap>
+        <dmg_type>heal</dmg_type>
         <cast_time>3rounds</cast_time>
         <duration>instant</duration>
         <compo>V,G</compo>

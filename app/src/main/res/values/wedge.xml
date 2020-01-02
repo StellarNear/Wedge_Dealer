@@ -5,8 +5,8 @@
 
     <integer name="add_current_xp_def">0</integer>
 
-    <integer name="money_plat_def">142</integer>
-    <integer name="money_gold_def">252724</integer>
+    <integer name="money_plat_def">0</integer>
+    <integer name="money_gold_def">5794</integer>
     <integer name="money_silver_def">0</integer>
     <integer name="money_copper_def">81</integer>
 
@@ -43,7 +43,7 @@
     <integer name="ability_ms_def">9</integer>
 
     <!-- Resources  -->
-    <integer name="resource_hp_base_def">240</integer>
+    <integer name="resource_hp_base_def">245</integer>
     <integer name="resource_hp_shield_def">0</integer>
     <integer name="resource_regen_def">0</integer>
     <integer name="resource_heroic_def">2</integer>

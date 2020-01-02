@@ -8,10 +8,7 @@
     <integer name="money_silver_def_halda">0</integer>
     <integer name="money_copper_def_halda">0</integer>
 
-    <integer name="attack_att_epic_def_halda">2</integer>
-    <integer name="attack_dmg_epic_def_halda">0</integer>
-    <integer name="prouesse_def_halda">0</integer>
-    <integer name="prouesse_attrib_def_halda">1</integer>
+
 
     <!--  SpellStat de base du perso  -->
     <integer name="ability_force_base_def_halda">4</integer>
@@ -33,12 +30,15 @@
 
 
     <!-- Resources  -->
-    <integer name="resource_hp_base_def_halda">177</integer>
+    <integer name="resource_hp_base_def_halda">179</integer>
     <integer name="resource_hp_shield_def_halda">0</integer>
     <integer name="resource_regen_def_halda">0</integer>
 
     <integer name="mythic_tier_def_halda">1</integer>
     <integer name="mythic_dice_def_halda">6</integer>
+
+    <integer name="resource_legendary_points_def_halda">2</integer>
+    <integer name="legendary_dice_def_halda">8</integer>
 
 
     <integer name="ability_vig_def_halda">6</integer>
@@ -48,18 +48,19 @@
     <integer name="epic_save_def_halda">2</integer>
 
     <!--  Rank de maitrise des compétences  -->
-    <integer name="skill_magic_art_rankDEF_halda">25</integer>
-    <integer name="skill_history_rankDEF_halda">10</integer>
+    <integer name="skill_magic_art_rankDEF_halda">26</integer>
+    <integer name="skill_history_rankDEF_halda">13</integer>
     <integer name="skill_nature_rankDEF_halda">12</integer>
-    <integer name="skill_plan_rankDEF_halda">25</integer>
-    <integer name="skill_stealth_rankDEF_halda">25</integer>
-    <integer name="skill_diplomacy_rankDEF_halda">25</integer>
-    <integer name="skill_heal_rankDEF_halda">25</integer>
-    <integer name="skill_psycho_rankDEF_halda">25</integer>
-    <integer name="skill_survival_rankDEF_halda">25</integer>
+    <integer name="skill_plan_rankDEF_halda">26</integer>
+    <integer name="skill_stealth_rankDEF_halda">26</integer>
+    <integer name="skill_diplomacy_rankDEF_halda">26</integer>
+    <integer name="skill_heal_rankDEF_halda">26</integer>
+    <integer name="skill_psycho_rankDEF_halda">26</integer>
+    <integer name="skill_survival_rankDEF_halda">26</integer>
 
     <!--  Bonus des compétences  -->
     <integer name="skill_magic_art_bonusDEF_halda">3</integer>
+    <integer name="skill_history_bonusDEF_halda">3</integer>
     <integer name="skill_nature_bonusDEF_halda">3</integer>
     <integer name="skill_plan_bonusDEF_halda">3</integer>
     <integer name="skill_stealth_bonusDEF_halda">3</integer>
@@ -68,14 +69,16 @@
     <integer name="skill_psycho_bonusDEF_halda">3</integer>
     <integer name="skill_survival_bonusDEF_halda">3</integer>
 
-    <integer name="attack_att_epic_DEF_halda">1</integer>
-    <integer name="attack_dmg_epic_DEF_halda">0</integer>
 
     <bool name="switch_perma_resi_DEF_halda">true</bool>
 
     <string name="jet_att_def_halda">15,10,5</string>
+    <integer name="attack_att_epic_DEF_halda">2</integer>
+    <integer name="attack_dmg_epic_DEF_halda">0</integer>
+    <integer name="prouesse_def_halda">3</integer>
+    <integer name="prouesse_attrib_def_halda">1</integer>
 
-    <integer name="highest_tier_spell_def_halda">11</integer>
+    <integer name="highest_tier_spell_def_halda">12</integer>
 
     <integer name="spell_rank_1_def_halda">9</integer>
     <integer name="spell_rank_2_def_halda">9</integer>
@@ -87,8 +90,8 @@
     <integer name="spell_rank_8_def_halda">7</integer>
     <integer name="spell_rank_9_def_halda">7</integer>
     <integer name="spell_rank_10_def_halda">7</integer>
-    <integer name="spell_rank_11_def_halda">4</integer>
-
+    <integer name="spell_rank_11_def_halda">5</integer>
+    <integer name="spell_rank_12_def_halda">3</integer>
 
     <integer name="capacity_unraveled_mystery_metamagic_reduc_def">2</integer>
 

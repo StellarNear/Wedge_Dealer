@@ -61,6 +61,11 @@ public class Resource {
     }
 
     public void setMax(int max) {
+        if(this.id.equalsIgnoreCase("resource_hp")&&this.max !=0 && max>this.max){
+            this.current+=max-this.max;
+            saveCurrentToSettings();
+        }
+
         this.max = max;
         if(this.current>this.max){this.current=this.max;saveCurrentToSettings();}
     }
