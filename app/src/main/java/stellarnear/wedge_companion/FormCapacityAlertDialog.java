@@ -222,6 +222,8 @@ public class FormCapacityAlertDialog {
                 int flatDmg=0;
                 if(flatDmgTxt.equalsIgnoreCase("2for")){
                     flatDmg=pj.getAbilityMod("ability_force")*2;
+                } else if(flatDmgTxt.equalsIgnoreCase("for")){
+                    flatDmg=pj.getAbilityMod("ability_force");
                 } else {flatDmg=tools.toInt(flatDmgTxt);}
                 TextView flat=new TextView(mC); flat.setTextSize(20); flat.setTextColor(mC.getColor(R.color.colorPrimaryDark));
                 flat.setText("+"+flatDmg);

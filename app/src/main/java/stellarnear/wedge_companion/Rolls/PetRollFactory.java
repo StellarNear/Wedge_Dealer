@@ -66,7 +66,7 @@ public class PetRollFactory {
                 roll.setNthAtkRoll(nCount);
                 nCount++;
             }
-        } else if(this.mode.equalsIgnoreCase("leap") && pj.getAllCapacities().capacityIsActive("leap")) {
+        } else if(this.mode.equalsIgnoreCase("leap") && pj.getAllCapacities().capacityIsActive("capacity_leap")) {
             Roll roll1 = new PetRoll(mA, mC, baseAtk);
             roll1.setMode("leapclaw");
             this.rollList.add(roll1);
@@ -84,6 +84,7 @@ public class PetRollFactory {
             this.rollList.add(roll5);
         } else {
             Roll roll = new PetRoll(mA, mC, baseAtk);
+            roll.setMode(mode);
             this.rollList.add(roll);
         }
     }

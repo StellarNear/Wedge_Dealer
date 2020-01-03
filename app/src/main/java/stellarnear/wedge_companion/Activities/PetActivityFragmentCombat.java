@@ -116,7 +116,52 @@ public class PetActivityFragmentCombat extends Fragment {
             }
         });
 
-        //todo les bouton simple attack et leap (only sylphe)
+        mainPage.findViewById(R.id.button_simple_atk).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (firstAtkRoll) {
+                    mode="simple";
+                    startRandAtk();
+                } else {
+                    new AlertDialog.Builder(getContext())
+                            .setTitle("Demande de confirmation")
+                            .setMessage("Voulez vous relancer les jets d'attaque ?")
+                            .setIcon(android.R.drawable.ic_menu_help)
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    mode="simple";
+                                    startRandAtk();
+                                }
+                            })
+                            .setNegativeButton(android.R.string.no, null).show();
+                }
+            }
+        });
+
+        if(pj.getAllCapacities().capacityIsActive("capacity_leap")) {
+            mainPage.findViewById(R.id.button_jump_attack).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (firstAtkRoll) {
+                        mode = "leap";
+                        startRandAtk();
+                    } else {
+                        new AlertDialog.Builder(getContext())
+                                .setTitle("Demande de confirmation")
+                                .setMessage("Voulez vous relancer les jets d'attaque ?")
+                                .setIcon(android.R.drawable.ic_menu_help)
+                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                        mode = "leap";
+                                        startRandAtk();
+                                    }
+                                })
+                                .setNegativeButton(android.R.string.no, null).show();
+                    }
+                }
+            });
+        } else {mainPage.findViewById(R.id.button_jump_attack).setVisibility(View.GONE);}
+
 
         fabAtk = (ImageButton) mainPage.findViewById(R.id.fabAtk);
         setListenerFabAtk();
@@ -131,8 +176,8 @@ public class PetActivityFragmentCombat extends Fragment {
         fabAtk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mode.equalsIgnoreCase("")){mode="fullround";}
                 if (firstAtkRoll) {
+                    mode="fullround";
                     startRandAtk();
                 } else {
                     new AlertDialog.Builder(getContext())
@@ -141,6 +186,7 @@ public class PetActivityFragmentCombat extends Fragment {
                             .setIcon(android.R.drawable.ic_menu_help)
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int whichButton) {
+                                    mode="fullround";
                                     startRandAtk();
                                 }
                             })

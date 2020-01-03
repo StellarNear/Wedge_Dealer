@@ -104,6 +104,26 @@
     </capacity>
 
 
+
+    <capacity>
+        <name>Vortex d'air (18m)</name>
+        <descr>Si une créature touche le tourbillon, pénètre dans celui-ci ou si le tourbillon envahit ou traverse l’espace qu’elle occupe, elle risque d’être prise dans ses vents. Une créature qui a adopté la forme d’un tourbillon ne peut plus effectuer ses attaques normales et cesse de contrôler l’espace qui l’entoure. L'adversaire doit réussir un jet de Réflexe. En cas d’échec, elles subissent des dégâts comme si elles avaient été touchées par une attaque de coup portée par le tourbillon. Elles doivent ensuite effectuer un second jet de Réflexes pour éviter d’être emportées et suspendues dans les puissants courants d’air, qui lui infligeront ensuite les dégâts indiqués chaque round. Les créatures capables de voler bénéficient d’un nouveau jet de Réflexes chaque round pour tenter de se libérer du tourbillon. En cas de réussite, elles subissent quand même les dégâts indiqués mais elles peuvent ensuite s’éloigner. Si la base du tourbillon touche le sol, un nuage de débris tourbillonnant se crée. Ce nuage est centré sur la créature et possède un diamètre égal à la moitié de la hauteur du tourbillon. Le nuage bloque toute visibilité (y compris la vision dans le noir) au-delà de 1,5 m (1 c). À une distance de 1,5 m (1 c), les créatures bénéficient d’un camouflage simple alors que, plus loin, elles gagnent un camouflage total.</descr>
+        <type>active</type>
+        <damage>2d8+FOR</damage>
+        <savetype>REF</savetype>
+        <id>form_capacity_air_vortex</id>
+    </capacity>
+
+
+    <capacity>
+        <name>Vortex d'eau (18m)</name>
+        <descr>Si une créature touche le tourbillon, pénètre dans celui-ci ou si le tourbillon envahit ou traverse l’espace qu’elle occupe, elle risque d’être prise dans le torrent. Une créature qui a adopté la forme d’un tourbillon ne peut plus effectuer ses attaques normales et cesse de contrôler l’espace qui l’entoure. L'adversaire doit réussir un jet de Réflexe. En cas d’échec, elles subissent des dégâts comme si elles avaient été touchées par une attaque de coup portée par le tourbillon. Elles doivent ensuite effectuer un second jet de Réflexes pour éviter d’être emportées et suspendues dans les puissants courants d’eau, qui lui infligeront ensuite les dégâts indiqués chaque round. Les créatures capables de voler bénéficient d’un nouveau jet de Réflexes chaque round pour tenter de se libérer du tourbillon. En cas de réussite, elles subissent quand même les dégâts indiqués mais elles peuvent ensuite s’éloigner. Si la base du tourbillon touche le sol, un nuage de débris tourbillonnant se crée. Ce nuage est centré sur la créature et possède un diamètre égal à la moitié de la hauteur du tourbillon. Le nuage bloque toute visibilité (y compris la vision dans le noir) au-delà de 1,5 m (1 c). À une distance de 1,5 m (1 c), les créatures bénéficient d’un camouflage simple alors que, plus loin, elles gagnent un camouflage total.</descr>
+        <type>active</type>
+        <damage>2d8+FOR</damage>
+        <savetype>REF</savetype>
+        <id>form_capacity_water_vortex</id>
+    </capacity>
+
     <!-- capa Elementaires  -->
     <capacity>
         <name>Corps élémentaire</name>

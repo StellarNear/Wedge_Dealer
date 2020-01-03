@@ -292,7 +292,7 @@
                     android:adjustViewBounds="true"
                     android:backgroundTint="@android:color/transparent"
                     android:scaleType="fitXY"
-                    app:srcCompat="@drawable/mire_test"
+                    app:srcCompat="@drawable/combat_land"
                     tools:ignore="ContentDescription" />
 
                 <ImageButton
@@ -303,7 +303,7 @@
                     android:adjustViewBounds="true"
                     android:backgroundTint="@android:color/transparent"
                     android:scaleType="fitXY"
-                    app:srcCompat="@drawable/mire_test"
+                    app:srcCompat="@drawable/skill_climb"
                     tools:ignore="ContentDescription" />
             </android.support.design.widget.CoordinatorLayout>
         </LinearLayout>

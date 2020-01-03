@@ -20,10 +20,8 @@ public class DisplayedText {
     public DisplayedText(){ }
 
     public String damageTxt(Spell spell) {
-
         String dmg= calculationSpell.nDice(spell)+"d"+ calculationSpell.diceType(spell);
         if(calculationSpell.getFlatDmg(spell)>0){dmg+="+"+calculationSpell.getFlatDmg(spell);}
-
         if(spell.getDice_type().contains("lvl")){
             Integer dmg_int = calculationSpell.nDice(spell);
             if(calculationSpell.getFlatDmg(spell)>0){dmg_int+=calculationSpell.getFlatDmg(spell);}

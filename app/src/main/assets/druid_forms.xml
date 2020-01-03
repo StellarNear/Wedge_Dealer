@@ -87,7 +87,7 @@
         <size>TG</size>
         <passive_capacity>elemental_body,black_vision_elemental,fly</passive_capacity>
         <active_capacity>
-            <capacityid>air_vortex</capacityid> <!--todo-->
+            <capacityid>air_vortex</capacityid>
         </active_capacity>
         <attack>
             <base>2d8</base>
@@ -102,7 +102,7 @@
         <size>TG</size>
         <passive_capacity>elemental_body,black_vision_elemental,swim,aquatic_respiration</passive_capacity>
         <active_capacity>
-            <capacityid>water_vortex</capacityid> <!--todo-->
+            <capacityid>water_vortex</capacityid>
         </active_capacity>
         <attack>
             <base>2d10</base>

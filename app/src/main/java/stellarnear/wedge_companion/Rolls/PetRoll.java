@@ -8,6 +8,7 @@ public class PetRoll extends Roll{
     public PetRoll(Activity mA, Context mC, Integer atkBase) {
        super(mA, mC, atkBase);
         this.atkRoll=new PetAtkRoll(mA,mC,atkBase);
+        //
     }
 
     public void setDmgRand() {
