@@ -32,7 +32,7 @@ import stellarnear.wedge_companion.PostData;
 import stellarnear.wedge_companion.PostDataElement;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Spells.BuildMetaList;
-import stellarnear.wedge_companion.Spells.BuildSpellList;
+import stellarnear.wedge_companion.Spells.BuildSpontaneousSpellList;
 import stellarnear.wedge_companion.Tools;
 
 public class SettingsFragment extends PreferenceFragment {
@@ -180,7 +180,7 @@ public class SettingsFragment extends PreferenceFragment {
                 case "halda_pref_character_feat":
                 case "pref_character_feat":
                     BuildMetaList.resetMetas();
-                    BuildSpellList.resetSpellList();
+                    BuildSpontaneousSpellList.resetSpellList();
                     PreferenceCategory magic = (PreferenceCategory) findPreference("Magie");
                     PreferenceCategory atk = (PreferenceCategory) findPreference("Attaque");
                     PreferenceCategory def = (PreferenceCategory) findPreference("Défense");

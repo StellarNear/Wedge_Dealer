@@ -40,7 +40,8 @@ import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.PostData;
 import stellarnear.wedge_companion.PostDataElement;
 import stellarnear.wedge_companion.R;
-import stellarnear.wedge_companion.Spells.BuildSpellList;
+import stellarnear.wedge_companion.Spells.BuildPreparedSpellList;
+import stellarnear.wedge_companion.Spells.BuildSpontaneousSpellList;
 import stellarnear.wedge_companion.Spells.EchoList;
 import stellarnear.wedge_companion.Spells.GuardianList;
 import stellarnear.wedge_companion.Spells.SelectedSpells;
@@ -150,7 +151,12 @@ public class MainActivityFragmentSpell extends Fragment {
     private void buildPage1() {
         testEchosAndGuardians();
 
-        listAllSpell= BuildSpellList.getInstance(getContext()).getSpellList();
+        if(pj.getID().equalsIgnoreCase("")){
+            listAllSpell = BuildPreparedSpellList.getInstance(getContext()).getSpellList();
+        } else {
+            listAllSpell = BuildSpontaneousSpellList.getInstance(getContext()).getSpellList();
+        }
+        
         int max_tier=pj.getAllResources().getRankManager().getHighestTier();
         for(int i=0;i<=max_tier;i++){
             final ScrollView scroll_tier=(ScrollView) returnFragView.findViewById(R.id.main_scroll_relat);
@@ -470,7 +476,7 @@ public class MainActivityFragmentSpell extends Fragment {
         if (spell.getNSubSpell() > 0) {
             Spell parentSpellToBind = null;
             for (int i = 1; i <= spell.getNSubSpell(); i++) {
-                SpellList subSpellN = listAllSpell.getSpellByID(spell.getID() + "_sub");
+                SpellList subSpellN = listAllSpell.getSubSpellsByID(spell.getID() + "_sub");
                 subSpellN.setSubName(i);
                 if (subSpellN.asList().size() > 0 && parentSpellToBind == null) {
                     parentSpellToBind = subSpellN.asList().get(0);

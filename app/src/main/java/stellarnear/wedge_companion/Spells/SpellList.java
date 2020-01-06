@@ -78,7 +78,7 @@ public class SpellList extends AppCompatActivity {
         return sel_list;
     }
 
-    public SpellList getSpellByID(String name){
+    public SpellList getSubSpellsByID(String name){
         SpellList spellsAnswer = new SpellList();
         for (Spell spell : listSpells){
             if (spell.getID().equalsIgnoreCase(name)){

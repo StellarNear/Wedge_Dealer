@@ -19,7 +19,9 @@ import stellarnear.wedge_companion.Activities.MainActivity;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.PostData;
 import stellarnear.wedge_companion.PostDataElement;
+import stellarnear.wedge_companion.PreparationSpellsAlertDialog;
 import stellarnear.wedge_companion.R;
+import stellarnear.wedge_companion.Spells.BuildPreparedSpellList;
 import stellarnear.wedge_companion.Tools;
 
 public class PrefGlobalSleepScreenFragment extends Preference {
@@ -87,15 +89,23 @@ public class PrefGlobalSleepScreenFragment extends Preference {
             @Override
             public void run() {
                 PersoManager.allSleep();
-                tools.customToast(mC, "Une nouvelle journée pleine d'aventure attend toute la petite famille !", "center");
                 resetGlobal();
                 new PostData(mC,new PostDataElement("Nuit de repos Globale","Recharge des ressources journalières et sorts").forceTargetSheet("Wedge"));
                 new PostData(mC,new PostDataElement("Nuit de repos Globale","Recharge des ressources journalières et sorts").forceTargetSheet("Halda"));
                 new PostData(mC,new PostDataElement("Nuit de repos Globale","Recharge des ressources journalières et sorts").forceTargetSheet("Sylphe"));
                 new PostData(mC,new PostDataElement("Nuit de repos Globale","Recharge des ressources journalières et sorts").forceTargetSheet("Ràna"));
-                Intent intent = new Intent(mC, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                mC.startActivity(intent);
+
+                PreparationSpellsAlertDialog popupPrepa = BuildPreparedSpellList.getInstance(mC).makePopupSelectSpellsToPrepare(mC);
+                popupPrepa.setAcceptEventListener(new PreparationSpellsAlertDialog.OnAcceptEventListener() {
+                    @Override
+                    public void onEvent() {
+                        Intent intent = new Intent(mC, MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        mC.startActivity(intent);
+                        tools.customToast(mC, "Une nouvelle journée pleine d'aventure attend toute la petite famille !", "center");
+                    }
+                });
+                popupPrepa.showAlert();
             }
         }, time);
     }
@@ -117,15 +127,23 @@ public class PrefGlobalSleepScreenFragment extends Preference {
             @Override
             public void run() {
                 PersoManager.allHalfSleep();
-                tools.customToast(mC, "Une nouvelle journée pleine d'aventure attend toute la petite famille, mais sans magie...", "center");
                 resetGlobal();
                 new PostData(mC,new PostDataElement("Nuit de repos (sans sorts) Globale","Recharge des ressources journalières").forceTargetSheet("Wedge"));
                 new PostData(mC,new PostDataElement("Nuit de repos (sans sorts) Globale","Recharge des ressources journalières").forceTargetSheet("Halda"));
                 new PostData(mC,new PostDataElement("Nuit de repos (sans sorts) Globale","Recharge des ressources journalières").forceTargetSheet("Sylphe"));
                 new PostData(mC,new PostDataElement("Nuit de repos (sans sorts) Globale","Recharge des ressources journalières").forceTargetSheet("Ràna"));
-                Intent intent = new Intent(mC,  MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                mC.startActivity(intent);
+
+                PreparationSpellsAlertDialog popupPrepa = BuildPreparedSpellList.getInstance(mC).makePopupSelectSpellsToPrepare(mC);
+                popupPrepa.setAcceptEventListener(new PreparationSpellsAlertDialog.OnAcceptEventListener() {
+                    @Override
+                    public void onEvent() {
+                        Intent intent = new Intent(mC, MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        mC.startActivity(intent);
+                        tools.customToast(mC, "Une nouvelle journée pleine d'aventure attend toute la petite famille, mais sans magie...", "center");
+                    }
+                });
+                popupPrepa.showAlert();
             }
         }, time);
     }

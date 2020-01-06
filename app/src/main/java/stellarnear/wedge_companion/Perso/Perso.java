@@ -19,6 +19,7 @@ import stellarnear.wedge_companion.HallOfFame;
 import stellarnear.wedge_companion.PostData;
 import stellarnear.wedge_companion.PostDataElement;
 import stellarnear.wedge_companion.R;
+import stellarnear.wedge_companion.Spells.BuildPreparedSpellList;
 import stellarnear.wedge_companion.Spells.CalculationSpell;
 import stellarnear.wedge_companion.Spells.EchoList;
 import stellarnear.wedge_companion.Spells.GuardianList;
@@ -479,22 +480,23 @@ public class Perso {
     }
 
     public void sleep() {
-        resetTemp();
-        refresh();
         EchoList.getInstance(mC).resetEcho(mC);
         GuardianList.getInstance(mC).resetGuardian(mC);
         allResources.resetCurrent();
-        if(allMythicCapacities.getMythiccapacity("mythiccapacity_recover").isActive()){
-            allResources.getResource("resource_hp").fullHeal();
-        }
+        commonSleep();
     }
+
     public void halfSleep(){
-        resetTemp();
-        refresh();
         allResources.halfSleepReset();
-        if(allMythicCapacities.getMythiccapacity("mythiccapacity_recover").isActive()){
+        commonSleep();
+    }
+
+    private void commonSleep() {
+        resetTemp();
+        if(allMythicCapacities!=null && allMythicCapacities.mythicCapacityIsActive("mythiccapacity_recover")){
             allResources.getResource("resource_hp").fullHeal();
         }
+        refresh();
     }
 
     public void loadFromSave(){

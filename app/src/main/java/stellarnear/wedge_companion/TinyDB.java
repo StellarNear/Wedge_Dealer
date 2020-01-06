@@ -37,6 +37,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -722,5 +724,22 @@ public class TinyDB {
             objects.add(value);
         }
         return objects;
+    }
+
+
+
+    public List<String> getPreparedSpellsListIDs(String key) {
+        ArrayList<String> objStrings = getListString(key);
+        List<String> objects = new ArrayList<>();
+        for (String jObjString : objStrings) {
+            objects.add(jObjString);
+        }
+        return objects;
+    }
+
+    public void putPreparedSpellsListIDs(String key, List<String> objArray) {
+        checkForNullKey(key);
+        ArrayList<String> objStrings = new ArrayList<String>(objArray);
+        putListString(key, objStrings);
     }
 }

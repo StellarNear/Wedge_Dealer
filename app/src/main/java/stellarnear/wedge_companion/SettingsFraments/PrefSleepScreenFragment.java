@@ -15,7 +15,9 @@ import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.PostData;
 import stellarnear.wedge_companion.PostDataElement;
+import stellarnear.wedge_companion.PreparationSpellsAlertDialog;
 import stellarnear.wedge_companion.R;
+import stellarnear.wedge_companion.Spells.BuildPreparedSpellList;
 import stellarnear.wedge_companion.Tools;
 
 public class PrefSleepScreenFragment extends Preference {
@@ -86,11 +88,26 @@ public class PrefSleepScreenFragment extends Preference {
                 pj.sleep();
                 tools.customToast(mC, "Une nouvelle journée pleine de sortilèges t'attends.", "center");
                 new PostData(mC,new PostDataElement("Nuit de repos","Recharge des ressources journalières et sorts"));
+                if(pj.getID().equalsIgnoreCase("")){
+                    PreparationSpellsAlertDialog popupPrepa = BuildPreparedSpellList.getInstance(mC).makePopupSelectSpellsToPrepare(mC);
+                    popupPrepa.setAcceptEventListener(new PreparationSpellsAlertDialog.OnAcceptEventListener() {
+                        @Override
+                        public void onEvent() {
+                            startMainActiv();
+                        }
+                    });
+                    popupPrepa.showAlert();
+                } else {
+                    startMainActiv();
+                }
+            }
+        }, time);
+    }
+
+    private void startMainActiv() {
                 Intent intent = new Intent(mC, MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 mC.startActivity(intent);
-            }
-        }, time);
     }
 
     private void halfSleep() {
@@ -104,9 +121,18 @@ public class PrefSleepScreenFragment extends Preference {
                 pj.halfSleep();
                 tools.customToast(mC, "Une journée sans sortilèges t'attends...", "center");
                 new PostData(mC,new PostDataElement("Nuit de repos (sans sorts)","Recharge des ressources journalières"));
-                Intent intent = new Intent(mC,  MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                mC.startActivity(intent);
+                if(pj.getID().equalsIgnoreCase("")){
+                    PreparationSpellsAlertDialog popupPrepa = BuildPreparedSpellList.getInstance(mC).makePopupSelectSpellsToPrepare(mC);
+                    popupPrepa.setAcceptEventListener(new PreparationSpellsAlertDialog.OnAcceptEventListener() {
+                        @Override
+                        public void onEvent() {
+                            startMainActiv();
+                        }
+                    });
+                    popupPrepa.showAlert();
+                } else {
+                    startMainActiv();
+                }
             }
         }, time);
     }
