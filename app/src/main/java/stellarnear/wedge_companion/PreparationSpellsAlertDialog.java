@@ -101,7 +101,6 @@ public class PreparationSpellsAlertDialog {
             
             
             for(final Spell spell : allSpells.filterByRank(i).filterDisplayable().asList()){
-
                 LinearLineSpell spellLine =  new LinearLineSpell(spell,mC);
                 spellLine.setAddSpellEventListener(new LinearLineSpell.OnAddSpellEventListener() {
                     @Override

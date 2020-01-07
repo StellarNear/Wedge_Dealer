@@ -20,10 +20,12 @@ import stellarnear.wedge_companion.PostData;
 import stellarnear.wedge_companion.PostDataElement;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Spells.BuildPreparedSpellList;
+import stellarnear.wedge_companion.Spells.BuildSpontaneousSpellList;
 import stellarnear.wedge_companion.Spells.CalculationSpell;
 import stellarnear.wedge_companion.Spells.EchoList;
 import stellarnear.wedge_companion.Spells.GuardianList;
 import stellarnear.wedge_companion.Spells.Spell;
+import stellarnear.wedge_companion.Spells.SpellList;
 import stellarnear.wedge_companion.Stats.SpellStats.SpellStats;
 import stellarnear.wedge_companion.Stats.Stats;
 import stellarnear.wedge_companion.Tools;
@@ -457,7 +459,26 @@ public class Perso {
 
     }
 
-    // actions
+    // spells
+    public SpellList getAllSpells() {
+        SpellList result;
+        if(pjID.equalsIgnoreCase("")){
+            result = BuildPreparedSpellList.getInstance(mC).getAllSpells();
+        } else {
+            result = BuildSpontaneousSpellList.getInstance(mC).getSpellList();
+        }
+        return result;
+    }
+
+    public SpellList getSpellsForCastList() {
+        SpellList result;
+        if(pjID.equalsIgnoreCase("")){
+            result=BuildPreparedSpellList.getInstance(mC).getPreparedSpellList().getNormalSpells().filterDisplayable();
+        } else {
+            result=getAllSpells().getNormalSpells().filterDisplayable();
+        }
+        return result;
+    }
 
     public void castSpell(Spell spell) {
         if (!spell.isCast()){
@@ -548,4 +569,6 @@ public class Perso {
             prefs.edit().putString(temp+extendID, "0").apply();
         }
     }
+
+
 }

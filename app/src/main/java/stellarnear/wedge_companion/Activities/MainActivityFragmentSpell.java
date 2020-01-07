@@ -41,9 +41,9 @@ import stellarnear.wedge_companion.PostData;
 import stellarnear.wedge_companion.PostDataElement;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Spells.BuildPreparedSpellList;
-import stellarnear.wedge_companion.Spells.BuildSpontaneousSpellList;
 import stellarnear.wedge_companion.Spells.EchoList;
 import stellarnear.wedge_companion.Spells.GuardianList;
+import stellarnear.wedge_companion.Spells.ListingElements.LinearLineSpell;
 import stellarnear.wedge_companion.Spells.SelectedSpells;
 import stellarnear.wedge_companion.Spells.Spell;
 import stellarnear.wedge_companion.Spells.SpellList;
@@ -150,12 +150,11 @@ public class MainActivityFragmentSpell extends Fragment {
 
     private void buildPage1() {
         if(pj.getID().equalsIgnoreCase("")){
-            listAllSpell = BuildPreparedSpellList.getInstance(getContext()).getAllSpells();
-        } else {
             testEchosAndGuardians();
-            listAllSpell = BuildSpontaneousSpellList.getInstance(getContext()).getSpellList();
         }
-        
+
+        listAllSpell = pj.getAllSpells();
+
         int max_tier=pj.getAllResources().getRankManager().getHighestTier();
         final ScrollView scroll_tier=(ScrollView) returnFragView.findViewById(R.id.main_scroll_relat);
         LinearLayout tiers=(LinearLayout) returnFragView.findViewById(R.id.linear1);
@@ -245,74 +244,40 @@ public class MainActivityFragmentSpell extends Fragment {
 
             side.addView(side_txt);
 
-            SpellList spellToDisplayRankList= listAllSpell.getNormalSpells().filterByRank(i).filterDisplayable();
-            if(pj.getID().equalsIgnoreCase("")){
-                spellToDisplayRankList=BuildPreparedSpellList.getInstance(getContext()).getPreparedSpellList().filterByRank(i).filterDisplayable();
-            }
+            SpellList spellToDisplayRankList= pj.getSpellsForCastList().filterByRank(i);
 
             if (spellToDisplayRankList.size()==0){ continue;}
 
             for(final Spell spell : spellToDisplayRankList.asList()){
-                LinearLayout spellLine = new LinearLayout(getContext()); spellLine.setGravity(Gravity.CENTER_VERTICAL);
-                spellLine.setOnClickListener(new View.OnClickListener() {
+                final LinearLineSpell spellLine =  new LinearLineSpell(spell,getContext());
+                spellLine.setAddSpellEventListener(new LinearLineSpell.OnAddSpellEventListener() {
                     @Override
-                    public void onClick(View view) {
-                        tools.customToast(getContext(),spell.getShortDescr(),"center");
+                    public void onEvent() {
+                        addSpellToList(spell);
                     }
                 });
-                spellLine.setOrientation(LinearLayout.HORIZONTAL);
-                setSpellLineColor(spellLine,spell);
-                LinearLayout.LayoutParams paraSpellLine= new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                paraSpellLine.setMargins(pixelMarging,pixelMarging,pixelMarging,0);
-                spellLine.setLayoutParams(paraSpellLine);
-
-                final CheckBox checkbox=new CheckBox(getContext());
-                setAddingSpell(checkbox,spell);
-                setCheckBoxColor(checkbox);
-                spellLine.addView(checkbox);
-
-                addSpellTypeIcons(spell,spellLine);
-                int pxMaging = getContext().getResources().getDimensionPixelSize(R.dimen.general_margin);
-                TextView spellName = new TextView(getContext()); spellName.setPadding(pxMaging,0,0,0);
-                spellName.setText(spell.getName());
-                spellName.setTextColor(Color.BLACK);
-                spellName.setOnClickListener(new View.OnClickListener() {
+                spellLine.setRemoveSpellEventListener(new LinearLineSpell.OnRemoveSpellEventListener() {
                     @Override
-                    public void onClick(View view) {
-                        checkbox.setChecked(!checkbox.isChecked());
+                    public void onEvent() {
+                        removeSpellFromSelection(spell);
                     }
                 });
-                spellLine.addView(spellName);
-                final Spell mythicSpell = listAllSpell.getMythicSpells().getNormalSpellFromID(spell.getID());
-                if (mythicSpell!=null){
-                    LinearLayout mythLine =  new LinearLayout(getContext());
-                    mythLine.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT,1));
+                if(spellLine.hasMythSpell()){
+                    spellLine.setAddMythicSpellEventListener(new LinearLineSpell.OnAddMythicSpellEventListener() {
+                        @Override
+                        public void onEvent() {
+                            addSpellToList(spellLine.getSpellMyth());
+                        }
+                    });
 
-                    mythLine.setPadding(0,0,pxMaging,0);
-                    mythLine.setGravity(Gravity.RIGHT|Gravity.CENTER_VERTICAL);
-                    final CheckBox checkMyth = new CheckBox(getContext());
-                    setCheckBoxColor(checkMyth);
-                    setAddingSpell(checkMyth,mythicSpell);
-                    mythLine.addView(checkMyth);
-                    ImageView img = new ImageView(getContext());
-                    img.setImageDrawable(getContext().getDrawable(R.drawable.ic_embrassed_energy));
-                    img.setOnClickListener(new View.OnClickListener() {
+                    spellLine.setRemoveMythicSpellEventListener(new LinearLineSpell.OnRemoveMythicSpellEventListener() {
                         @Override
-                        public void onClick(View view) {
-                            checkMyth.setChecked(!checkMyth.isChecked());
+                        public void onEvent() {
+                            removeSpellFromSelection(spellLine.getSpellMyth());
                         }
                     });
-                    img.setOnLongClickListener(new View.OnLongClickListener() {
-                        @Override
-                        public boolean onLongClick(View view) {
-                            tools.customToast(getContext(),mythicSpell.getShortDescr(),"center");
-                            return true;
-                        }
-                    });
-                    mythLine.addView(img);
-                    spellLine.addView(mythLine);
                 }
-                tiers.addView(spellLine);
+                tiers.addView(spellLine.getSpellLine());
             }
         }
     }
@@ -372,105 +337,6 @@ public class MainActivityFragmentSpell extends Fragment {
                 }
             });
             linear.addView(guardian);
-        }
-    }
-
-    private void addSpellTypeIcons(Spell spell, LinearLayout spellLine) {
-        ImageView logo = new ImageView(getContext());
-        switch (spell.getType()){
-            case "heal":
-                logo.setImageDrawable(healSymbol);
-                break;
-            case "buff":
-                logo.setImageDrawable(buffSymbol);
-                break;
-            case "combatbuff":
-                logo.setImageDrawable(combatBuffSymbol);
-                break;
-            case "util":
-                logo.setImageDrawable(utilSymbol);
-                break;
-            default:
-                logo.setImageDrawable(getContext().getDrawable(R.drawable.mire_test));
-                break;
-        }
-        spellLine.addView(logo);
-
-        ImageView range = new ImageView(getContext());
-        switch (spell.getRange()){
-            case "contact":
-                range.setImageDrawable(contactRange);
-                break;
-            case "courte":
-                range.setImageDrawable(shortRange);
-                break;
-            case "moyenne":
-                range.setImageDrawable(averageRange);
-                break;
-            case "longue":
-                range.setImageDrawable(longRange);
-                break;
-        }
-        spellLine.addView(range);
-
-        if(spell.isFromMystery()){
-            ImageView logoMyst = new ImageView(getContext());
-            logoMyst.setImageDrawable(mystSymbol);
-            spellLine.addView(logoMyst);
-        }
-    }
-
-    private void setAddingSpell(final CheckBox check, final Spell spell) {
-        check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(!b){
-                    new AlertDialog.Builder(getContext())
-                            .setTitle("Demande de confirmation")
-                            .setMessage("Veux-tu tu lancer une nouvelle fois le sort "+spell.getName()+" ?")
-                            .setIcon(android.R.drawable.ic_menu_help)
-                            .setPositiveButton("oui", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int whichButton) {
-                                    check.setChecked(true);
-                                }})
-                            .setNegativeButton("non", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int whichButton) {
-                                    check.setChecked(false);
-                                    removeSpellFromSelection(spell);
-                                }}).show();
-                } else {
-                    prepareSpell(check,spell);
-                }
-            }
-        });
-    }
-
-    private void prepareSpell(final CheckBox check, final Spell spell) {
-        if(spell.isMyth()){
-            if(pj.getCurrentResourceValue("resource_mythic_points")>0) {
-                new AlertDialog.Builder(getContext())
-                        .setTitle("Demande de confirmation")
-                        .setMessage("Point(s) mythique(s) avant lancement des sorts : " + pj.getCurrentResourceValue("resource_mythic_points") + "\n" +
-                                "\nVeux tu préparer la version mythique du sort " + spell.getName() + "\n(cela coûtera 1 pt) ?")
-                        .setIcon(android.R.drawable.ic_menu_help)
-                        .setPositiveButton("oui", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                check.setChecked(true);
-                                addSpellToList(spell);
-                            }})
-                        .setNegativeButton("non", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                check.setChecked(false);
-                            }
-                        }).show();
-            } else {
-                Toast toast = Toast.makeText(getContext(), "Tu n'as plus de point mythique ...", Toast.LENGTH_LONG);
-                toast.setGravity(Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 0);
-                toast.show();
-                check.setChecked(false);
-            }
-        }else {
-            addSpellToList(spell);
         }
     }
 
@@ -551,37 +417,5 @@ public class MainActivityFragmentSpell extends Fragment {
         fragmentTransaction.commit();
     }
 
-
-    public void setSpellLineColor(LinearLayout line,Spell spell) {
-        if (spell.getDmg_type().equals("none")) {
-            line.setBackground(getContext().getDrawable(R.drawable.background_spell_line_noelem));
-        } else if (spell.getDmg_type().equals("fire")) {
-            line.setBackground(getContext().getDrawable(R.drawable.background_spell_line_fire));
-        } else if (spell.getDmg_type().equals("shock")) {
-            line.setBackground(getContext().getDrawable(R.drawable.background_spell_line_shock));
-        } else if (spell.getDmg_type().equals("frost")) {
-            line.setBackground(getContext().getDrawable(R.drawable.background_spell_line_frost));
-        } else if (spell.getDmg_type().equals("acid")) {
-            line.setBackground(getContext().getDrawable(R.drawable.background_spell_line_acid));
-        } else if (spell.getDmg_type().equals("heal"))  {
-            line.setBackground(getContext().getDrawable(R.drawable.background_spell_line_heal));
-        }
-
-    }
-
-    public void setCheckBoxColor(CheckBox checkbox) {
-        checkbox.setTextColor(Color.BLACK);
-        int[] colorClickBox=new int[]{Color.BLACK,Color.BLACK};
-
-        ColorStateList colorStateList = new ColorStateList(
-                new int[][] {
-                        new int[] { -android.R.attr.state_checked }, // unchecked
-                        new int[] {  android.R.attr.state_checked }  // checked
-                },colorClickBox
-
-        );
-        checkbox.setButtonTintList(colorStateList);
-
-    }
 }
 
