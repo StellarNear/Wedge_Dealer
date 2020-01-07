@@ -77,7 +77,7 @@ public class SliderBuilder {
         if(!spell.isCast()) {
             slided=true;
 
-            pj.castSpell(spell,mC);
+            pj.castSpell(spell);
 
             if (spell.isMyth()) {
                 pj.getAllResources().getResource("resource_mythic_points").spend(1);

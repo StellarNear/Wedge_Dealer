@@ -77,12 +77,11 @@ public class CanalisationAlertDialog {
     }
 
     private void popupLongTooltip(){
-        View tooltip = mA.getLayoutInflater().inflate(R.layout.custom_toast_info_form_capacity, null);
+        View tooltip = mA.getLayoutInflater().inflate(R.layout.custom_toast_longtooltip, null);
         final CustomAlertDialog tooltipAlert = new CustomAlertDialog(mA, mC, tooltip);
         tooltipAlert.setPermanent(true);
         ((TextView)tooltip.findViewById(R.id.toast_textName)).setText(canal.getName());
         ((TextView)tooltip.findViewById(R.id.toast_textDescr)).setText(canal.getDescr());
-        tooltip.findViewById(R.id.button_use_capacity).setVisibility(View.GONE);
         tooltipAlert.clickToHide(tooltip.findViewById(R.id.toast_LinearLayout));
         tooltipAlert.showAlert();
     }

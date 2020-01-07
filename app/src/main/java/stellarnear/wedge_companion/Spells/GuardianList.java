@@ -35,17 +35,22 @@ public class GuardianList {
         return instance;
     }
 
+
+    private Context mC;
+    private TinyDB tinyDB;
+
     private GuardianList(Context mC){
+        this.mC=mC;
+        this.tinyDB = new TinyDB(mC);
         try {
-            loadFromSetting(mC);
+            loadFromSetting();
         } catch (Exception e) {
             guardianList =new ArrayList<>();
             e.printStackTrace();
         }
     }
 
-    private void loadFromSetting(Context mC){
-        TinyDB tinyDB = new TinyDB(mC);
+    private void loadFromSetting(){
         List<PairSpellCondition> listDB = tinyDB.getListGuardianSpellsCondition("localSaveGuardianList");
         if (listDB.size() > 0) {
             guardianList=listDB;
@@ -58,24 +63,23 @@ public class GuardianList {
         return guardianList.size()>0;
     }
 
-    public void resetGuardian(Context mC) {
+    public void resetGuardian() {
         instance = null;
         guardianList=new ArrayList<>();
-        saveToDB(mC);
+        saveToDB();
     }
 
-    private void saveToDB(Context mC) {
-        TinyDB tinyDB = new TinyDB(mC);
+    private void saveToDB() {
         tinyDB.putListGuardianSpellsCondition("localSaveGuardianList", guardianList);
     }
 
 
-    private void removeGuardian(PairSpellCondition spellCond,Context mC) {
+    private void removeGuardian(PairSpellCondition spellCond) {
         guardianList.remove(spellCond);
-        saveToDB(mC);
+        saveToDB();
     }
 
-    public void addGuardian(final Spell spell,final Context mC){
+    public void addGuardian(final Spell spell){
         AlertDialog.Builder alert = new AlertDialog.Builder(mC);
         final EditText edittext = new EditText(mC);
         alert.setMessage("Condition de déclenchement");
@@ -86,7 +90,7 @@ public class GuardianList {
             public void onClick(DialogInterface dialog, int whichButton) {
                 guardianList.add(new PairSpellCondition(spell, edittext.getText().toString()));
                 new PostData(mC,new PostDataElement("Enregistrement d'un sort gardien","Condition : "+ edittext.getText().toString(),"Sort : "+spell.getName()));
-                saveToDB(mC);
+                saveToDB();
             }
         });
         alert.show();
@@ -138,7 +142,7 @@ public class GuardianList {
                             .setIcon(android.R.drawable.ic_menu_help)
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int whichButton) {
-                                    removeGuardian(spellCondition,mC);
+                                    removeGuardian(spellCondition);
                                     tooltipAlert.dismissAlert();
                                     if(guardianList.size()>1){popupList(mA,mC);}
                                     if(mListener!=null){mListener.onEvent();}

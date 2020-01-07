@@ -977,4 +977,35 @@
         <type>combatbuff</type>
     </spell>
 
+
+
+
+
+    <spell>
+        <name>Rayons ardents</name>
+        <descr>Attaque de contact à distance qui, en cas de réussite lance 3 rayons infligeant chacun des dégâts. Peut viser une ou plusieurs cibles, mais tous doivent viser des sujets situés à 9 m ou moins les uns des autres.</descr>
+        <n_sub_spell>3</n_sub_spell>
+        <dmg_type>fire</dmg_type>
+        <rank>2</rank>
+    </spell>
+
+    <spell>
+        <id>Rayons ardents_sub</id>
+        <name>Rayon ardent</name>
+        <descr>Ce rayon inflige 4d6 points de dégâts de feu. On les tire simultanément sur une ou plusieurs cibles, mais tous doivent viser des sujets situés à 9 m ou moins les uns des autres..</descr>
+        <dice_type>6</dice_type>
+        <cap_dice>4</cap_dice>
+        <contact>distance</contact>
+        <dmg_type>fire</dmg_type>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V,G</compo>
+        <rm>true</rm>
+        <save_type>aucun</save_type>
+        <rank>2</rank>
+    </spell>
+
+
+
 </records>

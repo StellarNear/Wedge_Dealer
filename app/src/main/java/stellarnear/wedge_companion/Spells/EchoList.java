@@ -30,18 +30,22 @@ public class EchoList {
         }
         return instance;
     }
+
+    private Context mC;
+    private TinyDB tinyDB;
     private EchoList(Context mC){
+        this.mC=mC;
+        this.tinyDB = new TinyDB(mC);
         try {
-            loadFromSetting(mC);
+            loadFromSetting();
         } catch (Exception e) {
             echoList=new SpellList();
             e.printStackTrace();
         }
     }
 
-    private void loadFromSetting(Context mC){
-        TinyDB tinyDB = new TinyDB(mC);
-        SpellList listDB = tinyDB.getListEchoSpells("localSaveEchoList");
+    private void loadFromSetting(){
+        SpellList listDB = tinyDB.getSpellList("localSaveEchoList");
         if (listDB.size() > 0) {
             echoList=listDB;
         } else {
@@ -53,27 +57,24 @@ public class EchoList {
         return echoList.size()>0;
     }
 
-    public void resetEcho(Context mC) {
+    public void resetEcho() {
         instance = null;
         echoList=new SpellList();
-        saveListToDB(mC);
+        saveListToDB();
     }
 
-
-
-    private void removeEcho(Spell spell,Context mC) {
+    private void removeEcho(Spell spell) {
         echoList.remove(spell);
-        saveListToDB(mC);
+        saveListToDB();
     }
 
-    private void saveListToDB(Context mC) {
-        TinyDB tinyDB = new TinyDB(mC);
-        tinyDB.putListEchoSpells("localSaveEchoList", echoList);
+    private void saveListToDB() {
+        tinyDB.putSpellList("localSaveEchoList", echoList);
     }
 
-    public void addEcho(Spell spell,Context mC){
+    public void addEcho(Spell spell){
         echoList.add(spell);
-        saveListToDB(mC);
+        saveListToDB();
     }
 
     public SpellList getEchoList() {
@@ -115,7 +116,7 @@ public class EchoList {
                             .setIcon(android.R.drawable.ic_menu_help)
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int whichButton) {
-                                   removeEcho(spell,mC);
+                                    removeEcho(spell);
                                     tooltipAlert.dismissAlert();
                                     if(echoList.size()>1){popupList(mA,mC);}
                                     if(mListener!=null){mListener.onEvent();}

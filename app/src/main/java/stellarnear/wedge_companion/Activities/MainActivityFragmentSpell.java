@@ -149,24 +149,23 @@ public class MainActivityFragmentSpell extends Fragment {
     }
 
     private void buildPage1() {
-        testEchosAndGuardians();
-
         if(pj.getID().equalsIgnoreCase("")){
-            listAllSpell = BuildPreparedSpellList.getInstance(getContext()).getSpellList();
+            listAllSpell = BuildPreparedSpellList.getInstance(getContext()).getAllSpells();
         } else {
+            testEchosAndGuardians();
             listAllSpell = BuildSpontaneousSpellList.getInstance(getContext()).getSpellList();
         }
         
         int max_tier=pj.getAllResources().getRankManager().getHighestTier();
+        final ScrollView scroll_tier=(ScrollView) returnFragView.findViewById(R.id.main_scroll_relat);
+        LinearLayout tiers=(LinearLayout) returnFragView.findViewById(R.id.linear1);
         for(int i=0;i<=max_tier;i++){
-            final ScrollView scroll_tier=(ScrollView) returnFragView.findViewById(R.id.main_scroll_relat);
-            LinearLayout Tiers=(LinearLayout) returnFragView.findViewById(R.id.linear1);
-            final TextView Tier= new TextView(getContext());
+            final TextView tier= new TextView(getContext());
             LinearLayout.LayoutParams para= new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             int pixelMarging = getContext().getResources().getDimensionPixelSize(R.dimen.general_margin);
             para.setMargins(pixelMarging,pixelMarging,pixelMarging,pixelMarging);
-            Tier.setLayoutParams(para);
-            Tier.setBackground(getContext().getDrawable(R.drawable.background_tier_title));
+            tier.setLayoutParams(para);
+            tier.setBackground(getContext().getDrawable(R.drawable.background_tier_title));
 
             String tier_txt="Tier "+i;
 
@@ -174,12 +173,12 @@ public class MainActivityFragmentSpell extends Fragment {
             if (i==0){titre_tier=tier_txt +" [illimité]";}
             SpannableString titre=  new SpannableString(titre_tier);
             titre.setSpan(new RelativeSizeSpan(0.65f), tier_txt.length(),titre_tier.length(), 0);
-            Tier.setText(titre);
+            tier.setText(titre);
 
-            Tier.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
-            Tier.setTextColor(Color.BLACK);
-            Tier.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-            Tiers.addView(Tier);
+            tier.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+            tier.setTextColor(Color.BLACK);
+            tier.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            tiers.addView(tier);
 
             // side bar
             LinearLayout side=(LinearLayout) returnFragView.findViewById(R.id.side_bar);
@@ -203,7 +202,7 @@ public class MainActivityFragmentSpell extends Fragment {
                     scroll_tier.post(new Runnable() {
                         @Override
                         public void run() {
-                            scroll_tier.scrollTo(0, Tier.getTop());
+                            scroll_tier.scrollTo(0, tier.getTop());
                         }
                     });
                 }
@@ -246,11 +245,14 @@ public class MainActivityFragmentSpell extends Fragment {
 
             side.addView(side_txt);
 
+            SpellList spellToDisplayRankList= listAllSpell.getNormalSpells().filterByRank(i).filterDisplayable();
+            if(pj.getID().equalsIgnoreCase("")){
+                spellToDisplayRankList=BuildPreparedSpellList.getInstance(getContext()).getPreparedSpellList().filterByRank(i).filterDisplayable();
+            }
 
-            SpellList rank_list= listAllSpell.getNormalSpells().filterByRank(i).filterDisplayable();
-            if (rank_list.size()==0){ continue;}
+            if (spellToDisplayRankList.size()==0){ continue;}
 
-            for(final Spell spell : rank_list.asList()){
+            for(final Spell spell : spellToDisplayRankList.asList()){
                 LinearLayout spellLine = new LinearLayout(getContext()); spellLine.setGravity(Gravity.CENTER_VERTICAL);
                 spellLine.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -310,7 +312,7 @@ public class MainActivityFragmentSpell extends Fragment {
                     mythLine.addView(img);
                     spellLine.addView(mythLine);
                 }
-                Tiers.addView(spellLine);
+                tiers.addView(spellLine);
             }
         }
     }
@@ -487,7 +489,11 @@ public class MainActivityFragmentSpell extends Fragment {
                 selectedSpells.add(subSpellN);
             }
         } else {
-            selectedSpells.add(new Spell(spell));
+            if(pj.getID().equalsIgnoreCase("")){
+                selectedSpells.add(spell); //pour wedge les sort sont enlevé directement
+            }else {
+                selectedSpells.add(new Spell(spell));  //pour halda on a x instance du meme sort qui sont possiible sans compter
+            }
         }
         currentSelectionDisplay(getContext());
     }

@@ -1,16 +1,7 @@
 package stellarnear.wedge_companion.Spells;
 
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Color;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -18,19 +9,11 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import stellarnear.wedge_companion.Activities.MainActivity;
-import stellarnear.wedge_companion.CustomAlertDialog;
-import stellarnear.wedge_companion.Perso.Perso;
-import stellarnear.wedge_companion.Perso.PersoManager;
-import stellarnear.wedge_companion.Perso.Resource;
 import stellarnear.wedge_companion.PreparationSpellsAlertDialog;
-import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.TinyDB;
 import stellarnear.wedge_companion.Tools;
 
@@ -39,9 +22,7 @@ public class BuildPreparedSpellList extends AppCompatActivity {
 
     private static BuildPreparedSpellList instanceWedge=null;
 
-
-    private List<String> listIDsSpellsPrepared=new ArrayList<>();
-    public SpellList allPreparedSpells = null;
+    public SpellList preparedSpells = null;
     public SpellList allSpells = null;
 
     private Tools tools=new Tools();
@@ -116,35 +97,34 @@ public class BuildPreparedSpellList extends AppCompatActivity {
 
     }
 
-    public SpellList getSpellList(){
-        if(allPreparedSpells==null){
-            buildPreparedList();
+    public SpellList getPreparedSpellList(){
+        if(preparedSpells ==null){
+            loadFromSavePreparedList();
         }
-        return allPreparedSpells;
+        return preparedSpells;
     } //pas besoin de clonner la liste car on clone apres le spell
 
-    private void buildPreparedList() {
-        List<String> listIDs= myDB.getPreparedSpellsListIDs("localSavePreparedSpellsIDs");
-        allPreparedSpells=new SpellList();
-        for(String id : listIDs){
-            allPreparedSpells.add(new Spell(allSpells.getNormalSpellFromID(id)));
-        }
+    private void loadFromSavePreparedList() {
+        preparedSpells= myDB.getSpellList("localSavePreparedSpells");
     }
 
-    public void removeSpellFromPreparedList(Spell spellToRemove){
-        allPreparedSpells.remove(spellToRemove);
-        for(String spellId:listIDsSpellsPrepared){
-            if(spellId.equalsIgnoreCase(spellToRemove.getID())){
-                listIDsSpellsPrepared.remove(spellId);
-                break; //on break pour pas remove si on a plusieur fois le meme sort préparé
+    public void removePreparedSpell(Spell spell){
+        if(spell.isBinded()){
+            for(Spell spellSearchSub : preparedSpells.asList()){
+                if(spellSearchSub.getID().equalsIgnoreCase(spell.getID().replace("_sub",""))){
+                    preparedSpells.remove(spellSearchSub);
+                    break;
+                }
             }
+
+        } else {
+            preparedSpells.remove(spell);
         }
         savePreparedList();
     }
 
-
     private void savePreparedList(){
-        myDB.putPreparedSpellsListIDs("localSavePreparedSpellsIDs",listIDsSpellsPrepared);
+        myDB.putSpellList("localSavePreparedSpells",preparedSpells);
     }
 
 
@@ -158,11 +138,21 @@ public class BuildPreparedSpellList extends AppCompatActivity {
         }
     }
 
-
-
     public PreparationSpellsAlertDialog makePopupSelectSpellsToPrepare(final Context mC) {
-        PreparationSpellsAlertDialog selectSpellPopup = new PreparationSpellsAlertDialog(mC);
+        this.preparedSpells=new SpellList();
+        PreparationSpellsAlertDialog selectSpellPopup = new PreparationSpellsAlertDialog(mC, this);
         return selectSpellPopup;
     }
 
+    public void saveList() {
+        savePreparedList();
+    }
+
+    public SpellList getAllSpells() {
+        return allSpells;
+    }
+
+    public SpellList getPreparedSpells() {
+        return preparedSpells;
+    }
 }

@@ -80,7 +80,7 @@ public class PrefSleepScreenFragment extends Preference {
     private void sleep() {
         final Tools tools = new Tools();
         tools.customToast(mC, "Fais de beaux rêves !", "center");
-        int time = 2000; // in milliseconds
+        int time = 1000; // in milliseconds
         Handler h = new Handler();
         h.postDelayed(new Runnable() {
             @Override
@@ -113,7 +113,7 @@ public class PrefSleepScreenFragment extends Preference {
     private void halfSleep() {
         final Tools tools = new Tools();
         tools.customToast(mC, "Fais de beaux rêves !", "center");
-        int time = 2000; // in milliseconds
+        int time = 1000; // in milliseconds
         Handler h = new Handler();
         h.postDelayed(new Runnable() {
             @Override

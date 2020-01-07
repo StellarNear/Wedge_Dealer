@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Tools;
@@ -355,14 +356,8 @@ public class Spell {
         return bindedParent;
     }
 
-    public void cast(Context mC){
+    public void cast(){
         cast.cast();
-        if(metaList.metaIdIsActive("meta_echo")){
-            EchoList.getInstance(mC).addEcho(this,mC);
-        }
-        if(metaList.metaIdIsActive("meta_guardian")){
-            GuardianList.getInstance(mC).addGuardian(this,mC);
-        }
     }
 
     public void setFailed(){

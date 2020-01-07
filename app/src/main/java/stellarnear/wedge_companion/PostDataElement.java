@@ -172,13 +172,17 @@ public class PostDataElement {
         SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.FRANCE);
         this.date=formater.format(new Date());
 
-        this.typeEvent="Lancement sort "+spell.getName() +" (rang:"+new CalculationSpell().currentRank(spell)+")";
+        this.typeEvent="Lancement sort "+spell.getName() +" (rang de base:"+spell.getRank()+")";
 
         if(spell.getMetaList().hasAnyMetaActive()){
             this.detail="Métamagies:";
+            int nRank=0;
             for(Metamagic meta : spell.getMetaList().getAllActivesMetas().asList()){
                 this.detail+=meta.getName()+"(+"+meta.getUprank()*meta.getnCast()+")";
+                nRank+=meta.getnCast()*meta.getUprank();
             }
+
+            this.typeEvent+=" (+"+nRank+" rangs métamagies)";
         }
         if(spell.isFailed()||spell.contactFailed()){
             String failPostData="-";

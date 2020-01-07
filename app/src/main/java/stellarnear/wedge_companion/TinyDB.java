@@ -684,7 +684,7 @@ public class TinyDB {
         return objects;
     }
 
-    public void putListEchoSpells(String key, SpellList echoList) {
+    public void putSpellList(String key, SpellList echoList) {
         checkForNullKey(key);
         Gson gson = new Gson();
         ArrayList<String> objStrings = new ArrayList<String>();
@@ -694,7 +694,7 @@ public class TinyDB {
         putListString(key, objStrings);
     }
 
-    public SpellList getListEchoSpells(String key) {
+    public SpellList getSpellList(String key) {
         Gson gson = new Gson();
         ArrayList<String> objStrings = getListString(key);
         SpellList objects = new SpellList();
@@ -726,20 +726,4 @@ public class TinyDB {
         return objects;
     }
 
-
-
-    public List<String> getPreparedSpellsListIDs(String key) {
-        ArrayList<String> objStrings = getListString(key);
-        List<String> objects = new ArrayList<>();
-        for (String jObjString : objStrings) {
-            objects.add(jObjString);
-        }
-        return objects;
-    }
-
-    public void putPreparedSpellsListIDs(String key, List<String> objArray) {
-        checkForNullKey(key);
-        ArrayList<String> objStrings = new ArrayList<String>(objArray);
-        putListString(key, objStrings);
-    }
 }

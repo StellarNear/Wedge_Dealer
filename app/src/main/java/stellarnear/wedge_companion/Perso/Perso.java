@@ -459,14 +459,25 @@ public class Perso {
 
     // actions
 
-    public void castSpell(Spell spell,Context context) {
+    public void castSpell(Spell spell) {
         if (!spell.isCast()){
-            spell.cast(context);
+            spell.cast();
             int currentRankSpell=new CalculationSpell().currentRank(spell);
             if(currentRankSpell>0) {
                 allResources.castSpell(currentRankSpell);
             }
             new PostData(mC,new PostDataElement(spell));
+
+            if(pjID.equalsIgnoreCase("")){
+                BuildPreparedSpellList.getInstance(mC).removePreparedSpell(spell);
+            } else {
+                if(spell.getMetaList().metaIdIsActive("meta_echo")){
+                    EchoList.getInstance(mC).addEcho(spell);
+                }
+                if(spell.getMetaList().metaIdIsActive("meta_guardian")){
+                    GuardianList.getInstance(mC).addGuardian(spell);
+                }
+            }
         }
     }
 
@@ -480,8 +491,8 @@ public class Perso {
     }
 
     public void sleep() {
-        EchoList.getInstance(mC).resetEcho(mC);
-        GuardianList.getInstance(mC).resetGuardian(mC);
+        EchoList.getInstance(mC).resetEcho();
+        GuardianList.getInstance(mC).resetGuardian();
         allResources.resetCurrent();
         commonSleep();
     }
