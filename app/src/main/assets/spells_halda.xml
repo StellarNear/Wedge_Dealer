@@ -960,7 +960,7 @@ Mais le personnage peut également faire une requête particulièrement importan
         <duration>instant</duration>
         <compo>V,G</compo>
         <rank>9</rank>
-        <type>util</type>
+        <type>dmg</type>
     </spell>
 
 

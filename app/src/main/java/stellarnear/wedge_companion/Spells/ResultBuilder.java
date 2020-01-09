@@ -154,7 +154,7 @@ public class ResultBuilder {
         if(spell.isHighscore(sumDmg,mC)){
             Tools tools = new Tools();
             tools.playVideo(mA,mC,"/raw/explosion");
-            tools.customToast(mC, String.valueOf(sumDmg) + " dégats !\nC'est un nouveau record !", "center");
+            tools.customToast(mC, String.valueOf(sumDmg) + " !\nC'est un nouveau record !", "center");
         }
     }
 

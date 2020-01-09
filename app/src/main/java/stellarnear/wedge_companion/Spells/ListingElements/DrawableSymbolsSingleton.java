@@ -22,6 +22,8 @@ public class DrawableSymbolsSingleton {
     private Drawable buffSymbol;
     private Drawable combatBuffSymbol;
     private Drawable healSymbol;
+    private Drawable dmgSymbol;
+    private Drawable debuffSymbol;
 
     private Drawable contactRange;
     private Drawable shortRange;
@@ -35,6 +37,8 @@ public class DrawableSymbolsSingleton {
         buffSymbol=tools.resize(mC, R.drawable.ic_buff_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
         combatBuffSymbol=tools.resize(mC, R.drawable.ic_combat_buff_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
         healSymbol=tools.resize(mC, R.drawable.ic_heal_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
+        dmgSymbol=tools.resize(mC, R.drawable.ic_dmg_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
+        debuffSymbol=tools.resize(mC, R.drawable.ic_debuff_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
 
         contactRange=tools.resize(mC, R.drawable.ic_contact_range_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
         shortRange=tools.resize(mC, R.drawable.ic_short_range_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
@@ -62,6 +66,14 @@ public class DrawableSymbolsSingleton {
         return healSymbol;
     }
 
+    public Drawable getDebuffSymbol() {
+        return debuffSymbol;
+    }
+
+    public Drawable getDmgSymbol() {
+        return dmgSymbol;
+    }
+
     public Drawable getContactRange() {
         return contactRange;
     }
@@ -77,4 +89,6 @@ public class DrawableSymbolsSingleton {
     public Drawable getLongRange() {
         return longRange;
     }
+
+
 }

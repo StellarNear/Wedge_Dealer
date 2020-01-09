@@ -34,7 +34,7 @@ public class FormCalculationSpell {
     }
 
     public int getlevel(){
-        return pj.getAbilityScore("ability_lvl");
+        return pj.getCasterLevel();
     }
 
     public Double range(FormPower spell) {
@@ -44,7 +44,7 @@ public class FormCalculationSpell {
         Double distDouble =-1.0;
         int indexRange = rangesLvl.indexOf(range);
         if (indexRange>=0) {
-            Integer lvl = pj.getAbilityScore("ability_lvl");
+            Integer lvl = getlevel();
             if(indexRange>=rangesLvl.size()){indexRange=rangesLvl.size()-1;}
             switch(rangesLvl.get(indexRange)) {
                 case ("contact"):

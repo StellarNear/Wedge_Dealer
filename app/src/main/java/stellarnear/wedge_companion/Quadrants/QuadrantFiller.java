@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -261,21 +263,41 @@ public class QuadrantFiller {
     }
 
     private void setListner(View text,final Ability abi) {
-        text.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TestAlertDialog testAlertDialog = new TestAlertDialog(mA, mC, abi);
-                testAlertDialog.setRefreshEventListener(new TestAlertDialog.OnRefreshEventListener() {
-                    @Override
-                    public void onEvent() {
-                        buildAllMini();
+        if(abi.getId().equalsIgnoreCase("ability_lvl")){
+            text.setOnClickListener( new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String toast = "Niveau global : "+pj.getAbilityScore("ability_lvl");
+                    if(pj.getID().equalsIgnoreCase("") || pj.getID().equalsIgnoreCase("halda")){
+                        toast+="\nLanceur de sort : "+pj.getCasterLevel();
+                        if(pj.getID().equalsIgnoreCase("")){
+                            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(mC);
+                            int druidLvl = tools.toInt(preferences.getString("ability_lvl_druid", String.valueOf(mC.getResources().getInteger(R.integer.ability_lvl_druid_def))));
+                            int archerLvl = tools.toInt(preferences.getString("ability_lvl_archer", String.valueOf(mC.getResources().getInteger(R.integer.ability_lvl_archer_def))));
+                            toast+="\nDruide : "+druidLvl+" Archer-sylvestre : "+archerLvl;
+                        }
                     }
-                });
-            }
-        });
+                    tools.customToast(mC,toast,"center");
+                }
+            });
+        } else {
+            text.setOnClickListener( new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    TestAlertDialog testAlertDialog = new TestAlertDialog(mA, mC, abi);
+                    testAlertDialog.setRefreshEventListener(new TestAlertDialog.OnRefreshEventListener() {
+                        @Override
+                        public void onEvent() {
+                            buildAllMini();
+                        }
+                    });
+                }
+            });
+        }
+
     }
 
-    private void setListner(View text,final Resource res) { //constructeur ressoruce pour Healthbar et Forme ani
+    private void setListner(View text,final Resource res) { //constructeur ressoruce
         if(res.getId().equalsIgnoreCase("resource_hp")) {
             text.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -147,11 +147,19 @@ public class Perso {
     // getters avec calcul cross perso
 
     public int getCasterLevel() {
-        int val= getAbilityScore("ability_lvl");
+        int val;
+        if(pjID.equalsIgnoreCase("")){
+            int druidLvl=tools.toInt(prefs.getString( "ability_lvl_druid", String.valueOf(mC.getResources().getInteger(R.integer.ability_lvl_druid_def))));
+            int archerLvl=tools.toInt(prefs.getString( "ability_lvl_archer", String.valueOf(mC.getResources().getInteger(R.integer.ability_lvl_archer_def))));
+            val= druidLvl;
+            val+=(int)(0.75*archerLvl);
+        } else {
+            val= getAbilityScore("ability_lvl");
+        }
+
         String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
         val+=tools.toInt(prefs.getString("NLS_bonus"+extendID,String.valueOf(0)));
 
-        //todo pour wedge calculer avec le 3/4 archer sylv + full drudie
         return val;
     }
 

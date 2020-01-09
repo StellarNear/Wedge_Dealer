@@ -70,12 +70,6 @@ public class LinearLineSpell {
         spellName = new TextView(mC); spellName.setPadding(pxMaging,0,0,0);
         spellName.setText(spell.getName());
         spellName.setTextColor(Color.BLACK);
-        spellName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                checkbox.setChecked(!checkbox.isChecked());
-            }
-        });
         spellLine.addView(spellName);
 
         testMythic();
@@ -152,11 +146,17 @@ public class LinearLineSpell {
             case "util":
                 logo.setImageDrawable(drawableSymbolsSingleton.getUtilSymbol());
                 break;
+            case "dmg":
+                logo.setImageDrawable(drawableSymbolsSingleton.getDmgSymbol());
+                break;
+            case "debuff":
+                logo.setImageDrawable(drawableSymbolsSingleton.getDebuffSymbol());
+                break;
             default:
-                logo.setImageDrawable(mC.getDrawable(R.drawable.mire_test));
+                logo=null;
                 break;
         }
-        spellLine.addView(logo);
+        if(logo!=null){spellLine.addView(logo);}
 
         ImageView range = new ImageView(mC);
         switch (spell.getRange()){
@@ -172,8 +172,11 @@ public class LinearLineSpell {
             case "longue":
                 range.setImageDrawable(drawableSymbolsSingleton.getLongRange());
                 break;
+            default:
+                range=null;
+                break;
         }
-        spellLine.addView(range);
+        if(range!=null){spellLine.addView(range);}
 
         if(spell.isFromMystery()){
             ImageView logoMyst = new ImageView(mC);

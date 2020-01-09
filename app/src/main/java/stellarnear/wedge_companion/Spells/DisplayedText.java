@@ -77,14 +77,14 @@ public class DisplayedText {
         String dura=spell.getDuration();
 
         if(!dura.equalsIgnoreCase("permanente")){
-            Integer result= tools.toInt(dura.replaceAll("[^0-9?!]",""));
-            String duration_unit = dura.replaceAll("[0-9?!]","");
+            Double result= tools.toDouble(dura.replaceAll("[^.^0-9?!]",""));
+            String duration_unit = dura.replaceAll("[.0-9?!]","");
             if(dura.contains("/lvl")){
-                Integer lvl =  calculationSpell.casterLevel(spell);
+                Integer lvl =  calculationSpell.casterLevel();
                 result = result * lvl;
-                duration_unit = dura.replaceAll("/lvl","").replaceAll("[0-9?!]","");
+                duration_unit = dura.replaceAll("/lvl","").replaceAll("[.0-9?!]","");
             }
-            dura = result+duration_unit;
+            dura = result.intValue()+duration_unit;
             if(result>1){dura+="s";}
         }
         return dura;
@@ -97,7 +97,7 @@ public class DisplayedText {
         String unit="";
         if(valBase.contains("/lvl")){
             Double result= tools.toDouble(valBase.replaceAll("[^.^0-9?!]",""));
-            Integer lvl =  calculationSpell.casterLevel(spell);
+            Integer lvl =  calculationSpell.casterLevel();
             result = result * lvl;
             unit = valBase.replaceAll("/lvl","").replaceAll("[.0-9?!]","");
             valResult = result.intValue()+unit;

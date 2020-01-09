@@ -15,15 +15,19 @@ public class CalculationSpell {
 
     public int saveVal(Spell spell){
         int val=10;
-        val+= pj.getAbilityMod("ability_charisme");
+        if(pj.getID().equalsIgnoreCase("")){
+            val+= pj.getAbilityMod("ability_sagesse");
+        } else {
+            val+= pj.getAbilityMod("ability_charisme");
+        }
+
         val+=spell.getRank();
         return val;
     }
 
 
-    public int casterLevel(Spell spell){
-        int val= pj.getCasterLevel();
-        return val;
+    public int casterLevel(){
+        return pj.getCasterLevel();
     }
 
     public int nDice(Spell spell){
@@ -31,10 +35,10 @@ public class CalculationSpell {
         if(spell.getN_dice_per_lvl()==0.0){
             val = spell.getCap_dice();
         }else {
-            if ((casterLevel(spell) * spell.getN_dice_per_lvl() > spell.getCap_dice()) && (spell.getCap_dice() != 0) && !pj.getAllCapacities().capacityIsActive("capacity_revelation_improved_heal")) {
+            if ((casterLevel() * spell.getN_dice_per_lvl() > spell.getCap_dice()) && (spell.getCap_dice() != 0) && !pj.getAllCapacities().capacityIsActive("capacity_revelation_improved_heal")) {
                 val = spell.getCap_dice();
             } else {
-                val = (int) (casterLevel(spell) * spell.getN_dice_per_lvl());
+                val = (int) (casterLevel() * spell.getN_dice_per_lvl());
             }
         }
         if(spell.getMetaList().metaIdIsActive("meta_extend")){
@@ -80,7 +84,7 @@ public class CalculationSpell {
             indexRange+=spell.getMetaList().getMetaByID("meta_range").getnCast();
         }
         if (indexRange>=0) {
-            Integer lvl = casterLevel(spell);
+            Integer lvl = casterLevel();
             if(indexRange>=rangesLvl.size()){indexRange=rangesLvl.size()-1;}
             switch(rangesLvl.get(indexRange)) {
                 case ("contact"):
@@ -160,12 +164,14 @@ public class CalculationSpell {
     public int getFlatDmg(Spell spell) {
         int val=0;
         if(spell.getFlat_dmg().contains("/lvl")){
-            int valFlatLeveled=tools.toInt(spell.getFlat_dmg().split("/lvl")[0])*pj.getAbilityScore("ability_lvl");
-            if (valFlatLeveled>spell.getFlat_cap() && !pj.getAllCapacities().capacityIsActive("capacity_revelation_improved_heal")){
-                valFlatLeveled=spell.getFlat_cap();
+            Double valFlatLeveled=tools.toDouble(spell.getFlat_dmg().split("/lvl")[0])*casterLevel();
+            if (valFlatLeveled>spell.getFlat_cap() && spell.getFlat_cap()>0 && !pj.getAllCapacities().capacityIsActive("capacity_revelation_improved_heal")){
+                valFlatLeveled=1.0*spell.getFlat_cap();
             }
-            val=valFlatLeveled;
-        } else {
+            val=valFlatLeveled.intValue();
+        } else if (spell.getFlat_dmg().equalsIgnoreCase("for")) {
+            val=pj.getAbilityMod("ability_force");
+        }  else {
             val=tools.toInt(spell.getFlat_dmg());
         }
         return val;

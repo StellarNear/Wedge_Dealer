@@ -119,6 +119,7 @@
         <type>advanced</type>
         <descr>Lorsque les personnages-joueurs viennent à bout d’obstacles, ils gagnent des points d’expérience et, lorsque ces points d’expérience s’accumulent, les PJs progressent en niveau et en puissance.</descr>
         <id>ability_lvl</id>
+        <testable>true</testable>
     </ability>
     <ability>
         <name>Vitesse de déplacement (m)</name>

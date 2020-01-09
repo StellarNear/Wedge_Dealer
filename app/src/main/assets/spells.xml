@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <records>
+
     <spell>
         <name>Assistance divine</name>
         <shortdescr>+1 sur un jet d’attaque, un jet de sauvegarde ou un test de compétence.</shortdescr>
@@ -50,6 +51,33 @@
         <rank>0</rank>
         <type>util</type>
     </spell>
+
+    <spell>
+        <name>Étincelles</name>
+        <shortdescr>Met le feu à des objets inflammables.</shortdescr>
+        <descr>Le personnage peut embraser un objet inflammable de taille infime. Ce sort fonctionne comme un silex et de l'amadou sauf que l'on peut l'utiliser quelles que soient les conditions météorologiques et qu'il met moins longtemps à enflammer l'objet.</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V</compo>
+        <rank>0</rank>
+        <type>util</type>
+    </spell>
+
+    <spell>
+        <name>Illumination</name>
+        <shortdescr>Éblouit la cible (-1 aux jets d’attaque).</shortdescr>
+        <descr>Ce sort élémentaire crée une petite explosion de lumière. Si celle-ci se produit devant une seule créature, cette dernière doit réussir un jet de Vigueur pour éviter de se retrouver éblouie pendant une minute. Les créatures aveugles, ainsi que celles qui sont déjà éblouies, ne sont pas affectées par illumination.</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V</compo>
+        <save_type>vig</save_type>
+        <rm>true</rm>
+        <rank>0</rank>
+        <type>util</type>
+    </spell>
+
 
     <spell>
         <name>Lecture de la magie</name>
@@ -114,6 +142,650 @@
     </spell>
 
     <spell>
+        <name>Stimulant</name>
+        <shortdescr>Confère 1pv temporaire à la cible.</shortdescr>
+        <descr>Confère 1pv temporaire à la cible.</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>1min</duration>
+        <compo>V,G</compo>
+        <rank>0</rank>
+        <type>heal</type>
+    </spell>
+
+    <spell>
+        <name>Apaisement des animaux</name>
+        <shortdescr>Calme (2d4 + niveau) DV d’animaux.</shortdescr>
+        <descr>Ce sort calme les animaux, les rendant dociles et inoffensifs. Seuls les animaux ordinaires (ayant 1 ou 2 en Intelligence) peuvent être affectés. Tous doivent être de la même espèce et se trouver dans une sphère de 9 m de rayon. Le nombre de dés de vie affectés est égal à 2d4 + niveau de lanceur de sorts. Les créatures affectées restent là où elles se trouvent et ne cherchent ni à attaquer ni à s’enfuir, mais ne sont pas sans défense et réagissent si on les attaque. La moindre menace met immédiatement un terme à l’effet de l’enchantement.</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>1min</duration>
+        <compo>V,G</compo>
+        <rank>1</rank>
+        <type>util</type>
+    </spell>
+
+    <spell>
+        <name>Appel d'un animal</name>
+        <shortdescr>Fait venir un animal au personnage.</shortdescr>
+        <descr>Ce sort appelle l'animal sauvage du type choisi par le personnage le plus proche (à condition que son FP soit égal ou inférieur au niveau de lanceur de sorts du personnage). L'animal se dirige vers le personnage par ses propres moyens, le temps qu'il met pour arriver dépend donc de la distance à laquelle il se trouve lors de l'incantation du sort. S'il n'y a pas d'animal du type voulu capable d'atteindre le personnage avant la fin de la durée du sort, il en est informé mais le sort est tout de même perdu. Ce sort est plus efficace si le personnage a une certaine connaissance de la faune locale et le MJ peut autoriser un test de Connaissances (nature) DD 15 pour découvrir quels types d'animaux se trouvent dans la région. Quand l'animal arrive, il s'approche à 1,50 m (1 c) du personnage et reste à côté de lui pendant toute la durée du sort. Au départ, il est indifférent et son attitude varie en fonction des circonstances et des interactions. À part cette attitude de départ, ce sort ne permet pas d'influer sur la bête ni de communiquer avec elle, bien que le personnage puisse utiliser d'autres sorts ou pouvoirs pour ce faire. Une fois le sort arrivé à expiration, l'animal se comporte comme à son habitude. La plupart des animaux s'éloignent mais un prédateur hostile peut attaquer, surtout s'il est affamé ou si on le provoque.</descr>
+        <range>illimitée</range>
+        <cast_time>simple</cast_time>
+        <duration>1h/lvl</duration>
+        <compo>V,G</compo>
+        <rm>false</rm>
+        <save_type>none</save_type>
+        <rank>1</rank>
+        <type>util</type>
+    </spell>
+
+    <spell>
+        <name>Aspect du faucon</name>
+        <shortdescr>Accorde un bonus aux tests de Perception et aux attaques à distance.</shortdescr>
+        <descr>Le personnage prend l'aspect d'un faucon. Ses yeux s'élargissent et ressemblent à ceux d'un prédateur et des plumes lui poussent des deux côtés de la tête. Il gagne un bonus de compétence de +3 aux tests de Perception, un bonus de compétence de +1 aux attaques à distance et le multiplicateur de coup critique de son arc ou de son arbalète passe à 19-20/x3. Cet effet ne se cumule pas avec tout autre effet qui augmente la plage de critiques d'une arme comme le don Science du critique ou une arme acérée.</descr>
+        <range>personnelle</range>
+        <cast_time>simple</cast_time>
+        <duration>1min/lvl</duration>
+        <compo>V,G</compo>
+        <rank>1</rank>
+        <type>combatbuff</type>
+    </spell>
+
+
+    <spell>
+        <name>Baie nourricière</name>
+        <shortdescr>2d4 baies rendant chacune 1 pv (max. 8 pv/24 heures).</shortdescr>
+        <descr>En lançant ce sort sur des baies fraîchement cueillies, 2d4 d’entre elles deviennent magiques. Le personnage parvient à les différencier instantanément, comme tout autre druide de niveau 3 ou plus. Chaque baie nourrit autant qu’un repas normal (pour une créature de taille M) et quiconque en mange une récupère également 1 point de vie. On ne peut regagner de la sorte plus de 8 points de vie par tranche de vingt-quatre heures.</descr>      <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>1j/lvl</duration>
+        <dice_type>4</dice_type>
+        <cap_dice>2</cap_dice>
+        <dmg_type>heal</dmg_type>
+        <compo>V,G</compo>
+        <rank>1</rank>
+        <type>heal</type>
+    </spell>
+
+    <spell>
+        <name>Bouclier d'onde</name>
+        <shortdescr>L’eau amortit une attaque ou un effet de feu.</shortdescr>
+        <descr>Le personnage crée un violent torrent d’eau qui dessine grossièrement les contours d’un bouclier. L’eau protège le personnage contre une attaque physique ou une attaque de feu, lui accordant une RD/— et une résistance au feu égale à la moitié de son niveau de lanceur (1 au minimum) contre cette attaque. Une fois que le sort a réduit les dégâts d’une attaque contre le personnage, il est déchargé.</descr>
+        <range>personnelle</range>
+        <cast_time>simple</cast_time>
+        <duration>1round</duration>
+        <compo>V</compo>
+        <rank>1</rank>
+        <type>util</type>
+    </spell>
+
+    <spell>
+        <name>Brume de dissimulation</name>
+        <shortdescr>Le PJ est entouré de brouillard.</shortdescr>
+        <descr>D’épaisses volutes de brume s’élèvent autour du personnage à la fin de l’incantation. La nappe reste stationnaire une fois composée, limitant le champ de vision (y compris la vision dans le noir) à 1,50 m. Les créatures se trouvant à 1,50 m ou moins bénéficient d’un camouflage (20 % de chances que les attaques les ratent) en combat. Au-delà, le camouflage devient total (50 % de chances que les attaques les ratent, et leurs adversaires ne peuvent pas les repérer à vue). Un vent modéré (plus de 15 km/h), comme celui produit par bourrasque, disperse la nappe en 4 rounds. En cas de vent important (plus de 30 km/h), elle est dispersée en 1 round. Un sort tel que boule de feu ou colonne de feu fait disparaître la brume dans sa zone d’effet. Mur de feu la disperse dans toute la zone où il inflige des dégâts. Ce sort ne fonctionne pas sous l’eau.</descr>
+        <range>6m</range>
+        <cast_time>simple</cast_time>
+        <duration>1min/lvl</duration>
+        <compo>V,G</compo>
+        <rank>1</rank>
+        <type>buff</type>
+    </spell>
+
+    <spell>
+        <name>Bulle d’air</name>
+        <shortdescr>Crée une petite poche d’air autour de la tête du personnage ou autour d’un objet.</shortdescr>
+        <descr>Bulle d’air crée une petite poche d’air respirable qui entoure la tête de la créature touchée ou l’objet. Elle lui permet de respirer sous l’eau ou dans un environnement dépourvu d’air ou de protéger un objet des dégâts de l’eau. Dans ces conditions, on peut charger une arme à feu et tirer avec (si la poudre noire vient d’une corne à poudre, d’une cartouche ou d’un autre emballage hermétique). Quand un personnage tire sous l’eau avec une arme ainsi protégée, le coup subit tout de même le malus habituel de -2 par tranche de 1,50 m (1 c) entre la cible et le tireur, en plus des malus de distances classiques. Une arme à feu explose normalement si elle se trouve sous l’eau et entourée d’une bulle d’air.</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>1min/lvl</duration>
+        <compo>G,M</compo>
+        <rank>1</rank>
+        <type>buff</type>
+    </spell>
+
+    <spell>
+        <name>Caresse de la mer</name>
+        <shortdescr>Vitesse de nage de 9 m. 10 au test garanti.</shortdescr>
+        <descr>Le personnage fait pousser des filaments entre les doigts et les orteils de sa cible. Ils s'épaississent jusqu'à former des palmes qui lui accordent une vitesse de nage de 9 mètres (6 c) et un bonus de Natation associé de +8 ainsi que la possibilité de faire 10 même si elle est distraite ou en danger. La cible peut également utiliser l'option de course tant qu'elle nage en ligne droite. Ce sort fusionne les bottes et les gants que porte éventuellement la cible avec les palmes (mais les objets magiques à effet continu fonctionnent tout de même). Ce sort ne permet pas de respirer sous l'eau.</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>1min/lvl</duration>
+        <compo>V,G,M</compo>
+        <rank>1</rank>
+        <type>buff</type>
+    </spell>
+
+    <spell>
+        <name>Charge de fourmi</name>
+        <shortdescr>Triple la capacité de charge d'une créature.</shortdescr>
+        <descr>Triple la capacité de charge de la créature (voir table : "Capacité de charge"). Ceci n'affecte pas la Force de la créature, uniquement la quantité de matériel qu'elle peut transporter quand elle bénéficie des effets de ce sort. Le sort n'affecte pas non plus l'encombrement dû à l'armure. Si la créature porte une armure, elle subit toujours les malus appropriés, quel que soit le poids que le sort lui permet de transporter.</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>2h/lvl</duration>
+        <compo>V,G,M</compo>
+        <rank>1</rank>
+        <type>buff</type>
+    </spell>
+
+    <spell>
+        <name>Charme-animal</name>
+        <shortdescr>Un animal devient l’ami du PJ.</shortdescr>
+        <descr>Charme-animal ne s’utilise que sur les animaux. La créature affectée considère le lanceur de sorts comme son meilleur ami. Néanmoins si elle est menacée par le personnage ou ses compagnons, elle bénéficie d’un bonus de +5 au jet de sauvegarde. L’enchantement ne permet pas de diriger l’animal charmé comme une marionnette, mais celui-ci perçoit toutefois tout ce que dit et fait le personnage de la manière la plus favorable qui soit. Le personnage peut essayer de lui donner des instructions, mais il lui faut réussir un test de Charisme opposé pour convaincre le sujet de faire quelque chose qui lui déplaît (une seule chance). Un animal charmé n’obéit jamais à un ordre suicidaire, mais on peut le convaincre que le risque vaut le coup. Tout acte du personnage ou de ses alliés menaçant le sujet met immédiatement un terme au sort. Notez qu’il faut parler la langue de l'animal charmé (ou être fort en mime) pour se faire comprendre.</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>1h/lvl</duration>
+        <compo>V,G</compo>
+        <rm>true</rm>
+        <save_type>vol[annule]</save_type>
+        <rank>1</rank>
+        <type>util</type>
+    </spell>
+
+    <spell>
+        <name>Communication avec les animaux</name>
+        <shortdescr>Permet de communiquer avec les animaux.</shortdescr>
+        <descr>Ce sort permet de comprendre les animaux et de communiquer avec eux. Le personnage peut les interroger et comprendre leurs réponses, même si le sort ne les rend pas plus amicaux qu’ils le seraient normalement. Les animaux prudents et sournois sont souvent évasifs dans leurs réponses, alors que les plus benêts ont tendance à dire n’importe quoi. Le personnage peut même obtenir de l’animal qu’il lui rende service si ce dernier se montre amical envers lui.</descr>
+        <range>personnelle</range>
+        <cast_time>simple</cast_time>
+        <duration>1min/lvl</duration>
+        <compo>V,G</compo>
+        <rank>1</rank>
+        <type>buff</type>
+    </spell>
+
+    <spell>
+        <name>Conscience accrue</name>
+        <shortdescr>La mémoire et la capacité du personnage à traiter les informations sont améliorées.</shortdescr>
+        <descr>Le personnage entre dans un état de conscience aiguë qui lui permet de repérer plus de choses de son environnement et de se rappeler les informations sans effort. Il bénéficie d’un bonus de compétence de +2 aux tests de Perception et à tous les tests de Connaissances auxquelles il est formé. Si ce sort est actif alors que le personnage doit faire un test d’initiative, il peut instantanément dissiper le sort pour bénéficier d’un bonus de +4 sur ce test.</descr>
+        <range>personnelle</range>
+        <cast_time>simple</cast_time>
+        <duration>10min/lvl</duration>
+        <compo>V,M</compo>
+        <rank>1</rank>
+        <type>buff</type>
+    </spell>
+
+
+    <spell>
+        <name>Connaissances du Borgne</name>
+        <shortdescr>Le personnage gagne un bonus de +4 aux tests de Survie et peut suivre une piste alors qu’il se déplace au maximum de sa vitesse.</shortdescr>
+        <descr>Tant que le personnage est sous l’effet de ce sort, il endosse le manteau du chasseur et profite de l’intuition des esprits de la nature. Il gagne un bonus de sainteté de +4 aux tests de Survie pour toute la durée du sort et n’est pas obligé de se déplacer à la moitié de sa vitesse quand il se déplace dans la nature ou qu’il suit une piste.</descr>
+        <range>personnelle</range>
+        <cast_time>simple</cast_time>
+        <duration>1h/lvl</duration>
+        <compo>V,G</compo>
+        <rank>1</rank>
+        <type>buff</type>
+    </spell>
+
+    <spell>
+        <name>Convocation d'alliés mineur</name>
+        <shortdescr>Convoque 1d3 animaux TP.</shortdescr>
+        <descr>Ce sort fonctionne comme convocation d’alliés naturels I mais le personnage ne peut invoquer que 1d3 animaux TP ou plus petits comme les chauves-souris, les lézards, les singes, les rats, les corbeaux, les crapauds ou les belettes. Les animaux invoqués doivent tous être de la même sorte.</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>1round/lvl</duration>
+        <compo>V,G</compo>
+        <rank>1</rank>
+    </spell>
+
+    <spell>
+        <name>Convocation d'alliés naturels I</name>
+        <shortdescr>Appelle une créature luttant pour le PJ.</shortdescr>
+        <descr>Ce sort invoque une créature naturelle (en général un animal, une fée, une créature magique, un Extérieur de sous-type élémentaire ou un géant) qui donne le meilleur d’elle-même pour combattre les ennemis du personnage. Elle se manifeste là où le personnage le décide et agit immédiatement, lors du tour du personnage. Si le druide (ou le rôdeur) est capable de communiquer avec elle, il peut lui dire qui attaquer, qui épargner, et même lui donner d’autres instructions. Un monstre convoqué ne peut à son tour convoquer d’autres créatures. Il ne peut pas davantage user de ses facultés de téléportation ou de déplacement planaire. Une créature ne peut pas être convoquée dans un environnement qui ne saurait assurer sa survie. Les créatures convoquées à l’aide de ce sort ne peuvent utiliser de sort ni de pouvoir magique qui imitent des sorts nécessitant des composantes matérielles onéreuses (comme un souhait). Le sort invoque l’une des créatures de la liste de niveau 1 sur la table listes de créatures. Le personnage choisit la créature convoquée et peut en changer chaque fois qu’il lance le sort. Sauf indication contraire, toutes les créatures sont d’alignement Neutre. Quand le personnage utilise ce sort pour convoquer des créatures alignées ou de sous-type élémentaire, le sort est de ce type. Toutes les créatures convoquées à l’aide de ce sort sont du même alignement que le personnage, quel que soit leur alignement habituel. Le sort de convocation est donc toujours du même type que l’alignement du personnage.</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>1round/lvl</duration>
+        <compo>V,G</compo>
+        <rank>1</rank>
+    </spell>
+
+    <spell>
+        <name>Dard de nausée</name>
+        <shortdescr>Dard empoisonné qui inflige 1d2 points de dégâts et rend la cible fiévreuse.</shortdescr>
+        <descr>Le personnage crache un dard empoisonné de la taille d’une plume sur une créature à portée, comme s’il avait tiré une fléchette avec une sarbacane. Le personnage doit réussir une attaque à distance pour toucher sa cible. Le dard inflige 1d2 points de dégâts perforants et de poison à la cible, la rendant nauséeuse pendant 1 round à moins qu’elle ne réussisse un jet de Vigueur.</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>G</compo>
+        <rm>false</rm>
+        <save_type>vig[partiel]</save_type>
+        <dmg_type>acid</dmg_type>
+        <contact>distance</contact>
+        <dice_type>2</dice_type>
+        <cap_dice>1</cap_dice>
+        <rank>1</rank>
+        <type>dmg</type>
+    </spell>
+
+    <spell>
+        <name>Démarche aérienne</name>
+        <shortdescr>Ignore les malus de mouvement en terrain difficile.</shortdescr>
+        <descr>Pendant toute la durée du sort, le sujet ignore les effets négatifs dus au terrain difficile et peut même faire un pas de 1,50 mètre (1 c) sur ce type de terrain.</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>10min/lvl</duration>
+        <compo>V,G</compo>
+        <rank>1</rank>
+        <type>buff</type>
+    </spell>
+
+
+    <spell>
+        <name>Détection de la faune ou de la flore</name>
+        <shortdescr>Détecte les espèces de plantes et d’animaux.</shortdescr>
+        <descr>Grâce à détection de la faune ou de la flore, le lanceur de sorts peut détecter un type de végétal ou d’animal spécifique dans un cône en face de lui. Le personnage doit penser à la plante ou à la créature qu’il recherche au moment de l’incantation puis peut en changer par la suite (à raison d’une fois par round). Les informations que le sort révèle dépendent du temps que le personnage passe à étudier la zone et à se concentrer sur un végétal ou un animal spécifique :
+
+            Premier round : présence ou absence du végétal ou de l’animal recherché dans la zone d’effet.
+
+            Deuxième round : nombre de plantes ou de créatures du type recherché dans la zone d’effet, ainsi que l’état de l’individu ou du spécimen le plus sain.
+
+            Troisième round : état de tous les végétaux ou animaux du type recherché présents dans la zone d’effet. Si l’un d’eux se trouve hors du champ de vision du lanceur de sort, le sort révèle la direction dans laquelle il se trouve mais pas la distance à laquelle il se situe.</descr>
+        <range>longue</range>
+        <cast_time>simple</cast_time>
+        <duration>10min/lvl</duration>
+        <compo>V,G</compo>
+        <rank>1</rank>
+        <type>util</type>
+    </spell>
+
+    <spell>
+        <name>Détection des aberrations</name>
+        <shortdescr>Révèle la présence des aberrations.</shortdescr>
+        <descr>Grâce à détection des aberrations, le lanceur de sorts peut détecter les créatures de type aberration dans un cône en face de lui. Le personnage doit penser à la créature de type aberration qu’il recherche au moment de l’incantation puis peut en changer par la suite (à raison d’une fois par round). Les informations que le sort révèle dépendent du temps que le personnage passe à étudier la zone et à se concentrer sur une créature de type aberration spécifique :
+
+            Premier round : présence ou absence de créatures de type aberration recherchées dans la zone d’effet.
+
+            Deuxième round : nombre de créatures de type aberration recherchées dans la zone d’effet, ainsi que l’état de l’individu ou du spécimen le plus sain.
+
+            Troisième round : état de toutes les créatures de type aberration recherchées présentes dans la zone d’effet. Si l’une d’elle se trouve hors du champ de vision du lanceur de sort, le sort révèle la direction dans laquelle elle se trouve mais pas la distance à laquelle elle se situe.</descr>
+        <range>longue</range>
+        <cast_time>simple</cast_time>
+        <duration>10min/lvl</duration>
+        <compo>V,G</compo>
+        <rank>1</rank>
+        <type>util</type>
+    </spell>
+
+    <spell>
+        <name>Détection des collets et des fosses</name>
+        <shortdescr>Détecte pièges naturels et primitifs.</shortdescr>
+        <descr>Grâce à détection des collets et des fosses, le lanceur de sorts peut repérer les fosses, les poids en équilibre prêts à tomber sur toute personne passant sous eux, les collets ainsi que les pièges mécaniques fabriqués à partir de matériaux naturels. Il ne permet pas de repérer les pièges complexes comme des trappes cachés par exemple. Il met en évidence certains dangers naturels comme les sables mouvants (qui entrent dans la catégorie des collets), les trous dans le sol (fosses) et les amas de rochers menaçant de tomber (poids en équilibre) mais il ne révèle cependant pas les autres situations potentiellement dangereuses. Le sort ne repère pas les pièges magiques (sauf ceux qui fonctionnent comme une fosse, un collet ou un poids en équilibre ; voir le sort de collet), ni les pièges mécaniques complexes, ni ceux qui ont été désamorcés ou rendus inactifs. Les informations révélées par le sort dépendent du temps que le personnage passe à étudier la zone :
+
+            Premier round : présence ou absence de pièges.
+
+            Deuxième round : nombre de pièges et l’emplacement de chacun d’eux. Si un piège se trouve hors du champ de vision du lanceur de sort, il apprend la direction dans laquelle il se trouve mais pas sa position exacte.
+
+            Chaque round supplémentaire : catégorie générale et mode de déclenchement d’un piège spécifique examiné attentivement par le lanceur de sort.
+
+            Le personnage peut pivoter sur lui-même pour examiner une nouvelle zone chaque round. Le sort fonctionne à travers les barrières si celles-ci ne sont pas trop épaisses : il est bloqué par 30 cm de pierre, 2,5 cm de métal, une mince feuille de plomb ou 90 cm de bois ou de terre.</descr>
+        <range>18m</range>
+        <cast_time>simple</cast_time>
+        <duration>10min/lvl</duration>
+        <compo>V,G</compo>
+        <rank>1</rank>
+        <type>util</type>
+    </spell>
+
+
+
+    <spell>
+        <name>Diagnostic</name>
+        <shortdescr>Détecte et identifie les maladies.</shortdescr>
+        <descr>Le personnage détermine si une créature, un objet ou une zone est porteur d’une maladie ou d’une infestation (y compris des moisissures, des mucus et autres dangers similaires) ou s’il y a des effets exceptionnels ou surnaturels qui provoquent des effets de fièvre ou de nausée. En cas de présence de maladie, le personnage sait de laquelle il s’agit et connaît ses effets. Si la cible est une créature, le personnage gagne un bonus de +4 aux tests de Premiers secours pour soigner la maladie. Le sort peut traverser de nombreuses barrières mais il est arrêté par 30 centimètres de pierre, 2,5 centimètres de métal ordinaire, une mince feuille de plomb ou 90 centimètres de bois ou de terre.</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V,G</compo>
+        <rank>1</rank>
+        <type>util</type>
+    </spell>
+
+    <spell>
+        <name>Dissipation de la fièvre</name>
+        <shortdescr>Supprime les conditions malade, nauséeux et fiévreux.</shortdescr>
+        <descr>Le personnage calme la maladie et la nausée de sa cible, ce qui lui donne un bonus de moral de +4 aux jets de sauvegarde contre la maladie, la nausée et la fièvre. Si la cible est déjà soumise à l’un de ces effets quand elle reçoit le sort, l’effet est supprimé pendant toute la durée du sort.</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>10min/lvl</duration>
+        <compo>V,G</compo>
+        <rank>1</rank>
+        <type>buff</type>
+    </spell>
+
+
+    <spell>
+        <name>Enchevêtrement</name>
+        <shortdescr>La végétation immobilise tout dans un rayon de 12 m.</shortdescr>
+        <descr>Les herbes, les plantes, les buissons et les arbres se déforment et s’entortillent autour des créatures qui se trouvent dans la zone d’effet ou qui y pénètrent. Les créatures qui ratent leur jet de sauvegarde sont enchevêtrées. Celles qui réussissent se déplacent normalement mais doivent faire un nouveau jet à la fin de leur tour. Les créatures qui pénètrent dans la zone doivent faire ce jet immédiatement. En cas d’échec, la créature ne peut plus se déplacer et reste enchevêtrée. Elle peut se libérer si elle réussit un test de Force ou d’Évasion, par une action de mouvement. Le DD du test est égal au DD du sort. Tant que le sort fait effet, la zone qu’il affecte est considérée comme un terrain difficile. Si les plantes locales sont couvertes d’épines, les créatures présentes dans la zone d’effet du sort reçoivent 1 point de dégâts à chaque fois qu’elles ratent leur jet de sauvegarde contre le sort ou ratent un test pour se libérer. On peut appliquer d’autres effets liés à la flore locale, à la discrétion du MJ.</descr>
+        <range>longue</range>
+        <cast_time>simple</cast_time>
+        <duration>1min/lvl</duration>
+        <compo>V,G</compo>
+        <rank>1</rank>
+        <save_type>ref[partiel]</save_type>
+        <type>debuff</type>
+    </spell>
+
+    <spell>
+        <name>Endurance aux énergies destructives</name>
+        <shortdescr>Protège des environnements chauds et froids.</shortdescr>
+        <descr>Une créature protégée par endurance aux énergies destructives ne souffre pas de la chaleur ou du froid lorsqu’elle se trouve dans un environnement extrême. Elle se sent à son aise par des températures allant de -45°C à +60°C et ne doit pas effectuer le moindre jet de Vigueur dans ces conditions. Son équipement bénéficie également de la même protection. Endurance aux énergies destructives n’offre aucune protection contre les dégâts de feu et de froid ni contre les autres dangers liés à l’environnement comme la fumée ou le manque d’air par exemple</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>24h</duration>
+        <compo>V,G</compo>
+        <rank>1</rank>
+        <type>buff</type>
+    </spell>
+
+
+    <spell>
+        <name>Excavation expéditive</name>
+        <shortdescr>Déplace 0,15 m (3) de terre.</shortdescr>
+        <descr>Le personnage peut faire une excavation et déplacer de la terre, de la poussière et du sable dans une zone équivalant à un cube de 1,50 mètre (1 c) de côté. Si le personnage est enterré, il peut dégager un cube de terre autour de lui, mais il ne peut pas utiliser ce sort pour creuser un tunnel. En plus de ces applications ordinaires, ce sort permet d'ouvrir une fosse de 1,50 mètre (1 c) sous les pieds d'une créature. Une créature de taille M ou plus petite tombe au fond à moins de réussir un jet de Réflexes. Dans ce cas, elle peut choisir d'atterrir sur ses pieds au fond de la fosse ou de bondir dans une case adjacente. Ce mouvement ne provoque pas d'attaque d'opportunité. Une créature peut sortir de la fosse à l'aide d'un test d'Escalade DD 5. Les créatures plus grandes peuvent ignorer toute fosse inférieure à leur taille.
+
+            La terre déblayée par le sort est distribuée de manière normale et inoffensive dans toute la zone d'effet du sort mais, quand le personnage creuse une fosse, il peut décider de faire jaillir une gerbe de gravats et de débris. Ce nuage de poussière offre un camouflage aux autres créatures qui se trouvent dans la zone affectée et dans les cases adjacentes pendant 1 round. Excavation expéditive n'a pas d'effet sur la roche solide ou sur les créatures de terre.</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>instat</duration>
+        <area>De la terre dans un cube de 1,50 m (1 c) de côté</area>
+        <compo>V,G,M</compo>
+        <rank>1</rank>
+        <type>util</type>
+    </spell>
+
+    <spell>
+        <name>Flammes</name>
+        <shortdescr>1d6 points de dégâts, +1/niveau, contact ou lancer.</shortdescr>
+        <descr>Des flammes aussi brillantes qu’une torche apparaissent dans la main du lanceur de sorts, sans toutefois le brûler, ni lui ni son équipement. Une de leurs fonctions est d’émettre de la lumière, mais le lanceur de sorts peut également les lancer ou les amener au contact d’ennemis pour brûler ceux-ci. Une attaque de contact au corps à corps réussie inflige 1d6 points de dégâts de feu, +1 par niveau de lanceur de sorts (jusqu’à un maximum de +5). Le personnage peut également projeter les flammes jusqu’à une distance de trente-six mètres (24 cases). Pour ce faire, il doit effectuer une attaque de contact à distance (sans aucun malus de distance) pour infliger des dégâts égaux à ceux de l’attaque au corps à corps. De nouvelles flammes apparaissent dans la main du personnage dès que les premières ont été lancées. Chaque attaque consomme 1 minute de la durée du sort. Si une attaque réduit le temps restant à 0 minute (ou moins), le sort prend fin dès que le résultat de l’attaque a été appliqué.</descr>
+        <range>contact</range>
+        <dice_type>6</dice_type>
+        <cap_dice>1</cap_dice>
+        <contact>melee</contact>
+        <dmg_type>fire</dmg_type>
+        <flat_dmg>1/lvl</flat_dmg>
+        <flat_cap>5</flat_cap>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V,G</compo>
+        <rm>true</rm>
+        <save_type>none</save_type>
+        <rank>1</rank>
+        <type>dmg</type>
+    </spell>
+
+    <spell>
+        <name>Gourdin magique</name>
+        <shortdescr>Transforme bâton ou gourdin en arme +1 (dégâts équivalent à une arme du même type de deux tailles supérieures) pendant 1 minute/niveau.</shortdescr>
+        <descr>Grâce à ce sort, le gourdin ou le bâton non magique du personnage acquiert un un bonus d’altération de +1 aux jets d’attaque et de dégâts. S’il s’agit d’un bâton, ses deux extrémités bénéficient du bonus. L’arme inflige des dégâts comme si elle avait deux catégories de taille de plus : un gourdin ou un bâton de taille P transformé par ce sort inflige 1d8 points de dégâts, 2d6 s’il est de taille M et 3d6 s’il est de taille G), +1 pour le bonus d’altération. Ces effets ne s’appliquent que lorsque c’est le lanceur du sort qui manie l’arme en question. Si ce n’est pas le cas, l’arme se comporte comme si le sort ne l’avait pas affectée.</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>1min/lvl</duration>
+        <compo>V,G</compo>
+        <rank>1</rank>
+        <type>util</type>
+    </spell>
+    <spell>
+        <name>Grand pas</name>
+        <shortdescr>Augmente la vitesse de déplacement du PJ de 3 m</shortdescr>
+        <descr>Ce sort ajoute un bonus d’altération de +3 m (2 cases) à la vitesse de déplacement de base du personnage. Il n’a aucun effet sur les autres modes de déplacement, comme le creusement, l’escalade, le vol ou la nage.</descr>
+        <range>personnelle</range>
+        <cast_time>simple</cast_time>
+        <duration>1h/min</duration>
+        <compo>V,G,M</compo>
+        <rank>1</rank>
+        <type>buff</type>
+    </spell>
+    <spell>
+        <name>Grandes illuminations</name>
+        <shortdescr>Comme illumination mais touche toutes les créatures dans un rayon de 3 m.</shortdescr>
+        <descr>Ce sort élémentaire crée une petite explosion de lumière. Toutes les créatures qui se trouvent dans un rayon de 3 mètres (2 c) à partir du point d'impact doivent réussir un jet de Vigueur pour éviter de se retrouver éblouies pendant une minute. Les créatures aveugles, ainsi que celles qui sont déjà éblouies, ne sont pas affectées par Grandes illuminations.</descr>
+        <range>courte</range>
+        <area>3m</area>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V</compo>
+        <rm>true</rm>
+        <save_type>vig[annule]</save_type>
+        <rank>1</rank>
+        <type>util</type>
+    </spell>
+    <spell>
+        <name>Invisibilité pour les animaux</name>
+        <shortdescr>Les animaux ne voient pas un sujet/niveau.</shortdescr>
+        <area>1créature/lvl</area>
+        <descr>Les animaux ne peuvent pas percevoir les créatures protégées par ce sort. Même les capacités sensorielles extraordinaires ou surnaturelles (comme les sens aveugles, la vision aveugle, l’odorat et la perception des vibrations) ne leur permettent pas de les détecter ou de les localiser. Les animaux se comportent donc comme si les créatures affectées n’étaient pas présentes. Si l’une d’elles touche un animal ou attaque une créature, même à l’aide d’un sort, la dissimulation aux animaux prend fin pour tous les bénéficiaires.</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>10min/lvl</duration>
+        <compo>V,G</compo>
+        <rank>1</rank>
+        <type>buff</type>
+    </spell>
+    <spell>
+        <name>Javeline épineuse</name>
+        <shortdescr>Manie une javeline qui rend les adversaires fiévreux quand elle les touche.</shortdescr>
+        <descr>Une épine de la taille d’une javeline (adaptée à la taille du personnage) apparaît dans la main du personnage. Il s’en sert comme d’une javeline et il est considéré comme formé à son maniement. Toute créature touchée par la javeline doit réussir un jet de Vigueur pour ne pas être fiévreuse pendant 1 round. Si le personnage lance la javeline, une autre apparaît dans sa main. Toute javeline quittant la main du personnage disparaît à la fin de son tour. Chaque attaque de javeline que le personnage effectue réduit la durée restante du sort d’une minute. Si une attaque réduit la durée restante à 0 minute ou moins, le sort se termine après que l’attaque a été résolue.</descr>
+        <range>personnelle</range>
+        <cast_time>simple</cast_time>
+        <duration>1min/lvl</duration>
+        <compo>V,G</compo>
+        <save_type>vig</save_type>
+        <contact>distance</contact>
+        <rank>1</rank>
+        <type>dmg</type>
+    </spell>
+    <spell>
+        <name>Lueur féerique</name>
+        <shortdescr>Illumine le sujet (annule flou, camouflage, etc.).</shortdescr>
+        <descr>Une lueur blafarde entoure les cibles, ce qui les rend plus visibles. Cette lumière éclaire autant qu’une bougie. Les créatures affectées subissent un malus de -20 aux tests de Discrétion et ne peuvent bénéficier du camouflage normalement lié à l’obscurité (bien qu’un sort de ténèbres de 2e niveau ou plus fonctionne normalement) ou à des sorts tels que déplacement, flou ou invisibilité. La lumière est trop faible pour avoir un quelconque effet spécial sur les morts-vivants ou les créatures vivant dans le noir et vulnérables à la lumière. La lueur féerique peut être bleue, verte ou violette, ce choix étant effectué lors de l’incantation. Elle ne fait aucun mal aux objets ou créatures qu’elle entoure.</descr>
+        <range>longue</range>
+        <cast_time>simple</cast_time>
+        <duration>1min/lvl</duration>
+        <compo>V,G</compo>
+        <rm>true</rm>
+        <save_type>none</save_type>
+        <rank>1</rank>
+    </spell>
+    <spell>
+        <name>Manteau d'ombre</name>
+        <shortdescr>Réduit les effets de l'exposition au soleil et à la chaleur.</shortdescr>
+        <descr>Ce sort offre au sujet un certain degré de protection contre les effets néfastes du soleil. Le sujet enveloppé du manteau d'ombre considère la chaleur due à l'exposition au soleil comme étant un degré en dessous de ce qu'elle devrait être : une chaleur torride sera considérée comme une chaleur accablante alors que cette dernière sera considérée comme une température normale (voir "La Chaleur"). Le manteau d'ombre réduit également tout malus dû au soleil de 1. En revanche, le sort n'élimine pas les effets directs du soleil sur les créatures vulnérables. Le sort n'a aucun effet sur les sources de chaleur autres que le soleil.</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>1h/lvl</duration>
+        <compo>V,G</compo>
+        <rank>1</rank>
+        <type>buff</type>
+    </spell>
+    <spell>
+        <name>Modification des vents</name>
+        <shortdescr>Augmente/diminue la force des vents naturels.</shortdescr>
+        <descr>Le personnage augmente ou réduit subtilement les effets des vents naturels de la zone d'effet du sort, qui se trouve être une émanation immobile centrée sur le point ciblé au moment du lancer du sort. Dans cette zone, l'effet des vents naturels (mais pas des vents magiques) est réduit ou augmenté d'un niveau d'intensité (voir "Les vents"). Le niveau de force de vent maximum que le personnage peut modifier dépend de son niveau de lanceur de sorts, comme indiqué dans la table suivante. Modification des vents n'a aucun effet sur un vent magique.</descr>
+        <range>contact</range>
+        <area>3m</area>
+        <cast_time>simple</cast_time>
+        <duration>1h/lvl</duration>
+        <compo>V,G</compo>
+        <rank>1</rank>
+        <type>buff</type>
+    </spell>
+    <spell>
+        <name>Morsure du froid</name>
+        <shortdescr>La cible reçoit des dégâts de froid et elle est fatiguée.</shortdescr>
+        <descr>L’attaque de contact du personnage inflige 1d6 points de dégâts de froid non létaux +1 par niveau et la cible est fatiguée. Cette condition se dissipe quand la cible a guéri les points de dégâts. Ce sort ne peut pas épuiser une créature, même si elle est déjà fatiguée. Le personnage peut utiliser cette attaque de contact une fois par niveau.</descr>
+        <dice_type>6</dice_type>
+        <n_dice_per_lvl>1</n_dice_per_lvl>
+        <cap_dice>1</cap_dice>
+        <flat_dmg>1/lvl</flat_dmg>
+        <contact>melee</contact>
+        <dmg_type>frost</dmg_type>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V,G</compo>
+        <rm>true</rm>
+        <save_type>none</save_type>
+        <rank>1</rank>
+        <type>dmg</type>
+    </spell>
+    <spell>
+        <name>Morsure magique</name>
+        <shortdescr>Une arme naturelle du sujet gagne +1 aux jets d’attaque et de dégâts.</shortdescr>
+        <descr>Morsure magique donne à l’une des armes naturelles de la cible un bonus d’altération de +1 aux jets d’attaque et de dégâts. Le sort peut affecter une morsure, un coup de poing, ou toute autre attaque portée par une arme naturelle. Ce sort ne transforme pas les dégâts non-létaux des attaques à mains nues en dégâts létaux. Il est possible d’user de permanence sur un sort de morsure magique.</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>1min/lvl</duration>
+        <compo>V,G</compo>
+        <rank>1</rank>
+        <type>buff</type>
+    </spell>
+    <spell>
+        <name>Négation de l'arôme</name>
+        <shortdescr>Impossible de traquer le sujet à l'odeur.</shortdescr>
+        <descr>D'un geste, ce sort permet au personnage de réduire à néant toutes les odeurs, même les plus ignobles ou les plus reconnaissables. Quand le personnage le lance, les créatures ou les objets choisis perdent toute odeur, naturelle ou autre. Il est impossible de traquer ou de localiser une créature sous l'effet de négation de l'arôme à l'aide du pouvoir odorat. De plus, ce sort empêche la cible d'utiliser le pouvoir puanteur ou d'autres aptitudes similaires basées sur les odeurs (comme celles que possèdent les troglodytes).
+
+Négation de l'arôme n'empêche pas la cible de se faire imprégner par une odeur extérieure. Si elle se plonge dans une substance au parfum puissant, les effets du sort sont annulés jusqu'à ce qu'elle se débarrasse de cette substance ou la neutralise.</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>1h/lvl</duration>
+        <compo>V,G,M</compo>
+        <area>1créature/lvl</area>
+        <rank>1</rank>
+        <type>buff</type>
+    </spell>
+    <spell>
+        <name>Passage sans trace</name>
+        <shortdescr>Les sujets (1/niveau) ne laissent pas de trace.</shortdescr>
+        <descr>Le ou les sujet(s) de ce sort ne laisse(nt) plus aucune empreinte ni aucune odeur sur son/leur sillage lorsqu'il(s) se déplace(nt). Il faut obligatoirement recourir à une méthode magique pour suivre leur piste</descr>
+        <range>cotnact</range>
+        <cast_time>simple</cast_time>
+        <area>1créature/lvl</area>
+        <duration>1h/lvl</duration>
+        <compo>V,G</compo>
+        <rank>1</rank>
+        <type>buff</type>
+    </spell>
+    <spell>
+        <name>Petite brise</name>
+        <shortdescr>Vent léger qui protège une cible des nuages, des gaz, de la chaleur et des vapeurs.</shortdescr>
+        <descr>Le personnage crée un vent léger qui souffle, dans la direction de son choix, mais uniquement sur sa cible. Cette brise accorde à la cible un bonus de circonstances de +2 aux jets de sauvegarde dans les environnements très chauds, contre les fortes chaleurs ainsi que contre les nuages, les vapeurs et les gaz (comme brume mortelle, nuage nauséabond et les poisons inhalés). Il doit y avoir de l’air pour pouvoir lancer ce sort.</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>1h</duration>
+        <compo>V,G</compo>
+        <rank>1</rank>
+        <type>buff</type>
+    </spell>
+    <spell>
+        <name>Pierre magique</name>
+        <shortdescr>Trois projectiles gagnent +1 aux jets d’attaque, infligent 1d6+1 points de dégâts.</shortdescr>
+        <descr>Ce sort permet de transformer jusqu’à trois cailloux, pas plus gros que des billes de fronde, pour qu’ils causent des dégâts plus importants. Si on les lance à la main, ils ont un facteur de portée de 6 m. Si on les utilise comme des billes de fronde, ils ont les mêmes caractéristiques que ces dernières (facteur de portée 15 m). Le sort leur confère un bonus d’altération de +1 aux jets d’attaque et de dégâts. La créature qui les utilise effectue à chaque fois une attaque à distance normale. En cas de coup au but, ces projectiles infligent 1d6+1 points de dégâts chacun (bonus compris) et le double contre les morts-vivants (2d6+2 points de dégâts).</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>30min</duration>
+        <compo>V,G</compo>
+        <rank>1</rank>
+        <type>dmg</type>
+    </spell>
+    <spell>
+        <name>Poing de pierre</name>
+        <shortdescr>Les dégâts à mains nues du personnage sont létaux.</shortdescr>
+        <descr>Ce sort transforme les mains du personnage en pierres vivantes. Tant que le sort fait effet, ses attaques à mains nues ne provoquent pas d'attaques d'opportunité et infligent 1d6 points de dégâts contondants létaux (1d4 si le personnage est de taille P). De plus, ses attaques à mains nues ignorent toute solidité inférieure à 8 sur un objet.
+
+Transmutation de la pierre en chair annule immédiatement poing de pierre. Si le personnage est affecté par une Transmutation de la pierre en boue, poing de pierre se dissipe instantanément et le personnage subit 4d6 points de dégâts.</descr>
+        <range>personnelle</range>
+        <cast_time>simple</cast_time>
+        <duration>1min/lvl</duration>
+        <compo>V,G,M</compo>
+        <rank>1</rank>
+        <type>buff</type>
+    </spell>
+    <spell>
+        <name>Poisson-singe</name>
+        <shortdescr>Le personnage gagne une vitesse d’escalade et une vitesse de nage de 3 mètres pendant un certain temps.</shortdescr>
+        <descr>Les mains et les pieds du personnage se transforment pour lui permettre de mieux escalader et de mieux nager. Il gagne une vitesse d’escalade et une vitesse de nage de 3 mètres. Ce sort n’a aucun effet si le personnage porte une armure lourde ou intermédiaire ou s’il porte une charge lourde ou intermédiaire.</descr>
+        <range>personnelle</range>
+        <cast_time>simple</cast_time>
+        <duration>1min/lvl</duration>
+        <compo>V,G</compo>
+        <rank>1</rank>
+        <type>buff</type>
+    </spell>
+    <spell>
+        <name>Poudre affaiblie</name>
+        <shortdescr>Les munitions de l’arme touchée réduisent sa portée de moitié et imposent un malus de -2 aux jets de dégâts.</shortdescr>
+        <descr>La munition chargée a des difficultés à exploser quand l’arme tire. Le facteur de portée de l’arme à feu est réduit de moitié et le tireur reçoit un malus de -2 au jet de dégâts. S’il sait ce que fait le sort avant de tirer (un test d’Art de la magie ou un effet similaire permet d’identifier le sort), le tireur peut passer une action simple à nettoyer l’arme pour la débarrasser de la munition défectueuse. Cette dernière est détruite lors du nettoyage.</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V,G</compo>
+        <rm>true</rm>
+        <save_type>vol[annule]</save_type>
+        <rank>1</rank>
+        <type>util</type>
+    </spell>
+    <spell>
+        <name>Poudre mouillée</name>
+        <shortdescr>Les munitions chargées dans l’arme ciblées sont inutilisables.</shortdescr>
+        <descr>Ce sort gâche les munitions déjà chargées dans une arme avec de l’humidité. Toute tentative pour tirer avec ces munitions mouillées échoue, sans risque de long feu, et le tireur doit passer une action complexe à nettoyer son arme avant de la recharger et de pouvoir tirer à nouveau. Si le tireur est conscient de l’effet du sort avant d’essayer de tirer avec la munition mouillée (Art de la magie DD 16 pour identifier le sort au moment de l’incantation ou effet similaire), il peut utiliser une action simple pour évacuer la munition gâchée qui est alors détruite.</descr>        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V,G</compo>
+        <rm>true</rm>
+        <save_type>vol[annule]</save_type>
+        <rank>1</rank>
+        <type>util</type>
+    </spell>
+    <spell>
+        <name>Poussée hydraulique</name>
+        <shortdescr>Vague d'eau qui bouscule un ennemi.</shortdescr>
+        <descr>Le personnage invoque un jet d'eau qui renverse et détrempe une créature ou une case. Le personnage peut utiliser ce sort pour bousculer une créature ou un objet. Le BMO de cette bousculade est égal au niveau de lanceur de sorts du personnage plus son modificateur d'Intelligence, de Sagesse ou de Charisme, selon celui qui est le plus élevé. Cette bousculade ne provoque pas d'attaques d'opportunité. La poussée hydraulique éteint tout feu ordinaire sur une créature, un objet ou une unique case de 1,50 mètre (1 c) de côté. Il n'affecte pas les flammes magiques.</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V,G</compo>
+        <rm>true</rm>
+        <save_type>none</save_type>
+        <rank>1</rank>
+        <type>util</type>
+    </spell>
+    <spell>
+        <name>Saut</name>
+        <shortdescr>Confère un bonus aux tests de Saut.</shortdescr>
+        <descr>Le sujet bénéficie d’un bonus d’altération de +10 aux tests d’Acrobaties pour sauter en hauteur ou en longueur. Ce bonus d’altération passe à +20 pour un lanceur de sorts de niveau 5 et à +30 (le maximum) pour un lanceur de sorts de niveau 9.</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>1min/lvl</duration>
+        <compo>V,G</compo>
+        <rank>1</rank>
+        <type>buff</type>
+    </spell>
+    <spell>
+        <name>Se hérisser</name>
+        <descr>Le personnage accorde à une créature le pouvoir de rediriger une portion de la résistance innée tirée de ses défenses pour la transférer dans la quantité de dégâts qu'elle inflige avec ses attaques naturelles. À chaque round, par une action rapide effectuée au début de son tour, la créature peut décider de réduire tout ou partie de son bonus d'armure naturelle à la CA pour gagner un bonus d'altération égal à cette valeur. Ce bonus s'applique aux jets de dégâts des attaques naturelles. La réduction de l'armure naturelle et donc l'amélioration des jets de dégâts ne peut pas dépasser 1 point par tranche de 3 niveaux de lanceur de sorts, jusqu'à un maximum malus/bonus de -5/+5 au niveau 15. Une créature ne peut pas réduire son bonus d'armure naturelle à moins de 0 avec ce sort. Toutes les attaques dirigées contre la créature tiennent compte de sa CA modifiée jusqu'au début de son tour suivant, à quel moment elle peut décider de modifier sa CA à nouveau ou de la garder à son niveau actuel. Les créatures prennent cette décision sans avoir besoin de réfléchir ou même d'avoir une pensée consciente, même celles qui n'ont pas de valeur d'Intelligence peuvent bénéficier de ce sort, même si elles optent toujours pour la plus grosse réduction possible et le plus gros bonus, quel que soit l'avantage tactique que cela leur fait perdre.</descr>
+        <shortdescr>Échange un bonus d'armure naturelle contre un bonus aux attaques avec des armes naturelles.</shortdescr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>1min/lvl</duration>
+        <compo>V,G</compo>
+        <rank>1</rank>
+        <type>buff</type>
+    </spell>
+    <spell>
+        <name>Sens surdéveloppés</name>
+        <shortdescr>Gagne +2 en Perception et la vision nocturne.</shortdescr>
+        <descr>Le sujet gagne un bonus de compétence de +2 aux tests de Perception et bénéficie de la vision nocturne. Les sujets qui la possèdent déjà voient leur distance de visibilité doubler grâce au sort.</descr>
+        <range>cotnact</range>
+        <cast_time>simple</cast_time>
+        <duration>1min/lvl</duration>
+        <compo>V,G</compo>
+        <rank>1</rank>
+        <type>buff</type>
+    </spell>
+
+    <spell>
         <name>Soins légers</name>
         <descr>En posant les mains sur une créature vivante, le personnage lui transmet de l’énergie positive et lui rend 1d8 points de vie +1 par niveau de lanceur de sorts (jusqu’à un maximum de +5).</descr>
         <dice_type>8</dice_type>
@@ -131,82 +803,883 @@
     </spell>
 
     <spell>
-        <name>Bouclier de la foi</name>
-        <shortdescr>Aura conférant un bonus de parade de +2 (ou plus).</shortdescr>
-        <descr>Ce sort fait apparaître autour du bénéficiaire une aura scintillante repoussant les attaques. Bouclier de la foi confère un bonus de parade de +2 à la CA, +1 tous les six niveaux de lanceur de sorts (jusqu’à un bonus maximum de +5 au niveau 18).</descr>
+        <name>Abri de toile</name>
+        <shortdescr>Crée un abri confortable en toile d'araignée.</shortdescr>
+        <descr>Le personnage crée un abri fait de toiles d’araignée légèrement collantes. Il possède une porte montée sur charnières assez large pour laisser passer des créatures M. Les murs opaques de l’abri font 2,5 centimètres d’épaisseur et offrent un camouflage total à tout ce qui se trouve à l’intérieur.
+
+Seules les créatures I avec une Force négligeable ont un risque de rester collées dans la toile (ce qui comprend les nuées), toutes les autres peuvent se libérer sans faire de test de Force ni utiliser d’action. La toile est assez collante pour retenir des brindilles, des feuilles, de la terre ou d’autres objets légers, ce qui permet de la camoufler. Une fois la porte fermée, l’abri est étanche et bien isolé. Sa surface a une solidité de 0 et 2 points de vie par zone de 1,50 mètre (1 c) de côté. La toile reçoit des dégâts normaux de la part du feu et brûle aussi facilement que du bois. Quand le sort se termine, la toile se décompose et disparaît.</descr>
+        <range>courte</range>
+        <cast_time>1min</cast_time>
+        <duration>1h/lvl</duration>
+        <compo>V,G</compo>
+        <rank>2</rank>
+        <type>util</type>
+    </spell>
+    <spell>
+        <name>Accélération du poison</name>
+        <shortdescr>Accélère le délai d'action du poison ciblé.</shortdescr>
+        <descr>Le personnage accélère le délai d'effet du poison de la cible. Si le poison met habituellement un certain temps avant de faire effet, il s'applique immédiatement. S'il n'en a pas, sa fréquence est doublée, il faut donc faire deux jets de sauvegarde et il inflige le double de dégâts par round ou minute, bien que sa durée soit réduite de moitié. Accélération du poison ne change pas les conditions de soin du poison. Si la cible est affectée par plusieurs poisons, le personnage peut déterminer celui qui l'affecte s'il l'a lui-même administré sinon, le poison affecté est choisi au hasard.</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V,G</compo>
+        <rm>true</rm>
+        <save_type>vig[annule]</save_type>
+        <rank>2</rank>
+        <type>debuff</type>
+    </spell>
+    <spell>
+        <name>Ami de la forêt</name>
+        <shortdescr>Les plantes forestières se montrent serviables envers le personnage et ses alliés au lieu d’entraver leurs déplacements.</shortdescr>
+        <descr>Tant que la cible est affectée par le sort, elle se sent très à l’aise dans les zones forestières. Elle ne subit pas de malus aux déplacements ni aux tests d’Acrobaties et de Discrétion quand elle se trouve dans les taillis d’une zone forestière. De plus, la végétation lui impose des risques de rater réduites de 10%. Quand la créature se déplace parmi les arbres, elle gagne un bonus de circonstances de +5 aux tests d’Acrobaties et d’Escalade. Les rôdeurs qui se trouvent dans leur environnement de prédilection ajoutent leur bonus d’environnement de prédilection à leurs tests d’Acrobaties et d’Escalade.</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>1min/lvl</duration>
+        <compo>V,G</compo>
+        <rank>2</rank>
+        <type>buff</type>
+    </spell>
+    <spell>
+        <name>Appel des pierres</name>
+        <shortdescr>2d6 points de dégâts à toutes les créatures de la zone.</shortdescr>
+        <descr>Une pluie de poussière, de gravats et de cailloux s'abat sur la zone et inflige 2d6 points de dégâts contondants à toute créature qui s'y trouve. Ces dégâts ne s'appliquent qu'une fois, au moment de l'incantation du sort. Pendant le reste de sa durée, les débris recouvrent la zone et la transforment en terrain difficile. À la fin de sa durée, les cailloux disparaissent et ne laissent aucun effet persistant (en dehors des dégâts qu'ils ont causés).</descr>
+        <dice_type>6</dice_type>
+        <cap_dice>2</cap_dice>
+        <dmg_type>none</dmg_type>
+        <range>moyenne</range>
+        <cast_time>simple</cast_time>
+        <duration>1round/lvl</duration>
+        <compo>V,G</compo>
+        <rm>false</rm>
+        <save_type>none</save_type>
+        <rank>2</rank>
+        <type>dmg</type>
+    </spell>
+    <spell>
+        <name>Aspect animal</name>
+        <shortdescr>Le personnage bénéficie des avantages d’un animal.</shortdescr>
+        <descr>Le personnage gagne une partie des pouvoirs de l’animal. Sa taille et sa forme de base ne changent pas. Il choisit parmi la liste ci dessous :
+
+-Gorille. Les bras du personnage deviennent longs, flexibles et puissants. Les dés de dégâts qu’il inflige avec les attaques à mains nues augmentent d’une catégorie et +4 aux tests de BMO.
+-Grenouille. Les jambes du personnage s’allongent et se musclent. +4 aux tests d’Acrobaties et, quand il saute, on considère qu’il bénéficie toujours d’une course d’élan.
+-Lézard arboricole. Les mains et les pieds du personnage développent des griffes. Il gagne une vitesse d’escalade égale à la moitié de sa vitesse de base.
+-Otarie. Le personnage a des mains et des pieds palmés et sa capacité respiratoire augmente. Gagne une vitesse de nage égale à la moitié de sa vitesse normale et peut retenir son souffle pendant 4 rounds par point de Constitution.
+-Raptor. Les jambes du personnage se modifient, comme celles d’un déinonychus. Il gagne +6 m à la vitesse de base.
+-Raton laveur. Les mains du personnage deviennent extrêmement agiles. +2 aux tests de Discrétion, d’Escamotage et de Sabotage.
+-Singe. Les mains et les bras du personnage deviennent aussi agiles que ceux d’un singe. +4 aux tests d’Escalade.</descr>
+        <range>personnelle</range>
+        <cast_time>simple</cast_time>
+        <duration>1min/lvl</duration>
+        <compo>V,G</compo>
+        <rank>2</rank>
+        <type>buff</type>
+    </spell>
+    <spell>
+        <name>Aspect de l'ours</name>
+        <shortdescr>+2 à la CA et aux jets de manœuvre de combat.</shortdescr>
+        <descr>Le personnage prend l'aspect d'un ours. Il gagne un bonus d'altération de +2 à l'armure naturelle et aux tests de BMO. Il peut également faire des manœuvres de bousculade, de lutte et de renversement sans provoquer d'attaque d'opportunité.</descr>
+        <range>personnelle</range>
+        <cast_time>simple</cast_time>
+        <duration>1min/lvl</duration>
+        <compo>V,G</compo>
+        <rank>2</rank>
+        <type>buff</type>
+    </spell>
+    <spell>
+        <name>Boule de goudron</name>
+        <shortdescr>Un goudron brûlant blesse la cible et réduit sa Dextérité.</shortdescr>
+        <descr>Le personnage crée une boule de goudron brûlant collante qu’il lance sur un ennemi à portée. S’il le touche, il lui inflige 1d4 points de dégâts de feu + modificateur de Force et asperge la cible de goudron chaud et collant. Le goudron inflige 1d4 points de dégâts de feu par round à la créature pendant les 1d4 prochains rounds et lui donne un malus de -2 à la Dextérité pendant toute cette période. Si la cible le désire, elle peut passer une action complexe à essayer d’éteindre ou de refroidir le goudron avant de subir les dégâts supplémentaires. Pour cela, elle doit réussir un jet de Réflexes DD 15 ou disposer de 5 litres d’un liquide non inflammable. Si la cible se roule par terre, elle gagne un bonus de +2 au jet de sauvegarde. L’effet se termine automatiquement si la victime saute dans un lac ou refroidit le goudron par magie.</descr>
+        <range>courte</range>
+        <dice_type>4</dice_type>
+        <cap_dice>1</cap_dice>
+        <contact>distance</contact>
+        <dmg_type>fire</dmg_type>
+        <flat_dmg>for</flat_dmg>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V,G,M</compo>
+        <rm>false</rm>
+        <save_type>none</save_type>
+        <rank>2</rank>
+        <type>dmg</type>
+    </spell>
+    <spell>
+        <name>Bourrasque</name>
+        <shortdescr>Emporte ou renverse les créatures de taille modeste.</shortdescr>
+        <descr>Ce sort génère une violente rafale de vent (75 km/h environ). Les créatures volantes ont un malus de -4 Vol, celles de taille TP ou inférieure doivent réussir un test de Vol DD 25 (20 pour P) ou être repoussées de 2d6x3 mètres et subir 2d6 points de dégâts.
+-Les créatures sur le sol de taille TP ou inférieure sont emportées par la bourrasque sur 1d4 x 3 mètres et subissent 1d4 points de dégâts non-létaux par tranche de 3 mètres.
+-Les créatures de taille P tombent à terre.
+-Les créatures de taille M ou inférieure sont incapable de se déplacer en avant contre la force du vent à moins de réussir un test de Force DD 15.
+-Les créatures de taille G ou supérieure évoluent normalement au sein d’un effet de bourrasque.
+-Toute créature ont -4 aux attaques à distance et aux tests de Perception.
+-Eteint instantanément torches, bougies et autres flammes non protégées.</descr>
+        <range>18m</range>
+        <cast_time>simple</cast_time>
+        <duration>1round</duration>
+        <compo>V,G</compo>
+        <rm>true</rm>
+        <save_type>vig[annule]</save_type>
+        <rank>2</rank>
+    </spell>
+    <spell>
+        <name>Changement de fonction</name>
+        <shortdescr>L’animal du personnage gagne un nouvel objectif général.</shortdescr>
+        <descr>Le personnage investit l’animal-cible d’une nouvelle fonction (cf. compétence Dressage), n’importe laquelle sauf monture de combat (animal de combat, animal de garde, travailleur de force, animal de chasse, animal de foire ou monture). Cette fonction remplace la précédente à laquelle l’animal a été formé ainsi que tous les tours qu’il connaît. Quand le sort se termine, l’animal retrouve la fonction à laquelle il a été formé ainsi que tous les tours qu’il connaît.</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>1h/lvl</duration>
+        <compo>V,G,M</compo>
+        <rm>true</rm>
+        <save_type>none</save_type>
+        <rank>2</rank>
+    </spell>
+    <spell>
+        <name>Charge de fourmi (partagé)</name>
+        <shortdescr>Comme charge de fourmi mais la durée d’effet se divise entre les créatures touchées.</shortdescr>
+        <descr>Ce sort fonctionne comme charge de fourmi, mais la durée se divise entre les créatures touchées, par portions de 2 heures.</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>2h/lvl</duration>
+        <compo>V,G</compo>
+        <rank>2</rank>
+        <type>buff</type>
+    </spell>
+    <spell>
+        <name>Chute de température</name>
+        <shortdescr>Un froid glacial s’abat sur la zone.</shortdescr>
+        <descr>La zone d’effet du sort se couvre d’une couche de givre qui inflige 2d6 points de dégâts aux créatures qui s’y trouvent. Les créatures blessées par l’effet initial doivent réussir un jet de Vigueur ou se retrouver chancelantes pendant 1 round. La zone reste glacée pendant toute la durée du sort. Les créatures qui commencent leur tour dans la zone d’effet du sort subissent 1d6 points de dégâts de froid (Vigueur, 1/2 dégâts) mais elles ne sont pas chancelantes si elles ratent leur jet.</descr>
+        <range>courte</range>
+        <dice_type>6</dice_type>
+        <cap_dice>2</cap_dice>
+        <dmg_type>frost</dmg_type>
+        <cast_time>simple</cast_time>
+        <duration>0.5round/lvl</duration>
+        <compo>V,G</compo>
+        <rm>true</rm>
+        <save_type>vig[partiel]</save_type>
+        <rank>2</rank>
+        <type>dmg</type>
+    </spell>
+    <spell>
+        <name>Contact gelé</name>
+        <shortdescr>La cible reçoit des dégâts de froid et elle est chancelante.</shortdescr>
+        <descr>Au terme de l'incantation, la main du mage s'auréole d'une lueur bleutée. Une attaque de contact inflige 4D6 de dégâts de froid et la cible est chancelante pour 1 round. Si l'attaque est un coup critique, la cible est chancelante pour 1 minute.</descr>
+        <dice_type>6</dice_type>
+        <cap_dice>4</cap_dice>
+        <contact>melee</contact>
+        <dmg_type>frost</dmg_type>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V,G</compo>
+        <rm>true</rm>
+        <save_type>none</save_type>
+        <rank>2</rank>
+        <type>dmg</type>
+    </spell>
+    <spell>
+        <name>Convocation d'alliés naturels II</name>
+        <shortdescr>Appelle une ou plusieurs créatures luttant pour le PJ.</shortdescr>
+        <descr>Ce sort s’apparente à convocation d’alliés naturels I, si ce n’est qu’il permet d’appeler une créature de niveau 2 ou 1d3 créatures de niveau 1 (lorsque le personnage convoque plusieurs alliés naturels, ces derniers doivent nécessairement tous être du même type).</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>1round/lvl</duration>
+        <compo>V,G</compo>
+        <rank>2</rank>
+    </spell>
+
+    <spell>
+        <name>Disques de pierre</name>
+        <shortdescr>Crée des disques de pierres qui inflige des dégâts contondants ou tranchants.</shortdescr>
+        <descr>Le personnage crée un disque de pierre qui vole en direction d’un ennemi. Il peut créer un disque, puis un de plus aux niveaux de lanceur 7 et 11. Pour chaque disque qu’il crée, il décide si son bord est émoussé (infligeant des dégâts contondants) ou acéré (infligeant des dégâts tranchants). Pour toucher et infliger 4d6 points de dégâts, il faut effectuer une attaque à distance avec chaque disque. Il est possible de lancer les disques sur plus d’une cible, mais aucune cible ne doit se trouver à plus de 9 mètres (6 c) des autres et les disques doivent être lancés simultanément. Au niveau de lanceur 5, les disques comptent comme des armes magiques en argent. Au niveau de lanceur 10, ils comptent également comme des armes en fer froid. Au niveau de lanceur 15, ils comptent également comme des armes en adamantium.</descr>
+        <n_sub_spell>3</n_sub_spell>
+        <dmg_type>none</dmg_type>
+        <rank>2</rank>
+        <type>dmg</type>
+    </spell>
+
+    <spell>
+        <id>Disques de pierre_sub</id>
+        <name>Disque de pierre</name>
+        <descr>Disque volant qui inflige des dégâts contondants ou tranchants.</descr>
+        <dice_type>6</dice_type>
+        <cap_dice>4</cap_dice>
+        <contact>distance</contact>
+        <dmg_type>none</dmg_type>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V,G,M</compo>
+        <rm>false</rm>
+        <save_type>aucun</save_type>
+        <rank>2</rank>
+        <type>dmg</type>
+    </spell>
+
+    <spell>
+        <name>Distorsion du bois</name>
+        <shortdescr>Tord le bois (manche d’arme, planche, porte, etc.).</shortdescr>
+        <descr>Grâce à ce sort, le personnage peut forcer un morceau de bois à se plier et à se tordre. Une arme ainsi déformée a -4 aux jets d’attaque. Le personnage peut déformer un objet en bois de taille P ou inférieure par niveau de lanceur de sorts. Un objet de taille M compte comme deux objets de taille P ; un objet de taille G en vaut quatre ; un objet de taille TG en vaut huit ; un objet de taille Gig en vaut seize et un objet de taille C en vaut trente-deux.</descr>
+        <range>courte</range>
+        <area>1objet/lvl</area>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V,G</compo>
+        <rank>2</rank>
+        <type>util</type>
+    </spell>
+    <spell>
+        <name>Endurance aux énergies destructives (partagé)</name>
+        <shortdescr>Comme endurance aux énergies destructives mais la durée d’effet se divise entre les créatures touchées.</shortdescr>
+        <descr>Ce sort fonctionne comme endurance aux énergies destructives mais la durée se divise entre les créatures touchées, par portions de 1 heure.
+
+Une créature protégée par endurance aux énergies destructives ne souffre pas de la chaleur ou du froid lorsqu’elle se trouve dans un environnement extrême. Elle se sent à son aise par des températures allant de -45°C à +60°C et ne doit pas effectuer le moindre jet de Vigueur dans ces conditions. Son équipement bénéficie également de la même protection.</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>24heures</duration>
+        <compo>V,G</compo>
+        <rank>2</rank>
+        <type>buff</type>
+    </spell>
+    <spell>
+        <name>Enchevêtrement répugnant</name>
+        <shortdescr>Comme enchevêtrement, mais les plantes ont une sève qui rend malade.</shortdescr>
+        <descr>Ce sort fonctionne comme enchevêtrement, à la seule différence que les plantes sont enduites d’une sève irritante qui provoque des éruptions cutanées douloureuses qui démangent les créatures touchées. Toute créature qui entre ou termine son tour dans la zone doit réussir un jet de Vigueur pour ne pas être fiévreuse tant qu’elle y reste et pendant 1d4 rounds après l’avoir quittée. Il s’agit d’un effet de poison.</descr>
+        <range>longue</range>
+        <cast_time>simple</cast_time>
+        <duration>1min/lvl</duration>
+        <compo>V,G</compo>
+        <rm>false</rm>
+        <save_type>ref[partiel</save_type>
+        <rank>2</rank>
+        <type>debuff</type>
+    </spell>
+    <spell>
+        <name>Endurance de l'ours</name>
+        <shortdescr>Confère +4 en Con pendant 1 minute/niveau.</shortdescr>
+        <descr>La créature touchée bénéficie d’une vigueur et d’une robustesse accrues. Ce sort confère au sujet un bonus d’altération de +4 à sa valeur de Constitution, ce qui améliore ses points de vie, ses jets de Vigueur, ses tests de Constitution, etc. Les points de vie gagnés grâce à un accroissement temporaire de la Constitution ne sont pas temporaires. Ils disparaissent lorsque la valeur de Constitution revient à la normale. Contrairement aux points de vie temporaires, ils ne sont pas perdus les premiers.</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>1min/lvl</duration>
+        <compo>V,G</compo>
+        <rank>2</rank>
+        <type>buff</type>
+    </spell>
+    <spell>
+        <name>Façonnage du bois</name>
+        <shortdescr>Permet de modeler le bois.</shortdescr>
+        <descr>Grâce à ce sort, le personnage peut façonner du bois pour lui faire prendre la forme qu’il désire. Il peut ainsi créer des boîtes grossières, des portes et d’autres objets similaires mais il lui est impossible de créer des détails précis. Si l’objet comporte des composantes mobiles, il y a 30 % de chances pour qu’il ne fonctionne pas.</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V,G</compo>
+        <rank>2</rank>
+        <type>util</type>
+    </spell>
+    <spell>
+        <name>Festin de cendres</name>
+        <shortdescr>La cible souffre d'une faim insatiable.</shortdescr>
+        <descr>Le personnage maudit sa cible en l'affligeant d'une faim que nulle nourriture ne peut apaiser. Si la cible rate son jet de sauvegarde, elle souffre d'inanition. Les effets de ce sort ne peuvent pas infliger plus de points de dégâts non létaux que la cible ne possède de points de vie. Aucune quantité de nourriture ne peut contrer cet effet et toute tentative pour absorber de la nourriture rend la cible nauséeuse à moins qu'elle ne réussisse un jet de Vigueur DD 12. La cible subit tout de même les conséquences normales de tout ce qu'elle mange (qu'il s'agisse de poison, de potion ou autre). On peut dissiper festin de cendres avec annulation d'enchantement, souhait limité, miracle, délivrance des malédictions ou souhait mais il faut soigner les effets de la faim comme d'ordinaire.</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>2j/lvl</duration>
+        <compo>V,G</compo>
+        <rm>true</rm>
+        <save_type>vig[annule]</save_type>
+        <rank>2</rank>
+        <type>debuff</type>
+    </spell>
+    <spell>
+        <name>Feu de camp abrité</name>
+        <shortdescr>Crée un abri autour d'un feu de camp.</shortdescr>
+        <descr>Le personnage peut créer une barrière autour d'un feu au moins aussi grand qu'un feu de camp pour protéger tous ceux qui se trouvent autour tant que le feu brûle. La barrière apparaît comme une sphère de lumière et de feu crépitant clairement visible, qui offre autant de lumière qu'une torche. La barrière bloque la vue, ce qui accorde un camouflage total aux créatures qui se trouvent de part et d'autre. Tout objet ou créature qui franchit la barrière en venant de l'extérieur reçoit 1d6 points de dégâts de feu. De plus, la lumière forme un halo lumineux équivalent à celui d'une torche pendant 1d6 minutes. Les créatures ainsi silhouettées sont clairement visibles, quelles que soient les conditions d'illumination et ne peuvent bénéficier du moindre camouflage, ni magique ni autre. Cette luminosité ne suffit pas pour affecter les morts-vivants ou les créatures sensibles à la lumière. Les créatures qui se trouvent à l'intérieur de la barrière peuvent sortir sans dommages mais, si elles essayent de rentrer à nouveau, elles subissent les mêmes dégâts que n'importe qui. Si le feu qui se trouve au centre de la barrière s'éteint ou si on le déplace, le sort se dissipe.</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>2h/lvl</duration>
+        <compo>V,G,M</compo>
+        <rank>2</rank>
+        <type>util</type>
+    </spell>
+    <spell>
+        <name>Force de taureau</name>
+        <shortdescr>Confère +4 en Force pendant 1 minute/niveau.</shortdescr>
+        <descr>Le sujet devient plus fort. Ce sort lui confère un bonus d’altération de +4 points en Force, ce qui induit un effet positif sur ses jets d’attaque, ses jets de dégâts au corps à corps et sur tous les autres éléments dépendant du modificateur de Force.</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>1min/lvl</duration>
+        <compo>V,G</compo>
+        <rank>2</rank>
+        <type>buff</type>
+    </spell>
+    <spell>
+        <name>Forme d'arbre</name>
+        <shortdescr>Transforme le PJ en arbre pendant 1 heure/niveau.</shortdescr>
+        <descr>Ce sort permet au personnage de prendre la forme d’un arbre vivant ou d’un buisson de taille G ou d’un tronc d’arbre mort de taille G doté de quelques branches. Le personnage choisit le type d’arbre et détermine son apparence exacte. Un inspection minutieuse ne suffit pas pour révéler qu’il s’agit en fait d’une créature camouflée par magie. Tous les examens l’identifient comme un arbre ou un buisson, mais un sort de détection de la magie y décèle une légère aura de transmutation. Même transformé, le personnage peut observer tout ce qui se passe autour de lui, exactement comme s’il avait son apparence normale. Ses points de vie et ses jets de sauvegarde restent inchangés. Il bénéficie d’un bonus d’armure naturelle de +10 à la CA mais sa valeur de Dextérité effective et sa vitesse de déplacement tombent à 0. Il est également immunisé contre les coups critiques. Ses vêtements et tout ce qu’il tient ou porte se transforment avec lui. Le lanceur de sorts peut décider de mettre fin au sort prématurément en utilisant une action libre (au lieu d’une action simple).</descr>
+        <range>personnelle</range>
+        <cast_time>simple</cast_time>
+        <duration>1h/lvl</duration>
+        <compo>V,G</compo>
+        <rank>2</rank>
+        <type>util</type>
+    </spell>
+    <spell>
+        <name>Fouet d'araignées</name>
+        <shortdescr>Crée un fouet composé d’araignées empoisonnées.</shortdescr>
+        <descr>Le personnage convoque des centaines d’araignées de taille Min, agglutinées les unes aux autres sous la forme d’un fouet. En l'utilisant il effectue une attaque de contact au corps à corps plutôt qu’une attaque normale. Toute créature que le personnage touche avec le fouet reçoit des dégâts de nuée(1d6 points de dégâts plus poison et distraction). Le fouet de nuée est capable de blesser les créatures ayant une armure ou une armure naturelle, même si un fouet normal ne le pourrait pas. adversaire.
+Par une action simple, le personnage peut transformer son fouet en une nuée d’araignées (toutes les cases de la nuée doivent être dans un rayon de 4,5 mètres autour du personnage). Après cela, il fonctionne comme une nuée grouillante. La nuée d’araignées a 3 points de vie et conserve cette forme pendant 2 rounds ou jusqu’à la fin de la durée du sort (ce qui advient en premier).</descr>
+        <range>0m</range>
+        <cast_time>simple</cast_time>
+        <duration>1round/lvl</duration>
+        <compo>V,G</compo>
+        <rank>2</rank>
+    </spell>
+    <spell>
+        <name>Grâce féline</name>
+        <shortdescr>Confère +4 en Dex pendant 1 minute/niveau.</shortdescr>
+        <descr>La créature transformée à l’aide de ce sort devient bien plus gracieuse et agile, ce qui lui permet de mieux coordonner ses gestes. Cet avantage se traduit par un bonus d’altération de +4 à la Dextérité, accompagné de toutes les modifications habituelles en termes de CA, de jets de Réflexes et autres utilisations du bonus de Dextérité.</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>1min/lvl</duration>
+        <compo>V,G</compo>
+        <rank>2</rank>
+        <type>buff</type>
+    </spell>
+    <spell>
+        <name>Haricot magique</name>
+        <shortdescr>Crée une tige de haricot qu’il est facile d’escalader.</shortdescr>
+        <descr>Le personnage fait surgir du sol une tige de haricot épaisse et solide et la fait pousser à une hauteur maximale de 3 mètres + 1,5 mètre par tranche de 2 niveaux de lanceur. La tige qui pousse s’ancre d’elle-même aux objets solides comme les murs ou les plafonds et se développe autour des objets qui n’obstruent pas complètement la case où elle se trouve (comme les branches d’arbre), mais elle est arrêtée par les obstacles solides. La tige du haricot offre de nombreuses prises pour les pieds et les mains. Le DD pour l’escalader est de 5. Elle peut supporter un poids maximal de 100 kg plus 25 kg par niveau de lanceur, ou le double de ce poids si son extrémité supérieure est ancrée. Si elle s’ancre d’elle-même à un solide objet mobile (comme un navire ou un engin de siège), il faut réussir un test de Force DD 23 ou trancher la tige (solidité 2, 40 pv) pour libérer cet objet. Si le sol est capable de supporter la vie végétale, la tige continue de croître comme une plante normale et produit des haricots nourrissants (à défaut d’être appétissants). Autrement, la plante meurt après 1d6 heures et son enveloppe reste aussi durable qu’un petit arbre.</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V,G</compo>
+        <rank>2</rank>
+        <type>util</type>
+    </spell>
+    <spell>
+        <name>Hypnose des animaux</name>
+        <shortdescr>Fascine 2d6 DV d’animaux.</shortdescr>
+        <descr>Les gestes hypnotiques du personnage et son chant scandé incitent les animaux et les créatures magiques à ne rien faire d’autre que le regarder. Seules les créatures ayant 1 ou 2 en Intelligence peuvent être affectées. Le personnage fascine un total de 2d6 DV de créatures, en commençant par les animaux les plus proches de lui.</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <compo>V,G</compo>
+        <rm>true</rm>
+        <save_type>vol[annule]</save_type>
+        <rank>2</rank>
+    </spell>
+    <spell>
+        <name>Immobilisation d'animal</name>
+        <shortdescr>Immobilise un animal pendant 1 round/niveau.</shortdescr>
+        <descr>La cible du sort se fige et se retrouve paralysée. Elle reste consciente de ce qui se passe autour d’elle et peut respirer normalement mais ne peut entreprendre aucune action, pas même parler. Chaque round, lors de son tour, elle peut effectuer un nouveau jet de sauvegarde pour tenter de mettre fin à l’effet. Il s’agit d’une action complexe qui ne provoque pas d’attaques d’opportunité. Si une créature ailée se retrouve paralysée, elle ne peut plus battre des ailes et tombe. Un nageur paralysé ne peut plus bouger et risque de se noyer.
+
+Ce sort fonctionne comme immobilisation de personne, si ce n’est qu’il affecte un animal.</descr>
+        <range>moyenne</range>
+        <cast_time>simple</cast_time>
+        <duration>1round/lvl</duration>
+        <compo>V,G</compo>
+        <rm>true</rm>
+        <save_type>vol[annule]</save_type>
+        <rank>2</rank>
+    </spell>
+    <spell>
+        <name>Lame de feu</name>
+        <shortdescr>Attaque de contact infligeant 1d8 points de dégâts, +1/2 niveaux.</shortdescr>
+        <descr>Une lame brûlante et aveuglante apparaît dans la main du druide. D’une longueur de quatre-vingt-dix centimètres, elle peut être employée comme un cimeterre et tous les coups qu’elle inflige correspondent à des attaques de contact au corps à corps. La lame inflige 1d8 points de dégâts de feu par coup, +1 tous les deux niveaux de lanceur de sorts (maximum +10). Elle est immatérielle, donc le modificateur de Force du personnage ne s’applique pas aux dégâts. La lame peut faire prendre feu les matériaux combustibles comme le papier, la paille, le bois sec, le tissu, etc.</descr>
+        <range>0m</range>
+        <dice_type>8</dice_type>
+        <cap_dice>1</cap_dice>
+        <contact>melee</contact>
+        <dmg_type>fire</dmg_type>
+        <flat_dmg>0.5/lvl</flat_dmg>
+        <flat_cap>10</flat_cap>
+        <cast_time>simple</cast_time>
+        <duration>1min/lvl</duration>
+        <compo>V,G</compo>
+        <rank>2</rank>
+        <type>dmg</type>
+    </spell>
+    <spell>
+        <name></name>
+        <shortdescr></shortdescr>
+        <descr></descr>
+        <range></range>
+        <cast_time>simple</cast_time>
+        <duration></duration>
+        <compo>V,G</compo>
+        <rm></rm>
+        <save_type></save_type>
+        <rank></rank>
+        <type>util</type>
+    </spell>
+    <spell>
+        <name>Langue élémentaire</name>
+        <shortdescr>Permet au personnage de parler aux élémentaires et à certaines créatures.</shortdescr>
+        <descr>Ce sort permet au lanceur de sorts de converser avec des créatures associées à l'élément choisi, y compris les créatures élémentaires, sans se limiter à elles. Ce sort bénéficie du sous-type élémentaire basé sur la version du sort lancé. La langue élémentaire ne garantit pas une réaction amicale, elle permet seulement de communiquer. Le personnage peut parler avec toutes les créatures du type choisi tant qu'elles ont une Intelligence de 1 ou plus, même si elles ne se comprennent pas entre elles.
+-En sort de l'air, il peut parler en aérien et avec toute créature qui possède le sous-type air ou une vitesse de vol.
+-En sort de terre, il peut parler en terreux et avec toute créature qui possède le sous-type terre ou une vitesse de creusement.
+-En sort de feu, il peut parler en igné et avec toute créature qui possède le sous-type feu.
+-En sort de l'eau, il peut parler en aquatique et avec toute créature qui possède le sous-type eau ou une vitesse de nage.</descr>
+        <range>personnelle</range>
+        <cast_time>simple</cast_time>
+        <duration>1min/lvl</duration>
+        <compo>V,G,M</compo>
+        <rank>2</rank>
+        <type>util</type>
+    </spell>
+    <spell>
+        <name>Lien vital avec le compagnon</name>
+        <shortdescr>Quand son compagnon est blessé, le personnage le sent et quand le personnage est dans une situation désespérée, il peut lancer un appel à son compagnon.</shortdescr>
+        <descr>Le personnage crée un lien vital entre lui-même et sa cible. Chaque fois que sa cible est blessée, il le sent et sait aussitôt quand celle-ci est tuée. Si le personnage est blessé ou tué, la cible en a elle aussi conscience. Par une action libre, le personnage peut lancer un appel à la cible, la faisant revenir à lui (si elle en est capable et si elle est consentante). Ceci termine le sort.</descr>
         <range>contact</range>
         <cast_time>simple</cast_time>
         <duration>1min/lvl</duration>
         <compo>V,G,M</compo>
-        <rm>true</rm>
-        <rank>1</rank>
-        <type>buff</type>
+        <rank>2</rank>
     </spell>
-
     <spell>
-        <name>Connaître son ennemi</name>
-        <shortdescr>Bonus de +10 à un test de Connaissance des monstres.</shortdescr>
-        <descr>Le personnage communie avec le divin et réfléchit sur un type de créature rencontré la veille. Il peut faire un test de Connaissances concernant ce type de créature avec un bonus d’intuition de +10.</descr>
-        <range>personnelle</range>
-        <cast_time>1min</cast_time>
-        <duration>instant</duration>
-        <compo>V,G</compo>
-        <rank>1</rank>
-        <type>util</type>
-    </spell>
-
-    <spell>
-        <name>Détection des morts-vivants</name>
-        <shortdescr>Révèle les morts-vivants à moins de 18 m.</shortdescr>
-        <descr>Détecter les auras spécifiques des morts-vivants. Premier round : présence ou absence d’auras de morts-vivants. Deuxième round : nombre d’auras de morts-vivants dans la zone étudiée et intensité de l’aura la plus puissante. Troisième round : intensité et emplacement de chacune des auras. Si une aura se trouve en-dehors du champ de vision du lanceur de sorts, il apprend la direction dans laquelle elle se trouve mais pas son emplacement exact.</descr>
-        <range>18m</range>
-        <cast_time>simple</cast_time>
-        <duration>instant</duration>
-        <save_type>none</save_type>
-        <rm>false</rm>
-        <compo>V,G</compo>
-        <rank>1</rank>
-        <type>util</type>
-        <from_mystery>true</from_mystery>
-    </spell>
-
-
-    <spell>
-        <name>Dissipation de la fièvre</name>
-        <shortdescr>Supprime les conditions malade, nauséeux et fiévreux.</shortdescr>
-        <descr>Le personnage calme la maladie et la nausée de sa cible, ce qui lui donne un bonus de moral de +4 aux jets de sauvegarde contre la maladie, la nausée et la fièvre. Si la cible est déjà soumise à l’un de ces effets quand elle reçoit le sort, l’effet est supprimé pendant toute la durée du sort.</descr>
-        <range>courte</range>
-        <cast_time>simple</cast_time>
-        <duration>10min/lvl</duration>
-        <compo>V,G</compo>
-        <rank>1</rank>
-        <type>buff</type>
-    </spell>
-
-    <spell>
-        <name>Regain d'assurance</name>
-        <shortdescr>+4 aux jets de sauvegarde contre la terreur (un sujet, +1/4 niveaux).</shortdescr>
-        <descr>Ce sort permet de redonner confiance au sujet, ce qui lui confère un bonus de moral de +4 aux jets de sauvegarde contre la terreur pendant dix minutes. S’il est déjà sous l’influence d’un sort ou effet de terreur, celui-ci est réprimé pendant toute la durée de regain d’assurance. Regain d’assurance contre et dissipe frayeur.</descr>
-        <range>courte</range>
-        <cast_time>simple</cast_time>
-        <duration>10min</duration>
-        <compo>V,G</compo>
-        <rank>1</rank>
-        <type>buff</type>
-    </spell>
-
-    <spell>
-        <name>Sanctuaire</name>
-        <shortdescr>Les adversaires ne peuvent pas attaquer le PJ, et inversement.</shortdescr>
-        <descr>Une fois le personnage protégé par sanctuaire, tout adversaire tentant de l’attaquer ou de le prendre pour cible avec un sort doit tout d’abord réussir un jet de Volonté. En cas de réussite, il n’est pas affecté par le sort et peut agir normalement, sinon, il ne peut pas attaquer le personnage (mais il perd tout de même l’action correspondante) et ne peut lui faire le moindre mal tant que dure le sort. Les créatures qui n’agressent pas le personnage ne sont pas affectées par sanctuaire. Le sort n’empêche pas l’individu protégé d’être affecté par des sorts de zone. Le bénéficiaire peut agir à sa guise et lancer librement des sorts qui ne sont pas offensifs, mais s’il attaque qui que ce soit, le sort cesse aussitôt.</descr>
+        <name>Mâchoires d'acier</name>
+        <shortdescr>La créature gagne l'aptitude étreinte avec une attaque naturelle.</shortdescr>
+        <descr>Le personnage permet à une créature de se servir de l'une de ses attaques naturelles pour s'attacher fermement à son adversaire. Il choisit l'une des attaques naturelles de la créature (généralement une attaque de griffe ou de morsure) et offre à la créature le pouvoir d'étreinte (qui comprend un bonus de +4 aux tests de manœuvres de combat pour démarrer une situation de lutte ou la maintenir). Une créature qui dispose de plusieurs attaques naturelles peut frapper un adversaire agrippé avec ses attaques supplémentaires mais ne peut pas frapper une autre créature.</descr>
         <range>contact</range>
         <cast_time>simple</cast_time>
         <duration>1round/lvl</duration>
-        <save_type>vol[annule]</save_type>
+        <compo>V,G,M</compo>
+        <rank>2</rank>
+        <type>combatbuff</type>
+    </spell>
+    <spell>
+        <name>Messager animal</name>
+        <shortdescr>Envoie un animal de taille TP en un lieu donné.</shortdescr>
+        <descr>Ce sort oblige un animal de taille TP à se rendre à l’endroit indiqué par le personnage. Cela permet généralement de transmettre un message à un allié. Le sort ne fonctionne que si l’animal n’a pas été dompté ou dressé par un autre personnage (cela exclut donc les familiers et compagnons animaux).
+Le personnage attire l’animal en lui offrant de la nourriture que celui-ci apprécie. La bête s’approche et attend les ordres. Le jeteur de sorts peut lui imprimer à l’esprit un lieu qu’il connaît bien ou un repère visible de loin. Les indications doivent être simples, l’animal étant incapable de trouver sa destination par lui-même. Il est possible de lui attacher des indications ou un petit objet autour du cou, puis le messager part pour le lieu désigné. Il attend là-bas jusqu’à expiration du sort, à la suite de quoi il reprend une existence normale.
+Pendant qu’il attend, l’animal se laisse approcher de manière à ce que l’on puisse prendre le message ou l’objet qu’il transporte. Le sort n’offre pas le pouvoir de communiquer avec l’animal ou de lire le message (dans le cas où celui-ci a été rédigé dans une langue inconnu de celui qui le lit, par exemple).</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>1j/lvl</duration>
+        <compo>V,G,M</compo>
+        <rank>2</rank>
+        <type>util</type>
+    </spell>
+    <spell>
+        <name>Métal brûlant</name>
+        <shortdescr>Chauffe le métal et inflige des dégâts à qui le touche.</shortdescr>
+        <descr>Au cours du premier round, le métal affecté devient chaud et désagréable au toucher, mais pas au point de perdre des points de vie (c’est également le cas lors du dernier round, alors qu’il retrouve rapidement sa température normale). Pendant les deuxième et avant-dernier rounds, la chaleur est suffisamment intense pour infliger des dégâts, lesquels deviennent plus importants au cours des troisième, quatrième et cinquième rounds.
+Round 1	    Chaud	Aucun
+Round 2	    Très chaud	1d4 points
+Round 3–5	Brûlant	2d4 points
+Round 6	    Très chaud	1d4 points
+Round 7	    Chaud	Aucun</descr>
+        <dice_type>4</dice_type>
+        <cap_dice>8</cap_dice>
+        <dmg_type>fire</dmg_type>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>7rounds</duration>
         <compo>V,G</compo>
-        <rank>1</rank>
+        <rank>2</rank>
+        <type>dmg</type>
+    </spell>
+    <spell>
+        <name>Métal gelé</name>
+        <shortdescr>Refroidit le métal et inflige des dégâts à qui le touche.</shortdescr>
+        <descr>Au cours du premier round, le métal affecté devient froid et désagréable au toucher, mais ne perd aucun point de vie (c’est également le cas lors du dernier round, quand il retrouve rapidement sa température initiale). Lors des deuxième et avant-dernier rounds, le froid est suffisamment intense pour infliger des dégâts, lesquels deviennent plus importants au cours des troisième, quatrième et cinquième rounds, comme indiqués ci-dessous.
+            Round 1	    Froid	Aucun
+            Round 2	    Très froid	1d4 points
+            Round 3–5	Gelé	2d4 points
+            Round 6	    Très froid	1d4 points
+            Round 7	    Froid	Aucun</descr>
+        <dice_type>4</dice_type>
+        <cap_dice>8</cap_dice>
+        <dmg_type>frost</dmg_type>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>7rounds</duration>
+        <compo>V,G</compo>
+        <rank>2</rank>
+        <type>dmg</type>
+    </spell>
+    <spell>
+        <name>Nappe de brouillard</name>
+        <shortdescr>Brume gênant la visibilité.</shortdescr>
+        <descr>Un banc de brouillard apparaît à l’endroit indiqué par le personnage. Il limite le champ de vision (y compris la vision dans le noir) à 1,50 m (1 c). En cas de combat, les créatures qui se trouvent à moins de 1,50 m (1 c) bénéficient d’un camouflage (20 % de chances que les attaques les ratent). Au-delà, elles bénéficient d’un camouflage total (50 % de chances que les attaques les ratent, et leurs adversaires ne peuvent les localiser à l’œil nu). Un vent modéré (plus de 15 km/h) disperse la nappe en 4 rounds. Si le vent est important (plus de 30 km/h), elle se dissipe en 1 round.</descr>
+        <range>moyenne</range>
+        <area>6m</area>
+        <cast_time>simple</cast_time>
+        <duration>10min/lvl</duration>
+        <compo>V,G</compo>
+        <rank>2</rank>
+    </spell>
+    <spell>
+        <name>Nuage euphorisant</name>
+        <shortdescr>Brume qui obscurcit la vision et fascine les créatures vivantes.</shortdescr>
+        <descr>Le personnage crée un banc de brume similaire à ce que ferait une brume de dissimulation, à la seule différence que ses vapeurs sont enivrantes. Les créatures vivantes présentes dans le nuage sont fascinées. Cet état dure tant que les créatures sont dans le nuage et pendant 1d4+1 rounds après qu’elles en sont sorties. Toute créature qui réussit son jet de sauvegarde mais reste dans le nuage doit continuer de faire un jet de sauvegarde à chaque round lors du tour du personnage.</descr>
+        <range>moyenne</range>
+        <cast_time>simple</cast_time>
+        <area>6m</area>
+        <duration>1round/lvl</duration>
+        <compo>V,G</compo>
+        <rm>false</rm>
+        <save_type>vol[annule]</save_type>
+        <rank>2</rank>
+        <type>debuff</type>
+    </spell>
+    <spell>
+        <name>Nuée grouillante</name>
+        <shortdescr>Convoque une nuée de chauves-souris, de rats ou d’araignées.</shortdescr>
+        <descr>Cette incantation fait apparaître une nuée d’araignées, de chauves-souris ou de rats (au choix du lanceur de sorts), qui mordent toutes les créatures se trouvant dans la zone d’effet (on peut convoquer la nuée de façon à ce qu’elle partage le même espace que d’autres créatures). S’il n’y a pas de créature vivante dans la zone, la nuée fait de son mieux pour attaquer ou poursuivre la créature la plus proche. Le lanceur de sorts n’a aucun contrôle sur la direction qu’elle emprunte.</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <compo>V,G,M</compo>
+        <rank>2</rank>
+    </spell>
+    <spell>
+        <name>Œil de faucon</name>
+        <shortdescr>Crée un détecteur magique loin au-dessus du personnage</shortdescr>
+        <descr>Œil de faucon crée un capteur magique juste au-dessus de la tête du personnage. Il apparaît à n'importe quelle hauteur, avec un maximum de mètres égal à la portée du sort. Le personnage voit tout ce qui se passe depuis cet emplacement comme s'il s'y trouvait et peut faire une rotation sur 360°. Ses perceptions se font à l'aide de ses sens visuels habituels. Un lanceur de sorts qui utilise l'œil de faucon voit donc facilement ce qui se passe dans le lointain. Le sort ne peut pas traverser une surface solide mais il n'est pas affecté par le feuillage et autre.</descr>
+        <range>longue</range>
+        <cast_time>simple</cast_time>
+        <duration>1min/lvl</duration>
+        <compo>V,G</compo>
+        <rank>2</rank>
         <type>buff</type>
     </spell>
+    <spell>
+        <name>Parole animale</name>
+        <shortdescr>Le personnage parle normalement quand il est sous forme animale.</shortdescr>
+        <descr>Quand le personnage est sous forme animale (quand, par exemple, il utilise forme animale ou est affecté par un effet de métamorphose), il peut parler normalement, même quand il lance des sorts à composante verbale, et sa voix est la même que lorsqu’il est sous sa forme normale. Il peut lancer ce sort lorsqu’il est sous forme animale, utilisant alors les composantes gestuelles appropriées à l’animal.</descr>
+        <range>personnelle</range>
+        <cast_time>simple</cast_time>
+        <duration>10min/lvl</duration>
+        <compo>G</compo>
+        <rank>2</rank>
+        <type>util</type>
+    </spell>
+    <spell>
+        <name>Partage de la langue</name>
+        <shortdescr>Le sujet comprend une langue choisie.</shortdescr>
+        <descr>Le personnage partage son aisance dans une langue avec une autre créature. Pendant 24 heures, la cible peut lire, comprendre et communiquer au mieux de ses capacités dans une langue connue du personnage. Il peut offrir la maîtrise d'une langue supplémentaire par tranche de 5 niveaux de lanceur de sorts, avec un maximum de 5 langues au niveau 20. Cependant, comme ce sort n'améliore pas les capacités intellectuelles de la cible et augmente juste son vocabulaire de façon temporaire, toute personne qui donne des instructions à une créature dépourvue d'intelligence doit veiller à éviter toute ambiguïté ou travail de devinette.</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>24hs</duration>
+        <compo>V,G,M</compo>
+        <rank>2</rank>
+        <type>util</type>
+    </spell>
+    <spell>
+        <name>Pattes d'araignée</name>
+        <shortdescr>Permet de grimper aux murs.</shortdescr>
+        <descr>Le sujet peut se déplacer sur une surface verticale, voire au plafond, avec l’agilité d’une araignée. Pour ce faire, il doit avoir les mains libres. Sa vitesse de déplacement est égale à 6 m et il gagne un bonus racial aux tests d’Escalade de +8. De plus, il n’a pas besoin de faire de test d’Escalade pour franchir les surfaces verticales ou horizontales (même s’il a la tête en bas). Une créature qui bénéficie des effets de ce sort conserve son bonus de Dextérité à la CA (le cas échéant) lorsqu’elle grimpe et ses adversaires ne bénéficient d’aucun bonus spécial pour l’attaquer. Par contre, elle ne peut pas entreprendre d’action de course tant qu’elle escalade quelque chose.</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>10min/lvl</duration>
+        <compo>V,G,M</compo>
+        <rank>2</rank>
+        <type>buff</type>
+    </spell>
+    <spell>
+        <name>Peau d'écorce</name>
+        <shortdescr>Confère un bonus d’armure naturelle de +2 (ou plus).</shortdescr>
+        <descr>Comme son nom l’indique, ce sort rend l’épiderme du sujet aussi dur que de l’écorce, ce qui lui offre un bonus d’altération de +2 au bonus d’armure naturelle. Ce bonus augmente de 1 point par tranche de 3 niveaux du lanceur de sorts au dessus du niveau 3, pour un maximum de +5 au niveau 12.
+
+L’effet de peau d’écorce se cumule avec le bonus d’armure naturelle de la cible mais pas avec d’autres bonus d’altération à l’armure naturelle. Une créature dépourvue d’armure naturelle possède un bonus d’armure naturelle de +0, comme un personnage portant de simples vêtements a un bonus d’armure de +0.</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>10min/lvl</duration>
+        <compo>V,G</compo>
+        <rank>2</rank>
+        <type>buff</type>
+    </spell>
+    <spell>
+        <name>Pied aérien</name>
+        <shortdescr>Le personnage marche sur l’air d’un pas mal assuré, dans certaines limites.</shortdescr>
+        <descr>Ce sort fonctionne comme marche dans les airs, à la seule différence que le personnage ne s’élève pas à plus de 30 centimètres du sol, ne peut pas passer par-dessus les étendues liquides et que l’air sur lequel il se déplace est moins stable que la terre ferme.
+
+Quand il marche dans les airs, il ignore les environnements difficiles dont les obstacles font moins de 30 centimètres de haut, il ne déclenche pas les effets basés sur le poids (comme les plaques de pression) et toute créature qui essaye de le poursuivre à travers les zones qu’il traverse grâce à ce sort reçoit un malus de -10 aux tests de Perception ou de Survie pour ce faire. Néanmoins, en raison de l’instabilité de l’air qu’il foule, la vitesse de déplacement du personnage est réduite de 3 mètres (jusqu’à un minimum de 1,5 mètre) et il reçoit un malus de -4 aux tests d’Acrobaties, d’Escalade et d’Équitation.
+
+Si le personnage a 1 rang en Vol, sa vitesse n’est pas réduite quand il utilise ce sort et il peut traverser les étendues liquides à la moitié de sa vitesse. S’il a 5 rangs en Vol, il peut traverser les étendues liquides à sa vitesse normale et ne reçoit pas de malus aux tests de compétence.</descr>
+        <range>personnelle</range>
+        <cast_time>simple</cast_time>
+        <duration>1min/lvl</duration>
+        <compo>V,G</compo>
+        <rank>2</rank>
+        <type>util</type>
+    </spell>
+    <spell>
+        <name></name>
+        <shortdescr></shortdescr>
+        <descr></descr>
+        <range></range>
+        <cast_time>simple</cast_time>
+        <duration></duration>
+        <compo>V,G</compo>
+        <rm></rm>
+        <save_type></save_type>
+        <rank></rank>
+        <type>util</type>
+    </spell>
+    <spell>
+        <name>Piège à feu</name>
+        <shortdescr>L’objet piégé inflige 1d4 points de dégâts, +1/niveau.</shortdescr>
+        <descr>Ce sort déclenche une explosion de flammes dès qu’on ouvre l’objet protégé par le piège à feu. Ce sort peut défendre n’importe quel objet que l’on peut fermer.
+
+Lors de l’incantation, le personnage choisit le point d’origine du sort, qui doit forcément se trouver sur l’objet à défendre. Par la suite, dès que quelqu’un d’autre ouvre cet objet, il déclenche une explosion dans un rayon de 1,50 m autour du point d’origine. Les flammes infligent 1d4 points de dégâts de feu, +1 par niveau de lanceur de sorts (maximum +20). L’objet protégé n’est pas endommagé par l’explosion.
+
+Le lanceur de sorts peut utiliser l’objet sans déclencher le piège, de même que les créatures en phase avec le sort (c’est-à-dire, dans la plupart des cas, celles qui connaissent le mot de passe choisi par le lanceur de sorts lors de l’incantation).
+
+Perception pour le repérer, puis de Sabotage pour le mettre hors d’état. Pour chacun des deux jets, le DD s’élève à 25 + niveau du sort</descr>
+        <range>contact</range>
+        <dice_type>4</dice_type>
+        <cap_dice>1</cap_dice>
+        <dmg_type>fire</dmg_type>
+        <flat_dmg>1/lvl</flat_dmg>
+        <flat_cap>20</flat_cap>
+        <cast_time>simple</cast_time>
+        <duration>permanente</duration>
+        <compo>V,G</compo>
+        <rm>true</rm>
+        <save_type>ref[1/2]</save_type>
+        <rank>2</rank>
+        <type>dmg</type>
+    </spell>
+    <spell>
+        <name>Piste olfactive</name>
+        <shortdescr>Laisse une piste que les alliés peuvent suivre.</shortdescr>
+        <descr>Le personnage ou une créature consentante qu'il touche laisse une piste olfactive que seules les créatures désignées au moment de l'incantation peuvent suivre. Elles y parviennent avec une grande facilité : elles bénéficient d'un bonus de compétence de +20 aux tests de Survie destinés à suivre la créature qui a laissé cette piste. Les créatures sujettes qui disposent du pouvoir spécial odorat gagnent un bonus de compétence de +10 aux tests de Sagesse ou de Survie pour suivre la piste.
+
+De plus, le personnage peut laisser des messages olfactifs. Pour laisser un mot ou une émotion, il doit rester sur place pendant une action de mouvement. Les sujets qui tentent de déchiffrer ce message doivent faire un nouveau test de Survie DD 20 avec un malus de -1 par mot ou émotion compris dans le message. Les créatures ne peuvent pas bénéficier des avantages de ce sort si elles n'ont aucun odorat ou ne peuvent pas s'en servir. Les créatures peuvent se servir de ce sort pour retourner sur leurs pas dans un donjon, un labyrinthe ou des zones similaires, même si celle qui laisse la piste est passée à plusieurs reprises au même endroit.</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>1h/lvl</duration>
+        <compo>V,G,M</compo>
+        <rank>2</rank>
+        <type>util</type>
+    </spell>
+    <spell>
+        <name>Planer</name>
+        <shortdescr>Le personnage ne reçoit pas de dégâts de chute, se déplace à 18 m/round pendant la chute.</shortdescr>
+        <descr>Le personnage ne subit pas de dégâts de chute (comme avec feuille morte). De plus, il peut parcourir jusqu'à 1,50 mètre (1 c) dans n'importe quelle direction horizontale pour chaque tranche de 30 centimètres de chute, (effectuée à une vitesse de 18 mètres (12 c) par round). Le personnage ne peut pas utiliser ce sort pour regagner de la hauteur, uniquement pour dériver dans une direction ou une autre alors qu'il tombe. Si le personnage est soumis à un vent violent ou à un autre effet qui le fait remonter, il peut en profiter pour augmenter la distance sur laquelle il plane. Le sort se termine dès que le personnage touche le sol, quelle que soit la durée d'effet qui lui restait. Si le sort expire alors que le personnage est encore en l'air, il tombe normalement sur la distance restante.</descr>
+        <range>personnelle</range>
+        <cast_time>simple</cast_time>
+        <duration>1min/lvl</duration>
+        <compo>V,G,M</compo>
+        <rank>2</rank>
+        <type>util</type>
+    </spell>
+    <spell>
+        <name>Poigne sûre</name>
+        <shortdescr>Le personnage gagne un bonus de compétence de +4 aux tests d’Acrobaties et d’Escalade et au DMD.</shortdescr>
+        <descr>Les prises et les appuis de la cible se font plus sûrs et lui donnent un bonus de compétence de +4 aux tests d’Escalade, d’Acrobaties pour garder son équilibre et au DMD contre une tentative de bousculade, d’attirer, de repositionnement et de croc-en-jambe. Tant que la cible est sous l’effet de ce sort, elle est également immunisée contre les manœuvres de désarmement.</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>10min/lvl</duration>
+        <compo>V,G</compo>
+        <rank>2</rank>
+        <type>buff</type>
+    </spell>
+    <spell>
+        <name>Ralentissement du poison</name>
+        <shortdescr>Neutralise le poison pendant 1 heure/niveau.</shortdescr>
+        <descr>Le bénéficiaire du sort est temporairement immunisé contre les effets du poison. Toute substance toxique qui circule dans son corps cesse de l’affecter jusqu’au terme de la durée indiquée. Ralentissement du poison ne soigne pas les dégâts que cette substance a pu infliger au préalable.</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>1h/lvl</duration>
+        <compo>V,G</compo>
+        <rank>2</rank>
+    </spell>
+    <spell>
+        <name>Ramollissement de la terre et de la pierre</name>
+        <shortdescr>Transforme la pierre en argile et la terre en sable ou en boue.</shortdescr>
+        <descr>Au terme de l’incantation, la pierre non travaillée et la terre comprises dans la zone d’effet se ramollissent. La terre humide se transforme en boue épaisse, la terre sèche en sable ou en terre friable et la roche en argile meuble facile à modeler. Le sort affecte une zone de 3 m de côté, sur une profondeur allant de 30 cm à 1,20 m, selon la résistance du sol.
+
+Les individus pris dans la boue doivent faire un jet de Réflexes, sinon ils sont incapables de se déplacer, de combattre ou de lancer des sorts pendant 1d2 rounds. S’ils réussissent leur jet de sauvegarde, ils peuvent se déplacer à la moitié de leur vitesse de déplacement normale, mais ils ne peuvent ni courir ni charger.</descr>
+        <range>courte</range>
+        <area>3m/lvl</area>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V,G</compo>
+        <rank>2</rank>
+        <type>util</type>
+    </spell>
+    <spell>
+        <name>Rapetissement d'animal</name>
+        <shortdescr>Réduit la taille d’un animal consentant.</shortdescr>
+        <descr>Ce sort rapetisse instantanément l'animal consentant pris pour cible : il réduit sa taille, sa longueur et sa largeur de moitié et divise son poids par 8, cela fait passer à la catégorie de taille inférieure. Le sujet bénéficie alors d’un bonus de taille de +2 en Dextérité et d’un bonus +1 aux jets d’attaque et à la CA. En revanche, il subit un malus de -2 en Force (jusqu’à un minimum 1).</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>1h/lvl</duration>
+        <compo>V,G</compo>
+        <rank>2</rank>
+        <type>util</type>
+    </spell>
+    <spell>
+        <name>Regard brûlant</name>
+        <shortdescr>Inflige 1d6 points de dégâts de feu à une créature.</shortdescr>
+        <descr>Les yeux du personnage brûlent comme des charbons ardents, ce qui lui permet d'enflammer des objets ou des créatures d'un seul regard.
+
+Tant que l'effet du sort persiste, le personnage peut tourner son regard brûlant, par une action simple, contre une créature ou un objet distant de moins de 9 mètres (6 c). Les créatures visées doivent réussir un jet de Vigueur ou recevoir 1d6 points de dégâts de feu. Les objets laissés à eux-mêmes n'ont pas droit au jet de sauvegarde. Toute créature touchée par le sort doit faire un jet de Réflexes ou prendre feu. À chaque round, une créature en flammes peut tenter un jet de Réflexes pour étouffer le feu. En cas d'échec, elle subit à nouveau 1d6 points de dégâts. Les objets inflammables que porte la créature doivent également réussir un jet de sauvegarde ou subir les mêmes dégâts qu'elle. Si la créature ou l'objet est déjà enflammé, le regard brûlant n'a pas d'effet supplémentaire.</descr>
+        <range>personnelle</range>
+        <cast_time>simple</cast_time>
+        <duration>1round/lvl</duration>
+        <compo>V,G,M</compo>
+        <rank>2</rank>
+        <dmg_type>fire</dmg_type>
+        <dice_type>6</dice_type>
+        <cap_dice>1</cap_dice>
+        <rm>true</rm>
+        <save_type>vig[annule]</save_type>
+        <type>dmg</type>
+    </spell>
+    <spell>
+        <name>Résistance aux énergies destructives</name>
+        <shortdescr>Protège contre la forme d’énergie choisie à raison de 10 (ou plus) points de dégâts/attaque.</shortdescr>
+        <descr>Ce sort offre une protection limitée contre la forme d’énergie choisie : acide, électricité, feu, froid ou son. Le sujet bénéficie d’une résistance de 10 points contre ce type d’énergie, ce qui signifie que chaque fois qu’il subit des dégâts (que leur source soit d’origine naturelle ou magique), ils sont réduits de 10 points avant d’être décomptés de ses points de vie restants. Cette résistance passe à 20 points au niveau 7 et à 30 points (le maximum) au niveau 11. Le sort protège également l’équipement du bénéficiaire.
+
+Résistance aux énergies destructives absorbe seulement les dégâts, le sujet risque toujours d’être victime d’effets secondaires indésirables.</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>10min/lvl</duration>
+        <compo>V,G</compo>
+        <rank>2</rank>
+        <type>buff</type>
+    </spell>
+    <spell>
+        <name>Restauration partielle</name>
+        <shortdescr>Dissipe effets magiques affaiblissants ou rend 1d4 points de caractéristique perdus.</shortdescr>
+        <descr>Ce sort dissipe les effets magiques réduisant l’une des caractéristiques de la cible ou permet de récupérer 1d4 points d’une caractéristique temporairement affaiblie. Restauration partielle élimine toute fatigue dont est victime le sujet. Si le personnage est épuisé, il devient simplement fatigué. Le sort ne peut rien contre les diminutions permanentes de caractéristique.</descr>
+        <range>contact</range>
+        <cast_time>3rounds</cast_time>
+        <duration>instant</duration>
+        <compo>V,G</compo>
+        <rank>2</rank>
+        <type>buff</type>
+    </spell>
+    <spell>
+        <name>Rythme naturel</name>
+        <shortdescr>+1 aux jets de dégâts à chaque coup (max +5).</shortdescr>
+        <descr>Le personnage améliore l'aptitude d'une créature à blesser son adversaire en fonction du nombre de coups qu'elle lui a déjà portés avec une attaque naturelle. À chaque fois que la créature parvient à toucher son adversaire avec une attaque naturelle, le sujet gagne un bonus cumulable de +1 aux jets de dégâts contre cet adversaire s'il utilise son attaque naturelle (avec un maximum de +5). S'il rate son attaque, le bonus aux dégâts repart à +0.</descr>
+        <range>cotnact</range>
+        <cast_time>simple</cast_time>
+        <duration>1round/lvl</duration>
+        <compo>V,G,M</compo>
+        <rank>2</rank>
+        <type>combatbuff</type>
+    </spell>
+    <spell>
+        <name>Sagesse du hibou</name>
+        <shortdescr>Confère +4 en Sag pendant 1 minute/niveau.</shortdescr>
+        <descr>La créature affectée se montre plus sage. Le sort offre un bonus d’altération de +4 à la Sagesse. La cible en bénéficie à chaque fois qu’elle doit se servir de sa Sagesse. Les prêtres (et autres lanceurs de sorts dépendant de la Sagesse) qui bénéficient de sagesse du hibou ne gagnent pas de sorts supplémentaires mais cela augmente le DD de leurs sorts.</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>1min/lvl</duration>
+        <compo>V,G,M</compo>
+        <rank>2</rank>
+        <type>buff</type>
+    </spell>
+    <spell>
+        <name>Soldats de la nature</name>
+        <shortdescr>Les plantes voisines aident le personnage quand il se bat.</shortdescr>
+        <descr>Le personnage fait appel aux plantes qui l’entourent pour l’aider à se battre. Le sort est inefficace s’il n’y a pas de plantes dans la zone. À chaque tour, le personnage peut dépenser une action rapide et/ou une action simple pour diriger l’une des attaques suivantes. Le bonus d’attaque ou le DMD de ces attaques est égal au BBA du personnage + son modificateur de Sagesse. Le sort donne un bonus aux dégâts de +1 par tranche de trois niveaux de lanceur de sorts (+5 au maximum). Les soldats de la nature ne provoquent jamais d’attaque d’opportunité et ne sont pas considérés comme des alliés pour prendre un adversaire en tenaille ou autre.
+
+-Arbre. Un arbre fait une attaque de corps à corps avec une allonge de 3 m (2 c). S’il touche, il inflige 1d8 points de dégâts + modificateur de Sagesse. L’arbre peut tenter une manœuvre de BMO.
+
+-Taillis ou haie. Une case de taillis ou de haie se comporte comme une créature M et tente une manœuvre de lutte contre un adversaire qui se situe dans sa case ou dans une case adjacente. Ils lui infligent 1d4 points de dégâts + modificateur de Sagesse. </descr>
+        <range>9m</range>
+        <cast_time>simple</cast_time>
+        <duration>1min/lvl</duration>
+        <compo>V,G</compo>
+        <rank>2</rank>
+    </spell>
+    <spell>
+        <name>Sphère de feu</name>
+        <shortdescr>Roule au sol, 3d6 points de dégâts.</shortdescr>
+        <descr>Cette incantation génère une boule de feu qui roule dans la direction indiquée par le lanceur de sorts et brûle tout ce qu’elle touche. Elle se déplace de 9 m par round et peut faire des bonds de 9 m pour atteindre ses cibles. Dès qu’elle atteint une créature, elle s’immobilise pendant 1 round, le temps de lui infliger 3d6 points de dégâts de feu (que la cible peut éviter à l’aide d’un jet de Réflexes). La sphère enflammée peut franchir des obstacles hauts de 1,20 m au maximum. Les matériaux inflammables s’enflamment à son contact. Elle éclaire autant qu’une torche.
+
+La sphère se déplace tant que son créateur la dirige (ce qui lui coûte une action de mouvement par round). Sinon, elle s’immobilise et continue de brûler jusqu’au terme de la durée indiquée. On peut l’éteindre par n’importe quel moyen qui permet d’éteindre un feu de cette taille. Elle a une surface spongieuse et en cas de choc, elle n’inflige seulement des dégâts de feu. Elle est incapable de pousser une créature qui refuse de s’écarter ou de traverser un obstacle solide. Elle disparaît dès qu’elle sort des limites de portée du sort.</descr>
+        <range>moyenne</range>
+        <cast_time>simple</cast_time>
+        <area>1.5m</area>
+        <dice_type>6</dice_type>
+        <cap_dice>3</cap_dice>
+        <dmg_type>fire</dmg_type>
+        <duration>1round/lvl</duration>
+        <compo>V,G,M</compo>
+        <rm>true</rm>
+        <save_type>ref[annule]</save_type>
+        <rank>2</rank>
+        <type>dmg</type>
+    </spell>
+    <spell>
+        <name>Vague</name>
+        <shortdescr>Une vague augmente la vitesse de la créature.</shortdescr>
+        <descr>Le personnage crée une vague de petite taille qui l'emporte sur l'eau ou sur terre. Quand elle se déplace sur terre, elle augmente la vitesse du personnage de 3 mètres (2 c). Si elle dévale une colline, sa vitesse augmente de 6 mètres (4 c) mais la vague n'apporte aucun bonus de mouvement si elle doit remonter une pente. Quand le personnage nage, la vague augmente sa vitesse de natation de 6 mètres (4 c). Si le personnage n'a pas de vitesse de nage, le sort lui en accorde une de 6 mètres (4 c).</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>10min/lvl</duration>
+        <compo>V,G</compo>
+        <rank>2</rank>
+    </spell>
+    <spell>
+        <name>Violent nuage d'orage</name>
+        <shortdescr>Nuage d’orage volant qui inflige 3d6 points de dégâts d’électricité.</shortdescr>
+        <descr>Un nuage de tempête sphérique et crépitant vole dans la direction indiquée par le personnage et inflige des dégâts d’électricité à ceux qui le touchent. Il a une vitesse de vol de 6 mètres avec une manœuvrabilité parfaite. Si l’orage entre dans un espace qui accueille une créature, il arrête de se déplacer pour le round et inflige 3d6 points de dégâts d’électricité à cette créature, mais un jet de Réflexes réussi annule ces dégâts. Le nuage offre un camouflage (20% de chances de rater) à tout ce qui s’y trouve et sa lumière vacillante illumine la même zone que le ferait une bougie. La sphère se déplace tant que le personnage la dirige activement (ce qui requiert une action de mouvement de sa part). Sinon, elle reste en place et crépite d’éclairs. Les effets de vent permettent de la déplacer et elle compte comme une créature de taille P quand il s’agit de déterminer la manière dont les vents l’affectent. La sphère n’a pas de substance physique et ne peut exercer aucune force sur les créatures tangibles ou les objets. Elle se disperse si elle sort de la portée du sort.</descr>
+        <range>moyenne</range>
+        <cast_time>simple</cast_time>
+        <duration>1round/lvl</duration>
+        <area>1.5m</area>
+        <dice_type>6</dice_type>
+        <cap_dice>3</cap_dice>
+        <dmg_type>shock</dmg_type>
+        <compo>V,G</compo>
+        <rm>true</rm>
+        <save_type>ref[annule]</save_type>
+        <rank>2</rank>
+        <type>dmg</type>
+    </spell>
+    <spell>
+        <name></name>
+        <shortdescr></shortdescr>
+        <descr></descr>
+        <range></range>
+        <cast_time>simple</cast_time>
+        <duration></duration>
+        <compo>V,G</compo>
+        <rm></rm>
+        <save_type></save_type>
+        <rank></rank>
+        <type>util</type>
+    </spell>
+    <spell>
+        <name></name>
+        <shortdescr></shortdescr>
+        <descr></descr>
+        <range></range>
+        <cast_time>simple</cast_time>
+        <duration></duration>
+        <compo>V,G</compo>
+        <rm></rm>
+        <save_type></save_type>
+        <rank></rank>
+        <type>util</type>
+    </spell>
+    <spell>
+        <name></name>
+        <shortdescr></shortdescr>
+        <descr></descr>
+        <range></range>
+        <cast_time>simple</cast_time>
+        <duration></duration>
+        <compo>V,G</compo>
+        <rm></rm>
+        <save_type></save_type>
+        <rank></rank>
+        <type>util</type>
+    </spell>
+
+
+
+
+
+    <!-- autre spells -->
+
 
 
     <spell>
@@ -960,7 +2433,7 @@
         <duration>instant</duration>
         <compo>V,G</compo>
         <rank>9</rank>
-        <type>util</type>
+        <type>dmg</type>
     </spell>
 
 

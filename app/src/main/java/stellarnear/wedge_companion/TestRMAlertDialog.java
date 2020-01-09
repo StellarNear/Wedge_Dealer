@@ -59,17 +59,13 @@ public class TestRMAlertDialog {
         title.setText(titleTxt);
 
 
-        sumScore= calculationSpell.casterLevel(spell);
-        robe = pj.getInventory().getAllEquipments().getEquipmentsEquiped("armor_slot").getName().equalsIgnoreCase("Robe d'archimage grise");
-        if(robe){
-            sumScore+=2;
-        }
+        sumScore= calculationSpell.casterLevel();
         String summaryTxt="Test contre RM : "+String.valueOf(sumScore);
         TextView summary = dialogView.findViewById(R.id.customDialogTestSummary);
         summary.setText(summaryTxt);
 
         String summaryDetail="";
-        summaryDetail="NLS : "+String.valueOf(calculationSpell.casterLevel(spell))+" "; //oui c'est moche il faut gerer tout les calcul au niveau du perso proprement ...
+        summaryDetail="NLS : "+String.valueOf(calculationSpell.casterLevel())+" ";
 
         if(robe){ summaryDetail+=", Robe d'archimage grise (+2)";}
 
@@ -136,18 +132,18 @@ public class TestRMAlertDialog {
     }
 
     private void setManualDicesRand() {
-            dice.rand(true);
-            dice.setRefreshEventListener(new Dice.OnRefreshEventListener() {
-                @Override
-                public void onEvent() {
-                    endSkillCalculation();
-                }
-            });
+        dice.rand(true);
+        dice.setRefreshEventListener(new Dice.OnRefreshEventListener() {
+            @Override
+            public void onEvent() {
+                endSkillCalculation();
+            }
+        });
     }
 
     private void setAutoDicesRand() {
-            dice.rand(false);
-            endSkillCalculation();
+        dice.rand(false);
+        endSkillCalculation();
     }
 
     public void showAlertDialog(){
@@ -176,11 +172,11 @@ public class TestRMAlertDialog {
         resultDice.removeAllViews();
 
 
-            ViewGroup parentImg = (ViewGroup) dice.getImg().getParent();
-            if (parentImg != null) {
-                parentImg.removeView(dice.getImg());
-            }
-            resultDice.addView(dice.getImg());
+        ViewGroup parentImg = (ViewGroup) dice.getImg().getParent();
+        if (parentImg != null) {
+            parentImg.removeView(dice.getImg());
+        }
+        resultDice.addView(dice.getImg());
 
 
         TextView resultTitle = dialogView.findViewById(R.id.customDialogTitleResult);
@@ -191,27 +187,23 @@ public class TestRMAlertDialog {
         successButton.setVisibility(View.VISIBLE);
 
         resultTitle.setText("Résultat du test de niveau de lanceur de sort :");
-        int bestRand=0;
 
-            int valDice=dice.getRandValue();
-            if(dice.getMythicDice()!=null){valDice+=dice.getMythicDice().getRandValue();}
-            if(bestRand<valDice){
-                bestRand=valDice;
-            }
+        int valDice=dice.getRandValue();
+        if(dice.getMythicDice()!=null){valDice+=dice.getMythicDice().getRandValue();}
 
-        int sumResult=bestRand+ calculationSpell.casterLevel(spell);
+        int sumResult=valDice+ calculationSpell.casterLevel();
 
         if(robe){sumResult+=2;}
 
         final TextView result = dialogView.findViewById(R.id.customDialogTestResult);
         result.setText(String.valueOf(sumResult));
 
-            dice.setMythicEventListener(new Dice.OnMythicEventListener() {
-                @Override
-                public void onEvent() {
-                    endSkillCalculation();
-                }
-            });
+        dice.setMythicEventListener(new Dice.OnMythicEventListener() {
+            @Override
+            public void onEvent() {
+                endSkillCalculation();
+            }
+        });
 
 
         callToAction.setText("Fin du test de\nniveau de lanceur de sort.");
