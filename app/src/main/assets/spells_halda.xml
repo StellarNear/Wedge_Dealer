@@ -334,10 +334,9 @@
         <descr>Ce sort soigne toutes les maladies dont souffre le sujet. Le personnage doit réussir un test de lanceur de sorts (1d20 + niveau de lanceur de sorts) contre le DD de chaque maladie qui affecte la cible. En cas de succès, la maladie disparaît. Ce sort détruit également certains parasites et autres menaces du même genre comme par exemple le limon vert.</descr>
         <range>contact</range>
         <cast_time>simple</cast_time>
-        <duration>10min/lvl</duration>
         <compo>V,G</compo>
         <rank>3</rank>
-        <type>buff</type>
+        <type>heal</type>
     </spell>
 
     <spell>

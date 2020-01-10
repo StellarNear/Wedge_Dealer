@@ -6,6 +6,9 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.GridLayout;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -90,7 +93,7 @@ public class SpellProfile {
             }
         }, 1500);
 
-        ((TextView)profile.findViewById(R.id.infos)).setText(printInfo());
+        printInfo();
     }
 
     private void popupLongText(String descr) {
@@ -122,33 +125,34 @@ public class SpellProfile {
         ((RelativeLayout)profile.findViewById(R.id.title_background)).setBackground(gd);
     }
 
-    private String printInfo() {
-        String text = "";
+    private void printInfo() {
+        GridLayout grid = ((GridLayout)profile.findViewById(R.id.infos));
+        grid.removeAllViews();
         if (calculationSpell.nDice(spell)>0) {
             if(spell.getDmg_type().equalsIgnoreCase("heal")){
-                text += "Soins:" + displayText.damageTxt(spell) + ", ";
-            } else { text += "Dégats:" + displayText.damageTxt(spell) + ", "; }
+                grid.addView(infoElement("Soins:" + displayText.damageTxt(spell)));
+            } else { grid.addView(infoElement("Dégats:" + displayText.damageTxt(spell))); }
         }
         if (!spell.getDmg_type().equals("")) {
-            text += "Type:" + ElemsManager.getInstance(mC).getName(spell.getDmg_type()) + ", ";
+            grid.addView(infoElement("Type:" + ElemsManager.getInstance(mC).getName(spell.getDmg_type())));
         }
         if (!spell.getRange().equals("")) {
-            text += "Portée:" + displayText.rangeTxt(spell)+ ", ";
+            grid.addView(infoElement("Portée:" + displayText.rangeTxt(spell)));
         }
         if (!spell.getArea().equals("")) {
-            text += "Zone:" + displayText.areaTxt(spell)+ ", ";
+            grid.addView(infoElement("Zone:" + displayText.areaTxt(spell)));
         }
         if (!displayText.compoTxt(mC,spell).equalsIgnoreCase("")) {
-            text += "Compos:" + displayText.compoTxt(mC,spell) + ", ";
+            grid.addView(infoElement("Compos:" + displayText.compoTxt(mC,spell)));
         }
         if (!spell.getCast_time().equals("")) {
-            text += "Cast:" + calculationSpell.getCastTimeTxt(spell) + ", ";
+            grid.addView(infoElement("Cast:" + calculationSpell.getCastTimeTxt(spell)));
         }
         if (!spell.getDuration().equals("") && !spell.getDuration().equalsIgnoreCase("instant")) {
-            text += "Durée:" + displayText.durationTxt(spell) + ", ";
+            grid.addView(infoElement("Durée:" + displayText.durationTxt(spell)));
         }
         if (!spell.hasRM()||spell.hasRM()) {
-            text += "RM:" + (spell.hasRM() ? "oui":"non") + ", ";
+            grid.addView(infoElement("RM:" + (spell.hasRM() ? "oui":"non")));
         }
         String resistance;
         if (spell.getSave_type().equals("none") || spell.getSave_type().equals("")) {
@@ -157,10 +161,22 @@ public class SpellProfile {
             resistance = spell.getSave_type() + "(" + calculationSpell.saveVal(spell) + ")";
         }
         if (!resistance.equals("")) {
-            text += "Sauv:" + resistance + ", ";
+            grid.addView(infoElement("Sauv:" + resistance ));
         }
-        text = text.substring(0, text.length() - 2);
-        return text;
+    }
+
+    private TextView infoElement(String txt){
+        TextView textview = new TextView(mC);
+        textview.setText(txt);
+        textview.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        GridLayout.LayoutParams para = new GridLayout.LayoutParams();
+        //para.width=0;
+        para.columnSpec=GridLayout.spec(GridLayout.UNDEFINED, 1f);
+        para.rowSpec=GridLayout.spec(GridLayout.UNDEFINED, 1f);
+        //para.height=GridLayout.LayoutParams.WRAP_CONTENT;
+        textview.setLayoutParams(para);
+
+        return textview;
     }
 
     public boolean isDone() {

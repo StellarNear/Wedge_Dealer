@@ -48,7 +48,7 @@ public class ResultBuilder {
     public void addResults(LinearLayout layout) {
         LayoutInflater inflater = mA.getLayoutInflater();
         LinearLayout resultTemplate = (LinearLayout) inflater.inflate(R.layout.spell_profile_result, null);
-        if (spell.getDmg_type().equalsIgnoreCase("")) {
+        if (spell.getDmg_type().equalsIgnoreCase("") || calculationSpell.nDice(spell)==0) {
             resultTemplate.removeAllViews();
             TextView txt_view = new TextView(mC);
             txt_view.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);

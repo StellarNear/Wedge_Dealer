@@ -62,7 +62,7 @@ public class PreparationSpellsAlertDialog {
         dialogBuilder.setView(mainView);
         dialogBuilder.setPositiveButton("Valider", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                buildPreparedSpellList.saveList();
+                buildPreparedSpellList.saveList();  //todo check si on a a bien tout select pas de resource vacante sinon on valide pas
                 if(mListener!=null) {
                     mListener.onEvent();
                 }
@@ -78,7 +78,7 @@ public class PreparationSpellsAlertDialog {
     private void addSpellsAndBoxesToLin(LinearLayout linear) {
         SpellsRanksManager manager = wedge.getAllResources().getRankManager();
 
-        for(int i=1;i<=manager.getHighestTier();i++){
+        for(int i=1;i<=manager.getHighestTier();i++){ //todo faire une sidebar comme dans liste pour visualiser le nombre de spell restant par tier (et clic sur tier pour autoscroll)
             final TextView tier= new TextView(mC);
             LinearLayout.LayoutParams para= new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             int pixelMarging = mC.getResources().getDimensionPixelSize(R.dimen.general_margin);
@@ -136,7 +136,7 @@ public class PreparationSpellsAlertDialog {
 
 
 
-    private void toastList() {
+    private void toastList() { //todo toast juste genre Encore X sort à select pour le Rang x (rang en cours de selection
         String text="Sorts:";
         for(Spell spell :preparedSpells.asList()){
             text+="\n"+spell.getName();
