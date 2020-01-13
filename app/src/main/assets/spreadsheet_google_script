@@ -1,0 +1,154 @@
+function doGet(e){
+  return handleResponse(e);
+
+}
+
+//Recieve parameter and pass it to function to handle
+
+function doPost(e){
+  return handleResponse(e);
+}
+
+// here handle with parameter
+
+function handleResponse(request) {
+  var output  = ContentService.createTextOutput();
+
+  //create varibles to recieve respective parameters
+
+  var sheetReq = request.parameter.sheet;
+  var date = request.parameter.date;
+  var type_event = request.parameter.type_event;
+  var detail = request.parameter.detail;
+  var result = request.parameter.result;
+  var id = request.parameter.id;
+
+
+  //open your Spread sheet by passing id
+
+  var ss= SpreadsheetApp.openById(id);
+  var sheet=ss.getSheetByName(sheetReq);
+
+  var nmaxRowArrowToScan=20;
+
+  //add new row with recieved parameter from client
+
+  if(sheetReq == 'Aquene' && type_event == 'stance_change'){
+    var sheetStance = ss.getSheetByName('AllStances');
+    sheetStance.getRange('D2:E20').clearContent();
+
+    for (var i = 2; i <= 20; i++)
+    {
+      var id = sheetStance.getRange('C'+i).getValue();
+      if(id == detail){
+        sheetStance.getRange('D'+i).setValue('true');
+        sheetStance.getRange('E'+i).setValue(date);
+      }
+    }
+
+  } else if(type_event == 'store_arrow_spell'){
+      var uuid = request.parameter.uuid;
+      var caster = request.parameter.caster;
+      sheet.appendRow([date,uuid,caster,result]);
+  } else if(type_event == 'remove_arrow_spell'){
+      var uuid = request.parameter.uuid;
+      for (var i = 2; i <= nmaxRowArrowToScan; i++)
+      {
+        var line_uuid = sheet.getRange('B'+i).getValue();
+        if(uuid == line_uuid){
+          sheet.deleteRow(i);
+        }
+      }
+  } else if(type_event == 'remove_all_arrow_spell') {
+    var caster = request.parameter.caster;
+    for (var i = nmaxRowArrowToScan; i >= 2; i--) //inverse order to prevent line disparition during the loop
+      {
+        var line_caster = sheet.getRange('C'+i).getValue();
+        if(caster == line_caster){
+          sheet.deleteRow(i);
+        }
+      }
+  } else {
+    var rowData = sheet.appendRow([date,type_event,detail,result]);
+  }
+
+  var callback = request.parameters.callback;
+  if (callback === undefined) {
+    output.setContent(JSON.stringify("Success"));
+  } else {
+    output.setContent(callback + "(" + JSON.stringify("Success") + ")");
+  }
+
+  output.setMimeType(ContentService.MimeType.JSON);
+
+  return output;
+}
+
+
+/* part clean googlesheet */
+function cleanAll(){
+  var confirm = Browser.msgBox('Validation','Souhaites-tu effacer l\'historique de toutes les pages ?', Browser.Buttons.OK_CANCEL);
+  // Process the user's response.
+  if (confirm=='ok') {
+    clean("Yfa");
+    clean("Wedge");
+    clean("Aquene");
+    clean("Halda");
+    clean("Ràna");
+    clean("Sylphe");
+  }
+}
+
+function cleanYfa(){
+    var confirm = Browser.msgBox('Validation','Souhaites-tu effacer l\'historique de la page Yfa ?', Browser.Buttons.OK_CANCEL);
+  // Process the user's response.
+  if (confirm=='ok') {
+    clean("Yfa");
+  }
+}
+
+function cleanAquene(){
+    var confirm = Browser.msgBox('Validation','Souhaites-tu effacer l\'historique de la page Aquene ?', Browser.Buttons.OK_CANCEL);
+  // Process the user's response.
+  if (confirm=='ok') {
+    clean("Aquene");
+  }
+}
+
+function cleanWedge(){
+    var confirm = Browser.msgBox('Validation','Souhaites-tu effacer l\'historique de la page Wedge ?', Browser.Buttons.OK_CANCEL);
+  // Process the user's response.
+  if (confirm=='ok') {
+    clean("Wedge");
+  }
+}
+function cleanHalda(){
+    var confirm = Browser.msgBox('Validation','Souhaites-tu effacer l\'historique de la page Halda ?', Browser.Buttons.OK_CANCEL);
+  // Process the user's response.
+  if (confirm=='ok') {
+    clean("Halda");
+  }
+}
+function cleanRàna(){
+    var confirm = Browser.msgBox('Validation','Souhaites-tu effacer l\'historique de la page Ràna ?', Browser.Buttons.OK_CANCEL);
+  // Process the user's response.
+  if (confirm=='ok') {
+    clean("Ràna");
+  }
+}
+function cleanSylphe(){
+    var confirm = Browser.msgBox('Validation','Souhaites-tu effacer l\'historique de la page Sylphe ?', Browser.Buttons.OK_CANCEL);
+  // Process the user's response.
+  if (confirm=='ok') {
+    clean("Sylphe");
+  }
+}
+
+function clean(sheetName){
+  var sheet = SpreadsheetApp.getActive().getSheetByName(sheetName);
+  if(sheetName=='Aquene'){
+     sheet.getRange('A6:D300').clearContent();
+  } else {
+    sheet.getRange('A2:D300').clearContent();
+  }
+}

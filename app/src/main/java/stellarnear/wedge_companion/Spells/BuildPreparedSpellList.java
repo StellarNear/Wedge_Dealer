@@ -86,6 +86,7 @@ public class BuildPreparedSpellList extends AppCompatActivity {
                             getValue("cast_time",element2),
                             getValue("duration",element2),
                             getValue("compo",element2),
+                            getValue("compo_m",element2),
                             getValue("rm",element2),
                             getValue("save_type",element2),
                             tools.toInt(getValue("rank",element2)),

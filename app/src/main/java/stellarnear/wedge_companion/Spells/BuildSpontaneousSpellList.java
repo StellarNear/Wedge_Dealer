@@ -9,14 +9,10 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import stellarnear.wedge_companion.Perso.PersoManager;
-import stellarnear.wedge_companion.TinyDB;
 import stellarnear.wedge_companion.Tools;
 
 
@@ -84,6 +80,7 @@ public class BuildSpontaneousSpellList extends AppCompatActivity {
                             getValue("cast_time",element2),
                             getValue("duration",element2),
                             getValue("compo",element2),
+                            getValue("compoM",element2),  //on s'en fou pour Halda car ignore les compo mais pour l'objet Spell
                             getValue("rm",element2),
                             getValue("save_type",element2),
                             tools.toInt(getValue("rank",element2)),

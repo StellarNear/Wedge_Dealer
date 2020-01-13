@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Tools;
@@ -43,6 +42,7 @@ public class Spell {
     private String  duration;
 
     private List<String> compoList=new ArrayList<>();
+    private String compoM;
 
     private String rm;
     private String  save_type;
@@ -85,6 +85,7 @@ public class Spell {
         this.cast_time=spell.cast_time;
         this.duration=spell.duration;
         this.compoList=spell.compoList;
+        this.compoM=spell.compoM;
         this.rm=spell.rm;
         this.save_type=spell.save_type;
         this.rank=spell.rank;
@@ -97,7 +98,7 @@ public class Spell {
         this.cast =new Cast();
     }
 
-    public Spell(String id,boolean mythic,boolean fromMystery,String normalSpellId, String name, String descr, String shortDescr,String type,Integer n_sub_spell, String dice_type, Double n_dice_per_lvl, int cap_dice, String dmg_type,String flat_dmg,int flat_cap, String range,String contact,String area, String cast_time, String duration, String compo, String rm, String save_type, int rank,Context mC){
+    public Spell(String id,boolean mythic,boolean fromMystery,String normalSpellId, String name, String descr, String shortDescr,String type,Integer n_sub_spell, String dice_type, Double n_dice_per_lvl, int cap_dice, String dmg_type,String flat_dmg,int flat_cap, String range,String contact,String area, String cast_time, String duration, String compo,String compoM, String rm, String save_type, int rank,Context mC){
         if(id.equalsIgnoreCase("")){
             this.id=name;
         } else {
@@ -123,6 +124,7 @@ public class Spell {
         this.cast_time=cast_time;
         this.duration=duration;
         calcCompo(compo);
+        this.compoM=compoM;
         this.rm=rm;
         this.save_type=save_type;
         this.rank=rank;
@@ -165,6 +167,10 @@ public class Spell {
         return compoList;
     }
 
+    public String getCompoM() {
+        return compoM==null?"":compoM;
+    }
+
     public Integer getRank(){
         return this.rank;
     }
@@ -172,7 +178,7 @@ public class Spell {
         return this.name;
     }
     public String getShortDescr(){
-        return this.shortDescr.equalsIgnoreCase("")? this.descr : this.shortDescr;
+        return (this.shortDescr==null||this.shortDescr.equalsIgnoreCase(""))? this.descr : this.shortDescr;  //le null pour les sorts venant de chez yfa
     }
 
     public String getDescr() {
@@ -345,7 +351,7 @@ public class Spell {
     }
 
     public void bindTo(Spell previousSpellToBind) {  //pour les sub spell pour que les meta et conversion s'applique partout
-        this.dmg_type=previousSpellToBind.dmg_type;
+        //this.dmg_type=previousSpellToBind.dmg_type; pour yfa il fallait bind ca pour conversion arcanique ici pas necessaire
         this.metaList=previousSpellToBind.metaList;
         this.cast =previousSpellToBind.cast;
         this.bindedParent =previousSpellToBind;

@@ -1,15 +1,10 @@
 package stellarnear.wedge_companion.Spells;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
-import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Tools;
 
 public class DisplayedText {
@@ -47,13 +42,12 @@ public class DisplayedText {
         return range;
     }
 
-    public String compoTxt(Context mC,Spell spell) {
+    public String compoTxt(Spell spell) {
         List<String> valList=new ArrayList<>(spell.getCompoList());
-        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
-        if(valList.contains("M") && settings.getBoolean("materiel_switch",mC.getResources().getBoolean(R.bool.materiel_switch_def)))  {
+        if(valList.contains("M") && pj.getAllFeats().featIsActive("feat_materiel"))  {
             valList.remove("M");
         }
-        if(valList.contains("M+") && settings.getBoolean("materiel_epic_switch",mC.getResources().getBoolean(R.bool.materiel_epic_switch_def)))  {
+        if(valList.contains("M+") && pj.getAllFeats().featIsActive("feat_materiel_epic"))  {
             valList.remove("M+");
         }
         if(valList.contains("V")&&spell.getMetaList().metaIdIsActive("meta_silent")){

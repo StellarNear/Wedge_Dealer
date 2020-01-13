@@ -21,6 +21,7 @@ import stellarnear.wedge_companion.PostData;
 import stellarnear.wedge_companion.PostDataElement;
 import stellarnear.wedge_companion.PreparationSpellsAlertDialog;
 import stellarnear.wedge_companion.R;
+import stellarnear.wedge_companion.RemoveDataElementAllSpellArrow;
 import stellarnear.wedge_companion.Spells.BuildPreparedSpellList;
 import stellarnear.wedge_companion.Tools;
 
@@ -82,6 +83,14 @@ public class PrefGlobalSleepScreenFragment extends Preference {
 
     private void sleep() {
         final Tools tools = new Tools();
+        new PostData(mC,new RemoveDataElementAllSpellArrow().forceCaster("Wedge"));
+        new PostData(mC,new RemoveDataElementAllSpellArrow().forceCaster("Halda"));
+
+        new PostData(mC,new PostDataElement("Nuit de repos Globale","Recharge des ressources journalières et sorts").forceTargetSheet("Wedge"));
+        new PostData(mC,new PostDataElement("Nuit de repos Globale","Recharge des ressources journalières et sorts").forceTargetSheet("Halda"));
+        new PostData(mC,new PostDataElement("Nuit de repos Globale","Recharge des ressources journalières et sorts").forceTargetSheet("Sylphe"));
+        new PostData(mC,new PostDataElement("Nuit de repos Globale","Recharge des ressources journalières et sorts").forceTargetSheet("Ràna"));
+
         tools.customToast(mC, "Faites tous de beaux rêves !", "center");
         int time = 1000; // in milliseconds
         Handler h = new Handler();
@@ -90,11 +99,6 @@ public class PrefGlobalSleepScreenFragment extends Preference {
             public void run() {
                 PersoManager.allSleep();
                 resetGlobal();
-                new PostData(mC,new PostDataElement("Nuit de repos Globale","Recharge des ressources journalières et sorts").forceTargetSheet("Wedge"));
-                new PostData(mC,new PostDataElement("Nuit de repos Globale","Recharge des ressources journalières et sorts").forceTargetSheet("Halda"));
-                new PostData(mC,new PostDataElement("Nuit de repos Globale","Recharge des ressources journalières et sorts").forceTargetSheet("Sylphe"));
-                new PostData(mC,new PostDataElement("Nuit de repos Globale","Recharge des ressources journalières et sorts").forceTargetSheet("Ràna"));
-
                 PreparationSpellsAlertDialog popupPrepa = BuildPreparedSpellList.getInstance(mC).makePopupSelectSpellsToPrepare(mC);
                 popupPrepa.setAcceptEventListener(new PreparationSpellsAlertDialog.OnAcceptEventListener() {
                     @Override
@@ -120,6 +124,10 @@ public class PrefGlobalSleepScreenFragment extends Preference {
 
     private void halfSleep() {
         final Tools tools = new Tools();
+        new PostData(mC,new PostDataElement("Nuit de repos (sans sorts) Globale","Recharge des ressources journalières").forceTargetSheet("Wedge"));
+        new PostData(mC,new PostDataElement("Nuit de repos (sans sorts) Globale","Recharge des ressources journalières").forceTargetSheet("Halda"));
+        new PostData(mC,new PostDataElement("Nuit de repos (sans sorts) Globale","Recharge des ressources journalières").forceTargetSheet("Sylphe"));
+        new PostData(mC,new PostDataElement("Nuit de repos (sans sorts) Globale","Recharge des ressources journalières").forceTargetSheet("Ràna"));
         tools.customToast(mC, "Faites tous de beaux rêves !", "center");
         int time = 1000; // in milliseconds
         Handler h = new Handler();
@@ -128,11 +136,6 @@ public class PrefGlobalSleepScreenFragment extends Preference {
             public void run() {
                 PersoManager.allHalfSleep();
                 resetGlobal();
-                new PostData(mC,new PostDataElement("Nuit de repos (sans sorts) Globale","Recharge des ressources journalières").forceTargetSheet("Wedge"));
-                new PostData(mC,new PostDataElement("Nuit de repos (sans sorts) Globale","Recharge des ressources journalières").forceTargetSheet("Halda"));
-                new PostData(mC,new PostDataElement("Nuit de repos (sans sorts) Globale","Recharge des ressources journalières").forceTargetSheet("Sylphe"));
-                new PostData(mC,new PostDataElement("Nuit de repos (sans sorts) Globale","Recharge des ressources journalières").forceTargetSheet("Ràna"));
-
                 PreparationSpellsAlertDialog popupPrepa = BuildPreparedSpellList.getInstance(mC).makePopupSelectSpellsToPrepare(mC);
                 popupPrepa.setAcceptEventListener(new PreparationSpellsAlertDialog.OnAcceptEventListener() {
                     @Override

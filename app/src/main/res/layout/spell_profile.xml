@@ -90,7 +90,6 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:minHeight="50dp"
-                    android:weightSum="7"
                     android:orientation="horizontal">
 
                     <GridLayout

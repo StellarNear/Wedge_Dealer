@@ -51,7 +51,13 @@ public class ElemsManager {
     }
 
     public String getName(String elemKey) {
-        return getElementByKey(elemKey).getName();
+        String val="";
+        try {
+            val=getElementByKey(elemKey).getName();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return val;
     }
 
     public int getColorId(String elemKey) {

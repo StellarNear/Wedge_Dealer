@@ -87,6 +87,7 @@
         <cast_time>simple</cast_time>
         <duration>10min/lvl</duration>
         <compo>V,G,M</compo>
+        <compo_m>un cristal translucide ou un prisme minéral</compo_m>
         <rank>0</rank>
         <type>util</type>
     </spell>
@@ -99,6 +100,7 @@
         <cast_time>simple</cast_time>
         <duration>10min/lvl</duration>
         <compo>V,M</compo>
+        <compo_m>une luciole</compo_m>
         <rank>0</rank>
         <type>util</type>
     </spell>
@@ -125,6 +127,7 @@
         <cast_time>simple</cast_time>
         <duration>1min</duration>
         <compo>V,G,M</compo>
+        <compo_m>une cape miniature</compo_m>
         <rank>0</rank>
         <type>buff</type>
     </spell>
@@ -238,6 +241,7 @@
         <cast_time>simple</cast_time>
         <duration>1min/lvl</duration>
         <compo>G,M</compo>
+        <compo_m>petite vessie remplie d’air</compo_m>
         <rank>1</rank>
         <type>buff</type>
     </spell>
@@ -250,6 +254,7 @@
         <cast_time>simple</cast_time>
         <duration>1min/lvl</duration>
         <compo>V,G,M</compo>
+        <compo_m>écaille de poisson</compo_m>
         <rank>1</rank>
         <type>buff</type>
     </spell>
@@ -262,6 +267,7 @@
         <cast_time>simple</cast_time>
         <duration>2h/lvl</duration>
         <compo>V,G,M</compo>
+        <compo_m>une petite poulie</compo_m>
         <rank>1</rank>
         <type>buff</type>
     </spell>
@@ -300,6 +306,7 @@
         <cast_time>simple</cast_time>
         <duration>10min/lvl</duration>
         <compo>V,M</compo>
+        <compo_m>un grain de café</compo_m>
         <rank>1</rank>
         <type>buff</type>
     </spell>
@@ -490,6 +497,7 @@
         <duration>instat</duration>
         <area>De la terre dans un cube de 1,50 m (1 c) de côté</area>
         <compo>V,G,M</compo>
+        <compo_m>une toute petite pelle</compo_m>
         <rank>1</rank>
         <type>util</type>
     </spell>
@@ -534,6 +542,7 @@
         <cast_time>simple</cast_time>
         <duration>1h/min</duration>
         <compo>V,G,M</compo>
+        <compo_m>une pincée de terre</compo_m>
         <rank>1</rank>
         <type>buff</type>
     </spell>
@@ -651,6 +660,7 @@ Négation de l'arôme n'empêche pas la cible de se faire imprégner par une ode
         <cast_time>simple</cast_time>
         <duration>1h/lvl</duration>
         <compo>V,G,M</compo>
+        <compo_m>une pincée d'alun</compo_m>
         <area>1créature/lvl</area>
         <rank>1</rank>
         <type>buff</type>
@@ -699,6 +709,7 @@ Transmutation de la pierre en chair annule immédiatement poing de pierre. Si le
         <cast_time>simple</cast_time>
         <duration>1min/lvl</duration>
         <compo>V,G,M</compo>
+        <compo_m>un morceau de granite</compo_m>
         <rank>1</rank>
         <type>buff</type>
     </spell>
@@ -898,6 +909,7 @@ Seules les créatures I avec une Force négligeable ont un risque de rester coll
         <cast_time>simple</cast_time>
         <duration>instant</duration>
         <compo>V,G,M</compo>
+        <compo_m>une petite boule de bitume</compo_m>
         <rm>false</rm>
         <save_type>none</save_type>
         <rank>2</rank>
@@ -929,6 +941,7 @@ Seules les créatures I avec une Force négligeable ont un risque de rester coll
         <cast_time>simple</cast_time>
         <duration>1h/lvl</duration>
         <compo>V,G,M</compo>
+        <compo_m>bout de tissu noir</compo_m>
         <rm>true</rm>
         <save_type>none</save_type>
         <rank>2</rank>
@@ -1010,6 +1023,7 @@ Seules les créatures I avec une Force négligeable ont un risque de rester coll
         <cast_time>simple</cast_time>
         <duration>instant</duration>
         <compo>V,G,M</compo>
+        <compo_m>une pincée de terre ou de métal</compo_m>
         <rm>false</rm>
         <save_type>aucun</save_type>
         <rank>2</rank>
@@ -1097,6 +1111,7 @@ Une créature protégée par endurance aux énergies destructives ne souffre pas
         <cast_time>simple</cast_time>
         <duration>2h/lvl</duration>
         <compo>V,G,M</compo>
+        <compo_m>cendres d'épines</compo_m>
         <rank>2</rank>
         <type>util</type>
     </spell>
@@ -1140,7 +1155,8 @@ Par une action simple, le personnage peut transformer son fouet en une nuée d�
         <range>contact</range>
         <cast_time>simple</cast_time>
         <duration>1min/lvl</duration>
-        <compo>V,G</compo>
+        <compo>V,G,M</compo>
+        <compo_m>poils de chat</compo_m>
         <rank>2</rank>
         <type>buff</type>
     </spell>
@@ -1209,6 +1225,7 @@ Ce sort fonctionne comme immobilisation de personne, si ce n’est qu’il affec
         <cast_time>simple</cast_time>
         <duration>1min/lvl</duration>
         <compo>V,G,M</compo>
+        <compo_m>limaille de fer</compo_m>
         <rank>2</rank>
         <type>util</type>
     </spell>
@@ -1220,6 +1237,7 @@ Ce sort fonctionne comme immobilisation de personne, si ce n’est qu’il affec
         <cast_time>simple</cast_time>
         <duration>1min/lvl</duration>
         <compo>V,G,M</compo>
+        <compo_m>une goutte d’ichor d’eidolon</compo_m>
         <rank>2</rank>
     </spell>
     <spell>
@@ -1230,6 +1248,7 @@ Ce sort fonctionne comme immobilisation de personne, si ce n’est qu’il affec
         <cast_time>simple</cast_time>
         <duration>1round/lvl</duration>
         <compo>V,G,M</compo>
+        <compo_m>sève d'arbre</compo_m>
         <rank>2</rank>
         <type>combatbuff</type>
     </spell>
@@ -1243,6 +1262,7 @@ Pendant qu’il attend, l’animal se laisse approcher de manière à ce que l�
         <cast_time>simple</cast_time>
         <duration>1j/lvl</duration>
         <compo>V,G,M</compo>
+        <compo_m>un peu de nourriture pour l'animal</compo_m>
         <rank>2</rank>
         <type>util</type>
     </spell>
@@ -1316,6 +1336,7 @@ Round 7	    Chaud	Aucun</descr>
         <range>courte</range>
         <cast_time>simple</cast_time>
         <compo>V,G,M</compo>
+        <compo_m>un carré de tissu rouge</compo_m>
         <rank>2</rank>
     </spell>
     <spell>
@@ -1348,6 +1369,7 @@ Round 7	    Chaud	Aucun</descr>
         <cast_time>simple</cast_time>
         <duration>24hs</duration>
         <compo>V,G,M</compo>
+        <compo_m>une page de dictionnaire</compo_m>
         <rank>2</rank>
         <type>util</type>
     </spell>
@@ -1359,6 +1381,7 @@ Round 7	    Chaud	Aucun</descr>
         <cast_time>simple</cast_time>
         <duration>10min/lvl</duration>
         <compo>V,G,M</compo>
+        <compo_m>une araignée</compo_m>
         <rank>2</rank>
         <type>buff</type>
     </spell>
@@ -1425,6 +1448,7 @@ De plus, le personnage peut laisser des messages olfactifs. Pour laisser un mot 
         <cast_time>simple</cast_time>
         <duration>1h/lvl</duration>
         <compo>V,G,M</compo>
+        <compo_m>une reinne fourmi</compo_m>
         <rank>2</rank>
         <type>util</type>
     </spell>
@@ -1436,6 +1460,7 @@ De plus, le personnage peut laisser des messages olfactifs. Pour laisser un mot 
         <cast_time>simple</cast_time>
         <duration>1min/lvl</duration>
         <compo>V,G,M</compo>
+        <compo_m>une feuille</compo_m>
         <rank>2</rank>
         <type>util</type>
     </spell>
@@ -1495,6 +1520,7 @@ Tant que l'effet du sort persiste, le personnage peut tourner son regard brûlan
         <cast_time>simple</cast_time>
         <duration>1round/lvl</duration>
         <compo>V,G,M</compo>
+        <compo_m>oeil de salamandre ordinaire</compo_m>
         <rank>2</rank>
         <dmg_type>fire</dmg_type>
         <dice_type>6</dice_type>
@@ -1535,6 +1561,7 @@ Résistance aux énergies destructives absorbe seulement les dégâts, le sujet 
         <cast_time>simple</cast_time>
         <duration>1round/lvl</duration>
         <compo>V,G,M</compo>
+        <compo_m>poignée de graviers</compo_m>
         <rank>2</rank>
         <type>combatbuff</type>
     </spell>
@@ -1546,6 +1573,7 @@ Résistance aux énergies destructives absorbe seulement les dégâts, le sujet 
         <cast_time>simple</cast_time>
         <duration>1min/lvl</duration>
         <compo>V,G,M</compo>
+        <compo_m>plume de hibou</compo_m>
         <rank>2</rank>
         <type>buff</type>
     </spell>
@@ -1577,6 +1605,7 @@ La sphère se déplace tant que son créateur la dirige (ce qui lui coûte une a
         <dmg_type>fire</dmg_type>
         <duration>1round/lvl</duration>
         <compo>V,G,M</compo>
+        <compo_m>suif, poudre de fer</compo_m>
         <rm>true</rm>
         <save_type>ref[annule]</save_type>
         <rank>2</rank>
@@ -1756,6 +1785,7 @@ Le collet est magique. Pour s’en soustraire, il faut réussir un test d’Éva
         <cast_time>1h</cast_time>
         <duration>instant</duration>
         <compo>V,G,M</compo>
+        <compo_m>poudre de métal, encres rare(100po)</compo_m>
         <rank>3</rank>
     </spell>
     <spell>
@@ -1977,6 +2007,41 @@ Le personnage conserve un contact ténu avec la surface qu’il a traversée pou
         <dmg_type>none</dmg_type>
     </spell>
     <spell>
+        <id>Geyser d'air_sub</id>
+        <name>Jet d'air</name>
+        <shortdescr>Souffle d'air.</shortdescr>
+        <descr>Le personnage crée un puissant souffle d’air capable de projeter un adversaire dans les airs. Si la cible rate son jet de Réflexes, la force de l’air lui inflige 2d6 points de dégâts contondants et la projette dans les airs à une hauteur, en mètres, égale à 1,5 × le niveau du lanceur. Si un objet solide (comme un plafond) arrête la cible dans sa course, celle-ci s’écrase sur l’objet de la même façon qu’elle le ferait au cours d’une chute normale. Quand ce souffle d’air s’arrête, la cible retombe (à moins qu’elle ne soit en mesure de voler) et reçoit les dégâts normaux de la chute. Sur un jet de sauvegarde réussi, la cible ne reçoit que la moitié des dégâts du souffle d’air et celui-ci ne la déplace pas.</descr>
+        <range>courte</range>
+        <area>1.5m de hauteur/lvl</area>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V,G</compo>
+        <save_type>ref[1/2]</save_type>
+        <rank>3</rank>
+        <type>dmg</type>
+        <dice_type>6</dice_type>
+        <cap_dice>2</cap_dice>
+        <dmg_type>none</dmg_type>
+    </spell>
+    <spell>
+        <id>Geyser d'air_sub</id>
+        <name>Chute</name>
+        <shortdescr>Chute liée à la propulsion.</shortdescr>
+        <descr>Le personnage crée un puissant souffle d’air capable de projeter un adversaire dans les airs. Si la cible rate son jet de Réflexes, la force de l’air lui inflige 2d6 points de dégâts contondants et la projette dans les airs à une hauteur, en mètres, égale à 1,5 × le niveau du lanceur. Si un objet solide (comme un plafond) arrête la cible dans sa course, celle-ci s’écrase sur l’objet de la même façon qu’elle le ferait au cours d’une chute normale. Quand ce souffle d’air s’arrête, la cible retombe (à moins qu’elle ne soit en mesure de voler) et reçoit les dégâts normaux de la chute. Sur un jet de sauvegarde réussi, la cible ne reçoit que la moitié des dégâts du souffle d’air et celui-ci ne la déplace pas.</descr>
+        <range>courte</range>
+        <area>1.5m de hauteur/lvl</area>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V,G</compo>
+        <save_type>ref[annule]</save_type>
+        <rank>3</rank>
+        <type>dmg</type>
+        <dice_type>6</dice_type>
+        <cap_dice>20</cap_dice>
+        <dmg_type>none</dmg_type>
+        <n_dice_per_lvl>0.5</n_dice_per_lvl>
+    </spell>
+    <spell>
         <name>Guérison des maladies</name>
         <shortdescr>Guérit tous les maux du sujet.</shortdescr>
         <descr>Ce sort soigne toutes les maladies dont souffre le sujet. Le personnage doit réussir un test de lanceur de sorts (1d20 + niveau de lanceur de sorts) contre le DD de chaque maladie qui affecte la cible. En cas de succès, la maladie disparaît. Ce sort détruit également certains parasites et autres menaces du même genre comme par exemple le limon vert.</descr>
@@ -2077,6 +2142,7 @@ Le mur doit être vertical mais, mise à part cette restriction, le personnage p
         <cast_time>simple</cast_time>
         <duration>1round/lvl</duration>
         <compo>V,G,M</compo>
+        <compo_m>minuscule eventaille et une plume d'oiseau</compo_m>
         <rm>oui</rm>
         <save_type>none</save_type>
         <rank>3</rank>
@@ -2089,6 +2155,7 @@ Le mur doit être vertical mais, mise à part cette restriction, le personnage p
         <cast_time>simple</cast_time>
         <duration>10min/lvl</duration>
         <compo>V,G,M</compo>
+        <compo_m>charbon</compo_m>
         <rank>3</rank>
         <type>buff</type>
     </spell>
@@ -2133,6 +2200,7 @@ Pattes d'araignée:Le sujet peut se déplacer sur une surface verticale, voire a
         <cast_time>simple</cast_time>
         <duration>10min/lvl</duration>
         <compo>V,G,M</compo>
+        <compo_m>une araignée</compo_m>
         <rank>3</rank>
         <type>buff</type>
     </spell>
@@ -2155,6 +2223,7 @@ Pattes d'araignée:Le sujet peut se déplacer sur une surface verticale, voire a
         <cast_time>simple</cast_time>
         <duration>10min/lvl</duration>
         <compo>V,G,M</compo>
+        <compo_m>bout de racine de chêne</compo_m>
         <rank>3</rank>
         <type>buff</type>
     </spell>
@@ -2165,6 +2234,7 @@ Pattes d'araignée:Le sujet peut se déplacer sur une surface verticale, voire a
         <range>courte</range>
         <cast_time>simple</cast_time>
         <compo>V,G,M</compo>
+        <compo_m>carré de tissu rouge</compo_m>
         <rank>3</rank>
     </spell>
     <spell>
@@ -2271,6 +2341,7 @@ Le personnage peut déplacer la zone de sables changeants par une action de mouv
         <cast_time>simple</cast_time>
         <duration>10min/lvl</duration>
         <compo>V,G,M</compo>
+        <compo_m>cuisse de grenouille</compo_m>
         <rank>3</rank>
         <type>util</type>
     </spell>
@@ -2320,6 +2391,7 @@ La tempête de neige éteint les torches et les feux de petite taille.</descr>
         <cast_time>simple</cast_time>
         <duration>1round/lvl</duration>
         <compo>V,G,M</compo>
+        <compo_m>poussière et eau</compo_m>
         <rank>3</rank>
     </spell>
     <spell>
@@ -2355,277 +2427,358 @@ Transoirt d'objet:Ce sort permet au personnage de déplacer instantanément un o
         <type>util</type>
     </spell>
     <spell>
-        <name></name>
-        <shortdescr></shortdescr>
-        <descr></descr>
-        <range></range>
+        <name>Aspect du cerf</name>
+        <shortdescr>+2 à la CA contre les attaques d'opportunités et augmentation de vitesse.</shortdescr>
+        <descr>Quand le personnage lance ce sort, il prend l'aspect d'un cerf, y compris certaines de ses caractéristiques physiques. Ses traits s'allongent, il mincit et devient plus musclé et des bois, qu'il peut utiliser pour se défendre, lui poussent sur la tête. Il gagne un bonus d'esquive de +2 à la CA contre les attaques d'opportunité, sa vitesse de base augmente de 6 mètres (4 c) et il peut se déplacer dans n'importe quels taillis (y compris d'origine magique) à sa vitesse normale. Il peut même faire un pas de 1,50 mètre (1 c) dans ce type de terrain. De plus, quand le personnage est touché par une attaque d'opportunité, il peut faire une unique attaque avec ses bois contre l'adversaire qui l'a touché, par une action immédiate. Cette attaque utilise le bonus de base à l'attaque le plus élevé du personnage plus son modificateur de Force ou de Dextérité, au choix, et inflige 1d8 points de dégâts perforants (si le personnage est de taille M, 1d6 s'il est de taille P), plus le modificateur de Force si le coup touche. Les bois menacent une zone de critique de 19-20/x2.</descr>
+        <range>personnelle</range>
         <cast_time>simple</cast_time>
-        <duration></duration>
+        <duration>1min/lvl</duration>
         <compo>V,G</compo>
-        <rm></rm>
-        <save_type></save_type>
-        <rank></rank>
+        <rank>4</rank>
+    </spell>
+    <spell>
+        <name>Atavisme</name>
+        <shortdescr>Les animaux gagnent l'archétype simple de créature évoluée.</shortdescr>
+        <descr>Le personnage éveille une arme de destruction sauvage en faisant ressortir les caractéristiques ancestrales primitives d’un animal. L’animal gagne immédiatement l’archétype simple de créature évoluée. Il gagne un bonus de +2 à tous les jets, y compris aux jets de dégâts et au DD des pouvoirs spéciaux, un bonus de +4 à la CA et au DMD et +2 points de vie par DV. L’instinct primitif de la bête prend le dessus pendant toute la durée du sort : s’il connaissait des tours grâce à la compétence Dressage, il les oublie tous hormis « attaque. » Ce sort n’a aucun effet sur les créatures qui possèdent déjà l’archétype de créature évoluée.</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>1min/lvl</duration>
+        <compo>V,G</compo>
+        <rank>4</rank>
+        <type>buffcombat</type>
+    </spell>
+    <spell>
+        <name>Bosquet reposant</name>
+        <shortdescr>Crée des arbres et une petite source.</shortdescr>
+        <descr>Le personnage invoque un bosquet d'arbres qui entourent une petite source. Le bosquet surgit de nulle part, même sur le sol le plus aride et le plus rocailleux, quelle que soit la saison, mais il faut lancer le sort en extérieur sur un terrain dégagé.
+
+Dans le bosquet, le climat est tempéré et agréable, comme dans un sort d'abri mais il ne fournit pas de lumière et n'offre aucune protection contre les éléments. L'eau de la source est claire et potable. De plus, les arbres produisent toutes sortes de fruits bien mûrs, quelle que soit la saison, ce qui équivaut à un sort de baie nourricière pour huit personnes. Quand le sort se termine, le bosquet disparaît, ainsi que les fruits, l'eau et tout ce qui en est issu mais les effets de la nourriture absorbée et de la guérison persistent.</descr>
+        <range>courte</range>
+        <cast_time>10min</cast_time>
+        <duration>2h/lvl</duration>
+        <compo>V,G,M</compo>
+        <compo_m>une feuille/brin d'herbe, et une goutte d'eau</compo_m>
+        <rank>4</rank>
         <type>util</type>
     </spell>
     <spell>
-        <name></name>
-        <shortdescr></shortdescr>
-        <descr></descr>
-        <range></range>
+        <name>Boule de foudre</name>
+        <shortdescr>Petites sphères de foudre volantes qui infligent chacune 3d6 points de dégâts d'électricité.</shortdescr>
+        <descr>Crée 5 boules de foudres qui volent dans la direction indiquée. Ces boules volent à une vitesse de 6 mètres (4 c) par round et sont d'une manœuvrabilité parfaite. Le vent n'influe pas sur la trajectoire d'une sphère.
+
+Si la boule entre dans une case occupée par une créature, elle s'arrête pour le round et inflige 3d6 points de dégâts d'électricité à cette créature, bien qu'un jet de Réflexes réussi annule ces dégâts. Les créatures qui portent une armure métallique subissent un malus de -4 au jet de sauvegarde.
+
+Chaque globe se déplace tant que le personnage le dirige activement (une action de mouvement permet de diriger toutes les sphères créées par une incantation de ce sort), sinon, elles restent sur place.</descr>
+        <range>moyenne</range>
         <cast_time>simple</cast_time>
-        <duration></duration>
-        <compo>V,G</compo>
-        <rm></rm>
-        <save_type></save_type>
-        <rank></rank>
+        <duration>1round/lvl</duration>
+        <compo>V,G,M</compo>
+        <compo_m>petit anneau de fer</compo_m>
+        <rm>true</rm>
+        <save_type>ref[annule]</save_type>
+        <rank>4</rank>
+        <type>dmg</type>
+        <dice_type>6</dice_type>
+        <cap_dice>3</cap_dice>
+        <dmg_type>shock</dmg_type>
+    </spell>
+    <spell>
+        <name>Bulle de vie</name>
+        <shortdescr>Protège les créatures contre l'environnement.</shortdescr>
+        <descr>Divise la durée entre les créatures. Le personnage entoure les créatures touchées d'une enveloppe constante et déplaçable de 3 cm d'épaisseur de conditions vivables. Cette enveloppe permet au sujet de respirer librement, même sous l'eau ou dans le vide. Elle les immunise également contre les gaz et les vapeurs nocives, y compris les maladies et les poisons inhalés ainsi que les sorts comme brume mortelle ou nuage nauséabond. De plus, l'enveloppe protège les sujets contre les températures extrêmes (comme endurance aux énergies destructives) et aux fortes pressions.</descr>
+        <range>contact</range>
+        <area>1créature/lvl</area>
+        <cast_time>simple</cast_time>
+        <duration>2h/lvl</duration>
+        <compo>V,G,M</compo>
+        <compo_m>morceau de coquille d'oeuf</compo_m>
+        <rank>4</rank>
         <type>util</type>
     </spell>
     <spell>
-        <name></name>
-        <shortdescr></shortdescr>
-        <descr></descr>
-        <range></range>
+        <name>Caresse vaseuse</name>
+        <shortdescr>Le contact infeste la cible de vase verte.</shortdescr>
+        <descr>Le personnage génère une couche de vase autour de sa main. Quand il réussit une attaque de contact avec, la vase se décolle du personnage et reste attachée à la cible. Elle agit alors comme un limon vert et inflige 1d3 points d’affaiblissement de Constitution par round. Tout ce qui permet de se débarrasser d’un limon vert (en le grattant, en le gelant, en le brûlant, en le coupant, avec la lumière du soleil ou avec guérison des maladies) détruit la couche de vase. Si le limon tue une créature, il la dévore et meurt ensuite. Il ne peut pas se transférer sur une créature autre que sa cible originelle et meurt s’il en est séparé.</descr>
+        <range>contact</range>
         <cast_time>simple</cast_time>
-        <duration></duration>
+        <compo>V,G,M</compo>
+        <compo_m>goutte d'acide et sphère de verre</compo_m>
+        <rm>true</rm>
+        <save_type>vig[annule]</save_type>
+        <rank>4</rank>
+        <type>debuff</type>
+    </spell>
+    <spell>
+        <name>Chevaucher les vagues</name>
+        <shortdescr>La cible peut respirer sous l'eau et nager.</shortdescr>
+        <descr>La cible est capable de respirer sous l’eau et gagne une vitesse de nage de 9 mètres. Cette vitesse de nage lui permet aussi d’obtenir un bonus de +8 aux tests de Natation et de faire 10 à ces mêmes tests même si elle est distraite ou en danger. La cible peut faire une action de course en nageant, tant qu’elle se déplace en ligne droite. Ce sort n’empêche pas la cible de respirer à l’air libre.</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>1h/lvl</duration>
         <compo>V,G</compo>
-        <rm></rm>
-        <save_type></save_type>
-        <rank></rank>
+        <rank>4</rank>
+        <type>buff</type>
+    </spell>
+    <spell>
+        <name>Colonne de feu</name>
+        <shortdescr>Feu divin (1d6 points de dégâts/niveau.).</shortdescr>
+        <descr>Ce sort crée une colonne de flammes (cylindre de 12 m de haut sur 3 m de rayon) semblant tomber du ciel. Il administre 1d6 points de dégâts par niveau de lanceur de sorts (jusqu’à un maximum de 15d6). La moitié est causée par le feu, mais le reste prend la forme d’énergie divine et donc ne peut être réduit par une résistance au feu.</descr>
+        <range>moyenne</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V,G</compo>
+        <rm>true</rm>
+        <save_type>ref[1/2]</save_type>
+        <rank>4</rank>
+        <type>dmg</type>
+        <dice_type>6</dice_type>
+        <cap_dice>15</cap_dice>
+        <dmg_type>fire</dmg_type>
+    </spell>
+    <spell>
+        <name>Contrôle de l'eau</name>
+        <shortdescr>Abaisse ou élève le niveau de l’eau.</shortdescr>
+        <descr>Ce sort a deux applications différentes qui permettent de contrôler l’eau:
+-Abaissement des eaux. Le niveau de l’eau (ou de tout liquide similaire) diminue de soixante centimètres par niveau de lanceur de sorts (jusqu’à un minimum de deux ou trois centimètres). La zone affectée prend la forme d’un parallélépipède rectangle dont les côtés mesurent jusqu’à trois mètres de long par niveau. Sur une vaste étendue d’eau (océan, grand lac, etc.), le sort génère un tourbillon aspirant les embarcations vers le bas, risquant de les faire chavirer et les empêchant de s’arracher à la zone affectée par leurs propres moyens. Projeté directement sur un élémentaire de l’Eau ou une autre créature à base d’eau, abaissement des eaux fonctionne comme un sort de lenteur.
+
+-Élévation des eaux. Le niveau de l’eau (ou de tout liquide similaire) augmente de soixante centimètres par niveau de lanceur de sorts. Les embarcations soulevées de la sorte redescendent naturellement le long des pentes du dôme d’eau ainsi créé. Si la zone d’effet se trouve à proximité d’une plage ou du bord d’une rivière, l’eau peut provoquer une inondation lorsqu’elle retombe.
+
+Quelle que soit la version sélectionnée, il est possible de doubler l’une des dimensions horizontales en réduisant l’autre de moitié.</descr>
+        <range>longue</range>
+        <cast_time>simple</cast_time>
+        <duration>10min/lvl</duration>
+        <compo>V,G,M</compo>
+        <compo_m>poussière/goutte d'eau</compo_m>
+        <rank>4</rank>
         <type>util</type>
     </spell>
     <spell>
-        <name></name>
-        <shortdescr></shortdescr>
-        <descr></descr>
-        <range></range>
+        <name>Convocation d'alliés naturels IV</name>
+        <shortdescr>Appelle une ou plusieurs créatures luttant pour le PJ.</shortdescr>
+        <descr>Ce sort s’apparente à convocation d’alliés naturels I, si ce n’est qu’il permet d’appeler une créature de niveau 4, 1d3 créatures de niveau 3 ou 1d4+1 créatures de niveau moindre (lorsque le personnage convoque plusieurs alliés naturels, ces derniers doivent nécessairement tous être du même type).</descr>
+        <range>courte</range>
         <cast_time>simple</cast_time>
-        <duration></duration>
+        <duration>1round/lvl</duration>
         <compo>V,G</compo>
-        <rm></rm>
-        <save_type></save_type>
-        <rank></rank>
+        <rank>4</rank>
+    </spell>
+    <spell>
+        <name>Coquille antiplantes</name>
+        <shortdescr>Empêche les plantes animées d’approcher.</shortdescr>
+        <descr>Ce sort crée une barrière invisible et mobile qui protège toute personne se trouvant à l’intérieur contre les attaques des créatures végétales et des plantes animées. Comme il en va pour la majorité des sorts d’abjuration, la protection s’évanouit immédiatement si l’on s’en sert pour repousser activement une créature.</descr>
+        <range>3m</range>
+        <cast_time>simple</cast_time>
+        <duration>1min/lvl</duration>
+        <compo>V,G</compo>
+        <rank>4</rank>
         <type>util</type>
     </spell>
     <spell>
-        <name></name>
-        <shortdescr></shortdescr>
-        <descr></descr>
-        <range></range>
+        <name>Corps épineux</name>
+        <shortdescr>Ceux qui attaquent le personnage subissent 1d6+1 point de dégâts/niveau.</shortdescr>
+        <descr>Ce sort fait pousser des épines sur la peau à nu du personnage, blessant ainsi les créatures qui le frappent. Toute créature qui touche le personnage avec une arme de corps à corps, une attaque à mains nues ou une arme naturelle subit 1d6 points de dégâts perforants +1 point par niveau de lanceur de sorts (maximum +15). Les créatures qui utilisent une arme de corps à corps avec une allonge ne sont pas affectées par le sort. De plus, les attaques naturelles et à mains nues du personnage infligent 1d6 points de dégâts perforants supplémentaires.
+
+Les épines créées par le sort persistent même si le personnage change de forme physique, par un effet de forme animale ou de métamorphose par exemple.</descr>
+        <range>personnelle</range>
         <cast_time>simple</cast_time>
-        <duration></duration>
+        <duration>1round/lvl</duration>
         <compo>V,G</compo>
-        <rm></rm>
-        <save_type></save_type>
-        <rank></rank>
+        <rank>4</rank>
+        <type>combatbuff</type>
+    </spell>
+    <spell>
+        <name>Dissipation de la magie</name>
+        <shortdescr>Annule sorts et effets magiques.</shortdescr>
+        <descr>Dissipation de la magie permet de mettre un terme à un sort lancé sur une créature ou un objet, d’annuler temporairement les pouvoirs d’un objet magique ou de contrer un sort jeté par un autre lanceur de sorts.
+
+Dissipation de la magie peut servir de deux manières différentes :
+
+-Dissipation ciblée. Le sort cible une créature, un objet ou un autre sort. Le personnage doit effectuer un test de dissipation (1d20 + son niveau de lanceur de sorts) et comparer le résultat avec un DD dépendant du niveau de lanceur de sorts de l’effet ciblé (DD = 10 + niveau de lanceur de sorts ; s’il y a plusieurs effets en jeu, on ne considère que celui qui possède le plus haut niveau de lanceur de sorts). Si le personnage réussit, il met fin à l’effet. Sinon, il compare son résultat à un autre effet.
+
+-Contresort. Il est également possible de lancer dissipation de la magie pour contrer un sort en ciblant un jeteur de sorts. Contrairement à ce qui se produit dans le cas d’un véritable contresort, la réussite n’est pas automatique : le personnage doit réussir un test de dissipation pour contrer le sort de son adversaire.</descr>
+        <range>moyenne</range>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V,G</compo>
+        <rank>4</rank>
         <type>util</type>
     </spell>
     <spell>
-        <name></name>
-        <shortdescr></shortdescr>
-        <descr></descr>
-        <range></range>
+        <name>Écholocalisation</name>
+        <shortdescr>Les sens radars du personnage lui donnent la vision aveugle à 12 mètres.</shortdescr>
+        <descr>Le personnage perçoit le monde en émettant des sons très aigus et en écoutant leur écho. Il dispose alors de la vision aveugle dans un rayon de 12 mètres. Les bruits qui produisent des échos sont trop aigus pour que la plupart des créatures les entendent. Seuls les dragons et les créatures dotées de ce pouvoir (comme les chauves-souris) et les créatures dont la vision ou la perception aveugle se base sur l’ouïe peuvent le détecter. Le personnage ne peut pas utiliser ce pouvoir s'il est sourd et il ne détecte rien dans une zone de silence.</descr>
+        <range>personnelle</range>
         <cast_time>simple</cast_time>
-        <duration></duration>
+        <duration>10min/lvl</duration>
+        <compo>V</compo>
+        <rank>4</rank>
+        <type>buff</type>
+    </spell>
+    <spell>
+        <name>Embourbement</name>
+        <shortdescr>Les cibles sont recouvertes d’une boue qui les aveugle et fonctionne comme lenteur.</shortdescr>
+        <descr>Le personnage enduit les cibles d’une boue épaisse et collante qui agit comme un sort de lenteur et aveugle les cibles. Une créature peut dépenser une action simple pour débarrasser ses yeux ou les yeux d’une créature adjacente de cette boue, mettant fin à l’état aveuglé pour cet individu. Il faut une action complexe pour se débarrasser de suffisamment de boue pour mettre fin à l’effet de lenteur. Le fait de plonger dans un lac ou d’être sujet à un effet créant beaucoup d’eau (comme création d’eau ou poussée hydraulique débarrasse de toute la boue en 1 round. Un effet de rapidité lancé sur une créature ralentie par la boue permet à celle-ci d’agir normalement pendant toute la durée de rapidité. Lenteur ne se cumule pas avec les effets d’embourbement. Ce sort ne permet pas de contrer ou de dissiper rapidité.</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>1reound/lvl</duration>
+        <compo>V,G,M</compo>
+        <compo_m>terre et eau</compo_m>
+        <rm>true</rm>
+        <save_type>vig[annule]</save_type>
+        <rank>4</rank>
+        <type>debuff</type>
+    </spell>
+    <spell>
+        <name>Empire végétal</name>
+        <shortdescr>Influence les actions d’une ou plusieurs créatures végétales.</shortdescr>
+        <descr>Ce sort donne au lanceur de sorts un certain contrôle sur une ou plusieurs plantes. Les plantes affectées comprennent le lanceur de sorts et considèrent ses paroles et ses actions de la manière la plus favorable possible (comme si elles avaient une attitude amicale). Elles ne l’attaqueront donc pas pendant la durée du sort. Le personnage peut tenter de donner un ordre à une plante, mais il doit remporter un test de Charisme opposé pour la convaincre d’accomplir quelque chose qu’elle ne ferait pas en temps normal (il ne peut pas faire une nouvelle tentative en cas d’échec). Une plante contrôlée ne suivra jamais un ordre qui est suicidaire ou clairement nuisible pour elle, mais il peut être possible de la convaincre qu’il vaut la peine de tenter quelque chose de très dangereux.
+
+Le personnage peut affecter un groupe de plantes dont le nombre total de dés de vie ou de niveaux ne dépasse pas le double de son niveau.</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>1j/lvl</duration>
         <compo>V,G</compo>
-        <rm></rm>
-        <save_type></save_type>
-        <rank></rank>
+        <rm>true</rm>
+        <save_type>vol[annule]</save_type>
+        <rank>4</rank>
+        <type>buff</type>
+    </spell>
+    <spell>
+        <name>Flot obsidien</name>
+        <descr>Le personnage transforme une mince couche de sol en verre fondu qui refroidit rapidement. Les créatures qui se trouvent dans la zone subissent 1d6 points de dégâts de feu par tranche de deux niveaux de lanceur de sorts (10d6 au maximum) et sont enchevêtrées. Toutes les créatures qui se trouvent dans la zone et réussissent leur jet de sauvegarde reçoivent la moitié des dégâts seulement. Elles ne sont pas enchevêtrées. Une créature enchevêtrée peut tenter de se libérer en dépensant une action de mouvement pour faire un test de Force ou d’Évasion (même DD que le jet de sauvegarde du sort).
+
+Le sol se couvre d’éclats d’obsidienne glissants et tranchants. La zone d’effet devient un terrain difficile et le DD des tests d’Acrobaties augmente de 5. Il faut réussir un test d’Acrobaties DD 15 pour courir ou charger dans la zone. Une créature qui tombe reçoit 1d6 points de dégâts tranchants.</descr>
+        <shortdescr>Transforme une surface en verre fondu.</shortdescr>
+        <range>courte</range>
+        <area>6m</area>
+        <cast_time>simple</cast_time>
+        <duration>instant</duration>
+        <compo>V,G</compo>
+        <rm>false</rm>
+        <save_type>ref[1/2]</save_type>
+        <rank>4</rank>
+        <type>dmg</type>
+        <dice_type>6</dice_type>
+        <cap_dice>10</cap_dice>
+        <dmg_type>fire</dmg_type>
+    </spell>
+    <spell>
+        <name>Forme de vermine II</name>
+        <shortdescr>Prend la forme et les pouvoirs d'une vermine TP ou G.</shortdescr>
+        <descr>Ce sort fonctionne comme Forme de vermine I mais permet de prendre aussi la forme d'une vermine TP ou G. Si la forme choisie possède l'une des aptitudes suivantes, le personnage en bénéficie aussi: absorption de sang, attirer, constriction, creusement 9m, escalade 18m, étreinte, fente, nage 18m, odorat, perception des vibrations 9m, piétinement, poison, toile, vision dans le noir 18m, vision nocturne, vol 18m (bonne manœuvrabilité). Le personnage ne devient pas complètement immunisé contre les effets mentaux mais il gagne un bonus de résistance de +4 aux jets de sauvegarde contre eux.
+-Vermine TP. Si le personnage adopte la forme d'une vermine TP, il gagne un bonus de taille de +4 à la dextérité, un malus de -2 à la force et un bonus de +1 à l'armure naturelle.
+-Vermine G. Si le personnage adopte la forme d'une vermine G, il gagne un bonus de taille de +4 à la force, un malus de -2 à la dextérité et un bonus de +5 à l'armure naturelle.</descr>
+        <range>personnelle</range>
+        <cast_time>simple</cast_time>
+        <duration>1min/lvl</duration>
+        <compo>V,G,M</compo>
+        <compo_m>morceau de la créature</compo_m>
+        <rank>4</rank>
+    </spell>
+    <spell>
+        <name>Forme véritable</name>
+        <shortdescr>Dissipe les effets de métamorphose.</shortdescr>
+        <descr>Forme véritable dissipe tout effet de métamorphose qui affecte la créature visée et lui rend sa forme naturelle, même contre son gré. Si le personnage lance ce sort contre une cible affectée par un sort de métamorphose comme métamorphose funeste, forme de géant I ou forme de géant II, il doit réussir un test de lanceur de sorts (1d20 + niveau de lanceur de sorts, maximum +15) contre un DD de 11 + niveau de lanceur de sorts de l'effet. En cas de succès, l'effet de métamorphose se termine immédiatement.
+
+Une créature qui possède le pouvoir surnaturel de métamorphose (comme un lycanthrope) doit réussir un jet de Volonté s'il ne veut pas retrouver immédiatement sa véritable apparence. Si elle rate ce jet, elle peut en faire un second pour vaincre le sort. Ceci demande une action complexe qui ne provoque pas d'attaque d'opportunité. Si elle réussit, le sort se dissipe et la créature peut à nouveau changer de forme. Si elle échoue, elle reste coincée sous sa véritable apparence pendant toute la durée du sort car il empêche toute métamorphose ultérieure.</descr>
+        <range>moyenne</range>
+        <cast_time>simple</cast_time>
+        <duration>1round/lvl</duration>
+        <compo>V,G</compo>
+        <rm>true</rm>
+        <save_type>vol[annule]</save_type>
+        <rank>4</rank>
+    </spell>
+    <spell>
+        <name>Geyser</name>
+        <shortdescr>Crée un geyser d'eau bouillante.</shortdescr>
+        <descr>Le personnage fait jaillir une colonne d'eau bouillante de n'importe quelle surface horizontale, renversant tout être qui se trouve juste au-dessus et exposant les créatures voisines aux gouttelettes brûlantes qui retombent.
+
+Toute créature qui entre dans le geyser ou qui se trouve sur la case où il apparaît doit faire un jet de Réflexes pour éviter de se faire propulser dans les airs avant de retomber au sol. Si la créature rate son jet de sauvegarde, elle reçoit 3d6 points de dégâts de feu à cause de l'eau bouillante et subit des dégâts de chute basés sur la hauteur du geyser (par exemple, si le geyser fait 15 mètres de haut, la créature reçoit 5d6 points de dégâts de chute). Elle tombe par terre dans une case aléatoire adjacente au geyser. Un jet de sauvegarde réussi permet à la créature de réduire les dégâts de moitié et d'éviter les dégâts de chute.
+
+De plus, le geyser envoie une gerbe d'eau bouillante en émanation hémisphérique autour de sa case. Le rayon de cette émanation est égal à la moitié de la hauteur du geyser. Toutes les créatures qui se trouvent dans cette zone, y compris le lanceur de sorts, reçoivent 1d6 points de dégâts de feu par round alors qu'une pluie bouillante s'abat sur elles.</descr>
+        <range>longue</range>
+        <area>1.5m de hauteur/lvl</area>
+        <cast_time>simple</cast_time>
+        <duration>1round/lvl</duration>
+        <compo>V,G,M</compo>
+        <compo_m>roche volcanique</compo_m>
+        <save_type>ref[1/2]</save_type>
+        <rank>4</rank>
+        <type>dmg</type>
+        <dmg_type>fire</dmg_type>
+        <n_sub_spell>1</n_sub_spell>
+    </spell>
+    <spell>
+        <id>Geyser_sub</id>
+        <name>Explosion d'eau</name>
+        <shortdescr>Geyser d'eau bouillante.</shortdescr>
+        <descr>Le personnage fait jaillir une colonne d'eau bouillante de n'importe quelle surface horizontale, renversant tout être qui se trouve juste au-dessus et exposant les créatures voisines aux gouttelettes brûlantes qui retombent.
+
+Toute créature qui entre dans le geyser ou qui se trouve sur la case où il apparaît doit faire un jet de Réflexes pour éviter de se faire propulser dans les airs avant de retomber au sol. Si la créature rate son jet de sauvegarde, elle reçoit 3d6 points de dégâts de feu à cause de l'eau bouillante et subit des dégâts de chute basés sur la hauteur du geyser (par exemple, si le geyser fait 15 mètres de haut, la créature reçoit 5d6 points de dégâts de chute). Elle tombe par terre dans une case aléatoire adjacente au geyser. Un jet de sauvegarde réussi permet à la créature de réduire les dégâts de moitié et d'éviter les dégâts de chute.
+
+De plus, le geyser envoie une gerbe d'eau bouillante en émanation hémisphérique autour de sa case. Le rayon de cette émanation est égal à la moitié de la hauteur du geyser. Toutes les créatures qui se trouvent dans cette zone, y compris le lanceur de sorts, reçoivent 1d6 points de dégâts de feu par round alors qu'une pluie bouillante s'abat sur elles.</descr>
+        <range>longue</range>
+        <area>1.5m de hauteur/lvl</area>
+        <cast_time>simple</cast_time>
+        <duration>1round/lvl</duration>
+        <compo>V,G,M</compo>
+        <compo_m>roche volcanique</compo_m>
+        <save_type>ref[1/2]</save_type>
+        <rank>4</rank>
+        <type>dmg</type>
+        <dice_type>6</dice_type>
+        <cap_dice>3</cap_dice>
+        <dmg_type>fire</dmg_type>
+    </spell>
+    <spell>
+        <id>Geyser_sub</id>
+        <name>Chute</name>
+        <shortdescr>Chute liée à la propulsion.</shortdescr>
+        <descr>Le personnage fait jaillir une colonne d'eau bouillante de n'importe quelle surface horizontale, renversant tout être qui se trouve juste au-dessus et exposant les créatures voisines aux gouttelettes brûlantes qui retombent.
+
+Toute créature qui entre dans le geyser ou qui se trouve sur la case où il apparaît doit faire un jet de Réflexes pour éviter de se faire propulser dans les airs avant de retomber au sol. Si la créature rate son jet de sauvegarde, elle reçoit 3d6 points de dégâts de feu à cause de l'eau bouillante et subit des dégâts de chute basés sur la hauteur du geyser (par exemple, si le geyser fait 15 mètres de haut, la créature reçoit 5d6 points de dégâts de chute). Elle tombe par terre dans une case aléatoire adjacente au geyser. Un jet de sauvegarde réussi permet à la créature de réduire les dégâts de moitié et d'éviter les dégâts de chute.
+
+De plus, le geyser envoie une gerbe d'eau bouillante en émanation hémisphérique autour de sa case. Le rayon de cette émanation est égal à la moitié de la hauteur du geyser. Toutes les créatures qui se trouvent dans cette zone, y compris le lanceur de sorts, reçoivent 1d6 points de dégâts de feu par round alors qu'une pluie bouillante s'abat sur elles.</descr>
+        <range>longue</range>
+        <area>1.5m de hauteur/lvl</area>
+        <cast_time>simple</cast_time>
+        <duration>1round/lvl</duration>
+        <compo>V,G,M</compo>
+        <compo_m>roche volcanique</compo_m>
+        <save_type>ref[anulle]</save_type>
+        <rank>4</rank>
+        <type>dmg</type>
+        <dice_type>6</dice_type>
+        <n_dice_per_lvl>0.5</n_dice_per_lvl>
+        <cap_dice>20</cap_dice>
+        <dmg_type>none</dmg_type>
+    </spell>
+
+    <spell>
+        <name>Glace insidieuse</name>
+        <shortdescr>Pellicule de glace qui s’étend lentement sur une surface horizontale.</shortdescr>
+        <descr>Ce sort couvre le sol, la terre ou toute autre surface horizontale calme (lac etc.) d’une pellicule de glace. La pellicule de glace initiale ne peut pas se former dans une zone occupée. La glace est dure, solide et opaque, faisant 2,5 centimètres d’épaisseur par niveau de lanceur. La glace est suffisamment solide pour supporter le poids d’un cheval, ce qui permet aux créatures de traverser une étendue d’eau. Si une créature essaye de briser la glace sur une seule attaque, le DD du test de Force est égal à 15 + le niveau de lanceur du personnage.
+
+Chaque round, lors du tour du personnage, la pellicule de glace s’étend de 30 centimètres dans toutes les directions, sauf celle du personnage. Cette croissance est suffisamment lente pour que toutes les créatures présentes dans la zone aient le temps de la quitter ou de monter sur la glace. Si la glace qui s’étend recouvre complètement la case d’une créature, cette dernière doit décider si elle se place sur la pellicule de glace, si elle tombe sur la pellicule de glace ou si elle est repoussée dans une case adjacente.</descr>
+        <range>moyenne</range>
+        <cast_time>simple</cast_time>
+        <duration>10min/lvl</duration>
+        <compo>V,G</compo>
+        <rank>4</rank>
         <type>util</type>
     </spell>
     <spell>
-        <name></name>
-        <shortdescr></shortdescr>
-        <descr></descr>
-        <range></range>
+        <name>Liberté de mouvement</name>
+        <shortdescr>La cible bouge normalement malgré les entraves.</shortdescr>
+        <descr>Ce sort permet au personnage ou à la créature ciblé de se déplacer et de combattre normalement, même si elle subit les effets d’un sort ou d’une magie qui réduit ses déplacements (comme les sorts de brouillard dense, lenteur, toile d’araignée ou à cause de la paralysie). Toutes les manœuvres offensives qui visent à agripper la cible échouent automatiquement et elle réussit forcément tous ses tests de manœuvres offensives et d’Évasion destinés à échapper à une lutte ou une immobilisation.</descr>
+        <range>contact</range>
         <cast_time>simple</cast_time>
-        <duration></duration>
-        <compo>V,G</compo>
-        <rm></rm>
-        <save_type></save_type>
-        <rank></rank>
-        <type>util</type>
-    </spell>
-    <spell>
-        <name></name>
-        <shortdescr></shortdescr>
-        <descr></descr>
-        <range></range>
-        <cast_time>simple</cast_time>
-        <duration></duration>
-        <compo>V,G</compo>
-        <rm></rm>
-        <save_type></save_type>
-        <rank></rank>
-        <type>util</type>
-    </spell>
-    <spell>
-        <name></name>
-        <shortdescr></shortdescr>
-        <descr></descr>
-        <range></range>
-        <cast_time>simple</cast_time>
-        <duration></duration>
-        <compo>V,G</compo>
-        <rm></rm>
-        <save_type></save_type>
-        <rank></rank>
-        <type>util</type>
-    </spell>
-    <spell>
-        <name></name>
-        <shortdescr></shortdescr>
-        <descr></descr>
-        <range></range>
-        <cast_time>simple</cast_time>
-        <duration></duration>
-        <compo>V,G</compo>
-        <rm></rm>
-        <save_type></save_type>
-        <rank></rank>
-        <type>util</type>
-    </spell>
-    <spell>
-        <name></name>
-        <shortdescr></shortdescr>
-        <descr></descr>
-        <range></range>
-        <cast_time>simple</cast_time>
-        <duration></duration>
-        <compo>V,G</compo>
-        <rm></rm>
-        <save_type></save_type>
-        <rank></rank>
-        <type>util</type>
-    </spell>
-    <spell>
-        <name></name>
-        <shortdescr></shortdescr>
-        <descr></descr>
-        <range></range>
-        <cast_time>simple</cast_time>
-        <duration></duration>
-        <compo>V,G</compo>
-        <rm></rm>
-        <save_type></save_type>
-        <rank></rank>
-        <type>util</type>
-    </spell>
-    <spell>
-        <name></name>
-        <shortdescr></shortdescr>
-        <descr></descr>
-        <range></range>
-        <cast_time>simple</cast_time>
-        <duration></duration>
-        <compo>V,G</compo>
-        <rm></rm>
-        <save_type></save_type>
-        <rank></rank>
-        <type>util</type>
-    </spell>
-    <spell>
-        <name></name>
-        <shortdescr></shortdescr>
-        <descr></descr>
-        <range></range>
-        <cast_time>simple</cast_time>
-        <duration></duration>
-        <compo>V,G</compo>
-        <rm></rm>
-        <save_type></save_type>
-        <rank></rank>
-        <type>util</type>
-    </spell>
-    <spell>
-        <name></name>
-        <shortdescr></shortdescr>
-        <descr></descr>
-        <range></range>
-        <cast_time>simple</cast_time>
-        <duration></duration>
-        <compo>V,G</compo>
-        <rm></rm>
-        <save_type></save_type>
-        <rank></rank>
-        <type>util</type>
-    </spell>
-    <spell>
-        <name></name>
-        <shortdescr></shortdescr>
-        <descr></descr>
-        <range></range>
-        <cast_time>simple</cast_time>
-        <duration></duration>
-        <compo>V,G</compo>
-        <rm></rm>
-        <save_type></save_type>
-        <rank></rank>
-        <type>util</type>
-    </spell>
-    <spell>
-        <name></name>
-        <shortdescr></shortdescr>
-        <descr></descr>
-        <range></range>
-        <cast_time>simple</cast_time>
-        <duration></duration>
-        <compo>V,G</compo>
-        <rm></rm>
-        <save_type></save_type>
-        <rank></rank>
-        <type>util</type>
-    </spell>
-    <spell>
-        <name></name>
-        <shortdescr></shortdescr>
-        <descr></descr>
-        <range></range>
-        <cast_time>simple</cast_time>
-        <duration></duration>
-        <compo>V,G</compo>
-        <rm></rm>
-        <save_type></save_type>
-        <rank></rank>
-        <type>util</type>
-    </spell>
-    <spell>
-        <name></name>
-        <shortdescr></shortdescr>
-        <descr></descr>
-        <range></range>
-        <cast_time>simple</cast_time>
-        <duration></duration>
-        <compo>V,G</compo>
-        <rm></rm>
-        <save_type></save_type>
-        <rank></rank>
-        <type>util</type>
-    </spell>
-    <spell>
-        <name></name>
-        <shortdescr></shortdescr>
-        <descr></descr>
-        <range></range>
-        <cast_time>simple</cast_time>
-        <duration></duration>
-        <compo>V,G</compo>
-        <rm></rm>
-        <save_type></save_type>
-        <rank></rank>
-        <type>util</type>
-    </spell>
-    <spell>
-        <name></name>
-        <shortdescr></shortdescr>
-        <descr></descr>
-        <range></range>
-        <cast_time>simple</cast_time>
-        <duration></duration>
-        <compo>V,G</compo>
-        <rm></rm>
-        <save_type></save_type>
-        <rank></rank>
-        <type>util</type>
+        <duration>10min/lvl</duration>
+        <compo>V,G,M</compo>
+        <compo_m>lanière de cuir</compo_m>
+        <rank>4</rank>
+        <type>buff</type>
     </spell>
     <spell>
         <name></name>

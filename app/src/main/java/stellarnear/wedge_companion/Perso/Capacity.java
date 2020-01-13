@@ -4,11 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import java.util.Random;
-
-import stellarnear.wedge_companion.R;
-import stellarnear.wedge_companion.Tools;
-
 /**
  * Created by jchatron on 26/12/2017.
  */

@@ -17,6 +17,7 @@ import stellarnear.wedge_companion.PostData;
 import stellarnear.wedge_companion.PostDataElement;
 import stellarnear.wedge_companion.PreparationSpellsAlertDialog;
 import stellarnear.wedge_companion.R;
+import stellarnear.wedge_companion.RemoveDataElementAllSpellArrow;
 import stellarnear.wedge_companion.Spells.BuildPreparedSpellList;
 import stellarnear.wedge_companion.Tools;
 
@@ -79,6 +80,7 @@ public class PrefSleepScreenFragment extends Preference {
 
     private void sleep() {
         final Tools tools = new Tools();
+        new PostData(mC,new RemoveDataElementAllSpellArrow());
         tools.customToast(mC, "Fais de beaux rêves !", "center");
         int time = 1000; // in milliseconds
         Handler h = new Handler();

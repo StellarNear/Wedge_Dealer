@@ -6,9 +6,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.GridLayout;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -142,8 +140,17 @@ public class SpellProfile {
         if (!spell.getArea().equals("")) {
             grid.addView(infoElement("Zone:" + displayText.areaTxt(spell)));
         }
-        if (!displayText.compoTxt(mC,spell).equalsIgnoreCase("")) {
-            grid.addView(infoElement("Compos:" + displayText.compoTxt(mC,spell)));
+        if (!displayText.compoTxt(spell).equalsIgnoreCase("")) {
+            TextView compos = infoElement("Compos:" + displayText.compoTxt(spell));
+            if(displayText.compoTxt(spell).contains("M")) {
+                compos.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        tools.customToast(mC, "Composant : " + spell.getCompoM(), "center");
+                    }
+                });
+            }
+            grid.addView(compos);
         }
         if (!spell.getCast_time().equals("")) {
             grid.addView(infoElement("Cast:" + calculationSpell.getCastTimeTxt(spell)));
@@ -170,12 +177,9 @@ public class SpellProfile {
         textview.setText(txt);
         textview.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         GridLayout.LayoutParams para = new GridLayout.LayoutParams();
-        //para.width=0;
         para.columnSpec=GridLayout.spec(GridLayout.UNDEFINED, 1f);
         para.rowSpec=GridLayout.spec(GridLayout.UNDEFINED, 1f);
-        //para.height=GridLayout.LayoutParams.WRAP_CONTENT;
         textview.setLayoutParams(para);
-
         return textview;
     }
 

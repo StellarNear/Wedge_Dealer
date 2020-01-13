@@ -12,11 +12,9 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
@@ -24,7 +22,6 @@ import stellarnear.wedge_companion.Perso.Resource;
 import stellarnear.wedge_companion.PostData;
 import stellarnear.wedge_companion.PostDataElement;
 import stellarnear.wedge_companion.R;
-import stellarnear.wedge_companion.Rolls.RangeDmgRoll;
 import stellarnear.wedge_companion.Rolls.RangedRoll;
 import stellarnear.wedge_companion.Rolls.Roll;
 import stellarnear.wedge_companion.Rolls.RollList;
@@ -35,7 +32,7 @@ public class MainActivityFragmentCombatBonusPanel {
     private Context mC;
     private RollList rollList;
     private PreRandValues preRandValues;
-    private ImageButton buttonAdd;
+    private ImageView buttonAdd;
     private LinearLayout bonusPanelRollList;
     private TextView bonusPanelRangePicker;
     private TextView nUsageLynxRemaning;
@@ -47,7 +44,7 @@ public class MainActivityFragmentCombatBonusPanel {
     
     public MainActivityFragmentCombatBonusPanel(final Context mC, View mainPage){
         this.mC=mC;
-        buttonAdd =(ImageButton) mainPage.findViewById(R.id.fab_add_atk);
+        buttonAdd =(ImageView) mainPage.findViewById(R.id.fab_add_atk);
         pannel = mainPage.findViewById(R.id.add_bonus_linear);
         bonusPanelRollList = mainPage.findViewById(R.id.bonus_panel_roll_list);
         nUsageLynxRemaning = mainPage.findViewById(R.id.lynx_eye_remaining);
@@ -186,7 +183,7 @@ public class MainActivityFragmentCombatBonusPanel {
         buttonAdd.setVisibility(View.VISIBLE);
     }
 
-    public ImageButton getButton() {
+    public ImageView getButton() {
         return buttonAdd;
     }
 

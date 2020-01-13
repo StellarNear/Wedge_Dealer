@@ -80,16 +80,55 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:minHeight="50dp"
-                    android:weightSum="5"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <GridLayout
                         android:id="@+id/infos"
+                        android:columnCount="3"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/general_margin"
-                        android:text="Dégats:xdx, Type:bla, Portée:33m, Compo:V.G, Cast:simple, Durée:instant, RM:oui, Sauvegarde:aucun"
-                        android:textAlignment="center" />
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_columnWeight="1"
+                            android:layout_rowWeight="1"
+                            android:textAlignment="center"
+                            android:text="Dégats:3d10"/>
+                        <TextView
+                            android:layout_columnWeight="1"
+                            android:layout_rowWeight="1"
+                            android:text="Type:feu"
+                            android:textAlignment="center" />
+                        <TextView
+                            android:layout_columnWeight="1"
+                            android:layout_rowWeight="1"
+                            android:text="Portée:3m"
+                            android:textAlignment="center" />
+                        <TextView
+                            android:layout_columnWeight="1"
+                            android:layout_rowWeight="1"
+                            android:text="Range:3m"
+                            android:textAlignment="center" />
+                        <TextView
+                            android:layout_columnWeight="1"
+                            android:layout_rowWeight="1"
+                            android:layout_height="wrap_content"
+                            android:text="Compos:V,G"
+                            android:textAlignment="center" />
+                        <TextView
+                            android:layout_columnWeight="1"
+                            android:layout_rowWeight="1"
+                            android:text="Durée:26min"
+                            android:textAlignment="center" />
+                        <TextView
+                            android:layout_columnWeight="1"
+                            android:layout_rowWeight="1"
+                            android:text="RM:non"
+                            android:gravity="center" />
+                        <TextView
+                            android:layout_columnWeight="1"
+                            android:layout_rowWeight="1"
+                            android:text="Save:ref[annule](21)"
+                            android:textAlignment="center" />
+                    </GridLayout>
 
                 </LinearLayout>
 

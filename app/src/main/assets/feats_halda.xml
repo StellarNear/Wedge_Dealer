@@ -3,6 +3,20 @@
     <!-- feat_magic -->
 
     <feat>
+        <name>Dispense de compo matérielles</name>
+        <type>feat_magic</type>
+        <descr>Pas besoin de composantes matérielles jusqu'à une valeur d'1po pour lancer un sort</descr>
+        <id>feat_materiel</id>
+    </feat>
+
+    <!--
+    <feat>
+        <name>Dispense de compo matérielles Epique</name>
+        <type>feat_magic</type>
+        <descr>Pas besoin de composantes matérielles jusqu'à une valeur de 15000 po pour lancer un sort</descr>
+        <id>feat_materiel_epic</id>
+    </feat> -->
+    <feat>
         <name>Mystérieuse perspicacité</name>
         <type>feat_magic</type>
         <descr>Gagne deux révélations d'un second Mystère (Lune)</descr>

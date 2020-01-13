@@ -15,7 +15,6 @@ import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.Rolls.Dices.Dice;
 import stellarnear.wedge_companion.Rolls.Roll;
 import stellarnear.wedge_companion.Rolls.RollList;
-import stellarnear.wedge_companion.Spells.CalculationSpell;
 import stellarnear.wedge_companion.Spells.Metamagic;
 import stellarnear.wedge_companion.Spells.Spell;
 
@@ -27,6 +26,8 @@ public class PostDataElement {
     private String typeEvent="-";
     private String result="-";
 
+    private Spell arrowSpell=null; //pour les fleches avec sort
+
     /* jet  attaque et jet degat de l'attaque  */
     public PostDataElement(RollList rolls, String mode) {
         if(mode.equalsIgnoreCase("atk")) {
@@ -35,6 +36,7 @@ public class PostDataElement {
             initDmg(rolls);
         }
     }
+
 
     public PostDataElement forceTargetSheet(String forcedSheet){
         targetSheet=forcedSheet;
@@ -181,7 +183,47 @@ public class PostDataElement {
                 this.detail+=meta.getName()+"(+"+meta.getUprank()*meta.getnCast()+")";
                 nRank+=meta.getnCast()*meta.getUprank();
             }
+            this.typeEvent+=" (+"+nRank+" rangs métamagies)";
+            if(spell.getMetaList().metaIdIsActive("meta_arrow")){
+                this.arrowSpell=spell;
+            }
+        }
+        if(spell.isFailed()||spell.contactFailed()){
+            String failPostData="-";
+            if(spell.isFailed()){
+                failPostData="Test de RM raté";
+            } else if(spell.contactFailed()){
+                failPostData="Test de contact raté";
+            }
+            this.result=failPostData;
+        } else {
+            if(spell.getDmg_type().equalsIgnoreCase("")){
+                this.result="Lancé !";
+            } else {
+                if(spell.getDmg_type().equalsIgnoreCase("heal")){
+                    this.result = "Soins : " + spell.getDmgResult();
+                } else {
+                    this.result = "Dégâts : " + spell.getDmgResult();
+                }
+            }
+        }
+    }
 
+
+    public PostDataElement(GetData.PairSpellUuid pairSpellUuid) { //constructeur où on appelle pas à nouveau le store arrow
+        SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.FRANCE);
+        this.date=formater.format(new Date());
+        Spell spell=pairSpellUuid.getSpell();
+
+        this.typeEvent="Lancement sort "+spell.getName() +" (rang de base:"+spell.getRank()+")";
+
+        if(spell.getMetaList().hasAnyMetaActive()){
+            this.detail="Métamagies:";
+            int nRank=0;
+            for(Metamagic meta : spell.getMetaList().getAllActivesMetas().asList()){
+                this.detail+=meta.getName()+"(+"+meta.getUprank()*meta.getnCast()+")";
+                nRank+=meta.getnCast()*meta.getUprank();
+            }
             this.typeEvent+=" (+"+nRank+" rangs métamagies)";
         }
         if(spell.isFailed()||spell.contactFailed()){
@@ -318,4 +360,7 @@ public class PostDataElement {
         return typeEvent;
     }
 
+    public Spell getArrowSpell() {
+        return arrowSpell;
+    }
 }
