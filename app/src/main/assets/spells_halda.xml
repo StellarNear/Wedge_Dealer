@@ -300,7 +300,7 @@
     </spell>
 
     <spell>
-        <name>Soins modérés</name>
+        <name>Soins importants</name>
         <descr>En posant les mains sur une créature vivante, le personnage lui transmet de l’énergie positive et lui rend 3d8 points de vie +1 par niveau de lanceur de sorts (jusqu’à un maximum de +15).</descr>
         <dice_type>8</dice_type>
         <cap_dice>3</cap_dice>
@@ -629,7 +629,7 @@
         <save_type>none</save_type>
         <compo>V,G</compo>
         <rank>6</rank>
-        <type>buff</type>
+        <type>util</type>
     </spell>
 
 
@@ -766,7 +766,7 @@
     </spell>
 
     <spell>
-        <name>Soins intensifs  de groupe</name>
+        <name>Soins intensifs de groupe</name>
         <descr>Le personnage transmet de l’énergie positive et rend 4d8 points de vie +1 par niveau de lanceur de sorts (jusqu’à un maximum de +40) à chacune des créatures choisies.</descr>
         <dice_type>8</dice_type>
         <cap_dice>4</cap_dice>
