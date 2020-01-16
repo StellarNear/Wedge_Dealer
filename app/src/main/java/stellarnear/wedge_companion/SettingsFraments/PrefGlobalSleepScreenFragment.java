@@ -99,7 +99,7 @@ public class PrefGlobalSleepScreenFragment extends Preference {
             public void run() {
                 PersoManager.allSleep();
                 resetGlobal();
-                PreparationSpellsAlertDialog popupPrepa = BuildPreparedSpellList.getInstance(mC).makePopupSelectSpellsToPrepare(mC);
+                PreparationSpellsAlertDialog popupPrepa = BuildPreparedSpellList.getInstance(mC).makePopupSelectSpellsToPrepare(mC,"sleep");
                 popupPrepa.setAcceptEventListener(new PreparationSpellsAlertDialog.OnAcceptEventListener() {
                     @Override
                     public void onEvent() {
@@ -136,7 +136,7 @@ public class PrefGlobalSleepScreenFragment extends Preference {
             public void run() {
                 PersoManager.allHalfSleep();
                 resetGlobal();
-                PreparationSpellsAlertDialog popupPrepa = BuildPreparedSpellList.getInstance(mC).makePopupSelectSpellsToPrepare(mC);
+                PreparationSpellsAlertDialog popupPrepa = BuildPreparedSpellList.getInstance(mC).makePopupSelectSpellsToPrepare(mC,"halfsleep");
                 popupPrepa.setAcceptEventListener(new PreparationSpellsAlertDialog.OnAcceptEventListener() {
                     @Override
                     public void onEvent() {

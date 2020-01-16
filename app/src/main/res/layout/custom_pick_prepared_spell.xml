@@ -6,7 +6,7 @@
     android:minHeight="400dp"
     android:fitsSystemWindows="true"
     android:background="@drawable/background_border_infos"
-    android:padding="@dimen/general_margin"
+    android:padding="3dp"
     android:orientation="vertical"
     android:transitionName="transition">
 
@@ -31,17 +31,23 @@
                 android:text="Prépraration des sorts"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@android:color/black" />
-
         </FrameLayout>
 
 
     </LinearLayout>
 
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:gravity="start"
+        android:weightSum="100">
+
+    <ScrollView
+        android:id="@+id/main_scroll_relat"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="89">
         <LinearLayout
             android:id="@+id/custom_mainlin"
             android:layout_width="match_parent"
@@ -50,5 +56,21 @@
             android:orientation="vertical">
         </LinearLayout>
     </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/side_bar"
+            android:background="@drawable/background_side_bar"
+            android:elevation="10dp"
+            android:layout_width="0dp"
+            android:layout_weight="11"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"/>
+
+
+
+    </LinearLayout>
 
 </LinearLayout>

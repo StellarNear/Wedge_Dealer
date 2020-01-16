@@ -16,7 +16,11 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
@@ -29,45 +33,90 @@ import stellarnear.wedge_companion.Spells.SpellsRanksManager;
 public class PreparationSpellsAlertDialog {
     private AlertDialog.Builder dialogBuilder;
     private AlertDialog alert;
+    private View mainView;
     private Context mC;
     private boolean positiveButton=false;
     private OnAcceptEventListener mListener;
 
+    private BuildPreparedSpellList buildPreparedSpellList;
+    private String mode;
+
     private SpellList preparedSpells;
+    private SpellList oldSaveSpells;
     private SpellList allSpells;
     private Perso wedge=PersoManager.getPJ("Wedge");
     private Tools tools=new Tools();
 
+    private SpellsRanksManager manager;
+    private Map<Integer,Integer> mapSpellToPickForRank=new HashMap<>();
+    private Map<Integer,TextView> mapTiersTitles =new HashMap<>();
+    private Map<Integer,TextView> mapSideTiers =new HashMap<>();
+    private Map<String,LinearLineSpell> mapSpellIDLinearLine=new HashMap<>();
 
-    public PreparationSpellsAlertDialog(Context mC, final BuildPreparedSpellList buildPreparedSpellList) {
+    public PreparationSpellsAlertDialog(final Context mC, final BuildPreparedSpellList buildPreparedSpellList,String mode) {
         // Set the toast and duration
         LayoutInflater inflater = LayoutInflater.from(mC);
-        View mainView = inflater.inflate(R.layout.custom_pick_prepared_spell,null);
+        mainView = inflater.inflate(R.layout.custom_pick_prepared_spell,null);
         this.mC=mC;
-        this.preparedSpells=buildPreparedSpellList.getPreparedSpells();
+        this.buildPreparedSpellList=buildPreparedSpellList;
+        this.mode=mode;
+        if(mode.equalsIgnoreCase("halfsleep")){
+            this.oldSaveSpells=buildPreparedSpellList.getPreparedSpellList();
+        } else if(mode.equalsIgnoreCase("sleep")){
+            this.oldSaveSpells=buildPreparedSpellList.getOldFullSleepPreparedSpellList();
+        }
+        this.preparedSpells=new SpellList();
         this.allSpells=buildPreparedSpellList.getAllSpells();
 
         dialogBuilder  = new AlertDialog.Builder(mC, R.style.CustomDialog);
         dialogBuilder.setView(mainView);
         dialogBuilder.setPositiveButton("Valider", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                buildPreparedSpellList.saveList();  //todo check si on a a bien tout select pas de resource vacante sinon on valide pas
-                if(mListener!=null) {
-                    mListener.onEvent();
-                }
-            }
+            public void onClick(DialogInterface dialog, int id) { /*on le refais apres le show pour overload*/ }
         });
 
+        manager = wedge.getAllResources().getRankManager();
+        initPickRemaningList();
         addSpellsAndBoxesToLin((LinearLayout)mainView.findViewById(R.id.custom_mainlin));
+
+        loadPreviousSpells();
 
         positiveButton=true;
         alert = dialogBuilder.create();
     }
 
-    private void addSpellsAndBoxesToLin(LinearLayout linear) {
-        SpellsRanksManager manager = wedge.getAllResources().getRankManager();
+    private void loadPreviousSpells() {
+        for(Spell spell : oldSaveSpells.asList()){
+            try {
+                mapSpellIDLinearLine.get(spell.getID()).forceAddOneCast();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
-        for(int i=1;i<=manager.getHighestTier();i++){ //todo faire une sidebar comme dans liste pour visualiser le nombre de spell restant par tier (et clic sur tier pour autoscroll)
+    private boolean setupFinished() {
+        boolean val=true;
+        for(int i=1;i<=manager.getHighestTier();i++){
+            if(mapSpellToPickForRank.get(i)>0){
+                val=false;
+                break;
+            }
+        }
+        return val;
+    }
+
+    private void initPickRemaningList() {
+        mapSpellToPickForRank=new HashMap<>();
+        for(int i=1;i<=manager.getHighestTier();i++){
+            mapSpellToPickForRank.put(i,wedge.getCurrentResourceValue("spell_rank_"+i));
+        }
+    }
+
+    private void addSpellsAndBoxesToLin(LinearLayout linear) {
+        final ScrollView scroll_tier=(ScrollView) mainView.findViewById(R.id.main_scroll_relat);
+        LinearLayout side=(LinearLayout) mainView.findViewById(R.id.side_bar);
+        for(int i=1;i<=manager.getHighestTier();i++){
+
             final TextView tier= new TextView(mC);
             LinearLayout.LayoutParams para= new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             int pixelMarging = mC.getResources().getDimensionPixelSize(R.dimen.general_margin);
@@ -76,9 +125,7 @@ public class PreparationSpellsAlertDialog {
             tier.setBackground(mC.getDrawable(R.drawable.background_tier_title));
 
             String tier_txt="Tier "+i;
-
-            String titre_tier=tier_txt +" ["+ wedge.getCurrentResourceValue("spell_rank_"+i)+" restant(s)]";
-            if (i==0){titre_tier=tier_txt +" [illimité]";}
+            String titre_tier=tier_txt +" ["+ mapSpellToPickForRank.get(i)+" restant(s)]";
             SpannableString titre=  new SpannableString(titre_tier);
             titre.setSpan(new RelativeSizeSpan(0.65f), tier_txt.length(),titre_tier.length(), 0);
             tier.setText(titre);
@@ -86,21 +133,49 @@ public class PreparationSpellsAlertDialog {
             tier.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
             tier.setTextColor(Color.BLACK);
             tier.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            mapTiersTitles.put(i,tier);
             linear.addView(tier);
-            
-            
+
+            // side bar
+
+            final TextView side_txt=new TextView(mC);
+            side_txt.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,0,1));
+            side_txt.setGravity(Gravity.CENTER);
+            side_txt.setTextColor(Color.DKGRAY);
+            side_txt.setText("T" + i + "\n(" + mapSpellToPickForRank.get(i) + ")");
+            side_txt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    scroll_tier.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            scroll_tier.scrollTo(0, tier.getTop());
+                        }
+                    });
+                }
+            });
+            mapSideTiers.put(i,side_txt);
+            side.addView(side_txt);
+
             for(final Spell spell : allSpells.filterByRank(i).filterDisplayable().asList()){
-                LinearLineSpell spellLine =  new LinearLineSpell(spell,mC);
+                final LinearLineSpell spellLine =  new LinearLineSpell(spell,mC);
+                mapSpellIDLinearLine.put(spell.getID(),spellLine);
                 spellLine.setAddSpellEventListener(new LinearLineSpell.OnAddSpellEventListener() {
                     @Override
                     public void onEvent() {
-                        addSpellToList(spell);
+                        if(mapSpellToPickForRank.get(spell.getRank())>0) {
+                            addSpellToList(spell);
+                        } else {
+                            spellLine.forceBoxUncheck();
+                            tools.customToast(mC,"Tu as choisi tous les sorts de rang "+spell.getRank()+"\nEnlève en un pour ajouter celui ci!","center");
+                        }
+
                     }
                 });
                 spellLine.setRemoveSpellEventListener(new LinearLineSpell.OnRemoveSpellEventListener() {
                     @Override
                     public void onEvent() {
-                        removeSpellFromSelection(spell);
+                        removeSpellFromSelection(spellLine);
                     }
                 });
                 linear.addView(spellLine.getSpellLine());
@@ -109,37 +184,39 @@ public class PreparationSpellsAlertDialog {
     }
 
     private void addSpellToList(Spell spellToAdd) {
+        int rank=spellToAdd.getRank();
         preparedSpells.add(new Spell(spellToAdd));
-        toastList();
+        mapSpellToPickForRank.put(rank, mapSpellToPickForRank.get(rank) - 1);
+        refreshPickNumbers();
     }
 
-    private void removeSpellFromSelection(Spell spellToRemove) {
+    private void refreshPickNumbers() {
+        for(int i=1;i<=manager.getHighestTier();i++){
+            String tier_txt="Tier "+i;
+            String titre_tier=tier_txt +" ["+ mapSpellToPickForRank.get(i)+" restant(s)]";
+            SpannableString titre=  new SpannableString(titre_tier);
+            titre.setSpan(new RelativeSizeSpan(0.65f), tier_txt.length(),titre_tier.length(), 0);
+            mapTiersTitles.get(i).setText(titre);
+
+            mapSideTiers.get(i).setText("T" + i + "\n(" + mapSpellToPickForRank.get(i) + ")");
+        }
+    }
+
+    private void removeSpellFromSelection(LinearLineSpell spellLineToRemove) {
+        Spell spellToRemove =spellLineToRemove.getSpell();
+        int rank=spellToRemove.getRank();
+        SpellList removedSpellList=new SpellList(preparedSpells);
         for(Spell spell : preparedSpells.asList()){
             if(spell.getID().equalsIgnoreCase(spellToRemove.getID())){
-                preparedSpells.remove(spell);
-                toastList();
-                break;
+                removedSpellList.remove(spell);
+                mapSpellToPickForRank.put(rank,mapSpellToPickForRank.get(rank)+1);
             }
         }
+        this.preparedSpells=removedSpellList;
+        refreshPickNumbers();
     }
 
-
-
-    private void toastList() { //todo toast juste genre Encore X sort à select pour le Rang x (rang en cours de selection
-        String text="Sorts:";
-        for(Spell spell :preparedSpells.asList()){
-            text+="\n"+spell.getName();
-        }
-        new Tools().customToast(mC,text,"center");
-    }
-
-
-
-    
-    
     // retour aux methode de l'alert
-    
-    
 
     public void showAlert() {
         alert.show();
@@ -153,8 +230,28 @@ public class PreparationSpellsAlertDialog {
             alert.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
         alert.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        setupFinishedTestOnButton();
     }
 
+    private void setupFinishedTestOnButton() {
+        alert.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                if(setupFinished()) {
+                    buildPreparedSpellList.saveListFromPreparationAlert(preparedSpells,mode);
+                    if (mListener != null) {
+                        mListener.onEvent();
+                    }
+                    alert.dismiss();
+                } else {
+                    tools.customToast(mC,"Il te reste encore de sorts à préparer !","center");
+                }
+            }
+        });
+    }
 
     private void applyStyleToOkButton() {
         Button button = alert.getButton(AlertDialog.BUTTON_POSITIVE);

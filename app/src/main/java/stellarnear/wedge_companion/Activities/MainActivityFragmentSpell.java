@@ -177,8 +177,8 @@ public class MainActivityFragmentSpell extends Fragment {
             // side bar
             LinearLayout side=(LinearLayout) returnFragView.findViewById(R.id.side_bar);
             final TextView side_txt=new TextView(getContext());
-            side_txt.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-            side_txt.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT,1));
+            side_txt.setGravity(Gravity.CENTER);
+            side_txt.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,0,1));
 
             int orientation = getResources().getConfiguration().orientation;  //1 pour portrait et 2 paysage
             side_txt.setTextColor(Color.DKGRAY);

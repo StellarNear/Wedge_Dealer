@@ -15,6 +15,7 @@ import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
+import android.view.Surface;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
@@ -23,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import stellarnear.wedge_companion.Activities.HelpActivity;
 import stellarnear.wedge_companion.Activities.MainActivity;
 import stellarnear.wedge_companion.Activities.PetActivity;
 import stellarnear.wedge_companion.Activities.SaveSharedPreferencesActivity;
@@ -120,11 +122,12 @@ public class SettingsFragment extends PreferenceFragment {
         {
             pj.refresh();
             Intent intent;
-            if(mA.getIntent() != null && mA.getIntent().getExtras() != null && mA.getIntent().hasExtra("fromActivity")
-                    && mA.getIntent().getStringExtra("fromActivity").equalsIgnoreCase("PetActivity")){
-                intent = new Intent(mA, PetActivity.class);
-            } else {
+            if(getActivity().getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_0){
                 intent = new Intent(mA, MainActivity.class);
+            } else if(getActivity().getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_180) {
+                intent = new Intent(mA, HelpActivity.class);
+            } else {
+                intent = new Intent(mA, PetActivity.class);
             }
             intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             mA.startActivity(intent);

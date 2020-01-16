@@ -13,6 +13,10 @@ public class SpellList extends AppCompatActivity {
     public SpellList(){
         listSpells = new ArrayList<Spell>();    }
 
+    public SpellList(SpellList preparedSpells) {
+        this.listSpells=new ArrayList<>(preparedSpells.listSpells);
+    }
+
 
     public  void add(Spell spell){
         listSpells.add(spell);

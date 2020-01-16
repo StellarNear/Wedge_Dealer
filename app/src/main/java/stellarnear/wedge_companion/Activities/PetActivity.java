@@ -131,13 +131,31 @@ public class PetActivity extends AppCompatActivity {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        final Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+        setActivityFromOrientation();
+    }
 
-        if (display.getRotation()==Surface.ROTATION_0) {
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            startActivity(intent);
-            finish();
+    private void setActivityFromOrientation() {
+        final Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+        switch (display.getRotation()) {
+            case Surface.ROTATION_0:
+                Intent intent = new Intent(PetActivity.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent);
+                finish();
+                break;
+
+            case Surface.ROTATION_90:
+                //on y est
+                break;
+
+            case Surface.ROTATION_180:
+                break;
+
+            case Surface.ROTATION_270:
+                Intent intent_help = new Intent(PetActivity.this, HelpActivity.class);
+                startActivity(intent_help);
+                finish();
+                break;
         }
     }
 

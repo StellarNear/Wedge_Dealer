@@ -9,6 +9,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import java.io.InputStream;
+import java.util.Collections;
+import java.util.Comparator;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -117,7 +119,6 @@ public class BuildPreparedSpellList extends AppCompatActivity {
                     break;
                 }
             }
-
         } else {
             preparedSpells.remove(spell);
         }
@@ -139,21 +140,31 @@ public class BuildPreparedSpellList extends AppCompatActivity {
         }
     }
 
-    public PreparationSpellsAlertDialog makePopupSelectSpellsToPrepare(final Context mC) {
-        this.preparedSpells=new SpellList();
-        PreparationSpellsAlertDialog selectSpellPopup = new PreparationSpellsAlertDialog(mC, this);
+    public PreparationSpellsAlertDialog makePopupSelectSpellsToPrepare(final Context mC,String mode) {
+        this.preparedSpells=null;
+        PreparationSpellsAlertDialog selectSpellPopup = new PreparationSpellsAlertDialog(mC, this,mode);
         return selectSpellPopup;
-    }
-
-    public void saveList() {
-        savePreparedList();
     }
 
     public SpellList getAllSpells() {
         return allSpells;
     }
 
-    public SpellList getPreparedSpells() {
-        return preparedSpells;
+    public SpellList getOldFullSleepPreparedSpellList() {
+        return myDB.getSpellList("localSaveFullSleepPreparedSpells");
     }
+
+    public void saveListFromPreparationAlert(SpellList preparedSpells,String mode) {
+        Collections.sort(preparedSpells.asList(),nameComparator); //order by name
+        this.preparedSpells= preparedSpells;
+        if(mode.equalsIgnoreCase("sleep")){myDB.putSpellList("localSaveFullSleepPreparedSpells",preparedSpells);}
+        savePreparedList();
+    }
+
+    public static Comparator<Spell> nameComparator = new Comparator<Spell>() {
+        public int compare(Spell s1, Spell s2) {
+            String spellName1 = s1.getName().toUpperCase();
+            String spellName2 = s2.getName().toUpperCase();
+            return spellName1.compareTo(spellName2);
+        }};
 }

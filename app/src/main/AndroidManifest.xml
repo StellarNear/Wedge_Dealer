@@ -34,6 +34,11 @@
             android:configChanges="orientation|screenSize"
             android:theme="@style/AppTheme.NoActionBar"/>
 
+        <activity android:label="Centre d'aide"
+            android:name=".Activities.HelpActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/AppTheme.NoActionBarHelp"/>
+
 
         <activity
             android:name="stellarnear.wedge_companion.Activities.SettingsActivity"

@@ -114,7 +114,9 @@ public class Tools {
     public void customToast(Context mC, String txt, String... modeInput) {
         // Set the toast and duration
         String mode = modeInput.length > 0 ? modeInput[0] : "";
-        Toast mToastToShow = Toast.makeText(mC, txt, Toast.LENGTH_LONG);
+        int time = Toast.LENGTH_LONG;
+        if(mode.contains("short")){time=Toast.LENGTH_SHORT;}
+        Toast mToastToShow = Toast.makeText(mC, txt,time);
 
         if (mode.contains("center")) {
             TextView v = (TextView) mToastToShow.getView().findViewById(android.R.id.message);

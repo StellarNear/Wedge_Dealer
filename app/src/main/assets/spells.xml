@@ -2972,7 +2972,7 @@ En cas d’échec au jet de sauvegarde, le personnage voit et entend le sujet et
 
 Si la cible réussit son jet de sauvegarde, le personnage ne peut pas essayer de la scruter à nouveau avant vingt-quatre heures.</descr>
         <range>illimitée</range>
-        <cast_time>simple</cast_time>
+        <cast_time>1h</cast_time>
         <duration>1min/lvl</duration>
         <compo>V,G,M</compo>
         <compo_m>bassin d'eau</compo_m>
@@ -3202,7 +3202,7 @@ Force du vent. Peut augmenter ou diminuer la force du vent (1 cran / 3 NLS). Les
 Un animal ou un arbre éveillé par ce sort peut parler au moins une des langues que le personnage connaît. Il en maîtrise une de plus par point de bonus d’Intelligence (s’il possède un bonus d’Intelligence). Ce sort ne fonctionne pas sur les animaux et les plantes dotés d’une Intelligence supérieure à 2.</descr>
         <range>contact</range>
         <cast_time>24hs</cast_time>
-        <compo>V,G</compo>
+        <compo>V,G,M+</compo>
         <compo_m>2000po d'herbes et d'huiles</compo_m>
         <rank>5</rank>
     </spell>
@@ -3870,502 +3870,184 @@ Le druide peut emporter des objets tant que leur poids n’excède pas sa charge
         <rank>6</rank>
         <type>util</type>
     </spell>
-    <spell>
-        <name></name>
-        <shortdescr></shortdescr>
-        <descr></descr>
-        <range></range>
-        <cast_time>simple</cast_time>
-        <duration></duration>
-        <compo>V,G</compo>
-        <rm></rm>
-        <save_type></save_type>
-        <rank></rank>
-        <type></type>
-    </spell>
-    <spell>
-        <name></name>
-        <shortdescr></shortdescr>
-        <descr></descr>
-        <range></range>
-        <cast_time>simple</cast_time>
-        <duration></duration>
-        <compo>V,G</compo>
-        <rm></rm>
-        <save_type></save_type>
-        <rank></rank>
-        <type></type>
-    </spell>
-    <spell>
-        <name></name>
-        <shortdescr></shortdescr>
-        <descr></descr>
-        <range></range>
-        <cast_time>simple</cast_time>
-        <duration></duration>
-        <compo>V,G</compo>
-        <rm></rm>
-        <save_type></save_type>
-        <rank></rank>
-        <type></type>
-    </spell>
-    <spell>
-        <name></name>
-        <shortdescr></shortdescr>
-        <descr></descr>
-        <range></range>
-        <cast_time>simple</cast_time>
-        <duration></duration>
-        <compo>V,G</compo>
-        <rm></rm>
-        <save_type></save_type>
-        <rank></rank>
-        <type></type>
-    </spell>
-    <spell>
-        <name></name>
-        <shortdescr></shortdescr>
-        <descr></descr>
-        <range></range>
-        <cast_time>simple</cast_time>
-        <duration></duration>
-        <compo>V,G</compo>
-        <rm></rm>
-        <save_type></save_type>
-        <rank></rank>
-        <type></type>
-    </spell>
-    <spell>
-        <name></name>
-        <shortdescr></shortdescr>
-        <descr></descr>
-        <range></range>
-        <cast_time>simple</cast_time>
-        <duration></duration>
-        <compo>V,G</compo>
-        <rm></rm>
-        <save_type></save_type>
-        <rank></rank>
-        <type></type>
-    </spell>
-    <spell>
-        <name></name>
-        <shortdescr></shortdescr>
-        <descr></descr>
-        <range></range>
-        <cast_time>simple</cast_time>
-        <duration></duration>
-        <compo>V,G</compo>
-        <rm></rm>
-        <save_type></save_type>
-        <rank></rank>
-        <type></type>
-    </spell>
-    <spell>
-        <name></name>
-        <shortdescr></shortdescr>
-        <descr></descr>
-        <range></range>
-        <cast_time>simple</cast_time>
-        <duration></duration>
-        <compo>V,G</compo>
-        <rm></rm>
-        <save_type></save_type>
-        <rank></rank>
-        <type></type>
-    </spell>
-    <spell>
-        <name></name>
-        <shortdescr></shortdescr>
-        <descr></descr>
-        <range></range>
-        <cast_time>simple</cast_time>
-        <duration></duration>
-        <compo>V,G</compo>
-        <rm></rm>
-        <save_type></save_type>
-        <rank></rank>
-        <type></type>
-    </spell>
-
-    <!-- autre spells -->
-
-
 
     <spell>
-        <name>Soins modérés</name>
-        <descr>En posant les mains sur une créature vivante, le personnage lui transmet de l’énergie positive et lui rend 2d8 points de vie +1 par niveau de lanceur de sorts (jusqu’à un maximum de +10).</descr>
-        <dice_type>8</dice_type>
-        <cap_dice>2</cap_dice>
-        <flat_dmg>1/lvl</flat_dmg>
-        <flat_cap>10</flat_cap>
-        <dmg_type>heal</dmg_type>
-        <range>contact</range>
-        <cast_time>simple</cast_time>
-        <duration>instant</duration>
-        <compo>V,G</compo>
-        <rm>true</rm>
-        <rank>2</rank>
-        <type>heal</type>
-    </spell>
+        <name>Animation des plantes</name>
+        <shortdescr>Une ou plusieurs plantes s’animent et attaquent les adversaires du PJ.</shortdescr>
+        <descr>Deux versions du sort :
+-Animation. Ce sort anime les plantes. Elles peuvent alors attaquer les cibles désignées par le lanceur de sorts. Le sort peut animer une plante de taille G ou inférieure ; une plante de taille TG valant deux plantes de taille G etc. Il est possible de changer de cible(s) au prix d’une action de mouvement.
 
-    <spell>
-        <name>Augure</name>
-        <shortdescr>Révèle si une action aura de bonnes conséquences ou non.</shortdescr>
-        <descr>Révèle si l’action que lui-même ou ses compagnons vont entreprendre aura de bonnes ou de mauvaises conséquences dans un avenir proche. Les chances de recevoir une réponse cohérente se montent à 70 % + 1 % par niveau de lanceur de sorts, jusqu’à un maximum de 90%. Fortune : l’action a de bonnes chances d’être bénéfique. Péril : l’action aura des répercussions malheureuses. Péril et fortune : les deux sont possibles. Rien : dans le cas où l’action ne devrait pas avoir de conséquences favorables ou néfastes.</descr>
-        <range>personnelle</range>
-        <cast_time>1min</cast_time>
-        <duration>instant</duration>
-        <compo>V,G,M</compo>
-        <rank>2</rank>
+Utilisez les caractéristiques des objets animés (Bestiaire Pathfinder RPG).
+
+-Enchevêtrement. Le personnage peut à la place accorder aux plantes la mobilité suffisante pour enchevêtrer les créatures situées dans la zone d’effet. L’effet est alors le même que celui d’un sort d’enchevêtrement. La résistance à la magie n’entre pas en compte face à cette utilisation du sort, qui dure 1 heure par niveau de lanceur de sorts.</descr>
+        <range>courte</range>
+        <area>0.34planteG/lvl</area>
+        <cast_time>simple</cast_time>
+        <duration>1round/lvl</duration>
+        <compo>V</compo>
+        <rank>7</rank>
         <type>util</type>
     </spell>
-
     <spell>
-        <name>Délivrance de la paralysie</name>
-        <shortdescr>Délivre de la paralysie, d’immobilisation et de lenteur.</shortdescr>
-        <descr>Les créatures affectées par un sort ou un effet magique de paralysie temporaire ou un autre effet similaire peuvent recouvrer leur liberté de mouvement, tout comme celles qui sont soumises à un sort ou à un effet qui les rend chancelantes. Si le sort ne cible qu’un seul individu, la paralysie est automatiquement annulée. S’il cible deux créatures, chacune d’elles bénéficie d’un nouveau jet de sauvegarde contre l’effet qui les a paralysées avec un bonus de résistance de +4. Enfin, s’il cible trois ou quatre sujets, ils reçoivent également un nouveau jet de sauvegarde mais avec un bonus de résistance de +2 seulement.</descr>
+        <name>Anneau de repli féérique</name>
+        <shortdescr>Cercle d’amanites qui conduit dans une prairie extradimensionnelle.</shortdescr>
+        <descr>Le personnage invoque une prairie extradimensionnelle accessible par une unique entrée située sur le plan où le sort a été lancé. Le seuil ressemble à un cercle d’amanites délimitant un espace de 3 mètres de côté. Seules les créatures désignées par le personnage peuvent entrer. Le personnage peut ouvrir cet espace à volonté depuis l’intérieur. Une fois qu’un visiteur a franchi le seuil, il se retrouve dans une prairie crépusculaire idyllique entourée d’un bosquet infranchissable d’arbres fruitiers et de noisetiers.
+Le personnage peut configurer cette prairie selon la forme qu’il souhaite. Les arbres offrent suffisamment de nourriture pour alimenter chaque jour quatre personnes par niveau de lanceur. Une équipe de serviteurs animaux ou féeriques presque transparents (composée de deux individus par niveau de lanceur) se mettent au service de tous ceux qui entrent dans la prairie.</descr>
         <range>courte</range>
         <cast_time>simple</cast_time>
-        <duration>instant</duration>
+        <duration>2h/lvl</duration>
         <compo>V,G</compo>
-        <rank>2</rank>
-        <type>buff</type>
+        <rank>7</rank>
+        <type>util</type>
     </spell>
-
     <spell>
-        <name>Grâce</name>
-        <shortdescr>Les mouvements ne provoquent pas d'attaque d'opportunité.</shortdescr>
-        <descr>Les déplacements du personnage ne provoquent pas d'attaque d'opportunité jusqu'à la fin de son tour.</descr>
-        <range>personelle</range>
-        <cast_time>rapide</cast_time>
-        <duration>1round</duration>
-        <compo>V</compo>
-        <rank>2</rank>
-        <type>combatbuff</type>
-    </spell>
-
-    <spell>
-        <name>Protection contre le Mal(partagé)</name>
-        <shortdescr>+2 à la CA et aux jets de sauvegarde, protection supplémentaire contre le mal. Durée d’effet se divise entre les créatures touchées.</shortdescr>
-        <descr>Protège contre les attaques des créatures d’alignement Mauvais, mais aussi contre le contrôle mental et les créatures convoquées. Trois effets : Premièrement, bonus de parade de +2 à la CA et d’un bonus de résistance de +2 aux jets de sauvegarde. Deuxièmement, peut faire un nouveau jet de sauvegarde contre tous les sorts et les effets de possession ou de contrôle mental avec un bonus de moral de +2. Enfin, le sort empêche les créatures convoquées de toucher le personnage. Les attaques naturelles de ces créatures échouent automatiquement et elles sont obligées de reculer si leurs attaques les obligent à toucher l’individu protégé. Ce sort fonctionne comme protection contre le Mal mais la durée se divise entre les créatures touchées, par portions de 1 minute.</descr>
-        <range>contact</range>
-        <cast_time>simple</cast_time>
-        <duration>1min/lvl</duration>
-        <compo>V,G</compo>
-        <rank>2</rank>
-        <type>buff</type>
-    </spell>
-
-    <spell>
-        <name>Protection d'autrui</name>
-        <shortdescr>Le PJ subit 1/2 dégâts à la place du sujet.</shortdescr>
-        <descr>Cette incantation protège la cible et crée un lien entre elle et le lanceur de sorts, qui récupère une partie des blessures infligées à l’individu protégé. Ce dernier gagne un bonus de parade de +1 à la CA et un bonus de résistance de +1 aux jets de sauvegarde. De plus, les attaques et sorts (ou pouvoirs, etc.) lui infligent deux fois moins de dégâts qu’ils ne devraient car c’est le lanceur de sorts qui subit l’autre moitié.</descr>
+        <name>Arbres de siège</name>
+        <shortdescr>Transforme des arbres G en catapultes végétales de même taille.</shortdescr>
+        <descr>Le personnage octroie une certaine mobilité et un semblant de vie à des plantes inanimées. Chacune se comporte comme une catapulte légère jusqu’à la fin de la durée du sort mais le personnage doit dépenser une action simple pour viser avec ces arbres-catapultes avant leur premier tir. La catapulte utilise le niveau de lanceur de sorts du personnage comme bonus de visée. Ensuite, il vise seulement s’il veut changer de cible. Il peut ordonner à un ou plusieurs arbres de cesser le tir. Les arbres-catapultes n’ont pas besoin de munitions, ils se chargent automatiquement avec des rochers voisins, en les sortant de terre s’il le faut. Le personnage peut tout de même leur donner des munitions s’il le désire. Les arbres n’acceptent pas de munitions enflammées et le personnage ne peut pas utiliser le sort tir d’énergie à l’arme de siège avec eux s’il choisit le feu comme type d’énergie.</descr>
         <range>courte</range>
         <cast_time>simple</cast_time>
         <duration>1h/lvl</duration>
         <compo>V,G</compo>
-        <rank>2</rank>
-        <type>buff</type>
+        <rank>7</rank>
     </spell>
-
     <spell>
-        <name>Restauration partielle</name>
-        <shortdescr>Dissipe effets magiques affaiblissants ou rend 1d4 points de caractéristique perdus.</shortdescr>
-        <descr>Ce sort dissipe les effets magiques réduisant l’une des caractéristiques de la cible ou permet de récupérer 1d4 points d’une caractéristique temporairement affaiblie. Restauration partielle élimine toute fatigue dont est victime le sujet. Si le personnage est épuisé, il devient simplement fatigué. Le sort ne peut rien contre les diminutions permanentes de caractéristique.</descr>
+        <name>Bâton sylvanien</name>
+        <shortdescr>Transforme le bâton du PJ en sylvanien.</shortdescr>
+        <descr>Ce sort permet de transformer un bâton préparé à l’avance en créature ressemblant à un sylvanien de taille TG de plus de sept mètres de haut. Le druide doit planter le bâton dans le sol et prononcer quelques paroles magiques achevant l’incantation pour le voir prendre la forme d’une entité ressemblant à un sylvanien. Cette dernière défend le personnage et obéit à tous ses ordres. Il ne s’agit pas d’un vrai sylvanien malgré son apparence : elle ne peut ni discuter avec les sylvaniens, ni commander aux arbres. Si le pseudo-sylvanien se retrouve à 0 point de vie ou moins, il tombe en poussière et le bâton est détruit. Autrement, le bâton peut par la suite resservir comme focaliseur pour une nouvelle utilisation du sort. Le pseudo-sylvanien a toujours son maximum de points de vie lorsqu’il prend forme, même s’il a subi des blessures lors de sa dernière apparition.</descr>
         <range>contact</range>
-        <cast_time>3rounds</cast_time>
-        <duration>instant</duration>
-        <compo>V,G</compo>
-        <rank>2</rank>
-        <type>buff</type>
-        <from_mystery>true</from_mystery>
+        <cast_time>simple</cast_time>
+        <duration>1h/lvl</duration>
+        <compo>V,G,M</compo>
+        <compo_m>baton sculpté</compo_m>
+        <rank>7</rank>
     </spell>
-
     <spell>
-        <name>Soins modérés</name>
-        <descr>En posant les mains sur une créature vivante, le personnage lui transmet de l’énergie positive et lui rend 3d8 points de vie +1 par niveau de lanceur de sorts (jusqu’à un maximum de +15).</descr>
-        <dice_type>8</dice_type>
-        <cap_dice>3</cap_dice>
-        <flat_dmg>1/lvl</flat_dmg>
-        <flat_cap>15</flat_cap>
+        <name>Contrôle du climat</name>
+        <shortdescr>Modifie le climat local.</shortdescr>
+        <descr>Ce sort permet de modifier radicalement le climat dans la zone choisie. L’incantation demande dix minutes, après quoi il faut attendre dix minutes supplémentaires pour que les effets se manifestent. Les temps possible changent suivant la saison :
+-Printemps : Tornade, orage, tempête de neige ou temps chaud
+-Été	Pluie torrentielle, vague de chaleur ou grêle
+-Automne	Temps chaud ou froid, brouillard ou neige fondue
+-Hiver	Froid glacial, blizzard ou fonte des neiges, ouragan ou printemps précoce
+
+Le personnage à le pouvoir de contrôler les tendances générales définissant le climat désiré, comme par exemple la force et la direction du vent. En revanche, il ne lui appartient pas de décider les points plus précis (tels que les endroits où la foudre frappe, le tracé suivi par une tornade, etc.). Dès cet instant, le climat se maintient jusqu’à ce que le sort s’achève, à moins que le personnage décide de le changer de nouveau.</descr>
+        <range>4.5kms</range>
+        <cast_time>simple</cast_time>
+        <duration>48hs</duration>
+        <compo>V,G</compo>
+        <rank>7</rank>
+        <type>util</type>
+    </spell>
+    <spell>
+        <name>Convocation d'alliés naturels VII</name>
+        <shortdescr>Appelle une ou plusieurs créatures luttant pour le PJ.</shortdescr>
+        <descr>Ce sort est semblable à convocation d’alliés naturels I, si ce n’est qu’il permet d’appeler une créature de niveau 7, 1d3 créatures de niveau 6 ou 1d4+1 créatures de niveau moindre (quand le personnage convoque plusieurs alliés naturels, ceux-ci doivent tous être du même type).</descr>
+        <range>courte</range>
+        <cast_time>simple</cast_time>
+        <duration>1round/lvl</duration>
+        <compo>V,G</compo>
+        <rank>7</rank>
+    </spell>
+    <spell>
+        <name>Guérison suprême</name>
+        <shortdescr>Soigne 10 points de dégâts/niveau, les maladies et les troubles mentaux.</shortdescr>
+        <descr>Grâce à guérison suprême, le lanceur de sorts peut canaliser suffisamment d’énergie positive dans le corps du sujet pour faire disparaître toutes ses blessures et maladies. Ce sort soigne les affaiblissements temporaires de caractéristique, l’aliénation, la cécité, la confusion, la débilité, l’éblouissement, l’empoisonnement, l’épuisement, l’étourdissement, la fatigue, la fièvre, l’hébétement, les maladies, la nausée et la surdité. Il guérit également de 10 points de vie par niveau de lanceur de sorts, jusqu’à un maximum de 150 points de vie au niveau 15.</descr>
+        <dice_type>lvl</dice_type>
+        <n_dice_per_lvl>10</n_dice_per_lvl>
+        <cap_dice>150</cap_dice>
         <dmg_type>heal</dmg_type>
         <range>contact</range>
         <cast_time>simple</cast_time>
         <duration>instant</duration>
         <compo>V,G</compo>
-        <rm>true</rm>
-        <rank>3</rank>
+        <rank>7</rank>
         <type>heal</type>
     </spell>
 
     <spell>
-        <name>Délivrance des malédictions</name>
-        <shortdescr>Libère des malédictions.</shortdescr>
-        <descr>Comme son nom l’indique, cette abjuration fait instantanément disparaître toutes les malédictions affligeant un objet ou une créature. Si le sort vise une créature, le personnage doit réussir un test de lanceur de sorts (1d20 + niveau de lanceur de sorts) contre le DD de chaque malédiction qui affecte la cible. En cas de succès, la malédiction disparaît. Si le sort cible un objet maudit (bouclier, arme, armure, etc.), la malédiction n’est pas annulée, mais son effet est suspendu suffisamment longtemps pour que le personnage puisse s’en débarrasser.</descr>
-        <range>contact</range>
+        <name>Mort rampante</name>
+        <descr>Cette incantation convoque quatre nuées d’insectes piqueurs et mordeurs. Ils apparaissent dans des cases adjacentes mais se déplacent indépendamment. On les considère comme des nuées de mille-pattes (voir le Bestiaire Pathfinder RPG) en tenant compte des modifications suivantes. Les nuées ont 60 points de vie chacune et infligent 4d6 points de dégâts lors de leur attaque de nuée. Le DD du jet de sauvegarde qui permet de résister à leur poison est égal à celui qui permet de résister à ce sort. Les créatures qui se retrouvent aux prises avec plusieurs nuées ne font qu’un seul jet de sauvegarde et subissent les dégâts d’une seule nuée.
+
+Le lanceur de sorts peut convoquer ses nuées afin qu’elles occupent la même case qu’une créature. Par une action simple, il peut aussi leur ordonner de se rapprocher de n’importe quelle cible distante de moins de trente mètres.</descr>
+        <shortdescr>Nuée de mille-pattes tuant tout sur son passage.</shortdescr>
+        <range>courte</range>
         <cast_time>simple</cast_time>
-        <duration>instant</duration>
+        <duration>1round/lvl</duration>
         <compo>V,G</compo>
-        <rank>3</rank>
-        <type>buff</type>
+        <rank>7</rank>
+        <type>dmg</type>
     </spell>
-
     <spell>
-        <name>Guérison des maladies</name>
-        <shortdescr>Guérit tous les maux du sujet.</shortdescr>
-        <descr>Ce sort soigne toutes les maladies dont souffre le sujet. Le personnage doit réussir un test de lanceur de sorts (1d20 + niveau de lanceur de sorts) contre le DD de chaque maladie qui affecte la cible. En cas de succès, la maladie disparaît. Ce sort détruit également certains parasites et autres menaces du même genre comme par exemple le limon vert.</descr>
-        <range>contact</range>
+        <name>Rayon de soleil</name>
+        <shortdescr>Aveugle et inflige 4d6 points de dégâts.</shortdescr>
+        <descr>Tant que ce sort fait effet, le personnage peut émettre un rayon de lumière éblouissante à chaque round (au prix d’une action simple). Il peut donner naissance à un rayon tous les trois niveaux de lanceur de sorts (jusqu’à un maximum de six au niveau 18).
+
+Toutes les créatures touchées par le rayon de soleil sont aveuglées et subissent 4d6 points de dégâts. Un jet de Réflexes réussi permet d’annuler la cécité temporaire et de réduire les dégâts de moitié. Les créatures sensibles à la lumière subissent le double de dégâts.
+
+Les morts-vivants reçoivent 1d6 points de dégâts par niveau de lanceur de sorts (jusqu’à un maximum de 20d6). La lumière ultraviolette générée par ce sort affecte les moisissures, vases, limons, thallophytes et autres créatures apparentées comme s’il s’agissait de morts-vivants.</descr>
+        <range>18m</range>
         <cast_time>simple</cast_time>
-        <duration>10min/lvl</duration>
+        <duration>1round/lvl</duration>
         <compo>V,G</compo>
-        <rank>3</rank>
-        <type>buff</type>
-    </spell>
-
-    <spell>
-        <name>Lien sacré</name>
-        <shortdescr>Lance les sorts de soins de contact de loin.</shortdescr>
-        <descr>Pour utiliser ce sort, le personnage doit tout d'abord toucher le récipiendaire afin de créer un champ d'énergies bénéfiques entre eux. Une fois le sort lancé, le personnage et la cible peuvent lancer des sorts d'Invocation (guérison) avec une portée définie comme « contact » alors qu'ils se trouvent à courte portée l'un de l'autre (7,5 m + 1,5 m/2 niveaux) (5 c + 1 c/2 niveaux). Si le personnage ou la cible ôte son bracelet, le sort se termine immédiatement.</descr>
-        <range>contact</range>
-        <cast_time>1round</cast_time>
-        <duration>10min/lvl</duration>
-        <compo>V,G</compo>
-        <rank>3</rank>
-        <type>buff</type>
-    </spell>
-
-    <spell>
-        <name>Négation de l'invisibilité</name>
-        <shortdescr>Dissipe l’invisibilité sur 1,50 m/niveau.</shortdescr>
-        <descr>Le prêtre s’entoure d’une sphère d’énergie de 1,50 m (1 c) de rayon par niveau de lanceur de sorts. Elle dissipe toute forme d’invisibilité. Les créatures et les objets invisibles réapparaissent dès qu’ils pénètrent dans la zone d’effet.</descr>
-        <range>personnelle</range>
-        <cast_time>simple</cast_time>
-        <duration>1min/lvl</duration>
-        <compo>V,G</compo>
-        <rank>3</rank>
-        <type>buff</type>
-    </spell>
-
-
-    <spell>
-        <name>Soins intensifs</name>
-        <id>intense_cure</id>
-        <descr>En posant les mains sur une créature vivante, le personnage lui transmet de l’énergie positive et lui rend 4d8 points de vie +1 par niveau de lanceur de sorts (jusqu’à un maximum de +20).</descr>
-        <dice_type>8</dice_type>
+        <rm>true</rm>
+        <save_type>ref[1/2]</save_type>
+        <rank>7</rank>
+        <type>dmg</type>
+        <dice_type>6</dice_type>
         <cap_dice>4</cap_dice>
-        <flat_dmg>1/lvl</flat_dmg>
-        <flat_cap>20</flat_cap>
-        <dmg_type>heal</dmg_type>
-        <range>contact</range>
-        <cast_time>simple</cast_time>
-        <duration>instant</duration>
-        <compo>V,G</compo>
-        <rm>true</rm>
-        <rank>4</rank>
-        <type>heal</type>
+        <dmg_type>none</dmg_type>
     </spell>
-
     <spell>
-        <name>Bénédiction de ferveur</name>
-        <area>1créature/lvl</area>
-        <shortdescr>Accorde des avantages au choix des alliés.</shortdescr>
-        <descr>À chaque round, chacun de vos alliés peut choisir, au début de son tour, l'un des bonus :
-
-            -Augmentation de la vitesse de 9 mètres.
-
-            -Se relever par une action rapide sans provoquer d'attaque d'opportunité.
-
-            -Faire une attaque supplémentaire en utilisant son bonus d'attaque le plus élevé lors d'une attaque à outrance.
-
-            -Gagner un bonus de +2 aux jets d'attaque et un bonus d'esquive de +2 à la CA et aux jets de Réflexes.
-
-            -Lancer un unique sort de niveau 2 ou moins comme s'il bénéficiait d'une incantation à extension de portée, à extension de durée, silencieuse ou statique.</descr>
-        <range>courte</range>
-        <cast_time>simple</cast_time>
-        <duration>1round/lvl</duration>
-        <compo>V,G</compo>
-        <rank>4</rank>
-        <type>combatbuff</type>
-    </spell>
-
-
-    <spell>
-        <name>Détection du mensonge</name>
-        <shortdescr>Révèle les mensonges délibérés.</shortdescr>
-        <descr>Chaque round, le lanceur de sorts se concentre sur une créature située dans la zone d’effet. Grâce aux subtiles perturbations que le sort lui permet de voir dans l’aura de la cible, il sait si celle-ci prononce intentionnellement un mensonge. Détection du mensonge n’indique pas la vérité ni les erreurs commises en toute bonne foi, et il ne détecte pas toujours les semi-vérités.</descr>
-        <range>courte</range>
-        <cast_time>simple</cast_time>
-        <duration>1round/lvl</duration>
-        <compo>V,G</compo>
-        <rank>4</rank>
-        <type>util</type>
-    </spell>
-
-    <spell>
-        <name>Liberté de mouvement</name>
-        <shortdescr>La cible bouge normalement malgré les entraves.</shortdescr>
-        <descr>Ce sort permet au personnage ou à la créature ciblé de se déplacer et de combattre normalement, même si elle subit les effets d’un sort ou d’une magie qui réduit ses déplacements (comme les sorts de brouillard dense, lenteur, toile d’araignée ou à cause de la paralysie). Toutes les manœuvres offensives qui visent à agripper la cible échouent automatiquement et elle réussit forcément tous ses tests de manœuvres offensives et d’Évasion destinés à échapper à une lutte ou une immobilisation.</descr>
-        <range>contact</range>
-        <cast_time>simple</cast_time>
-        <duration>10min/lvl</duration>
-        <compo>V,G,M</compo>
-        <rank>4</rank>
-        <type>buff</type>
-    </spell>
-
-    <spell>
-        <name>Neutralisation du poison</name>
-        <shortdescr>Rend le poison inoffensif.</shortdescr>
-        <descr>Ce sort chasse toutes les formes de poison de l’organisme de la créature ou de l’objet touché. S’il s’agit d’une créature, le personnage fait un test de lanceur de sorts (1d20 + niveau de lanceur de sorts) contre le DD de chaque poison qui affecte la cible. En cas de succès, le poison est neutralisé. La créature ne souffre plus et les effets temporaires du poison disparaissent aussitôt mais le sort n’annule pas les effets instantanés du poison (à savoir la perte de points de vie, un affaiblissement temporaire de caractéristique et autres effets qui ne se dissipent pas d’eux-mêmes).</descr>
-        <range>contact</range>
-        <cast_time>simple</cast_time>
-        <duration>10min/lvl</duration>
-        <compo>V,G,M</compo>
-        <rank>4</rank>
-        <type>buff</type>
-        <from_mystery>true</from_mystery>
-    </spell>
-
-    <spell>
-        <name>Protection énergies destructives(partagé)</name>
-        <shortdescr>Absorbe 12 points de dégâts/niveau infligés par le type d’énergie choisi. Durée d’effet se divise entre les créatures touchées.</shortdescr>
-        <descr>Ce sort offre une immunité temporaire contre le type d’énergie sélectionné (acide, électricité, feu, froid ou son). Une fois que l’abjuration a absorbé 12 points de dégâts par niveau de lanceur de sorts de celui qui l’a lancée (jusqu’à un maximum de 120 points de dégâts au niveau 10), elle cesse de faire effet. La durée se divise entre les créatures touchées, par portions de 10 minutes.</descr>
-        <range>contact</range>
-        <cast_time>simple</cast_time>
-        <duration>10min/lvl</duration>
-        <compo>V,G,M</compo>
-        <rank>4</rank>
-        <type>buff</type>
-    </spell>
-
-    <spell>
-        <name>Réceptacle de l'oracle</name>
-        <shortdescr>La cible bénéficie des avantages de la malédiction de l'oracle.</shortdescr>
-        <descr>La cible gagne tout les avantages de la malédiction de l’oracle, sans aucun malus. Dans certains cas, ceci n’a aucun effet (par exemple un guerrier qui reçoit la malédiction hanté ne peut pas lancer de sorts et les sorts connus supplémentaires ne lui servent donc à rien).</descr>
-        <range>courte</range>
-        <cast_time>simple</cast_time>
-        <duration>1min/lvl</duration>
-        <compo>V,G</compo>
-        <rank>4</rank>
-        <type>buff</type>
-    </spell>
-
-    <spell>
-        <name>Restauration</name>
-        <shortdescr>Rend niveaux et points de caractéristique perdus.</shortdescr>
-        <descr>Ce sort guérit tous les affaiblissements temporaires de caractéristique et une diminution permanente de caractéristique (choisie par le lanceur de sorts)(100 po de poussière de diamant). Il dissipe également les niveaux négatifs temporaires ou un niveau négatif permanent (auquel cas il nécessite de la poudre de diamant valant 1 000 po). Ce sort ne permet pas de dissiper plus d’un niveau négatif permanent sur une même cible par semaine. Restauration élimine toute fatigue et épuisement dont est victime le sujet.</descr>
-        <range>contact</range>
-        <cast_time>simple</cast_time>
-        <duration>instant</duration>
-        <compo>V,G,M+(100po ou 1000po de pousière de diamant)</compo>
-        <rank>4</rank>
-        <type>buff</type>
-        <from_mystery>true</from_mystery>
-    </spell>
-
-
-    <spell>
-        <name>Soins légers de groupe</name>
-        <descr>Le personnage transmet de l’énergie positive et rend 1d8 points de vie +1 par niveau de lanceur de sorts (jusqu’à un maximum de +25) à chacune des créatures choisies.</descr>
-        <dice_type>8</dice_type>
-        <cap_dice>1</cap_dice>
-        <flat_dmg>1/lvl</flat_dmg>
-        <flat_cap>25</flat_cap>
-        <dmg_type>heal</dmg_type>
-        <area>1créature/lvl</area>
-        <range>courte</range>
-        <cast_time>simple</cast_time>
-        <duration>instant</duration>
-        <compo>V,G</compo>
-        <rm>true</rm>
-        <rank>5</rank>
-        <type>heal</type>
-    </spell>
-
-    <spell>
-        <name>Bulle de vie</name>
-        <shortdescr>Protège les créatures contre l'environnement.</shortdescr>
-        <descr>Divise la durée entre les créatures. Le personnage entoure les créatures touchées d'une enveloppe constante et déplaçable de 3 cm d'épaisseur de conditions vivables. Cette enveloppe permet au sujet de respirer librement, même sous l'eau ou dans le vide. Elle les immunise également contre les gaz et les vapeurs nocives, y compris les maladies et les poisons inhalés ainsi que les sorts comme brume mortelle ou nuage nauséabond. De plus, l'enveloppe protège les sujets contre les températures extrêmes (comme endurance aux énergies destructives) et aux fortes pressions.</descr>
-        <range>contact</range>
-        <area>1créature/lvl</area>
-        <cast_time>simple</cast_time>
-        <duration>2h/lvl</duration>
-        <compo>V,G,M</compo>
-        <rank>5</rank>
-        <type>util</type>
-    </spell>
-
-    <spell>
-        <name>Changement de plan</name>
-        <shortdescr>Permet de changer de plan (8 sujets max.).</shortdescr>
-        <descr>Grâce à ce sort le personnage peut partir (ou envoyer quelqu’un) dans une dimension ou un plan différent. Si plusieurs personnes consentantes se tiennent par la main et forment un cercle, changement de plan peut transporter jusqu’à huit personne en même temps. Il est presque impossible d’apparaître à l’endroit exact où l’on souhaite atterrir. Depuis le plan Matériel, on peut accéder à la quasi-totalité des autres plans, mais on se matérialise à 8–800 kilomètres (8d100) du lieu choisi. Si les créatures souhaitent rentrer chez elles, elles doivent trouver un autre moyen (comme relancer changement de plan).</descr>
-        <range>contact</range>
-        <area>8créatures</area>
-        <cast_time>simple</cast_time>
-        <duration>instant</duration>
-        <compo>V,G</compo>
-        <rank>5</rank>
-        <type>util</type>
-    </spell>
-
-    <spell>
-        <name>Pilier de vie</name>
-        <shortdescr>Les piliers créés soignent 2d8 +1/niveau (max +20).</shortdescr>
-        <descr>Le personnage invoque une colonne d'énergie positive dans une case de 1,50 m (1 c) de côté située à portée. Elle dégage autant de lumière qu'un bâton éclairant. Toute créature vivante adjacente au pilier de lumière peut utiliser une action simple pour le toucher et récupérer 2d8 points de vie + 1 point par niveau de lanceur de sorts (maximum +20).</descr>
-        <dice_type>8</dice_type>
-        <cap_dice>2</cap_dice>
-        <flat_dmg>1/lvl</flat_dmg>
-        <flat_cap>20</flat_cap>
-        <dmg_type>heal</dmg_type>
-        <area>1.5m</area>
+        <name>Rempart</name>
+        <shortdescr>Crée une barrière de terre de 1,50 m d'épaisseur.</shortdescr>
+        <descr>Le personnage crée un énorme rempart de terre tassée et de pierres de 1,50 mètre (1 c) d'épaisseur. Il est impossible d'invoquer le rempart de manière à ce qu'il occupe la même case qu'une créature ou un objet. Chaque section de 1,50 mètre (1 c) de large du rempart a une solidité de 0 et 180 points de vie. Toute section dont les points de vie tombent à 0 s'effondre. Si une créature essaye d'enfoncer le rempart en une seule attaque, le DD du test de Force est de 60. Une créature peut escalader le rempart si elle réussit un test d'Escalade DD 20.</descr>
         <range>moyenne</range>
         <cast_time>simple</cast_time>
-        <duration>1round/lvl</duration>
-        <compo>V,G</compo>
-        <rank>5</rank>
-        <type>heal</type>
+        <area>1.5m/lvl</area>
+        <compo>V,G,M</compo>
+        <compo_m>poignée de terre</compo_m>
+        <rank>7</rank>
+        <type>util</type>
     </spell>
-
-
     <spell>
-        <name>Purification</name>
-        <shortdescr>Soigne 4d8 points de dégâts +1/niveau (max +25) et dissipe plusieurs afflictions.</shortdescr>
-        <descr>Le corps du personnage est imprégné d'énergie positive qui le purifie. Ce sort soigne 4d8 points de dégâts +1 point par niveau de lanceur de sorts (maximum +25) et met un terme à toute condition néfaste qui l'affectait : affaiblissement temporaire de caractéristiques, aveugle, confus, hébété, sourd, malade, fatigué, épuisé, nauséeux, empoisonné ou fiévreux. De plus, purification fonctionne comme annulation d'enchantement sur un unique effet supplémentaire choisi par le personnage et qui peut légalement être affecté par l'annulation.</descr>
+        <name>Résistance à l'âge supérieure</name>
+        <descr>Le personnage ignore les inconvénients liés à son age moyen, avancé et vénérable.
+
+Il n’a pas l’air plus jeune et le sort ne l’empêche pas de mourir de vieillesse mais, tant qu’il fait effet, il ignore les malus de force, de dextérité et de constitution qui apparaissent avec l’âge moyen, avancé et vénérable.
+
+En revanche, il conserve les bonus d’intelligence, de sagesse et de charisme liés, tant que le sort fait effet.</descr>
+        <shortdescr>Ignore les malus de l'âge vénérable.</shortdescr>
         <range>personnelle</range>
-        <dice_type>8</dice_type>
-        <cap_dice>4</cap_dice>
-        <flat_dmg>1/lvl</flat_dmg>
-        <flat_cap>25</flat_cap>
-        <dmg_type>heal</dmg_type>
         <cast_time>simple</cast_time>
-        <duration>instant</duration>
-        <compo>G</compo>
-        <rank>5</rank>
-        <type>heal</type>
-    </spell>
-
-    <spell>
-        <name>Souffle de vie</name>
-        <shortdescr>Soigne 5d8 pts de dégâts +1/niveau et ramène des créatures récemment décédées à la vie.</shortdescr>
-        <descr>Ce sort soigne 5d8 points de vie + 1 par niveau de lanceur de sorts (maximum +25). Contrairement aux autres sorts de soin, souffle de vie peut ramener une créature récemment décédée à la vie. Si le personnage lance ce sort sur une créature morte il y a 1 round, les soins sont pris en compte. Si les points de vie de la créature atteignent alors une valeur négative supérieure à son total de Constitution, elle revient à la vie et se stabilise au niveau de ses nouveaux points de vie. En revanche, si ses points de vie négatifs sont d’une valeur inférieure à son total de Constitution, la créature reste morte. Les créatures qui reviennent à la vie grâce à ce sort gagnent un niveau négatif qui se dissipe au bout d’une journée.</descr>
-        <range>contact</range>
-        <dice_type>8</dice_type>
-        <cap_dice>5</cap_dice>
-        <flat_dmg>1/lvl</flat_dmg>
-        <flat_cap>25</flat_cap>
-        <dmg_type>heal</dmg_type>
-        <cast_time>simple</cast_time>
-        <duration>instant</duration>
+        <duration>24hs</duration>
         <compo>V,G</compo>
-        <rank>5</rank>
-        <type>heal</type>
-        <from_mystery>true</from_mystery>
+        <rank>7</rank>
+    </spell>
+    <spell>
+        <name>Scrutation suprême</name>
+        <shortdescr>Comme scrutation, mais plus rapidement et plus longtemps.</shortdescr>
+        <descr>Ce sort permet d’espionner une créature qui peut se trouver à n’importe quelle distance.
+Ne connait pas le sujet +10, Rapportée +5, Personnelle +0, Grande connaissance -5.
+De plus le lanceur de sort peut avoir recourt à du matériel pour l'aider à scruter sa cible.
+Esquisse ou portrait -5, Possession matérielle ou vêtement -4, Partie du corps (mèche de cheveux, rognures d’ongles, etc.) -10.
+
+En cas d’échec au jet de sauvegarde, le personnage voit et entend le sujet et ses environs immédiats (3m). Si le sujet se déplace, le capteur le suit à une vitesse allant jusqu’à 45 m par round.
+
+Si la cible réussit son jet de sauvegarde, le personnage ne peut pas essayer de la scruter à nouveau avant vingt-quatre heures.</descr>
+        <range>illimitée</range>
+        <cast_time>simple</cast_time>
+        <duration>1h/lvl</duration>
+        <compo>V,G</compo>
+        <rm>true</rm>
+        <save_type>vol[annule]</save_type>
+        <rank>7</rank>
+        <type>util</type>
     </spell>
 
     <spell>
         <name>Soins modérés de groupe</name>
         <descr>Le personnage transmet de l’énergie positive et rend 2d8 points de vie +1 par niveau de lanceur de sorts (jusqu’à un maximum de +30) à chacune des créatures choisies.</descr>
+        <shortdescr>Rend 2d8 pv à de nombreuses créatures, +1/niveau.</shortdescr>
         <dice_type>8</dice_type>
         <cap_dice>2</cap_dice>
         <flat_dmg>1/lvl</flat_dmg>
@@ -4382,84 +4064,31 @@ Le druide peut emporter des objets tant que leur poids n’excède pas sa charge
     </spell>
 
     <spell>
-        <name>Adaptation planaire de groupe</name>
-        <shortdescr>Résiste aux effets néfastes d'un plan. Affecte des cibles multiples.</shortdescr>
-        <descr>Adaptation planaire immunise les créatures contre les effets néfastes dus à l'environnement d'un plan particulier, y compris contre la toxicité, les températures extrêmes et le manque d'air. De plus, les créatures gagnent une résistance à l'énergie de 20 contre le type d'énergie qui prévaut sur ce plan (en choisir un si le plan est dominé par plusieurs types d'énergie).</descr>
-        <range>courte</range>
-        <area>1créature/lvl</area>
-        <cast_time>simple</cast_time>
-        <duration>1h/lvl</duration>
-        <compo>V,G</compo>
-        <rank>6</rank>
-        <type>buff</type>
-    </spell>
-
-    <spell>
-        <name>Dissipation suprême</name>
-        <shortdescr>Cible ou zone d’effet 1 jeteur de sorts, 1 créature ou 1 objet</shortdescr>
-        <descr>Dissipation suprême permet de mettre un terme à un sort, d’annuler temporairement les pouvoirs d’un objet magique ou de contrer un sort jeté par un autre lanceur de sorts. Dissipation suprême peut également dissiper les effets des pouvoirs magiques de certaines créatures. Peut etre utilisé en dissipation ciblée, dissipation de zone ou contresort.
-
-            -Dissipation ciblée : Le sort cible une créature, un objet ou un autre sort. Il dissipe un sort par tranche de quatre niveaux de lanceur de sorts que possède le personnage, en commençant par le sort de plus haut niveau. Le personnage doit effectuer un test de dissipation (1d20 + son niveau de lanceur de sorts) et comparer le résultat avec un DD dépendant du niveau de lanceur de sorts de l’effet ciblé.
-
-            -Le personnage peut viser un sort spécifique. De plus, ce sort a une chance de dissiper tout effet que l’on peut supprimer à l’aide d’une délivrance des malédictions, même si une dissipation de la magie ne le peut pas. Le DD de ce test est égal au DD de la malédiction.
-
-            -Dissipation de zone. Utilisé de cette manière, le sort prend pour cible tout ce qui se trouve dans un rayonnement de 6 m. Le personnage fait un test de dissipation et l’applique à toutes les créatures de la zone.
-
-            -Contresort. Il est également possible de lancer dissipation suprême pour contrer un sort en ciblant un jeteur de sorts. Contrairement à ce qui se produit dans le cas d’un véritable contresort, la réussite n’est pas automatique : le personnage doit réussir un test de dissipation avec un bonus de +4 pour contrer le sort de son adversaire.</descr>
+        <name>Tempête de feu</name>
+        <shortdescr>Inflige 1d6 points de dégâts de feu/niveau.</shortdescr>
+        <descr>Lorsque le personnage lance ce sort, la zone d’effet se transforme brusquement en un gigantesque brasier. Si le personnage le désire, les flammes peuvent épargner la végétation et/ou les créatures végétales. Par contre, toutes les autres cibles potentielles (et les créatures végétales que le jeteur de sorts souhaite affecter) subissent 1d6 points de dégâts de feu par niveau de lanceur de sorts (jusqu’à un maximum de 20d6). Les créatures qui ratent leur jet de Réflexes s’embrasent et subissent 4d6 points de dégâts de feu par round jusqu’à extinction des flammes. Pour étouffer le feu, il faut réussir un test de Réflexes DD 20 lors d’une action complexe.</descr>
         <range>moyenne</range>
         <cast_time>simple</cast_time>
-        <duration>instant</duration>
-        <rm>false</rm>
-        <save_type>none</save_type>
         <compo>V,G</compo>
-        <rank>6</rank>
-        <type>buff</type>
+        <area>2m³/lvl</area>
+        <rm>true</rm>
+        <save_type>ref[1/2]</save_type>
+        <rank>7</rank>
+        <type>dmg</type>
+        <dice_type>6</dice_type>
+        <cap_dice>20</cap_dice>
+        <dmg_type>fire</dmg_type>
     </spell>
-
-
     <spell>
-        <name>Endurance de l'ours de groupe</name>
-        <shortdescr>Comme endurance de l’ours, mais affecte un sujet/niveau.</shortdescr>
-        <descr>Les créatures touchées bénéficient d’une vigueur et d’une robustesse accrues. Ce sort confère aux sujets un bonus d’altération de +4 à leur valeur de Constitution, ce qui améliore leurs points de vie, leurs jets de Vigueur, leurs tests de Constitution, etc. Les points de vie gagnés grâce à un accroissement temporaire de la Constitution ne sont pas temporaires.</descr>
-        <range>courte</range>
-        <area>1créature/lvl</area>
+        <name>Transmutation du métal en bois</name>
+        <shortdescr>Affecte tout métal à moins de 12 m.</shortdescr>
+        <descr>Ce sort permet au lanceur de sorts de transformer en bois tout le métal présent dans la zone d’effet. Les armes, les armures et autres objets portés par les créatures présentes sont également affectés. Les objets magiques uniquement constitués de métal bénéficient d’une résistance à la magie de 20 + niveau de lanceur de sorts de leur créateur contre transmutation du métal en bois, tandis que les artefacts ne peuvent pas être affectés. Une arme métallique transformée en bois entraîne un malus de -2 aux jets d’attaque et de dégâts, tandis qu’une armure perd 2 points de CA. Les armes se cassent sur un jet d’attaque de 1 ou 2 (avant modifications) et les armures perdent 1 point de CA supplémentaire dès qu’on les touche sur un jet d’attaque de 19 ou 20 (avant modifications).</descr>
+        <range>longue</range>
+        <area>12m de rayon</area>
         <cast_time>simple</cast_time>
-        <duration>1min/lvl</duration>
-        <compo>V,G,M</compo>
-        <rank>6</rank>
-        <type>buff</type>
-    </spell>
-
-    <spell>
-        <name>Guérison suprême</name>
-        <shortdescr>Soigne 10 points de dégâts/niveau, les maladies et les troubles mentaux.</shortdescr>
-        <descr>Grâce à guérison suprême, le lanceur de sorts peut canaliser suffisamment d’énergie positive dans le corps du sujet pour faire disparaître toutes ses blessures et maladies. Ce sort soigne les affaiblissements temporaires de caractéristique, l’aliénation, la cécité, la confusion, la débilité, l’éblouissement, l’empoisonnement, l’épuisement, l’étourdissement, la fatigue, la fièvre, l’hébétement, les maladies, la nausée et la surdité. Il guérit également de 10 points de vie par niveau de lanceur de sorts, jusqu’à un maximum de 150 points de vie au niveau 15.</descr>
-        <dice_type>lvl</dice_type>
-        <n_dice_per_lvl>10</n_dice_per_lvl>
-        <cap_dice>150</cap_dice>
-        <dmg_type>heal</dmg_type>
-        <range>contact</range>
-        <cast_time>simple</cast_time>
-        <duration>instant</duration>
         <compo>V,G</compo>
-        <rank>6</rank>
-        <type>heal</type>
-        <from_mystery>true</from_mystery>
+        <rank>7</rank>
     </spell>
-
-    <spell>
-        <name>Mot de rappel</name>
-        <shortdescr>Téléporte instantanément le personnage dans son sanctuaire (zone préétablie de 3m de coté). Il n’y a pas de limite de distance. Le lanceur de sorts peut emporter avec lui une créature consentante de taille M tous les trois niveaux de lanceur de sorts.</shortdescr>
-        <descr>Téléporte instantanément le personnage dans son sanctuaire (zone préétablie de 3m de coté). Le point d’arrivée précis prend la forme d’une zone prévue pour l’occasion de trois mètres (2 cases) de côté ou moins. Il n’y a pas de limite de distance à l’utilisation de ce sort au sein d’un même plan. Le lanceur de sorts peut emporter avec lui des objets, tant qu’il ne dépasse pas sa charge maximale. Il peut également téléporter une créature consentante de taille M ou inférieure (portant équipement et objets dans la limite de sa charge maximale) tous les trois niveaux de lanceur de sorts.</descr>
-        <range>illimitée</range>
-        <cast_time>simple</cast_time>
-        <duration>instant</duration>
-        <area>0.333333créature/lvl</area>
-        <compo>V</compo>
-        <rank>6</rank>
-        <type>util</type>
-    </spell>
-
     <spell>
         <name>Vent divin</name>
         <shortdescr>Transforme les cibles en vapeur et les emporte rapidement.</shortdescr>
@@ -4469,326 +4098,55 @@ Le druide peut emporter des objets tant que leur poids n’excède pas sa charge
         <cast_time>simple</cast_time>
         <duration>1h/lvl</duration>
         <compo>V,G</compo>
-        <rank>6</rank>
-        <type>buff</type>
-    </spell>
-
-    <spell>
-        <name>Soins importants de groupe</name>
-        <descr>Le personnage transmet de l’énergie positive et rend 3d8 points de vie +1 par niveau de lanceur de sorts (jusqu’à un maximum de +35) à chacune des créatures choisies.</descr>
-        <dice_type>8</dice_type>
-        <cap_dice>3</cap_dice>
-        <flat_dmg>1/lvl</flat_dmg>
-        <flat_cap>35</flat_cap>
-        <dmg_type>heal</dmg_type>
-        <area>1créature/lvl</area>
-        <range>courte</range>
-        <cast_time>simple</cast_time>
-        <duration>instant</duration>
-        <compo>V,G</compo>
-        <rm>true</rm>
-        <rank>7</rank>
-        <type>heal</type>
-        <type>heal</type>
-    </spell>
-
-    <spell>
-        <name>Champ de force</name>
-        <shortdescr>Nul ne peut approcher du PJ.</shortdescr>
-        <descr>Entoure d’un champ de force invisible faisant obstacle à toutes autres créatures qui voudraient approcher. Il choisit la taille du champ de force au moment de l’incantation. Les créatures se situant dans la zone définie ou tentant d’y pénétrer doivent effectuer un jet de Volonté. Si elles échouent, elles se retrouvent dans l’incapacité d’avancer en direction du personnage. Enfin, si une créature s’éloigne ne serait ce qu’un peu du personnage, elle se retrouve immédiatement dans l’incapacité de regagner le terrain perdu au sein de la zone d’effet du sort.</descr>
-        <area>3m/lvl</area>
-        <range>personnelle</range>
-        <cast_time>simple</cast_time>
-        <duration>1round/lvl</duration>
-        <compo>V,G,M</compo>
-        <rm>true</rm>
-        <save_type>vol[annule]</save_type>
-        <rank>7</rank>
-        <type>combatbuff</type>
-    </spell>
-
-    <spell>
-        <name>Régénération</name>
-        <shortdescr>Fait repousser les membres tranchés, rend 4d8 points de vie, +1/niveau (max. +35).</shortdescr>
-        <descr>Ce sort fait repousser les membres tranchés (doigt, orteil, main, pied, bras, jambe, queue, ou même tête pour une créature en ayant plusieurs), ressoude les os brisés et reconstitue les organes détruits. Une fois le sort lancé, la régénération prend 1 round si les membres tranchés sont appliqués contre la plaie ou 2d10 rounds s’ils sont absents. De plus, le sujet récupère 4d8 points de vie, +1 par niveau de lanceur de sorts (jusqu’à un maximum de +35). Le sort le débarrasse de toute fatigue et/ou épuisement et élimine les dégâts non-létaux.</descr>
-        <range>contact</range>
-        <dice_type>8</dice_type>
-        <cap_dice>4</cap_dice>
-        <flat_dmg>1/lvl</flat_dmg>
-        <flat_cap>35</flat_cap>
-        <dmg_type>heal</dmg_type>
-        <cast_time>3rounds</cast_time>
-        <duration>instant</duration>
-        <compo>V,G</compo>
-        <rank>7</rank>
-        <type>heal</type>
-    </spell>
-
-    <spell>
-        <name>Restauration suprême</name>
-        <shortdescr>Comme restauration, mais rend tous les niveaux et points de caractéristique perdus.</shortdescr>
-        <descr>Ce sort dissipe tous les niveaux négatifs (temporaires comme permanents) affectant la cible. Il dissipe également tous les effets qui réduisent les caractéristiques de la cible et guérit l’intégralité des affaiblissements temporaires et des diminutions permanentes de caractéristiques. Il contre également la fatigue et l’épuisement. Enfin, ce sort fait disparaître toute forme d’aliénation mentale, de confusion et autres effets similaires.</descr>
-        <range>contact</range>
-        <cast_time>3rounds</cast_time>
-        <duration>instant</duration>
-        <compo>V,G,M+(5kpo poussière de diamant)</compo>
         <rank>7</rank>
         <type>buff</type>
-        <from_mystery>true</from_mystery>
     </spell>
-
     <spell>
-        <name>Résurrection</name>
-        <shortdescr>Ramène un mort à la vie.</shortdescr>
-        <descr>Ce sort rend la vie au défunt. Il fonctionne uniquement sur les créatures mortes depuis un maximum de dix ans par niveau de lanceur de sorts. Peu importe l’état de la dépouille (les cendres peuvent suffirent). Au terme de l’incantation, le sujet se réveille en parfaite santé avec la totalité de ses sorts préparés. En revanche, il reçoit un niveau négatif permanent.</descr>
-        <range>contact</range>
-        <cast_time>1min</cast_time>
-        <duration>instant</duration>
-        <compo>V,G,M+(diamant 10kpo)</compo>
-        <rank>7</rank>
-        <type>util</type>
-    </spell>
+        <name>Vents cinglants</name>
+        <shortdescr>Le vent bloque la visibilité et inflige 3d6 points de dégâts.</shortdescr>
+        <descr>Ce sort invoque une tempête de sable qui bloque toute visibilité. Le personnage peut la déplacer d’un maximum de 9 mètres (6 c) par round, par une action de mouvement.
 
-    <spell>
-        <name>Soins intensifs  de groupe</name>
-        <descr>Le personnage transmet de l’énergie positive et rend 4d8 points de vie +1 par niveau de lanceur de sorts (jusqu’à un maximum de +40) à chacune des créatures choisies.</descr>
-        <dice_type>8</dice_type>
-        <cap_dice>4</cap_dice>
-        <flat_dmg>1/lvl</flat_dmg>
-        <flat_cap>40</flat_cap>
-        <dmg_type>heal</dmg_type>
-        <area>1créature/lvl</area>
-        <range>courte</range>
-        <cast_time>simple</cast_time>
-        <duration>instant</duration>
-        <compo>V,G</compo>
-        <rm>true</rm>
-        <rank>8</rank>
-        <type>heal</type>
-    </spell>
+Une créature située dans la zone subit 3d6 points de dégâts perforants par round. La zone est considérée comme une tempête (voir la table "Les effets du vent").
 
-    <spell>
-        <name>Aura sacrée</name>
-        <shortdescr>+4 à la CA, bonus de résistance de +4 et RM de 25 contre les sorts du Mal.</shortdescr>
-        <descr>Une aura lumineuse se forme autour des bénéficiaires du sort. Elle les protège des attaques, leur accorde une résistance supplémentaire contre les sorts du Mal ou lancés par des créatures Mauvaises, aveugle ces dernières quand elles osent frapper les individus protégés. Ce sort a quatre effets distincts :
-
-            -Premièrement, les cibles bénéficient d’un bonus de parade de +4 à la CA et d’un bonus de résistance de +4 aux jets de sauvegarde. A l’opposé de ce qui se passe avec protection contre le Mal, ces bonus s’appliquent contre toutes les attaques, et pas seulement contre celles provenant de créatures Maléfiques.
-
-            -Deuxièmement, les créatures protégés acquièrent une résistance à la magie de 25 contre les sorts du Mal ou jetés par les créatures Mauvaises.
-
-            -Troisièmement, le sort bloque les tentatives de possession ou d’influence magique, au même titre que protection contre le Mal.
-
-            -Finalement, quand une créature Maléfique réussit à toucher l’un des bénéficiaires du sort au corps à corps, elle risque de perdre la vue (effet semblable à celui de cécité/surdité, annulé par un jet de Vigueur, mais contre le DD d’aura sacrée).</descr>
-        <range>6m</range>
-        <area>1créature/lvl</area>
-        <cast_time>simple</cast_time>
-        <duration>1round/lvl</duration>
-        <compo>V,G</compo>
-        <rank>8</rank>
-        <type>combatbuff</type>
-    </spell>
-
-    <spell>
-        <name>Bouclier de la Loi</name>
-        <shortdescr>+4 à la CA, bonus de résistance de +4 et RM de 25 contre les sorts du Chaos.</shortdescr>
-        <descr>Les bénéficiaires du sort sont entourés d’une aura bleutée qui les protège des attaques, leur confère une résistance supplémentaire contre les sorts du Chaos lancés par les créatures Chaotiques, et ralentit ces dernières quand elles frappent les individus protégés. Ce sort a quatre effets distincts :
-
-            -Premièrement, les cibles bénéficient d’un bonus de parade de +4 à la CA et d’un bonus de résistance de +4 aux jets de sauvegarde. A l’inverse de ce qui se passe avec protection contre le Chaos, ces bonus s’appliquent contre toutes les attaques, et pas seulement contre celles provenant de créatures Chaotiques.
-
-            -Deuxièmement, les personnages protégés obtiennent une résistance à la magie de 25 contre les sorts du Chaos ou lancés par des créatures Chaotiques.
-
-            -Troisièmement, l’abjuration bloque les tentatives de possession ou d’influence mentale, au même titre que protection contre le Chaos.
-
-            -Enfin, lorsqu’une créature Chaotique réussit à toucher l’une des cibles du sort au corps à corps, elle peut être ralentie (effet similaire à celui de lenteur, jet de Volonté annule, mais contre le DD de bouclier de la Loi).</descr>
-        <range>6m</range>
-        <area>1créature/lvl</area>
-        <cast_time>simple</cast_time>
-        <duration>1round/lvl</duration>
-        <compo>V,G</compo>
-        <rank>8</rank>
-        <type>combatbuff</type>
-    </spell>
-
-
-    <spell>
-        <name>Manteau du Chaos</name>
-        <shortdescr>+4 à la CA, bonus de résistance de +4 et RM de 25 contre les sorts de la Loi.</shortdescr>
-        <descr>Une aura de lueurs changeantes entoure les cibles du sort. Elle les protège des attaques, leur confère une résistance supplémentaire contre les sorts de la Loi ou lancés par les créatures Loyales, et plonge ces dernières dans la confusion quand elles frappent les individus protégés. Cette abjuration a quatre effets distincts :
-
-            -Les cibles bénéficient d’un bonus de parade de +4 à la CA et d’un bonus de résistance, également de +4, aux jets de sauvegarde. Contrairement à protection contre la Loi, ces bonus s’appliquent contre toutes les attaques, et pas seulement contre celles provenant de créatures Loyales.
-
-            -Les personnages protégés acquièrent une résistance à la magie de 25 contre les sorts de la Loi ou jetés par des créatures Loyales.
-
-            -L’abjuration bloque les tentatives de possession ou d’influence magique, au même titre que protection contre la Loi.
-
-            -Enfin, lorsqu’une créature Loyale réussit à toucher l’une des cibles du sort au corps à corps, elle risque d’être plongée dans la confusion pendant 1 round (effet similaire à confusion, jet de Volonté annule, mais contre le DD de manteau du Chaos).</descr>
-        <range>6m</range>
-        <area>1créature/lvl</area>
-        <cast_time>simple</cast_time>
-        <duration>1round/lvl</duration>
-        <compo>V,G</compo>
-        <rank>8</rank>
-        <type>combatbuff</type>
-    </spell>
-
-    <spell>
-        <name>Réceptacle divin</name>
-        <shortdescr>Se transforme en une énorme créature d'un autre monde.</shortdescr>
-        <descr>Le personnage accepte de recevoir les énergies d'un autre monde dans son corps et de se transformer. Le personnage gagne des pouvoirs supplémentaires comme indiqués :
-
-            -Aspect anarchique. +2 à la Constitution, RD 10/Loi, résistance à l'acide 10, à l'électricité 10 et au son 10, bonus de +4 aux jets de sauvegarde contre le poison, perception aveugle à 9 mètres (6 c) et vitesse de vol de 18 mètres (12 c) (bonne manœuvrabilité).
-
-            -Aspect axiomatique. +2 à la Force, RD 10/Chaos, résistance au froid 10, à l'électricité 10 et au feu 10, bonus de +4 aux jets de sauvegarde contre le poison, vision nocturne et vitesse de vol de 18 mètres (12 c) (bonne manœuvrabilité).
-
-            -Aspect céleste. +2 à la Dextérité, RD 10/Mal, résistance à l'acide 10, au froid 10, à l'électricité 10, bonus de +4 aux jets de sauvegarde contre le poison, vision nocturne et vitesse de vol de 18 mètres (12 c) (bonne manœuvrabilité).</descr>
-        <range>personnelle</range>
-        <cast_time>simple</cast_time>
-        <duration>1round/lvl</duration>
-        <compo>V,G</compo>
-        <rank>8</rank>
-        <type>combatbuff</type>
-    </spell>
-
-
-    <spell>
-        <name>Guérison suprême de groupe</name>
-        <shortdescr>Soigne 10 points de dégâts/niveau, les maladies et les troubles mentaux. Sur plusieurs sujets.</shortdescr>
-        <descr>Grâce à guérison suprême de groupe, le lanceur de sorts peut canaliser suffisamment d’énergie positive dans le corps des sujets pour faire disparaître toutes leurs blessures et maladies. Ce sort soigne les affaiblissements temporaires de caractéristique, l’aliénation, la cécité, la confusion, la débilité, l’éblouissement, l’empoisonnement, l’épuisement, l’étourdissement, la fatigue, la fièvre, l’hébétement, les maladies, la nausée et la surdité. Il guérit également de 10 points de vie par niveau de lanceur de sorts, jusqu’à un maximum de 250 points de vie.</descr>       <dice_type>lvl</dice_type>
-        <n_dice_per_lvl>10</n_dice_per_lvl>
-        <dice_type>lvl</dice_type>
-        <cap_dice>250</cap_dice>
-        <dmg_type>heal</dmg_type>
-        <area>1créature/lvl</area>
-        <range>courte</range>
-        <cast_time>simple</cast_time>
-        <duration>instant</duration>
-        <compo>V,G</compo>
-        <rank>9</rank>
-        <type>heal</type>
-        <from_mystery>true</from_mystery>
-    </spell>
-
-    <spell>
-        <name>Résurrection suprême</name>
-        <shortdescr>Comme résurrection, sans avoir besoin du corps.</shortdescr>
-        <descr>Ce sort rend la vie au défunt. Il fonctionne uniquement sur les créatures mortes depuis un maximum de dix ans par niveau de lanceur de sorts. De plus, l’âme concernée doit être libre et désireuse de revenir à la vie. Si elle refuse, le sort échoue automatiquement (c’est pourquoi il n’y a pas de jet de sauvegarde). Au terme de l’incantation, le sujet se réveille en pleine forme (avec son maximum de points de vie et la totalité de ses sorts préparés en mémoire). Il ne perd pas de niveau ni de points de Constitution. Ce sort peut redonner la vie à quelqu’un dont le corps a été entièrement détruit, à condition d’identifier clairement le sujet (le plus souvent, en le nommant et en ajoutant son lieu de naissance ou son lieu de décès).. L’équipement et les possessions matérielles du bénéficiaire ne sont pas affectés par le sort.</descr>      <range>contact</range>
-        <cast_time>10min</cast_time>
-        <duration>1round/lvl</duration>
-        <compo>V,G,M+(diamant 25kpo)</compo>
-        <rank>9</rank>
-        <type>util</type>
-        <from_mystery>true</from_mystery>
-    </spell>
-
-
-
-    <spell>
-        <name>Miracle</name>
-        <shortdescr>Demande l’aide du dieu.</shortdescr>
-        <descr>Un miracle permet, au choix :
-
-            -De reproduire l’effet de n’importe quel sort de prêtre jusqu’au 8e niveau.
-            -De reproduire l’effet de n’importe quel autre sort jusqu’au 7e niveau.
-            -D’annuler les effets néfastes de certains sorts, tels que débilité ou aliénation mentale.
-            -De produire n’importe quel effet dont la puissance ne dépasse pas les restrictions imposées ci-dessus.
-
-            Mais le personnage peut également faire une requête particulièrement importante. Dans ce cas, il lui en coûte 25 000 po en poudre de diamant en raison de la puissance des énergies divines en jeu. Voici quelques exemples de miracles de ce type :
-
-            -Inverser le cours d’une bataille en ramenant ses alliés à la vie pour qu’ils continuent le combat.
-            -Amener le prêtre et ses compagnons (ainsi que tout leur équipement) dans un autre plan, jusqu’au lieu de leur choix, et ce sans le moindre risque d’erreur.
-            -Protéger une ville d’un tremblement de terre, d’une éruption volcanique, d’un raz de marée ou d’une autre catastrophe naturelle.</descr>
-        <cast_time>simple</cast_time>
-        <compo>V,G</compo>
-        <rm>true</rm>
-        <rank>9</rank>
-        <type>util</type>
-    </spell>
-
-    <spell>
-        <name>Présence écrasante</name>
-        <shortdescr>Les créatures s'inclinent devant le personnage comme devant un dieu.</shortdescr>
-        <descr>Si les cibles ratent leur jet de sauvegarde, elles tombent à genoux et se prosternent devant le personnage, en pensant s’incliner devant une présence divine.</descr>
+Si une créature dotée de résistance à la magie résiste à ce sort, le vent et le sable ne l’affectent pas mais elle ne voit rien dans la zone d’effet du sort.</descr>
         <range>moyenne</range>
-        <area>1créature/lvl</area>
         <cast_time>simple</cast_time>
         <duration>1round/lvl</duration>
-        <compo>V,G,M</compo>
-        <rm>true</rm>
-        <save_type>vol[annule]</save_type>
-        <rank>9</rank>
-        <type>combatbuff</type>
-    </spell>
-
-    <spell>
-        <name>Immunité sorts suprême(partagé)</name>
-        <shortdescr>Comme immunité contre les sorts supérieure mais la durée d’effet se divise entre les créatures touchées.</shortdescr>
-        <descr>Les créatures protégées sont immunisées contre les effets d’un sort spécifique par tranche de quatre niveaux du lanceur de sorts. Les sorts en question doivent être du 8e niveau ou d’un niveau inférieur. Les sujets du sort bénéficient en fait d’une résistance à la magie imbattable contre le ou les sorts spécifiés, ce qui signifie qu’immunité contre les sorts est impuissant face aux sorts qui ne tiennent pas compte de la résistance à la magie. La protection offerte par l’immunité contre les sorts s’étend bien sûr aux sorts, mais aussi aux pouvoirs magiques des créatures et aux capacités des objets magiques semblables à des sorts. Il n’est d’aucune utilité contre les pouvoirs surnaturels ou exceptionnels, tels que le souffle d’un dragon ou le regard pétrifiant d’un basilic. Il protège contre un seul sort donné, pas contre un domaine ou une école de magie, ou encore contre un groupe de sorts aux effets similaires. Des créatures ne peuvent être protégées que par une seule immunité contre les sorts (normale ou suprême) à la fois.</descr>     <cast_time>10min</cast_time>
-        <duration>10min/lvl</duration>
-        <cast_time>simple</cast_time>
         <compo>V,G</compo>
-        <rank>9</rank>
-        <type>buff</type>
-    </spell>
-
-
-    <spell>
-        <name>Implosion</name>
-        <shortdescr>Inflige 10 pts de dégâts/niveau à une créature/round.</shortdescr>
-        <descr>Cette incantation génère un état de résonance destructeur dans le corps de la cible. Chaque round que le prêtre passe à se concentrer (y compris le premier), il inflige 10 points de dégâts par niveau de lanceur de sorts à une créature en provoquant son implosion. Si le personnage perd sa concentration, le sort se termine immédiatement mais les créatures qui ont déjà commencé à imploser continuent de s’effondrer sur elles-mêmes. Le personnage ne peut pas affecter la même créature à plusieurs reprises au cours d’une même utilisation de ce sort. Implosion est sans effet sur les créatures intangibles ou celles qui se trouvent en état gazeux.</descr>
-        <dice_type>lvl</dice_type>
-        <n_dice_per_lvl>10</n_dice_per_lvl>
+        <rm>false</rm>
+        <save_type>none</save_type>
+        <rank>7</rank>
+        <type>debuff</type>
+        <dice_type>6</dice_type>
+        <cap_dice>3</cap_dice>
         <dmg_type>none</dmg_type>
-        <range>courte</range>
-        <cast_time>simple</cast_time>
-        <duration>instant</duration>
-        <compo>V,G</compo>
-        <rank>9</rank>
-        <type>dmg</type>
     </spell>
-
-
     <spell>
-        <name>Vent de la vengeance</name>
-        <descr>Entourre le personnage d'une tonade de vent surnaturel. De plus, quand une créature frappe le personnage au corps à corps, ce dernier peut ordonner aux vents de fouetter l'attaquant par une action immédiate. La créature doit réussir un jet de Vigueur ou recevoir 5d8 points de dégâts contondants et tomber à terre. Vitesse de vol de 18 mètres. Permet de voler et de respirer sous l'eau ou dans l'espace.</descr>
-        <range>personnelle</range>
+        <name>Vision lucide</name>
+        <shortdescr>Permet de voir les choses telles qu’elles sont.</shortdescr>
+        <descr>Le lanceur de sorts offre à sa cible la faculté de voir normalement dans l’obscurité (normale comme magique), de remarquer les passages secrets dissimulés par magie, de repérer l’endroit exact où se situent les créatures protégées par des sorts tels que flou ou déplacement, de voir clairement les créatures et objets invisibles, de ne pas être trompé par les illusions, et d’apercevoir la véritable apparence des créatures ou objets métamorphosés ou transformés. Un simple exercice mental lui permet également de voir dans le plan Éthéré, mais pas à l’intérieur des espaces extradimensionnels. La vision lucide s’étend jusqu’à une portée de trente-six mètres.</descr>
+        <range>contact</range>
         <cast_time>simple</cast_time>
         <duration>1min/lvl</duration>
-        <save_type>vig[1/2]</save_type>
-        <rm>false</rm>
-        <compo>V,G</compo>
-        <rank>9</rank>
-        <type>combatbuff</type>
+        <compo>V,G,M+</compo>
+        <compo_m>onguent 250po</compo_m>
+        <rank>7</rank>
+        <type>buff</type>
     </spell>
-
-
-
-
-
     <spell>
-        <name>Rayons ardents</name>
-        <descr>Attaque de contact à distance qui, en cas de réussite lance 3 rayons infligeant chacun des dégâts. Peut viser une ou plusieurs cibles, mais tous doivent viser des sujets situés à 9 m ou moins les uns des autres.</descr>
-        <n_sub_spell>3</n_sub_spell>
-        <dmg_type>fire</dmg_type>
-        <rank>2</rank>
-    </spell>
-
-    <spell>
-        <id>Rayons ardents_sub</id>
-        <name>Rayon ardent</name>
-        <descr>Ce rayon inflige 4d6 points de dégâts de feu. On les tire simultanément sur une ou plusieurs cibles, mais tous doivent viser des sujets situés à 9 m ou moins les uns des autres..</descr>
-        <dice_type>6</dice_type>
-        <cap_dice>4</cap_dice>
-        <contact>distance</contact>
-        <dmg_type>fire</dmg_type>
-        <range>courte</range>
+        <name>Vortex</name>
+        <shortdescr>Crée un tourbillon dans l'eau.</shortdescr>
+        <descr>Le personnage crée un puissant tourbillon immobile dans n'importe quel volume de liquide suffisant pour le contenir. Toute créature de taille G ou moins qui entre en contact avec doit réussir un jet de Réflexes ou subir 3d6 points de dégâts contondants. Une créature de taille M ou moins qui rate ce jet doit en réussir un second ou se faire emporter dans le tourbillon où elle reste prisonnière des puissants courants et reçoit 1d8 points de dégâts par round, à son tour, sans jet de sauvegarde. Si le personnage le désire, il peut ordonner au tourbillon de rejeter une créature quand il veut.</descr>
+        <range>longue</range>
         <cast_time>simple</cast_time>
-        <duration>instant</duration>
+        <duration>1round/lvl</duration>
         <compo>V,G</compo>
         <rm>true</rm>
-        <save_type>aucun</save_type>
-        <rank>2</rank>
+        <save_type>ref[annule]</save_type>
+        <rank>7</rank>
+        <type>debuff</type>
+        <dice_type>6</dice_type>
+        <cap_dice>3</cap_dice>
+        <dmg_type>none</dmg_type>
     </spell>
-
-
-
 </records>

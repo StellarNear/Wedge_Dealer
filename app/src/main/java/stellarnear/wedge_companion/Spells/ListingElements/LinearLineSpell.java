@@ -32,6 +32,8 @@ public class LinearLineSpell {
     private int nCast=0;
     private int nMythCast=0;
 
+    private CheckBox checkbox;
+
     private Tools tools=new Tools();
     private DrawableSymbolsSingleton drawableSymbolsSingleton;
     private Perso pj= PersoManager.getCurrentPJ();
@@ -60,7 +62,7 @@ public class LinearLineSpell {
         paraSpellLine.setMargins(pixelMarging,pixelMarging,pixelMarging,0);
         spellLine.setLayoutParams(paraSpellLine);
 
-        final CheckBox checkbox=new CheckBox(mC);
+        checkbox=new CheckBox(mC);
         setAddingSpell(checkbox,spell);
         setCheckBoxColor(checkbox);
         spellLine.addView(checkbox);
@@ -310,6 +312,24 @@ public class LinearLineSpell {
 
         );
         check.setButtonTintList(colorStateList);
+    }
+
+    public void forceBoxUncheck() {
+        checkbox.setChecked(false);
+        nCast=0;
+        refreshName();
+    }
+
+    public void forceAddOneCast() {
+        if(nCast==0){
+            checkbox.setChecked(true);
+        } else {
+            addSpellToList(spell);
+        }
+    }
+
+    public Spell getSpell() {
+        return spell;
     }
 
 

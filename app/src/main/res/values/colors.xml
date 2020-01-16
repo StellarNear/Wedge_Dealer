@@ -121,5 +121,7 @@
     <color name="end_gradient_ki">#e6e6e6</color>
     <color name="start_gradient_ki">#ffffff</color>
 
+    <color name="start_gradient_title_bar_help">#1f3b70</color>
+    <color name="end_gradient_title_bar_help">#88b3f8</color>
 
 </resources>
