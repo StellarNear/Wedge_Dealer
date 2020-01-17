@@ -9,7 +9,7 @@ import stellarnear.wedge_companion.Spells.Spell;
 import stellarnear.wedge_companion.Spells.SpellList;
 
 public class DamagesShortList {
-    private List<DamagesShortListElement> listElements;
+    private List<DamagesShortListElement> listElements; //list des subDamageIndivSpell
 
     public DamagesShortList(SpellList spells){
         buildList(spells);
@@ -170,4 +170,7 @@ public class DamagesShortList {
         return listElements!=null && listElements.size()>0 ? listElements.get(listElements.size()-1) : null;
     }
 
+    public List<DamagesShortListElement> getDamageElementList() {
+        return listElements;
+    }
 }

@@ -6,7 +6,7 @@
     <color name="colorBackground">#f7fdef</color>
 
     <color name="colorPrimaryhalda">#F1DDA0</color>
-    <color name="colorPrimaryDarkhalda">#5d4926</color>
+    <color name="colorPrimaryDarkhalda">#A9941C</color>
     <color name="colorBackgroundhalda">#fdfbed</color>
 
     <color name="colorPrimarysylphe">#c2a44a</color>
@@ -83,8 +83,8 @@
     <color name="no_dmg">#0B272B</color>
     <color name="no_dmg_dark">#030F10</color>
 
-    <color name="all_stat">#13823E</color>
-    <color name="all_recent_stat">#003A17</color>
+    <color name="all_stat">@color/colorPrimary</color>
+    <color name="all_recent_stat">@color/colorPrimaryDark</color>
 
     <color name="contact_miss_stat">#cccccc</color>
     <color name="resist_stat">#005580</color>

@@ -1,8 +1,11 @@
 package stellarnear.wedge_companion.Stats.SpellStats;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
+import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Spells.SpellList;
 import stellarnear.wedge_companion.TinyDB;
 
@@ -11,8 +14,10 @@ public class SpellStats {
     private SpellStatsList spellStatsList = new SpellStatsList();
     private TinyDB tinyDB;
     private String pjID;
+    private Context mC;
 
     public SpellStats(Context mC,String pjID){
+        this.mC=mC;
         tinyDB = new TinyDB(mC);
         this.pjID=pjID;
         try {
@@ -43,10 +48,13 @@ public class SpellStats {
     }
 
     public void storeSpellStatsFromRolls(SpellList selectedSpells) {
-        SpellStat spellStat = new SpellStat();
-        spellStat.feedStat(selectedSpells);
-        spellStatsList.add(spellStat);
-        saveLocalStats();
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
+        if (!settings.getBoolean("switch_demo_mode",mC.getResources().getBoolean(R.bool.switch_demo_mode_def))){
+            SpellStat spellStat = new SpellStat();
+            spellStat.feedStat(selectedSpells);
+            spellStatsList.add(spellStat);
+            saveLocalStats();
+        }
     }
 
     public SpellStatsList getSpellStatsList() {

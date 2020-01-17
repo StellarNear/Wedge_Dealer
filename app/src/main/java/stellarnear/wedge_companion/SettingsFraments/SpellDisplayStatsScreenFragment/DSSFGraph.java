@@ -1,8 +1,13 @@
 package stellarnear.wedge_companion.SettingsFraments.SpellDisplayStatsScreenFragment;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
@@ -24,7 +29,9 @@ import stellarnear.wedge_companion.Elems.ElemsManager;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
+import stellarnear.wedge_companion.Stats.SpellStats.DamagesShortListElement;
 import stellarnear.wedge_companion.Stats.SpellStats.SpellStat;
+import stellarnear.wedge_companion.Stats.SpellStats.SpellStatsList;
 import stellarnear.wedge_companion.Tools;
 
 
@@ -46,19 +53,46 @@ public class DSSFGraph {
         this.mainView = mainView;
         this.mC = mC;
         this.elems= ElemsManager.getInstance();
-        CheckBox checkNone = mainView.findViewById(R.id.line_type_aucun);
-        CheckBox checkAcid = mainView.findViewById(R.id.line_type_acid);
-        CheckBox checkFire = mainView.findViewById(R.id.line_type_fire);
-        CheckBox checkShock = mainView.findViewById(R.id.line_type_shock);
-        CheckBox checkFrost = mainView.findViewById(R.id.line_type_frost);
-        mapElemCheckbox.put("none",checkNone);mapElemCheckbox.put("acid",checkAcid); mapElemCheckbox.put("fire",checkFire);  mapElemCheckbox.put("shock",checkShock); mapElemCheckbox.put("frost",checkFrost);
+        determineElemsPresents();
         setCheckboxListeners();
         initLineCharts();
     }
 
+    private void determineElemsPresents() {
+        SpellStatsList allStats = pj.getSpellStats().getSpellStatsList();
+        mapElemCheckbox=new HashMap<>();
+        for(SpellStat spellStat :allStats.asList()) {
+            for(DamagesShortListElement subDamageIndivSpell : spellStat.getDamageShortList().getDamageElementList()){
+                String elementSpell = subDamageIndivSpell.getElement();
+                if (mapElemCheckbox.get(elementSpell)==null && !elementSpell.equalsIgnoreCase("")) { // pour les degat on ignore les spell utils
+                    mapElemCheckbox.put(elementSpell,addCheckBox(elementSpell));
+                }
+            }
+        }
+    }
+
+    private CheckBox addCheckBox(String elementSpell) {
+        CheckBox checkBox = new CheckBox(mC);
+        checkBox.setButtonTintList(ColorStateList.valueOf(elems.getColorId(elementSpell)));
+        Drawable drawable;
+        try {
+            drawable = mC.getDrawable(elems.getDrawableId(elementSpell));
+            if(elementSpell.equalsIgnoreCase("")){drawable = mC.getDrawable(R.drawable.nodmg_logo);} //l'element "" est pour dégat physique sur le sdamage roll mais en sort c'est un utilitaire
+        } catch (Exception e) {
+            drawable = mC.getDrawable(R.drawable.mire_test);
+            e.printStackTrace();
+        }
+        ((LinearLayout)mainView.findViewById(R.id.second_panel_elems_checkboxes)).addView(checkBox);
+        ImageView logo = new ImageView(mC);
+        logo.setImageDrawable(tools.resize(mC,drawable,80));
+        ((LinearLayout)mainView.findViewById(R.id.second_panel_elems_checkboxes)).addView(logo);
+        checkBox.setChecked(true);
+        return checkBox;
+    }
+
     private void setCheckboxListeners() {
-        for(String elem : elems.getListSpellsKeys()){
-            mapElemCheckbox.get(elem).setOnClickListener(new View.OnClickListener() {
+        for(Map.Entry<String,CheckBox> entry:mapElemCheckbox.entrySet()){
+            entry.getValue().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     calculateElemToShow();
@@ -114,9 +148,9 @@ public class DSSFGraph {
 
     private void calculateElemToShow() {
         elemsSelected = new ArrayList<>();
-        for (String elem : elems.getListSpellsKeys()) {
-            if (mapElemCheckbox.get(elem).isChecked()) {
-                elemsSelected.add(elem);
+        for(Map.Entry<String,CheckBox> entry:mapElemCheckbox.entrySet()){
+            if (entry.getValue().isChecked()) {
+                elemsSelected.add(entry.getKey());
             }
         }
     }
@@ -161,7 +195,7 @@ public class DSSFGraph {
 
     private void setDmgData() {
         LineData data = new LineData();
-        if(elemsSelected.size()==5){
+        if(elemsSelected.size()==mapElemCheckbox.entrySet().size()){
             addDmgAllData(data);
         } else {
             addDmgElemsData(data);
@@ -187,7 +221,7 @@ public class DSSFGraph {
         }
         if(listVal.size()>0) {
             LineDataSet elemSet = new LineDataSet(listVal, "tout");
-            setLinePara(elemSet, R.color.all_stat);
+            setLinePara(elemSet, ContextCompat.getColor(mC,R.color.all_stat));
             data.addDataSet(elemSet);
         }
     }
@@ -205,7 +239,7 @@ public class DSSFGraph {
                     }
                 }
                 if(dmgSumMoyElem>0) {
-                    listVal.add(new Entry((int) i,Math.round(dmgSumMoyElem/count), Math.round(dmgSumMoyElem/count) + " dégâts en moyenne\npour les sorts de type " + elem + " de rang " + i));
+                    listVal.add(new Entry((int) i,Math.round(dmgSumMoyElem/count), Math.round(dmgSumMoyElem/count) + " dégâts en moyenne\npour les sorts de type " + elems.getName(elem) + " de rang " + i));
                 }
             }
             if(listVal.size()>0) {
@@ -218,7 +252,7 @@ public class DSSFGraph {
 
     private void setMetaData() {
         LineData data = new LineData();
-        if(elemsSelected.size()==5){
+        if(elemsSelected.size()==mapElemCheckbox.entrySet().size()){
             addMetaAllData(data);
         } else {
             addMetaElemsData(data);
@@ -228,7 +262,6 @@ public class DSSFGraph {
     }
 
     private void addMetaAllData(LineData data) {
-
             ArrayList<Entry> listVal = new ArrayList<>();
             for(int iMeta=0;iMeta<=nMetaMax;iMeta++){
                 float dmgSumMoyMeta=0;
@@ -245,7 +278,7 @@ public class DSSFGraph {
             }
             if(listVal.size()>0) {
                 LineDataSet elemSet = new LineDataSet(listVal, "tout");
-                setLinePara(elemSet, R.color.all_stat);
+                setLinePara(elemSet, ContextCompat.getColor(mC,R.color.all_stat));
                 data.addDataSet(elemSet);
             }
 
@@ -277,8 +310,8 @@ public class DSSFGraph {
 
     private void setLinePara(LineDataSet set,int color) {
         try {
-            set.setColors(mC.getColor(color));
-            set.setCircleColor(mC.getColor(color));
+            set.setColors(color);
+            set.setCircleColor(color);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -287,8 +320,8 @@ public class DSSFGraph {
 
     // Resets
     public void reset() {
-        for(String elem : elems.getListSpellsKeys()){
-            mapElemCheckbox.get(elem).setChecked(true);
+        for(Map.Entry<String,CheckBox> entry : mapElemCheckbox.entrySet()){
+            entry.getValue().setChecked(true);
         }
         calculateElemToShow();
         resetChartRank();

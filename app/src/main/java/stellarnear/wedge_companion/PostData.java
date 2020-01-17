@@ -24,7 +24,8 @@ public class PostData  {
 
     public PostData(Context mC, Object dataElement){
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
-        if (settings.getBoolean("switch_shadow_link",mC.getResources().getBoolean(R.bool.switch_shadow_link_def))) {
+        if (settings.getBoolean("switch_shadow_link",mC.getResources().getBoolean(R.bool.switch_shadow_link_def)
+                && !settings.getBoolean("switch_demo_mode",mC.getResources().getBoolean(R.bool.switch_demo_mode_def)))) {
             SendRequestData send = new SendRequestData();
             send.addParams(dataElement);
             send.execute();

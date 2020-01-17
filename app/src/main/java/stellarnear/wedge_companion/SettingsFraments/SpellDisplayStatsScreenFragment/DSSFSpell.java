@@ -2,7 +2,12 @@ package stellarnear.wedge_companion.SettingsFraments.SpellDisplayStatsScreenFrag
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -27,10 +32,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import stellarnear.wedge_companion.Elems.ElemsManager;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
+import stellarnear.wedge_companion.Stats.SpellStats.DamagesShortList;
+import stellarnear.wedge_companion.Stats.SpellStats.DamagesShortListElement;
 import stellarnear.wedge_companion.Stats.SpellStats.SpellStat;
+import stellarnear.wedge_companion.Stats.SpellStats.SpellStatsList;
+import stellarnear.wedge_companion.Tools;
 
 public class DSSFSpell {
     private Perso pj = PersoManager.getCurrentPJ();
@@ -38,19 +48,74 @@ public class DSSFSpell {
     private PieChart pieChart;
     private PieChart pieChartDetails;
     private int nRankMax=-1;
-
+    private Map<String,TextView> mapElemTextView =new HashMap<>();
+    private ElemsManager elems;
     private Context mC;
     private View mainView;
     private int infoTxtSize=12;
     private int rankSelectedForPieChart =-1;
+    private Tools tools=new Tools();
 
     public DSSFSpell(View mainView, Context mC) {
         this.mainView=mainView;
         this.mC=mC;
-
+        this.elems= ElemsManager.getInstance();
         TextView nAtkTxt = mainView.findViewById(R.id.nSpell);
         nAtkTxt.setText(pj.getSpellStats().getSpellStatsList().getNSpell()+ " sorts");
+        determineElemsPresents();
+        refreshNumbersSpellsElements();
+        initChartsAndPies();
+    }
 
+    private void determineElemsPresents() {
+        SpellStatsList allStats = pj.getSpellStats().getSpellStatsList();
+        mapElemTextView =new HashMap<>();
+        for(SpellStat spellStat :allStats.asList()) {
+            for(DamagesShortListElement subDamageIndivSpell : spellStat.getDamageShortList().getDamageElementList()){
+                String elementSpell = subDamageIndivSpell.getElement();
+                if (mapElemTextView.get(elementSpell)==null) { // pour les degat on ignore les spell utils
+                    mapElemTextView.put(elementSpell, addTextView(elementSpell));
+                }
+            }
+        }
+    }
+
+    private TextView addTextView(String elementSpell) {
+        LinearLayout line = new LinearLayout(mC);
+        line.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT,1));
+        line.setGravity(Gravity.CENTER);
+        TextView text = new TextView(mC);
+        text.setTextSize(22);
+        text.setTypeface(null, Typeface.BOLD);
+        text.setTextColor(elems.getColorIdDark(elementSpell));
+        line.addView(text);
+        Drawable drawable;
+        try {
+            drawable = mC.getDrawable(elems.getDrawableId(elementSpell));
+            if(elementSpell.equalsIgnoreCase("")){drawable = mC.getDrawable(R.drawable.nodmg_logo);} //l'element "" est pour dégat physique sur le sdamage roll mais en sort c'est un utilitaire
+        } catch (Exception e) {
+            drawable = mC.getDrawable(R.drawable.mire_test);
+            e.printStackTrace();
+        }
+        ImageView logo = new ImageView(mC);
+        logo.setImageDrawable(tools.resize(mC,drawable,80));
+        line.addView(logo);
+        ((LinearLayout)mainView.findViewById(R.id.first_panel_elems_list_numbers)).addView(line);
+        return text;
+    }
+
+    private void refreshNumbersSpellsElements() {
+        for(Map.Entry<String,TextView> entry: mapElemTextView.entrySet()){
+            if(rankSelectedForPieChart==-1){
+                entry.getValue().setText(String.valueOf(pj.getSpellStats().getSpellStatsList().countSubElementOfType(entry.getKey())));
+            } else {
+                entry.getValue().setText(String.valueOf(pj.getSpellStats().getSpellStatsList().countSubElementOfTypeAndRank(entry.getKey(),rankSelectedForPieChart)));
+            }
+
+        }
+    }
+
+    private void initChartsAndPies() {
         initChart();
         buildChart();
         initPieChart();
@@ -95,6 +160,7 @@ public class DSSFSpell {
                 rankSelectedForPieChart =(int) e.getX();
                 buildPieChart();
                 buildPieChartDetails();
+                refreshNumbersSpellsElements();
             }
 
             @Override
@@ -104,6 +170,7 @@ public class DSSFSpell {
                 rankSelectedForPieChart =-1;
                 buildPieChart();
                 buildPieChartDetails();
+                refreshNumbersSpellsElements();
             }
         });
     }
@@ -118,6 +185,14 @@ public class DSSFSpell {
 
     private BarDataSet computeBarDataSet(String mode) {
         Map<Integer,Integer> rankCountHit = new HashMap<>();
+
+        DamagesShortList damagesShortList;/*
+        if(elemsSelected.equalsIgnoreCase("all")){
+            damagesShortList= pj.getSpellStats().getSpellStatsList().getDamageShortList();
+        } else {
+            damagesShortList= pj.getSpellStats().getSpellStatsList().getDamageShortListForElem(elemsSelected);
+        }
+        */
         for (SpellStat spellStat : pj.getSpellStats().getSpellStatsList().asList()){
             List<Integer> listRank = new ArrayList<>();
             if (mode.equalsIgnoreCase("hit")){

@@ -35,7 +35,8 @@ public class GetData {
     public GetData(Context mC){
         this.mC=mC;
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
-        if (settings.getBoolean("switch_shadow_link",mC.getResources().getBoolean(R.bool.switch_shadow_link_def))) {
+        if (settings.getBoolean("switch_shadow_link",mC.getResources().getBoolean(R.bool.switch_shadow_link_def))
+            && !settings.getBoolean("switch_demo_mode",mC.getResources().getBoolean(R.bool.switch_demo_mode_def))) {
             new JsonTask().execute("https://script.google.com/macros/s/AKfycbxOLElujQcy1-ZUer1KgEvK16gkTLUqYftApjNCM_IRTL3HSuDk/exec?id=1AmQOsFXgWBb9ipxhnKEj_JfKZUMt1bUJiBeNVNhH6oc&sheet=spell_arrow");
         }
     }

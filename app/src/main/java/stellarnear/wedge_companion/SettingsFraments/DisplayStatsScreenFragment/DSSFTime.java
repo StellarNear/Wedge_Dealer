@@ -50,10 +50,12 @@ public class DSSFTime {
         this.mainView = mainView;
         this.mC = mC;
         this.elems= ElemsManager.getInstance(mC);
+
         CheckBox checkPhy = mainView.findViewById(R.id.line_type_time_phy);
         CheckBox checkFire = mainView.findViewById(R.id.line_type_time_fire);
         CheckBox checkShock = mainView.findViewById(R.id.line_type_time_shock);
         CheckBox checkFrost = mainView.findViewById(R.id.line_type_time_frost);
+
         mapElemCheckbox.put("",checkPhy); mapElemCheckbox.put("fire",checkFire);  mapElemCheckbox.put("shock",checkShock); mapElemCheckbox.put("frost",checkFrost);
         setCheckboxListeners();
         initLineCharts();

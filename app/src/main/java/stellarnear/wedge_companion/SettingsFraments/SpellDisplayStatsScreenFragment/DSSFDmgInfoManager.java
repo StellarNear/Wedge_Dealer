@@ -130,16 +130,16 @@ public class DSSFDmgInfoManager {
         TextView titlePercent = createTextElement(">=%");
         linePercent.addView(titlePercent);
 
-        for (String elem : elems.getListSpellsKeys()) {
-            if (mapElemCheckbox.get(elem).isChecked()) {
-                int colorInt = elems.getColorIdDark(elem);
+        for(Map.Entry<String,CheckBox> entry:mapElemCheckbox.entrySet()){
+            if (mapElemCheckbox.get(entry.getKey()).isChecked()) {
+                int colorInt = elems.getColorIdDark(entry.getKey());
 
                 DamagesShortListElement lastElement = selectedDamageShortList.getLastDamageElement();
-                if(lastElement.getElement().equalsIgnoreCase(elem)){
+                if(lastElement.getElement().equalsIgnoreCase(entry.getKey())){
                     TextView telemScore = createTextElement(String.valueOf(lastElement.getDmgSum()));
                     telemScore.setTextColor(colorInt);
                     lineScore.addView(telemScore);
-                    TextView telemPercent = createTextElement(calculateAbovePercentage(selectedDamageShortList, elem));
+                    TextView telemPercent = createTextElement(calculateAbovePercentage(selectedDamageShortList, entry.getKey()));
                     telemPercent.setTextColor(colorInt);
                     linePercent.addView(telemPercent);
                 } else {

@@ -4,6 +4,7 @@ package stellarnear.wedge_companion.SettingsFraments.SpellDisplayStatsScreenFrag
 import android.content.Context;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.v4.content.ContextCompat;
 import android.widget.CheckBox;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -88,19 +89,19 @@ public class DSSFDmgChartMaker {
     }
 
     private void calculateElemToShow() {
-        elemsSelected=new ArrayList<>();
-        for(String elem : elems.getListSpellsKeys()){
-            if(mapElemCheckbox.get(elem).isChecked()){
-                elemsSelected.add(elem);
+        elemsSelected = new ArrayList<>();
+        for(Map.Entry<String,CheckBox> entry:mapElemCheckbox.entrySet()){
+            if (entry.getValue().isChecked()) {
+                elemsSelected.add(entry.getKey());
             }
         }
-        barGroupMode=(elemsSelected.size()>1 && elemsSelected.size()!=5);
+        barGroupMode=(elemsSelected.size()>1 && elemsSelected.size()!=mapElemCheckbox.entrySet().size());
         if(barGroupMode){chart.setFocusable(false);}else{chart.setFocusable(true);}
     }
 
     private void calculateMinMaxRound() {
         int minDmg,maxDmg;
-        if(elemsSelected.size()==5) {
+        if(elemsSelected.size()==mapElemCheckbox.entrySet().size()) {
             minDmg = pj.getSpellStats().getSpellStatsList().getDamageShortList().getMinDmg();
             maxDmg = pj.getSpellStats().getSpellStatsList().getDamageShortList().getMaxDmg();
         } else {
@@ -140,7 +141,7 @@ public class DSSFDmgChartMaker {
         }
         data.setBarWidth(barWidth);
 
-        if(elemsSelected.size()==5){
+        if(elemsSelected.size()==mapElemCheckbox.entrySet().size()){
             data.addDataSet(computeBarDataSet("all"));
         } else {
             for(String elem:elemsSelected) {
@@ -156,7 +157,7 @@ public class DSSFDmgChartMaker {
         } else {
             chart.getXAxis().setAxisMaximum(nSteps-1+(barWidth/2));
         }
-        if(elemsSelected.size()!=5){chart.getBarData().setHighlightEnabled(false);}
+        if(elemsSelected.size()!=mapElemCheckbox.entrySet().size()){chart.getBarData().setHighlightEnabled(false);}
     }
 
     private BarDataSet computeBarDataSet(String elemsSelected){
@@ -196,7 +197,7 @@ public class DSSFDmgChartMaker {
         String labelSet= elemsSelected.equalsIgnoreCase("all")? "tout" : elems.getName(elemsSelected);
         BarDataSet set = new BarDataSet(listVal, labelSet);
         if(elemsSelected.equalsIgnoreCase("all")){
-            set.setColor(mC.getColor(R.color.all_stat));
+            set.setColor(ContextCompat.getColor(mC,R.color.all_stat));
         } else {
             set.setColor(elems.getColorIdDark(elemsSelected));
         }
@@ -231,7 +232,7 @@ public class DSSFDmgChartMaker {
     }
 
     private void addLimitsChart() {
-        if(elemsSelected.size()==5){
+        if(elemsSelected.size()==mapElemCheckbox.entrySet().size()){
             addLimitLine("all");
         } else {
             for (String elem : elemsSelected){
@@ -253,7 +254,7 @@ public class DSSFDmgChartMaker {
 
         int lineColor;
         if(elem.equalsIgnoreCase("all")){
-            lineColor=mC.getColor(R.color.all_recent_stat);
+            lineColor=ContextCompat.getColor(mC,R.color.all_recent_stat);
         } else {
             lineColor=elems.getColorId(elem);
         }

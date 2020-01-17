@@ -1,8 +1,11 @@
 package stellarnear.wedge_companion.Stats;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
+import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Rolls.RollList;
 import stellarnear.wedge_companion.TinyDB;
 
@@ -10,8 +13,10 @@ public class Stats {
     private StatsList statsList = new StatsList();
     private TinyDB tinyDB;
     private String pjID="";
+    private Context mC;
 
     public Stats(Context mC,String pjID){
+        this.mC=mC;
         tinyDB = new TinyDB(mC);
         this.pjID=pjID;
         try {
@@ -42,10 +47,13 @@ public class Stats {
     }
 
     public void storeStatsFromRolls(RollList selectedRolls) {
-        Stat stat = new Stat();
-        stat.feedStat(selectedRolls);
-        statsList.add(stat);
-        saveLocalStats();
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
+        if (!settings.getBoolean("switch_demo_mode",mC.getResources().getBoolean(R.bool.switch_demo_mode_def))){
+            Stat stat = new Stat();
+            stat.feedStat(selectedRolls);
+            statsList.add(stat);
+            saveLocalStats();
+        }
     }
 
     public StatsList getStatsList() {

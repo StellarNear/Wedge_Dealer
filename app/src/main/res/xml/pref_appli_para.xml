@@ -33,9 +33,16 @@
         android:title="Durée d'affichage des fenêtres"
         />
     <SwitchPreference
+        android:defaultValue="@bool/switch_demo_mode_def"
+        android:key="switch_demo_mode"
+        android:title="Mode Démo"
+        android:summary="Aucune sauvegarde ni retransmission d'information"/>
+    <SwitchPreference
         android:defaultValue="@bool/switch_shadow_link_def"
         android:key="switch_shadow_link"
         android:title="ShadowLink"
         android:summary="Connexion à la page Live Feed RP (googlesheet)"/>
+
+
 
 </PreferenceScreen>

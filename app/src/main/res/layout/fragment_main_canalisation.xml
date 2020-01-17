@@ -44,7 +44,7 @@
             android:id="@+id/canalTitleLine"
             android:weightSum="10"
             android:orientation="horizontal"
-            android:background="@color/title_skill_color_background">
+            android:background="?attr/colorPrimaryDark">
 
             <TextView
                 android:id="@+id/canalNameTitle"

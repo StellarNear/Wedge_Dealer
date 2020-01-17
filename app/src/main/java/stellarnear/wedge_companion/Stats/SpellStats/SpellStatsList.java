@@ -184,4 +184,25 @@ public class SpellStatsList {
         }
         return damagesShortListAll;
     }
+
+    public int countSubElementOfType(String key) {
+        int val=0;
+        for(DamagesShortListElement subDamageIndivSpell : getDamageShortList().getDamageElementList()){
+            String elementSpell = subDamageIndivSpell.getElement();
+            if (key.equalsIgnoreCase(elementSpell)) {
+                val++;
+            }
+        }
+        return val;
+    }
+
+    public int countSubElementOfTypeAndRank(String key, int rankSelectedForPieChart) {
+        int val=0;
+        for(DamagesShortListElement subDamageIndivSpell : getDamageShortList().getDamageElementList()){
+            if (key.equalsIgnoreCase(subDamageIndivSpell.getElement()) && subDamageIndivSpell.getRank()==rankSelectedForPieChart) {
+                val++;
+            }
+        }
+        return val;
+    }
 }

@@ -23,9 +23,7 @@
     <bool name="switch_shadow_link_def">true</bool>
     <bool name="switch_manual_diceroll_def">false</bool>
     <bool name="switch_fullscreen_mode_DEF">true</bool>
-
-
-
+    <bool name="switch_demo_mode_def">false</bool>
 
 
 </resources>

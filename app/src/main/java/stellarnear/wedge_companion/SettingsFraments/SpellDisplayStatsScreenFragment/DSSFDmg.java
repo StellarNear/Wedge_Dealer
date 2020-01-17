@@ -2,8 +2,12 @@ package stellarnear.wedge_companion.SettingsFraments.SpellDisplayStatsScreenFrag
 
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -28,6 +32,9 @@ import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Stats.SpellStats.DamagesShortList;
+import stellarnear.wedge_companion.Stats.SpellStats.DamagesShortListElement;
+import stellarnear.wedge_companion.Stats.SpellStats.SpellStat;
+import stellarnear.wedge_companion.Stats.SpellStats.SpellStatsList;
 import stellarnear.wedge_companion.Tools;
 
 public class DSSFDmg {
@@ -52,28 +59,49 @@ public class DSSFDmg {
         
         TextView nAtkTxt = mainView.findViewById(R.id.nDmgTxt);
         nAtkTxt.setText(pj.getSpellStats().getSpellStatsList().getNDamageSpell() + " jets de dégâts");
-
-        CheckBox checkNone = mainView.findViewById(R.id.dmg_type_none);
-        CheckBox checkAcid = mainView.findViewById(R.id.dmg_type_acid);
-        CheckBox checkFire = mainView.findViewById(R.id.dmg_type_fire);
-        CheckBox checkShock = mainView.findViewById(R.id.dmg_type_shock);
-        CheckBox checkFrost = mainView.findViewById(R.id.dmg_type_frost);
-        mapElemCheckbox.put("none",checkNone);
-        mapElemCheckbox.put("acid",checkAcid);
-        mapElemCheckbox.put("fire",checkFire);
-        mapElemCheckbox.put("shock",checkShock);
-        mapElemCheckbox.put("frost",checkFrost);
-
-        chartMaker = new DSSFDmgChartMaker((BarChart)mainView.findViewById(R.id.bar_chart_dmg),mapElemCheckbox,mC);
+        determineElemsPresents();
         setCheckboxListeners();
+        chartMaker = new DSSFDmgChartMaker((BarChart)mainView.findViewById(R.id.bar_chart_dmg),mapElemCheckbox,mC);
+
         initChartSelectEvent();
         initPieChart();
         subManager=new DSSFDmgInfoManager(mainView,mapElemCheckbox,mC);
     }
 
+    private void determineElemsPresents() {
+        SpellStatsList allStats = pj.getSpellStats().getSpellStatsList();
+        mapElemCheckbox=new HashMap<>();
+        for(SpellStat spellStat :allStats.asList()) {
+            for(DamagesShortListElement subDamageIndivSpell : spellStat.getDamageShortList().getDamageElementList()){
+                String elementSpell = subDamageIndivSpell.getElement();
+                if (mapElemCheckbox.get(elementSpell)==null && !elementSpell.equalsIgnoreCase("")) { // pour le sdegat on ignore les spell utils
+                    mapElemCheckbox.put(elementSpell,addCheckBox(elementSpell));
+                }
+            }
+        }
+    }
+
+    private CheckBox addCheckBox(String elementSpell) {
+        CheckBox checkBox = new CheckBox(mC);
+        checkBox.setButtonTintList(ColorStateList.valueOf(elems.getColorId(elementSpell)));
+        Drawable drawable;
+        try {
+            drawable = mC.getDrawable(elems.getDrawableId(elementSpell));
+        } catch (Exception e) {
+            drawable = mC.getDrawable(R.drawable.mire_test);
+            e.printStackTrace();
+        }
+        ((LinearLayout)mainView.findViewById(R.id.fourth_panel_elems_checkboxes)).addView(checkBox);
+        ImageView logo = new ImageView(mC);
+        logo.setImageDrawable(tools.resize(mC,drawable,80));
+        ((LinearLayout)mainView.findViewById(R.id.fourth_panel_elems_checkboxes)).addView(logo);
+        checkBox.setChecked(true);
+        return checkBox;
+    }
+
     private void setCheckboxListeners() {
-        for(String elem : elems.getListSpellsKeys()){
-            mapElemCheckbox.get(elem).setOnClickListener(new View.OnClickListener() {
+        for(Map.Entry<String,CheckBox> entry:mapElemCheckbox.entrySet()){
+            entry.getValue().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     chartMaker.resetChart();
@@ -152,12 +180,12 @@ public class DSSFDmg {
             list= pj.getSpellStats().getSpellStatsList().getDamageShortList();
         }
         int totalDmg=list.getSumDmgTot();
-        for(String elem : elems.getListSpellsKeys()) {
-            if (mapElemCheckbox.get(elem).isChecked()) {
-                float percent = 100f * (list.filterByElem(elem).getDmgSum() / (float) totalDmg);
+        for(Map.Entry<String,CheckBox> entry:mapElemCheckbox.entrySet()){
+            if (mapElemCheckbox.get(entry.getKey()).isChecked()) {
+                float percent = 100f * (list.filterByElem(entry.getKey()).getDmgSum() / (float) totalDmg);
                 if (percent > 0f) {
-                    entries.add(new PieEntry(percent, "", new LargeValueFormatter().getFormattedValue((int) list.filterByElem(elem).getDmgSum()) + " dégats " + elems.getName(elem)));
-                    colorList.add(elems.getColorIdDark(elem));
+                    entries.add(new PieEntry(percent, "", new LargeValueFormatter().getFormattedValue((int) list.filterByElem(entry.getKey()).getDmgSum()) + " dégats " + elems.getName(entry.getKey())));
+                    colorList.add(elems.getColorIdDark(entry.getKey()));
                 }
             }
         }
@@ -171,8 +199,8 @@ public class DSSFDmg {
     // Resets
 
     public void reset() {
-        for(String elem : elems.getListSpellsKeys()){
-            mapElemCheckbox.get(elem).setChecked(true);
+        for(Map.Entry<String,CheckBox> entry:mapElemCheckbox.entrySet()){
+            entry.getValue().setChecked(true);
         }
         chartMaker.resetChart();
         chartMaker.buildChart();
