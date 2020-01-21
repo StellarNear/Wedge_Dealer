@@ -33,5 +33,11 @@
         <type>Universelle</type>
     </mythiccapacity>
 
+    <mythiccapacity>
+        <name>Objet légendaire (Cape)</name>
+        <descr>Cet objet confère un nombre d’aptitudes égal au grade du personnage.[1]Intélligent(vol)[2]Puissant1</descr>
+        <type>Universelle</type>
+        <id>mythiccapacity_leg_item</id>
+    </mythiccapacity>
 
 </records>

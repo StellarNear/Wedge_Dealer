@@ -37,7 +37,7 @@
     <integer name="mythic_tier_def_halda">2</integer>
     <integer name="mythic_dice_def_halda">6</integer>
 
-    <integer name="resource_legendary_points_def_halda">2</integer>
+    <integer name="resource_legendary_points_def_halda">4</integer>
     <integer name="legendary_dice_def_halda">8</integer>
 
 

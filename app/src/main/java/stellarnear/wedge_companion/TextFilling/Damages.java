@@ -27,6 +27,7 @@ public class Damages {
     private RollList selectedRolls;
     private ElemsManager elems;
     private Perso pj = PersoManager.getCurrentPJ();
+    private int totalSum;
 
     private Tools tools = new Tools();
 
@@ -64,7 +65,7 @@ public class Damages {
     }
 
     private void addDamage() {
-        int totalSum = 0;
+        totalSum = 0;
         for (String elem : elems.getListKeysWedgeDamage()) {
             for (Roll roll : selectedRolls.getList()) {
                 roll.setDmgRand();
@@ -80,13 +81,14 @@ public class Damages {
             if(pj.getAllForms()==null || !pj.getAllForms().hasActiveForm() ){pj.getStats().storeStatsFromRolls(selectedRolls);}       //storing results
             showViews();
             ((TextView) mainView.findViewById(R.id.mainLinearDmgTitle)).setText("Dégâts : "+String.valueOf(totalSum));
-            checkHighscore(totalSum);
+            checkHighscore();
         } else {
             ((View) mainView.findViewById(R.id.bar_sep)).setVisibility(View.VISIBLE);
             ((TextView) mainView.findViewById(R.id.mainLinearDmgTitle)).setVisibility(View.VISIBLE);
             ((TextView) mainView.findViewById(R.id.mainLinearDmgTitle)).setText("Aucun dégât");
         }
     }
+
 
     private void addElementDamage(String elem) {
         addElementLogo(elem);
@@ -121,14 +123,18 @@ public class Damages {
         ((LinearLayout) mainView.findViewById(R.id.mainLinearSumDmg)).addView(sumBox);
     }
 
-    private void checkHighscore(int sumDmg) {
+    private void checkHighscore() {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
         int currentHigh = new Tools().toInt(settings.getString("highscore"+PersoManager.getPJSuffix(), "0"));
-        if (currentHigh < sumDmg) {
-            settings.edit().putString("highscore"+PersoManager.getPJSuffix(),String.valueOf(sumDmg)).apply();
+        if (currentHigh < totalSum) {
+            settings.edit().putString("highscore"+PersoManager.getPJSuffix(),String.valueOf(totalSum)).apply();
             Tools tools = new Tools();
             tools.playVideo(mA,mC,"/raw/explosion");
-            tools.customToast(mC, String.valueOf(sumDmg) + " dégats !\nC'est un nouveau record !", "center");
+            tools.customToast(mC, String.valueOf(totalSum) + " dégats !\nC'est un nouveau record !", "center");
         }
+    }
+
+    public int getDamageTot() {
+        return totalSum;
     }
 }

@@ -128,6 +128,8 @@ public class PostDataElement {
             }
             if (totalSum > 0) {
                 resultTxt += "Total:" + totalSum;
+            } else {
+                resultTxt="-";
             }
             this.result = resultTxt;
         }

@@ -129,8 +129,6 @@ public class MainActivityFragmentSpellArrowBonusPanel {
         }
     }
 
-
-
     public void hide() {
         buttonAdd.setVisibility(View.GONE);
         if(addBonusPanelIsVisible){flipBonusPanel();}

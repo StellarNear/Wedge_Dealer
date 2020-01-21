@@ -40,4 +40,11 @@
         <id>mythiccapacity_still_a_chance</id>
     </mythiccapacity>
 
+
+    <mythiccapacity>
+        <name>Objet légendaire (Heimdall)</name>
+        <descr>Cet objet confère un nombre d’aptitudes égal au grade du personnage.[1]Améliorable[2]Puissant1[3]Croc-ennemi</descr>
+        <type>Universelle</type>
+        <id>mythiccapacity_leg_item</id>
+    </mythiccapacity>
 </records>

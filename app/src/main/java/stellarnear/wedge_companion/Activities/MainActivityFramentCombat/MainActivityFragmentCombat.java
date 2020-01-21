@@ -48,6 +48,7 @@ public class MainActivityFragmentCombat extends Fragment {
 
     private MainActivityFragmentCombatBonusPanel combatBonusPanel;
     private MainActivityFragmentSpellArrowBonusPanel spellArrowBonusPanel;
+    private MainActivityFragmentCombatEnnemyBitePanel bitePanel;
 
     private RollList rollList;
     private RollList selectedRolls;
@@ -133,6 +134,11 @@ public class MainActivityFragmentCombat extends Fragment {
         if(spellArrowBonusPanel ==null){
             spellArrowBonusPanel = new MainActivityFragmentSpellArrowBonusPanel(getActivity(),getContext(),mainPage);
         }
+        // ennemy bite button
+        if(bitePanel==null){
+            bitePanel=new MainActivityFragmentCombatEnnemyBitePanel(getContext(),mainPage);
+        }
+
         // boutons d'attaques
         simpleAtk = mainPage.findViewById(R.id.button_simple_atk);
         simpleAtk.setOnClickListener(new View.OnClickListener() {
@@ -245,6 +251,7 @@ public class MainActivityFragmentCombat extends Fragment {
             case 0:
                 simpleAtk.animate().translationXBy(-200).setDuration(1000).start();
                 barrageShot.animate().translationXBy(200).setDuration(1000).start();
+                animate(spellArrowBonusPanel.getButton());spellArrowBonusPanel.show();
                 break;
             case 1:
                 simpleAtk.animate().scaleX(2).scaleY(2).alpha(0).setDuration(1000).start();
@@ -325,13 +332,23 @@ public class MainActivityFragmentCombat extends Fragment {
         displayRolls = null;
         clearStep(2);
         damages = new Damages(getActivity(),getContext(), mainPage, selectedRolls);  //calcul et affiche les degats
-        if (selectedRolls.getDmgDiceList().getList().size() > 0) {
+        if (selectedRolls.getDmgDiceList().getList().size() > 0) { //todo croc ennemi
             rangesAndProba = new RangesAndProba(getContext(), mainPage, selectedRolls);
             fabDmgDet.setVisibility(View.VISIBLE);
             fabDmgDet.setEnabled(true);
         }
+        if(damages.getDamageTot()>0 && pj.getAllMythicCapacities().getMythiccapacity("mythiccapacity_leg_item").getDescr().contains("Croc-ennemi")
+        && pj.getCurrentResourceValue("resource_legendary_points")>0){
+                popoutBiteButton();
+        }
         postRandValues.refreshPostRandValues();
         new PostData(getContext(),new PostDataElement(selectedRolls,"dmg"));
+    }
+
+    private void popoutBiteButton() {
+        bitePanel.feedSelectedRolls(selectedRolls);
+        mainPage.findViewById(R.id.fab_leg_ennemy_bite).setVisibility(View.VISIBLE);
+        animate((ImageView) mainPage.findViewById(R.id.fab_leg_ennemy_bite));
     }
 
     private void checkSelectedRolls() {

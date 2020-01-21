@@ -327,6 +327,78 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/leg_ennemy_bite_linear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_margin="@dimen/general_margin"
+                android:background="@drawable/background_border_dice_list_summary"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    >
+
+                    <ImageView
+                        android:layout_margin="@dimen/general_margin"
+                        android:layout_width="@dimen/iconSizeQuadrantFull"
+                        android:layout_height="@dimen/iconSizeQuadrantFull"
+                        android:src="@drawable/ic_bite_circle"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:text="Croc-ennemi"/>
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/leg_ennemy_bite_pts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:textStyle="italic"
+                    android:text="Points légendaires : x"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:text="Selection du jet de dégat"/>
+                <LinearLayout
+                    android:id="@+id/leg_ennemy_bite_roll_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/general_margin"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:text="Résultat de l'augmentation de dégat"/>
+                <LinearLayout
+                    android:id="@+id/leg_ennemy_bite_sum_result_linear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_ok_gradient"
+                    android:textSize="12dp"
+                    android:text="Confirmer"
+                    android:layout_margin="@dimen/general_margin"/>
+
+
+            </LinearLayout>
+
             <ImageView
                 android:id="@+id/fab_spell_arrow"
                 android:layout_width="@dimen/iconSizeAtkBonusPanel"
@@ -347,6 +419,17 @@
                 android:background="@color/transparent"
                 android:visibility="gone"
                 android:src="@drawable/ic_add_circle_outline_green_24dp" />
+
+            <ImageView
+                android:id="@+id/fab_leg_ennemy_bite"
+                android:layout_width="@dimen/iconSizeAtkBonusPanel"
+                android:layout_height="@dimen/iconSizeAtkBonusPanel"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="@dimen/general_margin"
+                android:background="@color/transparent"
+                android:visibility="gone"
+                android:src="@drawable/ic_bite_circle" />
         </RelativeLayout>
 
 

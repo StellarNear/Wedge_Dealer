@@ -9,6 +9,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 
+import stellarnear.wedge_companion.CritConfirmAlertDialog;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
@@ -32,6 +33,7 @@ public abstract class AtkRoll {
     protected Boolean invalid = false;
     protected Boolean manualDice;
     protected Context mC;
+    protected Activity mA;
 
     protected SharedPreferences settings;
 
@@ -43,6 +45,7 @@ public abstract class AtkRoll {
     protected Tools tools=new Tools();
 
     public AtkRoll(Activity mA,Context mC, Integer base) {
+        this.mA=mA;
         this.mC = mC;
         this.base=base;
         this.atkDice = new Dice(mA,mC,20);
@@ -81,8 +84,22 @@ public abstract class AtkRoll {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 critConfirmed = false;
                 if (isChecked) {
-                    hitCheckbox.setChecked(true);
-                    critConfirmed = true;
+                    CritConfirmAlertDialog contactDialog = new CritConfirmAlertDialog(mA,mC,preRandValue);
+                    contactDialog.showAlertDialog();
+                    contactDialog.setSuccessEventListener(new CritConfirmAlertDialog.OnSuccessEventListener() {
+                        @Override
+                        public void onSuccessEvent() {
+                            hitCheckbox.setChecked(true);
+                            critConfirmed = true;
+                        }
+                    });
+                    contactDialog.setFailEventListener(new CritConfirmAlertDialog.OnFailEventListener() {
+                        @Override
+                        public void onFailEvent() {
+                            critCheckbox.setChecked(false);
+                            critConfirmed = false;
+                        }
+                    });
                 }
             }
         });
