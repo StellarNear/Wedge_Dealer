@@ -198,7 +198,8 @@ public class PreparationSpellsAlertDialog {
             titre.setSpan(new RelativeSizeSpan(0.65f), tier_txt.length(),titre_tier.length(), 0);
             mapTiersTitles.get(i).setText(titre);
 
-            mapSideTiers.get(i).setText("T" + i + "\n(" + mapSpellToPickForRank.get(i) + ")");
+            String ratioPicked_All = (wedge.getCurrentResourceValue("spell_rank_"+i)-mapSpellToPickForRank.get(i))+"/"+wedge.getCurrentResourceValue("spell_rank_"+i);
+            mapSideTiers.get(i).setText("T" + i + "\n(" + ratioPicked_All + ")");
         }
     }
 

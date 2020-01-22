@@ -316,8 +316,7 @@ public class LinearLineSpell {
 
     public void forceBoxUncheck() {
         checkbox.setChecked(false);
-        nCast=0;
-        refreshName();
+        removeSpellFromSelection(spell);
     }
 
     public void forceAddOneCast() {

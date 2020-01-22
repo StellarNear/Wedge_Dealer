@@ -1,7 +1,9 @@
 package stellarnear.wedge_companion.Activities.MainActivityFramentCombat;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Typeface;
+import android.support.v7.app.AlertDialog;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +20,8 @@ import java.util.Map;
 import stellarnear.wedge_companion.Elems.ElemsManager;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
+import stellarnear.wedge_companion.PostData;
+import stellarnear.wedge_companion.PostDataElement;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Rolls.Roll;
 import stellarnear.wedge_companion.Rolls.RollList;
@@ -35,8 +39,8 @@ public class MainActivityFragmentCombatEnnemyBitePanel {
     private boolean addBonusPanelIsVisible=false;
     private Tools tools=new Tools();
     private ElemsManager elems;
-
     private int nCostLeg=0;
+    private OnConfirmationBoostEventListener mListener;
 
     private Map<Roll,CheckBox> mapRollCheckbox=new HashMap<>();
 
@@ -55,8 +59,41 @@ public class MainActivityFragmentCombatEnnemyBitePanel {
         elems= ElemsManager.getInstance(mC);
         ptLeg=mainPage.findViewById(R.id.leg_ennemy_bite_pts);
         refreshSpendLeg();
+        mainPage.findViewById(R.id.leg_ennemy_bite_confirm_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(nCostLeg>0){
+                    new AlertDialog.Builder(mC)
+                            .setTitle("Demande de confirmation")
+                            .setMessage("Dépenser "+nCostLeg+" points légendaires pour augmenter les dégats ?")
+                            .setIcon(android.R.drawable.ic_menu_help)
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    setBiteBoostedForRolls();
+                                    pj.getAllResources().getResource("resource_legendary_points").spend(nCostLeg);
+                                    tools.customToast(mC, "Croc-ennemi lancée !\n"+
+                                            "Il te reste "+pj.getCurrentResourceValue("resource_legendary_points")+" pts légendaires", "center");
+                                    new PostData(mC, new PostDataElement("Utilisation de la capacité légendaire Croc-ennemi", "-"+nCostLeg+" pts légendaires"));
+                                    hide();
+                                    if(mListener!=null){mListener.onConfirmationBoostEvent();}
+                                }
+                            })
+                            .setNegativeButton(android.R.string.no, null).show();
+                } else {
+                    flipBonusPanel();
+                }
+            }
+        });
+    }
 
-        //todo confirmation avec PostData et setup de l'affichage des new degats boosted
+    private void setBiteBoostedForRolls() {
+        for( Map.Entry<Roll,CheckBox> entry : mapRollCheckbox.entrySet()) {
+            final CheckBox checkBox = entry.getValue();
+            final Roll roll = entry.getKey();
+            if(checkBox.isChecked()){
+                roll.makeBiteBoosted();
+            }
+        }
     }
 
     private void refreshSpendLeg() {
@@ -118,13 +155,6 @@ public class MainActivityFragmentCombatEnnemyBitePanel {
                 LinearLayout.LayoutParams para = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 para.gravity=Gravity.CENTER;
                 check.setLayoutParams(para);
-                check.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        //todo on chance check ? calcul des pts leg remaning etc
-                        // faire un setBiteBoosted dans le roll ? et avec l'event de validation recaste un new Damage avec le selected roll (sans passer par le check)
-                    }
-                });
                 mapRollCheckbox.put(roll,check);
                 line.addView(check);
                 bonusPanelRollList.addView(line);
@@ -162,7 +192,6 @@ public class MainActivityFragmentCombatEnnemyBitePanel {
                         }
                         refreshResultDisplay();
                     }
-
                 }
             });
         }
@@ -239,7 +268,18 @@ public class MainActivityFragmentCombatEnnemyBitePanel {
     }
 
     public void feedSelectedRolls(RollList selectedRolls) {
+        nCostLeg=0;
         this.selectedRolls=selectedRolls;
         addRollsToBonusPanel();
+        refreshResultDisplay();
+        refreshSpendLeg();
+    }
+
+    public interface OnConfirmationBoostEventListener {
+        void onConfirmationBoostEvent();
+    }
+
+    public void setOnConfirmationBoostEventListener(OnConfirmationBoostEventListener eventListener) {
+        mListener = eventListener;
     }
 }

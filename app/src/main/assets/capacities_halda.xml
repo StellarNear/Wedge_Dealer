@@ -21,6 +21,13 @@
         <descr>Quand l’oracle lance un sort de soins, il base le maximum de points de vie rendus sur son niveau d’oracle et non sur la limite basée sur le sort. Par exemple, un oracle de la vie de niveau 11 qui a eu cette révélation lance soins légers pour soigner 1d8+11 points de vie et non 1d8+5 au maximum.</descr>
     </capacity>
 
+    <capacity>
+        <shortname>Canal</shortname>
+        <name>Canalisation d'énergie</name>
+        <dailyuse>1+CHA</dailyuse>
+        <descr>L’oracle canalise l’énergie positive comme un prêtre en utilisant son niveau d’oracle comme niveau. Chaque jour, il peut utiliser ce pouvoir un nombre de fois égal à 1 + modificateur de Charisme.</descr>
+        <id>capacity_canalisation</id>
+    </capacity>
 
     <capacity>
         <name>Corp d'énérgie</name>
@@ -110,10 +117,17 @@
     </capacity>
 
     <capacity>
-        <name>Canalisation d'énérgie</name>
+        <name>Canalisation d'énérgie épique</name>
         <type>Révélation épique</type>
         <id>capacity_epic_revelation_canal</id>
         <descr>L'oracle séléctione une révélation (ici canalisation d'énergie). Cette révélation dure deux fois plus longtemps, la portée augemente de 50% sa zone d'effet augement de 3m, le DD de 1, tout les dégats ou soins de 4, les bonus à la CA BMO jet de reflexes ou initiative de 1, les bonus aus jets de compétence de 2.</descr>
+    </capacity>
+
+    <capacity>
+        <name>Fortune épique</name>
+        <type>Révélation épique</type>
+        <id>capacity_epic_revelation_fortune</id>
+        <descr>L'oracle séléctione une révélation (ici fortune). Cette révélation dure deux fois plus longtemps, la portée augemente de 50% sa zone d'effet augement de 3m, le DD de 1, tout les dégats ou soins de 4, les bonus à la CA BMO jet de reflexes ou initiative de 1, les bonus aus jets de compétence de 2.</descr>
     </capacity>
 
 

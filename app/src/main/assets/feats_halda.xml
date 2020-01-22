@@ -20,13 +20,13 @@
         <name>Mystérieuse perspicacité</name>
         <type>feat_magic</type>
         <descr>Gagne deux révélations d'un second Mystère (Lune)</descr>
-        <id>feat_heroic_recovery</id>
+        <id>feat_moon_reveal_1</id>
     </feat>
     <feat>
         <name>Mystérieuse perspicacité 2</name>
         <type>feat_magic</type>
         <descr>Gagne deux révélations d'un second Mystère (Lune)</descr>
-        <id>feat_heroic_recovery</id>
+        <id>feat_moon_reveal_2</id>
     </feat>
 
     <feat>

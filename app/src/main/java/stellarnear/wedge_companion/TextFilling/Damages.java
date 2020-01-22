@@ -137,4 +137,9 @@ public class Damages {
     public int getDamageTot() {
         return totalSum;
     }
+
+    public void refreshDisplay() {
+        clearAllViews();
+        addDamage();
+    }
 }

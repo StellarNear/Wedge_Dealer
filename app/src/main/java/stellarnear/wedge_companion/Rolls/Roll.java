@@ -25,6 +25,7 @@ public abstract class Roll {
     protected Tools tools=new Tools();
     protected Perso pj = PersoManager.getCurrentPJ();
     protected String mode;
+    protected boolean biteBoosted=false;
 
     public Roll(Activity mA, Context mC, Integer atkBase) {
         this.mA=mA;
@@ -120,7 +121,11 @@ public abstract class Roll {
         String element = elementArg.length > 0 ? elementArg[0] : "";
         Integer sum=0;
         for(DmgRoll dmgRoll:this.dmgRollList){
-            sum+=dmgRoll.getSumDmg(element);
+            if(biteBoosted){
+                sum += 2*dmgRoll.getSumDmg(element);
+            } else {
+                sum += dmgRoll.getSumDmg(element);
+            }
         }
         return sum;
     }
@@ -129,7 +134,12 @@ public abstract class Roll {
         String element = elementArg.length > 0 ? elementArg[0] : "";
         Integer sum=0;
         for(DmgRoll dmgRoll:this.dmgRollList){
-            sum+=dmgRoll.getMaxDmg(element);
+            if(biteBoosted){
+                sum+=2*dmgRoll.getMaxDmg(element);
+            } else {
+                sum+=dmgRoll.getMaxDmg(element);
+            }
+
         }
         return sum;
     }
@@ -138,7 +148,11 @@ public abstract class Roll {
         String element = elementArg.length > 0 ? elementArg[0] : "";
         Integer sum=0;
         for(DmgRoll dmgRoll:this.dmgRollList){
-            sum+=dmgRoll.getMinDmg(element);
+            if(biteBoosted){
+                sum+=2*dmgRoll.getMinDmg(element);
+            } else {
+                sum+=dmgRoll.getMinDmg(element);
+            }
         }
 
         return sum;
@@ -155,4 +169,8 @@ public abstract class Roll {
     public abstract void rangeMalus(int malus);
 
     public abstract void lynxEyeBoost();
+
+    public void makeBiteBoosted(){
+        this.biteBoosted=true;
+    }
 }

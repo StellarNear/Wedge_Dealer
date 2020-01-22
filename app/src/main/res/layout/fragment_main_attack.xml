@@ -389,6 +389,7 @@
                     android:orientation="vertical"/>
 
                 <Button
+                    android:id="@+id/leg_ennemy_bite_confirm_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/button_ok_gradient"

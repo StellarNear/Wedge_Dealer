@@ -32,12 +32,6 @@
     </resource>
 
     <resource>
-        <shortname>Canal</shortname>
-        <name>Canalisation d'énergie</name>
-        <id>resource_canalisation</id>
-    </resource>
-
-    <resource>
         <name>Récupération héroïque</name>
         <hide>true</hide>
         <id>resource_heroic_recovery</id>

@@ -27,6 +27,7 @@ import java.util.Map;
 
 import stellarnear.wedge_companion.Activities.MainActivity;
 import stellarnear.wedge_companion.Activities.PetActivity;
+import stellarnear.wedge_companion.CanalisationAlertDialog;
 import stellarnear.wedge_companion.HealthDialog;
 import stellarnear.wedge_companion.Perso.Ability;
 import stellarnear.wedge_companion.Perso.Perso;
@@ -324,13 +325,27 @@ public class QuadrantFiller {
                                 .setIcon(android.R.drawable.ic_menu_help)
                                 .setPositiveButton("Utiliser", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int whichButton) {
-                                        if(!res.isInfinite()){pj.getAllResources().getResource(res.getId()).spend(1);}
-                                        new PostData(mC, new PostDataElement(res.getCapa()));
-                                        tools.customToast(mC, res.getName() + " lancée !", "center");
+                                        if(res.getId().equalsIgnoreCase("resource_canalisation")){
+                                            CanalisationAlertDialog alertDialog = new CanalisationAlertDialog(mA,mC,pj.getAllCanalisationCapacities().getCanalcapacity("canalcapacity_heal"));
+                                            alertDialog.setRefreshEventListener(new CanalisationAlertDialog.OnRefreshEventListener() {
+                                                @Override
+                                                public void onEvent() {
+                                                    List<Resource> abiRes = pj.getAllResources().getResourcesListDisplay();//refreshCalculations le full
+                                                    injectStatsRes(abiRes, quadrantFullMain, "full"); //refreshCalculations le full
+                                                    buildAllMini(); //refreshCalculations les mini
+                                                }
+                                            });
+                                        } else {
+                                            if (!res.isInfinite()) {
+                                                pj.getAllResources().getResource(res.getId()).spend(1);
+                                            }
+                                            new PostData(mC, new PostDataElement(res.getCapa()));
+                                            tools.customToast(mC, res.getName() + " lancée !", "center");
 
-                                        List<Resource> abiRes = pj.getAllResources().getResourcesListDisplay();//refreshCalculations le full
-                                        injectStatsRes(abiRes, quadrantFullMain, "full"); //refreshCalculations le full
-                                        buildAllMini(); //refreshCalculations les mini
+                                            List<Resource> abiRes = pj.getAllResources().getResourcesListDisplay();//refreshCalculations le full
+                                            injectStatsRes(abiRes, quadrantFullMain, "full"); //refreshCalculations le full
+                                            buildAllMini(); //refreshCalculations les mini
+                                        }
                                     }
                                 })
                                 .setNegativeButton("Annuler", null).show();

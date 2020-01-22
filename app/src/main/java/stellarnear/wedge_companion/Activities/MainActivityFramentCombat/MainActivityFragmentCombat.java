@@ -302,12 +302,10 @@ public class MainActivityFragmentCombat extends Fragment {
         fabDmg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 fabDmg.animate().setDuration(1000).translationX(+400).start();
                 Snackbar.make(view, "Calcul des dégâts en cours... ", Snackbar.LENGTH_SHORT).show();
                 AlphaAnimation anim = new AlphaAnimation(0, 1);
                 anim.setDuration(2000);
-
                 checkSelectedRolls();
                 if (firstDmgRoll) {
                     startDamage();
@@ -332,21 +330,29 @@ public class MainActivityFragmentCombat extends Fragment {
         displayRolls = null;
         clearStep(2);
         damages = new Damages(getActivity(),getContext(), mainPage, selectedRolls);  //calcul et affiche les degats
-        if (selectedRolls.getDmgDiceList().getList().size() > 0) { //todo croc ennemi
+        if (selectedRolls.getDmgDiceList().getList().size() > 0) {
             rangesAndProba = new RangesAndProba(getContext(), mainPage, selectedRolls);
             fabDmgDet.setVisibility(View.VISIBLE);
             fabDmgDet.setEnabled(true);
         }
-        if(damages.getDamageTot()>0 && pj.getAllMythicCapacities().getMythiccapacity("mythiccapacity_leg_item").getDescr().contains("Croc-ennemi")
-        && pj.getCurrentResourceValue("resource_legendary_points")>0){
-                popoutBiteButton();
-        }
         postRandValues.refreshPostRandValues();
         new PostData(getContext(),new PostDataElement(selectedRolls,"dmg"));
+        if(damages.getDamageTot()>0 && pj.getAllMythicCapacities().getMythiccapacity("mythiccapacity_leg_item").getDescr().contains("Croc-ennemi")
+                && pj.getCurrentResourceValue("resource_legendary_points")>0) {
+            setupBite();
+        }
     }
 
-    private void popoutBiteButton() {
+    private void setupBite() {
         bitePanel.feedSelectedRolls(selectedRolls);
+        bitePanel.setOnConfirmationBoostEventListener(new MainActivityFragmentCombatEnnemyBitePanel.OnConfirmationBoostEventListener() {
+            @Override
+            public void onConfirmationBoostEvent() {
+                damages.refreshDisplay();
+                rangesAndProba = new RangesAndProba(getContext(), mainPage, selectedRolls);
+                new PostData(getContext(),new PostDataElement(selectedRolls,"dmg"));
+            }
+        });
         mainPage.findViewById(R.id.fab_leg_ennemy_bite).setVisibility(View.VISIBLE);
         animate((ImageView) mainPage.findViewById(R.id.fab_leg_ennemy_bite));
     }

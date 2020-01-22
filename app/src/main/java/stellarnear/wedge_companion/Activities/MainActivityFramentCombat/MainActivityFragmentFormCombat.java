@@ -232,6 +232,7 @@ public class MainActivityFragmentFormCombat extends Fragment {
         barrageShot.setOnClickListener(null);
         switch (buttonClicked){
             case 0:
+            case 3:
                 simpleAtk.animate().translationXBy(-200).setDuration(1000).start();
                 barrageShot.animate().translationXBy(200).setDuration(1000).start();
                 break;
@@ -242,10 +243,6 @@ public class MainActivityFragmentFormCombat extends Fragment {
             case 2:
                 simpleAtk.animate().translationXBy(-200).setDuration(1000).start();
                 barrageShot.animate().scaleX(2).scaleY(2).alpha(0).setDuration(1000).start();
-                break;
-            case 3:
-                simpleAtk.animate().translationXBy(-200).setDuration(1000).start();
-                barrageShot.animate().translationXBy(200).setDuration(1000).start();
                 break;
         }
     }
@@ -277,12 +274,10 @@ public class MainActivityFragmentFormCombat extends Fragment {
         fabDmg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 fabDmg.animate().setDuration(1000).translationX(+400).start();
                 Snackbar.make(view, "Calcul des dégâts en cours... ", Snackbar.LENGTH_SHORT).show();
                 AlphaAnimation anim = new AlphaAnimation(0, 1);
                 anim.setDuration(2000);
-
                 checkSelectedRolls();
                 if (firstDmgRoll) {
                     startDamage();

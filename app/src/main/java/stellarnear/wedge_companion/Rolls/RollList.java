@@ -21,7 +21,7 @@ public class RollList {
         String element = elementArg.length > 0 ? elementArg[0] : "";
         int sum=0;
         for (Roll roll:this.rollList){
-            sum+=roll.getDmgSum(element);
+                sum += roll.getDmgSum(element);
         }
         return sum;
     }

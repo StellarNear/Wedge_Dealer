@@ -423,8 +423,19 @@ public class Perso {
                         dailyUse =getAbilityMod("ability_sagesse");
                         break;
                     // Partie Halda
-                    case "1+(lvl-5)/6":
-                        dailyUse =1+((int)((mainPJlvl-5)/6));
+                    case "1+(lvl-5)/6":  //c'est pour fortune
+                        if(allCapacities.capacityIsActive("capacity_epic_revelation_fortune")){
+                            dailyUse =2*(1+((int)((mainPJlvl-5)/6)));
+                        } else {
+                            dailyUse =1+((int)((mainPJlvl-5)/6));
+                        }
+                        break;
+                    case "1+CHA":
+                        if(allCapacities.capacityIsActive("capacity_epic_revelation_canal")){
+                            dailyUse =2*(1+getAbilityMod("ability_charisme"));
+                        } else {
+                            dailyUse =1+getAbilityMod("ability_charisme");
+                        }
                         break;
                 }
             } else {
