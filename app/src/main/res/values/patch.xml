@@ -6,8 +6,13 @@
     </string>
 
 <string name="patch_list">"----------------------------------------------------------------------------------
-Patch note V1.0
-
+Patch note v1.0
+Les quatres personnages sont gérés :Halda, Wedge, Sylphe, Rana
+-Gestion des objets
+-Gestion des sorts
+-Menu d'attaque
+-Activité d'aide
+-Lancement de compétences
 ----------------------------------------------------------------------------------
 </string>
 
