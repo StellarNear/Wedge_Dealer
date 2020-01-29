@@ -92,7 +92,8 @@ public class DSSFDmgInfoManager {
         TextView titleMax = createTextElement("max");
         lineMax.addView(titleMax);
 
-        for (String elemId : elems.getListSpellsKeys()) {
+        for(Map.Entry<String,CheckBox> entry:mapElemCheckbox.entrySet()){
+            String elemId = entry.getKey();
             int minDmg=selectedDamageShortList.filterByElem(elemId).getMinDmg();
             int moyDmg=selectedDamageShortList.filterByElem(elemId).getDmgMoy();
             int maxDmg=selectedDamageShortList.filterByElem(elemId).getMaxDmg();
