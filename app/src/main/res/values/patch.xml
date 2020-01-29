@@ -10,9 +10,16 @@ Patch note v1.0
 Les quatres personnages sont gérés :Halda, Wedge, Sylphe, Rana
 -Gestion des objets
 -Gestion des sorts
--Menu d'attaque
+-Gestion des formes druidiques
+-Menu d'attaques
 -Activité d'aide
 -Lancement de compétences
+-Capcités actives
+-Thème par personnage
+-Menus personnalisés par perso
+-Gestion de sauvegarde vers fichier externe
+-Transmission Shadowlink
+etc (toutes les features des deux autres applis sont présentes !)
 ----------------------------------------------------------------------------------
 </string>
 
