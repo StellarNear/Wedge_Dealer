@@ -60,7 +60,7 @@ public class MainActivityFragmentCombat extends Fragment {
     private PreRandValues preRandValues;
     private PostRandValues postRandValues;
     private SetupCheckboxes setupCheckboxes;
-    private Damages damages;
+    private Damages damages=null;
     private RangesAndProba rangesAndProba;
     private DisplayRolls displayRolls;
 
@@ -83,6 +83,7 @@ public class MainActivityFragmentCombat extends Fragment {
         View.OnClickListener listnerBackToMain = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                saveRollStats();
                 Fragment fragment = new MainActivityFragment();
                 FragmentManager fragmentManager = getActivity().getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -96,6 +97,14 @@ public class MainActivityFragmentCombat extends Fragment {
 
         setupScreen();
         return mainPage;
+    }
+
+    private void saveRollStats() {
+        if((pj.getAllForms()==null || !pj.getAllForms().hasActiveForm())
+            && damages!=null){
+            pj.getStats().storeStatsFromRolls(rollList);
+            tools.customToast(getContext(),"Round sauvegardé","short");
+        }
     }
 
     private void animate(final ImageView buttonMain) {
@@ -189,6 +198,8 @@ public class MainActivityFragmentCombat extends Fragment {
                             .setIcon(android.R.drawable.ic_menu_help)
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int whichButton) {
+                                    saveRollStats();
+                                    bitePanel.hide();
                                     preRandValues = null;
                                     startRandAtk();
                                 }
@@ -238,7 +249,6 @@ public class MainActivityFragmentCombat extends Fragment {
         rollList = new RangeRollFactory(getActivity(), getContext(), mode).getRollList();
         preRandValues = new PreRandValues(getContext(), mainPage, rollList);
         combatBonusPanel.addRollData(preRandValues,rollList);
-        // ajout du panneau additionel (lynx_eye etc)
         if (damages != null) {
             damages.hideViews();
         }

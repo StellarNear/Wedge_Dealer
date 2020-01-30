@@ -403,6 +403,7 @@ public class SettingsFragment extends PreferenceFragment {
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 pj.getStats().reset();
+                                settings.edit().putString("highscore"+PersoManager.getPJSuffix(),"0").apply();
                                 tools.customToast(mC,"Reset éffectué","center");
                             }
                         })

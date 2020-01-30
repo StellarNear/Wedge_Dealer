@@ -46,11 +46,11 @@ public class Stats {
         this.statsList =new StatsList();
     }
 
-    public void storeStatsFromRolls(RollList selectedRolls) {
+    public void storeStatsFromRolls(RollList allRolls) {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
         if (!settings.getBoolean("switch_demo_mode",mC.getResources().getBoolean(R.bool.switch_demo_mode_def))){
             Stat stat = new Stat();
-            stat.feedStat(selectedRolls);
+            stat.feedStat(allRolls);
             statsList.add(stat);
             saveLocalStats();
         }

@@ -74,7 +74,7 @@ public abstract class AtkRoll {
                 critCheckbox.setChecked(false);
                 hitCheckbox.setEnabled(false);
                 critCheckbox.setEnabled(false);
-                return false;
+                return true;
             }
         });
 

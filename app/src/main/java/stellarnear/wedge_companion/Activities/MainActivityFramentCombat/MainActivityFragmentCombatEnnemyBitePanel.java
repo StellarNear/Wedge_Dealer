@@ -219,10 +219,12 @@ public class MainActivityFragmentCombatEnnemyBitePanel {
 
             int sumElem = 0;
             for(Roll roll : selectedRolls.getList()){
-                if(mapRollCheckbox.get(roll).isChecked()){
-                    sumElem+=2*roll.getDmgSum(elem);
-                } else {
-                    sumElem+=roll.getDmgSum(elem);
+                if(mapRollCheckbox.get(roll)!=null) {
+                    if (mapRollCheckbox.get(roll).isChecked()) {
+                        sumElem += 2 * roll.getDmgSum(elem);
+                    } else {
+                        sumElem += roll.getDmgSum(elem);
+                    }
                 }
             }
             sumTotalNew+=sumElem;
