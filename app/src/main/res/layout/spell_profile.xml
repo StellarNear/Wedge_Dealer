@@ -31,7 +31,7 @@
                     android:layout_height="wrap_content"
                     android:singleLine="true"
                     android:text="Dummy Longest Spell Title"
-                    android:maxWidth="210dp"
+                    android:maxWidth="250dp"
                     android:ellipsize="marquee"
                     android:marqueeRepeatLimit="marquee_forever"
                     android:scrollHorizontally="true"

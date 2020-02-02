@@ -207,7 +207,7 @@ public class MainActivityFragmentCanalisation extends Fragment {
                             snackbar.show();
                         } else if(canalCapaSelected.getId().equalsIgnoreCase("canalcapacity_heal_trigger")){
                             final SharedPreferences settings=PreferenceManager.getDefaultSharedPreferences(getContext());
-                            String previousCond = settings.getString("canalcapacity_heal_trigger_condition","");
+                            final String previousCond = settings.getString("canalcapacity_heal_trigger_condition","");
                             if( pj.getCurrentResourceValue("resource_heal_trigger")>0){
                                 new PostData(getContext(),new PostDataElement("Déclenchement de "+canalCapaSelected.getName(),"Condition : "+previousCond,"Lancement d'une canalisation automatique"));
                                 pj.getAllResources().getResource("resource_heal_trigger").spend(1);
@@ -224,8 +224,9 @@ public class MainActivityFragmentCanalisation extends Fragment {
                                 alert.setIcon(R.drawable.ic_notifications_black_24dp);
                                 alert.setPositiveButton("Ajouter", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int whichButton) {
-                                        settings.edit().putString("canalcapacity_heal_trigger_condition",edittext.getText().toString()).apply();
-                                        new PostData(getContext(),new PostDataElement("Initialisation de "+canalCapaSelected.getName(),"Condition : "+edittext.getText().toString(),"Programmation d'une canalisation automatique\n(-1 pt mythique)"));
+                                        String testToStore = edittext.getText().toString().equalsIgnoreCase("")? previousCond:edittext.getText().toString();
+                                        settings.edit().putString("canalcapacity_heal_trigger_condition",testToStore).apply();
+                                        new PostData(getContext(),new PostDataElement("Initialisation de "+canalCapaSelected.getName(),"Condition : "+testToStore,"Programmation d'une canalisation automatique\n(-1 pt mythique)"));
                                         pj.getAllResources().getResource("resource_mythic_points").spend(1);
                                         pj.getAllResources().getResource("resource_heal_trigger").earn(1);
                                         Snackbar snackbar = Snackbar.make(view, txt, Snackbar.LENGTH_LONG);

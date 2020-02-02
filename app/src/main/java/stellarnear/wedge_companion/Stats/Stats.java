@@ -8,6 +8,7 @@ import android.util.Log;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Rolls.RollList;
 import stellarnear.wedge_companion.TinyDB;
+import stellarnear.wedge_companion.Tools;
 
 public class Stats {
     private StatsList statsList = new StatsList();
@@ -53,6 +54,7 @@ public class Stats {
             stat.feedStat(allRolls);
             statsList.add(stat);
             saveLocalStats();
+            new Tools().customToast(mC,"Round sauvegardé","short");
         }
     }
 

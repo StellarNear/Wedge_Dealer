@@ -16,7 +16,7 @@ Dure 1 min/d6 de la canalisation.</descr>
 
 
     <canalcapacity>
-        <name>Corp d'énergie</name>
+        <name>Canalisation d'énergie conditionnée</name>
         <cost>1</cost>
         <descr>Dépenser une utilisation de pouvoir mythique en même temps qu’une utilisation de son aptitude de canalisation d’énergie pour retarder sa canalisation d’énergie afin qu’elle s’active sous certaines conditions prédéterminées.  Il peut exclure des cibles qu’il doit nommer à cet instant. Seule une utilisation de cette aptitude peut être en attente de déclenchement en même temps ; si le personnage l’utilise à nouveau, la précédente prend fin.</descr>
         <shortdescr>Dépense aussi un point mythique. Retarde sa canalisation d’énergie afin qu’elle s’active sous certaines conditions prédéterminées.</shortdescr>

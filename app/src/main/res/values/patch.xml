@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="version">"v1.0"</string>
-    <string name="time_spend">149h</string>
+    <string name="version">"v1.1"</string>
+    <string name="time_spend">151h</string>
     <string name="basic_infos">"Application développée pour gagner un temps considérable fin 2017."
     </string>
 
 <string name="patch_list">"----------------------------------------------------------------------------------
+Patch note v1.1
+-Fix nom de capacité canalisation d'énergie
+-Fix affichage de condition quand on utilise le placeholder (canal_trigger)
+-Feature : affichage des métamagies sur les sorts en cliquant le rang
+-Feature : Défilement des noms de sort trop long
+----------------------------------------------------------------------------------
 Patch note v1.0
 Les quatres personnages sont gérés :Halda, Wedge, Sylphe, Rana
 -Gestion des objets

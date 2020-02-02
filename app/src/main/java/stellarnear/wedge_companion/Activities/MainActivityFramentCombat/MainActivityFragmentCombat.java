@@ -103,7 +103,6 @@ public class MainActivityFragmentCombat extends Fragment {
         if((pj.getAllForms()==null || !pj.getAllForms().hasActiveForm())
             && damages!=null){
             pj.getStats().storeStatsFromRolls(rollList);
-            tools.customToast(getContext(),"Round sauvegardé","short");
         }
     }
 

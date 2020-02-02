@@ -80,7 +80,7 @@ public class BuildSpontaneousSpellList extends AppCompatActivity {
                             getValue("cast_time",element2),
                             getValue("duration",element2),
                             getValue("compo",element2),
-                            getValue("compoM",element2),  //on s'en fou pour Halda car ignore les compo mais pour l'objet Spell
+                            getValue("compo_m",element2),  //on s'en fou pour Halda car ignore les compo mais pour l'objet Spell
                             getValue("rm",element2),
                             getValue("save_type",element2),
                             tools.toInt(getValue("rank",element2)),

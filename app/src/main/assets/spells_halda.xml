@@ -474,7 +474,8 @@
         <range>contact</range>
         <cast_time>simple</cast_time>
         <duration>instant</duration>
-        <compo>V,G,M+(100po ou 1000po de pousière de diamant)</compo>
+        <compo>V,G,M+</compo>
+        <compo_m>100po ou 1000po de pousière de diamant</compo_m>
         <rank>4</rank>
         <type>buff</type>
         <from_mystery>true</from_mystery>
@@ -747,7 +748,8 @@
         <range>contact</range>
         <cast_time>3rounds</cast_time>
         <duration>instant</duration>
-        <compo>V,G,M+(5kpo poussière de diamant)</compo>
+        <compo>V,G,M+</compo>
+        <compo_m>5kpo poussière de diamant</compo_m>
         <rank>7</rank>
         <type>buff</type>
         <from_mystery>true</from_mystery>
@@ -760,7 +762,8 @@
         <range>contact</range>
         <cast_time>1min</cast_time>
         <duration>instant</duration>
-        <compo>V,G,M+(diamant 10kpo)</compo>
+        <compo>V,G,M+</compo>
+        <compo_m>diamant 10kpo</compo_m>
         <rank>7</rank>
         <type>util</type>
     </spell>
@@ -890,7 +893,8 @@
         <descr>Ce sort rend la vie au défunt. Il fonctionne uniquement sur les créatures mortes depuis un maximum de dix ans par niveau de lanceur de sorts. De plus, l’âme concernée doit être libre et désireuse de revenir à la vie. Si elle refuse, le sort échoue automatiquement (c’est pourquoi il n’y a pas de jet de sauvegarde). Au terme de l’incantation, le sujet se réveille en pleine forme (avec son maximum de points de vie et la totalité de ses sorts préparés en mémoire). Il ne perd pas de niveau ni de points de Constitution. Ce sort peut redonner la vie à quelqu’un dont le corps a été entièrement détruit, à condition d’identifier clairement le sujet (le plus souvent, en le nommant et en ajoutant son lieu de naissance ou son lieu de décès).. L’équipement et les possessions matérielles du bénéficiaire ne sont pas affectés par le sort.</descr>      <range>contact</range>
         <cast_time>10min</cast_time>
         <duration>1round/lvl</duration>
-        <compo>V,G,M+(diamant 25kpo)</compo>
+        <compo>V,G,M+</compo>
+        <compo_m>diamant 25kpo</compo_m>
         <rank>9</rank>
         <type>util</type>
         <from_mystery>true</from_mystery>

@@ -63,6 +63,7 @@ public class SpellProfile {
         ((TextView)profile.findViewById(R.id.spell_name)).postDelayed(new Runnable() {
             @Override
             public void run() {
+                ((TextView)profile.findViewById(R.id.spell_name)).setSelected(true);
                 ((TextView)profile.findViewById(R.id.description)).setSelected(true);
             }
         }, 1500);
@@ -76,7 +77,7 @@ public class SpellProfile {
         testSpellForColorTitle();
 
         ((TextView)profile.findViewById(R.id.current_rank)).setText("(rang : "+ calculationSpell.currentRank(spell)+")");
-
+        setMetaPopup((TextView)profile.findViewById(R.id.current_rank));
         if(!pj.getAllResources().checkSpellAvailable(calculationSpell.currentRank(spell))){
             ((TextView)profile.findViewById(R.id.current_rank)).setTextColor(Color.RED);
         }else {
@@ -92,6 +93,23 @@ public class SpellProfile {
         }, 1500);
 
         printInfo();
+    }
+
+    private void setMetaPopup(TextView viewById) {
+        viewById.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(spell.getMetaList().hasAnyMetaActive()){
+                    String text =" Liste des métamagies :";
+                    for(Metamagic meta : spell.getMetaList().asList()){
+                        if(meta.isActive()) {
+                            text += "\n" + meta.getName() + " (" + meta.getUprank() + ")";
+                        }
+                    }
+                    tools.customToast(mC,text,"center");
+                }
+            }
+        });
     }
 
     private void popupLongText(String descr) {
