@@ -222,7 +222,6 @@ public class Perso {
 
         if (allAbilities.getAbi(abiId) != null) {
             abiScore = allAbilities.getAbi(abiId).getValue();
-            if(allForms!=null && allForms.hasActiveForm()){abiScore+=allForms.getFormAbilityModif(abiId);}
             if (abiId.equalsIgnoreCase("ability_ca")) {
                 abiScore = 10;
                 if(pjID.equalsIgnoreCase("sylphe")|| pjID.equalsIgnoreCase("rana")){
@@ -343,6 +342,7 @@ public class Perso {
                 abiScore+=allForms.getMaxResistBonus();
             }
         }
+        if(allForms!=null && allForms.hasActiveForm()){abiScore+=allForms.getFormAbilityModif(abiId);}
         return abiScore;
     }
 
@@ -469,13 +469,15 @@ public class Perso {
                     case "1d6+1/lvl":
                         value = 1 + new Random().nextInt(6) + mainPJlvl;
                         break;
+                    case "(lvl-18)/3":
+                        value = (int) ((mainPJlvl - 18)/3);
+                        break;
                 }
             } else {
                 value = tools.toInt(cap.getValueString());
             }
             cap.setValue(value);
         }
-
     }
 
     // spells

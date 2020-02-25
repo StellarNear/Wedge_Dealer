@@ -25,11 +25,10 @@ public class RangedRoll extends Roll {
                 }
             }
 
-            if(isilliritInitBoost){
-                ((RangeDmgRoll)dmgRollList.get(0)).makeIsilliritInitBoosted();
-            }
-
             for(DmgRoll dmgRoll:this.dmgRollList){
+                if(isilliritInitBoost){
+                    ((RangeDmgRoll)dmgRoll).makeIsilliritInitBoosted();
+                }
                 dmgRoll.setDmgRand();
             }
         }

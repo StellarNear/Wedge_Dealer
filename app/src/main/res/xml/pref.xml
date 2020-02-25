@@ -52,8 +52,8 @@
 
         <PreferenceScreen
             android:key="pref_refresh"
-            android:summary="Réinitialise des les paramètres"
-            android:icon="@drawable/ic_undo_black_24dp"
+            android:summary="Réinitialise des paramètres"
+            android:icon="@drawable/ic_refresh_black_24dp"
             android:title="Refresh/Reset des paramètres" />
 
         <PreferenceScreen

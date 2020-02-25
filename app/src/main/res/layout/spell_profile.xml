@@ -37,6 +37,7 @@
                     android:scrollHorizontally="true"
                     android:fadingEdge="horizontal"
                     android:textAlignment="center"
+                    android:gravity="center"
                     android:textColor="@color/black"
                     android:textSize="22sp"
                     />
@@ -48,6 +49,7 @@
                     android:layout_marginStart="@dimen/general_margin"
                     android:text="(rang : 6)"
                     android:textAlignment="center"
+                    android:gravity="center"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -102,42 +104,50 @@
                             android:layout_columnWeight="1"
                             android:layout_rowWeight="1"
                             android:textAlignment="center"
+                            android:gravity="center"
                             android:text="Dégats:3d10"/>
                         <TextView
                             android:layout_columnWeight="1"
                             android:layout_rowWeight="1"
                             android:text="Type:feu"
+                            android:gravity="center"
                             android:textAlignment="center" />
                         <TextView
                             android:layout_columnWeight="1"
                             android:layout_rowWeight="1"
                             android:text="Portée:3m"
+                            android:gravity="center"
                             android:textAlignment="center" />
                         <TextView
                             android:layout_columnWeight="1"
                             android:layout_rowWeight="1"
                             android:text="Range:3m"
+                            android:gravity="center"
                             android:textAlignment="center" />
                         <TextView
                             android:layout_columnWeight="1"
                             android:layout_rowWeight="1"
                             android:layout_height="wrap_content"
                             android:text="Compos:V,G"
+                            android:gravity="center"
                             android:textAlignment="center" />
                         <TextView
                             android:layout_columnWeight="1"
                             android:layout_rowWeight="1"
                             android:text="Durée:26min"
+                            android:gravity="center"
                             android:textAlignment="center" />
                         <TextView
                             android:layout_columnWeight="1"
                             android:layout_rowWeight="1"
                             android:text="RM:non"
-                            android:gravity="center" />
+                            android:gravity="center"
+                            android:textAlignment="center" />
                         <TextView
                             android:layout_columnWeight="1"
                             android:layout_rowWeight="1"
                             android:text="Save:ref[annule](21)"
+                            android:gravity="center"
                             android:textAlignment="center" />
                     </GridLayout>
 
@@ -184,6 +194,7 @@
                         android:layout_marginStart="@dimen/general_margin"
                         android:text="Appliquer une métamagie"
                         android:textAlignment="center"
+                        android:gravity="center"
                         android:textColor="@color/darker_gray"
                         android:textSize="20sp" />
                 </LinearLayout>
@@ -225,6 +236,7 @@
                             android:layout_marginStart="@dimen/general_margin"
                             android:text="Jet de contact"
                             android:textAlignment="center"
+                            android:gravity="center"
                             android:textColor="@color/darker_gray"
                             android:textSize="20sp" />
 

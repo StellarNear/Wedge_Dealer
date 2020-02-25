@@ -18,7 +18,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintDimensionRatio="w,1:1"/>
 
-
     <ImageButton
         android:id="@+id/button_quadrant_full_exit"
         android:layout_width="50dp"

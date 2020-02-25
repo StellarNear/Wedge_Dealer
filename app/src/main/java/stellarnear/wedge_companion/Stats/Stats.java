@@ -15,6 +15,7 @@ public class Stats {
     private TinyDB tinyDB;
     private String pjID="";
     private Context mC;
+    private Tools tools= new Tools();
 
     public Stats(Context mC,String pjID){
         this.mC=mC;
@@ -54,7 +55,9 @@ public class Stats {
             stat.feedStat(allRolls);
             statsList.add(stat);
             saveLocalStats();
-            new Tools().customToast(mC,"Round sauvegardé","short");
+            tools.customToast(mC,"Jet d'attaque sauvegardé","short");
+        } else {
+            tools.customToast(mC,"Mode démo activé pas de sauvegarde","short");
         }
     }
 
@@ -69,5 +72,10 @@ public class Stats {
 
     public void loadFromSave() {
         refreshStats();
+    }
+
+    public void removeLast() {
+        statsList.removeLastStat();
+        saveLocalStats();
     }
 }

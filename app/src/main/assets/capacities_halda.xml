@@ -114,6 +114,7 @@
         <type>Oracle épique</type>
         <id>capacity_unraveled_mystery</id>
         <descr>Les sort bonus issu du mystere de l’oracle se reforcent. Nimporte quel dons de métamagie peut etre appliqué sur ces sorts par une action libre. Le niveau d’auguementation du rang de l’emplacement de sort est réduit de 1 et les jet de resistance que les sorts pourraient engendrer auguemente de 1.</descr>
+        <value>(lvl-18)/3</value>
     </capacity>
 
     <capacity>

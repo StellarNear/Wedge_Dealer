@@ -37,6 +37,7 @@
                     android:scrollHorizontally="true"
                     android:fadingEdge="horizontal"
                     android:textAlignment="center"
+                    android:gravity="center"
                     android:textColor="@color/black"
                     android:textSize="22sp"
                     />
@@ -91,41 +92,49 @@
                             android:layout_columnWeight="1"
                             android:layout_rowWeight="1"
                             android:textAlignment="center"
+                            android:gravity="center"
                             android:text="Dégats:3d10"/>
                         <TextView
                             android:layout_columnWeight="1"
+                             android:gravity="center"
                             android:layout_rowWeight="1"
                             android:text="Type:feu"
                             android:textAlignment="center" />
                         <TextView
                             android:layout_columnWeight="1"
                             android:layout_rowWeight="1"
+                            android:gravity="center"
                             android:text="Portée:3m"
                             android:textAlignment="center" />
                         <TextView
                             android:layout_columnWeight="1"
                             android:layout_rowWeight="1"
                             android:text="Range:3m"
+                            android:gravity="center"
                             android:textAlignment="center" />
                         <TextView
                             android:layout_columnWeight="1"
                             android:layout_rowWeight="1"
                             android:layout_height="wrap_content"
                             android:text="Compos:V,G"
+                            android:gravity="center"
                             android:textAlignment="center" />
                         <TextView
                             android:layout_columnWeight="1"
                             android:layout_rowWeight="1"
+                            android:gravity="center"
                             android:text="Durée:26min"
                             android:textAlignment="center" />
                         <TextView
                             android:layout_columnWeight="1"
                             android:layout_rowWeight="1"
                             android:text="RM:non"
+                            android:textAlignment="center"
                             android:gravity="center" />
                         <TextView
                             android:layout_columnWeight="1"
                             android:layout_rowWeight="1"
+                            android:gravity="center"
                             android:text="Save:ref[annule](21)"
                             android:textAlignment="center" />
                     </GridLayout>

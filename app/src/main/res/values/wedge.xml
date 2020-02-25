@@ -32,7 +32,7 @@
     <integer name="ability_charisme_base_def">16</integer>
 
     <!-- augement perma -->
-    <integer name="ability_force_augment_def">0</integer>
+    <integer name="ability_force_augment_def">4</integer>
     <integer name="ability_dexterite_augment_def">0</integer>
     <integer name="ability_constitution_augment_def">0</integer>
     <integer name="ability_intelligence_augment_def">0</integer>

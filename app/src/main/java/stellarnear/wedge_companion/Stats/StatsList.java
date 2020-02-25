@@ -225,4 +225,10 @@ public class StatsList {
     public boolean contains(Stat lastStat) {
         return listStats.contains(lastStat);
     }
+
+    public void removeLastStat() {
+        if(listStats.size()>0) {
+            listStats.remove(listStats.size() - 1);
+        }
+    }
 }

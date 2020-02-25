@@ -125,7 +125,9 @@ public class PetDamages {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
         int currentHigh = new Tools().toInt(settings.getString("highscore"+PersoManager.getPJSuffix(), "0"));
         if (currentHigh < sumDmg) {
-            settings.edit().putString("highscore"+PersoManager.getPJSuffix(),String.valueOf(sumDmg)).apply();
+            if (!settings.getBoolean("switch_demo_mode",mC.getResources().getBoolean(R.bool.switch_demo_mode_def))) {
+                settings.edit().putString("highscore" + PersoManager.getPJSuffix(), String.valueOf(sumDmg)).apply();
+            }
             Tools tools = new Tools();
             tools.playVideo(mA,mC,"/raw/explosion");
             tools.customToast(mC, String.valueOf(sumDmg) + " dégats !\nC'est un nouveau record !", "center");

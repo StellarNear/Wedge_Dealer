@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="version">"v1.1"</string>
-    <string name="time_spend">151h</string>
+    <string name="version">"v1.2"</string>
+    <string name="time_spend">152h</string>
     <string name="basic_infos">"Application développée pour gagner un temps considérable fin 2017."
     </string>
 
 <string name="patch_list">"----------------------------------------------------------------------------------
+Patch note v1.2
+-Ajout des capacités d'Issilirit (Init damage)
+-Ajout de la nouvelle ceinture
+-Fix des sauvegarde de rounds dans stats
+----------------------------------------------------------------------------------
 Patch note v1.1
 -Fix nom de capacité canalisation d'énergie
 -Fix affichage de condition quand on utilise le placeholder (canal_trigger)

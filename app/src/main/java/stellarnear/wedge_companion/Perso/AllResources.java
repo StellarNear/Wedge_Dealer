@@ -95,12 +95,6 @@ public class AllResources {
             e.printStackTrace();
         }
 
-        if(allFeats.featIsActive("feat_heroic_recovery") && getResource("resource_heroic_recovery")!=null){
-            getResource("resource_heroic_recovery").setMax(1);
-        } else if(getResource("resource_heroic_recovery")!=null){
-            getResource("resource_heroic_recovery").setMax(0);
-        }
-
         // Partie sort
         Resource displaySpellResource = getResource("resource_display_rank");
         if(displaySpellResource!=null){ //ca veut dire que dans asset resource on a souhaité cette resource
@@ -213,6 +207,20 @@ public class AllResources {
             getResource("resource_legendary_points").setMax(readResource("resource_legendary_points"));
         } catch (Exception e) { }
 
+        if(allFeats.featIsActive("feat_heroic_recovery") && getResource("resource_heroic_recovery")!=null){
+            try {
+                getResource("resource_heroic_recovery").setMax(1);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else if(getResource("resource_heroic_recovery")!=null){
+            try {
+                getResource("resource_heroic_recovery").setMax(0);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
         if(rankManager!=null){rankManager.refreshMax();}
 
         for(Resource resource : listResources){
@@ -279,7 +287,6 @@ public class AllResources {
                 mapIDRes.remove(res.getId(),res);
             }
         }
-
         addCapacitiesResources();
     }
 }

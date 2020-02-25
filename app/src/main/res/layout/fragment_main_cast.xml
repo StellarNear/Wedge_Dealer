@@ -26,6 +26,7 @@
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 android:text="Liste des sorts"
+                android:gravity="center"
                 android:textAlignment="center"
                 android:textColor="?attr/colorBackground"
                 android:textSize="20sp" />
@@ -97,6 +98,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:textAlignment="center"
+                    android:gravity="center"
                     />
             </ScrollView>
         </LinearLayout>

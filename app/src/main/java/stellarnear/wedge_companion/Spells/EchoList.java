@@ -16,6 +16,7 @@ import stellarnear.wedge_companion.PostData;
 import stellarnear.wedge_companion.PostDataElement;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.TinyDB;
+import stellarnear.wedge_companion.Tools;
 
 public class EchoList {
 
@@ -23,6 +24,7 @@ public class EchoList {
     private static SpellList echoList;
     private CustomAlertDialog tooltipAlert;
     private OnRefreshEventListener mListener;
+    private Tools tools=new Tools();
 
     public static EchoList getInstance(Context mC) {  //pour eviter de relire le xml à chaque fois
         if (instance==null){
@@ -31,10 +33,8 @@ public class EchoList {
         return instance;
     }
 
-    private Context mC;
     private TinyDB tinyDB;
     private EchoList(Context mC){
-        this.mC=mC;
         this.tinyDB = new TinyDB(mC);
         try {
             loadFromSetting();
@@ -106,7 +106,7 @@ public class EchoList {
             viewById.addView(line);
             ImageView delete = new ImageView(mC);
             delete.setImageDrawable(mC.getDrawable(R.drawable.ic_cast_swirl));
-            delete.setLayoutParams(new LinearLayout.LayoutParams(150,150));
+            delete.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT));
             delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

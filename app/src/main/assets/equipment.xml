@@ -30,6 +30,9 @@
         <imgId>equipped_feet</imgId>
         <slotId>feet_slot</slotId>
         <equipped>true</equipped>
+        <abilityUp>
+            <ability_force>2</ability_force>
+        </abilityUp>
     </equipment>
     <equipment>
         <name>Amulette de négation</name>
@@ -103,15 +106,14 @@ Dispense le porteur du besoin de manger boire et respirer.</descr>
     </equipment>
     <equipment>
         <name>Ceinture de la perfection physique</name>
-        <descr>+6 Force +6 const +6 dext</descr>
+        <descr>+10 Dex +10 Con</descr>
         <imgId>equipped_belt</imgId>
         <slotId>belt_slot</slotId>
-        <value>144000po</value>
+        <value>2500000po</value>
         <equipped>true</equipped>
         <abilityUp>
-            <ability_force>6</ability_force>
-            <ability_dexterite>6</ability_dexterite>
-            <ability_constitution>6</ability_constitution>
+            <ability_dexterite>10</ability_dexterite>
+            <ability_constitution>10</ability_constitution>
         </abilityUp>
     </equipment>
     <equipment>

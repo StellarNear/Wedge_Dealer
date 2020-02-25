@@ -74,7 +74,6 @@ public class MainActivityFragmentCombatBonusPanel {
         boostInitCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Resource resLynxEye = pj.getAllResources().getResource("resource_lynx_eye");
                 new AlertDialog.Builder(mC)
                         .setTitle("Demande de confirmation")
                         .setMessage("Voulez vous utiliser la capacité d'Isillirit de boost de dégats lié à l'initiative ?")
@@ -150,25 +149,29 @@ public class MainActivityFragmentCombatBonusPanel {
                 @Override
                 public void onClick(View view) {
                     final Resource resLynxEye = pj.getAllResources().getResource("resource_lynx_eye");
-                    new AlertDialog.Builder(mC)
-                            .setTitle("Demande de confirmation")
-                            .setMessage("Voulez vous utiliser "+ resLynxEye.getName() +" sur ce jet d'attaque ?")
-                            .setIcon(android.R.drawable.ic_menu_help)
-                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int whichButton) {
-                                    roll.lynxEyeBoost();
-                                    check.setEnabled(false);
-                                    check.setOnClickListener(null);
-                                    preRandValues.refresh();
-                                    resLynxEye.spend(1);
-                                    nUsageLynxRemaning.setText("Utilisations restantes : "+pj.getCurrentResourceValue("resource_lynx_eye"));
-                                    tools.customToast(mC, resLynxEye.getName() + " lancée !\n"+
-                                            "Il te reste "+resLynxEye.getCurrent()+" utilisations", "center");
-                                    new PostData(mC, new PostDataElement("Utilisation de la capacité\n" +
-                                            resLynxEye.getName(), resLynxEye.getCapaDescr()));
-                                }
-                            })
-                            .setNegativeButton(android.R.string.no, null).show();
+                    if(resLynxEye.getCurrent()>0) {
+                        new AlertDialog.Builder(mC)
+                                .setTitle("Demande de confirmation")
+                                .setMessage("Voulez vous utiliser " + resLynxEye.getName() + " sur ce jet d'attaque ?")
+                                .setIcon(android.R.drawable.ic_menu_help)
+                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                        roll.lynxEyeBoost();
+                                        check.setEnabled(false);
+                                        check.setOnClickListener(null);
+                                        preRandValues.refresh();
+                                        resLynxEye.spend(1);
+                                        nUsageLynxRemaning.setText("Utilisations restantes : " + pj.getCurrentResourceValue("resource_lynx_eye"));
+                                        tools.customToast(mC, resLynxEye.getName() + " lancée !\n" +
+                                                "Il te reste " + resLynxEye.getCurrent() + " utilisations", "center");
+                                        new PostData(mC, new PostDataElement("Utilisation de la capacité\n" +
+                                                resLynxEye.getName(), resLynxEye.getCapaDescr()));
+                                    }
+                                })
+                                .setNegativeButton(android.R.string.no, null).show();
+                    } else {
+                        tools.customToast(mC,"Tu n'as plus d'utilisation d'oeil de Lynx","center");
+                    }
                 }
             });
         }

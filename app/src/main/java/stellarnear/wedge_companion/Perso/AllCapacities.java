@@ -18,7 +18,6 @@ import java.util.Map;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Tools;
 
 /**
@@ -70,10 +69,6 @@ public class AllCapacities {
                             readValue("value", element2),
                             mC,
                             pjID);
-                    if(capacity.getId().equalsIgnoreCase("capacity_unraveled_mystery")){
-                        int valRed=tools.toInt(settings.getString("capacity_unraveled_mystery_metamagic_reduc", String.valueOf(mC.getResources().getInteger(R.integer.capacity_unraveled_mystery_metamagic_reduc_def))));
-                        capacity.setValue(valRed);
-                    }
                     allCapacities.add(capacity);
                     mapIdcapacity.put(capacity.getId(),capacity);
                 }

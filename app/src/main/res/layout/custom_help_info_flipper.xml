@@ -30,6 +30,7 @@
             android:orientation="vertical"
             android:layout_gravity="center"
             android:textAlignment="center"
+            android:gravity="center"
             android:layout_weight="3">
 
             <TextView
@@ -38,6 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="top|center_horizontal"
                 android:textAlignment="center"
+                android:gravity="center"
                 android:layout_marginBottom="@dimen/general_margin"
                 android:text="PM is here"
                 android:textAppearance="?android:attr/textAppearanceLarge"

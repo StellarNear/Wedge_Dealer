@@ -38,7 +38,6 @@ public class GuardianList {
 
     private Context mC;
     private TinyDB tinyDB;
-
     private GuardianList(Context mC){
         this.mC=mC;
         this.tinyDB = new TinyDB(mC);
@@ -132,7 +131,7 @@ public class GuardianList {
             viewById.addView(line);
             ImageView delete = new ImageView(mC);
             delete.setImageDrawable(mC.getDrawable(R.drawable.ic_trigger_spell));
-            delete.setLayoutParams(new LinearLayout.LayoutParams(150,150));
+            delete.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT));
             delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

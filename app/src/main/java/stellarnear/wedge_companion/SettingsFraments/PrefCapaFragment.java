@@ -2,20 +2,16 @@ package stellarnear.wedge_companion.SettingsFraments;
 
 import android.app.Activity;
 import android.content.Context;
-import android.preference.Preference;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
-import android.text.InputType;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import stellarnear.wedge_companion.EditTextPreference;
 import stellarnear.wedge_companion.Perso.Capacity;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
-import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Tools;
 
 public class PrefCapaFragment {
@@ -30,7 +26,7 @@ public class PrefCapaFragment {
 
     public void addCapaList(PreferenceScreen screen) {
         screen.setOrderingAsAdded(true);
-      Map<String, PreferenceCategory> map = buildCategoryList(screen);
+        Map<String, PreferenceCategory> map = buildCategoryList(screen);
         for (Capacity capacity : pj.getAllCapacities().getAllCapacitiesList()) {
             putCapa(capacity,map.get(capacity.getType()));
         }
@@ -55,24 +51,19 @@ public class PrefCapaFragment {
         SwitchPreference switch_feat = new SwitchPreference(mC);
         switch_feat.setKey("switch_" + capacity.getId()+pj.getID());
         switch_feat.setTitle(capacity.getName());
-        switch_feat.setSummary(capacity.getDescr());
+        String descr="";
+        if(capacity.getDailyUse()!=0){
+            descr+=capacity.getDailyUse()+"/j ";
+        }
+        if (capacity.getValue()!=0){
+            descr+="Valeur : "+capacity.getValue();
+        }
+        if(!descr.equalsIgnoreCase("")){
+            descr+="\n";
+        }
+        descr+=capacity.getDescr();
+        switch_feat.setSummary(descr);
         switch_feat.setDefaultValue(true);
         category.addPreference(switch_feat);
-
-        if(capacity.getId().equalsIgnoreCase("capacity_unraveled_mystery")) {
-            EditTextPreference reducMeta = new EditTextPreference(mC, InputType.TYPE_CLASS_TEXT);
-            reducMeta.setTitle("Valeur de reduction métamagie");
-            reducMeta.setKey("capacity_unraveled_mystery_metamagic_reduc");
-            reducMeta.setDefaultValue(String.valueOf(mC.getResources().getInteger(R.integer.capacity_unraveled_mystery_metamagic_reduc_def)));
-            reducMeta.setSummary("Valeur : %s");
-            reducMeta.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-                @Override
-                public boolean onPreferenceChange(Preference preference, Object o) {
-                    capacity.setValue(tools.toInt(o.toString()));
-                    return false;
-                }
-            });
-            category.addPreference(reducMeta);
-        }
     }
 }
