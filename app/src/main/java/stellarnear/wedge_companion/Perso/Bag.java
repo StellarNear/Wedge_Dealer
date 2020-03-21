@@ -41,7 +41,7 @@ public class Bag {
     private Activity mA;
     private Boolean removable;
     private Context mC;
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
     private String pjID="";
     private TinyDB tinyDB;
 

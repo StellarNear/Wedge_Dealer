@@ -36,7 +36,7 @@ public class AllResources {
     private List<Resource> listResources = new ArrayList<>();
     private SpellsRanksManager rankManager=null;
     private SharedPreferences settings;
-    private Tools tools = new Tools();
+    private Tools tools = Tools.getTools();
     private String pjID="";
 
     public AllResources(Context mC,AllFeats allFeats,AllAbilities allAbilities,AllCapacities allCapacities,String pjID) {

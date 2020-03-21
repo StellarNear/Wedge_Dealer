@@ -28,7 +28,7 @@ public class CanalisationAlertDialog {
     private CanalisationCapacity canal;
     private View dialogView;
     private OnRefreshEventListener mListener;
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
 
     public CanalisationAlertDialog(Activity mA, Context mC, CanalisationCapacity canal) {
         this.mA=mA;

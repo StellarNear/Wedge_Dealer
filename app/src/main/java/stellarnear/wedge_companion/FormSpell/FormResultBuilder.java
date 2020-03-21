@@ -32,7 +32,7 @@ public class FormResultBuilder {
     private Activity mA;
     private FormCalculationSpell calculationSpell =new FormCalculationSpell();
     private DisplayedText displayedText=new DisplayedText();
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
 
 
     public FormResultBuilder(Activity mA, Context mC, FormPower spell){

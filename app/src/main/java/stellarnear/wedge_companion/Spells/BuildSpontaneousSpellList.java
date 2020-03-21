@@ -21,7 +21,7 @@ public class BuildSpontaneousSpellList extends AppCompatActivity {
     private static BuildSpontaneousSpellList instanceHada=null;
 
     public SpellList allSpells = null;
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
 
 
     public static BuildSpontaneousSpellList getInstance(Context mC) {  //pour eviter de relire le xml à chaque fois

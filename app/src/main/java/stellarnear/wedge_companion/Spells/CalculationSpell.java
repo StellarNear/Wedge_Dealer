@@ -9,7 +9,7 @@ import stellarnear.wedge_companion.Tools;
 
 public class CalculationSpell {
     private Perso pj = PersoManager.getCurrentPJ();
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
 
     public CalculationSpell(){}
 
@@ -41,7 +41,7 @@ public class CalculationSpell {
                 val = (int) (casterLevel() * spell.getN_dice_per_lvl());
             }
         }
-        if(spell.getMetaList().metaIdIsActive("meta_extend")){
+        if(spell.getMetaList().metaIdIsActive("meta_moon") && !spell.getDice_type().contains("lvl") && !spell.getDice_type().equalsIgnoreCase("")){
             val = (int)(val * 1.5);
         }
         return val;

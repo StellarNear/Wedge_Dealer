@@ -20,7 +20,7 @@ public class BuildMetaList {
 
     private static BuildMetaList instance = null;
     private MetaList metaList;
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
 
     public static BuildMetaList getInstance(Context mC) {  //pour eviter de relire le xml à chaque fois
         if (instance==null){

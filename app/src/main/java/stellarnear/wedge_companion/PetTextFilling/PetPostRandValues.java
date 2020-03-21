@@ -24,7 +24,7 @@ public class PetPostRandValues {
     private View mainView;
     private RollList rollList;
     private SharedPreferences settings;
-    private Tools tools = new Tools();
+    private Tools tools = Tools.getTools();
 
     public PetPostRandValues(Context mC, View mainView, RollList rollList) {
         this.mC = mC;

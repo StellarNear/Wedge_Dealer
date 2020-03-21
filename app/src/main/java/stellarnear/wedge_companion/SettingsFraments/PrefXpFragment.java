@@ -18,7 +18,7 @@ public class PrefXpFragment {
     private Activity mA;
     private Context mC;
     private SharedPreferences settings;
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
     public PrefXpFragment(Activity mA,Context mC) {
         this.mA=mA;
         this.mC=mC;

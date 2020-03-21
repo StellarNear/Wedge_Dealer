@@ -25,7 +25,7 @@ public class FormPower {
     private String  save_type;
     private SharedPreferences settings;
     private Cast cast;
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
     private FormSpellProfile spellProfile;
     private int dmgResult=0;
 

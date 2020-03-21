@@ -26,7 +26,7 @@ public class AllCanalisationCapacities {
     private Context mC;
     private List<CanalisationCapacity> allCanalCapacities = new ArrayList<>();
     private Map<String, CanalisationCapacity> mapIdCanalcapacity =new HashMap<>();
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
 
     public AllCanalisationCapacities(Context mC)
     {

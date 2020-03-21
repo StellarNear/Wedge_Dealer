@@ -40,7 +40,7 @@ public class MainActivityFragmentCombatBonusPanel {
     private int basicRange;
     public Perso pj= PersoManager.getCurrentPJ();
     private boolean addBonusPanelIsVisible=false;
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
     
     public MainActivityFragmentCombatBonusPanel(final Context mC, View mainPage){
         this.mC=mC;

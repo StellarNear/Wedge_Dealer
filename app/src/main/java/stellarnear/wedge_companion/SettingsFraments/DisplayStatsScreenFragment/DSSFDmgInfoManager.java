@@ -30,7 +30,7 @@ public class DSSFDmgInfoManager {
     private boolean allStats;
     private int infoTxtSize = 12;
 
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
 
     public DSSFDmgInfoManager(View mainView, Map<String,CheckBox> mapElemCheckbox, Context mC) {
         this.mainView = mainView;

@@ -79,7 +79,7 @@ public class PrefSleepScreenFragment extends Preference {
 
 
     private void sleep() {
-        final Tools tools = new Tools();
+        final Tools tools = Tools.getTools();
         new PostData(mC,new RemoveDataElementAllSpellArrow());
         tools.customToast(mC, "Fais de beaux rêves !", "center");
         int time = 1000; // in milliseconds
@@ -113,7 +113,7 @@ public class PrefSleepScreenFragment extends Preference {
     }
 
     private void halfSleep() {
-        final Tools tools = new Tools();
+        final Tools tools = Tools.getTools();
         tools.customToast(mC, "Fais de beaux rêves !", "center");
         int time = 1000; // in milliseconds
         Handler h = new Handler();

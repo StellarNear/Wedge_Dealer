@@ -24,7 +24,7 @@ public class EchoList {
     private static SpellList echoList;
     private CustomAlertDialog tooltipAlert;
     private OnRefreshEventListener mListener;
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
 
     public static EchoList getInstance(Context mC) {  //pour eviter de relire le xml à chaque fois
         if (instance==null){

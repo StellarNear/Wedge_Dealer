@@ -18,7 +18,7 @@ public class PrefCapaFragment {
     private Perso pj = PersoManager.getCurrentPJ();
     private Activity mA;
     private Context mC;
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
     public PrefCapaFragment(Activity mA, Context mC) {
         this.mA = mA;
         this.mC = mC;

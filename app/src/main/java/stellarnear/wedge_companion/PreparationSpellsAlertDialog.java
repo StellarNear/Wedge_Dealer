@@ -45,7 +45,7 @@ public class PreparationSpellsAlertDialog {
     private SpellList oldSaveSpells;
     private SpellList allSpells;
     private Perso wedge=PersoManager.getPJ("Wedge");
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
 
     private SpellsRanksManager manager;
     private Map<Integer,Integer> mapSpellToPickForRank=new HashMap<>();

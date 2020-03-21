@@ -31,7 +31,7 @@ public class HealthDialog {
     private AlertDialog alertDialog;
     private View dialogView;
     private OnRefreshEventListener mListener;
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
 
     public HealthDialog(Activity mA, Context mC) {
         this.mA=mA;

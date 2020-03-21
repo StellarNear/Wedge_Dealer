@@ -25,7 +25,7 @@ public abstract class DmgRoll {
 
     protected DiceList allDiceList = new DiceList();
 
-    protected Tools tools = new Tools();
+    protected Tools tools = Tools.getTools();
     protected Perso pj = PersoManager.getCurrentPJ();
 
     public DmgRoll(Activity mA, Context mC, Boolean critConfirmed, Boolean naturalCrit) {

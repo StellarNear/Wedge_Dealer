@@ -15,7 +15,7 @@ public class Stats {
     private TinyDB tinyDB;
     private String pjID="";
     private Context mC;
-    private Tools tools= new Tools();
+    private Tools tools= Tools.getTools();
 
     public Stats(Context mC,String pjID){
         this.mC=mC;

@@ -30,7 +30,7 @@ public class DrawableSymbolsSingleton {
     private Drawable averageRange;
     private Drawable longRange;
 
-    private Tools tools =new Tools();
+    private Tools tools =Tools.getTools();
     private DrawableSymbolsSingleton(Context mC){
         mystSymbol=tools.resize(mC, R.drawable.ic_myst_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
         utilSymbol=tools.resize(mC, R.drawable.ic_util_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));

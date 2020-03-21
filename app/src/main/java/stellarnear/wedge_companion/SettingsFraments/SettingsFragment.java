@@ -46,7 +46,7 @@ public class SettingsFragment extends PreferenceFragment {
     private String currentPageKey;
     private String currentPageTitle;
 
-    private Tools tools = new Tools();
+    private Tools tools = Tools.getTools();
     private SharedPreferences settings;
     private PrefAllInventoryFragment prefAllInventoryFragment;
     private PrefXpFragment prefXpFragment;

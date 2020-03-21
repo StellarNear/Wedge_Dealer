@@ -11,7 +11,7 @@ import stellarnear.wedge_companion.Perso.PersoManager;
 
 public class CalculationAtk {
 
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
     private Context mC;
     private SharedPreferences preferences;
 
@@ -47,7 +47,7 @@ public class CalculationAtk {
             String valDef = mC.getResources().getString(valDefId);
             String baseAtksTxt = preferences.getString("jet_att"+PersoManager.getPJSuffix(), valDef);     //cherche la clef     jet_att dans les setting sinon valeur def (xml)
             String delim = ",";
-            List<Integer> baseAtks = new Tools().toInt(Arrays.asList(baseAtksTxt.split(delim)));
+            List<Integer> baseAtks = Tools.getTools().toInt(Arrays.asList(baseAtksTxt.split(delim)));
             baseAtk=baseAtks.get(0);
         } catch (Exception e) {
             e.printStackTrace();

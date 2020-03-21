@@ -19,7 +19,7 @@ public class PrefSpellRankFragment {
     private Context mC;
     private SpellsRanksManager rankManager;
     private PreferenceCategory spell;
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
     public PrefSpellRankFragment(Activity mA, Context mC){
         this.mA=mA;
         this.mC=mC;

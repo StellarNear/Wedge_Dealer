@@ -17,7 +17,7 @@ public class PetRollFactory {
     private String mode;
     private RollList rollList;
     private SharedPreferences settings;
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
     private Perso pj = PersoManager.getCurrentPJ();
 
     public PetRollFactory(Activity mA, Context mC, String mode){

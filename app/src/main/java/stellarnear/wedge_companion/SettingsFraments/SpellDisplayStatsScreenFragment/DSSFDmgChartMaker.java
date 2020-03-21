@@ -45,7 +45,7 @@ public class DSSFDmgChartMaker {
 
     private int minRound,maxRound,nSteps;
     private int sizeStep;
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
 
     public DSSFDmgChartMaker(BarChart chart, Map<String,CheckBox> mapElemCheckbox, Context mC) {
         this.chart=chart;

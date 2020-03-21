@@ -28,7 +28,7 @@ public class PetDamages {
     private ElemsManager elems;
     private Perso pj = PersoManager.getCurrentPJ();
 
-    private Tools tools = new Tools();
+    private Tools tools = Tools.getTools();
 
     public PetDamages(Activity mA, Context mC, View mainView, RollList selectedRolls) {
         this.mA = mA;
@@ -123,12 +123,12 @@ public class PetDamages {
 
     private void checkHighscore(int sumDmg) {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
-        int currentHigh = new Tools().toInt(settings.getString("highscore"+PersoManager.getPJSuffix(), "0"));
+        int currentHigh = Tools.getTools().toInt(settings.getString("highscore"+PersoManager.getPJSuffix(), "0"));
         if (currentHigh < sumDmg) {
             if (!settings.getBoolean("switch_demo_mode",mC.getResources().getBoolean(R.bool.switch_demo_mode_def))) {
                 settings.edit().putString("highscore" + PersoManager.getPJSuffix(), String.valueOf(sumDmg)).apply();
             }
-            Tools tools = new Tools();
+            Tools tools = Tools.getTools();
             tools.playVideo(mA,mC,"/raw/explosion");
             tools.customToast(mC, String.valueOf(sumDmg) + " dégats !\nC'est un nouveau record !", "center");
         }

@@ -27,7 +27,7 @@ public class SpellProfile {
     private SpellProfileManager profileManager;
     private OnRefreshEventListener mListener;
     private Perso pj = PersoManager.getCurrentPJ();
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
 
     public SpellProfile(Spell spell){
         this.spell=spell;

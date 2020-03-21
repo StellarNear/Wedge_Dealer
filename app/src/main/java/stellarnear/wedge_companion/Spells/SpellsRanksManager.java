@@ -11,7 +11,7 @@ import stellarnear.wedge_companion.Perso.Resource;
 import stellarnear.wedge_companion.Tools;
 
 public class SpellsRanksManager {
-    private Tools tools= new Tools();
+    private Tools tools= Tools.getTools();
     private SharedPreferences settings;
     private int highestSpellRank=0;
     private ArrayList<Resource> spellTiers=new ArrayList<>();

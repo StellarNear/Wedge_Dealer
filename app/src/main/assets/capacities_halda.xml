@@ -95,13 +95,6 @@
         <descr>Par une action immédiate, il peut obliger une créature située dans les 9 mètres à relancer un jet de d20 qu’il vient de faire avant d’en connaître le résultat. La cible doit conserver le résultat du second jet, même s’il est pire que le premier. Une fois qu’une créature a été affectée par la mauvaise fortune de l’oracle, elle ne peut plus en être victime pendant 1 jour.</descr>
     </capacity>
 
-    <capacity>
-        <name>Caresse de la lune</name>
-        <type>Malédiction Légaliste</type>
-        <id>capacity_revelation_moon_touch</id>
-        <descr>Les sorts de soins semblent de même plus efficaces, bien que leur efficacité soit partiellement chimérique. Il peut dépenser deux emplacements de sort en lançant un sort de soin pour lui appliquer les effets du don Extension d'effet sans augmenter son niveau, mais le sort confère des points de vie temporaires au lieu de soigner les blessures. Ces points de vie durent une minute par niveau d'oracle.</descr>
-    </capacity>
-
 
     <capacity>
         <name>Révélation finale</name>

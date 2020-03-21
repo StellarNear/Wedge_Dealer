@@ -24,6 +24,18 @@ import java.util.List;
 
 public class Tools {
 
+    private static Tools instance;
+
+    public Tools(){  }
+
+    public static Tools getTools(){
+        if (instance==null){
+            instance = new Tools();
+        }
+        return instance;
+    }
+
+
     public Double toDouble(String key) {
         Double value;
         try {

@@ -20,7 +20,7 @@ public class SliderBuilder {
     private CalculationSpell calculationSpell;
     private OnCastEventListener mListener;
     private SeekBar seek;
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
 
     public SliderBuilder(Context mC,Spell spell){
         this.mC=mC;

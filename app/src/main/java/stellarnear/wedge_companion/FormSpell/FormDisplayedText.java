@@ -6,7 +6,7 @@ import stellarnear.wedge_companion.Tools;
 
 public class FormDisplayedText {
     private Perso pj = PersoManager.getCurrentPJ();
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
     private FormCalculationSpell calculationSpell =new FormCalculationSpell();
 
     public FormDisplayedText(){  }

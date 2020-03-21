@@ -19,7 +19,7 @@ public class FormSpellProfileManager {
     private View profile;
     private ViewFlipper panel;
     private Boolean resultDisplayed =false; //pour aps revenir au panneau central si le sort a ses dégats affiché
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
     private FormSliderBuilder sliderBuild;
     private OnRefreshEventListener mListener;
 

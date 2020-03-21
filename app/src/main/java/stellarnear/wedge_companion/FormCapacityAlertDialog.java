@@ -34,7 +34,7 @@ public class FormCapacityAlertDialog {
     private FormCapacity capa;
     private View dialogView;
     private OnRefreshEventListener mListener;
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
     private boolean firstLaunch=true;
 
     public FormCapacityAlertDialog(Activity mA, Context mC, FormCapacity capa) {

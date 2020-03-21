@@ -52,7 +52,7 @@ public class DSSFTime {
     private int nDate=0;
     private LineChart chartDmg;
     private LineChart chartRank;
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
 
     public DSSFTime(View mainView, Context mC) {
         this.mainView = mainView;

@@ -25,8 +25,8 @@
         android:title="Quintessence des sorts (+3)" />
 
     <SwitchPreference
-        android:defaultValue="@bool/meta_extend_switch_def"
-        android:key="meta_extend_switch"
+        android:defaultValue="@bool/meta_moon_switch_def"
+        android:key="meta_moon_switch"
         android:summary="Augmente les variables des sorts de 50% et les soins donnes des points de vies temporaires"
         android:title="Caresse de la Lune (+2)" />
 

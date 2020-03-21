@@ -28,7 +28,7 @@ public class ImgForDice {
     private Dice dice;
     private Dice surgeDice;
     private ImageView img;
-    private Tools tools = new Tools();
+    private Tools tools = Tools.getTools();
     private Perso pj = PersoManager.getCurrentPJ();
     private boolean wasRand=false;
     private boolean canBeLegendarySurge=false;

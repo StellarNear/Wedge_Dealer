@@ -8,7 +8,7 @@ import stellarnear.wedge_companion.Tools;
 
 public class RollList {
     private List<Roll> rollList;
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
     public RollList() {
         this.rollList= new ArrayList<>();
     }

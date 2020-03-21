@@ -31,7 +31,7 @@ public class MainActivityFragmentSkill extends Fragment {
     private Perso pj = PersoManager.getCurrentPJ();
     private LinearLayout linearSkillScroll;
     private View returnFragView;
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
     public MainActivityFragmentSkill() {
     }
 

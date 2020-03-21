@@ -54,7 +54,7 @@ public class DSSFSpell {
     private View mainView;
     private int infoTxtSize=12;
     private int rankSelectedForPieChart =-1;
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
 
     public DSSFSpell(View mainView, Context mC) {
         this.mainView=mainView;

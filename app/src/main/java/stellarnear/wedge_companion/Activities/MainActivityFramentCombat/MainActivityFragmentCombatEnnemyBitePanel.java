@@ -37,7 +37,7 @@ public class MainActivityFragmentCombatEnnemyBitePanel {
     private View pannel;
     public Perso pj= PersoManager.getCurrentPJ();
     private boolean addBonusPanelIsVisible=false;
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
     private ElemsManager elems;
     private int nCostLeg=0;
     private OnConfirmationBoostEventListener mListener;

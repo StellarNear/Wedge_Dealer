@@ -16,7 +16,7 @@ public class WheelDicePicker extends AppCompatActivity {
     private Context mC;
     private int valueSelected;
     private Dice dice;
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
     public WheelDicePicker(RelativeLayout relativeCenter, Dice dice, Context mC) {
         this.mC = mC;
         this.dice=dice;

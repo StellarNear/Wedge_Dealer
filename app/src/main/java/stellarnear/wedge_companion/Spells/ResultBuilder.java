@@ -34,7 +34,7 @@ public class ResultBuilder {
     private Activity mA;
     private CalculationSpell calculationSpell ;
     private DisplayedText displayedText=new DisplayedText();
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
 
 
     public ResultBuilder(Activity mA, Context mC, Spell spell){
@@ -152,7 +152,7 @@ public class ResultBuilder {
 
     private void checkHighScore(int sumDmg) {
         if(spell.isHighscore(sumDmg,mC)){
-            Tools tools = new Tools();
+            Tools tools = Tools.getTools();
             tools.playVideo(mA,mC,"/raw/explosion");
             tools.customToast(mC, String.valueOf(sumDmg) + " !\nC'est un nouveau record !", "center");
         }

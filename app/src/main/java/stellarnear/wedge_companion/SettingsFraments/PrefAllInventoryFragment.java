@@ -31,7 +31,7 @@ public class PrefAllInventoryFragment {
     private Inventory inventory;
     private Activity mA;
     private Context mC;
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
     private OnRefreshEventListener mListener;
     private Perso pj =PersoManager.getCurrentPJ();
 

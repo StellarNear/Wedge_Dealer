@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="version">"v1.2"</string>
+    <string name="version">"v1.3"</string>
     <string name="time_spend">152h</string>
     <string name="basic_infos">"Application développée pour gagner un temps considérable fin 2017."
     </string>
 
 <string name="patch_list">"----------------------------------------------------------------------------------
+Patch note v1.3
+-bugfix calcul des abilité forme  animale (double niveau dans l'abilité et dans le perso)
+-bugfix caresse de la lune métamagie
+----------------------------------------------------------------------------------
 Patch note v1.2
 -Ajout des capacités d'Issilirit (Init damage)
 -Ajout de la nouvelle ceinture

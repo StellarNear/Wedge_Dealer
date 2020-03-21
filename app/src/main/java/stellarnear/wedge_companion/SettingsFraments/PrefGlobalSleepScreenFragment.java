@@ -82,7 +82,7 @@ public class PrefGlobalSleepScreenFragment extends Preference {
 
 
     private void sleep() {
-        final Tools tools = new Tools();
+        final Tools tools = Tools.getTools();
         new PostData(mC,new RemoveDataElementAllSpellArrow().forceCaster("Wedge"));
         new PostData(mC,new RemoveDataElementAllSpellArrow().forceCaster("Halda"));
 
@@ -123,7 +123,7 @@ public class PrefGlobalSleepScreenFragment extends Preference {
     }
 
     private void halfSleep() {
-        final Tools tools = new Tools();
+        final Tools tools = Tools.getTools();
         new PostData(mC,new PostDataElement("Nuit de repos (sans sorts) Globale","Recharge des ressources journalières").forceTargetSheet("Wedge"));
         new PostData(mC,new PostDataElement("Nuit de repos (sans sorts) Globale","Recharge des ressources journalières").forceTargetSheet("Halda"));
         new PostData(mC,new PostDataElement("Nuit de repos (sans sorts) Globale","Recharge des ressources journalières").forceTargetSheet("Sylphe"));

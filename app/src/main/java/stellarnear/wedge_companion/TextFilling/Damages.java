@@ -29,7 +29,7 @@ public class Damages {
     private Perso pj = PersoManager.getCurrentPJ();
     private int totalSum;
 
-    private Tools tools = new Tools();
+    private Tools tools = Tools.getTools();
 
     public Damages(Activity mA,Context mC, View mainView, RollList selectedRolls) {
         this.mA = mA;
@@ -125,12 +125,12 @@ public class Damages {
 
     private void checkHighscore() {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
-        int currentHigh = new Tools().toInt(settings.getString("highscore"+PersoManager.getPJSuffix(), "0"));
+        int currentHigh = Tools.getTools().toInt(settings.getString("highscore"+PersoManager.getPJSuffix(), "0"));
         if (currentHigh < totalSum) {
             if (!settings.getBoolean("switch_demo_mode",mC.getResources().getBoolean(R.bool.switch_demo_mode_def))) {
                 settings.edit().putString("highscore" + PersoManager.getPJSuffix(), String.valueOf(totalSum)).apply();
             }
-            Tools tools = new Tools();
+            Tools tools = Tools.getTools();
             tools.playVideo(mA,mC,"/raw/explosion");
             tools.customToast(mC, String.valueOf(totalSum) + " dégats !\nC'est un nouveau record !", "center");
         }

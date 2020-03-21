@@ -27,7 +27,7 @@ public class BuildPreparedSpellList extends AppCompatActivity {
     public SpellList preparedSpells = null;
     public SpellList allSpells = null;
 
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
     private TinyDB myDB;
 
 

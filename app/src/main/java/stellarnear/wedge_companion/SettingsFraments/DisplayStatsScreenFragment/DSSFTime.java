@@ -44,7 +44,7 @@ public class DSSFTime {
     private int infoTxtSize=10;
     private LineChart chartAtk;
     private LineChart chartDmg;
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
 
     public DSSFTime(View mainView, Context mC) {
         this.mainView = mainView;

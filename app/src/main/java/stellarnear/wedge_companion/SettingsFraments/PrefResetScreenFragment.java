@@ -71,7 +71,7 @@ public class PrefResetScreenFragment extends Preference {
 
     private void clearSettings() {
         int time = 1500; // in milliseconds
-        final Tools tools = new Tools();
+        final Tools tools = Tools.getTools();
         Handler h = new Handler();
         h.postDelayed(new Runnable() {
             @Override

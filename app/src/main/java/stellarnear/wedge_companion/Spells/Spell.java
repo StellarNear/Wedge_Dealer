@@ -252,7 +252,7 @@ public class Spell {
     }
 
     public boolean isHighscore(int val,Context mC){
-        Tools tools=new Tools();
+        Tools tools=Tools.getTools();
         boolean returnVal=false;
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
         int highscore=settings.getInt(this.id+"_highscore",0);
@@ -285,7 +285,7 @@ public class Spell {
 
         final CheckBox check = metaList.getMetaByID(metaId).getCheckBox(mA, mC);
 
-        if(metaId.equalsIgnoreCase("meta_extend") && !this.dmg_type.getDmgType().equalsIgnoreCase("") &&  this.dice_type.equalsIgnoreCase("lvl")){
+        if(metaId.equalsIgnoreCase("meta_moon") && !this.dmg_type.getDmgType().equalsIgnoreCase("heal")) {
             check.setEnabled(false);
         }
 

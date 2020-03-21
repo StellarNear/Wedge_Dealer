@@ -54,7 +54,7 @@ public class Perso {
 
     private String pjID;
 
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
     private Context mC;
     private SharedPreferences prefs;
 
@@ -83,7 +83,6 @@ public class Perso {
         allAbilities = new AllAbilities(mC,inventory,allForms,pjID);
         computeCapacities(); // on a besoin de skill et abi pour les usages et valeur des capas
         allResources = new AllResources(mC,allFeats,allAbilities,allCapacities,pjID);
-
     }
 
     // Getters

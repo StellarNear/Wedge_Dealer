@@ -43,7 +43,7 @@ public class AllForms {
     private Map<String, FormPower> mapIdPower =new HashMap<>();
 
     private AllFormsAbiModifCalculation modifCalculation=new AllFormsAbiModifCalculation();
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
 
     public AllForms(Context mC)
     {

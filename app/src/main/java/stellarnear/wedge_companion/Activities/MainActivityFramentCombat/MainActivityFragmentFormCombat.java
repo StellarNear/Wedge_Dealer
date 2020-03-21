@@ -62,7 +62,7 @@ public class MainActivityFragmentFormCombat extends Fragment {
     private RangesAndProba rangesAndProba;
     private DisplayRolls displayRolls;
 
-    private Tools tools = new Tools();
+    private Tools tools = Tools.getTools();
 
 
     public MainActivityFragmentFormCombat() {

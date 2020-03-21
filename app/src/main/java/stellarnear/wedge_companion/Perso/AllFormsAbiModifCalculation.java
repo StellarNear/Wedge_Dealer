@@ -7,7 +7,7 @@ import stellarnear.wedge_companion.Tools;
  * Created by jchatron on 09/12/2019.
  */
 public class AllFormsAbiModifCalculation {
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
 
     public AllFormsAbiModifCalculation()
     {

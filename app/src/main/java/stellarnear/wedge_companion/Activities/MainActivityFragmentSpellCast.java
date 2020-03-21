@@ -25,7 +25,7 @@ import stellarnear.wedge_companion.Tools;
 public class MainActivityFragmentSpellCast extends Fragment {
     private Perso pj= PersoManager.getCurrentPJ();
     private SpellList selectedSpells;
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
     private CalculationSpell calculationSpell ;
     private TextView round;
     private LinearLayout mainLin;

@@ -45,7 +45,7 @@ public class MainActivityFragmentCanalisation extends Fragment {
     private CanalisationCapacity canalCapaSelected;
 
     private Button valid;
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
     public MainActivityFragmentCanalisation() {
 
     }

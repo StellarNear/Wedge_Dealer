@@ -9,7 +9,7 @@ import stellarnear.wedge_companion.Tools;
 
 public class DisplayedText {
     private Perso pj = PersoManager.getCurrentPJ();
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
     private CalculationSpell calculationSpell=new CalculationSpell();
 
     public DisplayedText(){ }

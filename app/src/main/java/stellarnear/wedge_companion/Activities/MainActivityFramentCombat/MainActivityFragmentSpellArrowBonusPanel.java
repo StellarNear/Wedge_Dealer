@@ -37,7 +37,7 @@ public class MainActivityFragmentSpellArrowBonusPanel {
 
     public Perso pj= PersoManager.getCurrentPJ();
     private boolean addBonusPanelIsVisible=false;
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
 
     private List<GetData.PairSpellUuid> arrowsSpellsUuids;
 

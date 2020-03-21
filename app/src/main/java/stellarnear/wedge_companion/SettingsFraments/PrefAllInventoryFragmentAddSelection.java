@@ -25,7 +25,7 @@ public class PrefAllInventoryFragmentAddSelection {
 
     private Activity mA;
     private Context mC;
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
     private Map<String,Integer> mapAbiUp=new HashMap<>();
     private Map<String,Integer> mapSkillUp=new HashMap<>();
     private Perso pj=PersoManager.getCurrentPJ();

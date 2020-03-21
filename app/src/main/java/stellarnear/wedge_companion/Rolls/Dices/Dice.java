@@ -19,7 +19,7 @@ public class Dice {
     private boolean delt=false;
     private boolean canCrit=false;
     private boolean canBeLegendarySurge=false;
-    private Tools tools= new Tools();
+    private Tools tools= Tools.getTools();
 
     private Dice mythicDice; //si c'est un d20 il a un dés mythic attaché
 

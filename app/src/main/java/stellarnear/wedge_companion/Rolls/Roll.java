@@ -22,7 +22,7 @@ public abstract class Roll {
     protected Activity mA;
     protected Context mC;
     protected SharedPreferences settings;
-    protected Tools tools=new Tools();
+    protected Tools tools=Tools.getTools();
     protected Perso pj = PersoManager.getCurrentPJ();
     protected String mode;
     protected boolean biteBoosted=false;

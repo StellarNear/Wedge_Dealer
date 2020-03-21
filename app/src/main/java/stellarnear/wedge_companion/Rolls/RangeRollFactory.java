@@ -21,7 +21,7 @@ public class RangeRollFactory {
     private String mode;
     private RollList rollList;
     private SharedPreferences settings;
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
     private Perso pj= PersoManager.getCurrentPJ();
 
     public RangeRollFactory(Activity mA, Context mC, String mode){

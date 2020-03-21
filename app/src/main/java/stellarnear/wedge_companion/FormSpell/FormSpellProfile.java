@@ -25,7 +25,7 @@ public class FormSpellProfile {
     private FormSpellProfileManager profileManager;
     private OnRefreshEventListener mListener;
     private Perso pj = PersoManager.getCurrentPJ();
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
 
     public FormSpellProfile(FormPower spell){
         this.spell=spell;

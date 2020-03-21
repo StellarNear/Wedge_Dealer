@@ -33,7 +33,7 @@ public class SpellProfileManager {
     private ViewFlipper panel;
     private Boolean resultDisplayed =false; //pour aps revenir au panneau central si le sort a ses dégats affiché
     private CustomAlertDialog metaPopup;
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
     private SliderBuilder sliderBuild;
     private OnRefreshEventListener mListener;
 

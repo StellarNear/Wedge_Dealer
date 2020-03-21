@@ -36,7 +36,7 @@ public class TestRMAlertDialog {
     private Perso pj = PersoManager.getCurrentPJ();
     private Dice dice;
 
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
 
     public TestRMAlertDialog(Activity mA, Context mC, Spell spell) {
         this.mA=mA;

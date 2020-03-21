@@ -47,7 +47,7 @@ public class DSSFGraph {
     private int infoTxtSize=10;
     private LineChart chartDmgRank;
     private LineChart chartMetaDmg;
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
 
     public DSSFGraph(View mainView, Context mC) {
         this.mainView = mainView;

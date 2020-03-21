@@ -42,7 +42,7 @@ public abstract class AtkRoll {
     protected Perso pj = PersoManager.getCurrentPJ();
 
     protected OnRefreshEventListener mListener;
-    protected Tools tools=new Tools();
+    protected Tools tools=Tools.getTools();
 
     public AtkRoll(Activity mA,Context mC, Integer base) {
         this.mA=mA;

@@ -51,7 +51,7 @@ public class MainActivityFragmentForm extends Fragment {
     private ViewFlipper flipper;
     private Map<View,Form> mapViewForm=new HashMap<>();
     private List<ImageView> listImgCategories = new ArrayList<>();
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
     private float x1Gesture, x2Gesture;
     private long t1Gesture, t2Gesture;
     public MainActivityFragmentForm() {

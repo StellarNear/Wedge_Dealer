@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 
 public class XpBarPreference extends Preference {
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
 
     public XpBarPreference(Context context, AttributeSet attrs) {
         super(context, attrs);

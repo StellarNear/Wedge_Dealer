@@ -30,7 +30,7 @@ public class PrefHallOfFameFragment extends Preference {
     private Context mC;
     private View mainView;
     private LinearLayout fameList;
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
 
     public PrefHallOfFameFragment(Context context, AttributeSet attrs) {
         super(context, attrs);

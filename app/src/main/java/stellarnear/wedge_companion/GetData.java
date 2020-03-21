@@ -29,7 +29,7 @@ import stellarnear.wedge_companion.Spells.Spell;
 public class GetData {
     private ProgressDialog dialog;
     private Context mC;
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
     private List<PairSpellUuid> listPairSpellUuidList =new ArrayList<>();
     private OnDataRecievedEventListener mListener;
     public GetData(Context mC){

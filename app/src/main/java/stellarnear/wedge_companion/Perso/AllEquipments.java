@@ -29,7 +29,7 @@ public class AllEquipments {
     private Context mC;
     private Activity mA;
     private Boolean editable;
-    private Tools tools = new Tools();
+    private Tools tools = Tools.getTools();
     private TinyDB tinyDB;
     private String pjID="";
     private DisplayEquipmentManager displayEquipmentManager=null;

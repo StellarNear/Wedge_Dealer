@@ -42,7 +42,7 @@ public class ContactAlertDialog {
 
     private OnRefreshEventListener mListener;
 
-    private Tools tools = new Tools();
+    private Tools tools = Tools.getTools();
 
     public ContactAlertDialog(Activity mA, Context mC, Spell spell) {
         this.mA=mA;

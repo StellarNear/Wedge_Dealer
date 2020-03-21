@@ -53,7 +53,7 @@ public class PetActivityFragmentCombat extends Fragment {
     private PetRangesAndProba rangesAndProba;
     private DisplayRolls displayRolls;
 
-    private Tools tools = new Tools();
+    private Tools tools = Tools.getTools();
 
 
     public PetActivityFragmentCombat() {

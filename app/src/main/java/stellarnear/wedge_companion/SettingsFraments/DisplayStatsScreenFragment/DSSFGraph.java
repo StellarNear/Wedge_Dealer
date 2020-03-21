@@ -43,7 +43,7 @@ public class DSSFGraph {
     private LineChart chartDmgNAtk;
     private LineChart chartElemDmgNCrit;
     private int nthAtkMax=0;
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
 
     public DSSFGraph(View mainView, Context mC) {
         this.mainView = mainView;

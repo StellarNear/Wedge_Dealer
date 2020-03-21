@@ -19,7 +19,7 @@ public class Skill {
     private int bonus;
     private Context mC;
     private String pjID="";
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
 
     public Skill(String name, String abilityDependence, String descr, String id, Context mC,String pjID){
         this.name=name;

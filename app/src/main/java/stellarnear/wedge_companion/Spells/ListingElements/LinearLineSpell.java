@@ -34,7 +34,7 @@ public class LinearLineSpell {
 
     private CheckBox checkbox;
 
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
     private DrawableSymbolsSingleton drawableSymbolsSingleton;
     private Perso pj= PersoManager.getCurrentPJ();
 

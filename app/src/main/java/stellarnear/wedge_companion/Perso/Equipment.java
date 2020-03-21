@@ -125,7 +125,7 @@ public class Equipment {
     public void setAbilityUp(Element element) {
         try {//try car il peut ne pas y avoir de abilityUp
             NodeList abilityUp = element.getElementsByTagName("abilityUp").item(0).getChildNodes();
-            Tools tools =new Tools();
+            Tools tools =Tools.getTools();
             for (int i = 0; i < abilityUp.getLength(); i++) {
                 Node node = abilityUp.item(i);
                 if(node.getNodeType() == Node.ELEMENT_NODE) {
@@ -147,7 +147,7 @@ public class Equipment {
     public void setSkillUp(Element element) {
         try { //try car il peut ne pas y avoir de skillUp
             NodeList skillUp = element.getElementsByTagName("skillUp").item(0).getChildNodes();
-            Tools tools =new Tools();
+            Tools tools =Tools.getTools();
             for (int i = 0; i < skillUp.getLength(); i++) {
                 Node node = skillUp.item(i);
                 if(node.getNodeType() == Node.ELEMENT_NODE) {

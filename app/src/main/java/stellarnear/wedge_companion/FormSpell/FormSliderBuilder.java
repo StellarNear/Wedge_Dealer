@@ -17,7 +17,7 @@ public class FormSliderBuilder {
     private Context mC;
     private OnCastEventListener mListener;
     private SeekBar seek;
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
 
     public FormSliderBuilder(Context mC, FormPower spell){
         this.mC=mC;

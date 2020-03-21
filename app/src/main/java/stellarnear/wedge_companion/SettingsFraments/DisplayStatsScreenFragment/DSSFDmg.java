@@ -42,7 +42,7 @@ public class DSSFDmg {
     private StatsList selectedStats=new StatsList();
     private int infoTxtSize = 12;
 
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
 
     public DSSFDmg(View mainView, Context mC) {
         this.mainView = mainView;

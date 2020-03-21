@@ -15,7 +15,7 @@ public class Attack {
     private int flatDmg=0;
     private String damageTxt;
     private List<FormCapacity> capacityList =new ArrayList<>();
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
 
     public Attack( String name, String damageTxt){
         this.name=name;

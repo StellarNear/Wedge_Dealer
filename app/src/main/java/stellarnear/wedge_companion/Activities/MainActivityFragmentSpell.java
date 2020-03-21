@@ -52,7 +52,7 @@ public class MainActivityFragmentSpell extends Fragment {
 
     private SpellList listAllSpell=null;
 
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
 
     private Drawable mystSymbol;
     private Drawable utilSymbol;

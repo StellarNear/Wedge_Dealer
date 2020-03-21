@@ -28,7 +28,7 @@ import stellarnear.wedge_companion.Tools;
  */
 public class SaveSharedPreferencesActivity extends Activity {
 
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

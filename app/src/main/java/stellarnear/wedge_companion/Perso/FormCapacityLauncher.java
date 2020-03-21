@@ -19,7 +19,7 @@ public class FormCapacityLauncher {
     private Context mC;
     private FormCapacity capa;
     private Perso pj= PersoManager.getCurrentPJ();
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
     public FormCapacityLauncher(Activity mA, Context mC,FormCapacity capa){
         this.mA=mA;
         this.mC=mC;

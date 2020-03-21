@@ -19,7 +19,7 @@ public class FormRollFactory {
     private String mode;
     private RollList rollList;
     private SharedPreferences settings;
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
     private Perso pj = PersoManager.getCurrentPJ();
     private Form currentForm= pj.getAllForms()!=null?pj.getAllForms().getCurrentForm():null;
 

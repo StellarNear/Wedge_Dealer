@@ -15,7 +15,7 @@ import stellarnear.wedge_companion.Perso.PersoManager;
 
 
 public class MythicBarPreference extends Preference {
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
 
     public MythicBarPreference(Context context, AttributeSet attrs) {
         super(context, attrs);

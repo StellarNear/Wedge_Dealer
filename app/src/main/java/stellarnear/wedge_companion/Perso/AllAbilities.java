@@ -34,7 +34,7 @@ public class AllAbilities {
     private Inventory inventory;
     private AllForms allForms;
     private Context mC;
-    private Tools tools=new Tools();
+    private Tools tools=Tools.getTools();
     private String pjID="";
 
     public AllAbilities(Context mC,Inventory inventory,AllForms allForms,String pjID) {
@@ -153,9 +153,6 @@ public class AllAbilities {
             if((abi.getId().equalsIgnoreCase("ability_dexterite") || abi.getId().equalsIgnoreCase("ability_constitution") )
              && inventory.getAllEquipments().testIfNameItemIsEquipped("Isillirit (Chant de Lune)")) {
                 val += 2;
-            }
-            if(allForms!=null&& allForms.hasActiveForm()){
-                val+=allForms.getFormAbilityModif(abi.getId());
             }
             abi.setValue(val);
         }
