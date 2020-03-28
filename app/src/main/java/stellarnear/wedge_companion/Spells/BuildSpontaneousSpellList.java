@@ -62,6 +62,7 @@ public class BuildSpontaneousSpellList extends AppCompatActivity {
                     allSpells.add(new Spell(getValue("id",element2),
                             tools.toBool(getValue("mythic",element2)),
                             tools.toBool(getValue("from_mystery",element2)),
+                            tools.toBool(getValue("from_mystery_bonus",element2)),
                             getValue("normalSpellId",element2),
                             getValue("name",element2),
                             getValue("descr",element2),

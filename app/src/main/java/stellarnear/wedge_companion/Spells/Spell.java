@@ -52,6 +52,7 @@ public class Spell {
     private String perfectMetaId="";
 
     private boolean fromMystery;
+    private boolean fromMysteryBonus;
 
     private int     n_sub_spell;
 
@@ -92,13 +93,14 @@ public class Spell {
         this.perfect=spell.perfect;
         this.perfectMetaId=spell.perfectMetaId;
         this.fromMystery=spell.fromMystery;
+        this.fromMysteryBonus=spell.fromMysteryBonus;
         this.n_sub_spell=spell.n_sub_spell;
         this.dmg_type=new DmgType(spell.dmg_type);
         this.metaList=new MetaList(spell.metaList);
         this.cast =new Cast();
     }
 
-    public Spell(String id,boolean mythic,boolean fromMystery,String normalSpellId, String name, String descr, String shortDescr,String type,Integer n_sub_spell, String dice_type, Double n_dice_per_lvl, int cap_dice, String dmg_type,String flat_dmg,int flat_cap, String range,String contact,String area, String cast_time, String duration, String compo,String compoM, String rm, String save_type, int rank,Context mC){
+    public Spell(String id,boolean mythic,boolean fromMystery,boolean fromMysteryBonus,String normalSpellId, String name, String descr, String shortDescr,String type,Integer n_sub_spell, String dice_type, Double n_dice_per_lvl, int cap_dice, String dmg_type,String flat_dmg,int flat_cap, String range,String contact,String area, String cast_time, String duration, String compo,String compoM, String rm, String save_type, int rank,Context mC){
         if(id.equalsIgnoreCase("")){
             this.id=name;
         } else {
@@ -106,6 +108,7 @@ public class Spell {
         }
         this.mythic=mythic;
         this.fromMystery=fromMystery;
+        this.fromMysteryBonus=fromMysteryBonus;
         this.normalSpellId=normalSpellId;
         this.name=name;
         this.descr=descr;
@@ -190,7 +193,7 @@ public class Spell {
     }
 
     public boolean isFromMystery() {
-        return fromMystery;
+        return (fromMystery || fromMysteryBonus);
     }
 
     public String getDice_type(){

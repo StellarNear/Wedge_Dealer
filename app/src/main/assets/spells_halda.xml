@@ -631,6 +631,7 @@
         <compo>V,G</compo>
         <rank>6</rank>
         <type>util</type>
+        <from_mystery_bonus>true</from_mystery_bonus>
     </spell>
 
 
@@ -722,6 +723,7 @@
         <save_type>vol[annule]</save_type>
         <rank>7</rank>
         <type>combatbuff</type>
+        <from_mystery_bonus>true</from_mystery_bonus>
     </spell>
 
     <spell>
@@ -739,6 +741,7 @@
         <compo>V,G</compo>
         <rank>7</rank>
         <type>heal</type>
+        <from_mystery_bonus>true</from_mystery_bonus>
     </spell>
 
     <spell>
@@ -766,6 +769,7 @@
         <compo_m>diamant 10kpo</compo_m>
         <rank>7</rank>
         <type>util</type>
+        <from_mystery_bonus>true</from_mystery_bonus>
     </spell>
 
     <spell>
@@ -784,6 +788,7 @@
         <rm>true</rm>
         <rank>8</rank>
         <type>heal</type>
+        <from_mystery_bonus>true</from_mystery_bonus>
     </spell>
 
     <spell>
@@ -805,6 +810,7 @@
         <compo>V,G</compo>
         <rank>8</rank>
         <type>combatbuff</type>
+        <from_mystery_bonus>true</from_mystery_bonus>
     </spell>
 
     <spell>
@@ -855,17 +861,33 @@
         <shortdescr>Se transforme en une énorme créature d'un autre monde.</shortdescr>
         <descr>Le personnage accepte de recevoir les énergies d'un autre monde dans son corps et de se transformer. Le personnage gagne des pouvoirs supplémentaires comme indiqués :
 
--Aspect anarchique. +2 à la Constitution, RD 10/Loi, résistance à l'acide 10, à l'électricité 10 et au son 10, bonus de +4 aux jets de sauvegarde contre le poison, perception aveugle à 9 mètres (6 c) et vitesse de vol de 18 mètres (12 c) (bonne manœuvrabilité).
+            -Aspect anarchique. +2 à la Constitution, RD 10/Loi, résistance à l'acide 10, à l'électricité 10 et au son 10, bonus de +4 aux jets de sauvegarde contre le poison, perception aveugle à 9 mètres (6 c) et vitesse de vol de 18 mètres (12 c) (bonne manœuvrabilité).
 
--Aspect axiomatique. +2 à la Force, RD 10/Chaos, résistance au froid 10, à l'électricité 10 et au feu 10, bonus de +4 aux jets de sauvegarde contre le poison, vision nocturne et vitesse de vol de 18 mètres (12 c) (bonne manœuvrabilité).
+            -Aspect axiomatique. +2 à la Force, RD 10/Chaos, résistance au froid 10, à l'électricité 10 et au feu 10, bonus de +4 aux jets de sauvegarde contre le poison, vision nocturne et vitesse de vol de 18 mètres (12 c) (bonne manœuvrabilité).
 
--Aspect céleste. +2 à la Dextérité, RD 10/Mal, résistance à l'acide 10, au froid 10, à l'électricité 10, bonus de +4 aux jets de sauvegarde contre le poison, vision nocturne et vitesse de vol de 18 mètres (12 c) (bonne manœuvrabilité).</descr>
+            -Aspect céleste. +2 à la Dextérité, RD 10/Mal, résistance à l'acide 10, au froid 10, à l'électricité 10, bonus de +4 aux jets de sauvegarde contre le poison, vision nocturne et vitesse de vol de 18 mètres (12 c) (bonne manœuvrabilité).</descr>
         <range>personnelle</range>
         <cast_time>simple</cast_time>
         <duration>1round/lvl</duration>
         <compo>V,G</compo>
         <rank>8</rank>
         <type>combatbuff</type>
+    </spell>
+
+    <spell>
+        <name>Tranquillité euphorique</name>
+        <shortdescr>Rend une unique créature pacifique et amicale.</shortdescr>
+        <descr>Une créature sous l'effet de cet enchantement entre dans un état d'euphorie. Elle considère toutes les créatures comme des amis chers à son cœur et déteste la violence, mais elle peut se défendre si on la malmène. La vitesse de déplacement de la créature est réduite de moitié jusqu'à la fin du sort et elle ne peut pas attaquer ni lancer de sorts. Si elle est attaquée, elle a droit à un jet de Volonté. En cas de réussite, elle peut agir normalement pendant 1 round. En cas d'échec, elle s'éloigne de son attaquant à la moitié de sa vitesse de déplacement dès sa prochaine action.
+
+De plus, si quelqu'un interagit avec la créature ou l'interroge alors qu'elle est sous l'effet de ce sort, elle est considérée comme serviable (voir la compétence Diplomatie). Cependant les conseils et les réponses qu'elles donnent peuvent être confus ou noyés dans un flot de pensées à cause de son état euphorique.</descr>
+        <range>contact</range>
+        <cast_time>simple</cast_time>
+        <duration>1round/lvl</duration>
+        <compo>V,G</compo>
+        <rank>8</rank>
+        <type>debuff</type>
+        <save_type>aucun</save_type>
+        <from_mystery_bonus>true</from_mystery_bonus>
     </spell>
 
 
@@ -922,6 +944,7 @@ Mais le personnage peut également faire une requête particulièrement importan
         <rm>true</rm>
         <rank>9</rank>
         <type>util</type>
+        <from_mystery_bonus>true</from_mystery_bonus>
     </spell>
 
     <spell>
@@ -964,6 +987,7 @@ Mais le personnage peut également faire une requête particulièrement importan
         <compo>V,G</compo>
         <rank>9</rank>
         <type>dmg</type>
+        <from_mystery_bonus>true</from_mystery_bonus>
     </spell>
 
 
@@ -978,6 +1002,7 @@ Mais le personnage peut également faire une requête particulièrement importan
         <compo>V,G</compo>
         <rank>9</rank>
         <type>combatbuff</type>
+        <from_mystery_bonus>true</from_mystery_bonus>
     </spell>
 
 </records>

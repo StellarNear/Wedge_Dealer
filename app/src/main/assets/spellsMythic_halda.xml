@@ -15,6 +15,7 @@
         <duration>instant</duration>
         <compo>V,G</compo>
         <rank>5</rank>
+        <from_mystery>true</from_mystery>
     </spell>
 
     <spell>

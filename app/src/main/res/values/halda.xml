@@ -30,7 +30,7 @@
 
 
     <!-- Resources  -->
-    <integer name="resource_hp_base_def_halda">179</integer>
+    <integer name="resource_hp_base_def_halda">187</integer>
     <integer name="resource_hp_shield_def_halda">0</integer>
     <integer name="resource_regen_def_halda">0</integer>
 
@@ -45,30 +45,33 @@
     <integer name="ability_ref_def_halda">6</integer>
     <integer name="ability_vol_def_halda">12</integer>
 
-    <integer name="epic_save_def_halda">2</integer>
+    <integer name="epic_save_def_halda">3</integer>
 
     <!--  Rank de maitrise des compétences  -->
-    <integer name="skill_magic_art_rankDEF_halda">26</integer>
+    <integer name="skill_magic_art_rankDEF_halda">27</integer>
     <integer name="skill_history_rankDEF_halda">13</integer>
     <integer name="skill_nature_rankDEF_halda">12</integer>
     <integer name="skill_plan_rankDEF_halda">26</integer>
+    <integer name="skill_religion_rankDEF_halda">26</integer>
     <integer name="skill_stealth_rankDEF_halda">26</integer>
-    <integer name="skill_diplomacy_rankDEF_halda">26</integer>
-    <integer name="skill_heal_rankDEF_halda">26</integer>
-    <integer name="skill_psycho_rankDEF_halda">26</integer>
-    <integer name="skill_survival_rankDEF_halda">26</integer>
+    <integer name="skill_diplomacy_rankDEF_halda">27</integer>
+    <integer name="skill_heal_rankDEF_halda">27</integer>
+    <integer name="skill_psycho_rankDEF_halda">27</integer>
+    <integer name="skill_survival_rankDEF_halda">27</integer>
+    <integer name="skill_magic_item_rankDEF">1</integer>
 
     <!--  Bonus des compétences  -->
     <integer name="skill_magic_art_bonusDEF_halda">3</integer>
     <integer name="skill_history_bonusDEF_halda">3</integer>
     <integer name="skill_nature_bonusDEF_halda">3</integer>
     <integer name="skill_plan_bonusDEF_halda">3</integer>
+    <integer name="skill_religion_bonusDEF_halda">3</integer>
     <integer name="skill_stealth_bonusDEF_halda">3</integer>
     <integer name="skill_diplomacy_bonusDEF_halda">3</integer>
     <integer name="skill_heal_bonusDEF_halda">3</integer>
     <integer name="skill_psycho_bonusDEF_halda">3</integer>
     <integer name="skill_survival_bonusDEF_halda">3</integer>
-
+    <integer name="skill_magic_item_bonusDEF">3</integer>
 
     <bool name="switch_perma_resi_DEF_halda">true</bool>
 

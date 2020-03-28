@@ -112,7 +112,11 @@
         <id>feat_weapon_spe_epic</id>
     </feat>
 
-
+    <feat>
+        <name>Fantastique précision</name>
+        <type>feat_atk</type>
+        <descr>Vos attaques distance ignore les chances de raté données par le camouflage total. Vous devez viser vos attaques vers la bonne case.</descr>
+    </feat>
     <!-- DEF -->
 
 

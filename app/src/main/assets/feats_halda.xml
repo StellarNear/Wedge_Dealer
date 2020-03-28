@@ -29,6 +29,8 @@
         <id>feat_moon_reveal_2</id>
     </feat>
 
+
+
     <feat>
         <name>Ailes de lumières</name>
         <type>feat_magic</type>
@@ -41,6 +43,14 @@
 - Globe d'invulnérabilité partielle
 Dure 1 min/d6 de la canalisation.</descr>
         <id>feat_light_wing</id>
+    </feat>
+
+
+    <feat>
+        <name>Vérités interconnectées</name>
+        <type>feat_magic</type>
+        <descr>Un nombre de sort (correspondant au modificateur de Charisme) sont considérés comme des sorts issus d'un mystère de l'oracle.</descr>
+        <id>feat_interconnected_truth</id>
     </feat>
 
     <!-- DEF -->
@@ -79,5 +89,7 @@ Le personnage peut également dormir en armure légère ou intermédiaire sans �
         <descr>Une fois par jour, par une action simple, le personnage peut tenter un nouveau jet de sauvegarde contre une condition débilitante ou une affliction qui l’affecte et qui impose un jet de Vigueur. Si ce nouveau jet de sauvegarde échoue, aucun effet supplémentaire n’est appliqué. Dans le cas contraire, il compte comme une réussite pour déterminer si le personnage parvient à se débarrasser de l’affliction (comme un poison ou une maladie). Le personnage ne peut pas utiliser ce don pour combattre les effets instantanés, les effets qui n’autorisent aucun jet de sauvegarde, ni ceux qui imposent autre chose qu’un jet de Vigueur.</descr>
         <id>feat_heroic_recovery</id>
     </feat>
+
+
 
 </records>
