@@ -26,38 +26,35 @@ import stellarnear.wedge_companion.Rolls.RollList;
 import stellarnear.wedge_companion.Tools;
 
 public class MainActivityFragmentSpellArrowBonusPanel {
+    public Perso pj = PersoManager.getCurrentPJ();
     private Activity mA;
     private Context mC;
     private RollList rollList;
-
     private ImageView buttonAdd;
-
     private TextView nArrow;
     private View pannel;
-
-    public Perso pj= PersoManager.getCurrentPJ();
-    private boolean addBonusPanelIsVisible=false;
-    private Tools tools=Tools.getTools();
+    private boolean addBonusPanelIsVisible = false;
+    private Tools tools = Tools.getTools();
 
     private List<GetData.PairSpellUuid> arrowsSpellsUuids;
 
-    public MainActivityFragmentSpellArrowBonusPanel(final Activity mA,final Context mC, View mainPage){
-        this.mA=mA;
-        this.mC=mC;
-        buttonAdd =(ImageView) mainPage.findViewById(R.id.fab_spell_arrow);
+    public MainActivityFragmentSpellArrowBonusPanel(final Activity mA, final Context mC, View mainPage) {
+        this.mA = mA;
+        this.mC = mC;
+        buttonAdd = mainPage.findViewById(R.id.fab_spell_arrow);
         pannel = mainPage.findViewById(R.id.spell_arrow_linear);
 
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 flipBonusPanel();
-                if(addBonusPanelIsVisible){
-                    final GetData getData=new GetData(mC);
+                if (addBonusPanelIsVisible) {
+                    final GetData getData = new GetData(mC);
                     getData.setOnDataRecievedEventListener(new GetData.OnDataRecievedEventListener() {
                         @Override
                         public void onEvent() {
-                            arrowsSpellsUuids=getData.getListPairSpellUuidList();
-                            if(arrowsSpellsUuids!=null && arrowsSpellsUuids.size()>0) {
+                            arrowsSpellsUuids = getData.getListPairSpellUuidList();
+                            if (arrowsSpellsUuids != null && arrowsSpellsUuids.size() > 0) {
                                 addSpellArrowList();
                             }
                         }
@@ -69,31 +66,33 @@ public class MainActivityFragmentSpellArrowBonusPanel {
     }
 
     private void addSpellArrowList() {
-        LinearLayout viewById=pannel.findViewById(R.id.spell_arrow_scroll_lin);
+        LinearLayout viewById = pannel.findViewById(R.id.spell_arrow_scroll_lin);
         viewById.removeAllViews();
-        for(final GetData.PairSpellUuid pairSpellUuid : arrowsSpellsUuids){
+        for (final GetData.PairSpellUuid pairSpellUuid : arrowsSpellsUuids) {
             LinearLayout line = new LinearLayout(mC);
             line.setGravity(Gravity.CENTER_VERTICAL);
             viewById.addView(line);
             ImageView delete = new ImageView(mC);
             delete.setImageDrawable(mC.getDrawable(R.drawable.ic_winged_arrow));
             int pxMaging = mC.getResources().getDimensionPixelSize(R.dimen.general_margin);
-            delete.setPadding(pxMaging,0,0,0);
-            delete.setLayoutParams(new LinearLayout.LayoutParams(150,150));
+            delete.setPadding(pxMaging, 0, 0, 0);
+            delete.setLayoutParams(new LinearLayout.LayoutParams(150, 150));
             delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     new AlertDialog.Builder(mC)
                             .setTitle("Lancement d'un sort naturalisé")
-                            .setMessage("Confirmes-tu le lancement du sort naturalisé "+pairSpellUuid.getSpell().getName()+" ?")
+                            .setMessage("Confirmes-tu le lancement du sort naturalisé " + pairSpellUuid.getSpell().getName() + " ?")
                             .setIcon(android.R.drawable.ic_menu_help)
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int whichButton) {
                                     removeFromList(pairSpellUuid);
                                     addSpellArrowList();
-                                    if(arrowsSpellsUuids.size()<1){flipBonusPanel();}
-                                    new PostData(mC,new PostDataElement("Lancement d'un sort naturalisé","Sort : "+pairSpellUuid.getSpell().getName()));
-                                    new PostData(mC,new PostDataElement(pairSpellUuid));
+                                    if (arrowsSpellsUuids.size() < 1) {
+                                        flipBonusPanel();
+                                    }
+                                    new PostData(mC, new PostDataElement("Lancement d'un sort naturalisé", "Sort : " + pairSpellUuid.getSpell().getName()));
+                                    new PostData(mC, new PostDataElement(pairSpellUuid));
                                 }
                             })
                             .setNegativeButton(android.R.string.no, null).show();
@@ -101,37 +100,41 @@ public class MainActivityFragmentSpellArrowBonusPanel {
             });
             line.addView(delete);
 
-            View profileView = pairSpellUuid.getSpell().getProfile().getProfile(mA,mC);
-            if(profileView.getParent()!=null){((ViewGroup)profileView.getParent()).removeView(profileView);}
+            View profileView = pairSpellUuid.getSpell().getProfile().getProfile(mA, mC);
+            if (profileView.getParent() != null) {
+                ((ViewGroup) profileView.getParent()).removeView(profileView);
+            }
             line.addView(profileView);
         }
 
-        ((TextView)pannel.findViewById(R.id.spell_arrow_remaining)).setText("Nombre de flèches naturalisées : "+arrowsSpellsUuids.size());
+        ((TextView) pannel.findViewById(R.id.spell_arrow_remaining)).setText("Nombre de flèches naturalisées : " + arrowsSpellsUuids.size());
     }
 
     private void removeFromList(GetData.PairSpellUuid pairSpellUuid) {
         arrowsSpellsUuids.remove(pairSpellUuid);
-        new PostData(mC,new RemoveDataElementSpellArrow(pairSpellUuid));
+        new PostData(mC, new RemoveDataElementSpellArrow(pairSpellUuid));
     }
 
 
     private void flipBonusPanel() {
-        if (!addBonusPanelIsVisible){
+        if (!addBonusPanelIsVisible) {
             pannel.setVisibility(View.VISIBLE);
-            Animation top = AnimationUtils.loadAnimation(mC,R.anim.infromtop);
+            Animation top = AnimationUtils.loadAnimation(mC, R.anim.infromtop);
             pannel.startAnimation(top);
-            addBonusPanelIsVisible=true;
+            addBonusPanelIsVisible = true;
         } else {
-            Animation bot = AnimationUtils.loadAnimation(mC,R.anim.outtotop);
+            Animation bot = AnimationUtils.loadAnimation(mC, R.anim.outtotop);
             pannel.startAnimation(bot);
             pannel.setVisibility(View.GONE);
-            addBonusPanelIsVisible=false;
+            addBonusPanelIsVisible = false;
         }
     }
 
     public void hide() {
         buttonAdd.setVisibility(View.GONE);
-        if(addBonusPanelIsVisible){flipBonusPanel();}
+        if (addBonusPanelIsVisible) {
+            flipBonusPanel();
+        }
     }
 
     public void show() {

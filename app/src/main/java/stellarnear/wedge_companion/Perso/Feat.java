@@ -16,13 +16,13 @@ public class Feat {
     private Context mC;
     private String pjID;
 
-    public Feat(String name, String type, String descr, String id, Context mC,String pjID){
-        this.name=name;
-        this.type=type;
-        this.descr=descr;
-        this.id=id;
-        this.mC=mC;
-        this.pjID=pjID;
+    public Feat(String name, String type, String descr, String id, Context mC, String pjID) {
+        this.name = name;
+        this.type = type;
+        this.descr = descr;
+        this.id = id;
+        this.mC = mC;
+        this.pjID = pjID;
     }
 
     public String getName() {
@@ -41,13 +41,14 @@ public class Feat {
         return id;
     }
 
-    public boolean isActive(){
+    public boolean isActive() {
         boolean active = false;
         try {
             SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
-            active = settings.getBoolean("switch_"+this.id+pjID, true);
-        } catch ( Exception e) {}
-       return active;
+            active = settings.getBoolean("switch_" + this.id + pjID, true);
+        } catch (Exception e) {
+        }
+        return active;
     }
 }
 

@@ -9,95 +9,101 @@ import stellarnear.wedge_companion.Tools;
 
 public class CalculationSpell {
     private Perso pj = PersoManager.getCurrentPJ();
-    private Tools tools=Tools.getTools();
+    private Tools tools = Tools.getTools();
 
-    public CalculationSpell(){}
+    public CalculationSpell() {
+    }
 
-    public int saveVal(Spell spell){
-        int val=10;
-        if(pj.getID().equalsIgnoreCase("")){
-            val+= pj.getAbilityMod("ability_sagesse");
+    public int saveVal(Spell spell) {
+        int val = 10;
+        if (pj.getID().equalsIgnoreCase("")) {
+            val += pj.getAbilityMod("ability_sagesse");
         } else {
-            val+= pj.getAbilityMod("ability_charisme");
+            val += pj.getAbilityMod("ability_charisme");
+            if(spell.isFromMystery()){
+                val+=pj.getAllCapacities().getCapacity("capacity_unraveled_mystery").getValue();
+            }
         }
 
-        val+=spell.getRank();
+        val += spell.getRank();
         return val;
     }
 
 
-    public int casterLevel(){
+    public int casterLevel() {
         return pj.getCasterLevel();
     }
 
-    public int nDice(Spell spell){
-        int val=0;
-        if(spell.getN_dice_per_lvl()==0.0){
+    public int nDice(Spell spell) {
+        int val = 0;
+        if (spell.getN_dice_per_lvl() == 0.0) {
             val = spell.getCap_dice();
-        }else {
+        } else {
             if ((casterLevel() * spell.getN_dice_per_lvl() > spell.getCap_dice()) && (spell.getCap_dice() != 0) && !pj.getAllCapacities().capacityIsActive("capacity_revelation_improved_heal")) {
                 val = spell.getCap_dice();
             } else {
                 val = (int) (casterLevel() * spell.getN_dice_per_lvl());
             }
         }
-        if(spell.getMetaList().metaIdIsActive("meta_moon") && !spell.getDice_type().contains("lvl") && !spell.getDice_type().equalsIgnoreCase("")){
-            val = (int)(val * 1.5);
+        if (spell.getMetaList().metaIdIsActive("meta_moon") && !spell.getDice_type().contains("lvl") && !spell.getDice_type().equalsIgnoreCase("")) {
+            val = (int) (val * 1.5);
         }
         return val;
     }
 
-    public int diceType(Spell spell){
+    public int diceType(Spell spell) {
         int val = tools.toInt(spell.getDice_type());
         return val;
     }
 
-    public int currentRank(Spell spell){
-        int val=spell.getRank();
-        int upRankFromMeta=0;
-        for(Metamagic meta : spell.getMetaList().filterActive().asList()){
+    public int currentRank(Spell spell) {
+        int val = spell.getRank();
+        int upRankFromMeta = 0;
+        for (Metamagic meta : spell.getMetaList().filterActive().asList()) {
             //une méta peut etre gratuite venant de conversion arcanique ou de perfectin magique
             boolean metaFreePerfect = spell.getPerfectMetaId().equalsIgnoreCase(meta.getId());
-            if( !metaFreePerfect && !(meta.getId().equalsIgnoreCase("meta_arrow") && pj.getID().equalsIgnoreCase(""))){ //la meta arrow est gratuite pour wedge
-                upRankFromMeta += meta.getUprank()*meta.getnCast();
+            if (!metaFreePerfect && !(meta.getId().equalsIgnoreCase("meta_arrow") && pj.getID().equalsIgnoreCase(""))) { //la meta arrow est gratuite pour wedge
+                upRankFromMeta += meta.getUprank() * meta.getnCast();
             }
         }
 
-        if(spell.isFromMystery()&&pj.getAllCapacities().capacityIsActive("capacity_unraveled_mystery")){
+        if (spell.isFromMystery() && pj.getAllCapacities().capacityIsActive("capacity_unraveled_mystery")) {
             int valReduc = pj.getAllCapacities().getCapacity("capacity_unraveled_mystery").getValue();
-            if(upRankFromMeta-valReduc>0){
-                val+=upRankFromMeta-valReduc;
+            if (upRankFromMeta - valReduc > 0) {
+                val += upRankFromMeta - valReduc;
             }
         } else {
-            val+=upRankFromMeta;
+            val += upRankFromMeta;
         }
         return val;
     }
 
     public Double range(Spell spell) {
-        String range=spell.getRange();
-        List<String> rangesLvl = Arrays.asList("contact", "courte", "moyenne", "longue" );
+        String range = spell.getRange();
+        List<String> rangesLvl = Arrays.asList("contact", "courte", "moyenne", "longue");
 
-        Double distDouble =-1.0;
+        Double distDouble = -1.0;
         int indexRange = rangesLvl.indexOf(range);
-        if(spell.getMetaList().metaIdIsActive("meta_range") && rangesLvl.contains(range) && !range.equalsIgnoreCase("longue")){
-            indexRange+=spell.getMetaList().getMetaByID("meta_range").getnCast();
+        if (spell.getMetaList().metaIdIsActive("meta_range") && rangesLvl.contains(range) && !range.equalsIgnoreCase("longue")) {
+            indexRange += spell.getMetaList().getMetaByID("meta_range").getnCast();
         }
-        if (indexRange>=0) {
+        if (indexRange >= 0) {
             Integer lvl = casterLevel();
-            if(indexRange>=rangesLvl.size()){indexRange=rangesLvl.size()-1;}
-            switch(rangesLvl.get(indexRange)) {
+            if (indexRange >= rangesLvl.size()) {
+                indexRange = rangesLvl.size() - 1;
+            }
+            switch (rangesLvl.get(indexRange)) {
                 case ("contact"):
-                    distDouble=0.0;
+                    distDouble = 0.0;
                     break;
                 case ("courte"):
-                    distDouble=7.5+1.5*(lvl/2.0);
+                    distDouble = 7.5 + 1.5 * (lvl / 2.0);
                     break;
                 case ("moyenne"):
-                    distDouble=30.0+3.0*lvl;
+                    distDouble = 30.0 + 3.0 * lvl;
                     break;
                 case ("longue"):
-                    distDouble=120.0+lvl*12.0;
+                    distDouble = 120.0 + lvl * 12.0;
                     break;
             }
         }
@@ -126,9 +132,9 @@ public class CalculationSpell {
                     nRapide += 1;
                     break;
                 default:
-                    if(getCastTimeTxt(spell).contains("round")){
+                    if (getCastTimeTxt(spell).contains("round")) {
                         nComplexe += tools.toInt(getCastTimeTxt(spell).replace("rounds", "").replace("round", ""));
-                    } else if(getCastTimeTxt(spell).contains("min")) {
+                    } else if (getCastTimeTxt(spell).contains("min")) {
                         nComplexe += tools.toInt(getCastTimeTxt(spell).replace("min", "")) * 60 / 6;  //converti le nombre de minute en round
                     }
                     break;
@@ -148,31 +154,37 @@ public class CalculationSpell {
 
         return nRound;
     }
+
     public String getCastTimeTxt(Spell spell) {
-        String val=spell.getCast_time();
-        if(val.equalsIgnoreCase("simple")&&spell.getMetaList().metaIdIsActive("meta_quicken")){
-            val="rapide";
+        String val = spell.getCast_time();
+        if (val.equalsIgnoreCase("simple") && spell.getMetaList().metaIdIsActive("meta_quicken")) {
+            val = "rapide";
         }
         return val;
     }
-    public String getContact(Spell spell){
-        String contact=spell.getContact();
-        if(contact.equalsIgnoreCase("melee")&&spell.getMetaList().metaIdIsActive("meta_range")){contact="distance";}
+
+    public String getContact(Spell spell) {
+        String contact = spell.getContact();
+        if (contact.equalsIgnoreCase("melee") && spell.getMetaList().metaIdIsActive("meta_range")) {
+            contact = "distance";
+        }
         return contact;
     }
 
     public int getFlatDmg(Spell spell) {
-        int val=0;
-        if(spell.getFlat_dmg().contains("/lvl")){
-            Double valFlatLeveled=tools.toDouble(spell.getFlat_dmg().split("/lvl")[0])*casterLevel();
-            if (valFlatLeveled>spell.getFlat_cap() && spell.getFlat_cap()>0 && !pj.getAllCapacities().capacityIsActive("capacity_revelation_improved_heal")){
-                valFlatLeveled=1.0*spell.getFlat_cap();
+        int val = 0;
+        if (spell.getFlat_dmg().contains("/lvl")) {
+            Double valFlatLeveled = tools.toDouble(spell.getFlat_dmg().split("/lvl")[0]) * casterLevel();
+            if (valFlatLeveled > spell.getFlat_cap() && spell.getFlat_cap() > 0 && !pj.getAllCapacities().capacityIsActive("capacity_revelation_improved_heal")) {
+                valFlatLeveled = 1.0 * spell.getFlat_cap();
             }
-            val=valFlatLeveled.intValue();
+            val = valFlatLeveled.intValue();
         } else if (spell.getFlat_dmg().equalsIgnoreCase("for")) {
-            val=pj.getAbilityMod("ability_force");
+            val = pj.getAbilityMod("ability_force");
+        } else if (spell.getFlat_dmg().equalsIgnoreCase("cha")) {
+            val = pj.getAbilityMod("ability_charisme");
         }  else {
-            val=tools.toInt(spell.getFlat_dmg());
+            val = tools.toInt(spell.getFlat_dmg());
         }
         return val;
     }

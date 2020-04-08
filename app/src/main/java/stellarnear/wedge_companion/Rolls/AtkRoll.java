@@ -42,13 +42,13 @@ public abstract class AtkRoll {
     protected Perso pj = PersoManager.getCurrentPJ();
 
     protected OnRefreshEventListener mListener;
-    protected Tools tools=Tools.getTools();
+    protected Tools tools = Tools.getTools();
 
-    public AtkRoll(Activity mA,Context mC, Integer base) {
-        this.mA=mA;
+    public AtkRoll(Activity mA, Context mC, Integer base) {
+        this.mA = mA;
         this.mC = mC;
-        this.base=base;
-        this.atkDice = new Dice(mA,mC,20);
+        this.base = base;
+        this.atkDice = new Dice(mA, mC, 20);
         settings = PreferenceManager.getDefaultSharedPreferences(mC);
         manualDice = settings.getBoolean("switch_manual_diceroll", mC.getResources().getBoolean(R.bool.switch_manual_diceroll_def));
         constructCheckboxes();
@@ -59,17 +59,14 @@ public abstract class AtkRoll {
         hitCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                hitConfirmed = false;
-                if (isChecked) {
-                    hitConfirmed = true;
-                }
+                hitConfirmed = isChecked;
             }
         });
 
         hitCheckbox.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                miss=true;
+                miss = true;
                 hitCheckbox.setChecked(false);
                 critCheckbox.setChecked(false);
                 hitCheckbox.setEnabled(false);
@@ -84,7 +81,7 @@ public abstract class AtkRoll {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 critConfirmed = false;
                 if (isChecked) {
-                    CritConfirmAlertDialog contactDialog = new CritConfirmAlertDialog(mA,mC,preRandValue);
+                    CritConfirmAlertDialog contactDialog = new CritConfirmAlertDialog(mA, mC, preRandValue);
                     contactDialog.showAlertDialog();
                     contactDialog.setSuccessEventListener(new CritConfirmAlertDialog.OnSuccessEventListener() {
                         @Override
@@ -106,12 +103,12 @@ public abstract class AtkRoll {
     }
 
     //setters
-    public void setMode(String mode){
-        this.mode=mode;
+    public void setMode(String mode) {
+        this.mode = mode;
     }
 
     //getters
-    public Dice getAtkDice(){
+    public Dice getAtkDice() {
         return this.atkDice;
     }
 
@@ -131,7 +128,9 @@ public abstract class AtkRoll {
                 public void onEvent() {
                     calculAtk();
                     setCritAndFail();
-                    if(mListener!=null){mListener.onEvent();}
+                    if (mListener != null) {
+                        mListener.onEvent();
+                    }
                 }
             });
         } else {
@@ -141,7 +140,7 @@ public abstract class AtkRoll {
     }
 
     private void setCritAndFail() {
-        if (atkDice.getRandValue() == 1 ) {
+        if (atkDice.getRandValue() == 1) {
             this.fail = true;
             atkDice.getImg().setOnClickListener(null);
         }
@@ -158,8 +157,8 @@ public abstract class AtkRoll {
 
     public void calculAtk() {
         this.atk = this.preRandValue + atkDice.getRandValue();
-        if(this.atkDice.getMythicDice()!=null){
-            this.atk+=this.atkDice.getMythicDice().getRandValue();
+        if (this.atkDice.getMythicDice() != null) {
+            this.atk += this.atkDice.getMythicDice().getRandValue();
         }
     }
 
@@ -174,7 +173,7 @@ public abstract class AtkRoll {
 
     public void invalidated() {
         this.invalid = true;
-        atkDice.getImg().setImageDrawable(tools.resize(mC,R.drawable.d20_fail, mC.getResources().getDimensionPixelSize(R.dimen.icon_main_dices_combat_launcher_size)));
+        atkDice.getImg().setImageDrawable(tools.resize(mC, R.drawable.d20_fail, mC.getResources().getDimensionPixelSize(R.dimen.icon_main_dices_combat_launcher_size)));
         atkDice.getImg().setOnClickListener(null);
     }
 
@@ -192,7 +191,7 @@ public abstract class AtkRoll {
         critCheckbox.setEnabled(false);
     }
 
-    public boolean isMissed(){
+    public boolean isMissed() {
         return this.miss;
     }
 
@@ -212,11 +211,11 @@ public abstract class AtkRoll {
         return this.critCheckbox;
     }
 
-    public interface OnRefreshEventListener {
-        void onEvent();
-    }
-
     public void setRefreshEventListener(OnRefreshEventListener eventListener) {
         mListener = eventListener;
+    }
+
+    public interface OnRefreshEventListener {
+        void onEvent();
     }
 }

@@ -26,7 +26,7 @@ public class PrefSpellgemScreenFragment {
     private Context mC;
     private CustomAlertDialog spellgemPopup;
     private Perso pj = PersoManager.getCurrentPJ();
-    private Tools tools=Tools.getTools();
+    private Tools tools = Tools.getTools();
 
     public PrefSpellgemScreenFragment(Activity mA, Context mC) {
         this.mA = mA;
@@ -35,30 +35,30 @@ public class PrefSpellgemScreenFragment {
 
     private void createSpellgemPopup() {
         LayoutInflater inflater = LayoutInflater.from(mC);
-        View mainView = inflater.inflate(R.layout.custom_spellgem,null);
+        View mainView = inflater.inflate(R.layout.custom_spellgem, null);
         LinearLayout mainLin = mainView.findViewById(R.id.custom_mainlin);
 
-        int nPerLine=0;
+        int nPerLine = 0;
         LinearLayout line = new LinearLayout(mC);
-        line.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT,1));
+        line.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, 1));
         line.setGravity(Gravity.CENTER);
         mainLin.addView(line);
         pj.getAllResources().getRankManager().refreshRanks();
         pj.getAllResources().getRankManager().refreshMax();
-        for (final Resource res : pj.getAllResources().getRankManager().getSpellTiers()){
-            if(res.getMax()>0) {
-                if(nPerLine>3){
+        for (final Resource res : pj.getAllResources().getRankManager().getSpellTiers()) {
+            if (res.getMax() > 0) {
+                if (nPerLine > 3) {
                     line = new LinearLayout(mC);
-                    line.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT,1));
+                    line.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, 1));
                     mainLin.addView(line);
                     line.setGravity(Gravity.CENTER);
-                    nPerLine=0;
+                    nPerLine = 0;
                 }
                 TextView text = new TextView(mC);
-                text.setText(res.getShortname().replace("Sort","Rang"));
+                text.setText(res.getShortname().replace("Sort", "Rang"));
                 text.setTextSize(20);
                 text.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                text.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT,1));
+                text.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
                 text.setTextColor(Color.DKGRAY);
                 text.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -66,7 +66,7 @@ public class PrefSpellgemScreenFragment {
 
                         new AlertDialog.Builder(mA)
                                 .setTitle("Recharger ce tier de sort")
-                                .setMessage("Confirmes tu recharger une utilisation de "+res.getName()+" ?")
+                                .setMessage("Confirmes tu recharger une utilisation de " + res.getName() + " ?")
                                 .setIcon(android.R.drawable.ic_menu_help)
                                 .setPositiveButton("oui", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int whichButton) {
@@ -84,7 +84,7 @@ public class PrefSpellgemScreenFragment {
             }
         }
 
-        this.spellgemPopup = new CustomAlertDialog(mA,mC,mainView);
+        this.spellgemPopup = new CustomAlertDialog(mA, mC, mainView);
         this.spellgemPopup.setPermanent(true);
         this.spellgemPopup.addConfirmButton("Valider");
         this.spellgemPopup.setAcceptEventListener(new CustomAlertDialog.OnAcceptEventListener() {
@@ -99,11 +99,11 @@ public class PrefSpellgemScreenFragment {
 
     private void reload(Resource res) {
         res.earn(1);
-        Resource convRes = pj.getAllResources().getResource(res.getId().replace("spell_rank_","spell_conv_rank_"));
-        if(convRes!=null && convRes.getMax()>0){
+        Resource convRes = pj.getAllResources().getResource(res.getId().replace("spell_rank_", "spell_conv_rank_"));
+        if (convRes != null && convRes.getMax() > 0) {
             convRes.earn(1);
         }
-        tools.customToast(mC,res.getName()+" : "+res.getCurrent(),"center");
+        tools.customToast(mC, res.getName() + " : " + res.getCurrent(), "center");
     }
 
     public void showSpellgem() {

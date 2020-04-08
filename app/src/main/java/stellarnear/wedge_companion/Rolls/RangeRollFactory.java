@@ -21,18 +21,18 @@ public class RangeRollFactory {
     private String mode;
     private RollList rollList;
     private SharedPreferences settings;
-    private Tools tools=Tools.getTools();
-    private Perso pj= PersoManager.getCurrentPJ();
+    private Tools tools = Tools.getTools();
+    private Perso pj = PersoManager.getCurrentPJ();
 
-    public RangeRollFactory(Activity mA, Context mC, String mode){
-        this.mA=mA;
-        this.mC=mC;
-        this.mode=mode;
+    public RangeRollFactory(Activity mA, Context mC, String mode) {
+        this.mA = mA;
+        this.mC = mC;
+        this.mode = mode;
         this.settings = PreferenceManager.getDefaultSharedPreferences(mC);
         buildRollList();
     }
 
-    private void buildRollList(){
+    private void buildRollList() {
         this.rollList = new RollList();
         String baseAtksTxt = settings.getString("jet_att", mC.getResources().getString(R.string.jet_att_def));     //cherche la clef     jet_att dans les setting sinon valeur def (xml)
         String delim = ",";
@@ -60,8 +60,8 @@ public class RangeRollFactory {
                 Roll roll = new RangedRoll(mA, mC, atk);
                 this.rollList.add(roll);
             }
-            int nCount=1;
-            for (Roll roll : this.rollList.getList()){
+            int nCount = 1;
+            for (Roll roll : this.rollList.getList()) {
                 roll.setMode(this.mode);
                 roll.setNthAtkRoll(nCount);
                 nCount++;

@@ -23,7 +23,7 @@ public class RangesAndProba {
         this.mC = mC;
         this.selectedRolls = selectedRolls;
         this.mainPage = mainPage;
-        this.elems= ElemsManager.getInstance(mC);
+        this.elems = ElemsManager.getInstance(mC);
         this.probaForRolls = new ProbaFromDiceRand(selectedRolls);
         showViews();
         addRanges();
@@ -31,15 +31,15 @@ public class RangesAndProba {
     }
 
     public void hideViews() {
-        ((LinearLayout) mainPage.findViewById(R.id.mainLinearRangeDmg)).setVisibility(View.GONE);
-        ((LinearLayout) mainPage.findViewById(R.id.mainLinearProbaDmg)).setVisibility(View.GONE);
-        ((TextView) mainPage.findViewById(R.id.mainLinearProbaTitle)).setVisibility(View.GONE);
+        mainPage.findViewById(R.id.mainLinearRangeDmg).setVisibility(View.GONE);
+        mainPage.findViewById(R.id.mainLinearProbaDmg).setVisibility(View.GONE);
+        mainPage.findViewById(R.id.mainLinearProbaTitle).setVisibility(View.GONE);
     }
 
     private void showViews() {
-        ((LinearLayout) mainPage.findViewById(R.id.mainLinearRangeDmg)).setVisibility(View.VISIBLE);
-        ((LinearLayout) mainPage.findViewById(R.id.mainLinearProbaDmg)).setVisibility(View.VISIBLE);
-        ((TextView) mainPage.findViewById(R.id.mainLinearProbaTitle)).setVisibility(View.VISIBLE);
+        mainPage.findViewById(R.id.mainLinearRangeDmg).setVisibility(View.VISIBLE);
+        mainPage.findViewById(R.id.mainLinearProbaDmg).setVisibility(View.VISIBLE);
+        mainPage.findViewById(R.id.mainLinearProbaTitle).setVisibility(View.VISIBLE);
     }
 
     private void addRanges() {
@@ -75,9 +75,9 @@ public class RangesAndProba {
                 probaTextview.setGravity(Gravity.CENTER);
                 probaTextview.setTextColor(elems.getColorIdDark(elem));
                 probaTextview.setTextSize(15);
-                String probaTxt=probaForRolls.getProba(elem);
-                if (elem.equalsIgnoreCase("") && selectedRolls.haveAnyCritConfirmed()){
-                    probaTxt+="\ncrit:\n"+probaForRolls.getProba("",true);
+                String probaTxt = probaForRolls.getProba(elem);
+                if (elem.equalsIgnoreCase("") && selectedRolls.haveAnyCritConfirmed()) {
+                    probaTxt += "\ncrit:\n" + probaForRolls.getProba("", true);
                 }
                 probaTextview.setText(probaTxt);
                 sumBox.addView(probaTextview);

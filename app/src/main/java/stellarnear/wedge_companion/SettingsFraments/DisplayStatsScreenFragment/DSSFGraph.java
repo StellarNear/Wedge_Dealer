@@ -34,32 +34,35 @@ public class DSSFGraph {
     private View mainView;
     private ElemsManager elems;
     private List<String> elemsSelected;
-    private Map<Integer,StatsList> mapNHitStats = new HashMap<>();
-    private Map<Integer,StatsList> mapNCritStats = new HashMap<>();
-    private Map<Integer,StatsList> mapNCritNatStats = new HashMap<>();
-    private Map<Integer,StatsList> mapNAllCritStats = new HashMap<>();
-    private Map<String,CheckBox> mapElemCheckbox=new HashMap<>();
-    private int infoTxtSize=10;
+    private Map<Integer, StatsList> mapNHitStats = new HashMap<>();
+    private Map<Integer, StatsList> mapNCritStats = new HashMap<>();
+    private Map<Integer, StatsList> mapNCritNatStats = new HashMap<>();
+    private Map<Integer, StatsList> mapNAllCritStats = new HashMap<>();
+    private Map<String, CheckBox> mapElemCheckbox = new HashMap<>();
+    private int infoTxtSize = 10;
     private LineChart chartDmgNAtk;
     private LineChart chartElemDmgNCrit;
-    private int nthAtkMax=0;
-    private Tools tools=Tools.getTools();
+    private int nthAtkMax = 0;
+    private Tools tools = Tools.getTools();
 
     public DSSFGraph(View mainView, Context mC) {
         this.mainView = mainView;
         this.mC = mC;
-        this.elems= ElemsManager.getInstance(mC);
+        this.elems = ElemsManager.getInstance(mC);
         CheckBox checkPhy = mainView.findViewById(R.id.line_type_phy);
         CheckBox checkFire = mainView.findViewById(R.id.line_type_fire);
         CheckBox checkShock = mainView.findViewById(R.id.line_type_shock);
         CheckBox checkFrost = mainView.findViewById(R.id.line_type_frost);
-        mapElemCheckbox.put("",checkPhy); mapElemCheckbox.put("fire",checkFire);  mapElemCheckbox.put("shock",checkShock); mapElemCheckbox.put("frost",checkFrost);
+        mapElemCheckbox.put("", checkPhy);
+        mapElemCheckbox.put("fire", checkFire);
+        mapElemCheckbox.put("shock", checkShock);
+        mapElemCheckbox.put("frost", checkFrost);
         setCheckboxListeners();
         initLineCharts();
     }
 
     private void setCheckboxListeners() {
-        for(String elem : elems.getListKeysWedgeDamage()){
+        for (String elem : elems.getListKeysWedgeDamage()) {
             mapElemCheckbox.get(elem).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -80,14 +83,15 @@ public class DSSFGraph {
         chartElemDmgNCrit.animateXY(750, 1000);
     }
 
-    private void initLineChartDmgNAtk(){
-        chartDmgNAtk=mainView.findViewById(R.id.line_chart_dmg_atk);
+    private void initLineChartDmgNAtk() {
+        chartDmgNAtk = mainView.findViewById(R.id.line_chart_dmg_atk);
         setChartPara(chartDmgNAtk);
         chartDmgNAtk.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
-                tools.customToast(mC,e.getData().toString(),"center");
+                tools.customToast(mC, e.getData().toString(), "center");
             }
+
             @Override
             public void onNothingSelected() {
                 resetChartDmgNatk();
@@ -122,13 +126,13 @@ public class DSSFGraph {
     }
 
     private void initLineChartElemDmgNCrit() {
-        chartElemDmgNCrit=mainView.findViewById(R.id.line_chart_crit_elem);
+        chartElemDmgNCrit = mainView.findViewById(R.id.line_chart_crit_elem);
         setChartPara(chartElemDmgNCrit);
 
         chartElemDmgNCrit.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
-                tools.customToast(mC,e.getData().toString(),"center");
+                tools.customToast(mC, e.getData().toString(), "center");
             }
 
             @Override
@@ -149,46 +153,48 @@ public class DSSFGraph {
         mapNCritStats = new HashMap<>();
         mapNCritNatStats = new HashMap<>();
         mapNAllCritStats = new HashMap<>();
-        mapNHitStats.put(0,new StatsList());
-        nthAtkMax=0;
-        for (Stat stat : pj.getStats().getStatsList().asList()){
-            int nAtk=stat.getNAtksHit();
-            if(nAtk>0){
-                if(mapNHitStats.get(nAtk)!=null){
+        mapNHitStats.put(0, new StatsList());
+        nthAtkMax = 0;
+        for (Stat stat : pj.getStats().getStatsList().asList()) {
+            int nAtk = stat.getNAtksHit();
+            if (nAtk > 0) {
+                if (mapNHitStats.get(nAtk) != null) {
                     mapNHitStats.get(nAtk).add(stat);
                 } else {
-                    StatsList newStatL=new StatsList();
+                    StatsList newStatL = new StatsList();
                     newStatL.add(stat);
-                    mapNHitStats.put(nAtk,newStatL);
+                    mapNHitStats.put(nAtk, newStatL);
                 }
             }
-            if(nAtk>nthAtkMax){nthAtkMax=nAtk;}
+            if (nAtk > nthAtkMax) {
+                nthAtkMax = nAtk;
+            }
 
-            int nCrit=stat.getNCrit()-stat.getNCritNat();
-            if(mapNCritStats.get(nCrit)!=null){
+            int nCrit = stat.getNCrit() - stat.getNCritNat();
+            if (mapNCritStats.get(nCrit) != null) {
                 mapNCritStats.get(nCrit).add(stat);
             } else {
-                StatsList newStatL=new StatsList();
+                StatsList newStatL = new StatsList();
                 newStatL.add(stat);
-                mapNCritStats.put(nCrit,newStatL);
+                mapNCritStats.put(nCrit, newStatL);
             }
 
-            int nCritNat=stat.getNCritNat();
-            if(mapNCritNatStats.get(nCritNat)!=null){
+            int nCritNat = stat.getNCritNat();
+            if (mapNCritNatStats.get(nCritNat) != null) {
                 mapNCritNatStats.get(nCritNat).add(stat);
             } else {
-                StatsList newStatL=new StatsList();
+                StatsList newStatL = new StatsList();
                 newStatL.add(stat);
-                mapNCritNatStats.put(nCritNat,newStatL);
+                mapNCritNatStats.put(nCritNat, newStatL);
             }
 
-            int nAllCrit=stat.getNCrit();
-            if(mapNAllCritStats.get(nAllCrit)!=null){
+            int nAllCrit = stat.getNCrit();
+            if (mapNAllCritStats.get(nAllCrit) != null) {
                 mapNAllCritStats.get(nAllCrit).add(stat);
             } else {
-                StatsList newStatL=new StatsList();
+                StatsList newStatL = new StatsList();
                 newStatL.add(stat);
-                mapNAllCritStats.put(nAllCrit,newStatL);
+                mapNAllCritStats.put(nAllCrit, newStatL);
             }
         }
     }
@@ -197,26 +203,26 @@ public class DSSFGraph {
         ArrayList<Entry> listValHit = new ArrayList<>();
         ArrayList<Entry> listValCrit = new ArrayList<>();
         ArrayList<Entry> listValCritNat = new ArrayList<>();
-        for (int i=0;i<=nthAtkMax;i++){
-            if (mapNHitStats.get(i) != null ) {
-                int dmgMoy=mapNHitStats.get(i).getMoyDmg();
-                listValHit.add(new Entry((int) i, (int) dmgMoy,dmgMoy+" dégâts en moyenne\nlorsque on a "+i+" coups touchent"));
+        for (int i = 0; i <= nthAtkMax; i++) {
+            if (mapNHitStats.get(i) != null) {
+                int dmgMoy = mapNHitStats.get(i).getMoyDmg();
+                listValHit.add(new Entry(i, dmgMoy, dmgMoy + " dégâts en moyenne\nlorsque on a " + i + " coups touchent"));
             }
-            if (mapNCritStats.get(i) != null ) {
-                int dmgMoyCrit=mapNCritStats.get(i).getMoyDmg();
-                listValCrit.add(new Entry((int) i, (int) dmgMoyCrit,dmgMoyCrit+" dégâts en moyenne\nlorsque on a "+i+" coups critiques"));
+            if (mapNCritStats.get(i) != null) {
+                int dmgMoyCrit = mapNCritStats.get(i).getMoyDmg();
+                listValCrit.add(new Entry(i, dmgMoyCrit, dmgMoyCrit + " dégâts en moyenne\nlorsque on a " + i + " coups critiques"));
             }
-            if (mapNCritNatStats.get(i) != null ) {
-                int dmgMoyCritNat=mapNCritNatStats.get(i).getMoyDmg();
-                listValCritNat.add(new Entry((int) i, (int) dmgMoyCritNat,dmgMoyCritNat+" dégâts en moyenne\nlorsque on a "+i+" coups critiques naturels"));
+            if (mapNCritNatStats.get(i) != null) {
+                int dmgMoyCritNat = mapNCritNatStats.get(i).getMoyDmg();
+                listValCritNat.add(new Entry(i, dmgMoyCritNat, dmgMoyCritNat + " dégâts en moyenne\nlorsque on a " + i + " coups critiques naturels"));
             }
         }
-        LineDataSet setHit = new LineDataSet(listValHit,"nHit");
-        setLinePara(setHit,mC.getColor(R.color.hit_stat));
-        LineDataSet setCrit = new LineDataSet(listValCrit,"nCrit");
-        setLinePara(setCrit,mC.getColor(R.color.crit_stat));
-        LineDataSet setCritNat = new LineDataSet(listValCritNat,"nCritNat");
-        setLinePara(setCritNat,mC.getColor(R.color.crit_nat_stat));
+        LineDataSet setHit = new LineDataSet(listValHit, "nHit");
+        setLinePara(setHit, mC.getColor(R.color.hit_stat));
+        LineDataSet setCrit = new LineDataSet(listValCrit, "nCrit");
+        setLinePara(setCrit, mC.getColor(R.color.crit_stat));
+        LineDataSet setCritNat = new LineDataSet(listValCritNat, "nCritNat");
+        setLinePara(setCritNat, mC.getColor(R.color.crit_nat_stat));
 
         LineData data = new LineData();
         data.addDataSet(setHit);
@@ -228,48 +234,56 @@ public class DSSFGraph {
 
     private void setElemData() {
         LineData data = new LineData();
-        int minAxis=0;
-        for(String elem : elemsSelected) {
+        int minAxis = 0;
+        for (String elem : elemsSelected) {
             ArrayList<Entry> listValElem = new ArrayList<>();
-            for (int i=0;i<=nthAtkMax;i++){
-                if (mapNAllCritStats.get(i) != null ) {
-                    int dmgMoyElem=mapNAllCritStats.get(i).getMoyDmgElem(elem);
-                    if(minAxis==0){ minAxis=dmgMoyElem; }
-                    if(minAxis>dmgMoyElem){ minAxis=dmgMoyElem; }
-                    listValElem.add(new Entry((int) i, (int) dmgMoyElem,dmgMoyElem+" dégâts "+elems.getName(elem)+" en moyenne\nlorsque on a "+i+" coups critiques (crit+critNat)"));
+            for (int i = 0; i <= nthAtkMax; i++) {
+                if (mapNAllCritStats.get(i) != null) {
+                    int dmgMoyElem = mapNAllCritStats.get(i).getMoyDmgElem(elem);
+                    if (minAxis == 0) {
+                        minAxis = dmgMoyElem;
+                    }
+                    if (minAxis > dmgMoyElem) {
+                        minAxis = dmgMoyElem;
+                    }
+                    listValElem.add(new Entry(i, dmgMoyElem, dmgMoyElem + " dégâts " + elems.getName(elem) + " en moyenne\nlorsque on a " + i + " coups critiques (crit+critNat)"));
                 }
             }
-            LineDataSet setElem = new LineDataSet(listValElem,elems.getName(elem));
-            setLinePara(setElem,elems.getColorId(elem));
+            LineDataSet setElem = new LineDataSet(listValElem, elems.getName(elem));
+            setLinePara(setElem, elems.getColorId(elem));
             data.addDataSet(setElem);
 
-            if(elem.equalsIgnoreCase("")){
+            if (elem.equalsIgnoreCase("")) {
                 ArrayList<Entry> listValElemCritNat = new ArrayList<>();
-                for (int i=0;i<=nthAtkMax;i++){
-                    if (mapNCritNatStats.get(i) != null ) {
-                        int dmgCritPhyNat=mapNCritNatStats.get(i).getMoyDmgElem(elem);
-                        listValElemCritNat.add(new Entry((int) i, (int) dmgCritPhyNat,dmgCritPhyNat+" dégâts "+elems.getName(elem)+" en moyenne\nlorsque on a "+i+" coups critiques naturels"));
+                for (int i = 0; i <= nthAtkMax; i++) {
+                    if (mapNCritNatStats.get(i) != null) {
+                        int dmgCritPhyNat = mapNCritNatStats.get(i).getMoyDmgElem(elem);
+                        listValElemCritNat.add(new Entry(i, dmgCritPhyNat, dmgCritPhyNat + " dégâts " + elems.getName(elem) + " en moyenne\nlorsque on a " + i + " coups critiques naturels"));
                     }
                 }
-                LineDataSet setElemCrit = new LineDataSet(listValElemCritNat,elems.getName(elem)+" critNat");
-                setLinePara(setElemCrit,elems.getColorId(elem));
-                setElemCrit.setColor(elems.getColorId(elem),150);
-                setElemCrit.enableDashedLine(10f,10f,0f);
+                LineDataSet setElemCrit = new LineDataSet(listValElemCritNat, elems.getName(elem) + " critNat");
+                setLinePara(setElemCrit, elems.getColorId(elem));
+                setElemCrit.setColor(elems.getColorId(elem), 150);
+                setElemCrit.enableDashedLine(10f, 10f, 0f);
                 data.addDataSet(setElemCrit);
             }
         }
         data.setValueTextSize(infoTxtSize);
-        chartElemDmgNCrit.getAxisLeft().setAxisMinimum(1f*minAxis);
+        chartElemDmgNCrit.getAxisLeft().setAxisMinimum(1f * minAxis);
         chartElemDmgNCrit.setData(data);
     }
 
-    private void setLinePara(LineDataSet set,int color) {
-        set.setColors(color);   set.setLineWidth(2f);   set.setCircleRadius(4f); set.setCircleColor(color); set.setValueFormatter(new LargeValueFormatter());
+    private void setLinePara(LineDataSet set, int color) {
+        set.setColors(color);
+        set.setLineWidth(2f);
+        set.setCircleRadius(4f);
+        set.setCircleColor(color);
+        set.setValueFormatter(new LargeValueFormatter());
     }
 
     // Resets
     public void reset() {
-        for(String elem : elems.getListKeysWedgeDamage()){
+        for (String elem : elems.getListKeysWedgeDamage()) {
             mapElemCheckbox.get(elem).setChecked(true);
         }
         resetChartDmgNatk();

@@ -2,27 +2,27 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <stellarnear.wedge_companion.EditTextPreference
         android:defaultValue="@integer/resource_hp_base_def"
+        android:inputType="number"
         android:key="resource_hp_base"
-        android:title="Base point de vie (que les DVs)"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:inputType="number"
-        android:summary="Valeur : %s"/>
+        android:summary="Valeur : %s"
+        android:title="Base point de vie (que les DVs)" />
 
     <stellarnear.wedge_companion.EditTextPreference
         android:defaultValue="@integer/resource_regen_def"
+        android:inputType="number"
         android:key="resource_regen"
-        android:title="Régénération (/round)"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:inputType="number"
-        android:summary="Valeur : %s"/>
+        android:summary="Valeur : %s"
+        android:title="Régénération (/round)" />
     <stellarnear.wedge_companion.EditTextPreference
         android:defaultValue="@integer/resource_heroic_def"
+        android:inputType="number"
         android:key="resource_heroic"
-        android:title="Points héroiques"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:inputType="number"
-        android:summary="Valeur : %s"/>
+        android:summary="Valeur : %s"
+        android:title="Points héroiques" />
 </PreferenceScreen>

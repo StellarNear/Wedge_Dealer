@@ -65,21 +65,6 @@
     </spell>
 
     <spell>
-        <name>Illumination</name>
-        <shortdescr>Éblouit la cible (-1 aux jets d’attaque).</shortdescr>
-        <descr>Ce sort élémentaire crée une petite explosion de lumière. Si celle-ci se produit devant une seule créature, cette dernière doit réussir un jet de Vigueur pour éviter de se retrouver éblouie pendant une minute. Les créatures aveugles, ainsi que celles qui sont déjà éblouies, ne sont pas affectées par illumination.</descr>
-        <range>courte</range>
-        <cast_time>simple</cast_time>
-        <duration>instant</duration>
-        <compo>V</compo>
-        <save_type>vig</save_type>
-        <rm>true</rm>
-        <rank>0</rank>
-        <type>util</type>
-    </spell>
-
-
-    <spell>
         <name>Lecture de la magie</name>
         <shortdescr>Permet de lire parchemins et livres de sorts.</shortdescr>
         <descr>Grâce à ce sort, le personnage peut lire les inscriptions magiques normalement incompréhensibles (celles des parchemins, livres magiques, armes, etc.).</descr>
@@ -104,6 +89,7 @@
         <rank>0</rank>
         <type>util</type>
     </spell>
+
 
 
     <spell>
@@ -177,7 +163,7 @@
         <duration>1h/lvl</duration>
         <compo>V,G</compo>
         <rm>false</rm>
-        <save_type>none</save_type>
+        <save_type>aucun</save_type>
         <rank>1</rank>
         <type>util</type>
     </spell>
@@ -518,7 +504,7 @@
         <duration>instant</duration>
         <compo>V,G</compo>
         <rm>true</rm>
-        <save_type>none</save_type>
+        <save_type>aucun</save_type>
         <rank>1</rank>
         <type>dmg</type>
     </spell>
@@ -594,7 +580,7 @@
         <duration>1min/lvl</duration>
         <compo>V,G</compo>
         <rm>true</rm>
-        <save_type>none</save_type>
+        <save_type>aucun</save_type>
         <rank>1</rank>
     </spell>
     <spell>
@@ -635,7 +621,7 @@
         <duration>instant</duration>
         <compo>V,G</compo>
         <rm>true</rm>
-        <save_type>none</save_type>
+        <save_type>aucun</save_type>
         <rank>1</rank>
         <type>dmg</type>
     </spell>
@@ -758,7 +744,7 @@ Transmutation de la pierre en chair annule immédiatement poing de pierre. Si le
         <duration>instant</duration>
         <compo>V,G</compo>
         <rm>true</rm>
-        <save_type>none</save_type>
+        <save_type>aucun</save_type>
         <rank>1</rank>
         <type>util</type>
     </spell>
@@ -862,7 +848,7 @@ Seules les créatures I avec une Force négligeable ont un risque de rester coll
         <duration>1round/lvl</duration>
         <compo>V,G</compo>
         <rm>false</rm>
-        <save_type>none</save_type>
+        <save_type>aucun</save_type>
         <rank>2</rank>
         <type>dmg</type>
     </spell>
@@ -911,7 +897,7 @@ Seules les créatures I avec une Force négligeable ont un risque de rester coll
         <compo>V,G,M</compo>
         <compo_m>une petite boule de bitume</compo_m>
         <rm>false</rm>
-        <save_type>none</save_type>
+        <save_type>aucun</save_type>
         <rank>2</rank>
         <type>dmg</type>
     </spell>
@@ -943,7 +929,7 @@ Seules les créatures I avec une Force négligeable ont un risque de rester coll
         <compo>V,G,M</compo>
         <compo_m>bout de tissu noir</compo_m>
         <rm>true</rm>
-        <save_type>none</save_type>
+        <save_type>aucun</save_type>
         <rank>2</rank>
     </spell>
     <spell>
@@ -986,7 +972,7 @@ Seules les créatures I avec une Force négligeable ont un risque de rester coll
         <duration>instant</duration>
         <compo>V,G</compo>
         <rm>true</rm>
-        <save_type>none</save_type>
+        <save_type>aucun</save_type>
         <rank>2</rank>
         <type>dmg</type>
     </spell>
@@ -2145,7 +2131,7 @@ Le mur doit être vertical mais, mise à part cette restriction, le personnage p
         <compo>V,G,M</compo>
         <compo_m>minuscule eventaille et une plume d'oiseau</compo_m>
         <rm>oui</rm>
-        <save_type>none</save_type>
+        <save_type>aucun</save_type>
         <rank>3</rank>
     </spell>
     <spell>
@@ -3270,7 +3256,7 @@ Si le sort réussit, la cible doit également effectuer un jet de Volonté. En c
         <duration>1round/lvl</duration>
         <compo>V,G</compo>
         <rm>true</rm>
-        <save_type>none</save_type>
+        <save_type>aucun</save_type>
         <rank>5</rank>
         <type>dmg</type>
         <dice_type>6</dice_type>
@@ -3324,7 +3310,7 @@ Un personnage peut se frayer un passage dans un mur d’épines sans risquer de 
         <compo>V,G,M</compo>
         <compo_m>encens et un chapelet de prière</compo_m>
         <rm>true</rm>
-        <save_type>none</save_type>
+        <save_type>aucun</save_type>
         <rank>5</rank>
         <type>util</type>
     </spell>
@@ -3574,7 +3560,7 @@ Le sort possède uniquement des vertus défensives. Comme c’est le cas pour la
         <cast_time>simple</cast_time>
         <duration>instant</duration>
         <rm>false</rm>
-        <save_type>none</save_type>
+        <save_type>aucun</save_type>
         <compo>V,G</compo>
         <rank>6</rank>
         <type>util</type>
@@ -4114,7 +4100,7 @@ Si une créature dotée de résistance à la magie résiste à ce sort, le vent 
         <duration>1round/lvl</duration>
         <compo>V,G</compo>
         <rm>false</rm>
-        <save_type>none</save_type>
+        <save_type>aucun</save_type>
         <rank>7</rank>
         <type>debuff</type>
         <dice_type>6</dice_type>

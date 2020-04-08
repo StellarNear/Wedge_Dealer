@@ -1,38 +1,56 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceScreen
-        android:key="halda_pref_character_feat_magic"
         android:icon="@drawable/ic_spell_book"
-        android:title="Dons de métamagie"
-        android:summary="Liste des dons concernant la magie"/>
+        android:key="halda_pref_character_feat_magic"
+        android:summary="Liste des dons concernant la magie"
+        android:title="Dons de métamagie" />
 
-    <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+    <Preference
+        android:layout="@layout/divider_pref"
+        android:selectable="false" />
 
     <PreferenceCategory
         android:key="Magie"
         android:title="Magie">
-        <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+        <Preference
+            android:layout="@layout/divider_pref"
+            android:selectable="false" />
     </PreferenceCategory>
-    <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+    <Preference
+        android:layout="@layout/divider_pref"
+        android:selectable="false" />
     <PreferenceCategory
         android:key="Attaque"
         android:title="Attaque">
-        <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+        <Preference
+            android:layout="@layout/divider_pref"
+            android:selectable="false" />
 
     </PreferenceCategory>
-    <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+    <Preference
+        android:layout="@layout/divider_pref"
+        android:selectable="false" />
     <PreferenceCategory
         android:key="Défense"
         android:title="Défense">
-        <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+        <Preference
+            android:layout="@layout/divider_pref"
+            android:selectable="false" />
 
     </PreferenceCategory>
-    <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+    <Preference
+        android:layout="@layout/divider_pref"
+        android:selectable="false" />
     <PreferenceCategory
         android:key="Autre"
         android:title="Autre">
-        <Preference   android:layout="@layout/divider_pref" android:selectable="false"/>
+        <Preference
+            android:layout="@layout/divider_pref"
+            android:selectable="false" />
 
     </PreferenceCategory>
-    <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+    <Preference
+        android:layout="@layout/divider_pref"
+        android:selectable="false" />
 
 </PreferenceScreen>

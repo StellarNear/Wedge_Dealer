@@ -38,10 +38,9 @@ import stellarnear.wedge_companion.TextFilling.SetupCheckboxes;
 import stellarnear.wedge_companion.Tools;
 
 public class MainActivityFragmentFormCombat extends Fragment {
+    public Perso pj = PersoManager.getCurrentPJ();
     private View mainPage;
     private Drawable ori_background;
-    public Perso pj= PersoManager.getCurrentPJ();
-
     private FloatingActionButton fabAtk;
     private FloatingActionButton fabDmg;
     private FloatingActionButton fabDmgDet;
@@ -76,7 +75,7 @@ public class MainActivityFragmentFormCombat extends Fragment {
             container.removeAllViews();
         }
         mainPage = inflater.inflate(R.layout.fragment_main_attack, container, false);
-        ImageButton buttonMain = (ImageButton) mainPage.findViewById(R.id.button_frag_combat_to_main);
+        ImageButton buttonMain = mainPage.findViewById(R.id.button_frag_combat_to_main);
         animate(buttonMain);
         View.OnClickListener listnerBackToMain = new View.OnClickListener() {
             @Override
@@ -84,7 +83,7 @@ public class MainActivityFragmentFormCombat extends Fragment {
                 Fragment fragment = new MainActivityFragment();
                 FragmentManager fragmentManager = getActivity().getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.setCustomAnimations(R.animator.infadefrag,R.animator.outtobotfrag);
+                fragmentTransaction.setCustomAnimations(R.animator.infadefrag, R.animator.outtobotfrag);
                 fragmentTransaction.replace(R.id.fragment_main_frame_layout, fragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
@@ -94,10 +93,10 @@ public class MainActivityFragmentFormCombat extends Fragment {
 
         setupScreen();
 
-        if(pj.getAllForms().hasActiveForm()){
+        if (pj.getAllForms().hasActiveForm()) {
             try {
                 int imgId = getResources().getIdentifier(pj.getAllForms().getCurrentForm().getId(), "drawable", getContext().getPackageName());
-                ((ImageView)mainPage.findViewById(R.id.background_blank_combat)).setImageDrawable(getResources().getDrawable(imgId));
+                ((ImageView) mainPage.findViewById(R.id.background_blank_combat)).setImageDrawable(getResources().getDrawable(imgId));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -109,7 +108,7 @@ public class MainActivityFragmentFormCombat extends Fragment {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
-                Animation anim = new ScaleAnimation(1f,1.25f,1f,1.25f,Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+                Animation anim = new ScaleAnimation(1f, 1.25f, 1f, 1.25f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
                 anim.setRepeatCount(1);
                 anim.setRepeatMode(Animation.REVERSE);
                 anim.setDuration(666);
@@ -119,7 +118,7 @@ public class MainActivityFragmentFormCombat extends Fragment {
     }
 
     public void setupScreen() {
-        mode="fullround";
+        mode = "fullround";
         firstDmgRoll = true;
         firstAtkRoll = true;
         mainPage.setOnTouchListener(new View.OnTouchListener() {
@@ -138,8 +137,8 @@ public class MainActivityFragmentFormCombat extends Fragment {
         simpleAtk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mode="simple";
-                tools.customToast(getContext(),"Lancement de l'attaque primaire uniquement !","center");
+                mode = "simple";
+                tools.customToast(getContext(), "Lancement de l'attaque primaire uniquement !", "center");
                 hideButtons(1);
                 startPreRand();
             }
@@ -147,11 +146,11 @@ public class MainActivityFragmentFormCombat extends Fragment {
         barrageShot = mainPage.findViewById(R.id.button_barrage_shot);
         barrageShot.setVisibility(View.GONE);
 
-        fabAtk = (FloatingActionButton) mainPage.findViewById(R.id.fabAtk);
+        fabAtk = mainPage.findViewById(R.id.fabAtk);
         setListenerFabAtk();
-        fabDmg = (FloatingActionButton) mainPage.findViewById(R.id.fab_damage);
+        fabDmg = mainPage.findViewById(R.id.fab_damage);
         setListenerFabDmg();
-        fabDmgDet = (FloatingActionButton) mainPage.findViewById(R.id.fab_damage_detail);
+        fabDmgDet = mainPage.findViewById(R.id.fab_damage_detail);
         setListenerFabDmgDet();
     }
 
@@ -159,7 +158,9 @@ public class MainActivityFragmentFormCombat extends Fragment {
         fabAtk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mode.equalsIgnoreCase("")){mode="fullround";}
+                if (mode.equalsIgnoreCase("")) {
+                    mode = "fullround";
+                }
                 if (firstAtkRoll) {
                     hideButtons(0);
                     startRandAtk();
@@ -170,7 +171,7 @@ public class MainActivityFragmentFormCombat extends Fragment {
                             .setIcon(android.R.drawable.ic_menu_help)
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int whichButton) {
-                                    rollList = new FormRollFactory(getActivity(),getContext(),mode).getRollList();
+                                    rollList = new FormRollFactory(getActivity(), getContext(), mode).getRollList();
                                     preRandValues = new PreRandValues(getContext(), mainPage, rollList);
                                     hideButtons(0);
                                     startRandAtk();
@@ -209,7 +210,7 @@ public class MainActivityFragmentFormCombat extends Fragment {
                     rangesAndProba.hideViews();
                 }
             case 4:
-                if (displayRolls == null || displayRolls.size()==0) {
+                if (displayRolls == null || displayRolls.size() == 0) {
                     fabDmgDet.setEnabled(false);
                 }
         }
@@ -217,7 +218,7 @@ public class MainActivityFragmentFormCombat extends Fragment {
 
     private void startPreRand() {
         clearStep(0);
-        ((ImageView)mainPage.findViewById(R.id.background_blank_combat)).setImageDrawable(null);
+        ((ImageView) mainPage.findViewById(R.id.background_blank_combat)).setImageDrawable(null);
         rollList = new FormRollFactory(getActivity(), getContext(), mode).getRollList();
         preRandValues = new PreRandValues(getContext(), mainPage, rollList);
 
@@ -230,7 +231,7 @@ public class MainActivityFragmentFormCombat extends Fragment {
     private void hideButtons(int buttonClicked) {
         simpleAtk.setOnClickListener(null);
         barrageShot.setOnClickListener(null);
-        switch (buttonClicked){
+        switch (buttonClicked) {
             case 0:
             case 3:
                 simpleAtk.animate().translationXBy(-200).setDuration(1000).start();
@@ -253,7 +254,7 @@ public class MainActivityFragmentFormCombat extends Fragment {
         showDivider();
         fabAtk.animate().setDuration(1000).translationX(-400).start();       //decale le bouton à gauche pour l'apparition du suivant
         Snackbar.make(mainPage, "Lancement des dés en cours... ", Snackbar.LENGTH_SHORT).show();
-        if(preRandValues==null){
+        if (preRandValues == null) {
             startPreRand();
         }
         if (postRandValues != null) {
@@ -301,20 +302,20 @@ public class MainActivityFragmentFormCombat extends Fragment {
     private void startDamage() {
         displayRolls = null;
         clearStep(2);
-        damages = new Damages(getActivity(),getContext(), mainPage, selectedRolls);  //calcul et affiche les degats
+        damages = new Damages(getActivity(), getContext(), mainPage, selectedRolls);  //calcul et affiche les degats
         if (selectedRolls.getDmgDiceList().getList().size() > 0) {
             rangesAndProba = new RangesAndProba(getContext(), mainPage, selectedRolls);
             fabDmgDet.setVisibility(View.VISIBLE);
             fabDmgDet.setEnabled(true);
         }
         postRandValues.refreshPostRandValues();
-        new PostData(getContext(),new PostDataElement(selectedRolls,"dmg"));
+        new PostData(getContext(), new PostDataElement(selectedRolls, "dmg"));
     }
 
     private void checkSelectedRolls() {
         selectedRolls = new RollList();
         for (Roll roll : rollList.getList()) {
-            if (roll.isInvalid() || (!roll.isHitConfirmed() && !roll.isMissed() )) {
+            if (roll.isInvalid() || (!roll.isHitConfirmed() && !roll.isMissed())) {
                 continue;
             }
             selectedRolls.add(roll);
@@ -325,7 +326,9 @@ public class MainActivityFragmentFormCombat extends Fragment {
         fabDmgDet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(displayRolls==null){displayRolls = new DisplayRolls(getActivity(), getContext(), selectedRolls);}
+                if (displayRolls == null) {
+                    displayRolls = new DisplayRolls(getActivity(), getContext(), selectedRolls);
+                }
                 displayRolls.showPopup();
             }
         });

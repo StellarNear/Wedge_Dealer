@@ -26,11 +26,12 @@ import stellarnear.wedge_companion.R;
  */
 public class PetActivityFragment extends Fragment {
     View returnFragView;
+
     public PetActivityFragment() {
     }
 
     @Override
-    public View onCreateView(final LayoutInflater inflater,final ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (container != null) {
@@ -38,31 +39,31 @@ public class PetActivityFragment extends Fragment {
         }
         unlockOrient();
 
-        returnFragView= inflater.inflate(R.layout.fragment_main, container, false);
+        returnFragView = inflater.inflate(R.layout.fragment_main, container, false);
 
-        ImageButton fabCombat = (ImageButton) returnFragView.findViewById(R.id.button_frag_to_combat);
-        setButtonActivity(fabCombat,new PetActivityFragmentCombat(),R.animator.infrombotfrag,R.animator.outfadefrag,"frag_combat");
-        Animation top = AnimationUtils.loadAnimation(getContext(),R.anim.infromtop);
+        ImageButton fabCombat = returnFragView.findViewById(R.id.button_frag_to_combat);
+        setButtonActivity(fabCombat, new PetActivityFragmentCombat(), R.animator.infrombotfrag, R.animator.outfadefrag, "frag_combat");
+        Animation top = AnimationUtils.loadAnimation(getContext(), R.anim.infromtop);
         fabCombat.startAnimation(top);
 
-        ImageButton fabSkill = (ImageButton) returnFragView.findViewById(R.id.button_frag_to_skill);
-        setButtonActivity(fabSkill, new MainActivityFragmentSkill(), R.animator.infromleftfrag,R.animator.outfadefrag,"frag_skill");
-        Animation left = AnimationUtils.loadAnimation(getContext(),R.anim.infromleft);
+        ImageButton fabSkill = returnFragView.findViewById(R.id.button_frag_to_skill);
+        setButtonActivity(fabSkill, new MainActivityFragmentSkill(), R.animator.infromleftfrag, R.animator.outfadefrag, "frag_skill");
+        Animation left = AnimationUtils.loadAnimation(getContext(), R.anim.infromleft);
         fabSkill.startAnimation(left);
 
         fadeInTooltips(getContext());
 
-        final Context mC=getContext();
-        final Activity mA=getActivity();
+        final Context mC = getContext();
+        final Activity mA = getActivity();
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Animation fadeIn = AnimationUtils.loadAnimation(mC,R.anim.infade);
+                Animation fadeIn = AnimationUtils.loadAnimation(mC, R.anim.infade);
                 View mainAbiText = returnFragView.findViewById(R.id.quadrantGeneralTitle);
                 mainAbiText.setVisibility(View.VISIBLE);
                 mainAbiText.startAnimation(fadeIn);
-                popInQuadrant(mC,mA);
+                popInQuadrant(mC, mA);
             }
         }, top.getDuration());
 
@@ -70,7 +71,7 @@ public class PetActivityFragment extends Fragment {
     }
 
     private void fadeInTooltips(Context mC) {
-        Animation fadeIn = AnimationUtils.loadAnimation(mC,R.anim.infade);
+        Animation fadeIn = AnimationUtils.loadAnimation(mC, R.anim.infade);
         View tooltip1 = returnFragView.findViewById(R.id.textCombatActionTooltip);
         View tooltip2 = returnFragView.findViewById(R.id.textSkillActionTooltip);
 
@@ -81,16 +82,16 @@ public class PetActivityFragment extends Fragment {
         tooltip2.startAnimation(fadeIn);
     }
 
-    private void popInQuadrant(Context mC,Activity mA) {
-        QuadrantManager quadrantManager = new QuadrantManager(returnFragView,mC,mA);
-        Animation pop = AnimationUtils.loadAnimation(mC,R.anim.popinquadrant);
-        int delay=(int) (0.5*pop.getDuration());
-        Animation pop2 = AnimationUtils.loadAnimation(mC,R.anim.popinquadrant);
-        Animation pop3 = AnimationUtils.loadAnimation(mC,R.anim.popinquadrant);
-        Animation pop4 = AnimationUtils.loadAnimation(mC,R.anim.popinquadrant);
+    private void popInQuadrant(Context mC, Activity mA) {
+        QuadrantManager quadrantManager = new QuadrantManager(returnFragView, mC, mA);
+        Animation pop = AnimationUtils.loadAnimation(mC, R.anim.popinquadrant);
+        int delay = (int) (0.5 * pop.getDuration());
+        Animation pop2 = AnimationUtils.loadAnimation(mC, R.anim.popinquadrant);
+        Animation pop3 = AnimationUtils.loadAnimation(mC, R.anim.popinquadrant);
+        Animation pop4 = AnimationUtils.loadAnimation(mC, R.anim.popinquadrant);
         pop2.setStartOffset(delay);
-        pop3.setStartOffset(delay*2);
-        pop4.setStartOffset(delay*3);
+        pop3.setStartOffset(delay * 2);
+        pop4.setStartOffset(delay * 3);
         List<LinearLayout> quadrantList = quadrantManager.quadrantAsList();
         quadrantManager.showQuadrant();
         quadrantList.get(0).startAnimation(pop);
@@ -99,20 +100,21 @@ public class PetActivityFragment extends Fragment {
         quadrantList.get(3).startAnimation(pop4);
     }
 
-    private void setButtonActivity(ImageButton button, final Fragment ActivityFragment,final int animIn,final int animOut,final String tag) {
+    private void setButtonActivity(ImageButton button, final Fragment ActivityFragment, final int animIn, final int animOut, final String tag) {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 lockOrient();
                 FragmentManager fragmentManager = getActivity().getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.setCustomAnimations(animIn,animOut);
-                fragmentTransaction.replace(R.id.fragment_main_frame_layout, ActivityFragment,tag);
+                fragmentTransaction.setCustomAnimations(animIn, animOut);
+                fragmentTransaction.replace(R.id.fragment_main_frame_layout, ActivityFragment, tag);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }
         });
     }
+
     private void unlockOrient() {
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR);
     }

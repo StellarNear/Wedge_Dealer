@@ -1,4 +1,5 @@
 package stellarnear.wedge_companion.Perso;
+
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 
@@ -24,39 +25,39 @@ public class Equipment {
     private String descr;
     private String value;
     private String slotId;
-    private List<String> tags=new ArrayList<>();
+    private List<String> tags = new ArrayList<>();
     private String img_path;
-    private Boolean equiped=false;
-    private Boolean limitedMaxDex=false;
+    private Boolean equiped = false;
+    private Boolean limitedMaxDex = false;
     private int maxDexMod;
-    private int armor=0;
-    private Map<String,Integer> mapAbilityUp=null;
-    private Map<String,Integer> mapSkillUp=null;
+    private int armor = 0;
+    private Map<String, Integer> mapAbilityUp = null;
+    private Map<String, Integer> mapSkillUp = null;
 
-    public Equipment(String name, String descr, String value, String imgIdTxt, String slotId, Boolean equiped,int armor) {
+    public Equipment(String name, String descr, String value, String imgIdTxt, String slotId, Boolean equiped, int armor) {
         this.name = name;
         this.descr = descr;
-        if (value.equalsIgnoreCase("")){
-            this.value="-";
+        if (value.equalsIgnoreCase("")) {
+            this.value = "-";
         } else {
-            this.value=value;
+            this.value = value;
         }
-        this.img_path=imgIdTxt;
+        this.img_path = imgIdTxt;
         this.slotId = slotId;
-        this.equiped=equiped;
-        this.armor=armor;
+        this.equiped = equiped;
+        this.armor = armor;
     }
 
     public Equipment(String name, String descr, String value, List<String> tags) { //for bag items
         this.name = name;
         this.descr = descr;
-        if (value.equalsIgnoreCase("")){
-            this.value="-";
+        if (value.equalsIgnoreCase("")) {
+            this.value = "-";
         } else {
-            this.value=value;
+            this.value = value;
         }
-        for(String tag:tags){
-            if(!tag.equalsIgnoreCase("")){
+        for (String tag : tags) {
+            if (!tag.equalsIgnoreCase("")) {
                 this.tags.add(tag);
             }
         }
@@ -74,8 +75,8 @@ public class Equipment {
         return slotId;
     }
 
-    public Drawable getImg(Context mC){  //pour la sauvegarde dans SHaredSetting on ne peut pas serialisé le contexte donc on le redonne à l'exec
-        Drawable draw =null;
+    public Drawable getImg(Context mC) {  //pour la sauvegarde dans SHaredSetting on ne peut pas serialisé le contexte donc on le redonne à l'exec
+        Drawable draw = null;
         try {
             int imgId = mC.getResources().getIdentifier(this.img_path, "drawable", mC.getPackageName());
             draw = mC.getDrawable(imgId);
@@ -85,14 +86,16 @@ public class Equipment {
         return draw;
     }
 
-    public String getValue() {return this.value;}
+    public String getValue() {
+        return this.value;
+    }
 
-    public boolean isEquiped(){
+    public boolean isEquiped() {
         Boolean val;
-        if (this.equiped!=null){
-            val=this.equiped;
+        if (this.equiped != null) {
+            val = this.equiped;
         } else {
-            val=false;
+            val = false;
         }
         return val;
     }
@@ -105,17 +108,17 @@ public class Equipment {
         return tags;
     }
 
-    public void setMaxDexMod(Integer toInt) {
-        maxDexMod=toInt;
-        limitedMaxDex=true;
-    }
-
     public boolean isLimitedMaxDex() {
         return limitedMaxDex;
     }
 
     public int getMaxDexMod() {
         return maxDexMod;
+    }
+
+    public void setMaxDexMod(Integer toInt) {
+        maxDexMod = toInt;
+        limitedMaxDex = true;
     }
 
     public int getArmor() {
@@ -125,13 +128,13 @@ public class Equipment {
     public void setAbilityUp(Element element) {
         try {//try car il peut ne pas y avoir de abilityUp
             NodeList abilityUp = element.getElementsByTagName("abilityUp").item(0).getChildNodes();
-            Tools tools =Tools.getTools();
+            Tools tools = Tools.getTools();
             for (int i = 0; i < abilityUp.getLength(); i++) {
                 Node node = abilityUp.item(i);
-                if(node.getNodeType() == Node.ELEMENT_NODE) {
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
                     String name = node.getNodeName();
                     int val = tools.toInt(node.getChildNodes().item(0).getNodeValue());
-                    if(name !=null && !name.equalsIgnoreCase("")&& val!=0) {
+                    if (name != null && !name.equalsIgnoreCase("") && val != 0) {
                         if (mapAbilityUp == null) {
                             mapAbilityUp = new HashMap<>();
                         }
@@ -147,13 +150,13 @@ public class Equipment {
     public void setSkillUp(Element element) {
         try { //try car il peut ne pas y avoir de skillUp
             NodeList skillUp = element.getElementsByTagName("skillUp").item(0).getChildNodes();
-            Tools tools =Tools.getTools();
+            Tools tools = Tools.getTools();
             for (int i = 0; i < skillUp.getLength(); i++) {
                 Node node = skillUp.item(i);
-                if(node.getNodeType() == Node.ELEMENT_NODE) {
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
                     String name = node.getNodeName();
                     int val = tools.toInt(node.getChildNodes().item(0).getNodeValue());
-                    if(name !=null && !name.equalsIgnoreCase("")&& val!=0) {
+                    if (name != null && !name.equalsIgnoreCase("") && val != 0) {
                         if (mapSkillUp == null) {
                             mapSkillUp = new HashMap<>();
                         }
@@ -178,8 +181,8 @@ public class Equipment {
         if (mapAbilityUp == null) {
             mapAbilityUp = new HashMap<>();
         }
-        for(Map.Entry<String,Integer> entry : abiMap.entrySet()) {
-            mapAbilityUp.put(entry.getKey(),entry.getValue());
+        for (Map.Entry<String, Integer> entry : abiMap.entrySet()) {
+            mapAbilityUp.put(entry.getKey(), entry.getValue());
         }
     }
 
@@ -187,8 +190,8 @@ public class Equipment {
         if (mapSkillUp == null) {
             mapSkillUp = new HashMap<>();
         }
-        for(Map.Entry<String,Integer> entry : skillMap.entrySet()) {
-            mapSkillUp.put(entry.getKey(),entry.getValue());
+        for (Map.Entry<String, Integer> entry : skillMap.entrySet()) {
+            mapSkillUp.put(entry.getKey(), entry.getValue());
         }
     }
 }

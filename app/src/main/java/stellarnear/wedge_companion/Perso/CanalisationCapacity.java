@@ -15,19 +15,18 @@ public class CanalisationCapacity {
     private String shortdescr;
     private String id;
 
-    public CanalisationCapacity(String name, int cost, String feat, String descr, String shortdescr, String id, Context mC)
-    {
+    public CanalisationCapacity(String name, int cost, String feat, String descr, String shortdescr, String id, Context mC) {
         this.mC = mC;
-        this.name=name;
-        this.cost=cost;
-        this.feat=feat;
-        this.descr=descr;
-        if(shortdescr.equalsIgnoreCase("")){
-            this.shortdescr=descr;
+        this.name = name;
+        this.cost = cost;
+        this.feat = feat;
+        this.descr = descr;
+        if (shortdescr.equalsIgnoreCase("")) {
+            this.shortdescr = descr;
         } else {
-            this.shortdescr=shortdescr;
+            this.shortdescr = shortdescr;
         }
-        this.id=id;
+        this.id = id;
     }
 
     public String getName() {
@@ -50,5 +49,7 @@ public class CanalisationCapacity {
         return shortdescr;
     }
 
-    public String getId(){return id;}
+    public String getId() {
+        return id;
+    }
 }

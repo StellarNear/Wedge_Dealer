@@ -18,29 +18,29 @@ public class PetAtkRoll extends AtkRoll {
     }
 
     private Integer getMeleeBonus() {
-        int bonusAtkMelee=0;
-        bonusAtkMelee+= pj.getAbilityMod("ability_force");
+        int bonusAtkMelee = 0;
+        bonusAtkMelee += pj.getAbilityMod("ability_force");
         if (mode.contains("claw") && pj.getAllCapacities().capacityIsActive("capacity_magic_suprem_bite_claw")) {
-            bonusAtkMelee+=5;
+            bonusAtkMelee += 5;
         }
         if (mode.contains("bite") && pj.getAllCapacities().capacityIsActive("capacity_magic_suprem_bite_bite")) {
-            bonusAtkMelee+=5;
+            bonusAtkMelee += 5;
         }
-        if(mode.contains("claw")&&pj.getAllFeats().featIsActive("feat_predil_claw")){
-            bonusAtkMelee+=1;
+        if (mode.contains("claw") && pj.getAllFeats().featIsActive("feat_predil_claw")) {
+            bonusAtkMelee += 1;
         }
-        if(mode.contains("claw")&&pj.getAllFeats().featIsActive("feat_predil_sup_claw")){
-            bonusAtkMelee+=1;
+        if (mode.contains("claw") && pj.getAllFeats().featIsActive("feat_predil_sup_claw")) {
+            bonusAtkMelee += 1;
         }
-        if(mode.contains("claw")&&pj.getAllFeats().featIsActive("feat_predil_epic_claw")){
-            bonusAtkMelee+=2;
+        if (mode.contains("claw") && pj.getAllFeats().featIsActive("feat_predil_epic_claw")) {
+            bonusAtkMelee += 2;
         }
-        if ( pj.getAllFeats().featIsActive("feat_power_atk")) {
-            int defValID= mC.getResources().getIdentifier("feat_power_atk_val_def"+PersoManager.getPJSuffix(),"integer",mC.getPackageName());
-            bonusAtkMelee-=tools.toInt(settings.getString("feat_power_atk_val", String.valueOf(mC.getResources().getInteger(defValID))));
+        if (pj.getAllFeats().featIsActive("feat_power_atk")) {
+            int defValID = mC.getResources().getIdentifier("feat_power_atk_val_def" + PersoManager.getPJSuffix(), "integer", mC.getPackageName());
+            bonusAtkMelee -= tools.toInt(settings.getString("feat_power_atk_val", String.valueOf(mC.getResources().getInteger(defValID))));
         }
-        if(mode.contains("leap")){
-            bonusAtkMelee+=2;
+        if (mode.contains("leap")) {
+            bonusAtkMelee += 2;
         }
         return bonusAtkMelee;
     }

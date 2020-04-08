@@ -2,22 +2,22 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center"
+    android:orientation="vertical">
 
 
     <ImageView
         android:id="@+id/mythic_bar_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/bar_gradient_xp"/>
+        android:src="@drawable/bar_gradient_xp" />
 
     <ImageView
         android:id="@+id/mythic_bar_overlay"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:src="@drawable/mythic_bar"
-        android:scaleType="fitXY"/>
+        android:scaleType="fitXY"
+        android:src="@drawable/mythic_bar" />
 
     <TextView
         android:id="@+id/mythic_bar_percent"
@@ -25,11 +25,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@android:color/black"
         android:shadowColor="@color/colorBackground"
         android:shadowDx="0"
         android:shadowDy="0"
-        android:shadowRadius="5"/>
+        android:shadowRadius="5"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@android:color/black" />
 
 </FrameLayout>

@@ -19,7 +19,7 @@
     <integer name="ability_sagesse_augment_def_rana">0</integer>
     <integer name="ability_charisme_augment_def_rana">0</integer>
 
-<!-- autre -->
+    <!-- autre -->
     <integer name="ability_ms_def_rana">12</integer>
 
     <!-- Resources  -->
@@ -31,8 +31,6 @@
     <integer name="ability_ref_def_rana">12</integer>
     <integer name="ability_vol_def_rana">6</integer>
     <integer name="epic_save_def_rana">0</integer>
-
-
 
 
     <!--  Rank de maitrise des compétences  -->

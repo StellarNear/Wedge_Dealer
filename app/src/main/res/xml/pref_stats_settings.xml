@@ -3,9 +3,9 @@
 
     <ListPreference
         android:defaultValue="@integer/display_stats_bin_def"
-        android:inputType="number"
         android:entries="@array/stat_bin"
         android:entryValues="@array/stat_bin"
+        android:inputType="number"
         android:key="display_stats_bin"
         android:summary="Valeur : %s"
         android:title="Taille du pas d'histogramme des dégâts" />

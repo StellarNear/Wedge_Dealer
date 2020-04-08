@@ -1,59 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/toast_RelativeLayout"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:id="@+id/toast_RelativeLayout"
     android:background="@drawable/background_border_infos"
-    android:padding="@dimen/general_margin"
-    >
+    android:padding="@dimen/general_margin">
 
     <LinearLayout
         android:id="@+id/toast_LinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/toast_image"
-                android:adjustViewBounds="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:maxWidth="@dimen/custom_toast_icon_size"
-                android:maxHeight="@dimen/custom_toast_icon_size"
                 android:layout_margin="@dimen/general_margin"
-                />
+                android:adjustViewBounds="true"
+                android:maxWidth="@dimen/custom_toast_icon_size"
+                android:maxHeight="@dimen/custom_toast_icon_size" />
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/toast_textName"
                     android:layout_width="match_parent"
-                    android:gravity="center"
-                    android:textAlignment="center"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="Test long name"
+                    android:textAlignment="center"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@android:color/black"/>
+                    android:textColor="@android:color/black" />
 
                 <TextView
                     android:id="@+id/toast_textDescr"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/general_margin"
-                    android:text="This is the demo of Custom Toast Notification"/>
+                    android:text="This is the demo of Custom Toast Notification" />
 
             </LinearLayout>
         </LinearLayout>

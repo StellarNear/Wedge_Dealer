@@ -29,20 +29,29 @@ import stellarnear.wedge_companion.Spells.Spell;
 public class GetData {
     private ProgressDialog dialog;
     private Context mC;
-    private Tools tools=Tools.getTools();
-    private List<PairSpellUuid> listPairSpellUuidList =new ArrayList<>();
+    private Tools tools = Tools.getTools();
+    private List<PairSpellUuid> listPairSpellUuidList = new ArrayList<>();
     private OnDataRecievedEventListener mListener;
-    public GetData(Context mC){
-        this.mC=mC;
+
+    public GetData(Context mC) {
+        this.mC = mC;
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
-        if (settings.getBoolean("switch_shadow_link",mC.getResources().getBoolean(R.bool.switch_shadow_link_def))
-            && !settings.getBoolean("switch_demo_mode",mC.getResources().getBoolean(R.bool.switch_demo_mode_def))) {
+        if (settings.getBoolean("switch_shadow_link", mC.getResources().getBoolean(R.bool.switch_shadow_link_def))
+                && !settings.getBoolean("switch_demo_mode", mC.getResources().getBoolean(R.bool.switch_demo_mode_def))) {
             new JsonTask().execute("https://script.google.com/macros/s/AKfycbxOLElujQcy1-ZUer1KgEvK16gkTLUqYftApjNCM_IRTL3HSuDk/exec?id=1AmQOsFXgWBb9ipxhnKEj_JfKZUMt1bUJiBeNVNhH6oc&sheet=spell_arrow");
         }
     }
 
     public List<PairSpellUuid> getListPairSpellUuidList() {
         return listPairSpellUuidList;
+    }
+
+    public void setOnDataRecievedEventListener(OnDataRecievedEventListener eventListener) {
+        mListener = eventListener;
+    }
+
+    public interface OnDataRecievedEventListener {
+        void onEvent();
     }
 
     private class JsonTask extends AsyncTask<String, String, String> {
@@ -74,7 +83,7 @@ public class GetData {
                 String line = "";
 
                 while ((line = reader.readLine()) != null) {
-                    buffer.append(line+"\n");
+                    buffer.append(line + "\n");
                     Log.d("Response: ", "> " + line);   //here u ll get whole response...... :-)
 
                 }
@@ -103,21 +112,21 @@ public class GetData {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            if (dialog.isShowing()){
+            if (dialog.isShowing()) {
                 dialog.dismiss();
             }
 
             try {
                 JSONObject allObjs = new JSONObject(result);
-                JSONArray spellsJsonArray = (JSONArray)allObjs.get("spell_arrow");
+                JSONArray spellsJsonArray = (JSONArray) allObjs.get("spell_arrow");
 
                 Gson gson = new Gson();
-                listPairSpellUuidList=new ArrayList<>();
-                for(int i = 0 ; i<spellsJsonArray.length();i++){
-                    GetDataElement dataElement = gson.fromJson(spellsJsonArray.get(i).toString(),GetDataElement.class);
-                    listPairSpellUuidList.add(new PairSpellUuid(gson.fromJson(dataElement.getSpelljson(),Spell.class),dataElement.getUuid()));
+                listPairSpellUuidList = new ArrayList<>();
+                for (int i = 0; i < spellsJsonArray.length(); i++) {
+                    GetDataElement dataElement = gson.fromJson(spellsJsonArray.get(i).toString(), GetDataElement.class);
+                    listPairSpellUuidList.add(new PairSpellUuid(gson.fromJson(dataElement.getSpelljson(), Spell.class), dataElement.getUuid()));
                 }
-                if(mListener!=null){
+                if (mListener != null) {
                     mListener.onEvent();
                 }
 
@@ -127,22 +136,13 @@ public class GetData {
         }
     }
 
-    public interface OnDataRecievedEventListener {
-        void onEvent();
-    }
-
-    public void setOnDataRecievedEventListener(OnDataRecievedEventListener eventListener) {
-        mListener = eventListener;
-    }
-
-
-    public class  PairSpellUuid{
+    public class PairSpellUuid {
         private Spell spell;
         private String uuid;
 
-        private PairSpellUuid(Spell spell,String uuid){
-            this.spell=spell;
-            this.uuid=uuid;
+        private PairSpellUuid(Spell spell, String uuid) {
+            this.spell = spell;
+            this.uuid = uuid;
         }
 
         public Spell getSpell() {

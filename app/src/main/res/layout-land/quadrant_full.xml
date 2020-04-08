@@ -11,19 +11,18 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/pet_main_frag_stats_heigh_quadrant"
         android:layout_margin="@dimen/general_margin"
-        android:clipChildren="false"
         android:background="@drawable/quadrant_basic_gradient"
+        android:clipChildren="false"
         android:gravity="center"
-        android:orientation="horizontal"/>
-
+        android:orientation="horizontal" />
 
 
     <ImageButton
         android:id="@+id/button_quadrant_full_exit"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
         android:backgroundTint="@android:color/transparent"
         android:scaleType="fitXY"
         app:srcCompat="@drawable/back_arrow" />

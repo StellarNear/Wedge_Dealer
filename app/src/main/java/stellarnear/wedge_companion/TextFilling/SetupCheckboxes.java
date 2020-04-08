@@ -27,21 +27,21 @@ public class SetupCheckboxes {
         addCheckboxes();
     }
 
-    public void hideViews(){
-        ((TextView)mainView.findViewById(R.id.mainLinearCheckboxCritTitle)).setVisibility(View.GONE);
-        ((TextView)mainView.findViewById(R.id.mainLinearCheckboxHitTitle)).setVisibility(View.GONE);
-        ((LinearLayout)mainView.findViewById(R.id.mainLinearHitCheckbox)).setVisibility(View.GONE);
-        ((LinearLayout)mainView.findViewById(R.id.mainLinearCritCheckbox)).setVisibility(View.GONE);
+    public void hideViews() {
+        mainView.findViewById(R.id.mainLinearCheckboxCritTitle).setVisibility(View.GONE);
+        mainView.findViewById(R.id.mainLinearCheckboxHitTitle).setVisibility(View.GONE);
+        mainView.findViewById(R.id.mainLinearHitCheckbox).setVisibility(View.GONE);
+        mainView.findViewById(R.id.mainLinearCritCheckbox).setVisibility(View.GONE);
     }
 
-    private void showViews(){
-        ((TextView)mainView.findViewById(R.id.mainLinearCheckboxHitTitle)).setVisibility(View.VISIBLE);
-        ((LinearLayout)mainView.findViewById(R.id.mainLinearHitCheckbox)).setVisibility(View.VISIBLE);
-        ((LinearLayout)mainView.findViewById(R.id.mainLinearCritCheckbox)).setVisibility(View.VISIBLE);
+    private void showViews() {
+        mainView.findViewById(R.id.mainLinearCheckboxHitTitle).setVisibility(View.VISIBLE);
+        mainView.findViewById(R.id.mainLinearHitCheckbox).setVisibility(View.VISIBLE);
+        mainView.findViewById(R.id.mainLinearCritCheckbox).setVisibility(View.VISIBLE);
     }
 
     private void addCheckboxes() {
-        ((LinearLayout)mainView.findViewById(R.id.mainLinearHitCheckbox)).removeAllViews();
+        ((LinearLayout) mainView.findViewById(R.id.mainLinearHitCheckbox)).removeAllViews();
         for (Roll roll : rollList.getList()) {
             LinearLayout frame = new LinearLayout(mC);
             frame.setGravity(Gravity.CENTER);
@@ -49,31 +49,31 @@ public class SetupCheckboxes {
             frame.setLayoutParams(params);
             if (!roll.isInvalid() && !roll.isFailed()) {
                 CheckBox check = roll.getHitCheckbox();
-                if (check.getParent()!= null) {
-                    ((ViewGroup)check.getParent()).removeView(check);
+                if (check.getParent() != null) {
+                    ((ViewGroup) check.getParent()).removeView(check);
                 }
                 frame.addView(check);
             }
-            ((LinearLayout)mainView.findViewById(R.id.mainLinearHitCheckbox)).addView(frame);
+            ((LinearLayout) mainView.findViewById(R.id.mainLinearHitCheckbox)).addView(frame);
         }
 
-        ((LinearLayout)mainView.findViewById(R.id.mainLinearCritCheckbox)).removeAllViews();
+        ((LinearLayout) mainView.findViewById(R.id.mainLinearCritCheckbox)).removeAllViews();
         if (rollList.haveAnyCritValid()) {
-            ((TextView)mainView.findViewById(R.id.mainLinearCheckboxCritTitle)).setVisibility(View.VISIBLE);
+            mainView.findViewById(R.id.mainLinearCheckboxCritTitle).setVisibility(View.VISIBLE);
             for (final Roll roll : rollList.getList()) {
                 LinearLayout frame = new LinearLayout(mC);
                 frame.setGravity(Gravity.CENTER);
                 frame.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
                 if (!roll.isInvalid() && !roll.isFailed() && roll.isCrit()) {
                     CheckBox check = roll.getCritCheckbox();
-                    if (check.getParent()!= null) {
-                        ((ViewGroup)check.getParent()).removeView(check);
+                    if (check.getParent() != null) {
+                        ((ViewGroup) check.getParent()).removeView(check);
                     }
                     frame.addView(check);
                     Animation animCheck = AnimationUtils.loadAnimation(mC, R.anim.zoomin);
                     check.startAnimation(animCheck);
                 }
-                ((LinearLayout)mainView.findViewById(R.id.mainLinearCritCheckbox)).addView(frame);
+                ((LinearLayout) mainView.findViewById(R.id.mainLinearCritCheckbox)).addView(frame);
             }
         }
     }

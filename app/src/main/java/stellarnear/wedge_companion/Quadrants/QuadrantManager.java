@@ -21,6 +21,7 @@ public class QuadrantManager {
     private LinearLayout quadrant4;
     private List<LinearLayout> quadrantList;
     private QuadrantFiller quadrantFiller;
+
     public QuadrantManager(View mainView, Context mC, Activity mA) {
 
         quadrant1 = mainView.findViewById(R.id.main_frag_stats_quadrant1);
@@ -31,20 +32,18 @@ public class QuadrantManager {
 
         quadrant4 = mainView.findViewById(R.id.main_frag_stats_quadrant4);
 
-        quadrantList= Arrays.asList(quadrant1, quadrant2, quadrant3, quadrant4);
+        quadrantList = Arrays.asList(quadrant1, quadrant2, quadrant3, quadrant4);
         hideQuadrant();
         setLayoutsListners();
-        quadrantFiller =new QuadrantFiller(mainView,mC,mA);
+        quadrantFiller = new QuadrantFiller(mainView, mC, mA);
     }
 
     private void setLayoutsListners() {
         for (final LinearLayout layout : quadrantList) {
-            layout.setOnClickListener(new View.OnClickListener()
-            {
+            layout.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v)
-                {
-                    if(!quadrantFiller.isFullscreen()){
+                public void onClick(View v) {
+                    if (!quadrantFiller.isFullscreen()) {
                         quadrantFiller.fullscreenQuadrant(layout);
                     }
                     layout.requestLayout();
@@ -57,6 +56,7 @@ public class QuadrantManager {
     public List<LinearLayout> quadrantAsList() {
         return quadrantList;
     }
+
     public void hideQuadrant() {
         for (final LinearLayout layout : quadrantList) {
             layout.setVisibility(View.GONE);

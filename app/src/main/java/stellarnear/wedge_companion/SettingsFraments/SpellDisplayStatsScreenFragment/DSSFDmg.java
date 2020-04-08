@@ -46,36 +46,36 @@ public class DSSFDmg {
     private Context mC;
     private View mainView;
     private ElemsManager elems;
-    private Map<String, CheckBox> mapElemCheckbox=new HashMap<>();
-    private DamagesShortList selectedDamagesShortList =new DamagesShortList();
+    private Map<String, CheckBox> mapElemCheckbox = new HashMap<>();
+    private DamagesShortList selectedDamagesShortList = new DamagesShortList();
     private int infoTxtSize = 12;
 
-    private Tools tools=Tools.getTools();
+    private Tools tools = Tools.getTools();
 
     public DSSFDmg(View mainView, Context mC) {
         this.mainView = mainView;
         this.mC = mC;
-        this.elems=ElemsManager.getInstance();
-        
+        this.elems = ElemsManager.getInstance();
+
         TextView nAtkTxt = mainView.findViewById(R.id.nDmgTxt);
         nAtkTxt.setText(pj.getSpellStats().getSpellStatsList().getNDamageSpell() + " jets de dégâts");
         determineElemsPresents();
         setCheckboxListeners();
-        chartMaker = new DSSFDmgChartMaker((BarChart)mainView.findViewById(R.id.bar_chart_dmg),mapElemCheckbox,mC);
+        chartMaker = new DSSFDmgChartMaker((BarChart) mainView.findViewById(R.id.bar_chart_dmg), mapElemCheckbox, mC);
 
         initChartSelectEvent();
         initPieChart();
-        subManager=new DSSFDmgInfoManager(mainView,mapElemCheckbox,mC);
+        subManager = new DSSFDmgInfoManager(mainView, mapElemCheckbox, mC);
     }
 
     private void determineElemsPresents() {
         SpellStatsList allStats = pj.getSpellStats().getSpellStatsList();
-        mapElemCheckbox=new HashMap<>();
-        for(SpellStat spellStat :allStats.asList()) {
-            for(DamagesShortListElement subDamageIndivSpell : spellStat.getDamageShortList().getDamageElementList()){
+        mapElemCheckbox = new HashMap<>();
+        for (SpellStat spellStat : allStats.asList()) {
+            for (DamagesShortListElement subDamageIndivSpell : spellStat.getDamageShortList().getDamageElementList()) {
                 String elementSpell = subDamageIndivSpell.getElement();
-                if (mapElemCheckbox.get(elementSpell)==null && !elementSpell.equalsIgnoreCase("")) { // pour le sdegat on ignore les spell utils
-                    mapElemCheckbox.put(elementSpell,addCheckBox(elementSpell));
+                if (mapElemCheckbox.get(elementSpell) == null && !elementSpell.equalsIgnoreCase("")) { // pour le sdegat on ignore les spell utils
+                    mapElemCheckbox.put(elementSpell, addCheckBox(elementSpell));
                 }
             }
         }
@@ -91,16 +91,16 @@ public class DSSFDmg {
             drawable = mC.getDrawable(R.drawable.mire_test);
             e.printStackTrace();
         }
-        ((LinearLayout)mainView.findViewById(R.id.fourth_panel_elems_checkboxes)).addView(checkBox);
+        ((LinearLayout) mainView.findViewById(R.id.fourth_panel_elems_checkboxes)).addView(checkBox);
         ImageView logo = new ImageView(mC);
-        logo.setImageDrawable(tools.resize(mC,drawable,80));
-        ((LinearLayout)mainView.findViewById(R.id.fourth_panel_elems_checkboxes)).addView(logo);
+        logo.setImageDrawable(tools.resize(mC, drawable, 80));
+        ((LinearLayout) mainView.findViewById(R.id.fourth_panel_elems_checkboxes)).addView(logo);
         checkBox.setChecked(true);
         return checkBox;
     }
 
     private void setCheckboxListeners() {
-        for(Map.Entry<String,CheckBox> entry:mapElemCheckbox.entrySet()){
+        for (Map.Entry<String, CheckBox> entry : mapElemCheckbox.entrySet()) {
             entry.getValue().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -119,15 +119,15 @@ public class DSSFDmg {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
                 resetPieChart();
-                selectedDamagesShortList =chartMaker.getMapIStepSelectedDamagesShortList().get((int)e.getX());
+                selectedDamagesShortList = chartMaker.getMapIStepSelectedDamagesShortList().get((int) e.getX());
                 buildPieChart();
-                subManager.setSubSelectionBracket(chartMaker.getLabels().get((int)e.getX()));
+                subManager.setSubSelectionBracket(chartMaker.getLabels().get((int) e.getX()));
                 subManager.addInfos(selectedDamagesShortList);
             }
 
             @Override
             public void onNothingSelected() {
-                if(chartMaker.getChart().isFocusable()) {
+                if (chartMaker.getChart().isFocusable()) {
                     reset();
                     resetPieChart();
                     subManager.addInfos(null);
@@ -139,14 +139,14 @@ public class DSSFDmg {
 
     // Pie chart
 
-    private void initPieChart(){
+    private void initPieChart() {
         pieChart = mainView.findViewById(R.id.pie_chart_dmg_percent);
         pieChart.setUsePercentValues(true);
         pieChart.getDescription().setEnabled(false);
         pieChart.getLegend().setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
 
         buildPieChart();
-        pieChart.animateXY(100,1000);
+        pieChart.animateXY(100, 1000);
         pieChart.getLegend().setEnabled(false);
         pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
@@ -171,25 +171,25 @@ public class DSSFDmg {
 
     private PieDataSet computePieDataSet() {
         ArrayList<PieEntry> entries = new ArrayList<>();
-        List<Integer> colorList= new ArrayList<>();
+        List<Integer> colorList = new ArrayList<>();
 
         DamagesShortList list;
-        if(selectedDamagesShortList !=null && selectedDamagesShortList.size()!=0){
-            list= selectedDamagesShortList;
+        if (selectedDamagesShortList != null && selectedDamagesShortList.size() != 0) {
+            list = selectedDamagesShortList;
         } else {
-            list= pj.getSpellStats().getSpellStatsList().getDamageShortList();
+            list = pj.getSpellStats().getSpellStatsList().getDamageShortList();
         }
-        int totalDmg=list.getSumDmgTot();
-        for(Map.Entry<String,CheckBox> entry:mapElemCheckbox.entrySet()){
+        int totalDmg = list.getSumDmgTot();
+        for (Map.Entry<String, CheckBox> entry : mapElemCheckbox.entrySet()) {
             if (mapElemCheckbox.get(entry.getKey()).isChecked()) {
                 float percent = 100f * (list.filterByElem(entry.getKey()).getDmgSum() / (float) totalDmg);
                 if (percent > 0f) {
-                    entries.add(new PieEntry(percent, "", new LargeValueFormatter().getFormattedValue((int) list.filterByElem(entry.getKey()).getDmgSum()) + " dégats " + elems.getName(entry.getKey())));
+                    entries.add(new PieEntry(percent, "", new LargeValueFormatter().getFormattedValue(list.filterByElem(entry.getKey()).getDmgSum()) + " dégats " + elems.getName(entry.getKey())));
                     colorList.add(elems.getColorIdDark(entry.getKey()));
                 }
             }
         }
-        PieDataSet dataset = new PieDataSet(entries,"");
+        PieDataSet dataset = new PieDataSet(entries, "");
         dataset.setValueTextSize(infoTxtSize);
         dataset.setColors(colorList);
         dataset.setSliceSpace(3);
@@ -199,7 +199,7 @@ public class DSSFDmg {
     // Resets
 
     public void reset() {
-        for(Map.Entry<String,CheckBox> entry:mapElemCheckbox.entrySet()){
+        for (Map.Entry<String, CheckBox> entry : mapElemCheckbox.entrySet()) {
             entry.getValue().setChecked(true);
         }
         chartMaker.resetChart();
@@ -211,7 +211,7 @@ public class DSSFDmg {
 
 
     private void resetPieChart() {
-        selectedDamagesShortList =new DamagesShortList();
+        selectedDamagesShortList = new DamagesShortList();
         pieChart.invalidate();
         pieChart.setCenterText("");
         pieChart.highlightValue(null);

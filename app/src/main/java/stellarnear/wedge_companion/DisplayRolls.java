@@ -18,34 +18,34 @@ import stellarnear.wedge_companion.Rolls.Roll;
 import stellarnear.wedge_companion.Rolls.RollList;
 
 public class DisplayRolls {
-    private RollList selectedRolls=null;
-    private DiceList selectedDiceList=null;
+    private RollList selectedRolls = null;
+    private DiceList selectedDiceList = null;
     private Context mC;
     private View mainView;
     private CustomAlertDialog metaPopup;
 
-    public DisplayRolls(Activity mA,Context mC, RollList selectedRolls) {
-        this.mC=mC;
-        this.selectedRolls=selectedRolls;
+    public DisplayRolls(Activity mA, Context mC, RollList selectedRolls) {
+        this.mC = mC;
+        this.selectedRolls = selectedRolls;
         LayoutInflater inflate = mA.getLayoutInflater();
         this.mainView = inflate.inflate(R.layout.damagedetail, null);
 
         fillWithRolls();
 
-        metaPopup =new CustomAlertDialog(mA,mC,mainView);
+        metaPopup = new CustomAlertDialog(mA, mC, mainView);
         metaPopup.setPermanent(true);
         metaPopup.clickToHide(mainView.findViewById(R.id.fab_damage_detail_ondetlay));
     }
 
     public DisplayRolls(Activity mA, Context mC, DiceList selectedDiceList) {
-        this.mC=mC;
+        this.mC = mC;
         this.selectedDiceList = selectedDiceList;
         LayoutInflater inflate = mA.getLayoutInflater();
         this.mainView = inflate.inflate(R.layout.damagedetail, null);
 
         fillWithDices();
 
-        metaPopup =new CustomAlertDialog(mA,mC,mainView);
+        metaPopup = new CustomAlertDialog(mA, mC, mainView);
         metaPopup.setPermanent(true);
         metaPopup.clickToHide(mainView.findViewById(R.id.fab_damage_detail_ondetlay));
 
@@ -56,16 +56,19 @@ public class DisplayRolls {
     }
 
     private void fillWithRolls() {
-        LinearLayout scrollLinear= this.mainView.findViewById(R.id.scroll_linear);
+        LinearLayout scrollLinear = this.mainView.findViewById(R.id.scroll_linear);
 
-        for(Roll roll :selectedRolls.getList()){
-            for (DmgRoll dmgRoll : roll.getDmgRollList()){
+        for (Roll roll : selectedRolls.getList()) {
+            for (DmgRoll dmgRoll : roll.getDmgRollList()) {
                 LinearLayout line = new LinearLayout(mC);
-                if(roll.isCritConfirmed()){line.setBackground(mC.getDrawable(R.drawable.dice_detail_crit_background));line.getBackground().setAlpha(70);}
+                if (roll.isCritConfirmed()) {
+                    line.setBackground(mC.getDrawable(R.drawable.dice_detail_crit_background));
+                    line.getBackground().setAlpha(70);
+                }
                 line.setOrientation(LinearLayout.HORIZONTAL);
                 line.setGravity(Gravity.CENTER_VERTICAL);
 
-                for (Dice dice : dmgRoll.getDmgDiceList().getList()){
+                for (Dice dice : dmgRoll.getDmgDiceList().getList()) {
                     ImageView diceImg = dice.getImg();
                     line.addView(diceImg);
                 }
@@ -88,13 +91,13 @@ public class DisplayRolls {
     }
 
     private void fillWithDices() {
-        LinearLayout scrollLinear= this.mainView.findViewById(R.id.scroll_linear);
-        int count=0;
+        LinearLayout scrollLinear = this.mainView.findViewById(R.id.scroll_linear);
+        int count = 0;
         LinearLayout line = new LinearLayout(mC);
         scrollLinear.addView(line);
         line.setOrientation(LinearLayout.HORIZONTAL);
-        for (Dice dice : selectedDiceList.getList()){
-            if(count>=5){
+        for (Dice dice : selectedDiceList.getList()) {
+            if (count >= 5) {
                 line = new LinearLayout(mC);
                 line.setOrientation(LinearLayout.HORIZONTAL);
                 ViewGroup parentImg = (ViewGroup) line.getParent();
@@ -102,7 +105,7 @@ public class DisplayRolls {
                     parentImg.removeView(line);
                 }
                 scrollLinear.addView(line);
-                count=0;
+                count = 0;
             }
             ViewGroup parentImg = (ViewGroup) dice.getImg().getParent();
             if (parentImg != null) {
@@ -114,11 +117,11 @@ public class DisplayRolls {
     }
 
     public int size() {
-        int val=0;
-        if(selectedDiceList!=null){
-            val=selectedDiceList.getList().size();
-        } else if(selectedRolls!=null)  {
-            val=selectedRolls.getList().size();
+        int val = 0;
+        if (selectedDiceList != null) {
+            val = selectedDiceList.getList().size();
+        } else if (selectedRolls != null) {
+            val = selectedRolls.getList().size();
         }
         return val;
     }

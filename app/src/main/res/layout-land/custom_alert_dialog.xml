@@ -1,66 +1,67 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/custom_dialog_RelativeLayoutMain"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="300dp"
+    android:background="@drawable/background_border_dialog_land"
     android:clipChildren="false"
     android:gravity="center"
-    android:orientation="horizontal"
-    android:id="@+id/custom_dialog_RelativeLayoutMain"
-    android:background="@drawable/background_border_dialog_land">
+    android:minHeight="300dp"
+    android:orientation="horizontal">
 
     <LinearLayout
-        android:layout_weight="2"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:layout_alignParentTop="true"
         android:layout_marginTop="@dimen/margin_customDialog_text"
-        android:gravity="center">
+        android:layout_weight="2"
+        android:gravity="center"
+        android:orientation="vertical">
 
         <ImageView
+            android:id="@+id/customDialogTestIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/customDialogTestIcon"
             app:srcCompat="@drawable/mire_test" />
 
         <TextView
+            android:id="@+id/customDialogTestTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_customDialog_text"
-            android:id="@+id/customDialogTestTitle"
             android:gravity="center_horizontal"
             android:text="Test de compétence :"
             android:textColor="@android:color/black" />
+
         <TextView
+            android:id="@+id/customDialogTestSummary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
 
             android:layout_marginTop="@dimen/margin_customDialog_text"
-            android:id="@+id/customDialogTestSummary"
-            android:textSize="16sp"
+            android:gravity="center_horizontal"
             android:text="Blabla : Abilité +6 : Bonus +8 > 65"
-            android:textColor="@color/secondaryTextCustomDialog" />
+            android:textColor="@color/secondaryTextCustomDialog"
+            android:textSize="16sp" />
     </LinearLayout>
 
 
     <LinearLayout
         android:id="@+id/customDialogLinearButtonHolder"
-        android:layout_weight="1"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:layout_weight="1"
+        android:gravity="center"
 
-        android:gravity="center">
+        android:orientation="vertical">
+
         <Button
             android:id="@+id/button_customDialog_test_diceroll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/button_basic_gradient"
-            android:textSize="12dp"
-            android:text="normal"/>
+            android:text="normal"
+            android:textSize="12dp" />
 
         <Button
             android:id="@+id/button_customDialog_test_passive"
@@ -68,38 +69,39 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/general_margin"
             android:background="@drawable/button_basic_gradient"
-            android:textSize="12dp"
-            android:text="passif (10)"/>
+            android:text="passif (10)"
+            android:textSize="12dp" />
+
         <Button
             android:id="@+id/button_customDialog_test_focus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/button_basic_gradient"
-            android:textSize="12dp"
-            android:text="focus (20)"/>
+            android:text="focus (20)"
+            android:textSize="12dp" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_weight="2"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-
         android:layout_alignParentBottom="true"
-        android:gravity="center">
+        android:layout_weight="2"
+
+        android:gravity="center"
+        android:orientation="vertical">
 
         <FrameLayout
+            android:id="@+id/customDialogTestResultDice"
             android:layout_width="@dimen/icon_dices_testalertdialog"
             android:layout_height="@dimen/icon_dices_testalertdialog"
-            android:id="@+id/customDialogTestResultDice"
             android:layout_marginBottom="@dimen/margin_customDialog_text" />
 
         <TextView
             android:id="@+id/customDialogTitleResult"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
             android:layout_marginBottom="@dimen/general_margin"
+            android:gravity="center_horizontal"
             android:text=""
             android:textColor="@android:color/black" />
 
@@ -107,19 +109,19 @@
             android:id="@+id/customDialogTestResult"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
             android:layout_marginBottom="@dimen/general_margin"
+            android:gravity="center_horizontal"
             android:text=""
-            android:textSize="@dimen/sizeTextCustomDialogResult"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/sizeTextCustomDialogResult" />
 
         <TextView
             android:id="@+id/customDialogTestCallToAction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
             android:layout_marginBottom="@dimen/general_margin"
+            android:gravity="center_horizontal"
             android:text="Choisis ton action"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@android:color/black" />

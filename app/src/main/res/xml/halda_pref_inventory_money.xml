@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-   <stellarnear.wedge_companion.EditTextPreference
+    <stellarnear.wedge_companion.EditTextPreference
         android:defaultValue="@integer/money_plat_def_halda"
+        android:inputType="number"
         android:key="money_plat_halda"
-        android:title="Nombre de pièces de platine"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:inputType="number"
-        android:summary="Valeur : %s"/>
-   <stellarnear.wedge_companion.EditTextPreference
+        android:summary="Valeur : %s"
+        android:title="Nombre de pièces de platine" />
+    <stellarnear.wedge_companion.EditTextPreference
         android:defaultValue="@integer/money_gold_def_halda"
+        android:inputType="number"
         android:key="money_gold_halda"
-        android:title="Nombre de pièces d'or"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:inputType="number"
-        android:summary="Valeur : %s"/>
-   <stellarnear.wedge_companion.EditTextPreference
+        android:summary="Valeur : %s"
+        android:title="Nombre de pièces d'or" />
+    <stellarnear.wedge_companion.EditTextPreference
         android:defaultValue="@integer/money_silver_def_halda"
+        android:inputType="number"
         android:key="money_silver_halda"
-        android:title="Nombre de pièces d'argent"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:inputType="number"
-        android:summary="Valeur : %s"/>
-   <stellarnear.wedge_companion.EditTextPreference
+        android:summary="Valeur : %s"
+        android:title="Nombre de pièces d'argent" />
+    <stellarnear.wedge_companion.EditTextPreference
         android:defaultValue="@integer/money_copper_def_halda"
+        android:inputType="number"
         android:key="money_copper_halda"
-        android:title="Nombre de pièces de cuivre"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:inputType="number"
-        android:summary="Valeur : %s"/>
+        android:summary="Valeur : %s"
+        android:title="Nombre de pièces de cuivre" />
 
     <EditTextPreference
         android:defaultValue="@integer/add_gold_def"
+        android:inputType="number"
         android:key="add_gold"
-        android:title="Ajouter des pièces d'or"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:inputType="number" />
+        android:title="Ajouter des pièces d'or" />
 </PreferenceScreen>

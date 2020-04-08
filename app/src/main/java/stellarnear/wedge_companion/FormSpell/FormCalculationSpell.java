@@ -9,55 +9,58 @@ import stellarnear.wedge_companion.Tools;
 
 public class FormCalculationSpell {
     private Perso pj = PersoManager.getCurrentPJ();
-    private Tools tools=Tools.getTools();
+    private Tools tools = Tools.getTools();
 
-    public FormCalculationSpell(){  }
+    public FormCalculationSpell() {
+    }
 
-    public int saveVal(FormPower spell){
-        int val=10;
-        val+= pj.getAbilityMod("ability_charisme");
+    public int saveVal(FormPower spell) {
+        int val = 10;
+        val += pj.getAbilityMod("ability_charisme");
         return val;
     }
 
-    public int nDice(FormPower spell){
-        int val=0;
-        if(spell.getN_dice_per_lvl()==0.0){
+    public int nDice(FormPower spell) {
+        int val = 0;
+        if (spell.getN_dice_per_lvl() == 0.0) {
             val = spell.getCap_dice();
-        }else {
-                val = (int) (getlevel() * spell.getN_dice_per_lvl());
+        } else {
+            val = (int) (getlevel() * spell.getN_dice_per_lvl());
         }
         return val;
     }
 
-    public int diceType(FormPower spell){
+    public int diceType(FormPower spell) {
         return tools.toInt(spell.getDice_type());
     }
 
-    public int getlevel(){
+    public int getlevel() {
         return pj.getCasterLevel();
     }
 
     public Double range(FormPower spell) {
-        String range=spell.getRange();
-        List<String> rangesLvl = Arrays.asList("contact", "courte", "moyenne", "longue" );
+        String range = spell.getRange();
+        List<String> rangesLvl = Arrays.asList("contact", "courte", "moyenne", "longue");
 
-        Double distDouble =-1.0;
+        Double distDouble = -1.0;
         int indexRange = rangesLvl.indexOf(range);
-        if (indexRange>=0) {
+        if (indexRange >= 0) {
             Integer lvl = getlevel();
-            if(indexRange>=rangesLvl.size()){indexRange=rangesLvl.size()-1;}
-            switch(rangesLvl.get(indexRange)) {
+            if (indexRange >= rangesLvl.size()) {
+                indexRange = rangesLvl.size() - 1;
+            }
+            switch (rangesLvl.get(indexRange)) {
                 case ("contact"):
-                    distDouble=0.0;
+                    distDouble = 0.0;
                     break;
                 case ("courte"):
-                    distDouble=7.5+1.5*(lvl/2.0);
+                    distDouble = 7.5 + 1.5 * (lvl / 2.0);
                     break;
                 case ("moyenne"):
-                    distDouble=30.0+3.0*lvl;
+                    distDouble = 30.0 + 3.0 * lvl;
                     break;
                 case ("longue"):
-                    distDouble=120.0+lvl*12.0;
+                    distDouble = 120.0 + lvl * 12.0;
                     break;
             }
         }

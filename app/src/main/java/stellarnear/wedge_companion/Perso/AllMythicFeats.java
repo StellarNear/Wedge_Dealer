@@ -23,22 +23,21 @@ import javax.xml.parsers.DocumentBuilderFactory;
 public class AllMythicFeats {
     private Context mC;
     private List<MythicFeat> allMythicFeatsList = new ArrayList<>();
-    private Map<String,MythicFeat> mapIdMythicFeat =new HashMap<>();
-    private String pjID="";
+    private Map<String, MythicFeat> mapIdMythicFeat = new HashMap<>();
+    private String pjID = "";
 
-    public AllMythicFeats(Context mC,String pjID)
-    {
+    public AllMythicFeats(Context mC, String pjID) {
         this.mC = mC;
-        this.pjID=pjID;
+        this.pjID = pjID;
         buildFeatsList();
     }
 
     private void buildFeatsList() {
         allMythicFeatsList = new ArrayList<>();
-        mapIdMythicFeat =new HashMap<>();
+        mapIdMythicFeat = new HashMap<>();
         try {
-            String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
-            InputStream is = mC.getAssets().open("mythicfeats"+extendID+".xml");
+            String extendID = pjID.equalsIgnoreCase("") ? "" : "_" + pjID;
+            InputStream is = mC.getAssets().open("mythicfeats" + extendID + ".xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(is);
@@ -53,7 +52,7 @@ public class AllMythicFeats {
                 Node node = nList.item(i);
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element element2 = (Element) node;
-                    MythicFeat feat=new MythicFeat(
+                    MythicFeat feat = new MythicFeat(
                             readValue("name", element2),
                             readValue("type", element2),
                             readValue("descr", element2),
@@ -61,7 +60,7 @@ public class AllMythicFeats {
                             mC,
                             pjID);
                     allMythicFeatsList.add(feat);
-                    mapIdMythicFeat.put(feat.getId(),feat);
+                    mapIdMythicFeat.put(feat.getId(), feat);
                 }
             }
             is.close();
@@ -70,15 +69,17 @@ public class AllMythicFeats {
         }
     }
 
-    public List<MythicFeat> getMythicFeatsList(){
+    public List<MythicFeat> getMythicFeatsList() {
         return allMythicFeatsList;
     }
 
     public MythicFeat getMythicFeat(String featId) {
         MythicFeat selectedFeat;
         try {
-            selectedFeat= mapIdMythicFeat.get(featId);
-        } catch (Exception e){  selectedFeat=null;  }
+            selectedFeat = mapIdMythicFeat.get(featId);
+        } catch (Exception e) {
+            selectedFeat = null;
+        }
         return selectedFeat;
     }
 
@@ -87,7 +88,7 @@ public class AllMythicFeats {
             NodeList nodeList = element.getElementsByTagName(tag).item(0).getChildNodes();
             Node node = nodeList.item(0);
             return node.getNodeValue();
-        } catch (Exception e){
+        } catch (Exception e) {
             return "";
         }
     }
@@ -97,9 +98,9 @@ public class AllMythicFeats {
     }
 
     public boolean mythicFeatsIsActive(String id) {
-        boolean val=false;
+        boolean val = false;
         try {
-            val= getMythicFeat(id).isActive();
+            val = getMythicFeat(id).isActive();
         } catch (Exception e) {
             //e.printStackTrace();
         }

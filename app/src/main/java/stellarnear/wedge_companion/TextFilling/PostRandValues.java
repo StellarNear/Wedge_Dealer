@@ -25,7 +25,7 @@ public class PostRandValues {
     private View mainView;
     private RollList rollList;
     private SharedPreferences settings;
-    private Perso pj= PersoManager.getCurrentPJ();
+    private Perso pj = PersoManager.getCurrentPJ();
 
     public PostRandValues(Context mC, View mainView, RollList rollList) {
         this.mC = mC;
@@ -39,21 +39,21 @@ public class PostRandValues {
     }
 
     private void clearAllView() {
-        ((LinearLayout)mainView.findViewById(R.id.mainLinearAtkDices)).removeAllViews();
-        ((LinearLayout)mainView.findViewById(R.id.mainLinearMultishot)).removeAllViews();
-        ((LinearLayout)mainView.findViewById(R.id.mainLinearPostRand)).removeAllViews();
+        ((LinearLayout) mainView.findViewById(R.id.mainLinearAtkDices)).removeAllViews();
+        ((LinearLayout) mainView.findViewById(R.id.mainLinearMultishot)).removeAllViews();
+        ((LinearLayout) mainView.findViewById(R.id.mainLinearPostRand)).removeAllViews();
     }
 
     private void showViews() {
-        ((LinearLayout)mainView.findViewById(R.id.mainLinearAtkDices)).setVisibility(View.VISIBLE);
-        ((LinearLayout)mainView.findViewById(R.id.mainLinearMultishot)).setVisibility(View.VISIBLE);
-        ((LinearLayout)mainView.findViewById(R.id.mainLinearPostRand)).setVisibility(View.VISIBLE);
+        mainView.findViewById(R.id.mainLinearAtkDices).setVisibility(View.VISIBLE);
+        mainView.findViewById(R.id.mainLinearMultishot).setVisibility(View.VISIBLE);
+        mainView.findViewById(R.id.mainLinearPostRand).setVisibility(View.VISIBLE);
     }
 
     public void hideViews() {
-        ((LinearLayout)mainView.findViewById(R.id.mainLinearAtkDices)).setVisibility(View.GONE);
-        ((LinearLayout)mainView.findViewById(R.id.mainLinearMultishot)).setVisibility(View.GONE);
-        ((LinearLayout)mainView.findViewById(R.id.mainLinearPostRand)).setVisibility(View.GONE);
+        mainView.findViewById(R.id.mainLinearAtkDices).setVisibility(View.GONE);
+        mainView.findViewById(R.id.mainLinearMultishot).setVisibility(View.GONE);
+        mainView.findViewById(R.id.mainLinearPostRand).setVisibility(View.GONE);
     }
 
     private void addRandDices() {
@@ -72,10 +72,10 @@ public class PostRandValues {
             diceBox.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1));
             diceBox.setGravity(Gravity.CENTER);
             if (diceImg.getParent() != null) {
-               ((ViewGroup) diceImg.getParent()).removeView(diceImg);
+                ((ViewGroup) diceImg.getParent()).removeView(diceImg);
             }
             diceBox.addView(diceImg);
-            ((LinearLayout)mainView.findViewById(R.id.mainLinearAtkDices)).addView(diceBox);
+            ((LinearLayout) mainView.findViewById(R.id.mainLinearAtkDices)).addView(diceBox);
 
             roll.getAtkRoll().getAtkDice().setMythicEventListener(new Dice.OnMythicEventListener() {
                 @Override
@@ -88,7 +88,7 @@ public class PostRandValues {
     }
 
     public void refreshPostRandValues() {
-        ((LinearLayout)mainView.findViewById(R.id.mainLinearPostRand)).removeAllViews();
+        ((LinearLayout) mainView.findViewById(R.id.mainLinearPostRand)).removeAllViews();
         addPostRandValues();
     }
 
@@ -105,9 +105,9 @@ public class PostRandValues {
                 multiple.setTextColor(Color.DKGRAY);
                 multiple.setTextSize(15);
                 multiple.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-                multiple.setText("x"+multi_val_str);
+                multiple.setText("x" + multi_val_str);
                 txtBox.addView(multiple);
-                ((LinearLayout)mainView.findViewById(R.id.mainLinearMultishot)).addView(txtBox);
+                ((LinearLayout) mainView.findViewById(R.id.mainLinearMultishot)).addView(txtBox);
             }
         }
     }
@@ -133,8 +133,8 @@ public class PostRandValues {
             atkTxt.setGravity(Gravity.CENTER);
             atkTxt.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
             txtBox.addView(atkTxt);
-            ((LinearLayout)mainView.findViewById(R.id.mainLinearPostRand)).addView(txtBox);
+            ((LinearLayout) mainView.findViewById(R.id.mainLinearPostRand)).addView(txtBox);
         }
-        new PostData(mC,new PostDataElement(rollList,"atk"));
+        new PostData(mC, new PostDataElement(rollList, "atk"));
     }
 }

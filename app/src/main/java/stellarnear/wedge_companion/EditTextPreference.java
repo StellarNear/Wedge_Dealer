@@ -7,7 +7,7 @@ import android.util.AttributeSet;
 
 // Cette classe est la pour refreshCalculations les sumamry dans setting avec les valeurs en cours
 
-public class EditTextPreference extends android.preference.EditTextPreference{
+public class EditTextPreference extends android.preference.EditTextPreference {
     public EditTextPreference(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }

@@ -25,29 +25,29 @@ import stellarnear.wedge_companion.Tools;
 public class LinearLineSpell {
     private LinearLayout spellLine;
     private Spell spell;
-    private Spell spellMyth=null;
+    private Spell spellMyth = null;
     private Context mC;
 
     private TextView spellName;
-    private int nCast=0;
-    private int nMythCast=0;
+    private int nCast = 0;
+    private int nMythCast = 0;
 
     private CheckBox checkbox;
 
-    private Tools tools=Tools.getTools();
+    private Tools tools = Tools.getTools();
     private DrawableSymbolsSingleton drawableSymbolsSingleton;
-    private Perso pj= PersoManager.getCurrentPJ();
+    private Perso pj = PersoManager.getCurrentPJ();
 
     private OnAddSpellEventListener mAddListener;
     private OnRemoveSpellEventListener mRemoveListener;
     private OnAddMythicSpellEventListener mAddMythListener;
     private OnRemoveMythicSpellEventListener mRemoveMythListener;
 
-    public LinearLineSpell(final Spell spell, Context mC){
-        this.spell=spell;
-        this.mC=mC;
+    public LinearLineSpell(final Spell spell, Context mC) {
+        this.spell = spell;
+        this.mC = mC;
         spellLine = new LinearLayout(mC);
-        drawableSymbolsSingleton=DrawableSymbolsSingleton.getInstance(mC);
+        drawableSymbolsSingleton = DrawableSymbolsSingleton.getInstance(mC);
         spellLine.setGravity(Gravity.CENTER_VERTICAL);
         spellLine.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,18 +58,19 @@ public class LinearLineSpell {
         spellLine.setOrientation(LinearLayout.HORIZONTAL);
         setSpellLineColor();
         int pixelMarging = mC.getResources().getDimensionPixelSize(R.dimen.general_margin);
-        LinearLayout.LayoutParams paraSpellLine= new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        paraSpellLine.setMargins(pixelMarging,pixelMarging,pixelMarging,0);
+        LinearLayout.LayoutParams paraSpellLine = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        paraSpellLine.setMargins(pixelMarging, pixelMarging, pixelMarging, 0);
         spellLine.setLayoutParams(paraSpellLine);
 
-        checkbox=new CheckBox(mC);
-        setAddingSpell(checkbox,spell);
+        checkbox = new CheckBox(mC);
+        setAddingSpell(checkbox, spell);
         setCheckBoxColor(checkbox);
         spellLine.addView(checkbox);
 
         addSpellTypeIcons();
         int pxMaging = mC.getResources().getDimensionPixelSize(R.dimen.general_margin);
-        spellName = new TextView(mC); spellName.setPadding(pxMaging,0,0,0);
+        spellName = new TextView(mC);
+        spellName.setPadding(pxMaging, 0, 0, 0);
         spellName.setText(spell.getName());
         spellName.setTextColor(Color.BLACK);
         spellLine.addView(spellName);
@@ -79,15 +80,15 @@ public class LinearLineSpell {
 
     private void testMythic() {
         spellMyth = pj.getAllSpells().getMythicSpells().getNormalSpellFromID(spell.getID());
-        if (spellMyth!=null){
-            LinearLayout mythLine =  new LinearLayout(mC);
-            mythLine.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT,1));
+        if (spellMyth != null) {
+            LinearLayout mythLine = new LinearLayout(mC);
+            mythLine.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
             int pxMaging = mC.getResources().getDimensionPixelSize(R.dimen.general_margin);
-            mythLine.setPadding(0,0,pxMaging,0);
-            mythLine.setGravity(Gravity.RIGHT|Gravity.CENTER_VERTICAL);
+            mythLine.setPadding(0, 0, pxMaging, 0);
+            mythLine.setGravity(Gravity.RIGHT | Gravity.CENTER_VERTICAL);
             final CheckBox checkboxMyth = new CheckBox(mC);
             setCheckBoxColor(checkboxMyth);
-            setAddingSpell(checkboxMyth,spellMyth);
+            setAddingSpell(checkboxMyth, spellMyth);
             mythLine.addView(checkboxMyth);
             ImageView img = new ImageView(mC);
             img.setImageDrawable(mC.getDrawable(R.drawable.ic_embrassed_energy));
@@ -100,7 +101,7 @@ public class LinearLineSpell {
             img.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
-                    tools.customToast(mC,spellMyth.getShortDescr(),"center");
+                    tools.customToast(mC, spellMyth.getShortDescr(), "center");
                     return true;
                 }
             });
@@ -109,33 +110,33 @@ public class LinearLineSpell {
         }
     }
 
-    public Spell getSpellMyth(){
+    public Spell getSpellMyth() {
         return spellMyth;
     }
 
-    public boolean hasMythSpell(){
-        return spellMyth!=null;
+    public boolean hasMythSpell() {
+        return spellMyth != null;
     }
 
-    public LinearLayout getSpellLine(){
+    public LinearLayout getSpellLine() {
         return spellLine;
     }
 
 
-    private void popupLongTooltip(){
+    private void popupLongTooltip() {
         LayoutInflater inflater = LayoutInflater.from(mC);
         View tooltip = inflater.inflate(R.layout.custom_toast_longtooltip, null);
         final CustomAlertDialog tooltipAlert = new CustomAlertDialog(null, mC, tooltip);
         tooltipAlert.setPermanent(true);
-        ((TextView)tooltip.findViewById(R.id.toast_textName)).setText(spell.getName());
-        ((TextView)tooltip.findViewById(R.id.toast_textDescr)).setText(spell.getDescr());
+        ((TextView) tooltip.findViewById(R.id.toast_textName)).setText(spell.getName());
+        ((TextView) tooltip.findViewById(R.id.toast_textDescr)).setText(spell.getDescr());
         tooltipAlert.clickToHide(tooltip.findViewById(R.id.toast_LinearLayout));
         tooltipAlert.showAlert();
     }
 
     private void addSpellTypeIcons() {
         ImageView logo = new ImageView(mC);
-        switch (spell.getType()){
+        switch (spell.getType()) {
             case "heal":
                 logo.setImageDrawable(drawableSymbolsSingleton.getHealSymbol());
                 break;
@@ -155,13 +156,15 @@ public class LinearLineSpell {
                 logo.setImageDrawable(drawableSymbolsSingleton.getDebuffSymbol());
                 break;
             default:
-                logo=null;
+                logo = null;
                 break;
         }
-        if(logo!=null){spellLine.addView(logo);}
+        if (logo != null) {
+            spellLine.addView(logo);
+        }
 
         ImageView range = new ImageView(mC);
-        switch (spell.getRange()){
+        switch (spell.getRange()) {
             case "contact":
                 range.setImageDrawable(drawableSymbolsSingleton.getContactRange());
                 break;
@@ -175,46 +178,50 @@ public class LinearLineSpell {
                 range.setImageDrawable(drawableSymbolsSingleton.getLongRange());
                 break;
             default:
-                range=null;
+                range = null;
                 break;
         }
-        if(range!=null){spellLine.addView(range);}
+        if (range != null) {
+            spellLine.addView(range);
+        }
 
-        if(spell.isFromMystery()){
+        if (spell.isFromMystery()) {
             ImageView logoMyst = new ImageView(mC);
             logoMyst.setImageDrawable(drawableSymbolsSingleton.getMystSymbol());
             spellLine.addView(logoMyst);
         }
     }
 
-    private void setAddingSpell(final CheckBox check,final Spell spell) {
+    private void setAddingSpell(final CheckBox check, final Spell spell) {
         check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(!b){
+                if (!b) {
                     new AlertDialog.Builder(mC)
                             .setTitle("Demande de confirmation")
-                            .setMessage("Veux-tu tu lancer une nouvelle fois le sort "+spell.getName()+" ?")
+                            .setMessage("Veux-tu tu lancer une nouvelle fois le sort " + spell.getName() + " ?")
                             .setIcon(android.R.drawable.ic_menu_help)
                             .setPositiveButton("oui", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int whichButton) {
                                     check.setChecked(true);
-                                }})
+                                }
+                            })
                             .setNegativeButton("non", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int whichButton) {
                                     check.setChecked(false);
                                     removeSpellFromSelection(spell);
-                                }}).show();
+                                }
+                            }).show();
                 } else {
-                    prepareSpell(check,spell);
+                    prepareSpell(check, spell);
                 }
             }
         });
     }
 
-    private void prepareSpell(final CheckBox check,final Spell spell) {
-        if(spell.isMyth()){
-            if(pj.getCurrentResourceValue("resource_mythic_points")>0) {
+    private void prepareSpell(final CheckBox check, final Spell spell) {
+        if (spell.isMyth()) {
+            if (pj.getCurrentResourceValue("resource_mythic_points") > 0) {
                 new AlertDialog.Builder(mC)
                         .setTitle("Demande de confirmation")
                         .setMessage("Point(s) mythique(s) avant lancement des sorts : " + pj.getCurrentResourceValue("resource_mythic_points") + "\n" +
@@ -224,7 +231,8 @@ public class LinearLineSpell {
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 check.setChecked(true);
                                 addSpellToList(spell);
-                            }})
+                            }
+                        })
                         .setNegativeButton("non", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 check.setChecked(false);
@@ -236,32 +244,36 @@ public class LinearLineSpell {
                 toast.show();
                 check.setChecked(false);
             }
-        }else {
+        } else {
             addSpellToList(spell);
         }
     }
 
     private void addSpellToList(Spell spell) {
-        if(spell.isMyth()){
+        if (spell.isMyth()) {
             nMythCast++;
             refreshName();
-            if(mAddMythListener!=null){
+            if (mAddMythListener != null) {
                 mAddMythListener.onEvent();
             }
         } else {
             nCast++;
             refreshName();
-            if(mAddListener!=null){
+            if (mAddListener != null) {
                 mAddListener.onEvent();
             }
         }
     }
 
     private void refreshName() {
-        if(nCast>0 || nMythCast>0){
-            String text=spell.getName();
-            if(nCast>0){text+=" ("+nCast+")";}
-            if(nMythCast>0){text+=" (M:"+nMythCast+")";}
+        if (nCast > 0 || nMythCast > 0) {
+            String text = spell.getName();
+            if (nCast > 0) {
+                text += " (" + nCast + ")";
+            }
+            if (nMythCast > 0) {
+                text += " (M:" + nMythCast + ")";
+            }
             spellName.setText(text);
         } else {
             spellName.setText(spell.getName());
@@ -269,16 +281,16 @@ public class LinearLineSpell {
     }
 
     private void removeSpellFromSelection(Spell spell) {
-        if(spell.isMyth()){
-            nMythCast=0;
+        if (spell.isMyth()) {
+            nMythCast = 0;
             refreshName();
-            if(mRemoveMythListener!=null){
+            if (mRemoveMythListener != null) {
                 mRemoveMythListener.onEvent();
             }
         } else {
-            nCast=0;
+            nCast = 0;
             refreshName();
-            if(mRemoveListener!=null){
+            if (mRemoveListener != null) {
                 mRemoveListener.onEvent();
             }
         }
@@ -295,20 +307,20 @@ public class LinearLineSpell {
             spellLine.setBackground(mC.getDrawable(R.drawable.background_spell_line_frost));
         } else if (spell.getDmg_type().equals("acid")) {
             spellLine.setBackground(mC.getDrawable(R.drawable.background_spell_line_acid));
-        } else if (spell.getDmg_type().equals("heal"))  {
+        } else if (spell.getDmg_type().equals("heal")) {
             spellLine.setBackground(mC.getDrawable(R.drawable.background_spell_line_heal));
         }
     }
 
     public void setCheckBoxColor(CheckBox check) {
         check.setTextColor(Color.BLACK);
-        int[] colorClickBox=new int[]{Color.BLACK,Color.BLACK};
+        int[] colorClickBox = new int[]{Color.BLACK, Color.BLACK};
 
         ColorStateList colorStateList = new ColorStateList(
-                new int[][] {
-                        new int[] { -android.R.attr.state_checked }, // unchecked
-                        new int[] {  android.R.attr.state_checked }  // checked
-                },colorClickBox
+                new int[][]{
+                        new int[]{-android.R.attr.state_checked}, // unchecked
+                        new int[]{android.R.attr.state_checked}  // checked
+                }, colorClickBox
 
         );
         check.setButtonTintList(colorStateList);
@@ -320,7 +332,7 @@ public class LinearLineSpell {
     }
 
     public void forceAddOneCast() {
-        if(nCast==0){
+        if (nCast == 0) {
             checkbox.setChecked(true);
         } else {
             addSpellToList(spell);
@@ -331,36 +343,35 @@ public class LinearLineSpell {
         return spell;
     }
 
-
-    public interface OnAddSpellEventListener {
-        void onEvent();
-    }
-
     public void setAddSpellEventListener(OnAddSpellEventListener eventListener) {
         mAddListener = eventListener;
-    }
-
-    public interface OnRemoveSpellEventListener {
-        void onEvent();
     }
 
     public void setRemoveSpellEventListener(OnRemoveSpellEventListener eventListener) {
         mRemoveListener = eventListener;
     }
 
-    public interface OnAddMythicSpellEventListener {
-        void onEvent();
-    }
-
     public void setAddMythicSpellEventListener(OnAddMythicSpellEventListener eventListener) {
         mAddMythListener = eventListener;
     }
 
-    public interface OnRemoveMythicSpellEventListener {
+    public void setRemoveMythicSpellEventListener(OnRemoveMythicSpellEventListener eventListener) {
+        mRemoveMythListener = eventListener;
+    }
+
+    public interface OnAddSpellEventListener {
         void onEvent();
     }
 
-    public void setRemoveMythicSpellEventListener(OnRemoveMythicSpellEventListener eventListener) {
-        mRemoveMythListener = eventListener;
+    public interface OnRemoveSpellEventListener {
+        void onEvent();
+    }
+
+    public interface OnAddMythicSpellEventListener {
+        void onEvent();
+    }
+
+    public interface OnRemoveMythicSpellEventListener {
+        void onEvent();
     }
 }

@@ -40,9 +40,9 @@ public class CritConfirmAlertDialog {
 
     private Tools tools = Tools.getTools();
 
-    public CritConfirmAlertDialog(Activity mA,Context mC, int atkVal) {
-        this.mA=mA;
-        this.mC=mC;
+    public CritConfirmAlertDialog(Activity mA, Context mC, int atkVal) {
+        this.mA = mA;
+        this.mC = mC;
         this.sumScore = atkVal;
         buildAlertDialog();
     }
@@ -60,15 +60,15 @@ public class CritConfirmAlertDialog {
         title.setTextSize(22);
         title.setText(titleTxt);
 
-        String summaryDetail="Bonus d'attaque de base (+"+sumScore+")";
+        String summaryDetail = "Bonus d'attaque de base (+" + sumScore + ")";
 
-        if(pj.getAllFeats().featIsActive("feat_crit")){
-            sumScore+=4;
-            summaryDetail+="\nBonus don pour les critiques (+4)";
+        if (pj.getAllFeats().featIsActive("feat_crit")) {
+            sumScore += 4;
+            summaryDetail += "\nBonus don pour les critiques (+4)";
         }
 
 
-        summaryDetail+="\nTotal : +"+String.valueOf(sumScore);
+        summaryDetail += "\nTotal : +" + sumScore;
         TextView summary = dialogView.findViewById(R.id.customDialogTestSummary);
         summary.setText(summaryDetail);
 
@@ -79,10 +79,10 @@ public class CritConfirmAlertDialog {
         passive.setVisibility(View.GONE);
 
         Button diceroll = dialogView.findViewById(R.id.button_customDialog_test_diceroll);
-        diceroll.setOnClickListener( new View.OnClickListener() {
+        diceroll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(((TextView)dialogView.findViewById(R.id.customDialogTestResult)).getText().equals("")){
+                if (((TextView) dialogView.findViewById(R.id.customDialogTestResult)).getText().equals("")) {
                     startRoll();
                 } else {
                     new AlertDialog.Builder(mA)
@@ -105,7 +105,7 @@ public class CritConfirmAlertDialog {
             }
         });
 
-        AlertDialog.Builder dialogBuilder  = new AlertDialog.Builder(mA, R.style.CustomDialog);
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(mA, R.style.CustomDialog);
         dialogBuilder.setView(dialogView);
         dialogBuilder.setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
@@ -115,9 +115,10 @@ public class CritConfirmAlertDialog {
 
         dialogBuilder.setPositiveButton("Succès", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                if(mListenerSuccess !=null){
-                    mListenerSuccess.onSuccessEvent();}
-                tools.customToast(mC,"Bravo ! il va prendre cher");
+                if (mListenerSuccess != null) {
+                    mListenerSuccess.onSuccessEvent();
+                }
+                tools.customToast(mC, "Bravo ! il va prendre cher");
             }
         });
         alertDialog = dialogBuilder.create();
@@ -126,8 +127,8 @@ public class CritConfirmAlertDialog {
     private void startRoll() {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
 
-        dice = new Dice(mA,mC,20);
-        if (settings.getBoolean("switch_manual_diceroll",mC.getResources().getBoolean(R.bool.switch_manual_diceroll_def))){
+        dice = new Dice(mA, mC, 20);
+        if (settings.getBoolean("switch_manual_diceroll", mC.getResources().getBoolean(R.bool.switch_manual_diceroll_def))) {
             dice.rand(true);
             dice.setRefreshEventListener(new Dice.OnRefreshEventListener() {
                 @Override
@@ -141,13 +142,13 @@ public class CritConfirmAlertDialog {
         }
     }
 
-    public void showAlertDialog(){
+    public void showAlertDialog() {
         alertDialog.show();
 
         Button failButton = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
         LinearLayout.LayoutParams onlyButtonLL = (LinearLayout.LayoutParams) failButton.getLayoutParams();
-        onlyButtonLL.width=ViewGroup.LayoutParams.WRAP_CONTENT;
-        onlyButtonLL.setMargins(10,0,10,0);
+        onlyButtonLL.width = ViewGroup.LayoutParams.WRAP_CONTENT;
+        onlyButtonLL.setMargins(10, 0, 10, 0);
         failButton.setLayoutParams(onlyButtonLL);
         failButton.setTextColor(mC.getColor(R.color.colorBackground));
         failButton.setBackground(mC.getDrawable(R.drawable.button_cancel_gradient));
@@ -161,12 +162,12 @@ public class CritConfirmAlertDialog {
         Display display = mA.getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        Float factor = mC.getResources().getInteger(R.integer.percent_fullscreen_customdialog)/100f;
-        alertDialog.getWindow().setLayout((int) (factor*size.x), (int)(factor*size.y));
+        Float factor = mC.getResources().getInteger(R.integer.percent_fullscreen_customdialog) / 100f;
+        alertDialog.getWindow().setLayout((int) (factor * size.x), (int) (factor * size.y));
     }
 
     private void endSkillCalculation(final Dice dice) {
-        FrameLayout resultDice= dialogView.findViewById(R.id.customDialogTestResultDice);
+        FrameLayout resultDice = dialogView.findViewById(R.id.customDialogTestResultDice);
         resultDice.removeAllViews();
         resultDice.addView(dice.getImg());
 
@@ -176,8 +177,10 @@ public class CritConfirmAlertDialog {
 
 
         resultTitle.setText("Résultat du test confirmation :");
-        int sumResult=dice.getRandValue()+ sumScore;
-        if(dice.getMythicDice()!=null){sumResult+=dice.getMythicDice().getRandValue();}
+        int sumResult = dice.getRandValue() + sumScore;
+        if (dice.getMythicDice() != null) {
+            sumResult += dice.getMythicDice().getRandValue();
+        }
 
         final TextView result = dialogView.findViewById(R.id.customDialogTestResult);
         result.setText(String.valueOf(sumResult));
@@ -185,8 +188,10 @@ public class CritConfirmAlertDialog {
         dice.setMythicEventListener(new Dice.OnMythicEventListener() {
             @Override
             public void onEvent() {
-                int sumResult=dice.getRandValue()+ sumScore;
-                if(dice.getMythicDice()!=null){sumResult+=dice.getMythicDice().getRandValue();}
+                int sumResult = dice.getRandValue() + sumScore;
+                if (dice.getMythicDice() != null) {
+                    sumResult += dice.getMythicDice().getRandValue();
+                }
                 result.setText(String.valueOf(sumResult));
             }
         });
@@ -198,7 +203,7 @@ public class CritConfirmAlertDialog {
         failButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tools.customToast(mC,"Bon c'est pas un crit pas grave...\nla prochaine fois ca confirme !");
+                tools.customToast(mC, "Bon c'est pas un crit pas grave...\nla prochaine fois ca confirme !");
                 mListenerFail.onFailEvent();
                 alertDialog.dismiss();
             }
@@ -207,23 +212,23 @@ public class CritConfirmAlertDialog {
         Button success = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
         success.setVisibility(View.VISIBLE);
 
-        new PostData(mC,new PostDataElement("Test confirmation de critique",dice,sumResult));
-    }
-
-    public interface OnSuccessEventListener {
-        void onSuccessEvent();
+        new PostData(mC, new PostDataElement("Test confirmation de critique", dice, sumResult));
     }
 
     public void setSuccessEventListener(OnSuccessEventListener eventListener) {
         mListenerSuccess = eventListener;
     }
 
-    public interface OnFailEventListener {
-        void onFailEvent();
-    }
-
     public void setFailEventListener(OnFailEventListener eventListener) {
         mListenerFail = eventListener;
+    }
+
+    public interface OnSuccessEventListener {
+        void onSuccessEvent();
+    }
+
+    public interface OnFailEventListener {
+        void onFailEvent();
     }
 }
 

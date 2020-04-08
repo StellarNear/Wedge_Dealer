@@ -25,25 +25,25 @@ public class PrefAllInventoryFragmentAddSelection {
 
     private Activity mA;
     private Context mC;
-    private Tools tools=Tools.getTools();
-    private Map<String,Integer> mapAbiUp=new HashMap<>();
-    private Map<String,Integer> mapSkillUp=new HashMap<>();
-    private Perso pj=PersoManager.getCurrentPJ();
+    private Tools tools = Tools.getTools();
+    private Map<String, Integer> mapAbiUp = new HashMap<>();
+    private Map<String, Integer> mapSkillUp = new HashMap<>();
+    private Perso pj = PersoManager.getCurrentPJ();
     private LinearLayout listAbi;
     private LinearLayout listSkill;
 
-    public PrefAllInventoryFragmentAddSelection(Activity mA, Context mC,LinearLayout addAbi,LinearLayout addSkill,LinearLayout listAbi,LinearLayout listSkill){
-        this.mA=mA;
-        this.mC=mC;
-        this.listAbi=listAbi;
-        this.listSkill=listSkill;
+    public PrefAllInventoryFragmentAddSelection(Activity mA, Context mC, LinearLayout addAbi, LinearLayout addSkill, LinearLayout listAbi, LinearLayout listSkill) {
+        this.mA = mA;
+        this.mC = mC;
+        this.listAbi = listAbi;
+        this.listSkill = listSkill;
 
         setAddAbiButton(addAbi);
         setAddSkillButton(addSkill);
         listAbi.removeAllViews();
         listSkill.removeAllViews();
-        mapAbiUp=new HashMap<>();
-        mapSkillUp=new HashMap<>();
+        mapAbiUp = new HashMap<>();
+        mapSkillUp = new HashMap<>();
     }
 
     /*  Partie abi */
@@ -61,9 +61,9 @@ public class PrefAllInventoryFragmentAddSelection {
         builder.setTitle("Choix de la statistique");
         // add a radio button list
 
-        final ArrayList<String> abilityName=new ArrayList<>();
+        final ArrayList<String> abilityName = new ArrayList<>();
 
-        for(Ability abi : pj.getAllAbilities().getAbilitiesList()){
+        for (Ability abi : pj.getAllAbilities().getAbilitiesList()) {
             abilityName.add(abi.getName());
         }
 
@@ -71,7 +71,7 @@ public class PrefAllInventoryFragmentAddSelection {
         String[] abiArray = abilityName.toArray(new String[abilityName.size()]);
         builder.setSingleChoiceItems(abiArray, checkedItem, new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog,int which) {
+            public void onClick(DialogInterface dialog, int which) {
                 popupAbiSelectValue(which);
             }
 
@@ -89,12 +89,12 @@ public class PrefAllInventoryFragmentAddSelection {
         input.setInputType(InputType.TYPE_CLASS_NUMBER);
         new AlertDialog.Builder(mA)
                 .setView(input)
-                .setTitle("Valeur d'augmentation "+selectedAbi.getName())
+                .setTitle("Valeur d'augmentation " + selectedAbi.getName())
                 .setIcon(android.R.drawable.ic_menu_help)
                 .setPositiveButton("oui", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
 
-                        addFinalValues(selectedAbi,tools.toInt(input.getText().toString()));
+                        addFinalValues(selectedAbi, tools.toInt(input.getText().toString()));
                     }
                 })
                 .setNegativeButton("non", new DialogInterface.OnClickListener() {
@@ -118,9 +118,9 @@ public class PrefAllInventoryFragmentAddSelection {
         builder.setTitle("Choix de la compétence");
         // add a radio button list
 
-        final ArrayList<String> abilityName=new ArrayList<>();
+        final ArrayList<String> abilityName = new ArrayList<>();
 
-        for(Skill skill : pj.getAllSkills().getSkillsList()){
+        for (Skill skill : pj.getAllSkills().getSkillsList()) {
             abilityName.add(skill.getName());
         }
 
@@ -128,7 +128,7 @@ public class PrefAllInventoryFragmentAddSelection {
         String[] abiArray = abilityName.toArray(new String[abilityName.size()]);
         builder.setSingleChoiceItems(abiArray, checkedItem, new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog,int which) {
+            public void onClick(DialogInterface dialog, int which) {
                 popupSkillSelectValue(which);
             }
 
@@ -146,11 +146,11 @@ public class PrefAllInventoryFragmentAddSelection {
         input.setInputType(InputType.TYPE_CLASS_NUMBER);
         new AlertDialog.Builder(mA)
                 .setView(input)
-                .setTitle("Valeur d'augmentation "+selectedSkill.getName())
+                .setTitle("Valeur d'augmentation " + selectedSkill.getName())
                 .setIcon(android.R.drawable.ic_menu_help)
                 .setPositiveButton("oui", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
-                        addFinalValues(selectedSkill,tools.toInt(input.getText().toString()));
+                        addFinalValues(selectedSkill, tools.toInt(input.getText().toString()));
                     }
                 })
                 .setNegativeButton("non", new DialogInterface.OnClickListener() {
@@ -162,31 +162,31 @@ public class PrefAllInventoryFragmentAddSelection {
     /* autre */
 
     private void addFinalValues(Ability ability, Integer val) {
-        LinearLayout abiLine =new LinearLayout(mC);
+        LinearLayout abiLine = new LinearLayout(mC);
         abiLine.setOrientation(LinearLayout.HORIZONTAL);
         abiLine.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         abiLine.setGravity(Gravity.CENTER);
         TextView valueAugment = new TextView(mC);
-        valueAugment.setText("+"+val+" "+ability.getName());
+        valueAugment.setText("+" + val + " " + ability.getName());
         abiLine.addView(valueAugment);
         listAbi.addView(abiLine);
-        mapAbiUp.put(ability.getId(),val);
+        mapAbiUp.put(ability.getId(), val);
     }
 
     private void addFinalValues(Skill skill, Integer val) {
-        LinearLayout abiLine =new LinearLayout(mC);
+        LinearLayout abiLine = new LinearLayout(mC);
         abiLine.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         abiLine.setOrientation(LinearLayout.HORIZONTAL);
         abiLine.setGravity(Gravity.CENTER);
         TextView valueAugment = new TextView(mC);
-        valueAugment.setText("+"+val+" "+skill.getName());
+        valueAugment.setText("+" + val + " " + skill.getName());
         abiLine.addView(valueAugment);
         listSkill.addView(abiLine);
-        mapSkillUp.put(skill.getId(),val);
+        mapSkillUp.put(skill.getId(), val);
     }
 
 
-    public Map<String,Integer> getAbiMap() {
+    public Map<String, Integer> getAbiMap() {
         return mapAbiUp;
     }
 

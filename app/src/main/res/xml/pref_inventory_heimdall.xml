@@ -1,68 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-        <SwitchPreference
-            android:defaultValue="@bool/thor_switch_def"
-            android:key="thor_switch"
-            android:summary="@string/thor_summ"
-            android:title="@string/thor" />
+    <SwitchPreference
+        android:defaultValue="@bool/thor_switch_def"
+        android:key="thor_switch"
+        android:summary="@string/thor_summ"
+        android:title="@string/thor" />
 
-        <SwitchPreference
-            android:defaultValue="@bool/rapid_enchant_switch_def"
-            android:elegantTextHeight="false"
-            android:fadeScrollbars="false"
-            android:key="rapid_enchant_switch"
-            android:summary="@string/rapid_enchant_summ"
-            android:title="@string/rapid_enchant" />
-        <SwitchPreference
-            android:defaultValue="true"
-            android:key="composite_switch"
-            android:summary="@string/composite_summ"
-            android:title="@string/composite" />
+    <SwitchPreference
+        android:defaultValue="@bool/rapid_enchant_switch_def"
+        android:elegantTextHeight="false"
+        android:fadeScrollbars="false"
+        android:key="rapid_enchant_switch"
+        android:summary="@string/rapid_enchant_summ"
+        android:title="@string/rapid_enchant" />
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="composite_switch"
+        android:summary="@string/composite_summ"
+        android:title="@string/composite" />
 
-        <SwitchPreference
-            android:defaultValue="@bool/fire_blast_switch_def"
-            android:key="fire_blast_switch"
-            android:summary="+3d6 de feu. +9d6 en crit x3 +12d6 si x4 etc"
-            android:title="Choc de feu" />
+    <SwitchPreference
+        android:defaultValue="@bool/fire_blast_switch_def"
+        android:key="fire_blast_switch"
+        android:summary="+3d6 de feu. +9d6 en crit x3 +12d6 si x4 etc"
+        android:title="Choc de feu" />
 
-        <SwitchPreference
-            android:defaultValue="@bool/ice_blast_switch_def"
-            android:key="ice_blast_switch"
-            android:summary="+3d6 de froid. +9d6 en crit x3 +12d6 si x4 etc"
-            android:title="Choc de froid" />
+    <SwitchPreference
+        android:defaultValue="@bool/ice_blast_switch_def"
+        android:key="ice_blast_switch"
+        android:summary="+3d6 de froid. +9d6 en crit x3 +12d6 si x4 etc"
+        android:title="Choc de froid" />
 
-        <SwitchPreference
-            android:defaultValue="@bool/shock_blast_switch_def"
-            android:key="shock_blast_switch"
-            android:summary="+3d6 de foudre. +9d6 en crit x3 +12d6 si x4 etc"
-            android:title="Choc de foudre" />
+    <SwitchPreference
+        android:defaultValue="@bool/shock_blast_switch_def"
+        android:key="shock_blast_switch"
+        android:summary="+3d6 de foudre. +9d6 en crit x3 +12d6 si x4 etc"
+        android:title="Choc de foudre" />
 
-        <SwitchPreference
-            android:defaultValue="@bool/foudre_intense_switch_def"
-            android:key="foudre_intense_switch"
-            android:summary="+2d6 dégâts de foudre. +2d10 en critique"
-            android:title="Foudre intense" />
+    <SwitchPreference
+        android:defaultValue="@bool/foudre_intense_switch_def"
+        android:key="foudre_intense_switch"
+        android:summary="+2d6 dégâts de foudre. +2d10 en critique"
+        android:title="Foudre intense" />
 
-        <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+    <Preference
+        android:layout="@layout/divider_pref"
+        android:selectable="false" />
 
-        <PreferenceCategory android:title="Objet légendaire"/>
-        <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+    <PreferenceCategory android:title="Objet légendaire" />
+    <Preference
+        android:layout="@layout/divider_pref"
+        android:selectable="false" />
 
-        <stellarnear.wedge_companion.EditTextPreference
-            android:defaultValue="@integer/resource_legendary_points_def"
-            android:key="resource_legendary_points"
-            android:title="Points légendaires"
-            android:singleLine="true"
-            android:inputType="number"
-            android:summary="Valeur : %s"/>
+    <stellarnear.wedge_companion.EditTextPreference
+        android:defaultValue="@integer/resource_legendary_points_def"
+        android:inputType="number"
+        android:key="resource_legendary_points"
+        android:singleLine="true"
+        android:summary="Valeur : %s"
+        android:title="Points légendaires" />
 
-        <stellarnear.wedge_companion.EditTextPreference
-            android:defaultValue="@integer/legendary_dice_def"
-            android:key="legendary_dice"
-            android:title="Dès de montée en puissance"
-            android:singleLine="true"
-            android:inputType="number"
-            android:summary="Valeur : d%s"/>
+    <stellarnear.wedge_companion.EditTextPreference
+        android:defaultValue="@integer/legendary_dice_def"
+        android:inputType="number"
+        android:key="legendary_dice"
+        android:singleLine="true"
+        android:summary="Valeur : d%s"
+        android:title="Dès de montée en puissance" />
 
 </PreferenceScreen>

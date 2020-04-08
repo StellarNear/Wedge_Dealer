@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
@@ -12,20 +12,22 @@
         android:layout_height="match_parent"
         android:layout_gravity="top"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_icon_main_actions075"
-            android:orientation="horizontal"
             android:background="@drawable/bar_gradient_main_subfragments"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:text="Lancement des attaques"
                 android:textAlignment="center"
                 android:textColor="?attr/colorBackground"
-                android:textSize="20sp"
-                android:text="Lancement des attaques" />
+                android:textSize="20sp" />
         </LinearLayout>
 
         <RelativeLayout
@@ -33,19 +35,21 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1">
+
             <ImageView
                 android:id="@+id/background_blank_combat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:adjustViewBounds="true"
+                android:background="@color/colorBackground"
                 android:scaleType="fitXY"
-                android:src="@drawable/wedge_loaded"
-                android:background="@color/colorBackground"/>
+                android:src="@drawable/wedge_loaded" />
+
             <LinearLayout
-                android:layout_alignParentTop="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -53,41 +57,45 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/mainLinearNAtk"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="N attaques :"
                         android:layout_margin="@dimen/general_margin"
                         android:gravity="center"
-                        android:textSize="15sp"
+                        android:text="N attaques :"
                         android:textColor="@color/colorPrimaryDark"
-                        android:visibility="gone"/>
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+
                     <LinearLayout
                         android:id="@+id/mainLinearPreRand"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:visibility="gone"/>
+                        android:visibility="gone" />
+
                     <LinearLayout
                         android:id="@+id/mainLinearAtkDices"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:visibility="gone"/>
+                        android:visibility="gone" />
 
                     <LinearLayout
                         android:id="@+id/mainLinearMultishot"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:visibility="gone"/>
+                        android:visibility="gone" />
+
                     <LinearLayout
                         android:id="@+id/mainLinearPostRand"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:visibility="gone"/>
+                        android:visibility="gone" />
 
                     <TextView
                         android:id="@+id/mainLinearCheckboxHitTitle"
@@ -104,7 +112,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:visibility="gone"/>
+                        android:visibility="gone" />
 
                     <TextView
                         android:id="@+id/mainLinearCheckboxCritTitle"
@@ -112,16 +120,16 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Coups critiques :"
-                        android:textSize="15sp"
                         android:textColor="@android:color/darker_gray"
-                        android:visibility="gone"/>
+                        android:textSize="15sp"
+                        android:visibility="gone" />
 
                     <LinearLayout
                         android:id="@+id/mainLinearCritCheckbox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:visibility="gone"/>
+                        android:visibility="gone" />
                 </LinearLayout>
 
                 <View
@@ -138,51 +146,57 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Dégâts :"
-                    android:textSize="15sp"
                     android:textColor="@color/colorPrimaryDark"
-                    android:visibility="gone"/>
+                    android:textSize="15sp"
+                    android:visibility="gone" />
 
                 <LinearLayout
                     android:id="@+id/mainLinearDmg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
                     <LinearLayout
                         android:id="@+id/mainLinearLogoDmg"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:visibility="gone"/>
+                        android:visibility="gone" />
+
                     <LinearLayout
                         android:id="@+id/mainLinearSumDmg"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:visibility="gone"/>
+                        android:visibility="gone" />
+
                     <LinearLayout
                         android:id="@+id/mainLinearRangeDmg"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:visibility="gone"/>
+                        android:visibility="gone" />
+
                     <TextView
                         android:id="@+id/mainLinearProbaTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Probabilité de dépassement (>) :"
-                        android:textSize="15sp"
                         android:textColor="@android:color/darker_gray"
-                        android:visibility="gone"/>
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+
                     <LinearLayout
                         android:id="@+id/mainLinearProbaDmg"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:visibility="gone"/>
+                        android:visibility="gone" />
                 </LinearLayout>
 
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/add_bonus_linear"
                 android:layout_width="match_parent"
@@ -197,78 +211,84 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    >
+                    android:gravity="center">
 
                     <ImageView
-                        android:layout_margin="@dimen/general_margin"
                         android:layout_width="@dimen/iconSizeQuadrantFull"
                         android:layout_height="@dimen/iconSizeQuadrantFull"
-                        android:src="@drawable/lynx_eye"/>
+                        android:layout_margin="@dimen/general_margin"
+                        android:src="@drawable/lynx_eye" />
 
                     <TextView
                         android:id="@+id/lynx_eye_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="Oeil de lynx"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:text="Oeil de lynx"/>
+                        android:textStyle="bold" />
                 </LinearLayout>
+
                 <TextView
                     android:id="@+id/lynx_eye_remaining"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="Utilisations restantes : x"
                     android:textSize="13sp"
-                    android:textStyle="italic"
-                    android:text="Utilisations restantes : x"/>
+                    android:textStyle="italic" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:text="Selection du jet d'attaque"/>
+                    android:text="Selection du jet d'attaque"
+                    android:textSize="15sp" />
+
                 <LinearLayout
                     android:id="@+id/bonus_panel_roll_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"/>
+                    android:orientation="horizontal" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/general_margin"
+                    android:text="Facteur de portée"
                     android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:text="Facteur de portée"/>
+                    android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/bonus_panel_range_factor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:text="100m"/>
+                    android:text="100m"
+                    android:textSize="20sp" />
 
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/general_margin"
+                    android:text="Isillirit bonus de dégât lié à l'initiative"
                     android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:text="Isillirit bonus de dégât lié à l'initiative" />
+                    android:textStyle="bold" />
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/general_margin"
                     android:gravity="center">
+
                     <CheckBox
                         android:id="@+id/checkbox_isillirit_init_bonus"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content" />
+
                     <TextView
+                        android:id="@+id/text_isillirit_init_bonus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="18sp"
-                        android:id="@+id/text_isillirit_init_bonus"
-                        android:text="dégâts première attaque" />
+                        android:text="dégâts première attaque"
+                        android:textSize="18sp" />
 
                 </LinearLayout>
 
@@ -288,41 +308,41 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    >
+                    android:gravity="center">
 
                     <ImageView
-                        android:layout_margin="@dimen/general_margin"
                         android:layout_width="@dimen/iconSizeQuadrantFull"
                         android:layout_height="@dimen/iconSizeQuadrantFull"
-                        android:src="@drawable/ic_winged_arrow"/>
+                        android:layout_margin="@dimen/general_margin"
+                        android:src="@drawable/ic_winged_arrow" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="Flèches naturalisées"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:text="Flèches naturalisées"/>
+                        android:textStyle="bold" />
                 </LinearLayout>
+
                 <TextView
                     android:id="@+id/spell_arrow_remaining"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="Nombre de flèches naturalisées : 0"
                     android:textSize="13sp"
-                    android:textStyle="italic"
-                    android:text="Nombre de flèches naturalisées : 0"/>
+                    android:textStyle="italic" />
 
                 <ScrollView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/general_margin"
                     android:gravity="center">
+
                     <LinearLayout
                         android:id="@+id/spell_arrow_scroll_lin"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        />
+                        android:orientation="vertical" />
                 </ScrollView>
 
             </LinearLayout>
@@ -341,61 +361,64 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    >
+                    android:gravity="center">
 
                     <ImageView
-                        android:layout_margin="@dimen/general_margin"
                         android:layout_width="@dimen/iconSizeQuadrantFull"
                         android:layout_height="@dimen/iconSizeQuadrantFull"
-                        android:src="@drawable/ic_bite_circle"/>
+                        android:layout_margin="@dimen/general_margin"
+                        android:src="@drawable/ic_bite_circle" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="Croc-ennemi"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:text="Croc-ennemi"/>
+                        android:textStyle="bold" />
                 </LinearLayout>
+
                 <TextView
                     android:id="@+id/leg_ennemy_bite_pts"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="Points légendaires : x"
                     android:textSize="13sp"
-                    android:textStyle="italic"
-                    android:text="Points légendaires : x"/>
+                    android:textStyle="italic" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:text="Selection du jet de dégat"/>
+                    android:text="Selection du jet de dégat"
+                    android:textSize="15sp" />
+
                 <LinearLayout
                     android:id="@+id/leg_ennemy_bite_roll_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"/>
+                    android:orientation="horizontal" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/general_margin"
+                    android:text="Résultat de l'augmentation de dégat"
                     android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:text="Résultat de l'augmentation de dégat"/>
+                    android:textStyle="bold" />
+
                 <LinearLayout
                     android:id="@+id/leg_ennemy_bite_sum_result_linear"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"/>
+                    android:orientation="vertical" />
 
                 <Button
                     android:id="@+id/leg_ennemy_bite_confirm_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/general_margin"
                     android:background="@drawable/button_ok_gradient"
-                    android:textSize="12dp"
                     android:text="Confirmer"
-                    android:layout_margin="@dimen/general_margin"/>
+                    android:textSize="12dp" />
 
 
             </LinearLayout>
@@ -404,12 +427,13 @@
                 android:id="@+id/fab_spell_arrow"
                 android:layout_width="@dimen/iconSizeAtkBonusPanel"
                 android:layout_height="@dimen/iconSizeAtkBonusPanel"
-                android:layout_alignParentTop="true"
                 android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
                 android:layout_margin="@dimen/general_margin"
                 android:background="@color/transparent"
-                android:visibility="gone"
-                android:src="@drawable/ic_winged_arrow" />
+                android:src="@drawable/ic_winged_arrow"
+                android:visibility="gone" />
+
             <ImageView
                 android:id="@+id/fab_add_atk"
                 android:layout_width="@dimen/iconSizeAtkBonusPanel"
@@ -418,8 +442,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_margin="@dimen/general_margin"
                 android:background="@color/transparent"
-                android:visibility="gone"
-                android:src="@drawable/ic_add_circle_outline_green_24dp" />
+                android:src="@drawable/ic_add_circle_outline_green_24dp"
+                android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/fab_leg_ennemy_bite"
@@ -429,13 +453,13 @@
                 android:layout_alignParentEnd="true"
                 android:layout_margin="@dimen/general_margin"
                 android:background="@color/transparent"
-                android:visibility="gone"
-                android:src="@drawable/ic_bite_circle" />
+                android:src="@drawable/ic_bite_circle"
+                android:visibility="gone" />
         </RelativeLayout>
 
 
-
     </LinearLayout>
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_damage_detail"
         android:layout_width="60dp"
@@ -487,14 +511,14 @@
         tools:ignore="ContentDescription" />
 
     <ImageButton
-        tools:ignore="ContentDescription"
         android:id="@+id/button_frag_combat_to_main"
         android:layout_width="@dimen/size_icon_main_actions075"
         android:layout_height="@dimen/size_icon_main_actions075"
         android:layout_gravity="start|top"
-        android:src="@drawable/combat_back"
         android:adjustViewBounds="true"
-        android:scaleType="fitXY"
+        android:background="@null"
         android:padding="@dimen/general_margin"
-        android:background="@null"/>
+        android:scaleType="fitXY"
+        android:src="@drawable/combat_back"
+        tools:ignore="ContentDescription" />
 </android.support.design.widget.CoordinatorLayout>

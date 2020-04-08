@@ -9,14 +9,15 @@
         android:id="@+id/sub_element_quadrant_mini_label_icon"
         android:layout_width="@dimen/iconSizeQuadrantFull"
         android:layout_height="@dimen/iconSizeQuadrantFull"
-        android:src="@drawable/mire_test"
-        android:layout_marginBottom="@dimen/general_margin"/>
+        android:layout_marginBottom="@dimen/general_margin"
+        android:src="@drawable/mire_test" />
+
     <TextView
         android:id="@+id/sub_element_quadrant_mini_label_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=" Abitest : "
-        android:visibility="gone"
-        android:textSize="@dimen/textSizeQuadrantMini"/>
+        android:textSize="@dimen/textSizeQuadrantMini"
+        android:visibility="gone" />
 
 </LinearLayout>

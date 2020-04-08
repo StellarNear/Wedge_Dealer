@@ -1,34 +1,33 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/health_dialog_RelativeLayoutMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_border_dialog"
     android:clipChildren="false"
     android:gravity="center"
-    android:id="@+id/health_dialog_RelativeLayoutMain"
-    android:orientation="vertical"
-    android:background="@drawable/background_border_dialog">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_alignParentTop="true"
         android:layout_marginTop="@dimen/general_margin"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
         <FrameLayout
+            android:id="@+id/healthDialogFrameHeathBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/healthDialogFrameHeathBar"
-            android:layout_gravity="center"
-            >
+            android:layout_gravity="center">
 
 
             <ImageView
                 android:id="@+id/health_dialog_back_health"
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
-                android:layout_margin="@dimen/general_margin"
                 android:layout_gravity="bottom"
+                android:layout_margin="@dimen/general_margin"
                 android:adjustViewBounds="true"
                 android:src="@color/colorPrimaryDark" />
 
@@ -39,15 +38,15 @@
                 android:layout_gravity="center"
                 android:adjustViewBounds="true"
                 android:src="@drawable/life_bar_overlay_landscape" />
+
             <TextView
                 android:id="@+id/health_dialog_floating_numbers"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textSize="18sp"
                 android:text="+x"
-                android:visibility="invisible"
-                />
+                android:textSize="18sp"
+                android:visibility="invisible" />
         </FrameLayout>
 
     </LinearLayout>
@@ -60,12 +59,11 @@
         android:orientation="vertical">
 
 
-
         <LinearLayout
-            android:layout_marginStart="@dimen/general_margin"
-            android:layout_marginEnd="@dimen/general_margin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/general_margin"
+            android:layout_marginEnd="@dimen/general_margin"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -74,6 +72,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical">
+
                 <TextView
                     android:id="@+id/healthDialogHealthTitle"
                     android:layout_width="wrap_content"
@@ -83,78 +82,84 @@
                     android:textColor="@android:color/black" />
 
                 <TextView
+                    android:id="@+id/healthDialogHealth"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/general_margin"
-                    android:id="@+id/healthDialogHealth"
-                    android:textSize="20sp"
                     android:gravity="center"
                     android:text="xxx/xxx (xx)"
-                    android:textColor="@android:color/black" />
-            </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/healthDialogLinearButtonHolder"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
-                <Button
-                    android:id="@+id/button_healthDialog_heal"
-                    android:layout_width="@dimen/size_button_healthDialog_land"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/button_ok_gradient"
-                    android:textSize="12sp"
-                    android:textColor="@color/colorTextButtonHealthDialog"
-                    android:text="soin"/>
-                <Button
-                    android:id="@+id/button_healthDialog_regen"
-                    android:layout_width="@dimen/size_button_healthDialog_land"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/general_margin"
-                    android:background="@drawable/button_ok_gradient"
-                    android:textColor="@color/colorTextButtonHealthDialog"
-                    android:textSize="12sp"
-                    android:text="regen"/>
-                <Button
-                    android:id="@+id/button_healthDialog_shield"
-                    android:layout_width="@dimen/size_button_healthDialog_land"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/button_basic_gradient"
-                    android:textColor="@color/colorTextButtonHealthDialog"
-                    android:textSize="12sp"
-                    android:text="shield"/>
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
-                <Button
-                    android:id="@+id/button_healthDialog_dmg"
-                    android:layout_width="@dimen/size_button_healthDialog_land"
+                android:id="@+id/healthDialogLinearButtonHolder"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/button_cancel_gradient"
-                    android:textColor="@color/colorTextButtonHealthDialog"
-                    android:textSize="12sp"
-                    android:text="dégâts"/>
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
+                    <Button
+                        android:id="@+id/button_healthDialog_heal"
+                        android:layout_width="@dimen/size_button_healthDialog_land"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/button_ok_gradient"
+                        android:text="soin"
+                        android:textColor="@color/colorTextButtonHealthDialog"
+                        android:textSize="12sp" />
+
+                    <Button
+                        android:id="@+id/button_healthDialog_regen"
+                        android:layout_width="@dimen/size_button_healthDialog_land"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/general_margin"
+                        android:background="@drawable/button_ok_gradient"
+                        android:text="regen"
+                        android:textColor="@color/colorTextButtonHealthDialog"
+                        android:textSize="12sp" />
+
+                    <Button
+                        android:id="@+id/button_healthDialog_shield"
+                        android:layout_width="@dimen/size_button_healthDialog_land"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/button_basic_gradient"
+                        android:text="shield"
+                        android:textColor="@color/colorTextButtonHealthDialog"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/button_healthDialog_dmg"
+                        android:layout_width="@dimen/size_button_healthDialog_land"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/button_cancel_gradient"
+                        android:text="dégâts"
+                        android:textColor="@color/colorTextButtonHealthDialog"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center_horizontal">
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/healthDialogSummary"
@@ -162,10 +167,9 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:singleLine="false"
-                android:textSize="18sp"
                 android:text="Bravo"
-                android:visibility="invisible"
-                />
+                android:textSize="18sp"
+                android:visibility="invisible" />
 
             <TextView
                 android:layout_width="wrap_content"

@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="version">"v1.4"</string>
-    <string name="time_spend">153h</string>
+    <string name="version">"v1.5"</string>
+    <string name="time_spend">168h</string>
     <string name="basic_infos">"Application développée pour gagner un temps considérable fin 2017."
     </string>
 
-<string name="patch_list">"----------------------------------------------------------------------------------
+    <string name="patch_list">"----------------------------------------------------------------------------------
+Patch note v1.5
+-Halda Aasimar ascension avec capa changement d'apparence
+-Prédilection poru wedge
+-Nouveau bouton d'info annexe dans les stats avancées
+-Ajout des marges des popup fullscreen
+-Ajout de tout les sorts issu de classe de prédilection pour Halda
+-Ajout des sorts mystère bonus
+----------------------------------------------------------------------------------
 Patch note v1.4
 -level 29 wedge Uncanny Accuracy
 -Halda Interconnected truth nouveau sort

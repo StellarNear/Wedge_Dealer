@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<set xmlns:android="http://schemas.android.com/apk/res/android" >
+<set xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <objectAnimator
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
         android:duration="@integer/translationFragDuration"
         android:propertyName="x"
         android:valueFrom="0"
         android:valueTo="@dimen/translationFragTransi"
-        android:valueType="floatType"
-        />
+        android:valueType="floatType" />
 
     <objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
-        android:valueFrom="1"
-        android:valueTo="0"
+        android:duration="@integer/translationFragDuration"
         android:propertyName="alpha"
-        android:duration="@integer/translationFragDuration" />
+        android:valueFrom="1"
+        android:valueTo="0" />
 
 </set>

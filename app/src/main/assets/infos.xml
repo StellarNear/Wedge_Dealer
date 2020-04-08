@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<records>
+    <info>
+        <name>Nom</name>
+        <value>Wedge Athanatos</value>
+    </info>
+    <info>
+        <name>Alignement</name>
+        <value>Chaotique Neutre</value>
+    </info>
+    <info>
+        <name>Race</name>
+        <value>Elfe</value>
+    </info>
+    <info>
+        <name>Age</name>
+        <value>173</value>
+    </info>
+    <info>
+        <name>Taille</name>
+        <value>1.95</value>
+    </info>
+    <info>
+        <name>Poids</name>
+        <value>75</value>
+    </info>
+
+    <info>
+        <name>Vision</name>
+        <value>36m (noir, invisible, éthéré)</value>
+    </info>
+
+
+    <info>
+        <name>Langues</name>
+        <value>Commun, Elfique, Draconien, Sylvestre, Terreuse, Druidique</value>
+    </info>
+
+    <info>
+        <type>capacity</type>
+        <value>capacity_elf_immune</value>
+    </info>
+
+    <info>
+        <type>capacity</type>
+        <value>capacity_druid_easy_way</value>
+    </info>
+
+    <info>
+        <type>capacity</type>
+        <value>capacity_multiple_faces</value>
+    </info>
+
+
+</records>

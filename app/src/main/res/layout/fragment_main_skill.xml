@@ -13,83 +13,86 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/size_icon_main_actions075"
-                android:orientation="horizontal"
-                android:background="@drawable/bar_gradient_main_subfragments"
-                android:gravity="center">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textAlignment="center"
-                    android:textColor="?attr/colorBackground"
-                    android:textSize="20sp"
-                    android:text="Lancement des compétences" />
-            </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_icon_main_actions075"
+            android:background="@drawable/bar_gradient_main_subfragments"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/skillTitleLine"
-                android:weightSum="9"
-                android:orientation="horizontal"
-                android:background="?attr/colorPrimaryDark">
+                android:gravity="center"
+                android:text="Lancement des compétences"
+                android:textAlignment="center"
+                android:textColor="?attr/colorBackground"
+                android:textSize="20sp" />
+        </LinearLayout>
 
-                 <TextView
-                     android:id="@+id/skillNameTitle"
-                     android:layout_width="0dp"
-                     android:layout_height="wrap_content"
-                     android:layout_weight="4"
-                     android:gravity="center"
-                     android:textColor="@color/title_skill_color_text"
-                     android:textSize="15sp"
-                     android:textStyle="bold"
-                     android:text="Compétence" />
+        <LinearLayout
+            android:id="@+id/skillTitleLine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimaryDark"
+            android:orientation="horizontal"
+            android:weightSum="9">
 
-                <TextView
-                    android:id="@+id/skillTotalTitle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:textColor="@color/title_skill_color_text"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:text="Total" />
+            <TextView
+                android:id="@+id/skillNameTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:gravity="center"
+                android:text="Compétence"
+                android:textColor="@color/title_skill_color_text"
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
-                 <TextView
-                     android:textColor="@color/title_skill_color_text"
-                     android:id="@+id/skillAbiTitle"
-                     android:layout_width="0dp"
-                     android:layout_height="wrap_content"
-                     android:gravity="center"
-                     android:textStyle="bold"
-                     android:layout_weight="2"
-                     android:textSize="15sp"
-                     android:text="Stat" />
-                 <TextView
-                     android:textColor="@color/title_skill_color_text"
-                     android:id="@+id/skillRankTitle"
-                     android:layout_width="0dp"
-                     android:layout_height="wrap_content"
-                     android:gravity="center"
-                     android:textSize="15sp"
-                     android:layout_weight="1"
-                     android:textStyle="bold"
-                     android:text="Rang" />
-                 <TextView
-                     android:textColor="@color/title_skill_color_text"
-                     android:id="@+id/skillBonusTitle"
-                     android:layout_width="0dp"
-                     android:layout_height="wrap_content"
-                     android:gravity="center"
-                     android:textSize="15sp"
-                     android:textStyle="bold"
-                     android:layout_weight="1"
-                     android:text="Autre" />
-            </LinearLayout>
+            <TextView
+                android:id="@+id/skillTotalTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Total"
+                android:textColor="@color/title_skill_color_text"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/skillAbiTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="Stat"
+                android:textColor="@color/title_skill_color_text"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/skillRankTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Rang"
+                android:textColor="@color/title_skill_color_text"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/skillBonusTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Autre"
+                android:textColor="@color/title_skill_color_text"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
         <ScrollView
             android:layout_width="match_parent"
@@ -100,24 +103,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:orientation="vertical">
-            </LinearLayout>
+                android:orientation="vertical"></LinearLayout>
         </ScrollView>
 
     </LinearLayout>
 
     <ImageButton
-        tools:ignore="ContentDescription"
         android:id="@+id/button_frag_skill_to_main"
         android:layout_width="@dimen/size_icon_main_actions075"
         android:layout_height="@dimen/size_icon_main_actions075"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:padding="@dimen/general_margin"
+        android:scaleType="fitXY"
+        android:src="@drawable/skill_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/skill_back"
-        android:adjustViewBounds="true"
-        android:scaleType="fitXY"
-        android:padding="@dimen/general_margin"
-        android:background="@null"/>
+        tools:ignore="ContentDescription" />
 
 
 </android.support.constraint.ConstraintLayout>

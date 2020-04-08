@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<records>
+    <info>
+        <name>Nom</name>
+        <value>Halda Athanatos</value>
+    </info>
+    <info>
+        <name>Alignement</name>
+        <value>Chaotique Neutre</value>
+    </info>
+    <info>
+        <name>Race</name>
+        <value>Demi-Aasimar</value>
+    </info>
+    <info>
+        <name>Age</name>
+        <value>31</value>
+    </info>
+    <info>
+        <name>Taille</name>
+        <value>1.68</value>
+    </info>
+    <info>
+        <name>Poids</name>
+        <value>54</value>
+    </info>
+
+    <info>
+        <name>Vision</name>
+        <value>18m noir, 9m Perception aveugle, 1.5m Vision aveugle</value>
+    </info>
+
+
+    <info>
+        <name>Langues</name>
+        <value>Commun, Elfique, Nain, Halfelin</value>
+    </info>
+
+    <info>
+        <type>capacity</type>
+        <value>capacity_human_skill</value>
+    </info>
+
+    <info>
+        <type>capacity</type>
+        <value>capacity_moon_child</value>
+    </info>
+
+    <info>
+        <type>capacity</type>
+        <value>capacity_revelation_moon_writing</value>
+    </info>
+
+
+</records>

@@ -20,8 +20,9 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 public class AllGeneralHelpInfos {
     List<GeneralHelpInfo> listGeneralHelpInfos;
-    public  AllGeneralHelpInfos(Context mC) {
-        listGeneralHelpInfos =new ArrayList<>();
+
+    public AllGeneralHelpInfos(Context mC) {
+        listGeneralHelpInfos = new ArrayList<>();
         try {
             InputStream is = mC.getAssets().open("help.xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -61,7 +62,7 @@ public class AllGeneralHelpInfos {
         }
     }
 
-    public List<GeneralHelpInfo> getListGeneralHelpInfos(){
+    public List<GeneralHelpInfo> getListGeneralHelpInfos() {
         return listGeneralHelpInfos;
     }
 }

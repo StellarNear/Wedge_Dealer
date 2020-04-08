@@ -8,7 +8,7 @@ public class FameEntry {
     private String location;
     private String details;
 
-    public FameEntry(Stat stat, String foeName, String location, String details){
+    public FameEntry(Stat stat, String foeName, String location, String details) {
         this.stat = stat;
         this.foeName = foeName;
         this.location = location;
@@ -33,12 +33,12 @@ public class FameEntry {
     }
 
     public int getSumDmg() {
-        return stat==null ? 0 : stat.getSumDmg();
+        return stat == null ? 0 : stat.getSumDmg();
     }
 
     public void updateInfos(String foeName, String location, String details) {
-        this.foeName=foeName;
-        this.location=location;
-        this.details=details;
+        this.foeName = foeName;
+        this.location = location;
+        this.details = details;
     }
 }

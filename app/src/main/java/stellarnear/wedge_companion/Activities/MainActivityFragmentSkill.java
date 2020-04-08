@@ -31,7 +31,8 @@ public class MainActivityFragmentSkill extends Fragment {
     private Perso pj = PersoManager.getCurrentPJ();
     private LinearLayout linearSkillScroll;
     private View returnFragView;
-    private Tools tools=Tools.getTools();
+    private Tools tools = Tools.getTools();
+
     public MainActivityFragmentSkill() {
     }
 
@@ -51,7 +52,7 @@ public class MainActivityFragmentSkill extends Fragment {
             addAllColumns(skill);
         }
 
-        ImageButton buttonMain = (ImageButton) returnFragView.findViewById(R.id.button_frag_skill_to_main);
+        ImageButton buttonMain = returnFragView.findViewById(R.id.button_frag_skill_to_main);
 
         animate(buttonMain);
 
@@ -59,14 +60,14 @@ public class MainActivityFragmentSkill extends Fragment {
             @Override
             public void onClick(View view) {
                 Fragment fragment;
-                if(getActivity() instanceof MainActivity) {
+                if (getActivity() instanceof MainActivity) {
                     fragment = new MainActivityFragment();
-                }else{
+                } else {
                     fragment = new PetActivityFragment();
                 }
                 FragmentManager fragmentManager = getActivity().getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.setCustomAnimations(R.animator.infadefrag,R.animator.outtoleftfrag);
+                fragmentTransaction.setCustomAnimations(R.animator.infadefrag, R.animator.outtoleftfrag);
                 fragmentTransaction.replace(R.id.fragment_main_frame_layout, fragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
@@ -82,23 +83,23 @@ public class MainActivityFragmentSkill extends Fragment {
         LinearLayout line = new LinearLayout(getContext());
         line.setOrientation(LinearLayout.HORIZONTAL);
         line.setGravity(Gravity.CENTER);
-        line.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,getResources().getDimensionPixelSize(R.dimen.icon_skills_list_height)));
+        line.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, getResources().getDimensionPixelSize(R.dimen.icon_skills_list_height)));
         line.setBackground(getResources().getDrawable(R.drawable.skill_bar_gradient));
-        setNameListnerRollSkill(line,skill);
+        setNameListnerRollSkill(line, skill);
 
         TextView nameTxt = new TextView(getContext());
         TextView nameTitle = returnFragView.findViewById(R.id.skillNameTitle);
         nameTxt.setLayoutParams(nameTitle.getLayoutParams());
         nameTxt.setText(skill.getName());
         int imgId = getResources().getIdentifier(skill.getId(), "drawable", getContext().getPackageName());
-        nameTxt.setCompoundDrawablesWithIntrinsicBounds(tools.resize(getContext(),getContext().getDrawable(imgId),(int) (getResources().getDimensionPixelSize(R.dimen.icon_skills_list_height)*0.8)),null,null,null);
-        nameTxt.setPadding(getResources().getDimensionPixelSize(R.dimen.general_margin),0,0,0);
+        nameTxt.setCompoundDrawablesWithIntrinsicBounds(tools.resize(getContext(), getContext().getDrawable(imgId), (int) (getResources().getDimensionPixelSize(R.dimen.icon_skills_list_height) * 0.8)), null, null, null);
+        nameTxt.setPadding(getResources().getDimensionPixelSize(R.dimen.general_margin), 0, 0, 0);
         nameTxt.setGravity(Gravity.CENTER);
 
         TextView totalTxt = new TextView(getContext());
         TextView totalTitle = returnFragView.findViewById(R.id.skillTotalTitle);
         totalTxt.setLayoutParams(totalTitle.getLayoutParams());
-        int total = pj.getAbilityMod(skill.getAbilityDependence())+pj.getSkillRank(skill.getId())+pj.getSkillBonus(skill.getId());
+        int total = pj.getAbilityMod(skill.getAbilityDependence()) + pj.getSkillRank(skill.getId()) + pj.getSkillBonus(skill.getId());
         totalTxt.setText(String.valueOf(total));
         totalTxt.setTypeface(null, Typeface.BOLD);
         totalTxt.setGravity(Gravity.CENTER);
@@ -107,12 +108,12 @@ public class MainActivityFragmentSkill extends Fragment {
         TextView abiTitle = returnFragView.findViewById(R.id.skillAbiTitle);
         abiTxt.setLayoutParams(abiTitle.getLayoutParams());
         String abScore;
-        if(pj.getAbilityMod(skill.getAbilityDependence())>=0){
-            abScore = "+"+pj.getAbilityMod(skill.getAbilityDependence());
+        if (pj.getAbilityMod(skill.getAbilityDependence()) >= 0) {
+            abScore = "+" + pj.getAbilityMod(skill.getAbilityDependence());
         } else {
             abScore = String.valueOf(pj.getAbilityMod(skill.getAbilityDependence()));
         }
-        abiTxt.setText(skill.getAbilityDependence().substring(8,11) + " : " +abScore );  //la clef de l'id etant ability_x
+        abiTxt.setText(skill.getAbilityDependence().substring(8, 11) + " : " + abScore);  //la clef de l'id etant ability_x
         abiTxt.setGravity(Gravity.CENTER);
 
         TextView rankTxt = new TextView(getContext());
@@ -137,11 +138,11 @@ public class MainActivityFragmentSkill extends Fragment {
 
     }
 
-    private void setNameListnerRollSkill(LinearLayout line,final Skill skill) {
+    private void setNameListnerRollSkill(LinearLayout line, final Skill skill) {
         line.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new TestAlertDialog(getActivity(),getContext(),skill,pj.getAbilityMod(skill.getAbilityDependence()));
+                new TestAlertDialog(getActivity(), getContext(), skill, pj.getAbilityMod(skill.getAbilityDependence()));
             }
         });
     }
@@ -151,7 +152,7 @@ public class MainActivityFragmentSkill extends Fragment {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
-                Animation anim = new ScaleAnimation(1f,1.25f,1f,1.25f,Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+                Animation anim = new ScaleAnimation(1f, 1.25f, 1f, 1.25f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
                 anim.setRepeatCount(1);
                 anim.setRepeatMode(Animation.REVERSE);
                 anim.setDuration(666);

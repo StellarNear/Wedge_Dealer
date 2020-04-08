@@ -27,24 +27,23 @@ import stellarnear.wedge_companion.Tools;
 public class AllCapacities {
     private Context mC;
     private List<Capacity> allCapacities = new ArrayList<>();
-    private Map<String,Capacity> mapIdcapacity =new HashMap<>();
-    private String pjID="";
-    private Tools tools=Tools.getTools();
+    private Map<String, Capacity> mapIdcapacity = new HashMap<>();
+    private String pjID = "";
+    private Tools tools = Tools.getTools();
 
-    public AllCapacities(Context mC,String pjID)
-    {
+    public AllCapacities(Context mC, String pjID) {
         this.mC = mC;
-        this.pjID=pjID;
+        this.pjID = pjID;
         buildCapacitiesList();
     }
 
     private void buildCapacitiesList() {
         allCapacities = new ArrayList<>();
-        mapIdcapacity =new HashMap<>();
+        mapIdcapacity = new HashMap<>();
         try {
-            String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
+            String extendID = pjID.equalsIgnoreCase("") ? "" : "_" + pjID;
             SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
-            InputStream is = mC.getAssets().open("capacities"+extendID+".xml");
+            InputStream is = mC.getAssets().open("capacities" + extendID + ".xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(is);
@@ -59,7 +58,7 @@ public class AllCapacities {
                 Node node = nList.item(i);
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element element2 = (Element) node;
-                    Capacity capacity=new Capacity(
+                    Capacity capacity = new Capacity(
                             readValue("name", element2),
                             readValue("shortname", element2),
                             readValue("type", element2),
@@ -70,7 +69,7 @@ public class AllCapacities {
                             mC,
                             pjID);
                     allCapacities.add(capacity);
-                    mapIdcapacity.put(capacity.getId(),capacity);
+                    mapIdcapacity.put(capacity.getId(), capacity);
                 }
             }
             is.close();
@@ -79,15 +78,17 @@ public class AllCapacities {
         }
     }
 
-    public List<Capacity> getAllCapacitiesList(){
+    public List<Capacity> getAllCapacitiesList() {
         return allCapacities;
     }
 
     public Capacity getcapacity(String capacitytId) {
         Capacity selectedCapacity;
         try {
-            selectedCapacity= mapIdcapacity.get(capacitytId);
-        } catch (Exception e){  selectedCapacity=null;  }
+            selectedCapacity = mapIdcapacity.get(capacitytId);
+        } catch (Exception e) {
+            selectedCapacity = null;
+        }
         return selectedCapacity;
     }
 
@@ -96,7 +97,7 @@ public class AllCapacities {
             NodeList nodeList = element.getElementsByTagName(tag).item(0).getChildNodes();
             Node node = nodeList.item(0);
             return node.getNodeValue();
-        } catch (Exception e){
+        } catch (Exception e) {
             return "";
         }
     }
@@ -104,8 +105,10 @@ public class AllCapacities {
     public Capacity getCapacity(String id) {
         Capacity selectedCapa;
         try {
-            selectedCapa= mapIdcapacity.get(id);
-        } catch (Exception e){  selectedCapa=null;  }
+            selectedCapa = mapIdcapacity.get(id);
+        } catch (Exception e) {
+            selectedCapa = null;
+        }
         return selectedCapa;
     }
 
@@ -114,9 +117,9 @@ public class AllCapacities {
     }
 
     public boolean capacityIsActive(String id) {
-        boolean val=false;
+        boolean val = false;
         try {
-            val= getCapacity(id).isActive();
+            val = getCapacity(id).isActive();
         } catch (Exception e) {
             e.printStackTrace();
         }

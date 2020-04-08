@@ -12,43 +12,44 @@ import stellarnear.wedge_companion.Spells.SpellList;
 
 public class SpellStat {
     private DamagesShortList damagesShortList;
-    private List<Integer> rankList =new ArrayList<>();
-    private List<Integer> rankMetaList =new ArrayList<>();
-    private List<Integer> rankHitList =new ArrayList<>();
-    private List<Integer> rankAllMiss =new ArrayList<>();
-    private List<Integer> rankContactMiss =new ArrayList<>();
-    private List<Integer> rankCrit =new ArrayList<>();
-    private List<Integer> rankResist =new ArrayList<>();
-    private Date date=null;
+    private List<Integer> rankList = new ArrayList<>();
+    private List<Integer> rankMetaList = new ArrayList<>();
+    private List<Integer> rankHitList = new ArrayList<>();
+    private List<Integer> rankAllMiss = new ArrayList<>();
+    private List<Integer> rankContactMiss = new ArrayList<>();
+    private List<Integer> rankCrit = new ArrayList<>();
+    private List<Integer> rankResist = new ArrayList<>();
+    private Date date = null;
     private UUID uuid;
 
-    public SpellStat(){  }
+    public SpellStat() {
+    }
 
-    public void feedStat(SpellList spells){
-        damagesShortList =new DamagesShortList(spells);
-        CalculationSpell calculation =new CalculationSpell();
-        for (Spell spell :spells.asList()){
+    public void feedStat(SpellList spells) {
+        damagesShortList = new DamagesShortList(spells);
+        CalculationSpell calculation = new CalculationSpell();
+        for (Spell spell : spells.asList()) {
             int currentRank = calculation.currentRank(spell);
             rankList.add(currentRank);
-            rankMetaList.add(currentRank-spell.getRank());
-            if(spell.contactFailed()){
+            rankMetaList.add(currentRank - spell.getRank());
+            if (spell.contactFailed()) {
                 rankAllMiss.add(currentRank);
                 rankContactMiss.add(currentRank);
             }
-            if(spell.isCrit()){
+            if (spell.isCrit()) {
                 rankCrit.add(currentRank);
             }
 
-            if(spell.isFailed()){
+            if (spell.isFailed()) {
                 rankAllMiss.add(currentRank);
                 rankResist.add(currentRank);
             }
-            if(!spell.isFailed()){
+            if (!spell.isFailed()) {
                 rankHitList.add(currentRank);
             }
         }
-        this.date=new Date();
-        this.uuid=UUID.randomUUID();
+        this.date = new Date();
+        this.uuid = UUID.randomUUID();
     }
 
     public int getRankMoyDmg(int rank) {
@@ -56,7 +57,7 @@ public class SpellStat {
     }
 
     public int getRankElemMoyDmg(int rank, String elem) {
-       return damagesShortList.filterByRank(rank).filterByElem(elem).getDmgMoy();
+        return damagesShortList.filterByRank(rank).filterByElem(elem).getDmgMoy();
     }
 
 
@@ -104,12 +105,12 @@ public class SpellStat {
 
     @Override
     public boolean equals(Object obj) {
-        boolean returnValue=false;
+        boolean returnValue = false;
         if (obj != null) {
-            if(SpellStat.class.isAssignableFrom(obj.getClass())){
-                SpellStat obSpellStat =(SpellStat)obj;
-                if((obSpellStat.uuid!=null && this.uuid!=null) && (this.uuid.equals(obSpellStat.uuid))){
-                    returnValue=true;
+            if (SpellStat.class.isAssignableFrom(obj.getClass())) {
+                SpellStat obSpellStat = (SpellStat) obj;
+                if ((obSpellStat.uuid != null && this.uuid != null) && (this.uuid.equals(obSpellStat.uuid))) {
+                    returnValue = true;
                 }
             }
         }
@@ -133,11 +134,11 @@ public class SpellStat {
         return rankCrit;
     }
 
-    public  List<Integer> getListContactMiss() {
+    public List<Integer> getListContactMiss() {
         return rankContactMiss;
     }
 
-    public  List<Integer> getListResist() {
+    public List<Integer> getListResist() {
         return rankResist;
     }
 

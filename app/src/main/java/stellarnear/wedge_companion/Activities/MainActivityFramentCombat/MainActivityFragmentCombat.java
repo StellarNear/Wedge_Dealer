@@ -37,9 +37,8 @@ import stellarnear.wedge_companion.TextFilling.SetupCheckboxes;
 import stellarnear.wedge_companion.Tools;
 
 public class MainActivityFragmentCombat extends Fragment {
+    public Perso pj = PersoManager.getCurrentPJ();
     private View mainPage;
-    public Perso pj= PersoManager.getCurrentPJ();
-
     private FloatingActionButton fabAtk;
     private FloatingActionButton fabDmg;
     private FloatingActionButton fabDmgDet;
@@ -60,7 +59,7 @@ public class MainActivityFragmentCombat extends Fragment {
     private PreRandValues preRandValues;
     private PostRandValues postRandValues;
     private SetupCheckboxes setupCheckboxes;
-    private Damages damages=null;
+    private Damages damages = null;
     private RangesAndProba rangesAndProba;
     private DisplayRolls displayRolls;
 
@@ -78,7 +77,7 @@ public class MainActivityFragmentCombat extends Fragment {
             container.removeAllViews();
         }
         mainPage = inflater.inflate(R.layout.fragment_main_attack, container, false);
-        ImageButton buttonMain = (ImageButton) mainPage.findViewById(R.id.button_frag_combat_to_main);
+        ImageButton buttonMain = mainPage.findViewById(R.id.button_frag_combat_to_main);
         animate(buttonMain);
         View.OnClickListener listnerBackToMain = new View.OnClickListener() {
             @Override
@@ -86,8 +85,8 @@ public class MainActivityFragmentCombat extends Fragment {
                 Fragment fragment = new MainActivityFragment();
                 FragmentManager fragmentManager = getActivity().getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.setCustomAnimations(R.animator.infadefrag,R.animator.outtobotfrag);
-                fragmentTransaction.replace(R.id.fragment_main_frame_layout, fragment,"frag_main");
+                fragmentTransaction.setCustomAnimations(R.animator.infadefrag, R.animator.outtobotfrag);
+                fragmentTransaction.replace(R.id.fragment_main_frame_layout, fragment, "frag_main");
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }
@@ -102,7 +101,7 @@ public class MainActivityFragmentCombat extends Fragment {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
-                Animation anim = new ScaleAnimation(1f,1.25f,1f,1.25f,Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+                Animation anim = new ScaleAnimation(1f, 1.25f, 1f, 1.25f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
                 anim.setRepeatCount(1);
                 anim.setRepeatMode(Animation.REVERSE);
                 anim.setDuration(666);
@@ -112,7 +111,7 @@ public class MainActivityFragmentCombat extends Fragment {
     }
 
     public void setupScreen() {
-        mode="fullround";
+        mode = "fullround";
         firstDmgRoll = true;
         firstAtkRoll = true;
         mainPage.setOnTouchListener(new View.OnTouchListener() {
@@ -127,16 +126,16 @@ public class MainActivityFragmentCombat extends Fragment {
         });
 
         // panneau bonus (lynx et range)
-        if(combatBonusPanel ==null){
-            combatBonusPanel = new MainActivityFragmentCombatBonusPanel(getContext(),mainPage);
+        if (combatBonusPanel == null) {
+            combatBonusPanel = new MainActivityFragmentCombatBonusPanel(getContext(), mainPage);
         }
         // sort sur fleches
-        if(spellArrowBonusPanel ==null){
-            spellArrowBonusPanel = new MainActivityFragmentSpellArrowBonusPanel(getActivity(),getContext(),mainPage);
+        if (spellArrowBonusPanel == null) {
+            spellArrowBonusPanel = new MainActivityFragmentSpellArrowBonusPanel(getActivity(), getContext(), mainPage);
         }
         // ennemy bite button
-        if(bitePanel==null){
-            bitePanel=new MainActivityFragmentCombatEnnemyBitePanel(getContext(),mainPage);
+        if (bitePanel == null) {
+            bitePanel = new MainActivityFragmentCombatEnnemyBitePanel(getContext(), mainPage);
         }
 
         // boutons d'attaques
@@ -144,9 +143,9 @@ public class MainActivityFragmentCombat extends Fragment {
         simpleAtk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mode="simple";
-                new PostData(getContext(),new PostDataElement("Lancement d'un seul tir avec le don Viser juste","La cible ne bénificie ni de son armure ni de son armure naturelle"));
-                tools.customToast(getContext(),"Avec le don viser juste la cible n'a aucune armure !","center");
+                mode = "simple";
+                new PostData(getContext(), new PostDataElement("Lancement d'un seul tir avec le don Viser juste", "La cible ne bénificie ni de son armure ni de son armure naturelle"));
+                tools.customToast(getContext(), "Avec le don viser juste la cible n'a aucune armure !", "center");
                 hideButtons(1);
                 startPreRand();
             }
@@ -155,22 +154,24 @@ public class MainActivityFragmentCombat extends Fragment {
         barrageShot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(pj.getCurrentResourceValue("resource_mythic_points")>=1) {
+                if (pj.getCurrentResourceValue("resource_mythic_points") >= 1) {
                     mode = "barrage_shot";
                     hideButtons(2);
                     pj.getAllResources().getResource("resource_mythic_points").spend(1);
-                    new PostData(getContext(),new PostDataElement("Lancement de tir de barrage mythique","-1pt mythique"));
-                    tools.customToast(getContext(),"Il te reste "+ pj.getCurrentResourceValue("resource_mythic_points")+" points mythiques","center");
+                    new PostData(getContext(), new PostDataElement("Lancement de tir de barrage mythique", "-1pt mythique"));
+                    tools.customToast(getContext(), "Il te reste " + pj.getCurrentResourceValue("resource_mythic_points") + " points mythiques", "center");
                     startPreRand();
-                } else { tools.customToast(getContext(),"Tu n'as pas assez de points mythiques","center"); }
+                } else {
+                    tools.customToast(getContext(), "Tu n'as pas assez de points mythiques", "center");
+                }
             }
         });
 
-        fabAtk = (FloatingActionButton) mainPage.findViewById(R.id.fabAtk);
+        fabAtk = mainPage.findViewById(R.id.fabAtk);
         setListenerFabAtk();
-        fabDmg = (FloatingActionButton) mainPage.findViewById(R.id.fab_damage);
+        fabDmg = mainPage.findViewById(R.id.fab_damage);
         setListenerFabDmg();
-        fabDmgDet = (FloatingActionButton) mainPage.findViewById(R.id.fab_damage_detail);
+        fabDmgDet = mainPage.findViewById(R.id.fab_damage_detail);
         setListenerFabDmgDet();
     }
 
@@ -178,7 +179,9 @@ public class MainActivityFragmentCombat extends Fragment {
         fabAtk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mode.equalsIgnoreCase("")){mode="fullround";}
+                if (mode.equalsIgnoreCase("")) {
+                    mode = "fullround";
+                }
                 if (firstAtkRoll) {
                     hideButtons(0);
                     startRandAtk();
@@ -227,7 +230,7 @@ public class MainActivityFragmentCombat extends Fragment {
                     rangesAndProba.hideViews();
                 }
             case 4:
-                if (displayRolls == null || displayRolls.size()==0) {
+                if (displayRolls == null || displayRolls.size() == 0) {
                     fabDmgDet.setEnabled(false);
                 }
         }
@@ -235,10 +238,10 @@ public class MainActivityFragmentCombat extends Fragment {
 
     private void startPreRand() {
         clearStep(0);
-        ((ImageView)mainPage.findViewById(R.id.background_blank_combat)).setImageDrawable(null);
+        ((ImageView) mainPage.findViewById(R.id.background_blank_combat)).setImageDrawable(null);
         rollList = new RangeRollFactory(getActivity(), getContext(), mode).getRollList();
         preRandValues = new PreRandValues(getContext(), mainPage, rollList);
-        combatBonusPanel.addRollData(preRandValues,rollList);
+        combatBonusPanel.addRollData(preRandValues, rollList);
         if (damages != null) {
             damages.hideViews();
         }
@@ -247,29 +250,36 @@ public class MainActivityFragmentCombat extends Fragment {
     private void hideButtons(int buttonClicked) {
         simpleAtk.setOnClickListener(null);
         barrageShot.setOnClickListener(null);
-        switch (buttonClicked){
+        switch (buttonClicked) {
             case 0:
                 simpleAtk.animate().translationXBy(-200).setDuration(1000).start();
                 barrageShot.animate().translationXBy(200).setDuration(1000).start();
-                animate(spellArrowBonusPanel.getButton());spellArrowBonusPanel.show();
+                animate(spellArrowBonusPanel.getButton());
+                spellArrowBonusPanel.show();
                 break;
             case 1:
                 simpleAtk.animate().scaleX(2).scaleY(2).alpha(0).setDuration(1000).start();
                 barrageShot.animate().translationXBy(200).setDuration(1000).start();
-                animate(combatBonusPanel.getButton());combatBonusPanel.show();
-                animate(spellArrowBonusPanel.getButton());spellArrowBonusPanel.show();
+                animate(combatBonusPanel.getButton());
+                combatBonusPanel.show();
+                animate(spellArrowBonusPanel.getButton());
+                spellArrowBonusPanel.show();
                 break;
             case 2:
                 simpleAtk.animate().translationXBy(-200).setDuration(1000).start();
                 barrageShot.animate().scaleX(2).scaleY(2).alpha(0).setDuration(1000).start();
-                animate(combatBonusPanel.getButton());combatBonusPanel.show();
-                animate(spellArrowBonusPanel.getButton());spellArrowBonusPanel.show();
+                animate(combatBonusPanel.getButton());
+                combatBonusPanel.show();
+                animate(spellArrowBonusPanel.getButton());
+                spellArrowBonusPanel.show();
                 break;
             case 3:
                 simpleAtk.animate().translationXBy(-200).setDuration(1000).start();
                 barrageShot.animate().translationXBy(200).setDuration(1000).start();
-                animate(combatBonusPanel.getButton());combatBonusPanel.show();
-                animate(spellArrowBonusPanel.getButton());spellArrowBonusPanel.show();
+                animate(combatBonusPanel.getButton());
+                combatBonusPanel.show();
+                animate(spellArrowBonusPanel.getButton());
+                spellArrowBonusPanel.show();
                 break;
         }
     }
@@ -329,23 +339,25 @@ public class MainActivityFragmentCombat extends Fragment {
     private void startDamage() {
         displayRolls = null;
         clearStep(2);
-        damages = new Damages(getActivity(),getContext(), mainPage, selectedRolls);  //calcul et affiche les degats
-        if(damages.getDamageTot()>0){  saveRollStats();}
+        damages = new Damages(getActivity(), getContext(), mainPage, selectedRolls);  //calcul et affiche les degats
+        if (damages.getDamageTot() > 0) {
+            saveRollStats();
+        }
         if (selectedRolls.getDmgDiceList().getList().size() > 0) {
             rangesAndProba = new RangesAndProba(getContext(), mainPage, selectedRolls);
             fabDmgDet.setVisibility(View.VISIBLE);
             fabDmgDet.setEnabled(true);
         }
         postRandValues.refreshPostRandValues();
-        new PostData(getContext(),new PostDataElement(selectedRolls,"dmg"));
-        if(damages.getDamageTot()>0 && pj.getAllMythicCapacities().getMythiccapacity("mythiccapacity_leg_item").getDescr().contains("Croc-ennemi")
-                && pj.getCurrentResourceValue("resource_legendary_points")>0) {
+        new PostData(getContext(), new PostDataElement(selectedRolls, "dmg"));
+        if (damages.getDamageTot() > 0 && pj.getAllMythicCapacities().getMythiccapacity("mythiccapacity_leg_item").getDescr().contains("Croc-ennemi")
+                && pj.getCurrentResourceValue("resource_legendary_points") > 0) {
             setupBite();
         }
     }
 
     private void saveRollStats() {
-        if((pj.getAllForms()==null || !pj.getAllForms().hasActiveForm()) && damages!=null){
+        if ((pj.getAllForms() == null || !pj.getAllForms().hasActiveForm()) && damages != null) {
             pj.getStats().storeStatsFromRolls(selectedRolls);
         }
     }
@@ -359,7 +371,7 @@ public class MainActivityFragmentCombat extends Fragment {
                 rangesAndProba = new RangesAndProba(getContext(), mainPage, selectedRolls);
                 pj.getStats().removeLast();
                 saveRollStats();
-                new PostData(getContext(),new PostDataElement(selectedRolls,"dmg"));
+                new PostData(getContext(), new PostDataElement(selectedRolls, "dmg"));
             }
         });
         mainPage.findViewById(R.id.fab_leg_ennemy_bite).setVisibility(View.VISIBLE);
@@ -369,7 +381,7 @@ public class MainActivityFragmentCombat extends Fragment {
     private void checkSelectedRolls() {
         selectedRolls = new RollList();
         for (Roll roll : rollList.getList()) {
-            if (roll.isInvalid() || (!roll.isHitConfirmed() && !roll.isMissed() )) {
+            if (roll.isInvalid() || (!roll.isHitConfirmed() && !roll.isMissed())) {
                 continue;
             }
             selectedRolls.add(roll);
@@ -380,7 +392,9 @@ public class MainActivityFragmentCombat extends Fragment {
         fabDmgDet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(displayRolls==null){displayRolls = new DisplayRolls(getActivity(), getContext(), selectedRolls);}
+                if (displayRolls == null) {
+                    displayRolls = new DisplayRolls(getActivity(), getContext(), selectedRolls);
+                }
                 displayRolls.showPopup();
             }
         });

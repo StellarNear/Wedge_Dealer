@@ -35,15 +35,15 @@ public class PrefSleepScreenFragment extends Preference {
         super(context, attrs, defStyle);
 
     }
+
     public PrefSleepScreenFragment(Context context) {
         super(context);
     }
 
     @Override
-    protected View onCreateView(ViewGroup parent)
-    {
+    protected View onCreateView(ViewGroup parent) {
         super.onCreateView(parent);
-        this.mC=getContext();
+        this.mC = getContext();
         mainView = new View(getContext());
         final ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(parent.getWidth(), parent.getHeight());  //pour full screen
         mainView.setLayoutParams(params);
@@ -80,7 +80,7 @@ public class PrefSleepScreenFragment extends Preference {
 
     private void sleep() {
         final Tools tools = Tools.getTools();
-        new PostData(mC,new RemoveDataElementAllSpellArrow());
+        new PostData(mC, new RemoveDataElementAllSpellArrow());
         tools.customToast(mC, "Fais de beaux rêves !", "center");
         int time = 1000; // in milliseconds
         Handler h = new Handler();
@@ -89,9 +89,9 @@ public class PrefSleepScreenFragment extends Preference {
             public void run() {
                 pj.sleep();
                 tools.customToast(mC, "Une nouvelle journée pleine de sortilèges t'attends.", "center");
-                new PostData(mC,new PostDataElement("Nuit de repos","Recharge des ressources journalières et sorts"));
-                if(pj.getID().equalsIgnoreCase("")){
-                    PreparationSpellsAlertDialog popupPrepa = BuildPreparedSpellList.getInstance(mC).makePopupSelectSpellsToPrepare(mC,"sleep");
+                new PostData(mC, new PostDataElement("Nuit de repos", "Recharge des ressources journalières et sorts"));
+                if (pj.getID().equalsIgnoreCase("")) {
+                    PreparationSpellsAlertDialog popupPrepa = BuildPreparedSpellList.getInstance(mC).makePopupSelectSpellsToPrepare(mC, "sleep");
                     popupPrepa.setAcceptEventListener(new PreparationSpellsAlertDialog.OnAcceptEventListener() {
                         @Override
                         public void onEvent() {
@@ -107,9 +107,9 @@ public class PrefSleepScreenFragment extends Preference {
     }
 
     private void startMainActiv() {
-                Intent intent = new Intent(mC, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                mC.startActivity(intent);
+        Intent intent = new Intent(mC, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        mC.startActivity(intent);
     }
 
     private void halfSleep() {
@@ -122,9 +122,9 @@ public class PrefSleepScreenFragment extends Preference {
             public void run() {
                 pj.halfSleep();
                 tools.customToast(mC, "Une journée sans sortilèges t'attends...", "center");
-                new PostData(mC,new PostDataElement("Nuit de repos (sans sorts)","Recharge des ressources journalières"));
-                if(pj.getID().equalsIgnoreCase("")){
-                    PreparationSpellsAlertDialog popupPrepa = BuildPreparedSpellList.getInstance(mC).makePopupSelectSpellsToPrepare(mC,"halfsleep");
+                new PostData(mC, new PostDataElement("Nuit de repos (sans sorts)", "Recharge des ressources journalières"));
+                if (pj.getID().equalsIgnoreCase("")) {
+                    PreparationSpellsAlertDialog popupPrepa = BuildPreparedSpellList.getInstance(mC).makePopupSelectSpellsToPrepare(mC, "halfsleep");
                     popupPrepa.setAcceptEventListener(new PreparationSpellsAlertDialog.OnAcceptEventListener() {
                         @Override
                         public void onEvent() {

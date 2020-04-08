@@ -28,6 +28,7 @@ import stellarnear.wedge_companion.Rolls.RollList;
 import stellarnear.wedge_companion.Tools;
 
 public class MainActivityFragmentCombatEnnemyBitePanel {
+    public Perso pj = PersoManager.getCurrentPJ();
     private Context mC;
     private RollList selectedRolls;
     private ImageView buttonBite;
@@ -35,18 +36,17 @@ public class MainActivityFragmentCombatEnnemyBitePanel {
     private LinearLayout resultLinear;
     private TextView ptLeg;
     private View pannel;
-    public Perso pj= PersoManager.getCurrentPJ();
-    private boolean addBonusPanelIsVisible=false;
-    private Tools tools=Tools.getTools();
+    private boolean addBonusPanelIsVisible = false;
+    private Tools tools = Tools.getTools();
     private ElemsManager elems;
-    private int nCostLeg=0;
+    private int nCostLeg = 0;
     private OnConfirmationBoostEventListener mListener;
 
-    private Map<Roll,CheckBox> mapRollCheckbox=new HashMap<>();
+    private Map<Roll, CheckBox> mapRollCheckbox = new HashMap<>();
 
-    public MainActivityFragmentCombatEnnemyBitePanel(final Context mC, View mainPage){
-        this.mC=mC;
-        buttonBite =(ImageView) mainPage.findViewById(R.id.fab_leg_ennemy_bite);
+    public MainActivityFragmentCombatEnnemyBitePanel(final Context mC, View mainPage) {
+        this.mC = mC;
+        buttonBite = mainPage.findViewById(R.id.fab_leg_ennemy_bite);
         pannel = mainPage.findViewById(R.id.leg_ennemy_bite_linear);
         bonusPanelRollList = mainPage.findViewById(R.id.leg_ennemy_bite_roll_list);
         buttonBite.setOnClickListener(new View.OnClickListener() {
@@ -55,27 +55,29 @@ public class MainActivityFragmentCombatEnnemyBitePanel {
                 flipBonusPanel();
             }
         });
-        resultLinear= mainPage.findViewById(R.id.leg_ennemy_bite_sum_result_linear);
-        elems= ElemsManager.getInstance(mC);
-        ptLeg=mainPage.findViewById(R.id.leg_ennemy_bite_pts);
+        resultLinear = mainPage.findViewById(R.id.leg_ennemy_bite_sum_result_linear);
+        elems = ElemsManager.getInstance(mC);
+        ptLeg = mainPage.findViewById(R.id.leg_ennemy_bite_pts);
         refreshSpendLeg();
         mainPage.findViewById(R.id.leg_ennemy_bite_confirm_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(nCostLeg>0){
+                if (nCostLeg > 0) {
                     new AlertDialog.Builder(mC)
                             .setTitle("Demande de confirmation")
-                            .setMessage("Dépenser "+nCostLeg+" points légendaires pour augmenter les dégats ?")
+                            .setMessage("Dépenser " + nCostLeg + " points légendaires pour augmenter les dégats ?")
                             .setIcon(android.R.drawable.ic_menu_help)
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int whichButton) {
                                     setBiteBoostedForRolls();
                                     pj.getAllResources().getResource("resource_legendary_points").spend(nCostLeg);
-                                    tools.customToast(mC, "Croc-ennemi lancée !\n"+
-                                            "Il te reste "+pj.getCurrentResourceValue("resource_legendary_points")+" pts légendaires", "center");
-                                    new PostData(mC, new PostDataElement("Utilisation de la capacité légendaire Croc-ennemi", "-"+nCostLeg+" pts légendaires"));
+                                    tools.customToast(mC, "Croc-ennemi lancée !\n" +
+                                            "Il te reste " + pj.getCurrentResourceValue("resource_legendary_points") + " pts légendaires", "center");
+                                    new PostData(mC, new PostDataElement("Utilisation de la capacité légendaire Croc-ennemi", "-" + nCostLeg + " pts légendaires"));
                                     hide();
-                                    if(mListener!=null){mListener.onConfirmationBoostEvent();}
+                                    if (mListener != null) {
+                                        mListener.onConfirmationBoostEvent();
+                                    }
                                 }
                             })
                             .setNegativeButton(android.R.string.no, null).show();
@@ -87,75 +89,75 @@ public class MainActivityFragmentCombatEnnemyBitePanel {
     }
 
     private void setBiteBoostedForRolls() {
-        for( Map.Entry<Roll,CheckBox> entry : mapRollCheckbox.entrySet()) {
+        for (Map.Entry<Roll, CheckBox> entry : mapRollCheckbox.entrySet()) {
             final CheckBox checkBox = entry.getValue();
             final Roll roll = entry.getKey();
-            if(checkBox.isChecked()){
+            if (checkBox.isChecked()) {
                 roll.makeBiteBoosted();
             }
         }
     }
 
     private void refreshSpendLeg() {
-        int currentLegPts=pj.getCurrentResourceValue("resource_legendary_points");
-        String text ="Points légendaires : " +currentLegPts ;
-        if(nCostLeg>0){
-            text+=" > "+(currentLegPts-nCostLeg);
+        int currentLegPts = pj.getCurrentResourceValue("resource_legendary_points");
+        String text = "Points légendaires : " + currentLegPts;
+        if (nCostLeg > 0) {
+            text += " > " + (currentLegPts - nCostLeg);
         }
         ptLeg.setText(text);
     }
 
 
     private void flipBonusPanel() {
-        if (!addBonusPanelIsVisible){
+        if (!addBonusPanelIsVisible) {
             pannel.setVisibility(View.VISIBLE);
-            Animation top = AnimationUtils.loadAnimation(mC,R.anim.infromtop);
+            Animation top = AnimationUtils.loadAnimation(mC, R.anim.infromtop);
             pannel.startAnimation(top);
-            addBonusPanelIsVisible=true;
+            addBonusPanelIsVisible = true;
         } else {
-            Animation bot = AnimationUtils.loadAnimation(mC,R.anim.outtotop);
+            Animation bot = AnimationUtils.loadAnimation(mC, R.anim.outtotop);
             pannel.startAnimation(bot);
             pannel.setVisibility(View.GONE);
-            addBonusPanelIsVisible=false;
+            addBonusPanelIsVisible = false;
         }
     }
 
     private void addRollsToBonusPanel() {
-        mapRollCheckbox=new HashMap<>();
+        mapRollCheckbox = new HashMap<>();
         bonusPanelRollList.removeAllViews();
-        for (final Roll roll:selectedRolls.getList()){
-            LinearLayout line =new LinearLayout(mC);
+        for (final Roll roll : selectedRolls.getList()) {
+            LinearLayout line = new LinearLayout(mC);
             line.setOrientation(LinearLayout.VERTICAL);
-            line.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT,1));
+            line.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
             line.setGravity(Gravity.CENTER);
-            int dmgTot=0;
-            for(String elem : elems.getListKeysWedgeDamage()){
+            int dmgTot = 0;
+            for (String elem : elems.getListKeysWedgeDamage()) {
                 int dmgElem = roll.getDmgSum(elem);
-                if(dmgElem>0) {
+                if (dmgElem > 0) {
                     TextView elemTxt = new TextView(mC);
                     elemTxt.setText(String.valueOf(dmgElem));
                     elemTxt.setTypeface(null, Typeface.BOLD);
                     elemTxt.setGravity(Gravity.CENTER);
                     elemTxt.setTextColor(elems.getColorIdDark(elem));
                     line.addView(elemTxt);
-                    dmgTot+=dmgElem;
+                    dmgTot += dmgElem;
                 }
             }
 
-            if(dmgTot>0) {
+            if (dmgTot > 0) {
                 ImageView img = new ImageView(mC);
-                if(roll.isCritConfirmed()){
-                    img.setImageDrawable(tools.resize(mC,mC.getDrawable(R.drawable.critical_hit),100));
+                if (roll.isCritConfirmed()) {
+                    img.setImageDrawable(tools.resize(mC, mC.getDrawable(R.drawable.critical_hit), 100));
                 } else {
-                    img.setImageDrawable(tools.resize(mC,mC.getDrawable(R.drawable.simple_atk),100));
+                    img.setImageDrawable(tools.resize(mC, mC.getDrawable(R.drawable.simple_atk), 100));
                 }
-                line.addView(img,0);
+                line.addView(img, 0);
 
                 final CheckBox check = new CheckBox(mC);
                 LinearLayout.LayoutParams para = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                para.gravity=Gravity.CENTER;
+                para.gravity = Gravity.CENTER;
                 check.setLayoutParams(para);
-                mapRollCheckbox.put(roll,check);
+                mapRollCheckbox.put(roll, check);
                 line.addView(check);
                 bonusPanelRollList.addView(line);
             }
@@ -164,29 +166,29 @@ public class MainActivityFragmentCombatEnnemyBitePanel {
     }
 
     private void setListnersCheckbox() {
-        for( Map.Entry<Roll,CheckBox> entry : mapRollCheckbox.entrySet()){
+        for (Map.Entry<Roll, CheckBox> entry : mapRollCheckbox.entrySet()) {
             final CheckBox checkBox = entry.getValue();
             final Roll roll = entry.getKey();
             checkBox.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(checkBox.isChecked()){
+                    if (checkBox.isChecked()) {
                         int futureSpend;
-                        if(roll.isCritConfirmed()){
-                            futureSpend=2;
+                        if (roll.isCritConfirmed()) {
+                            futureSpend = 2;
                         } else {
-                            futureSpend=1;
+                            futureSpend = 1;
                         }
-                        if(pj.getCurrentResourceValue("resource_legendary_points")-nCostLeg-futureSpend>=0) {
-                            nCostLeg+=futureSpend;
+                        if (pj.getCurrentResourceValue("resource_legendary_points") - nCostLeg - futureSpend >= 0) {
+                            nCostLeg += futureSpend;
                             refreshResultDisplay();
                         } else {
-                            tools.customToast(mC,"Tu n'aurais pas assez de points légendaires...");
+                            tools.customToast(mC, "Tu n'aurais pas assez de points légendaires...");
                             checkBox.setChecked(false);
                         }
                     } else {
-                        if(roll.isCritConfirmed()){
-                            nCostLeg-=2;
+                        if (roll.isCritConfirmed()) {
+                            nCostLeg -= 2;
                         } else {
                             nCostLeg--;
                         }
@@ -210,16 +212,18 @@ public class MainActivityFragmentCombatEnnemyBitePanel {
         LinearLayout resultTotalPercent = new LinearLayout(mC);
         resultTotalPercent.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
 
-        int sumTotalPrevious=0; int sumTotalNew=0;
-        for(String elem : elems.getListKeysWedgeDamage()){
-            elemTitle.addView(textElement(elems.getName(elem),elem));
+        int sumTotalPrevious = 0;
+        int sumTotalNew = 0;
+        for (String elem : elems.getListKeysWedgeDamage()) {
+            elemTitle.addView(textElement(elems.getName(elem), elem));
 
-            int sumElemPrevious=selectedRolls.getDmgSumFromType(elem); sumTotalPrevious+=sumElemPrevious;
-            lineprevious.addView(textElement(String.valueOf(sumElemPrevious),elem));
+            int sumElemPrevious = selectedRolls.getDmgSumFromType(elem);
+            sumTotalPrevious += sumElemPrevious;
+            lineprevious.addView(textElement(String.valueOf(sumElemPrevious), elem));
 
             int sumElem = 0;
-            for(Roll roll : selectedRolls.getList()){
-                if(mapRollCheckbox.get(roll)!=null) {
+            for (Roll roll : selectedRolls.getList()) {
+                if (mapRollCheckbox.get(roll) != null) {
                     if (mapRollCheckbox.get(roll).isChecked()) {
                         sumElem += 2 * roll.getDmgSum(elem);
                     } else {
@@ -227,20 +231,21 @@ public class MainActivityFragmentCombatEnnemyBitePanel {
                     }
                 }
             }
-            sumTotalNew+=sumElem;
-            linenew.addView(textElement(String.valueOf(sumElem),elem));
+            sumTotalNew += sumElem;
+            linenew.addView(textElement(String.valueOf(sumElem), elem));
 
-            Double percentDouble = 100*((1.0*sumElem-1.0*sumElemPrevious)/(1.0*sumElemPrevious));
-            resultElemsPercents.addView(textElement("+"+String.valueOf(percentDouble.intValue())+"%",elem));
+            Double percentDouble = 100 * ((1.0 * sumElem - 1.0 * sumElemPrevious) / (1.0 * sumElemPrevious));
+            resultElemsPercents.addView(textElement("+" + percentDouble.intValue() + "%", elem));
         }
         resultLinear.addView(elemTitle);
         resultLinear.addView(lineprevious);
         resultLinear.addView(linenew);
         resultLinear.addView(resultElemsPercents);
 
-        Double totalPercent =  100*((1.0*sumTotalNew-1.0*sumTotalPrevious)/(1.0*sumTotalPrevious));
-        TextView resultTot = textElement("Total : "+sumTotalPrevious+" > "+sumTotalNew +" (+"+totalPercent.intValue()+"%)","");
-        resultTot.setTypeface(null,Typeface.BOLD);resultTot.setTextSize(20);
+        Double totalPercent = 100 * ((1.0 * sumTotalNew - 1.0 * sumTotalPrevious) / (1.0 * sumTotalPrevious));
+        TextView resultTot = textElement("Total : " + sumTotalPrevious + " > " + sumTotalNew + " (+" + totalPercent.intValue() + "%)", "");
+        resultTot.setTypeface(null, Typeface.BOLD);
+        resultTot.setTextSize(20);
         resultTotalPercent.addView(resultTot);
         resultLinear.addView(resultTotalPercent);
 
@@ -248,8 +253,8 @@ public class MainActivityFragmentCombatEnnemyBitePanel {
     }
 
     private TextView textElement(String txt, String elem) {
-        TextView element=new TextView(mC);
-        element.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT,1));
+        TextView element = new TextView(mC);
+        element.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1));
         element.setText(txt);
         element.setTextColor(elems.getColorIdDark(elem));
         element.setGravity(Gravity.CENTER);
@@ -258,7 +263,9 @@ public class MainActivityFragmentCombatEnnemyBitePanel {
 
     public void hide() {
         buttonBite.setVisibility(View.GONE);
-        if(addBonusPanelIsVisible){flipBonusPanel();}
+        if (addBonusPanelIsVisible) {
+            flipBonusPanel();
+        }
     }
 
     public void show() {
@@ -270,18 +277,18 @@ public class MainActivityFragmentCombatEnnemyBitePanel {
     }
 
     public void feedSelectedRolls(RollList selectedRolls) {
-        nCostLeg=0;
-        this.selectedRolls=selectedRolls;
+        nCostLeg = 0;
+        this.selectedRolls = selectedRolls;
         addRollsToBonusPanel();
         refreshResultDisplay();
         refreshSpendLeg();
     }
 
-    public interface OnConfirmationBoostEventListener {
-        void onConfirmationBoostEvent();
-    }
-
     public void setOnConfirmationBoostEventListener(OnConfirmationBoostEventListener eventListener) {
         mListener = eventListener;
+    }
+
+    public interface OnConfirmationBoostEventListener {
+        void onConfirmationBoostEvent();
     }
 }

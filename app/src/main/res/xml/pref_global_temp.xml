@@ -3,55 +3,52 @@
 
     <stellarnear.wedge_companion.EditTextPreference
         android:defaultValue="0"
+        android:inputType="number"
         android:key="bonus_global_atk_temp"
-        android:title="Bonus au jet d'attaque"
         android:selectAllOnFocus="true"
-        android:inputType="number"
         android:singleLine="true"
-        android:summary="Valeur : %s"/>
+        android:summary="Valeur : %s"
+        android:title="Bonus au jet d'attaque" />
 
     <stellarnear.wedge_companion.EditTextPreference
         android:defaultValue="0"
+        android:inputType="number"
         android:key="bonus_global_dmg_temp"
-        android:title="Bonus au jet de dégats"
         android:selectAllOnFocus="true"
-        android:inputType="number"
         android:singleLine="true"
-        android:summary="Valeur : %s"/>
+        android:summary="Valeur : %s"
+        android:title="Bonus au jet de dégats" />
 
     <stellarnear.wedge_companion.EditTextPreference
         android:defaultValue="0"
+        android:inputType="number"
         android:key="bonus_global_temp_ca"
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:summary="Valeurs : %s"
-        android:inputType="number"
-        android:title="Bonus à la CA"
-        />
+        android:title="Bonus à la CA" />
 
     <stellarnear.wedge_companion.EditTextPreference
         android:defaultValue="0"
+        android:inputType="number"
         android:key="bonus_global_temp_save"
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:summary="Valeurs : %s"
-        android:inputType="number"
-        android:title="Bonus aux jets de sauvegardes"
-        />
+        android:title="Bonus aux jets de sauvegardes" />
 
     <stellarnear.wedge_companion.EditTextPreference
         android:defaultValue="0"
+        android:inputType="number"
         android:key="bonus_global_temp_rm"
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:summary="Valeurs : %s"
-        android:inputType="number"
-        android:title="Bonus à la résisitance magique"
-        />
-    
+        android:title="Bonus à la résisitance magique" />
+
     <PreferenceScreen
+        android:icon="@drawable/ic_undo_black_24dp"
         android:key="reset_temp_global"
         android:summary="Réinitialise à zéro les valeurs temporaires"
-        android:icon="@drawable/ic_undo_black_24dp"
         android:title="Reset des bonus" />
 </PreferenceScreen>

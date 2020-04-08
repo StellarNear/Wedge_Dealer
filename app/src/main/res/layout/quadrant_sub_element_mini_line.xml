@@ -3,9 +3,9 @@
     android:layout_height="wrap_content"
     android:clipChildren="false"
     android:gravity="center"
+    android:orientation="horizontal"
     android:paddingStart="@dimen/mini_quadrant_icons_margin"
-    android:paddingEnd="@dimen/mini_quadrant_icons_margin"
-    android:orientation="horizontal" />
+    android:paddingEnd="@dimen/mini_quadrant_icons_margin" />
 
 
 

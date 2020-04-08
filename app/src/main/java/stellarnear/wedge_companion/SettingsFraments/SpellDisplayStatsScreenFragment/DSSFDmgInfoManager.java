@@ -27,35 +27,40 @@ public class DSSFDmgInfoManager {
     private View mainView;
     private ElemsManager elems;
     private Map<String, CheckBox> mapElemCheckbox;
-    private DamagesShortList selectedDamageShortList =new DamagesShortList();
+    private DamagesShortList selectedDamageShortList = new DamagesShortList();
     private String selectedBracket;
     private boolean allStats;
     private int infoTxtSize = 12;
 
-    private Tools tools=Tools.getTools();
+    private Tools tools = Tools.getTools();
 
     public DSSFDmgInfoManager(View mainView, Map<String, CheckBox> mapElemCheckbox, Context mC) {
         this.mainView = mainView;
-        this.elems= ElemsManager.getInstance();
-        this.mapElemCheckbox=mapElemCheckbox;
+        this.elems = ElemsManager.getInstance();
+        this.mapElemCheckbox = mapElemCheckbox;
         this.mC = mC;
 
         addInfos(null);
     }
 
     public void setSubSelectionBracket(String s) {
-        this.selectedBracket=s;
+        this.selectedBracket = s;
     }
 
-    public void addInfos(DamagesShortList selectedDamageShortList){
-        if(selectedDamageShortList==null){
+    public void addInfos(DamagesShortList selectedDamageShortList) {
+        if (selectedDamageShortList == null) {
             this.selectedDamageShortList = pj.getSpellStats().getSpellStatsList().getDamageShortList();
-            this.allStats=true;
-        } else { this.selectedDamageShortList =selectedDamageShortList; this.allStats=false;}
-        if(this.selectedDamageShortList.size()>0){addInfos();}
+            this.allStats = true;
+        } else {
+            this.selectedDamageShortList = selectedDamageShortList;
+            this.allStats = false;
+        }
+        if (this.selectedDamageShortList.size() > 0) {
+            addInfos();
+        }
     }
 
-    private void addInfos(){
+    private void addInfos() {
         final LinearLayout mainLin = mainView.findViewById(R.id.chart_dmg_info_text);
         mainLin.removeAllViews();
 
@@ -65,13 +70,19 @@ public class DSSFDmgInfoManager {
         mainLin.addView(bloc2);
 
         addInfosSelection(bloc1);
-        if(allStats){addInfosRecent(bloc2);}else{addInfosDetails(bloc2);}
+        if (allStats) {
+            addInfosRecent(bloc2);
+        } else {
+            addInfosDetails(bloc2);
+        }
     }
 
     private void addInfosSelection(LinearLayout bloc1) {
         TextView t = new TextView(mC);
-        String label="Tout";
-        if(!allStats){label=selectedBracket;}
+        String label = "Tout";
+        if (!allStats) {
+            label = selectedBracket;
+        }
         t.setText(label);
         t.setGravity(Gravity.CENTER);
         t.setTextSize(18);
@@ -92,12 +103,12 @@ public class DSSFDmgInfoManager {
         TextView titleMax = createTextElement("max");
         lineMax.addView(titleMax);
 
-        for(Map.Entry<String,CheckBox> entry:mapElemCheckbox.entrySet()){
+        for (Map.Entry<String, CheckBox> entry : mapElemCheckbox.entrySet()) {
             String elemId = entry.getKey();
-            int minDmg=selectedDamageShortList.filterByElem(elemId).getMinDmg();
-            int moyDmg=selectedDamageShortList.filterByElem(elemId).getDmgMoy();
-            int maxDmg=selectedDamageShortList.filterByElem(elemId).getMaxDmg();
-            boolean dmgNull = minDmg == 0 && moyDmg == 0 && maxDmg ==0;
+            int minDmg = selectedDamageShortList.filterByElem(elemId).getMinDmg();
+            int moyDmg = selectedDamageShortList.filterByElem(elemId).getDmgMoy();
+            int maxDmg = selectedDamageShortList.filterByElem(elemId).getMaxDmg();
+            boolean dmgNull = minDmg == 0 && moyDmg == 0 && maxDmg == 0;
             if (!dmgNull && mapElemCheckbox.get(elemId).isChecked()) {
                 int colorInt = elems.getColorIdDark(elemId);
                 TextView telemMin = createTextElement(String.valueOf(minDmg));
@@ -131,12 +142,12 @@ public class DSSFDmgInfoManager {
         TextView titlePercent = createTextElement(">=%");
         linePercent.addView(titlePercent);
 
-        for(Map.Entry<String,CheckBox> entry:mapElemCheckbox.entrySet()){
+        for (Map.Entry<String, CheckBox> entry : mapElemCheckbox.entrySet()) {
             if (mapElemCheckbox.get(entry.getKey()).isChecked()) {
                 int colorInt = elems.getColorIdDark(entry.getKey());
 
                 DamagesShortListElement lastElement = selectedDamageShortList.getLastDamageElement();
-                if(lastElement.getElement().equalsIgnoreCase(entry.getKey())){
+                if (lastElement.getElement().equalsIgnoreCase(entry.getKey())) {
                     TextView telemScore = createTextElement(String.valueOf(lastElement.getDmgSum()));
                     telemScore.setTextColor(colorInt);
                     lineScore.addView(telemScore);
@@ -156,16 +167,16 @@ public class DSSFDmgInfoManager {
     }
 
     private String calculateAbovePercentage(DamagesShortList damagesShortList, String elem) {
-        int lastElemDmg=damagesShortList.getLastDamageElement().getDmgSum();
-        int sup=0;
-        for(DamagesShortListElement element: damagesShortList.filterByElem(elem).asList()){
-            if(element.getDmgSum()<=lastElemDmg){
+        int lastElemDmg = damagesShortList.getLastDamageElement().getDmgSum();
+        int sup = 0;
+        for (DamagesShortListElement element : damagesShortList.filterByElem(elem).asList()) {
+            if (element.getDmgSum() <= lastElemDmg) {
                 sup++;
             }
         }
-        float percent=100f*(((1f*sup)/(1f*damagesShortList.filterByElem(elem).size())));
-        int roundPercent=Math.round(percent);
-        return roundPercent+"%";
+        float percent = 100f * (((1f * sup) / (1f * damagesShortList.filterByElem(elem).size())));
+        int roundPercent = Math.round(percent);
+        return roundPercent + "%";
     }
 
     private void addInfosDetails(LinearLayout bloc2) {
@@ -209,15 +220,15 @@ public class DSSFDmgInfoManager {
 
     private LinearLayout setBlock() {
         LinearLayout frame = new LinearLayout(mC);
-        frame.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0,1));
+        frame.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1));
         frame.setGravity(Gravity.CENTER);
         frame.setOrientation(LinearLayout.VERTICAL);
-        return  frame;
+        return frame;
     }
 
     private TextView createTextElement(String txt) {
         TextView textTitle = new TextView(mC);
-        textTitle.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT,1));
+        textTitle.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
         textTitle.setText(txt);
         textTitle.setGravity(Gravity.CENTER);
         textTitle.setTextSize(infoTxtSize);
@@ -230,7 +241,7 @@ public class DSSFDmgInfoManager {
         line.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         line.setGravity(Gravity.CENTER);
         line.setOrientation(LinearLayout.HORIZONTAL);
-        return  line;
+        return line;
     }
 
 

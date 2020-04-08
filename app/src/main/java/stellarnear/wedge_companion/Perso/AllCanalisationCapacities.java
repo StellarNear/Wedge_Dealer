@@ -25,11 +25,10 @@ import stellarnear.wedge_companion.Tools;
 public class AllCanalisationCapacities {
     private Context mC;
     private List<CanalisationCapacity> allCanalCapacities = new ArrayList<>();
-    private Map<String, CanalisationCapacity> mapIdCanalcapacity =new HashMap<>();
-    private Tools tools=Tools.getTools();
+    private Map<String, CanalisationCapacity> mapIdCanalcapacity = new HashMap<>();
+    private Tools tools = Tools.getTools();
 
-    public AllCanalisationCapacities(Context mC)
-    {
+    public AllCanalisationCapacities(Context mC) {
         this.mC = mC;
         buildKiCapacitiesList();
     }
@@ -51,7 +50,7 @@ public class AllCanalisationCapacities {
                 Node node = nList.item(i);
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element element2 = (Element) node;
-                    CanalisationCapacity canalisationCapacity =new CanalisationCapacity(
+                    CanalisationCapacity canalisationCapacity = new CanalisationCapacity(
                             readValue("name", element2),
                             tools.toInt(readValue("cost", element2)),
                             readValue("feat", element2),
@@ -69,7 +68,7 @@ public class AllCanalisationCapacities {
         }
     }
 
-    public List<CanalisationCapacity> getAllCanalCapacitiesList(){
+    public List<CanalisationCapacity> getAllCanalCapacitiesList() {
         return allCanalCapacities;
     }
 
@@ -77,7 +76,9 @@ public class AllCanalisationCapacities {
         CanalisationCapacity selectedCanalisationCapacity;
         try {
             selectedCanalisationCapacity = mapIdCanalcapacity.get(capacitytId);
-        } catch (Exception e){  selectedCanalisationCapacity =null;  }
+        } catch (Exception e) {
+            selectedCanalisationCapacity = null;
+        }
         return selectedCanalisationCapacity;
     }
 
@@ -86,7 +87,7 @@ public class AllCanalisationCapacities {
             NodeList nodeList = element.getElementsByTagName(tag).item(0).getChildNodes();
             Node node = nodeList.item(0);
             return node.getNodeValue();
-        } catch (Exception e){
+        } catch (Exception e) {
             return "";
         }
     }

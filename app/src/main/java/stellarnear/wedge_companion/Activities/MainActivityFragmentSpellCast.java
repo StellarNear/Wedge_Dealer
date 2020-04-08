@@ -23,10 +23,10 @@ import stellarnear.wedge_companion.Tools;
 
 
 public class MainActivityFragmentSpellCast extends Fragment {
-    private Perso pj= PersoManager.getCurrentPJ();
+    private Perso pj = PersoManager.getCurrentPJ();
     private SpellList selectedSpells;
-    private Tools tools=Tools.getTools();
-    private CalculationSpell calculationSpell ;
+    private Tools tools = Tools.getTools();
+    private CalculationSpell calculationSpell;
     private TextView round;
     private LinearLayout mainLin;
     private View returnFragView;
@@ -43,13 +43,13 @@ public class MainActivityFragmentSpellCast extends Fragment {
         }
         super.onCreate(savedInstanceState);
 
-        returnFragView= inflater.inflate(R.layout.spell_cast, container, false);
+        returnFragView = inflater.inflate(R.layout.spell_cast, container, false);
 
-        mainLin = (LinearLayout) returnFragView.findViewById(R.id.linear2);
-        round = (TextView) returnFragView.findViewById(R.id.n_round);
-        calculationSpell=new CalculationSpell();
+        mainLin = returnFragView.findViewById(R.id.linear2);
+        round = returnFragView.findViewById(R.id.n_round);
+        calculationSpell = new CalculationSpell();
 
-        ((ImageButton) returnFragView.findViewById(R.id.back_spell_from_spell_cast)).setOnClickListener(new View.OnClickListener() {
+        returnFragView.findViewById(R.id.back_spell_from_spell_cast).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 backToSpell();
@@ -63,17 +63,19 @@ public class MainActivityFragmentSpellCast extends Fragment {
     }
 
     private void addSpellsForTarget() {
-        selectedSpells= SelectedSpells.getInstance().getSelection();
+        selectedSpells = SelectedSpells.getInstance().getSelection();
         for (final Spell spell : selectedSpells.asList()) {
-            SpellProfile spellProfile = spell.getProfile() ;
-            View spellProfileView=spellProfile.getProfile(getActivity(),getContext());
-            if(spellProfileView.getParent()!=null){((ViewGroup)spellProfileView.getParent()).removeView(spellProfileView);}
+            SpellProfile spellProfile = spell.getProfile();
+            View spellProfileView = spellProfile.getProfile(getActivity(), getContext());
+            if (spellProfileView.getParent() != null) {
+                ((ViewGroup) spellProfileView.getParent()).removeView(spellProfileView);
+            }
             mainLin.addView(spellProfileView);
             spellProfile.setRefreshEventListener(new SpellProfile.OnRefreshEventListener() {
                 @Override
                 public void onEvent() {
                     refreshRound();
-                    if(selectedSpells.haveBindedSpells()){
+                    if (selectedSpells.haveBindedSpells()) {
                         refreshAllProfiles();
                     }
                     testAllEndRound();
@@ -83,28 +85,27 @@ public class MainActivityFragmentSpellCast extends Fragment {
     }
 
 
-
     private void refreshAllProfiles() {
-        for(Spell spell : selectedSpells.asList()){
+        for (Spell spell : selectedSpells.asList()) {
             spell.refreshProfile();
         }
     }
 
     private void refreshRound() {
-        int nRound = calculationSpell.calcRounds( selectedSpells);
-        round.setText("["+nRound+" round"+(nRound>1 ? "s":"")+"]");
+        int nRound = calculationSpell.calcRounds(selectedSpells);
+        round.setText("[" + nRound + " round" + (nRound > 1 ? "s" : "") + "]");
     }
 
     private void testAllEndRound() {
         boolean end = true;
-        for (Spell spell : selectedSpells.asList()){
-            if(!spell.getProfile().isDone()){
-                end=false;
+        for (Spell spell : selectedSpells.asList()) {
+            if (!spell.getProfile().isDone()) {
+                end = false;
             }
         }
-        if(end){
+        if (end) {
             pj.getSpellStats().storeSpellStatsFromRolls(selectedSpells);
-            tools.customToast(getContext(),"Plus de sort à lancer");
+            tools.customToast(getContext(), "Plus de sort à lancer");
         }
     }
 
@@ -112,7 +113,7 @@ public class MainActivityFragmentSpellCast extends Fragment {
         Fragment fragment = new MainActivityFragmentSpell();
         FragmentManager fragmentManager = getActivity().getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.setCustomAnimations(R.animator.infadefrag,R.animator.outtorightfrag);
+        fragmentTransaction.setCustomAnimations(R.animator.infadefrag, R.animator.outtorightfrag);
         fragmentTransaction.replace(R.id.fragment_main_frame_layout, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();

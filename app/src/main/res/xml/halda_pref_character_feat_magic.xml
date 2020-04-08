@@ -12,7 +12,7 @@
         android:summary="Lance le sort par une action rapide"
         android:title="Incantation rapide (+4)" />
 
-      <SwitchPreference
+    <SwitchPreference
         android:defaultValue="@bool/meta_quicken_switch_def"
         android:key="meta_echo_switch"
         android:summary="Peut le lancer le sort une seconde fois dans la même journée. Aucun effet permettant au personnage de préparer à nouveau ou de relancer un sort n'est utilisable avec Écho magique. La seconde incantation ne nécessite pas de dépenser un emplacement de sort utilisable. Un écho magique utilise un emplacement de sort de trois niveaux de plus que le niveau réel du sort."

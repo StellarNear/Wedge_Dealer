@@ -30,25 +30,25 @@ import stellarnear.wedge_companion.Tools;
 public class AllAbilities {
 
     private Map<String, Ability> mapIDAbi = new HashMap<>();
-    private List<Ability> listAbilities= new ArrayList<>();
+    private List<Ability> listAbilities = new ArrayList<>();
     private Inventory inventory;
-    private AllForms allForms;
+    private AllCapacities allCapacities;
     private Context mC;
-    private Tools tools=Tools.getTools();
-    private String pjID="";
+    private Tools tools = Tools.getTools();
+    private String pjID = "";
 
-    public AllAbilities(Context mC,Inventory inventory,AllForms allForms,String pjID) {
+    public AllAbilities(Context mC, Inventory inventory, AllCapacities allCapacities, String pjID) {
         this.mC = mC;
-        this.inventory=inventory;
-        this.allForms=allForms;
-        this.pjID=pjID;
+        this.inventory = inventory;
+        this.allCapacities = allCapacities;
+        this.pjID = pjID;
         buildAbilitiesList();
         refreshAllAbilities();
     }
 
     private void buildAbilitiesList() {
         mapIDAbi = new HashMap<>();
-        listAbilities= new ArrayList<>();
+        listAbilities = new ArrayList<>();
         try {
             InputStream is = mC.getAssets().open("abilities.xml");  //ici on change pas de xml halda a les meme abi mais des valeurs differentes
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -66,7 +66,7 @@ public class AllAbilities {
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element element2 = (Element) node;
                     Ability abi;
-                    if(!readValue("id", element2).equalsIgnoreCase("ability_reduc_elem")) {
+                    if (!readValue("id", element2).equalsIgnoreCase("ability_reduc_elem")) {
                         abi = new Ability(
                                 readValue("name", element2),
                                 readValue("shortname", element2),
@@ -75,7 +75,8 @@ public class AllAbilities {
                                 tools.toBool(readValue("testable", element2)),
                                 tools.toBool(readValue("focusable", element2)),
                                 readValue("id", element2),
-                                mC);
+                                mC,
+                                pjID);
                     } else {
                         abi = new ElementalReducAbility(
                                 readValue("name", element2),
@@ -85,7 +86,8 @@ public class AllAbilities {
                                 tools.toBool(readValue("testable", element2)),
                                 tools.toBool(readValue("focusable", element2)),
                                 readValue("id", element2),
-                                mC);
+                                mC,
+                                pjID);
                     }
                     listAbilities.add(abi);
                     mapIDAbi.put(abi.getId(), abi);
@@ -108,12 +110,12 @@ public class AllAbilities {
     }
 
     private int readAbility(String key) {
-        int val=0;
+        int val = 0;
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
-        String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
-        int resId = mC.getResources().getIdentifier( key.toLowerCase() + "_def"+extendID, "integer", mC.getPackageName());
+        String extendID = pjID.equalsIgnoreCase("") ? "" : "_" + pjID;
+        int resId = mC.getResources().getIdentifier(key.toLowerCase() + "_def" + extendID, "integer", mC.getPackageName());
         try {
-            val=tools.toInt(settings.getString( key.toLowerCase()+extendID, String.valueOf(mC.getResources().getInteger(resId))));
+            val = tools.toInt(settings.getString(key.toLowerCase() + extendID, String.valueOf(mC.getResources().getInteger(resId))));
         } catch (Resources.NotFoundException e) {
             e.printStackTrace();
         }
@@ -123,64 +125,69 @@ public class AllAbilities {
     public void refreshAllAbilities() {
         for (Ability abi : listAbilities) {
             int val = 0;
-            List<String> allBasicAbi = Arrays.asList("ability_force","ability_dexterite","ability_constitution","ability_sagesse","ability_intelligence","ability_charisme");
-            if(allBasicAbi.contains(abi.getId())) {
-                val = readAbility(abi.getId()+"_base"); //on prend que la valeur de base + augement perma le reste est faut au niveau du perso avec le stuff
-                val += readAbility(abi.getId()+"_augment");
-            } else if (abi.getId().equalsIgnoreCase("ability_lvl") && !pjID.equalsIgnoreCase("")){ //pour les autre que wedge !
-                switch (pjID){
+            List<String> allBasicAbi = Arrays.asList("ability_force", "ability_dexterite", "ability_constitution", "ability_sagesse", "ability_intelligence", "ability_charisme");
+            if (allBasicAbi.contains(abi.getId())) {
+                val = readAbility(abi.getId() + "_base"); //on prend que la valeur de base + augement perma le reste est faut au niveau du perso avec le stuff
+                val += readAbility(abi.getId() + "_augment");
+            } else if (abi.getId().equalsIgnoreCase("ability_lvl") && !pjID.equalsIgnoreCase("")) { //pour les autre que wedge !
+                switch (pjID) {
                     case "halda":
-                        val=PersoManager.getMainPJLevel()-2;
+                        val = PersoManager.getMainPJLevel() - 2;
                         break;
                     case "sylphe":
-                        val=2 + (int) Math.round((PersoManager.getMainPJLevel()-1)*0.75 - 0.25);
+                        val = 2 + (int) Math.round((PersoManager.getMainPJLevel() - 1) * 0.75 - 0.25);
                         break;
                     case "rana":
-                        val=2 + (int) Math.round((PersoManager.getMainPJLevel()-2-1)*0.75 - 0.25);
+                        val = 2 + (int) Math.round((PersoManager.getMainPJLevel() - 2 - 1) * 0.75 - 0.25);
                         break;
                 }
-            }   else {
+            } else {
                 val = readAbility(abi.getId());
             }
-            if(abi.getId().equalsIgnoreCase("ability_rm")){
+            if (abi.getId().equalsIgnoreCase("ability_rm")) {
                 int valRMInvent = inventory.getAllEquipments().getAbiBonus(abi.getId());
-                if(valRMInvent>val){
-                    val=valRMInvent;
+                if (valRMInvent > val) {
+                    val = valRMInvent;
                 }
             } else {
                 val += inventory.getAllEquipments().getAbiBonus(abi.getId());
             }
-            if((abi.getId().equalsIgnoreCase("ability_dexterite") || abi.getId().equalsIgnoreCase("ability_constitution") )
-             && inventory.getAllEquipments().testIfNameItemIsEquipped("Isillirit (Chant de Lune)")) {
+            if ((abi.getId().equalsIgnoreCase("ability_dexterite") || abi.getId().equalsIgnoreCase("ability_constitution"))
+                    && inventory.getAllEquipments().testIfNameItemIsEquipped("Isillirit (Chant de Lune)")) {
                 val += 2;
             }
             abi.setValue(val);
+            if (abi.getId().equalsIgnoreCase("ability_reduc_elem") && allCapacities.capacityIsActive("capacity_aasimar_ascent")) {
+                ((ElementalReducAbility) abi).applyAssimarTrait();
+            }
         }
     }
 
-    public List<Ability> getAbilitiesList(String... type){
+    public List<Ability> getAbilitiesList(String... type) {
         String typeSelected = type.length > 0 ? type[0] : "";  //parametre optionnel type
-        List<Ability> list= new ArrayList<>();
+        List<Ability> list = new ArrayList<>();
         if (typeSelected.equalsIgnoreCase("base")
-                ||typeSelected.equalsIgnoreCase("general")
-                ||typeSelected.equalsIgnoreCase("def")
-                ||typeSelected.equalsIgnoreCase("advanced")){
-            for(Ability abi : listAbilities){
-                if(abi.getType().equalsIgnoreCase(typeSelected)){
+                || typeSelected.equalsIgnoreCase("general")
+                || typeSelected.equalsIgnoreCase("def")
+                || typeSelected.equalsIgnoreCase("advanced")) {
+            for (Ability abi : listAbilities) {
+                if (abi.getType().equalsIgnoreCase(typeSelected)) {
                     list.add(abi);
                 }
             }
         } else {
-            list=listAbilities;
+            list = listAbilities;
         }
         return list;
     }
 
-    public Ability getAbi(String abiId){
+    public Ability getAbi(String abiId) {
         Ability selecteAbi;
         try {
-            selecteAbi=mapIDAbi.get(abiId.toLowerCase());
-        } catch (Exception e){  selecteAbi=null;  }
+            selecteAbi = mapIDAbi.get(abiId.toLowerCase());
+        } catch (Exception e) {
+            selecteAbi = null;
+        }
         return selecteAbi;
     }
 

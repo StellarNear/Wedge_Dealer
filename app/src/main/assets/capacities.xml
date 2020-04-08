@@ -1,10 +1,40 @@
 <?xml version="1.0"?>
 <records>
     <capacity>
+        <name>Classe de prédilection (Druide)</name>
+        <type>Commun</type>
+        <id>capacity_predilection_druid</id>
+        <descr>Chaque fois que le personnage gagne un niveau dans sa classe de prédilection, il reçoit soit +1 point de vie.</descr>
+    </capacity>
+
+    <capacity>
         <name>Ancien guerrier</name>
         <type>Trait</type>
         <descr>Lorsqu’il était enfant, le personnage a dévoué de longues heures aux entraînements militaires. Même si le temps les a réduits à l’état de souvenirs, il reste prompt à réagir en cas de problème. Il gagne un bonus de trait de +2 aux tests d’initiative.</descr>
         <id>capacity_old_warrior</id>
+    </capacity>
+
+    <capacity>
+        <name>Adepte de la Foi verte</name>
+        <type>Commun</type>
+        <descr>Trait : Grâce à sa foi en la nature ou en un des dieux de la nature, le personnage retient plus facilement tout ce qui touche à la nature. Il gagne un bonus de trait de +1 aux tests de Connaissances (géographie) et Connaissance (nature)</descr>
+        <id>capacity_green_faith</id>
+    </capacity>
+
+
+    <capacity>
+        <name>Immunités elfiques</name>
+        <type>Elfe</type>
+        <descr>Les elfes sont immunisés aux effets de sommeil magique et bénéficient d’un bonus racial de +2 aux jets de sauvegarde contre les sorts et les effets de type enchantement.</descr>
+        <id>capacity_elf_immune</id>
+    </capacity>
+
+
+    <capacity>
+        <name>Magie elfique</name>
+        <type>Elfe</type>
+        <descr>Les elfes reçoivent un bonus racial de +2 aux tests de niveau de lanceur de sorts pour surmonter la résistance à la magie des cibles. Ils reçoivent également un bonus racial de +2 aux tests d’Art de la magie pour identifier les propriétés des objets magiques.</descr>
+        <id>capacity_elf_magic</id>
     </capacity>
 
 
@@ -32,6 +62,7 @@
     <capacity>
         <name>Déplacement facilité</name>
         <type>Druide</type>
+        <id>capacity_druid_easy_way</id>
         <descr>Le druide se déplace sans la moindre gêne dans toutes sortes de taillis, y compris les fourrés, les buissons (même épineux) et les autres zones de végétation dense.</descr>
     </capacity>
 
@@ -63,6 +94,7 @@
     <capacity>
         <name>Mille visages</name>
         <type>Druide</type>
+        <id>capacity_multiple_faces</id>
         <descr>Le druide acquiert le pouvoir surnaturel de se transformer à volonté, comme s’il utilisait le sort modification d’apparence, mais uniquement lorsqu’il est sous sa forme normale.</descr>
     </capacity>
 
@@ -131,7 +163,6 @@
         <type>Archer</type>
         <descr>L'archer sylvestre obtient le don Science du critique il voit alors la plage de chance de réaliser des attaques critiques doubler. Pour les monstres qu'il a déjà rencontrés (à la discrétion du MJ) cette plage est triplée à la place (soit 18-20 pour l'arc).</descr>
     </capacity>
-
 
 
 </records>

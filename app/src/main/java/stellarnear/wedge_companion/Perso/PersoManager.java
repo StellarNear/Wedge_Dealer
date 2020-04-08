@@ -7,11 +7,11 @@ import java.util.Map;
 
 public class PersoManager {
 
-    private static Map<String,Perso> currentMapPJ = new HashMap<>();
+    private static Map<String, Perso> currentMapPJ = new HashMap<>();
     private static String currentPJ = "";
 
     public static Perso getCurrentPJ() {
-        Perso current=null;
+        Perso current = null;
         try {
             current = currentMapPJ.get(currentPJ);
         } catch (Exception e) {
@@ -21,15 +21,15 @@ public class PersoManager {
     }
 
     public static void initPJs(Context applicationContext) {
-        currentMapPJ.put("Wedge",new Perso(applicationContext,""));
-        currentMapPJ.put("Halda",new Perso(applicationContext,"halda"));
-        currentMapPJ.put("Sylphe",new Perso(applicationContext,"sylphe"));
-        currentMapPJ.put("Ràna",new Perso(applicationContext,"rana"));
-        currentPJ="Wedge";
+        currentMapPJ.put("Wedge", new Perso(applicationContext, ""));
+        currentMapPJ.put("Halda", new Perso(applicationContext, "halda"));
+        currentMapPJ.put("Sylphe", new Perso(applicationContext, "sylphe"));
+        currentMapPJ.put("Ràna", new Perso(applicationContext, "rana"));
+        currentPJ = "Wedge";
     }
 
     public static int getMainPJLevel() {
-        return currentMapPJ.get("Wedge").getAbilityScore("ability_lvl") ;
+        return currentMapPJ.get("Wedge").getAbilityScore("ability_lvl");
     }
 
     public static String getCurrentNamePJ() {
@@ -37,32 +37,32 @@ public class PersoManager {
     }
 
     public static void swap() {
-        if(currentPJ.equalsIgnoreCase("Wedge")){
-            currentPJ="Halda";
-        } else if(currentPJ.equalsIgnoreCase("Halda")) {
-            currentPJ="Wedge";
-        } else if(currentPJ.equalsIgnoreCase("Sylphe")) {
-            currentPJ="Ràna";
-        } else if(currentPJ.equalsIgnoreCase("Ràna")) {
-            currentPJ="Sylphe";
+        if (currentPJ.equalsIgnoreCase("Wedge")) {
+            currentPJ = "Halda";
+        } else if (currentPJ.equalsIgnoreCase("Halda")) {
+            currentPJ = "Wedge";
+        } else if (currentPJ.equalsIgnoreCase("Sylphe")) {
+            currentPJ = "Ràna";
+        } else if (currentPJ.equalsIgnoreCase("Ràna")) {
+            currentPJ = "Sylphe";
         } else {
-            currentPJ="Wedge";
+            currentPJ = "Wedge";
         }
     }
 
     public static void setMainPJ() {
-        if(currentPJ.equalsIgnoreCase("Sylphe")){
-            currentPJ="Wedge";
-        } else if(currentPJ.equalsIgnoreCase("Ràna")) {
-            currentPJ="Halda";
+        if (currentPJ.equalsIgnoreCase("Sylphe")) {
+            currentPJ = "Wedge";
+        } else if (currentPJ.equalsIgnoreCase("Ràna")) {
+            currentPJ = "Halda";
         }
     }
 
     public static void setPetPJ() {
-        if(currentPJ.equalsIgnoreCase("Wedge")){
-            currentPJ="Sylphe";
-        } else if(currentPJ.equalsIgnoreCase("Halda")) {
-            currentPJ="Ràna";
+        if (currentPJ.equalsIgnoreCase("Wedge")) {
+            currentPJ = "Sylphe";
+        } else if (currentPJ.equalsIgnoreCase("Halda")) {
+            currentPJ = "Ràna";
         }
     }
 
@@ -95,13 +95,13 @@ public class PersoManager {
     }
 
     public static String getPJSuffix() {
-        String currentID=getCurrentPJ().getID();
-        return currentID.equalsIgnoreCase("") ? "" : "_"+currentID;
+        String currentID = getCurrentPJ().getID();
+        return currentID.equalsIgnoreCase("") ? "" : "_" + currentID;
     }
 
     public static String getPJPrefix() {
-        String currentID=getCurrentPJ().getID();
-        return currentID.equalsIgnoreCase("") ? "" : currentID+"_";
+        String currentID = getCurrentPJ().getID();
+        return currentID.equalsIgnoreCase("") ? "" : currentID + "_";
     }
 
     public static int getWedgeMaxSpellTier() {

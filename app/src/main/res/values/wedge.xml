@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- WEDGE -->
-
-
     <integer name="add_current_xp_def">0</integer>
 
     <integer name="money_plat_def">0</integer>
@@ -56,8 +54,6 @@
 
     <integer name="highest_tier_spell_def">7</integer>
 
-
-
     <integer name="ability_ref_def">10</integer>
     <integer name="ability_vig_def">14</integer>
     <integer name="ability_vol_def">10</integer>
@@ -86,7 +82,7 @@
     <integer name="skill_bluff_bonusDEF">3</integer>
     <integer name="skill_explo_bonusDEF">3</integer>
     <integer name="skill_geo_bonusDEF">3</integer>
-    <integer name="skill_nature_bonusDEF">5</integer>
+    <integer name="skill_nature_bonusDEF">3</integer>
     <integer name="skill_animal_bonusDEF">3</integer>
     <integer name="skill_stealth_bonusDEF">3</integer>
     <integer name="skill_diplomacy_bonusDEF">3</integer>
@@ -99,7 +95,7 @@
     <integer name="skill_percept_bonusDEF">5</integer>
     <integer name="skill_heal_bonusDEF">3</integer>
     <integer name="skill_psycho_bonusDEF">3</integer>
-    <integer name="skill_survival_bonusDEF">5</integer>
+    <integer name="skill_survival_bonusDEF">3</integer>
     <integer name="skill_fly_bonusDEF">3</integer>
     <integer name="skill_magic_item_bonusDEF">3</integer>
     <integer name="feat_aim_val_def">5</integer>
@@ -112,7 +108,6 @@
         <item>Sous-terrain</item>
     </string-array>
 
-
     <integer name="spell_rank_1_def">7</integer>
     <integer name="spell_rank_2_def">6</integer>
     <integer name="spell_rank_3_def">6</integer>
@@ -120,8 +115,6 @@
     <integer name="spell_rank_5_def">5</integer>
     <integer name="spell_rank_6_def">3</integer>
     <integer name="spell_rank_7_def">3</integer>
-
-
 
     <bool name="switch_perma_resi_DEF">true</bool>
 

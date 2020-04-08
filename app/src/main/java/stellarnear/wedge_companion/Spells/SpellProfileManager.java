@@ -31,35 +31,35 @@ public class SpellProfileManager {
     private Spell spell;
     private View profile;
     private ViewFlipper panel;
-    private Boolean resultDisplayed =false; //pour aps revenir au panneau central si le sort a ses dégats affiché
+    private Boolean resultDisplayed = false; //pour aps revenir au panneau central si le sort a ses dégats affiché
     private CustomAlertDialog metaPopup;
-    private Tools tools=Tools.getTools();
+    private Tools tools = Tools.getTools();
     private SliderBuilder sliderBuild;
     private OnRefreshEventListener mListener;
 
-    public SpellProfileManager(Activity mA, Context mC, Spell spell,View profileView){
-        this.mA=mA;
-        this.mC=mC;
-        this.spell=spell;
+    public SpellProfileManager(Activity mA, Context mC, Spell spell, View profileView) {
+        this.mA = mA;
+        this.mC = mC;
+        this.spell = spell;
         profile = profileView;
-        panel = ((ViewFlipper)profile.findViewById(R.id.view_flipper));
+        panel = profile.findViewById(R.id.view_flipper);
         panel.setDisplayedChild(0);
         buildProfileMechanisms();
-        if(spell.isCast()){
+        if (spell.isCast()) {
             displayResult();
         }
     }
 
-    private void buildProfileMechanisms(){
-        if(spell.isFailed() || spell.contactFailed()){
+    private void buildProfileMechanisms() {
+        if (spell.isFailed() || spell.contactFailed()) {
             triggerFail();
         }
 
-        if(spell.hasPassedRM() || !spell.hasRM()){
+        if (spell.hasPassedRM() || !spell.hasRM()) {
             profile.findViewById(R.id.sr_test_img).setVisibility(View.GONE);
             profile.findViewById(R.id.sr_test_sepa).setVisibility(View.GONE);
         } else {
-            ((ImageView) profile.findViewById(R.id.sr_test_img)).setOnClickListener(new View.OnClickListener() {
+            profile.findViewById(R.id.sr_test_img).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     TestRMAlertDialog testAlert = new TestRMAlertDialog(mA, mC, spell);
@@ -67,7 +67,9 @@ public class SpellProfileManager {
                         @Override
                         public void onEvent() {
                             buildProfileMechanisms();
-                            if (mListener != null) { mListener.onEvent();  }
+                            if (mListener != null) {
+                                mListener.onEvent();
+                            }
                         }
                     });
                     testAlert.showAlertDialog();
@@ -76,21 +78,23 @@ public class SpellProfileManager {
         }
 
         //metamagie
-        ((LinearLayout)profile.findViewById(R.id.metamagic)).setOnClickListener(new View.OnClickListener() {
+        profile.findViewById(R.id.metamagic).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(metaPopup==null){makeMetaPopup(spell);}
+                if (metaPopup == null) {
+                    makeMetaPopup(spell);
+                }
                 showMetaPopup();
             }
         });
-        if(spell.isCast()){
-            ((LinearLayout)profile.findViewById(R.id.metamagic)).setEnabled(false);
-            ((TextView)profile.findViewById(R.id.text_meta)).setTextColor(Color.GRAY);
-            ((ImageView)profile.findViewById(R.id.symbol_meta)).getDrawable().mutate().setColorFilter(Color.GRAY,PorterDuff.Mode.SRC_IN);
+        if (spell.isCast()) {
+            profile.findViewById(R.id.metamagic).setEnabled(false);
+            ((TextView) profile.findViewById(R.id.text_meta)).setTextColor(Color.GRAY);
+            ((ImageView) profile.findViewById(R.id.symbol_meta)).getDrawable().mutate().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
         }
 
         //Slider
-        if(sliderBuild==null) {
+        if (sliderBuild == null) {
             sliderBuild = new SliderBuilder(mC, spell);
             sliderBuild.setSlider((SeekBar) profile.findViewById(R.id.slider));
             sliderBuild.setCastEventListener(new SliderBuilder.OnCastEventListener() {
@@ -105,20 +109,22 @@ public class SpellProfileManager {
         }
 
         //sort contact
-        if(spell.getContact().equalsIgnoreCase("")){
-            ((LinearLayout)profile.findViewById(R.id.contact)).setVisibility(View.GONE);
+        if (spell.getContact().equalsIgnoreCase("")) {
+            profile.findViewById(R.id.contact).setVisibility(View.GONE);
         } else {
-            ((LinearLayout)profile.findViewById(R.id.contact)).setOnClickListener(new View.OnClickListener() {
+            profile.findViewById(R.id.contact).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ContactAlertDialog contactDialog = new ContactAlertDialog(mA, mC,spell);
+                    ContactAlertDialog contactDialog = new ContactAlertDialog(mA, mC, spell);
                     contactDialog.showAlertDialog();
                     contactDialog.setRefreshEventListener(new ContactAlertDialog.OnRefreshEventListener() {
                         @Override
                         public void onEvent() {
                             buildProfileMechanisms();
-                            ((LinearLayout)profile.findViewById(R.id.contact)).setVisibility(View.GONE);
-                            if(mListener!=null){mListener.onEvent();}
+                            profile.findViewById(R.id.contact).setVisibility(View.GONE);
+                            if (mListener != null) {
+                                mListener.onEvent();
+                            }
                         }
                     });
                 }
@@ -134,24 +140,25 @@ public class SpellProfileManager {
     }
 
     public void triggerFail() {
-        ((LinearLayout)profile.findViewById(R.id.result_panel)).removeAllViews();
+        ((LinearLayout) profile.findViewById(R.id.result_panel)).removeAllViews();
         TextView txt_view = new TextView(mC);
         txt_view.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        String message = "Le sort a raté..." ;
+        String message = "Le sort a raté...";
         txt_view.setText(message);
         txt_view.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
-        ((LinearLayout)profile.findViewById(R.id.result_panel)).addView(txt_view);
+        ((LinearLayout) profile.findViewById(R.id.result_panel)).addView(txt_view);
         sliderBuild.spendCast();
-        resultDisplayed =true;
+        resultDisplayed = true;
         movePanelToDmg();
     }
 
     private void movePanelToDmg() {
-            Animation in=AnimationUtils.loadAnimation(mC, R.anim.infromright);Animation out=AnimationUtils.loadAnimation(mC, R.anim.outtoleft);
-            panel.clearAnimation();
-            panel.setInAnimation(in);
-            panel.setOutAnimation(out);
-            panel.setDisplayedChild(1);
+        Animation in = AnimationUtils.loadAnimation(mC, R.anim.infromright);
+        Animation out = AnimationUtils.loadAnimation(mC, R.anim.outtoleft);
+        panel.clearAnimation();
+        panel.setInAnimation(in);
+        panel.setOutAnimation(out);
+        panel.setDisplayedChild(1);
     }
 
     private void makeMetaPopup(Spell spell) {
@@ -163,7 +170,7 @@ public class SpellProfileManager {
             LinearLayout metaLin = new LinearLayout(mC);
             metaLin.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
             metaLin.setGravity(Gravity.CENTER);
-            CheckBox check = spell.getCheckboxeForMetaId(mA,mC,meta.getId());
+            CheckBox check = spell.getCheckboxeForMetaId(mA, mC, meta.getId());
 
             check.setTextColor(mC.getColor(R.color.darker_gray));
             ViewGroup parent = (ViewGroup) check.getParent();
@@ -174,7 +181,9 @@ public class SpellProfileManager {
                 @Override
                 public void onEvent() {
                     buildProfileMechanisms();
-                    if(mListener!=null){mListener.onEvent();}
+                    if (mListener != null) {
+                        mListener.onEvent();
+                    }
                 }
             });
             metaLin.addView(check);
@@ -190,7 +199,7 @@ public class SpellProfileManager {
             image.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    tools.customToast(mC,meta.getDescription(),"center");
+                    tools.customToast(mC, meta.getDescription(), "center");
                 }
             });
 
@@ -206,7 +215,7 @@ public class SpellProfileManager {
         metaPopup.clickToHide(mainView.findViewById(R.id.metamagie_back));
     }
 
-    private void showMetaPopup(){
+    private void showMetaPopup() {
         metaPopup.showAlert();
     }
 
@@ -218,11 +227,11 @@ public class SpellProfileManager {
         return resultDisplayed;
     }
 
-    public interface OnRefreshEventListener {
-        void onEvent();
-    }
-
     public void setRefreshEventListener(OnRefreshEventListener eventListener) {
         mListener = eventListener;
+    }
+
+    public interface OnRefreshEventListener {
+        void onEvent();
     }
 }

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<records>
+    <info>
+        <name>Nom</name>
+        <value>Sylphe</value>
+    </info>
+    <info>
+        <name>Type</name>
+        <value>Tigre</value>
+    </info>
+    <info>
+        <name>Espace</name>
+        <value>3m</value>
+    </info>
+    <info>
+        <name>Allonge</name>
+        <value>1.5m</value>
+    </info>
+    <info>
+        <name>Poids</name>
+        <value>350</value>
+    </info>
+
+    <info>
+        <name>Vision</name>
+        <value>vision nocturne, pistage olfactif</value>
+    </info>
+
+</records>

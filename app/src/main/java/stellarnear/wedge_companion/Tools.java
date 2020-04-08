@@ -26,10 +26,11 @@ public class Tools {
 
     private static Tools instance;
 
-    public Tools(){  }
+    public Tools() {
+    }
 
-    public static Tools getTools(){
-        if (instance==null){
+    public static Tools getTools() {
+        if (instance == null) {
             instance = new Tools();
         }
         return instance;
@@ -40,8 +41,8 @@ public class Tools {
         Double value;
         try {
             value = Double.parseDouble(key);
-        } catch (Exception e){
-            value=0.0;
+        } catch (Exception e) {
+            value = 0.0;
         }
         return value;
     }
@@ -91,16 +92,16 @@ public class Tools {
     }
 
     public Drawable resize(Context mC, Drawable image, int pixelSizeIcon) {
-        Drawable draw=mC.getDrawable(R.drawable.mire_test);
+        Drawable draw = mC.getDrawable(R.drawable.mire_test);
         try {
             Bitmap b = ((BitmapDrawable) image).getBitmap();
             Bitmap bitmapResized = Bitmap.createScaledBitmap(b, pixelSizeIcon, pixelSizeIcon, false);
-            draw =new BitmapDrawable(mC.getResources(), bitmapResized);
+            draw = new BitmapDrawable(mC.getResources(), bitmapResized);
         } catch (Exception e) {
-            draw=mC.getDrawable(R.drawable.mire_test);
+            draw = mC.getDrawable(R.drawable.mire_test);
             Bitmap b = ((BitmapDrawable) draw).getBitmap();
             Bitmap bitmapResized = Bitmap.createScaledBitmap(b, pixelSizeIcon, pixelSizeIcon, false);
-            draw =new BitmapDrawable(mC.getResources(), bitmapResized);
+            draw = new BitmapDrawable(mC.getResources(), bitmapResized);
             e.printStackTrace();
         }
         return draw;
@@ -127,11 +128,13 @@ public class Tools {
         // Set the toast and duration
         String mode = modeInput.length > 0 ? modeInput[0] : "";
         int time = Toast.LENGTH_LONG;
-        if(mode.contains("short")){time=Toast.LENGTH_SHORT;}
-        Toast mToastToShow = Toast.makeText(mC, txt,time);
+        if (mode.contains("short")) {
+            time = Toast.LENGTH_SHORT;
+        }
+        Toast mToastToShow = Toast.makeText(mC, txt, time);
 
         if (mode.contains("center")) {
-            TextView v = (TextView) mToastToShow.getView().findViewById(android.R.id.message);
+            TextView v = mToastToShow.getView().findViewById(android.R.id.message);
             if (v != null) v.setGravity(Gravity.CENTER);
         }
         mToastToShow.setGravity(Gravity.CENTER, 0, 0);
@@ -139,12 +142,12 @@ public class Tools {
 
     }
 
-    public void playVideo(Activity activity,Context context, String rawPath) {
+    public void playVideo(Activity activity, Context context, String rawPath) {
         LayoutInflater inflater = activity.getLayoutInflater();
         final View layoutRecordVideo = inflater.inflate(R.layout.video_full_screen, null);
         final CustomAlertDialog customVideo = new CustomAlertDialog(activity, context, layoutRecordVideo);
         customVideo.setPermanent(true);
-        final VideoView video = (VideoView) layoutRecordVideo.findViewById(R.id.fullscreen_video);
+        final VideoView video = layoutRecordVideo.findViewById(R.id.fullscreen_video);
         video.setVisibility(View.VISIBLE);
         String fileName = "android.resource://" + activity.getPackageName() + rawPath;
         video.setMediaController(null);

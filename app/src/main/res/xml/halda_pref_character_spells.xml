@@ -1,22 +1,31 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory android:title="Paramètrage plus haut rang">
-        <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+        <Preference
+            android:layout="@layout/divider_pref"
+            android:selectable="false" />
         <stellarnear.wedge_companion.EditTextPreference
             android:defaultValue="@integer/highest_tier_spell_def_halda"
+            android:inputType="number"
             android:key="highest_tier_spell_halda"
-            android:title="Plus haut niveau de sort"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:inputType="number"
-            android:summary="Valeur : %s"/>
+            android:summary="Valeur : %s"
+            android:title="Plus haut niveau de sort" />
 
     </PreferenceCategory>
-    <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
-    <PreferenceCategory android:title="Sorts par jour"
-        android:key="tier_spell">
-        <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+    <Preference
+        android:layout="@layout/divider_pref"
+        android:selectable="false" />
+    <PreferenceCategory
+        android:key="tier_spell"
+        android:title="Sorts par jour">
+        <Preference
+            android:layout="@layout/divider_pref"
+            android:selectable="false" />
     </PreferenceCategory>
-    <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+    <Preference
+        android:layout="@layout/divider_pref"
+        android:selectable="false" />
 
 </PreferenceScreen>

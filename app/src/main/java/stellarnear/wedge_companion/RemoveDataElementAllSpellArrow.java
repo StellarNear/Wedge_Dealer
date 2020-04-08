@@ -3,12 +3,12 @@ package stellarnear.wedge_companion;
 import stellarnear.wedge_companion.Perso.PersoManager;
 
 public class RemoveDataElementAllSpellArrow {
-    private String targetSheet= "spell_arrow";
-    private String date="-";
+    private String targetSheet = "spell_arrow";
+    private String date = "-";
 
-    private String typeEvent="remove_all_arrow_spell";
-    private String caster= PersoManager.getCurrentNamePJ();
-    private String result="-";
+    private String typeEvent = "remove_all_arrow_spell";
+    private String caster = PersoManager.getCurrentNamePJ();
+    private String result = "-";
 
     public RemoveDataElementAllSpellArrow() {
     }
@@ -33,8 +33,8 @@ public class RemoveDataElementAllSpellArrow {
         return typeEvent;
     }
 
-    public RemoveDataElementAllSpellArrow forceCaster(String forced){
-        caster=forced;
+    public RemoveDataElementAllSpellArrow forceCaster(String forced) {
+        caster = forced;
         return this;
     }
 

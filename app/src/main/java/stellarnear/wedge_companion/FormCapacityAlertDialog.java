@@ -34,19 +34,15 @@ public class FormCapacityAlertDialog {
     private FormCapacity capa;
     private View dialogView;
     private OnRefreshEventListener mListener;
-    private Tools tools=Tools.getTools();
-    private boolean firstLaunch=true;
+    private Tools tools = Tools.getTools();
+    private boolean firstLaunch = true;
 
     public FormCapacityAlertDialog(Activity mA, Context mC, FormCapacity capa) {
-        this.mA=mA;
-        this.mC=mC;
-        this.capa=capa;
+        this.mA = mA;
+        this.mC = mC;
+        this.capa = capa;
         buildAlertDialog();
         showAlertDialog();
-    }
-
-    public interface OnRefreshEventListener {
-        void onEvent();
     }
 
     public void setRefreshEventListener(OnRefreshEventListener eventListener) {
@@ -57,30 +53,30 @@ public class FormCapacityAlertDialog {
         LayoutInflater inflater = mA.getLayoutInflater();
         dialogView = inflater.inflate(R.layout.custom_form_capacity_alert_dialog, null);
         ImageView icon = dialogView.findViewById(R.id.customDialogCapaIcon);
-        ((TextView)dialogView.findViewById(R.id.customDialogCapaTitle)).setText(capa.getName());
-        ((TextView)dialogView.findViewById(R.id.customDialogCapaSummary)).setText("Détails "+capa.getName());
+        ((TextView) dialogView.findViewById(R.id.customDialogCapaTitle)).setText(capa.getName());
+        ((TextView) dialogView.findViewById(R.id.customDialogCapaSummary)).setText("Détails " + capa.getName());
         dialogView.findViewById(R.id.customDialogCapaSummary).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 popupLongTooltip();
             }
         });
-        fillStats((TextView)dialogView.findViewById(R.id.customDialogCapaStats));
-        addPowers((TextView)dialogView.findViewById(R.id.customDialogCapaPower),capa.getPowerList());
+        fillStats((TextView) dialogView.findViewById(R.id.customDialogCapaStats));
+        addPowers((TextView) dialogView.findViewById(R.id.customDialogCapaPower), capa.getPowerList());
 
         int imgId = mC.getResources().getIdentifier(capa.getId(), "drawable", mC.getPackageName());
         try {
-            ((ImageView)dialogView.findViewById(R.id.customDialogCapaIcon)).setImageDrawable(mC.getDrawable(imgId));
+            ((ImageView) dialogView.findViewById(R.id.customDialogCapaIcon)).setImageDrawable(mC.getDrawable(imgId));
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         Button diceroll = dialogView.findViewById(R.id.button_customDialog_launch);
-        diceroll.setOnClickListener( new View.OnClickListener() {
+        diceroll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(firstLaunch){
-                    firstLaunch=false;
+                if (firstLaunch) {
+                    firstLaunch = false;
                     startRoll();
                 } else {
                     new AlertDialog.Builder(mA)
@@ -104,39 +100,43 @@ public class FormCapacityAlertDialog {
         });
 
 
-        AlertDialog.Builder dialogBuilder  = new AlertDialog.Builder(mA, R.style.CustomDialog);
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(mA, R.style.CustomDialog);
         dialogBuilder.setView(dialogView);
         dialogBuilder.setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                if(mListener!=null){mListener.onEvent();}
+                if (mListener != null) {
+                    mListener.onEvent();
+                }
             }
         });
         alertDialog = dialogBuilder.create();
     }
 
-    private void popupLongTooltip(){
+    private void popupLongTooltip() {
         View tooltip = mA.getLayoutInflater().inflate(R.layout.custom_toast_info_form_capacity, null);
         final CustomAlertDialog tooltipAlert = new CustomAlertDialog(mA, mC, tooltip);
         tooltipAlert.setPermanent(true);
-        ((TextView)tooltip.findViewById(R.id.toast_textName)).setText(capa.getName());
-        ((TextView)tooltip.findViewById(R.id.toast_textDescr)).setText(capa.getDescr());
+        ((TextView) tooltip.findViewById(R.id.toast_textName)).setText(capa.getName());
+        ((TextView) tooltip.findViewById(R.id.toast_textDescr)).setText(capa.getDescr());
         tooltip.findViewById(R.id.button_use_capacity).setVisibility(View.GONE);
         tooltipAlert.clickToHide(tooltip.findViewById(R.id.toast_LinearLayout));
         tooltipAlert.showAlert();
     }
 
     private void addPowers(TextView textView, List<FormPower> listPowers) {
-        if(capa.hasPower()){
-            String textTxt="";
-            if(listPowers.size()==1) {
+        if (capa.hasPower()) {
+            String textTxt = "";
+            if (listPowers.size() == 1) {
                 textTxt += "Pouvoir : " + listPowers.get(0).getName();
             } else {
-                String powerList="";
-                for(FormPower power : listPowers){
-                    if(!powerList.equalsIgnoreCase("")){powerList+=", ";}
-                    powerList+=power.getName();
+                String powerList = "";
+                for (FormPower power : listPowers) {
+                    if (!powerList.equalsIgnoreCase("")) {
+                        powerList += ", ";
+                    }
+                    powerList += power.getName();
                 }
-                textTxt+="Pouvoirs : "+powerList;
+                textTxt += "Pouvoirs : " + powerList;
             }
             textView.setText(textTxt);
         } else {
@@ -144,106 +144,121 @@ public class FormCapacityAlertDialog {
         }
     }
 
-
-
     private void fillStats(TextView text) {
-        String textTxt="";
-        if(!capa.getDamage().equalsIgnoreCase("")){
-            textTxt+="Dégâts : "+capa.getDamage();
+        String textTxt = "";
+        if (!capa.getDamage().equalsIgnoreCase("")) {
+            textTxt += "Dégâts : " + capa.getDamage();
         }
-        if(!capa.getCooldown().equalsIgnoreCase("")){
-            if(!textTxt.equalsIgnoreCase("")){textTxt+=", ";}
-            textTxt+="Cooldown : "+capa.getCooldown();
+        if (!capa.getCooldown().equalsIgnoreCase("")) {
+            if (!textTxt.equalsIgnoreCase("")) {
+                textTxt += ", ";
+            }
+            textTxt += "Cooldown : " + capa.getCooldown();
         }
-        if(capa.getDailyUse()>0){
-            if(!textTxt.equalsIgnoreCase("")){textTxt+=", ";}
-            textTxt+="Utilisation : "+capa.getDailyUse()+"/j";
+        if (capa.getDailyUse() > 0) {
+            if (!textTxt.equalsIgnoreCase("")) {
+                textTxt += ", ";
+            }
+            textTxt += "Utilisation : " + capa.getDailyUse() + "/j";
         }
-        if(!capa.getSaveType().equalsIgnoreCase("")&&!capa.getSaveType().equalsIgnoreCase("dmd")){
-            if(!textTxt.equalsIgnoreCase("")){textTxt+=", ";}
-            textTxt+="Save : "+capa.getSaveType();
-            textTxt+=", ";
-            int valDD=10+pj.getAbilityScore("ability_lvl")/2+pj.getAbilityMod("ability_constitution");
-            textTxt+="DD : "+valDD;
+        if (!capa.getSaveType().equalsIgnoreCase("") && !capa.getSaveType().equalsIgnoreCase("dmd")) {
+            if (!textTxt.equalsIgnoreCase("")) {
+                textTxt += ", ";
+            }
+            textTxt += "Save : " + capa.getSaveType();
+            textTxt += ", ";
+            int valDD = 10 + pj.getAbilityScore("ability_lvl") / 2 + pj.getAbilityMod("ability_constitution");
+            textTxt += "DD : " + valDD;
         }
         text.setText(textTxt);
     }
 
     private void startRoll() {
-        if(capa.hasPower()){
+        if (capa.hasPower()) {
             LinearLayout fram = dialogView.findViewById(R.id.customDialogCapaBotLinear);
             fram.removeAllViews();
-            if(capa.getPowerId().equalsIgnoreCase("powerform_prisma_ray_random")){
-                int random= new Random().nextInt(8);
-                List<FormPower> selectedPower=new ArrayList<>();
-                if(random==7){
-                    tools.customToast(mC,"Double rayons !","center");
-                    int random1= new Random().nextInt(7);
+            if (capa.getPowerId().equalsIgnoreCase("powerform_prisma_ray_random")) {
+                int random = new Random().nextInt(8);
+                List<FormPower> selectedPower = new ArrayList<>();
+                if (random == 7) {
+                    tools.customToast(mC, "Double rayons !", "center");
+                    int random1 = new Random().nextInt(7);
                     selectedPower.add(capa.getPowerList().get(random1));
-                    int random2= new Random().nextInt(7);
+                    int random2 = new Random().nextInt(7);
                     selectedPower.add(capa.getPowerList().get(random2));
                 } else {
                     selectedPower.add(capa.getPowerList().get(random));
                 }
-                addPowers((TextView)dialogView.findViewById(R.id.customDialogCapaPower),selectedPower);
-                LinearLayout line = new LinearLayout(mC); line.setGravity(Gravity.CENTER); line.setOrientation(LinearLayout.VERTICAL);
+                addPowers((TextView) dialogView.findViewById(R.id.customDialogCapaPower), selectedPower);
+                LinearLayout line = new LinearLayout(mC);
+                line.setGravity(Gravity.CENTER);
+                line.setOrientation(LinearLayout.VERTICAL);
                 fram.addView(line);
-                for(FormPower power : selectedPower){
-                    line.addView(power.getProfile().getProfile(mA,mC));
+                for (FormPower power : selectedPower) {
+                    line.addView(power.getProfile().getProfile(mA, mC));
                 }
             } else {
-                LinearLayout line = new LinearLayout(mC); line.setGravity(Gravity.CENTER); line.setOrientation(LinearLayout.VERTICAL);
+                LinearLayout line = new LinearLayout(mC);
+                line.setGravity(Gravity.CENTER);
+                line.setOrientation(LinearLayout.VERTICAL);
                 fram.addView(line);
-                for(FormPower power : capa.getPowerList()){
-                    View profileView = power.getProfile().getProfile(mA,mC);
-                    if(profileView.getParent()!=null){((ViewGroup)profileView.getParent()).removeView(profileView);}
+                for (FormPower power : capa.getPowerList()) {
+                    View profileView = power.getProfile().getProfile(mA, mC);
+                    if (profileView.getParent() != null) {
+                        ((ViewGroup) profileView.getParent()).removeView(profileView);
+                    }
                     line.addView(profileView);
                 }
             }
         } else {
-            int sum=0;
+            int sum = 0;
             FrameLayout fram = dialogView.findViewById(R.id.customDialogCapaResultDice);
             fram.removeAllViews();
-            LinearLayout line = new LinearLayout(mC); line.setGravity(Gravity.CENTER);
+            LinearLayout line = new LinearLayout(mC);
+            line.setGravity(Gravity.CENTER);
             fram.addView(line);
-            if(capa.getDamage().contains("d")){
-                int nDice=tools.toInt(capa.getDamage().split("d")[0]);
-                int indexFlat=capa.getDamage().indexOf("+")==-1? capa.getDamage().length():capa.getDamage().indexOf("+");  // si y a pas de flat on substring pas
-                int diceType=tools.toInt(capa.getDamage().substring(capa.getDamage().indexOf("d")+1,indexFlat));
-                for (int i=1;i<=nDice;i++){
-                    Dice dice=new Dice(mA,mC,diceType);
+            if (capa.getDamage().contains("d")) {
+                int nDice = tools.toInt(capa.getDamage().split("d")[0]);
+                int indexFlat = capa.getDamage().indexOf("+") == -1 ? capa.getDamage().length() : capa.getDamage().indexOf("+");  // si y a pas de flat on substring pas
+                int diceType = tools.toInt(capa.getDamage().substring(capa.getDamage().indexOf("d") + 1, indexFlat));
+                for (int i = 1; i <= nDice; i++) {
+                    Dice dice = new Dice(mA, mC, diceType);
                     dice.rand(false);
                     line.addView(dice.getImg());
-                    sum+=dice.getRandValue();
+                    sum += dice.getRandValue();
                 }
             }
-            if(capa.getDamage().contains("+")){
-                String flatDmgTxt=capa.getDamage().split("\\+")[1];
-                int flatDmg=0;
-                if(flatDmgTxt.equalsIgnoreCase("2for")){
-                    flatDmg=pj.getAbilityMod("ability_force")*2;
-                } else if(flatDmgTxt.equalsIgnoreCase("for")){
-                    flatDmg=pj.getAbilityMod("ability_force");
-                } else {flatDmg=tools.toInt(flatDmgTxt);}
-                TextView flat=new TextView(mC); flat.setTextSize(20); flat.setTextColor(mC.getColor(R.color.colorPrimaryDark));
-                flat.setText("+"+flatDmg);
+            if (capa.getDamage().contains("+")) {
+                String flatDmgTxt = capa.getDamage().split("\\+")[1];
+                int flatDmg = 0;
+                if (flatDmgTxt.equalsIgnoreCase("2for")) {
+                    flatDmg = pj.getAbilityMod("ability_force") * 2;
+                } else if (flatDmgTxt.equalsIgnoreCase("for")) {
+                    flatDmg = pj.getAbilityMod("ability_force");
+                } else {
+                    flatDmg = tools.toInt(flatDmgTxt);
+                }
+                TextView flat = new TextView(mC);
+                flat.setTextSize(20);
+                flat.setTextColor(mC.getColor(R.color.colorPrimaryDark));
+                flat.setText("+" + flatDmg);
                 line.addView(flat);
-                sum+=flatDmg;
+                sum += flatDmg;
             }
             endSkillCalculation(sum);
         }
     }
 
-    public void showAlertDialog(){
+    public void showAlertDialog() {
         alertDialog.show();
         Display display = mA.getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        Float factor = mC.getResources().getInteger(R.integer.percent_fullscreen_customdialog)/100f;
-        alertDialog.getWindow().setLayout((int) (factor*size.x), (int)(factor*size.y));
+        Float factor = mC.getResources().getInteger(R.integer.percent_fullscreen_customdialog) / 100f;
+        alertDialog.getWindow().setLayout((int) (factor * size.x), (int) (factor * size.y));
         Button onlyButton = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
         LinearLayout.LayoutParams onlyButtonLL = (LinearLayout.LayoutParams) onlyButton.getLayoutParams();
-        onlyButtonLL.width=ViewGroup.LayoutParams.WRAP_CONTENT;
+        onlyButtonLL.width = ViewGroup.LayoutParams.WRAP_CONTENT;
         onlyButton.setLayoutParams(onlyButtonLL);
         onlyButton.setTextColor(mC.getColor(R.color.colorBackground));
         onlyButton.setBackground(mC.getDrawable(R.drawable.button_cancel_gradient));
@@ -262,8 +277,12 @@ public class FormCapacityAlertDialog {
         TextView result = dialogView.findViewById(R.id.customDialogCapaResult);
         result.setText(String.valueOf(sumResult));
         callToAction.setText("Fin du lancement de capacité");
-        new PostData(mC,new PostDataElement(capa,sumResult));
+        new PostData(mC, new PostDataElement(capa, sumResult));
 
 
+    }
+
+    public interface OnRefreshEventListener {
+        void onEvent();
     }
 }

@@ -19,7 +19,7 @@ import stellarnear.wedge_companion.Tools;
 
 
 public class DSSFPreference extends Preference {
-    private Tools tools=Tools.getTools();
+    private Tools tools = Tools.getTools();
     private Context mC;
     private View mainView;
     private ViewFlipper panel;
@@ -28,7 +28,7 @@ public class DSSFPreference extends Preference {
     private DSSFGraph fragGraph;
     private DSSFTime fragTime;
     private DSSFDmg fragDmg;
-    private String position="atk";
+    private String position = "atk";
 
     public DSSFPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -39,19 +39,19 @@ public class DSSFPreference extends Preference {
         super(context, attrs, defStyle);
 
     }
+
     public DSSFPreference(Context context) {
         super(context);
     }
 
     @Override
-    protected View onCreateView(ViewGroup parent)
-    {
+    protected View onCreateView(ViewGroup parent) {
         super.onCreateView(parent);
         final SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getContext());
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        this.mC=getContext();
+        this.mC = getContext();
         mainView = inflater.inflate(R.layout.spellstats_charts, null);
-        fragAtk = new DSSFSpell(mainView,mC);
+        fragAtk = new DSSFSpell(mainView, mC);
         buttonSetup();
         final ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(parent.getWidth(), parent.getHeight());  //pour full screen
         mainView.setLayoutParams(params);
@@ -61,8 +61,8 @@ public class DSSFPreference extends Preference {
     private void buttonSetup() {
         panel = mainView.findViewById(R.id.stats_flipper);
         final FloatingActionButton fabAtk = mainView.findViewById(R.id.fab_stat_atk);
-        final FloatingActionButton fabGraph= mainView.findViewById(R.id.fab_stat_graph);
-        final FloatingActionButton fabTime= mainView.findViewById(R.id.fab_stat_time);
+        final FloatingActionButton fabGraph = mainView.findViewById(R.id.fab_stat_graph);
+        final FloatingActionButton fabTime = mainView.findViewById(R.id.fab_stat_time);
         final FloatingActionButton fabDmg = mainView.findViewById(R.id.fab_stat_dmg);
 
         fabAtk.animate().alpha(0).setDuration(0).scaleX(2f).scaleY(2f).start();
@@ -81,7 +81,11 @@ public class DSSFPreference extends Preference {
         fabGraph.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(fragGraph==null){fragGraph=new DSSFGraph(mainView,mC);}else {  fragGraph.reset();}
+                if (fragGraph == null) {
+                    fragGraph = new DSSFGraph(mainView, mC);
+                } else {
+                    fragGraph.reset();
+                }
                 movePanelTo("graph");
                 popIn(fabGraph);
             }
@@ -92,7 +96,11 @@ public class DSSFPreference extends Preference {
         fabTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(fragTime==null){fragTime=new DSSFTime(mainView,mC);} else {  fragTime.reset();}
+                if (fragTime == null) {
+                    fragTime = new DSSFTime(mainView, mC);
+                } else {
+                    fragTime.reset();
+                }
                 movePanelTo("time");
                 popIn(fabTime);
             }
@@ -103,7 +111,11 @@ public class DSSFPreference extends Preference {
         fabDmg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(fragDmg==null){  fragDmg = new DSSFDmg(mainView,mC);}else {   fragDmg.reset();}
+                if (fragDmg == null) {
+                    fragDmg = new DSSFDmg(mainView, mC);
+                } else {
+                    fragDmg.reset();
+                }
                 movePanelTo("dmg");
                 popIn(fabDmg);
             }
@@ -120,9 +132,10 @@ public class DSSFPreference extends Preference {
     }
 
     private void movePanelTo(String toPosition) {
-        if(!this.position.equalsIgnoreCase(toPosition)) {
-            Animation in=null;Animation out=null;
-            int indexChild=0;
+        if (!this.position.equalsIgnoreCase(toPosition)) {
+            Animation in = null;
+            Animation out = null;
+            int indexChild = 0;
             switch (this.position) {
                 case "atk":
                     out = AnimationUtils.loadAnimation(mC, R.anim.outtoleft);
@@ -139,20 +152,20 @@ public class DSSFPreference extends Preference {
             switch (toPosition) {
                 case "atk":
                     in = AnimationUtils.loadAnimation(mC, R.anim.infromleft);
-                    indexChild=0;
+                    indexChild = 0;
                     break;
                 case "graph":
                     in = AnimationUtils.loadAnimation(mC, R.anim.infrombot);
-                    indexChild=1;
+                    indexChild = 1;
                     break;
-                case  "time":
+                case "time":
                     in = AnimationUtils.loadAnimation(mC, R.anim.infrombot);
-                    indexChild=2;
+                    indexChild = 2;
                     break;
 
                 case "dmg":
                     in = AnimationUtils.loadAnimation(mC, R.anim.infromright);
-                    indexChild=3;
+                    indexChild = 3;
                     break;
             }
             panel.clearAnimation();

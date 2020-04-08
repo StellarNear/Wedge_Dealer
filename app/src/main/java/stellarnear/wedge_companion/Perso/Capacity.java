@@ -17,30 +17,25 @@ public class Capacity {
     private Context mC;
     private String pjID;
     private String dailyUseString;
-    private int dailyUse=0;
-    private boolean infinite=false;
+    private int dailyUse = 0;
+    private boolean infinite = false;
     private String valueString;
-    private int value=0;
+    private int value = 0;
 
 
-
-    public Capacity(String name,String shortname, String type, String descr, String id,String dailyUse,String valueString,Context mC,String pjID){
-        this.name=name;
-        this.shortname=shortname;
-        this.type=type;
-        this.descr=descr;
-        this.valueString=valueString;
-        this.id=id;
-        this.mC=mC;
-        this.pjID=pjID;
+    public Capacity(String name, String shortname, String type, String descr, String id, String dailyUse, String valueString, Context mC, String pjID) {
+        this.name = name;
+        this.shortname = shortname;
+        this.type = type;
+        this.descr = descr;
+        this.valueString = valueString;
+        this.id = id;
+        this.mC = mC;
+        this.pjID = pjID;
         this.dailyUseString = dailyUse;
-        if(dailyUse.equalsIgnoreCase("infinite")){
-            this.infinite=true;
+        if (dailyUse.equalsIgnoreCase("infinite")) {
+            this.infinite = true;
         }
-    }
-
-    public void setDailyUse(int dailyUse) {
-        this.dailyUse = dailyUse;
     }
 
     public String getDailyUseString() {
@@ -79,12 +74,17 @@ public class Capacity {
         return dailyUse;
     }
 
-    public boolean isActive(){
+    public void setDailyUse(int dailyUse) {
+        this.dailyUse = dailyUse;
+    }
+
+    public boolean isActive() {
         boolean active = false;
         try {
             SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
-            active = settings.getBoolean("switch_"+this.id+pjID, true);
-        } catch ( Exception e) {}
+            active = settings.getBoolean("switch_" + this.id + pjID, true);
+        } catch (Exception e) {
+        }
         return active;
     }
 
@@ -93,6 +93,6 @@ public class Capacity {
     }
 
     public void setValue(int val) {
-        this.value=val;
+        this.value = val;
     }
 }

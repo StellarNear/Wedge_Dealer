@@ -25,25 +25,25 @@ public class Form {
     private String size;
     private String descr;
     private String id;
-    private List<Attack> allAtks=new ArrayList<>();
-    private List<FormCapacity> listPassiveCapacities= new ArrayList<>();
-    private List<FormCapacity> listActivesCapacities= new ArrayList<>();
-    private Map<String,Integer> mapElementIDResist =new HashMap<>();
+    private List<Attack> allAtks = new ArrayList<>();
+    private List<FormCapacity> listPassiveCapacities = new ArrayList<>();
+    private List<FormCapacity> listActivesCapacities = new ArrayList<>();
+    private Map<String, Integer> mapElementIDResist = new HashMap<>();
     private String vulnerability;
     private ElemsManager elementManager;
 
     private Context mC;
 
-    public Form(String name, String type,String size, String descr,String vulnerability,String resistance, String id, Context mC){
-        this.name=name;
-        this.type=type;
-        this.size=size;
-        this.descr=descr;
-        this.id=id;
-        this.mC=mC;
-        this.elementManager= ElemsManager.getInstance(mC);
+    public Form(String name, String type, String size, String descr, String vulnerability, String resistance, String id, Context mC) {
+        this.name = name;
+        this.type = type;
+        this.size = size;
+        this.descr = descr;
+        this.id = id;
+        this.mC = mC;
+        this.elementManager = ElemsManager.getInstance(mC);
 
-        if(!resistance.equalsIgnoreCase("")) {
+        if (!resistance.equalsIgnoreCase("")) {
             for (String elemKey : resistance.split(",")) {
                 mapElementIDResist.put(elemKey, 20);
             }
@@ -60,22 +60,22 @@ public class Form {
     }
 
     public String getTypeTxt() {
-        String typeTxt="";
-        switch (type){
+        String typeTxt = "";
+        switch (type) {
             case "animal":
-                typeTxt="Animale";
+                typeTxt = "Animale";
                 break;
             case "magic":
-                typeTxt="Magique";
+                typeTxt = "Magique";
                 break;
             case "vegetal":
-                typeTxt="Végétale";
+                typeTxt = "Végétale";
                 break;
             case "elemental_air":
             case "elemental_water":
             case "elemental_fire":
             case "elemental_earth":
-                typeTxt="Elémentaire";
+                typeTxt = "Elémentaire";
                 break;
         }
         return typeTxt;
@@ -93,26 +93,26 @@ public class Form {
         return size;
     }
 
-    public void setListActivesCapacities(List<FormCapacity> listActivesCapacities) {
-        this.listActivesCapacities = listActivesCapacities;
-    }
-
-    public void setListPassiveCapacities(List<FormCapacity> listPassiveCapacities) {
-        this.listPassiveCapacities = listPassiveCapacities;
-    }
-
     public List<FormCapacity> getListActivesCapacities() {
         return listActivesCapacities;
+    }
+
+    public void setListActivesCapacities(List<FormCapacity> listActivesCapacities) {
+        this.listActivesCapacities = listActivesCapacities;
     }
 
     public List<FormCapacity> getListPassiveCapacities() {
         return listPassiveCapacities;
     }
 
+    public void setListPassiveCapacities(List<FormCapacity> listPassiveCapacities) {
+        this.listPassiveCapacities = listPassiveCapacities;
+    }
+
     public String getVulnerability() {
-        String res="";
+        String res = "";
         try {
-            res=elementManager.getName(vulnerability);
+            res = elementManager.getName(vulnerability);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -124,9 +124,9 @@ public class Form {
     }
 
     public int getElementResist(String elemKey) {
-        int val=0;
+        int val = 0;
         try {
-            val=mapElementIDResist.get(elemKey);
+            val = mapElementIDResist.get(elemKey);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -134,11 +134,13 @@ public class Form {
     }
 
     public int getMaxElementResist() {
-        int val =0;
-        for(String elemId : elementManager.getResistElems()){
+        int val = 0;
+        for (String elemId : elementManager.getResistElems()) {
             try {
                 int elemval = mapElementIDResist.get(elemId);
-                if(elemval>val){val=elemval;}
+                if (elemval > val) {
+                    val = elemval;
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -147,13 +149,15 @@ public class Form {
     }
 
     public Spanned getResistsValueLongFormat() {
-        Spanned result= new SpannableString("");
-        for(String elemId : elementManager.getResistElems()){
+        Spanned result = new SpannableString("");
+        for (String elemId : elementManager.getResistElems()) {
 
             int valueFromForm = getElementResist(elemId);
-            if(valueFromForm>0) {
-                if(result.length()>0){result=(Spanned) TextUtils.concat(result,"/");}
-                Spannable span = new SpannableString(String.valueOf(valueFromForm)+" "+elementManager.getName(elemId));
+            if (valueFromForm > 0) {
+                if (result.length() > 0) {
+                    result = (Spanned) TextUtils.concat(result, "/");
+                }
+                Spannable span = new SpannableString(valueFromForm + " " + elementManager.getName(elemId));
                 span.setSpan(new ForegroundColorSpan(elementManager.getColorIdDark(elemId)), 0, span.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 result = (Spanned) TextUtils.concat(result, span);
             }
@@ -162,16 +166,18 @@ public class Form {
     }
 
     public String getAtkTxt() {
-        String val="";
-        for(Attack attack : allAtks){
-            if(!val.equalsIgnoreCase("")){val+=", ";}
-            val+=attack.getName()+" "+attack.getDmgTxt();
+        String val = "";
+        for (Attack attack : allAtks) {
+            if (!val.equalsIgnoreCase("")) {
+                val += ", ";
+            }
+            val += attack.getName() + " " + attack.getDmgTxt();
         }
         return val;
     }
 
     public void setListAttacks(List<Attack> allAtks) {
-        this.allAtks=allAtks;
+        this.allAtks = allAtks;
     }
 
     public List<Attack> getAllAtks() {
@@ -179,15 +185,15 @@ public class Form {
     }
 
     public boolean hasCapacity(String capaId) {
-        boolean val=false;
-        for(FormCapacity passive:listPassiveCapacities){
-         if(passive.getId().equalsIgnoreCase(capaId))   {
-             val=true;
-         }
+        boolean val = false;
+        for (FormCapacity passive : listPassiveCapacities) {
+            if (passive.getId().equalsIgnoreCase(capaId)) {
+                val = true;
+            }
         }
-        for(FormCapacity active:listActivesCapacities){
-            if(active.getId().equalsIgnoreCase(capaId))   {
-                val=true;
+        for (FormCapacity active : listActivesCapacities) {
+            if (active.getId().equalsIgnoreCase(capaId)) {
+                val = true;
             }
         }
         return val;

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <!-- _halda -->
 
     <integer name="money_plat_def_halda">0</integer>
@@ -9,14 +8,13 @@
     <integer name="money_copper_def_halda">0</integer>
 
 
-
     <!--  SpellStat de base du perso  -->
-    <integer name="ability_force_base_def_halda">4</integer>
+    <integer name="ability_force_base_def_halda">6</integer>
     <integer name="ability_dexterite_base_def_halda">10</integer>
     <integer name="ability_constitution_base_def_halda">18</integer>
     <integer name="ability_intelligence_base_def_halda">16</integer>
     <integer name="ability_sagesse_base_def_halda">13</integer>
-    <integer name="ability_charisme_base_def_halda">25</integer>
+    <integer name="ability_charisme_base_def_halda">27</integer>
     <!-- augement perma -->
     <integer name="ability_force_augment_def_halda">0</integer>
     <integer name="ability_dexterite_augment_def_halda">0</integer>
@@ -58,7 +56,7 @@
     <integer name="skill_heal_rankDEF_halda">27</integer>
     <integer name="skill_psycho_rankDEF_halda">27</integer>
     <integer name="skill_survival_rankDEF_halda">27</integer>
-    <integer name="skill_magic_item_rankDEF">1</integer>
+    <integer name="skill_magic_item_rankDEF_halda">1</integer>
 
     <!--  Bonus des compétences  -->
     <integer name="skill_magic_art_bonusDEF_halda">3</integer>
@@ -71,7 +69,7 @@
     <integer name="skill_heal_bonusDEF_halda">3</integer>
     <integer name="skill_psycho_bonusDEF_halda">3</integer>
     <integer name="skill_survival_bonusDEF_halda">3</integer>
-    <integer name="skill_magic_item_bonusDEF">3</integer>
+    <integer name="skill_magic_item_bonusDEF_halda">3</integer>
 
     <bool name="switch_perma_resi_DEF_halda">true</bool>
 

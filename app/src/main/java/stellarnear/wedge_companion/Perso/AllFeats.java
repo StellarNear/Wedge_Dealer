@@ -23,22 +23,21 @@ import javax.xml.parsers.DocumentBuilderFactory;
 public class AllFeats {
     private Context mC;
     private List<Feat> allFeatsList = new ArrayList<>();
-    private Map<String,Feat> mapIdFeat=new HashMap<>();
-    private String pjID="";
+    private Map<String, Feat> mapIdFeat = new HashMap<>();
+    private String pjID = "";
 
-    public AllFeats(Context mC,String pjID)
-    {
+    public AllFeats(Context mC, String pjID) {
         this.mC = mC;
-        this.pjID=pjID;
+        this.pjID = pjID;
         buildFeatsList();
     }
 
     private void buildFeatsList() {
         allFeatsList = new ArrayList<>();
-        mapIdFeat=new HashMap<>();
+        mapIdFeat = new HashMap<>();
         try {
-            String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
-            InputStream is = mC.getAssets().open("feats"+extendID+".xml");
+            String extendID = pjID.equalsIgnoreCase("") ? "" : "_" + pjID;
+            InputStream is = mC.getAssets().open("feats" + extendID + ".xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(is);
@@ -53,7 +52,7 @@ public class AllFeats {
                 Node node = nList.item(i);
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element element2 = (Element) node;
-                    Feat feat=new Feat(
+                    Feat feat = new Feat(
                             readValue("name", element2),
                             readValue("type", element2),
                             readValue("descr", element2),
@@ -61,7 +60,7 @@ public class AllFeats {
                             mC,
                             pjID);
                     allFeatsList.add(feat);
-                    mapIdFeat.put(feat.getId(),feat);
+                    mapIdFeat.put(feat.getId(), feat);
                 }
             }
             is.close();
@@ -70,15 +69,17 @@ public class AllFeats {
         }
     }
 
-    public List<Feat> getFeatsList(){
+    public List<Feat> getFeatsList() {
         return allFeatsList;
     }
 
     public Feat getFeat(String featId) {
         Feat selectedFeat;
         try {
-            selectedFeat=mapIdFeat.get(featId);
-        } catch (Exception e){  selectedFeat=null;  }
+            selectedFeat = mapIdFeat.get(featId);
+        } catch (Exception e) {
+            selectedFeat = null;
+        }
         return selectedFeat;
     }
 
@@ -87,7 +88,7 @@ public class AllFeats {
             NodeList nodeList = element.getElementsByTagName(tag).item(0).getChildNodes();
             Node node = nodeList.item(0);
             return node.getNodeValue();
-        } catch (Exception e){
+        } catch (Exception e) {
             return "";
         }
     }

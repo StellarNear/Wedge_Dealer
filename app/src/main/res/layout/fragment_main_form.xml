@@ -17,111 +17,121 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_icon_main_actions075"
-            android:orientation="horizontal"
             android:background="@drawable/bar_gradient_main_subfragments"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:text="Changement de forme"
                 android:textAlignment="center"
                 android:textColor="?attr/colorBackground"
-                android:textSize="20sp"
-                android:text="Changement de forme" />
+                android:textSize="20sp" />
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/formMainLinear"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
             android:layout_margin="@dimen/general_margin"
-            android:id="@+id/formMainLinear"
-            android:orientation="vertical"
-            android:weightSum="16"
+            android:layout_weight="1"
+            android:background="?attr/colorBackground"
             android:clipChildren="false"
-            android:background="?attr/colorBackground">
+            android:orientation="vertical"
+            android:weightSum="16">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:gravity="center"
                 android:layout_weight="2"
+                android:gravity="center"
                 android:orientation="vertical">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:gravity="center"
                         android:orientation="vertical">
+
                         <TextView
                             android:layout_width="wrap_content"
-                            android:layout_gravity="center"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center"
                             android:gravity="center"
-                            android:text="Forme actuelle :"/>
+                            android:text="Forme actuelle :" />
+
                         <TextView
                             android:id="@+id/form_current_form"
                             android:layout_width="wrap_content"
-                            android:textStyle="bold"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:layout_gravity="center"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center"
                             android:gravity="center"
-                            android:text="Aucune"/>
+                            android:text="Aucune"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:layout_height="wrap_content"
                         android:orientation="vertical">
+
                         <TextView
                             android:layout_width="wrap_content"
-                            android:layout_gravity="center"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center"
                             android:gravity="center"
-                            android:text="Utiilisation restantes :"/>
+                            android:text="Utiilisation restantes :" />
+
                         <TextView
                             android:id="@+id/form_remaning_text"
                             android:layout_width="wrap_content"
-                            android:layout_gravity="center"
                             android:layout_height="wrap_content"
-                            android:textStyle="bold"
-                            android:textColor="@color/colorPrimaryDark"
+                            android:layout_gravity="center"
                             android:gravity="center"
-                            android:text="X"/>
+                            android:text="X"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textStyle="bold" />
                     </LinearLayout>
 
 
                 </LinearLayout>
+
                 <LinearLayout
-                    android:layout_marginTop="@dimen/general_margin"
                     android:id="@+id/form_current_atks_lay"
                     android:layout_width="match_parent"
-                    android:gravity="center"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/general_margin"
+                    android:gravity="center"
                     android:orientation="horizontal">
+
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_gravity="center"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:gravity="center"
-                        android:text="Attaques : "/>
+                        android:text="Attaques : " />
+
                     <TextView
                         android:id="@+id/form_current_atks_text"
                         android:layout_width="wrap_content"
-                        android:layout_gravity="center"
                         android:layout_height="wrap_content"
-                        android:textSize="10sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorPrimaryDark"
+                        android:layout_gravity="center"
                         android:gravity="center"
-                        android:text="blabla xd8 blabla2 xd10"/>
+                        android:text="blabla xd8 blabla2 xd10"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -131,45 +141,50 @@
                 android:layout_weight="4"
                 android:gravity="center"
                 android:orientation="horizontal">
+
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Capacités passives :"/>
+                        android:text="Capacités passives :" />
 
                     <LinearLayout
                         android:id="@+id/linear_form_passives"
                         android:layout_width="match_parent"
+                        android:layout_height="0dp"
                         android:layout_weight="1"
                         android:gravity="center_horizontal"
-                        android:layout_height="0dp"
-                        android:orientation="vertical"/>
+                        android:orientation="vertical" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Capacités actives :"/>
+                        android:text="Capacités actives :" />
+
                     <LinearLayout
                         android:id="@+id/linear_form_actives"
                         android:layout_width="match_parent"
+                        android:layout_height="0dp"
                         android:layout_weight="1"
                         android:gravity="center_horizontal"
-                        android:layout_height="0dp"
-                        android:orientation="vertical"/>
+                        android:orientation="vertical" />
                 </LinearLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -181,16 +196,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Selection d'une nouvelle forme :"/>
+                    android:text="Selection d'une nouvelle forme :" />
+
                 <LinearLayout
-                    android:clipChildren="false"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:clipChildren="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:clipChildren="false"
                         android:gravity="center"
                         android:orientation="vertical">
@@ -215,11 +231,11 @@
 
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:clipChildren="false"
                         android:gravity="center"
-                        android:orientation="vertical"
-                        android:clipChildren="false">
+                        android:orientation="vertical">
 
                         <ImageButton
                             android:id="@+id/button_form_magical"
@@ -242,11 +258,11 @@
 
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:clipChildren="false"
                         android:gravity="center"
-                        android:orientation="vertical"
-                        android:clipChildren="false">
+                        android:orientation="vertical">
 
                         <ImageButton
                             android:id="@+id/button_form_vegetal"
@@ -269,11 +285,11 @@
 
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:clipChildren="false"
                         android:gravity="center"
-                        android:orientation="vertical"
-                        android:clipChildren="false">
+                        android:orientation="vertical">
 
                         <ImageButton
                             android:id="@+id/button_form_elemental"
@@ -297,81 +313,76 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:gravity="center"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Caractéristiques : "
-                        />
+                        android:text="Caractéristiques : " />
+
                     <TextView
                         android:id="@+id/form_modif_carac"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/colorPrimaryDark"
                         android:text="-"
-                        />
+                        android:textColor="@color/colorPrimaryDark" />
                 </LinearLayout>
+
                 <FrameLayout
-                    android:clipChildren="false"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:clipChildren="false">
+
                     <ViewFlipper
-                        android:clipChildren="false"
                         android:id="@+id/form_flipper"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-                    </ViewFlipper>
+                        android:layout_height="match_parent"
+                        android:clipChildren="false"></ViewFlipper>
+
                     <ImageView
                         android:id="@+id/form_current_form_background_image"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/wedge_loaded"/>
+                        android:src="@drawable/wedge_loaded" />
                 </FrameLayout>
 
             </LinearLayout>
 
 
-
         </LinearLayout>
-
-
 
 
     </LinearLayout>
 
 
-
-
-
     <ImageButton
-        tools:ignore="ContentDescription"
         android:id="@+id/button_frag_form_to_main"
         android:layout_width="@dimen/size_icon_main_actions075"
         android:layout_height="@dimen/size_icon_main_actions075"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:padding="@dimen/general_margin"
+        android:scaleType="fitXY"
+        android:src="@drawable/form_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/form_back"
-        android:adjustViewBounds="true"
-        android:scaleType="fitXY"
-        android:padding="@dimen/general_margin"
-        android:background="@null"/>
+        tools:ignore="ContentDescription" />
 
 
     <ImageButton
-        tools:ignore="ContentDescription"
         android:id="@+id/button_frag_form_unform"
         android:layout_width="@dimen/size_icon_main_actions075"
         android:layout_height="@dimen/size_icon_main_actions075"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:padding="@dimen/general_margin"
+        android:scaleType="fitXY"
+        android:src="@drawable/wedge_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/wedge_icon"
-        android:adjustViewBounds="true"
-        android:scaleType="fitXY"
-        android:padding="@dimen/general_margin"
-        android:background="@null"/>
+        tools:ignore="ContentDescription" />
 
 
 </android.support.constraint.ConstraintLayout>

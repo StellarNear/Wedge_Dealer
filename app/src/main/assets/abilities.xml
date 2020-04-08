@@ -162,4 +162,13 @@
         <testable>true</testable>
     </ability>
 
+    <ability>
+        <name>Informations</name>
+        <shortname>Infos</shortname>
+        <type>advanced</type>
+        <descr>Autre informations sur le personnage.</descr>
+        <id>ability_info</id>
+        <testable>true</testable>
+    </ability>
+
 </records>

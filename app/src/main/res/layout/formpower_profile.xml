@@ -1,7 +1,6 @@
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,39 +15,39 @@
             android:id="@+id/title_background"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:background="@drawable/round_corner_title"
-            >
+            android:gravity="center">
+
             <LinearLayout
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
-                android:gravity="center"
-                android:layout_height="wrap_content">
+                android:gravity="center">
+
                 <TextView
                     android:id="@+id/spell_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:ellipsize="marquee"
+                    android:fadingEdge="horizontal"
+                    android:gravity="center"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:maxWidth="210dp"
+                    android:scrollHorizontally="true"
                     android:singleLine="true"
                     android:text="Dummy Longest Spell Title"
-                    android:maxWidth="210dp"
-                    android:ellipsize="marquee"
-                    android:marqueeRepeatLimit="marquee_forever"
-                    android:scrollHorizontally="true"
-                    android:fadingEdge="horizontal"
                     android:textAlignment="center"
-                    android:gravity="center"
                     android:textColor="@color/black"
-                    android:textSize="22sp"
-                    />
+                    android:textSize="22sp" />
             </LinearLayout>
         </RelativeLayout>
 
         <ViewFlipper
             android:id="@+id/view_flipper"
             android:layout_width="match_parent"
-            android:focusableInTouchMode="false"
-            android:layout_height="@dimen/height_spell_profile">
+            android:layout_height="@dimen/height_spell_profile"
+            android:focusableInTouchMode="false">
 
             <LinearLayout
                 android:id="@+id/main_panel"
@@ -61,11 +60,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/general_margin"
-                    android:singleLine="true"
                     android:ellipsize="marquee"
+                    android:fadingEdge="horizontal"
                     android:marqueeRepeatLimit="marquee_forever"
                     android:scrollHorizontally="true"
-                    android:fadingEdge="horizontal"
+                    android:singleLine="true"
                     android:text="Descriptif super long qui remplit bien plus qu'un ecran et qui normalement va tourner aeaeaze" />
 
                 <LinearLayout
@@ -85,63 +84,69 @@
 
                     <GridLayout
                         android:id="@+id/infos"
-                        android:columnCount="3"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:columnCount="3">
+
                         <TextView
-                            android:layout_columnWeight="1"
                             android:layout_rowWeight="1"
-                            android:textAlignment="center"
+                            android:layout_columnWeight="1"
                             android:gravity="center"
-                            android:text="Dégats:3d10"/>
+                            android:text="Dégats:3d10"
+                            android:textAlignment="center" />
+
                         <TextView
-                            android:layout_columnWeight="1"
-                             android:gravity="center"
                             android:layout_rowWeight="1"
+                            android:layout_columnWeight="1"
+                            android:gravity="center"
                             android:text="Type:feu"
                             android:textAlignment="center" />
+
                         <TextView
-                            android:layout_columnWeight="1"
                             android:layout_rowWeight="1"
+                            android:layout_columnWeight="1"
                             android:gravity="center"
                             android:text="Portée:3m"
                             android:textAlignment="center" />
+
                         <TextView
-                            android:layout_columnWeight="1"
                             android:layout_rowWeight="1"
+                            android:layout_columnWeight="1"
+                            android:gravity="center"
                             android:text="Range:3m"
-                            android:gravity="center"
                             android:textAlignment="center" />
+
                         <TextView
-                            android:layout_columnWeight="1"
-                            android:layout_rowWeight="1"
                             android:layout_height="wrap_content"
-                            android:text="Compos:V,G"
-                            android:gravity="center"
-                            android:textAlignment="center" />
-                        <TextView
-                            android:layout_columnWeight="1"
                             android:layout_rowWeight="1"
+                            android:layout_columnWeight="1"
+                            android:gravity="center"
+                            android:text="Compos:V,G"
+                            android:textAlignment="center" />
+
+                        <TextView
+                            android:layout_rowWeight="1"
+                            android:layout_columnWeight="1"
                             android:gravity="center"
                             android:text="Durée:26min"
                             android:textAlignment="center" />
+
                         <TextView
-                            android:layout_columnWeight="1"
                             android:layout_rowWeight="1"
+                            android:layout_columnWeight="1"
+                            android:gravity="center"
                             android:text="RM:non"
-                            android:textAlignment="center"
-                            android:gravity="center" />
+                            android:textAlignment="center" />
+
                         <TextView
-                            android:layout_columnWeight="1"
                             android:layout_rowWeight="1"
+                            android:layout_columnWeight="1"
                             android:gravity="center"
                             android:text="Save:ref[annule](21)"
                             android:textAlignment="center" />
                     </GridLayout>
 
                 </LinearLayout>
-
-
 
 
                 <FrameLayout
@@ -154,11 +159,11 @@
                         android:id="@+id/slider"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/round_corner_slide"
                         android:layout_weight="1"
-                        android:progress="1"
+                        android:background="@drawable/round_corner_slide"
                         android:max="100"
                         android:minHeight="30dp"
+                        android:progress="1"
                         android:thumb="@drawable/thumb_unselect" />
 
                 </FrameLayout>
@@ -170,7 +175,7 @@
                 android:layout_height="@dimen/height_spell_profile"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:orientation="vertical"/>
+                android:orientation="vertical" />
 
         </ViewFlipper>
     </LinearLayout>

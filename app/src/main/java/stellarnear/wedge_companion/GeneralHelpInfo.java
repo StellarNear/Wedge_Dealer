@@ -11,6 +11,7 @@ public class GeneralHelpInfo {
     private String descr;
     private String id;
     private Context mC;
+
     public GeneralHelpInfo(String name, String descr, String id) {
         this.name = name;
         this.descr = descr;

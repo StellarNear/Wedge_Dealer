@@ -1,14 +1,14 @@
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item>
         <shape>
             <size
-                android:height="40dp"
-                android:width="40dp" />
+                android:width="40dp"
+                android:height="40dp" />
 
             <solid android:color="@android:color/transparent" />
         </shape>
     </item>
-    <item android:drawable="@drawable/slider_selected_drawable"/>
+    <item android:drawable="@drawable/slider_selected_drawable" />
 
 </layer-list>

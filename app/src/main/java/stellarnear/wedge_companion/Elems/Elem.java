@@ -9,19 +9,19 @@ public class Elem {
     private String key;
     private int drawableId;
 
-    public Elem(String key, String name, int colorId,int colorIdRecent,int drawableId){
-        this.key=key;
-        this.name=name;
-        this.colorId=colorId;
-        this.colorIdRecent=colorIdRecent;
-        this.drawableId=drawableId;
+    public Elem(String key, String name, int colorId, int colorIdRecent, int drawableId) {
+        this.key = key;
+        this.name = name;
+        this.colorId = colorId;
+        this.colorIdRecent = colorIdRecent;
+        this.drawableId = drawableId;
     }
 
-    public Elem(String key, String name, int colorId,int colorIdRecent){
-        this.key=key;
-        this.name=name;
-        this.colorId=colorId;
-        this.colorIdRecent=colorIdRecent;
+    public Elem(String key, String name, int colorId, int colorIdRecent) {
+        this.key = key;
+        this.name = name;
+        this.colorId = colorId;
+        this.colorIdRecent = colorIdRecent;
     }
 
     public int getColorId() {

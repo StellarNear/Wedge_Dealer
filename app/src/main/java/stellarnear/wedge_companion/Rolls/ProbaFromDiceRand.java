@@ -28,8 +28,8 @@ public class ProbaFromDiceRand {
     }
 
     public String getProba(String element, boolean... critArg) {
-        this.element=element;
-        Boolean crit = critArg.length > 0 ? critArg[0] : false;  //parametre optionnel pour editer le contenu de l'invertaire
+        this.element = element;
+        Boolean crit = critArg.length > 0 && critArg[0];  //parametre optionnel pour editer le contenu de l'invertaire
 
         buildParameters();
         Double percentage = 0d;
@@ -51,14 +51,14 @@ public class ProbaFromDiceRand {
     }
 
     public String getRange(String element) {
-        this.element=element;
+        this.element = element;
         buildParameters();
         Integer ecart = max - min;
         Double percentage = 0d;
         if (ecart != 0) {
             percentage = 100d * (sum - min) / ecart;
         }
-        String rangeTxt = "[" + min + " - " + max + "]\n(" + String.valueOf(percentage.intValue()) + "%)";
+        String rangeTxt = "[" + min + " - " + max + "]\n(" + percentage.intValue() + "%)";
         return rangeTxt;
     }
 
@@ -69,17 +69,17 @@ public class ProbaFromDiceRand {
         if (ecart != 0) {
             percentage = 100d * (sum - min) / ecart;
         }
-        String rangeTxt = "[" + min + " - " + max + "]\n(" + String.valueOf(percentage.intValue()) + "%)";
+        String rangeTxt = "[" + min + " - " + max + "]\n(" + percentage.intValue() + "%)";
         return rangeTxt;
     }
 
 
     private void buildParameters() {
-        if(selectedRollList!=null) {
+        if (selectedRollList != null) {
             max = selectedRollList.getMaxDmgFromType(element);
             min = selectedRollList.getMinDmgFromType(element);
             sum = selectedRollList.getDmgSumFromType(element);
-        }else if(selectedDiceList!=null){
+        } else if (selectedDiceList != null) {
             max = selectedDiceList.getMaxDmg();
             min = selectedDiceList.getMinDmg();
             sum = selectedDiceList.getSum();
@@ -96,7 +96,9 @@ public class ProbaFromDiceRand {
 
         Integer total = 10 * nd10 + 8 * nd8 + 6 * nd6;
 
-        if (total==0){return 0d;}
+        if (total == 0) {
+            return 0d;
+        }
 
         //Log.d("STATE (table)total", String.valueOf(total));
         BigInteger[] combi_old = new BigInteger[total];          // table du nombre de combinaison pour chaque valeur somme

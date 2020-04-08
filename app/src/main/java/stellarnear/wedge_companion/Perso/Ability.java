@@ -16,23 +16,25 @@ public class Ability {
     protected String descr;
     protected String id;
     protected Context mC;
+    protected String pjID;
     protected Drawable img;
     protected String shortname;
-    protected int value=0;
+    protected int value = 0;
     protected boolean testable;
     protected boolean focusable;
 
-    public Ability(String name, String shortname, String type, String descr,Boolean testable,Boolean focusable, String id, Context mC) {
+    public Ability(String name, String shortname, String type, String descr, Boolean testable, Boolean focusable, String id, Context mC, String pjID) {
         this.name = name;
         this.type = type;
         this.descr = descr;
-        this.testable=testable;
-        this.focusable=focusable;
+        this.testable = testable;
+        this.focusable = focusable;
         this.id = id;
         this.shortname = shortname;
         this.mC = mC;
+        this.pjID = pjID;
         try {
-            int imgId=mC.getResources().getIdentifier(id, "drawable", mC.getPackageName());
+            int imgId = mC.getResources().getIdentifier(id, "drawable", mC.getPackageName());
             this.img = mC.getDrawable(imgId);
         } catch (Exception e) {
             this.img = mC.getDrawable(R.drawable.mire_test);
@@ -45,11 +47,11 @@ public class Ability {
     }
 
     public String getShortname() {
-        String returnVal="";
-        if (this.shortname.equalsIgnoreCase("")){
-            returnVal=this.name;
+        String returnVal = "";
+        if (this.shortname.equalsIgnoreCase("")) {
+            returnVal = this.name;
         } else {
-            returnVal=this.shortname;
+            returnVal = this.shortname;
         }
         return returnVal;
     }
@@ -66,16 +68,16 @@ public class Ability {
         return id;
     }
 
-    public Drawable getImg(){
+    public Drawable getImg() {
         return this.img;
-    }
-
-    public void setValue(int value) {
-        this.value = value;
     }
 
     public int getValue() {
         return this.value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
     }
 
     public int getMod() {
@@ -93,11 +95,11 @@ public class Ability {
         return mod;
     }
 
-    public boolean isTestable(){
+    public boolean isTestable() {
         return this.testable;
     }
 
-    public boolean isFocusable(){
+    public boolean isFocusable() {
         return this.focusable;
     } //c'est pour les jet à+10 et 20 en réussite passive quand les test peuvent etre fait au calme
 

@@ -2,47 +2,45 @@
     <SwitchPreference
         android:defaultValue="@bool/switch_fullscreen_mode_DEF"
         android:key="switch_fullscreen_mode"
-        android:title="Mode plein écran"
-        android:summary="Masque la barre de statut du téléphone"/>
+        android:summary="Masque la barre de statut du téléphone"
+        android:title="Mode plein écran" />
 
     <SwitchPreference
         android:defaultValue="@bool/switch_manual_diceroll_def"
         android:key="switch_manual_diceroll"
-        android:title="Lancement manuel D20"/>
+        android:title="Lancement manuel D20" />
 
     <SwitchPreference
         android:defaultValue="@bool/switch_fake_long_load_DEF"
         android:key="switch_fake_long_load"
-        android:title="Faux temps de chargement"
-        android:summary="Pour admirer les deux dessins !"/>
+        android:summary="Pour admirer les deux dessins !"
+        android:title="Faux temps de chargement" />
 
     <SwitchPreference
         android:defaultValue="@bool/switch_autoclose_dialog_DEF"
         android:key="switch_autoclose_dialog"
-        android:title="Popups éphémères"
-        android:summary="Les fenetres d'infos se referment automatiquement"/>
+        android:summary="Les fenetres d'infos se referment automatiquement"
+        android:title="Popups éphémères" />
 
     <stellarnear.wedge_companion.EditTextPreference
         android:defaultValue="@integer/custom_alert_long_duration_DEF"
         android:dependency="switch_autoclose_dialog"
+        android:inputType="number"
         android:key="custom_alert_long_duration"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:inputType="number"
         android:summary="Valeurs : %s ms"
-        android:title="Durée d'affichage des fenêtres"
-        />
+        android:title="Durée d'affichage des fenêtres" />
     <SwitchPreference
         android:defaultValue="@bool/switch_demo_mode_def"
         android:key="switch_demo_mode"
-        android:title="Mode Démo"
-        android:summary="Aucune sauvegarde ni retransmission d'information"/>
+        android:summary="Aucune sauvegarde ni retransmission d'information"
+        android:title="Mode Démo" />
     <SwitchPreference
         android:defaultValue="@bool/switch_shadow_link_def"
         android:key="switch_shadow_link"
-        android:title="ShadowLink"
-        android:summary="Connexion à la page Live Feed RP (googlesheet)"/>
-
+        android:summary="Connexion à la page Live Feed RP (googlesheet)"
+        android:title="ShadowLink" />
 
 
 </PreferenceScreen>

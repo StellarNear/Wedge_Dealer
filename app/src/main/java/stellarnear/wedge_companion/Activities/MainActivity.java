@@ -53,18 +53,18 @@ public class MainActivity extends AppCompatActivity {
 
             Thread persoCreation = new Thread(new Runnable() {
                 public void run() {
-                    MainActivity.this.runOnUiThread(new Runnable()
-                    {
+                    MainActivity.this.runOnUiThread(new Runnable() {
                         public void run() {
                             PersoManager.initPJs(getApplicationContext());
                             loading = true;
                         }
                     });
-                }});
+                }
+            });
 
             persoCreation.start();
 
-            final View unloadedBack =(View) getLayoutInflater().inflate(R.layout.loading_back, null);
+            final View unloadedBack = getLayoutInflater().inflate(R.layout.loading_back, null);
             setContentView(unloadedBack);
 
             Thread loadListner = new Thread(new Runnable() {
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setLoadCompleteListner(final View back) {
         Timer timerRefreshLoading = new Timer();
-        int firstDelay = settings.getBoolean("switch_fake_long_load",  getResources().getBoolean(R.bool.switch_fake_long_load_DEF)) ? 2500 : 500;
+        int firstDelay = settings.getBoolean("switch_fake_long_load", getResources().getBoolean(R.bool.switch_fake_long_load_DEF)) ? 2500 : 500;
         timerRefreshLoading.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
@@ -88,12 +88,12 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             back.findViewById(R.id.main_back).setBackground(getDrawable(R.drawable.loaded_back));
-                            ((ImageView)back.findViewById(R.id.main_back_img)).setImageDrawable(getDrawable(R.drawable.wedge_loaded));
-                            ((ImageView)back.findViewById(R.id.main_back_img)).setBackground(getDrawable(R.drawable.loaded_back_img));
+                            ((ImageView) back.findViewById(R.id.main_back_img)).setImageDrawable(getDrawable(R.drawable.wedge_loaded));
+                            back.findViewById(R.id.main_back_img).setBackground(getDrawable(R.drawable.loaded_back_img));
                             back.setOnTouchListener(new View.OnTouchListener() {
                                 @Override
                                 public boolean onTouch(View arg0, MotionEvent arg1) {
-                                    if(!touched) {
+                                    if (!touched) {
                                         touched = true;
                                         buildMainPage();
                                         unlockOrient();
@@ -109,11 +109,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void buildMainPage() {
-        int themeId=getResources().getIdentifier("AppTheme"+PersoManager.getCurrentPJ().getID(), "style", getPackageName());
+        int themeId = getResources().getIdentifier("AppTheme" + PersoManager.getCurrentPJ().getID(), "style", getPackageName());
         setTheme(themeId);
         setContentView(R.layout.activity_main);
         mainFrameFrag = findViewById(R.id.fragment_main_frame_layout);
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = findViewById(R.id.toolbar);
 
         toolbar.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -126,16 +126,15 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         getSupportActionBar().show();
-        toolbar.setTitle(PersoManager.getCurrentNamePJ()+" companion");
-        int drawableId=getResources().getIdentifier("background_banner"+PersoManager.getCurrentPJ().getID(), "drawable", getPackageName());
+        toolbar.setTitle(PersoManager.getCurrentNamePJ() + " companion");
+        int drawableId = getResources().getIdentifier("background_banner" + PersoManager.getCurrentPJ().getID(), "drawable", getPackageName());
         toolbar.setBackground(getDrawable(drawableId));
         Window window = getWindow();
         TypedValue typedValue = new TypedValue();
-        getTheme().resolveAttribute(R.attr.colorPrimaryDark,typedValue,true);
+        getTheme().resolveAttribute(R.attr.colorPrimaryDark, typedValue, true);
         window.setStatusBarColor(typedValue.data);
         startFragment();
     }
-
 
 
     @Override
@@ -149,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         checkOrientStart(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        if (PersoManager.getCurrentPJ() != null ) {
+        if (PersoManager.getCurrentPJ() != null) {
             PersoManager.setMainPJ();
             PersoManager.getCurrentPJ().refresh();
             buildMainPage();
@@ -160,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
         Fragment fragment = new MainActivityFragment();
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(mainFrameFrag.getId(), fragment,"frag_main");
+        fragmentTransaction.replace(mainFrameFrag.getId(), fragment, "frag_main");
         fragmentTransaction.commit();
     }
 
@@ -184,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             unlockOrient();
             Intent intent = new Intent(this, SettingsActivity.class);
-            intent.putExtra("fromActivity","MainActivity");
+            intent.putExtra("fromActivity", "MainActivity");
             startActivity(intent);
             finish();
             return true;

@@ -3,28 +3,38 @@
     <PreferenceCategory
         android:key="Magie"
         android:title="Magie">
-        <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+        <Preference
+            android:layout="@layout/divider_pref"
+            android:selectable="false" />
     </PreferenceCategory>
     <PreferenceCategory
         android:key="Attaque"
         android:title="Attaque">
-        <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+        <Preference
+            android:layout="@layout/divider_pref"
+            android:selectable="false" />
     </PreferenceCategory>
-    <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+    <Preference
+        android:layout="@layout/divider_pref"
+        android:selectable="false" />
     <PreferenceCategory
         android:key="Défense"
         android:title="Défense">
-        <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+        <Preference
+            android:layout="@layout/divider_pref"
+            android:selectable="false" />
 
     </PreferenceCategory>
-    <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+    <Preference
+        android:layout="@layout/divider_pref"
+        android:selectable="false" />
     <PreferenceCategory
         android:key="Autre"
         android:title="Autre">
-        <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+        <Preference
+            android:layout="@layout/divider_pref"
+            android:selectable="false" />
     </PreferenceCategory>
-
-
 
 
 </PreferenceScreen>

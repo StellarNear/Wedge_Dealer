@@ -58,7 +58,7 @@ import stellarnear.wedge_companion.Spells.SpellList;
 public class HelpActivity extends AppCompatActivity {
     private Perso pj = PersoManager.getCurrentPJ();
     private Context mC;
-    private Map<Button,String> mapButtonCat=new HashMap<>();
+    private Map<Button, String> mapButtonCat = new HashMap<>();
     private ViewFlipper flipper;
     private View titleLayout;
     private View menuCategories;
@@ -66,24 +66,25 @@ public class HelpActivity extends AppCompatActivity {
     private ImageView infoImg;
     private GestureDetector mGestureDetector;
     private Activity mA;
-    private Map<String,SpellList> mapsElemSPellList = new HashMap<>();
+    private Map<String, SpellList> mapsElemSPellList = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        if (settings.getBoolean("switch_fullscreen_mode",getApplicationContext().getResources().getBoolean(R.bool.switch_fullscreen_mode_DEF))) {
+        if (settings.getBoolean("switch_fullscreen_mode", getApplicationContext().getResources().getBoolean(R.bool.switch_fullscreen_mode_DEF))) {
             requestWindowFeature(Window.FEATURE_NO_TITLE);
             this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
         super.onCreate(savedInstanceState);
-        this.mA=this;
-        this.mC=getApplicationContext();
+        this.mA = this;
+        this.mC = getApplicationContext();
         setContentView(R.layout.help_activity);
         flipper = findViewById(R.id.help_activity_flipper);
-        infoImg = new ImageView(mC);   infoImg.setImageDrawable(getDrawable(R.drawable.ic_info_outline_24dp));
-        infoImg.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT,1));
+        infoImg = new ImageView(mC);
+        infoImg.setImageDrawable(getDrawable(R.drawable.ic_info_outline_24dp));
+        infoImg.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, 1));
         flipper.addView(infoImg);
-        titleCatText = (TextView) findViewById(R.id.help_activity_title_category_text);
+        titleCatText = findViewById(R.id.help_activity_title_category_text);
         menuCategories = findViewById(R.id.help_activity_button_linear);
         titleLayout = findViewById(R.id.help_activity_title_category_relat);
         ImageButton backToCatMenu = findViewById(R.id.help_activity_button_category_exit);
@@ -92,13 +93,13 @@ public class HelpActivity extends AppCompatActivity {
             public void onClick(View view) {
                 flipper.removeAllViews();
                 flipper.addView(infoImg);
-                switchMenu(titleLayout,menuCategories);
+                switchMenu(titleLayout, menuCategories);
             }
         });
         CustomGestureDetector customGestureDetector = new CustomGestureDetector();
         mGestureDetector = new GestureDetector(this, customGestureDetector);
 
-        Toolbar mActionBarToolbarhelp = (Toolbar) findViewById(R.id.toolbarHelp);
+        Toolbar mActionBarToolbarhelp = findViewById(R.id.toolbarHelp);
         setSupportActionBar(mActionBarToolbarhelp);
 
         buildCategories();
@@ -106,64 +107,64 @@ public class HelpActivity extends AppCompatActivity {
 
     private void buildCategories() {
         List<String> categories;
-        if(pj.getID().equalsIgnoreCase("")||pj.getID().equalsIgnoreCase("halda")){
-            categories = new ArrayList<>(Arrays.asList("Général","Caractéristiques","Compétences","Dons","Capacités","Dons Mythiques","Capacités Mythiques"));
-            SpellList spellsToDisplay=new SpellList();
-            if(pj.getID().equalsIgnoreCase("")){
+        if (pj.getID().equalsIgnoreCase("") || pj.getID().equalsIgnoreCase("halda")) {
+            categories = new ArrayList<>(Arrays.asList("Général", "Caractéristiques", "Compétences", "Dons", "Capacités", "Dons Mythiques", "Capacités Mythiques"));
+            SpellList spellsToDisplay = new SpellList();
+            if (pj.getID().equalsIgnoreCase("")) {
                 spellsToDisplay.add(BuildPreparedSpellList.getInstance(mC).getAllSpells());
             } else {
                 spellsToDisplay.add(BuildSpontaneousSpellList.getInstance(mC).getSpellList());
             }
-            for(Spell spell:spellsToDisplay.asList()){
-                if(mapsElemSPellList.get(spell.getDmg_type())==null){
-                    String nameCat="";
-                    switch (spell.getDmg_type()){
+            for (Spell spell : spellsToDisplay.asList()) {
+                if (mapsElemSPellList.get(spell.getDmg_type()) == null) {
+                    String nameCat = "";
+                    switch (spell.getDmg_type()) {
                         case "":
-                            nameCat="utilitaires";
+                            nameCat = "utilitaires";
                             break;
                         case "heal":
-                            nameCat="de soin";
+                            nameCat = "de soin";
                             break;
                         case "none":
-                            nameCat="de dégât";
+                            nameCat = "de dégât";
                             break;
                         case "fire":
-                            nameCat="de feu";
+                            nameCat = "de feu";
                             break;
                         case "shock":
-                            nameCat="de foudre";
+                            nameCat = "de foudre";
                             break;
                         case "frost":
-                            nameCat="de froid";
+                            nameCat = "de froid";
                             break;
                         case "acid":
-                            nameCat="d'acide";
+                            nameCat = "d'acide";
                             break;
                     }
-                    categories.add("Sorts "+nameCat);
-                    mapsElemSPellList.put(spell.getDmg_type(),new SpellList());
+                    categories.add("Sorts " + nameCat);
+                    mapsElemSPellList.put(spell.getDmg_type(), new SpellList());
                     mapsElemSPellList.get(spell.getDmg_type()).add(spell);
                 } else {
                     mapsElemSPellList.get(spell.getDmg_type()).add(spell);
                 }
             }
         } else {
-            categories = new ArrayList<>(Arrays.asList("Général","Caractéristiques","Compétences","Dons","Capacités"));
+            categories = new ArrayList<>(Arrays.asList("Général", "Caractéristiques", "Compétences", "Dons", "Capacités"));
         }
 
         LinearLayout buttons = findViewById(R.id.help_activity_button_linear);
         buttons.removeAllViews();
 
-        boolean firstButton=true;
-        for (String cat : categories){
+        boolean firstButton = true;
+        for (String cat : categories) {
             Button button = new Button(mC);
-            LinearLayout.LayoutParams para= new LinearLayout.LayoutParams(400, LinearLayout.LayoutParams.MATCH_PARENT);
+            LinearLayout.LayoutParams para = new LinearLayout.LayoutParams(400, LinearLayout.LayoutParams.MATCH_PARENT);
             int pixelMarging = mC.getResources().getDimensionPixelSize(R.dimen.general_margin);
-            if(firstButton){
-                para.setMargins(pixelMarging,pixelMarging,pixelMarging,pixelMarging);
-                firstButton=false;
-            }else {
-                para.setMargins(0,pixelMarging,pixelMarging,pixelMarging);
+            if (firstButton) {
+                para.setMargins(pixelMarging, pixelMarging, pixelMarging, pixelMarging);
+                firstButton = false;
+            } else {
+                para.setMargins(0, pixelMarging, pixelMarging, pixelMarging);
             }
             button.setLayoutParams(para);
             button.setText(cat);
@@ -171,7 +172,7 @@ public class HelpActivity extends AppCompatActivity {
             button.setAllCaps(false);
             button.setBackground(getDrawable(R.drawable.button_basic_gradient));
             setButtonListner(button);
-            mapButtonCat.put(button,cat);
+            mapButtonCat.put(button, cat);
             buttons.addView(button);
         }
     }
@@ -184,18 +185,19 @@ public class HelpActivity extends AppCompatActivity {
                 unselectOthers(button);
                 fillFlipper(button);
                 titleCatText.setText(mapButtonCat.get(button));
-                switchMenu(menuCategories,titleLayout);
+                switchMenu(menuCategories, titleLayout);
             }
         });
     }
 
-    private void switchMenu(final View out,final View in) {
-        final Animation inFromTop = AnimationUtils.loadAnimation(mC,R.anim.infromtop);
-        final Animation outToTop = AnimationUtils.loadAnimation(mC,R.anim.outtotop);
+    private void switchMenu(final View out, final View in) {
+        final Animation inFromTop = AnimationUtils.loadAnimation(mC, R.anim.infromtop);
+        final Animation outToTop = AnimationUtils.loadAnimation(mC, R.anim.outtotop);
         outToTop.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
             }
+
             @Override
             public void onAnimationRepeat(Animation animation) {
             }
@@ -211,8 +213,8 @@ public class HelpActivity extends AppCompatActivity {
     }
 
     private void unselectOthers(Button button) {
-        for(Button buttonToUnselect : mapButtonCat.keySet()){
-            if(!buttonToUnselect.equals(button)){
+        for (Button buttonToUnselect : mapButtonCat.keySet()) {
+            if (!buttonToUnselect.equals(button)) {
                 buttonToUnselect.setBackground(getDrawable(R.drawable.button_basic_gradient));
             }
         }
@@ -220,93 +222,89 @@ public class HelpActivity extends AppCompatActivity {
 
     private void fillFlipper(Button button) {
         flipper.removeAllViews();
-        ViewGroup vg= findViewById(R.id.help_info_RelativeLayout);
-        if(mapButtonCat.get(button).equalsIgnoreCase("Général")){
+        ViewGroup vg = findViewById(R.id.help_info_RelativeLayout);
+        if (mapButtonCat.get(button).equalsIgnoreCase("Général")) {
             List<GeneralHelpInfo> listHelp = new AllGeneralHelpInfos(mC).getListGeneralHelpInfos();
-            for (GeneralHelpInfo help : listHelp){
-                View view = getLayoutInflater().inflate(R.layout.custom_help_info_flipper,vg,false);
-                changeFields(view,help.getId(),help.getName(),"",help.getDescr());
+            for (GeneralHelpInfo help : listHelp) {
+                View view = getLayoutInflater().inflate(R.layout.custom_help_info_flipper, vg, false);
+                changeFields(view, help.getId(), help.getName(), "", help.getDescr());
                 flipper.addView(view);
             }
-        }else
-        if(mapButtonCat.get(button).equalsIgnoreCase("Caractéristiques")){
-            for (Ability abi : pj.getAllAbilities().getAbilitiesList()){
-                View view = getLayoutInflater().inflate(R.layout.custom_help_info_flipper,vg,false);
-                changeFields(view,abi.getId(),abi.getName(),"Type : "+abi.getType(),abi.getDescr());
+        } else if (mapButtonCat.get(button).equalsIgnoreCase("Caractéristiques")) {
+            for (Ability abi : pj.getAllAbilities().getAbilitiesList()) {
+                View view = getLayoutInflater().inflate(R.layout.custom_help_info_flipper, vg, false);
+                changeFields(view, abi.getId(), abi.getName(), "Type : " + abi.getType(), abi.getDescr());
                 flipper.addView(view);
             }
-        }else
-        if(mapButtonCat.get(button).equalsIgnoreCase("Compétences")){
-            for (Skill skill : pj.getAllSkills().getSkillsList()){
-                View view = getLayoutInflater().inflate(R.layout.custom_help_info_flipper,vg,false);
-                changeFields(view,skill.getId(),skill.getName(),"",skill.getDescr());
+        } else if (mapButtonCat.get(button).equalsIgnoreCase("Compétences")) {
+            for (Skill skill : pj.getAllSkills().getSkillsList()) {
+                View view = getLayoutInflater().inflate(R.layout.custom_help_info_flipper, vg, false);
+                changeFields(view, skill.getId(), skill.getName(), "", skill.getDescr());
                 flipper.addView(view);
             }
-        }else
-        if(mapButtonCat.get(button).equalsIgnoreCase("Dons")){
-            for (Feat feat : pj.getAllFeats().getFeatsList()){
-                View view = getLayoutInflater().inflate(R.layout.custom_help_info_flipper,vg,false);
-                String type= feat.getType().equalsIgnoreCase("feat_magic")? "Magie":feat.getType().equalsIgnoreCase("feat_def")? "Défensif":"Autre";
-                changeFields(view,feat.getId(),feat.getName(),"Type : "+type,feat.getDescr());
+        } else if (mapButtonCat.get(button).equalsIgnoreCase("Dons")) {
+            for (Feat feat : pj.getAllFeats().getFeatsList()) {
+                View view = getLayoutInflater().inflate(R.layout.custom_help_info_flipper, vg, false);
+                String type = feat.getType().equalsIgnoreCase("feat_magic") ? "Magie" : feat.getType().equalsIgnoreCase("feat_def") ? "Défensif" : "Autre";
+                changeFields(view, feat.getId(), feat.getName(), "Type : " + type, feat.getDescr());
                 flipper.addView(view);
             }
-        } else
-        if(mapButtonCat.get(button).equalsIgnoreCase("Capacités")){
-            for (Capacity capa : pj.getAllCapacities().getAllCapacitiesList()){
-                View view = getLayoutInflater().inflate(R.layout.custom_help_info_flipper,vg,false);
-                changeFields(view,capa.getId(),capa.getName(),"",capa.getDescr());
+        } else if (mapButtonCat.get(button).equalsIgnoreCase("Capacités")) {
+            for (Capacity capa : pj.getAllCapacities().getAllCapacitiesList()) {
+                View view = getLayoutInflater().inflate(R.layout.custom_help_info_flipper, vg, false);
+                changeFields(view, capa.getId(), capa.getName(), "", capa.getDescr());
                 flipper.addView(view);
             }
-        }else
-        if(mapButtonCat.get(button).equalsIgnoreCase("Dons Mythiques")){
-            for (MythicFeat mythicFeat : pj.getAllMythicFeats().getMythicFeatsList()){
-                View view = getLayoutInflater().inflate(R.layout.custom_help_info_flipper,vg,false);
-                changeFields(view,mythicFeat.getId(),mythicFeat.getName(),"",mythicFeat.getDescr());
+        } else if (mapButtonCat.get(button).equalsIgnoreCase("Dons Mythiques")) {
+            for (MythicFeat mythicFeat : pj.getAllMythicFeats().getMythicFeatsList()) {
+                View view = getLayoutInflater().inflate(R.layout.custom_help_info_flipper, vg, false);
+                changeFields(view, mythicFeat.getId(), mythicFeat.getName(), "", mythicFeat.getDescr());
                 flipper.addView(view);
             }
-        }else
-        if(mapButtonCat.get(button).equalsIgnoreCase("Capacités Mythiques")){
-            for (MythicCapacity mythicCapacity : pj.getAllMythicCapacities().getAllMythicCapacitiesList()){
-                View view = getLayoutInflater().inflate(R.layout.custom_help_info_flipper,vg,false);
-                changeFields(view,mythicCapacity.getId(),mythicCapacity.getName(),"Catégorie : "+mythicCapacity.getType(),mythicCapacity.getDescr());
+        } else if (mapButtonCat.get(button).equalsIgnoreCase("Capacités Mythiques")) {
+            for (MythicCapacity mythicCapacity : pj.getAllMythicCapacities().getAllMythicCapacitiesList()) {
+                View view = getLayoutInflater().inflate(R.layout.custom_help_info_flipper, vg, false);
+                changeFields(view, mythicCapacity.getId(), mythicCapacity.getName(), "Catégorie : " + mythicCapacity.getType(), mythicCapacity.getDescr());
                 flipper.addView(view);
             }
-        }else
-        if(mapButtonCat.get(button).contains("Sorts")){
-            SpellList spellsToDisplay=new SpellList();
-            switch (mapButtonCat.get(button)){
+        } else if (mapButtonCat.get(button).contains("Sorts")) {
+            SpellList spellsToDisplay = new SpellList();
+            switch (mapButtonCat.get(button)) {
                 case "Sorts utilitaires":
-                    spellsToDisplay=mapsElemSPellList.get("");
+                    spellsToDisplay = mapsElemSPellList.get("");
                     break;
                 case "Sorts de soin":
-                    spellsToDisplay=mapsElemSPellList.get("heal");
+                    spellsToDisplay = mapsElemSPellList.get("heal");
                     break;
                 case "Sorts de dégât":
-                    spellsToDisplay=mapsElemSPellList.get("none");
+                    spellsToDisplay = mapsElemSPellList.get("none");
                     break;
                 case "Sorts de feu":
-                    spellsToDisplay=mapsElemSPellList.get("fire");
+                    spellsToDisplay = mapsElemSPellList.get("fire");
                     break;
                 case "Sorts de foudre":
-                    spellsToDisplay=mapsElemSPellList.get("shock");
+                    spellsToDisplay = mapsElemSPellList.get("shock");
                     break;
                 case "Sorts de froid":
-                    spellsToDisplay=mapsElemSPellList.get("frost");
+                    spellsToDisplay = mapsElemSPellList.get("frost");
                     break;
                 case "Sorts d'acide":
-                    spellsToDisplay=mapsElemSPellList.get("acid");
+                    spellsToDisplay = mapsElemSPellList.get("acid");
                     break;
             }
-            for (Spell spell : spellsToDisplay.asList()){
-                View view = getLayoutInflater().inflate(R.layout.custom_help_info_flipper,vg,false);
-                String dmgTxt="Dégat : "+spell.getDmg_type(); if(spell.getDmg_type().equalsIgnoreCase("")){ dmgTxt="Utilitaire";}
-                changeFields(view,spell.getID(),spell.getName(),dmgTxt,spell.getDescr());
+            for (Spell spell : spellsToDisplay.asList()) {
+                View view = getLayoutInflater().inflate(R.layout.custom_help_info_flipper, vg, false);
+                String dmgTxt = "Dégat : " + spell.getDmg_type();
+                if (spell.getDmg_type().equalsIgnoreCase("")) {
+                    dmgTxt = "Utilitaire";
+                }
+                changeFields(view, spell.getID(), spell.getName(), dmgTxt, spell.getDescr());
                 flipper.addView(view);
             }
         }
     }
 
-    private void changeFields(View view,String id,String titleTxt,String typeTxt,String descrTxt) {
+    private void changeFields(View view, String id, String titleTxt, String typeTxt, String descrTxt) {
         ImageView img = view.findViewById(R.id.help_info_image);
         int imgId = getResources().getIdentifier(id, "drawable", getPackageName());
         try {
@@ -317,7 +315,7 @@ public class HelpActivity extends AppCompatActivity {
         }
         TextView title = view.findViewById(R.id.help_info_textName);
         title.setText(titleTxt);
-        if(!typeTxt.equalsIgnoreCase("")){
+        if (!typeTxt.equalsIgnoreCase("")) {
             TextView type = view.findViewById(R.id.help_info_textType);
             type.setVisibility(View.VISIBLE);
             type.setText(typeTxt);
@@ -326,31 +324,21 @@ public class HelpActivity extends AppCompatActivity {
         descr.setText(descrTxt);
     }
 
-    class CustomGestureDetector extends GestureDetector.SimpleOnGestureListener {
-        @Override
-        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-            if (e1.getX() > e2.getX()) { // Swipe left (next)
-                flipNext();
-            }
-            if (e1.getX() < e2.getX()) {// Swipe right (previous)
-                flipPrevious();
-            }
-            return super.onFling(e1, e2, velocityX, velocityY);
-        }
-    }
-
     private void flipNext() {
         flipper.clearAnimation();
-        Animation in = AnimationUtils.loadAnimation(mC,R.anim.infromright);
-        Animation out =  AnimationUtils.loadAnimation(mC,R.anim.outtoleft);
-        flipper.setInAnimation(in);  flipper.setOutAnimation(out);
+        Animation in = AnimationUtils.loadAnimation(mC, R.anim.infromright);
+        Animation out = AnimationUtils.loadAnimation(mC, R.anim.outtoleft);
+        flipper.setInAnimation(in);
+        flipper.setOutAnimation(out);
         flipper.showNext();
     }
+
     private void flipPrevious() {
         flipper.clearAnimation();
-        Animation in = AnimationUtils.loadAnimation(mC,R.anim.infromleft);
-        Animation out =  AnimationUtils.loadAnimation(mC,R.anim.outtoright);
-        flipper.setInAnimation(in);  flipper.setOutAnimation(out);
+        Animation in = AnimationUtils.loadAnimation(mC, R.anim.infromleft);
+        Animation out = AnimationUtils.loadAnimation(mC, R.anim.outtoright);
+        flipper.setInAnimation(in);
+        flipper.setOutAnimation(out);
         flipper.showPrevious();
     }
 
@@ -361,7 +349,7 @@ public class HelpActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
         checkOrientStart(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
     }
@@ -380,13 +368,13 @@ public class HelpActivity extends AppCompatActivity {
         super.onConfigurationChanged(newConfig);
         final Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
 
-        if (display.getRotation()==Surface.ROTATION_0) {
+        if (display.getRotation() == Surface.ROTATION_0) {
             Intent intent = new Intent(mA, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(intent);
             finish();
         }
-        if (display.getRotation()==Surface.ROTATION_90) {
+        if (display.getRotation() == Surface.ROTATION_90) {
             Intent intent = new Intent(mA, PetActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(intent);
@@ -395,7 +383,7 @@ public class HelpActivity extends AppCompatActivity {
     }
 
     private void checkOrientStart(int screenOrientation) {
-        if (getRequestedOrientation()!=screenOrientation) {
+        if (getRequestedOrientation() != screenOrientation) {
             setRequestedOrientation(screenOrientation);
             final Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
@@ -404,6 +392,19 @@ public class HelpActivity extends AppCompatActivity {
                     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR);
                 }
             }, 1000);
+        }
+    }
+
+    class CustomGestureDetector extends GestureDetector.SimpleOnGestureListener {
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            if (e1.getX() > e2.getX()) { // Swipe left (next)
+                flipNext();
+            }
+            if (e1.getX() < e2.getX()) {// Swipe right (previous)
+                flipPrevious();
+            }
+            return super.onFling(e1, e2, velocityX, velocityY);
         }
     }
 }

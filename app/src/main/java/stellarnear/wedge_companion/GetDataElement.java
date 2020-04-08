@@ -7,11 +7,11 @@ public class GetDataElement {
     private String spelljson;
 
     /* jet  attaque et jet degat de l'attaque  */
-    public GetDataElement(String date,String uuid,String caster,String spelljson) {
-       this.date=date;
-       this.uuid=uuid;
-       this.caster=caster;
-       this.spelljson=spelljson;
+    public GetDataElement(String date, String uuid, String caster, String spelljson) {
+        this.date = date;
+        this.uuid = uuid;
+        this.caster = caster;
+        this.spelljson = spelljson;
     }
 
     public String getDate() {

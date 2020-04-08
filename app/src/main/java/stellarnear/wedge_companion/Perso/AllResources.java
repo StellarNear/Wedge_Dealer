@@ -20,6 +20,7 @@ import java.util.Map;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Spells.SpellsRanksManager;
 import stellarnear.wedge_companion.Tools;
 
@@ -34,17 +35,17 @@ public class AllResources {
     private AllCapacities allCapacities;
     private Map<String, Resource> mapIDRes = new HashMap<>();
     private List<Resource> listResources = new ArrayList<>();
-    private SpellsRanksManager rankManager=null;
+    private SpellsRanksManager rankManager = null;
     private SharedPreferences settings;
     private Tools tools = Tools.getTools();
-    private String pjID="";
+    private String pjID = "";
 
-    public AllResources(Context mC,AllFeats allFeats,AllAbilities allAbilities,AllCapacities allCapacities,String pjID) {
+    public AllResources(Context mC, AllFeats allFeats, AllAbilities allAbilities, AllCapacities allCapacities, String pjID) {
         this.mC = mC;
-        this.allFeats=allFeats;
-        this.allAbilities=allAbilities;
-        this.allCapacities=allCapacities;
-        this.pjID=pjID;
+        this.allFeats = allFeats;
+        this.allAbilities = allAbilities;
+        this.allCapacities = allCapacities;
+        this.pjID = pjID;
         settings = PreferenceManager.getDefaultSharedPreferences(mC);
         try {
             buildResourcesList();
@@ -52,7 +53,7 @@ public class AllResources {
             loadCurrent();
         } catch (Exception e) {
             e.printStackTrace();
-            Log.d("Load_RES","Error loading resources "+pjID+e.getMessage());
+            Log.d("Load_RES", "Error loading resources " + pjID + e.getMessage());
             reset();
         }
     }
@@ -62,8 +63,8 @@ public class AllResources {
         mapIDRes = new HashMap<>();
         try {
             // Partie from assets
-            String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
-            InputStream is = mC.getAssets().open("resources"+extendID+".xml");
+            String extendID = pjID.equalsIgnoreCase("") ? "" : "_" + pjID;
+            InputStream is = mC.getAssets().open("resources" + extendID + ".xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(is);
@@ -97,15 +98,15 @@ public class AllResources {
 
         // Partie sort
         Resource displaySpellResource = getResource("resource_display_rank");
-        if(displaySpellResource!=null){ //ca veut dire que dans asset resource on a souhaité cette resource
-            rankManager=new SpellsRanksManager(mC,pjID);
+        if (displaySpellResource != null) { //ca veut dire que dans asset resource on a souhaité cette resource
+            rankManager = new SpellsRanksManager(mC, pjID);
             rankManager.setRefreshEventListener(new SpellsRanksManager.OnHighTierChange() {
                 @Override
                 public void onEvent() {
                     buildResourcesList();
                 }
             });
-            for (Resource res : rankManager.getSpellTiers()){
+            for (Resource res : rankManager.getSpellTiers()) {
                 listResources.add(res);
                 mapIDRes.put(res.getId(), res);
             }
@@ -114,8 +115,8 @@ public class AllResources {
         // Partie from capacities
         addCapacitiesResources();
 
-        if(pjID.equalsIgnoreCase("halda")){
-            Resource resourceCanalTriger = new Resource("Canalisation Programmable","Trigger Canal",false,true,"resource_heal_trigger",mC,pjID);
+        if (pjID.equalsIgnoreCase("halda")) {
+            Resource resourceCanalTriger = new Resource("Canalisation Programmable", "Trigger Canal", false, true, "resource_heal_trigger", mC, pjID);
             resourceCanalTriger.setMax(1);
             listResources.add(resourceCanalTriger);
             mapIDRes.put(resourceCanalTriger.getId(), resourceCanalTriger);
@@ -123,13 +124,19 @@ public class AllResources {
     }
 
     private void addCapacitiesResources() {
-        for(Capacity cap : allCapacities.getAllCapacitiesList()){
-            if ((cap.getDailyUse()>0|| cap.isInfinite()) && cap.isActive() && getResource(cap.getId().replace("capacity_", "resource_"))==null){
+        for (Capacity cap : allCapacities.getAllCapacitiesList()) {
+            if ((cap.getDailyUse() > 0 || cap.isInfinite()) && cap.isActive() && getResource(cap.getId().replace("capacity_", "resource_")) == null) {
                 //on test si elle est pas deja presente pour la pertie rebuild  de refreshCapaListResources
-                boolean testable = true; boolean hide=false;
-                if(cap.getId().equalsIgnoreCase("capacity_lynx_eye")){testable=false;hide=true;}
-                else if(cap.getId().equalsIgnoreCase("capacity_animal_form")){testable=false;hide=true;}
-                Resource capaRes = new Resource(cap.getName(),cap.getShortname(),testable,hide,cap.getId().replace("capacity_","resource_"),mC,pjID);
+                boolean testable = true;
+                boolean hide = false;
+                if (cap.getId().equalsIgnoreCase("capacity_lynx_eye")) {
+                    testable = false;
+                    hide = true;
+                } else if (cap.getId().equalsIgnoreCase("capacity_animal_form")) {
+                    testable = false;
+                    hide = true;
+                }
+                Resource capaRes = new Resource(cap.getName(), cap.getShortname(), testable, hide, cap.getId().replace("capacity_", "resource_"), mC, pjID);
                 capaRes.setFromCapacity(cap);
                 listResources.add(capaRes);
                 mapIDRes.put(capaRes.getId(), capaRes);
@@ -171,12 +178,13 @@ public class AllResources {
         }
         return selectedResource;
     }
+
     private int readResource(String key) {
-        int val=0;
-        String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
-        int resId = mC.getResources().getIdentifier(key.toLowerCase() + "_def"+extendID, "integer", mC.getPackageName());
+        int val = 0;
+        String extendID = pjID.equalsIgnoreCase("") ? "" : "_" + pjID;
+        int resId = mC.getResources().getIdentifier(key.toLowerCase() + "_def" + extendID, "integer", mC.getPackageName());
         try {
-            val=tools.toInt(settings.getString(key.toLowerCase()+extendID, String.valueOf(mC.getResources().getInteger(resId))));
+            val = tools.toInt(settings.getString(key.toLowerCase() + extendID, String.valueOf(mC.getResources().getInteger(resId))));
         } catch (Resources.NotFoundException e) {
             e.printStackTrace();
         }
@@ -186,34 +194,42 @@ public class AllResources {
     public void refreshMaxs() {
         //partie from setting
         int hpPool = readResource("resource_hp_base");
-        int hpMythPerGrad=0;
-        if(pjID.equalsIgnoreCase("")){ //c'est wedge
-            hpMythPerGrad=5; //champion mythique
-        } else if(pjID.equalsIgnoreCase("halda")){
-            hpMythPerGrad=4; //hierophante mythique
+        int hpMythPerGrad = 0;
+        if (pjID.equalsIgnoreCase("")) { //c'est wedge
+            hpMythPerGrad = 5; //champion mythique
+            if (allCapacities.capacityIsActive("capacity_predilection_druid")) {
+                hpPool += tools.toInt(PreferenceManager.getDefaultSharedPreferences(mC).getString("ability_lvl_druid", String.valueOf(mC.getResources().getInteger(R.integer.ability_lvl_druid_def))));
+            }
+        } else if (pjID.equalsIgnoreCase("halda")) {
+            hpMythPerGrad = 4; //hierophante mythique
         }
-        if(allFeats.featIsActive("feat_robust")){ hpPool += 3+allAbilities.getAbi("ability_lvl").getValue();}
-        hpPool += hpMythPerGrad*readResource("mythic_tier");
-        hpPool += allAbilities.getAbi("ability_constitution").getMod()*allAbilities.getAbi("ability_lvl").getValue();
+        if (allFeats.featIsActive("feat_robust")) {
+            hpPool += 3 + allAbilities.getAbi("ability_lvl").getValue();
+        }
+        hpPool += hpMythPerGrad * readResource("mythic_tier");
+        hpPool += allAbilities.getAbi("ability_constitution").getMod() * allAbilities.getAbi("ability_lvl").getValue();
         getResource("resource_hp").setMax(hpPool);
 
         try {
             getResource("resource_regen").setMax(readResource("resource_regen"));
-        } catch (Exception e) { }
+        } catch (Exception e) {
+        }
         try {
-            getResource("resource_mythic_points").setMax(3+2*readResource("mythic_tier"));
-        } catch (Exception e) { }
+            getResource("resource_mythic_points").setMax(3 + 2 * readResource("mythic_tier"));
+        } catch (Exception e) {
+        }
         try {
             getResource("resource_legendary_points").setMax(readResource("resource_legendary_points"));
-        } catch (Exception e) { }
+        } catch (Exception e) {
+        }
 
-        if(allFeats.featIsActive("feat_heroic_recovery") && getResource("resource_heroic_recovery")!=null){
+        if (allFeats.featIsActive("feat_heroic_recovery") && getResource("resource_heroic_recovery") != null) {
             try {
                 getResource("resource_heroic_recovery").setMax(1);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        } else if(getResource("resource_heroic_recovery")!=null){
+        } else if (getResource("resource_heroic_recovery") != null) {
             try {
                 getResource("resource_heroic_recovery").setMax(0);
             } catch (Exception e) {
@@ -221,10 +237,12 @@ public class AllResources {
             }
         }
 
-        if(rankManager!=null){rankManager.refreshMax();}
+        if (rankManager != null) {
+            rankManager.refreshMax();
+        }
 
-        for(Resource resource : listResources){
-            if(resource.isFromCapacity()){
+        for (Resource resource : listResources) {
+            if (resource.isFromCapacity()) {
                 resource.refreshFromCapacity();
             }
         }
@@ -244,26 +262,28 @@ public class AllResources {
 
     public void halfSleepReset() {
         for (Resource res : listResources) {
-            if(!res.isSpellResource()) {
+            if (!res.isSpellResource()) {
                 res.resetCurrent();
             }
         }
     }
 
     public boolean checkSpellAvailable(Integer selected_rank) {
-        return selected_rank==0 || (getResource("spell_rank_"+selected_rank)!=null && getResource("spell_rank_"+selected_rank).getCurrent()>0);
+        return selected_rank == 0 || (getResource("spell_rank_" + selected_rank) != null && getResource("spell_rank_" + selected_rank).getCurrent() > 0);
     }
 
     public void castSpell(Integer selected_rank) {
-        getResource("spell_rank_"+selected_rank).spend(1);
+        getResource("spell_rank_" + selected_rank).spend(1);
     }
 
-    public void resetRessources(){
+    public void resetRessources() {
         buildResourcesList();
     }
 
     public void refresh() {
-        if(rankManager!=null){rankManager.refreshRanks();}
+        if (rankManager != null) {
+            rankManager.refreshRanks();
+        }
         refreshMaxs();
         loadCurrent();
     }
@@ -281,10 +301,10 @@ public class AllResources {
     public void refreshCapaListResources() {
         List<Resource> tempListIterate = new ArrayList<>(listResources);
 
-        for(Resource res : tempListIterate){
-            if(res.isFromCapacity() && !allCapacities.capacityIsActive(res.getId().replace("resource_", "capacity_"))){  //si la capacité n'est plus active on remove la resource
+        for (Resource res : tempListIterate) {
+            if (res.isFromCapacity() && !allCapacities.capacityIsActive(res.getId().replace("resource_", "capacity_"))) {  //si la capacité n'est plus active on remove la resource
                 listResources.remove(res);
-                mapIDRes.remove(res.getId(),res);
+                mapIDRes.remove(res.getId(), res);
             }
         }
         addCapacitiesResources();

@@ -19,16 +19,17 @@ public class PrefSpellRankFragment {
     private Context mC;
     private SpellsRanksManager rankManager;
     private PreferenceCategory spell;
-    private Tools tools=Tools.getTools();
-    public PrefSpellRankFragment(Activity mA, Context mC){
-        this.mA=mA;
-        this.mC=mC;
-        this.rankManager=yfa.getAllResources().getRankManager();
+    private Tools tools = Tools.getTools();
+
+    public PrefSpellRankFragment(Activity mA, Context mC) {
+        this.mA = mA;
+        this.mC = mC;
+        this.rankManager = yfa.getAllResources().getRankManager();
     }
 
 
     public void addSpellRanks(PreferenceCategory spell) {
-        this.spell=spell;
+        this.spell = spell;
         refreshList();
     }
 
@@ -37,19 +38,19 @@ public class PrefSpellRankFragment {
         spell.removeAll();
         for (Resource res : rankManager.getSpellTiers()) {
             EditTextPreference text = new EditTextPreference(mC, InputType.TYPE_CLASS_NUMBER);
-            text.setKey(res.getId()+PersoManager.getPJSuffix());
+            text.setKey(res.getId() + PersoManager.getPJSuffix());
             text.setTitle(res.getShortname());
-            text.setSummary(res.getName()+" : %s");
+            text.setSummary(res.getName() + " : %s");
             text.setDefaultValue(String.valueOf(readDef(res.getId())));
             spell.addPreference(text);
         }
     }
 
     private int readDef(String key) {
-        int val=0;
+        int val = 0;
         try {
-            int defId = mC.getResources().getIdentifier(key.toLowerCase() + "_def"+PersoManager.getPJSuffix(), "integer", mC.getPackageName());
-            val=tools.toInt(String.valueOf(mC.getResources().getInteger(defId)));
+            int defId = mC.getResources().getIdentifier(key.toLowerCase() + "_def" + PersoManager.getPJSuffix(), "integer", mC.getPackageName());
+            val = tools.toInt(String.valueOf(mC.getResources().getInteger(defId)));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -57,6 +58,8 @@ public class PrefSpellRankFragment {
     }
 
     public void refresh() {
-        if(spell!=null){refreshList();}
+        if (spell != null) {
+            refreshList();
+        }
     }
 }

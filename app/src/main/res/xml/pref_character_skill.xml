@@ -2,14 +2,22 @@
     <PreferenceCategory
         android:key="@string/skill_mastery"
         android:title="@string/skill_mastery">
-        <Preference  android:layout="@layout/divider_pref" android:selectable="false"/>
+        <Preference
+            android:layout="@layout/divider_pref"
+            android:selectable="false" />
     </PreferenceCategory>
-    <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+    <Preference
+        android:layout="@layout/divider_pref"
+        android:selectable="false" />
     <PreferenceCategory
         android:key="@string/skill_bonus"
         android:title="@string/skill_bonus">
-        <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+        <Preference
+            android:layout="@layout/divider_pref"
+            android:selectable="false" />
 
     </PreferenceCategory>
-    <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+    <Preference
+        android:layout="@layout/divider_pref"
+        android:selectable="false" />
 </PreferenceScreen>

@@ -9,24 +9,25 @@ public class DiceList {
 
 
     private List<Dice> diceList;
+
     public DiceList() {
-        this.diceList=new ArrayList<>();
+        this.diceList = new ArrayList<>();
     }
 
-    public void add(Dice dice){
+    public void add(Dice dice) {
         diceList.add(dice);
     }
 
-    public void add(DiceList diceListToAdd){
+    public void add(DiceList diceListToAdd) {
         this.diceList.addAll(diceListToAdd.getList());
     }
 
-    public Integer getDiceNumber(){
+    public Integer getDiceNumber() {
         return diceList.size();
     }
 
-    public Integer getDiceNumberFromNface(int nFace){
-        int size=0;
+    public Integer getDiceNumberFromNface(int nFace) {
+        int size = 0;
         for (Dice dice : diceList) {
             if (dice.getnFace() == nFace) {
                 size += 1;
@@ -35,7 +36,7 @@ public class DiceList {
         return size;
     }
 
-    public DiceList filterWithNface(int nFace){
+    public DiceList filterWithNface(int nFace) {
         DiceList list = new DiceList();
         for (Dice dice : diceList) {
             if (dice.getnFace() == nFace) {
@@ -45,7 +46,7 @@ public class DiceList {
         return list;
     }
 
-    public DiceList filterWithElement(String... elementArg){
+    public DiceList filterWithElement(String... elementArg) {
         String element = elementArg.length > 0 ? elementArg[0] : "";
         DiceList list = new DiceList();
         for (Dice dice : diceList) {
@@ -70,27 +71,27 @@ public class DiceList {
         return diceList;
     }
 
-    public Integer getMinDmg(){
+    public Integer getMinDmg() {
         return diceList.size(); //puisque on fait 1 au min
     }
 
-    public Integer getMaxDmg(){
-        int value=0;
-        for (Dice dice : diceList){
-            value+=dice.getnFace();
+    public Integer getMaxDmg() {
+        int value = 0;
+        for (Dice dice : diceList) {
+            value += dice.getnFace();
         }
         return value;
     }
 
-    public Integer getSum(){
-        int value=0;
-        for (Dice dice : diceList){
-            value+=dice.getRandValue();
+    public Integer getSum() {
+        int value = 0;
+        for (Dice dice : diceList) {
+            value += dice.getRandValue();
         }
         return value;
     }
 
-    public Integer size(){
+    public Integer size() {
         return diceList.size();
     }
 

@@ -30,8 +30,8 @@ public class ImgForDice {
     private ImageView img;
     private Tools tools = Tools.getTools();
     private Perso pj = PersoManager.getCurrentPJ();
-    private boolean wasRand=false;
-    private boolean canBeLegendarySurge=false;
+    private boolean wasRand = false;
+    private boolean canBeLegendarySurge = false;
 
     public ImgForDice(Dice dice, Activity mA, Context mC) {
         this.mA = mA;
@@ -43,8 +43,8 @@ public class ImgForDice {
         if (!wasRand) {
             int drawableId;
             if (dice.getRandValue() > 0) {
-                drawableId = mC.getResources().getIdentifier("d" + dice.getnFace() + "_" + String.valueOf(dice.getRandValue()) + (dice.getElement().equalsIgnoreCase("none")?"":dice.getElement()), "drawable", mC.getPackageName());
-                wasRand=true;
+                drawableId = mC.getResources().getIdentifier("d" + dice.getnFace() + "_" + dice.getRandValue() + (dice.getElement().equalsIgnoreCase("none") ? "" : dice.getElement()), "drawable", mC.getPackageName());
+                wasRand = true;
             } else {
                 drawableId = mC.getResources().getIdentifier("d" + dice.getnFace() + "_main", "drawable", mC.getPackageName());
             }
@@ -52,7 +52,7 @@ public class ImgForDice {
             this.img.setImageDrawable(tools.resize(mC, drawableId, mC.getResources().getDimensionPixelSize(R.dimen.icon_main_dices_wheel_size)));
 
             if (dice.getnFace() == 20) {
-                if(pj.getAllResources().getResource("resource_mythic_points")!=null && pj.getAllResources().getResource("resource_mythic_points").getMax()>0) {
+                if (pj.getAllResources().getResource("resource_mythic_points") != null && pj.getAllResources().getResource("resource_mythic_points").getMax() > 0) {
                     setMythicSurge(); //on assigne un lsitener pour creer le des mythique si clic sur l'image du dès
                 }
             }
@@ -85,9 +85,9 @@ public class ImgForDice {
                             }
                         });
                 String message = "Ressources :\n\n" +
-                        "Point(s) mythique restant(s) : "+ pj.getCurrentResourceValue("resource_mythic_points");
-                if(canBeLegendarySurge && pj.getAllResources().getResource("resource_legendary_points")!=null && pj.getAllResources().getResource("resource_legendary_points").getMax()>0){
-                    message+="\nPoint(s) légendaire restant(s) : "+pj.getCurrentResourceValue("resource_legendary_points");
+                        "Point(s) mythique restant(s) : " + pj.getCurrentResourceValue("resource_mythic_points");
+                if (canBeLegendarySurge && pj.getAllResources().getResource("resource_legendary_points") != null && pj.getAllResources().getResource("resource_legendary_points").getMax() > 0) {
+                    message += "\nPoint(s) légendaire restant(s) : " + pj.getCurrentResourceValue("resource_legendary_points");
                     alertDialogBuilder.setNegativeButton("Legendaire", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -102,25 +102,25 @@ public class ImgForDice {
     }
 
     private void launchingMythicDice(String mode) {
-        int points=0;
-        if(mode.equalsIgnoreCase("légendaire")){
+        int points = 0;
+        if (mode.equalsIgnoreCase("légendaire")) {
             points = pj.getCurrentResourceValue("resource_legendary_points");
         } else {
             points = pj.getCurrentResourceValue("resource_mythic_points");
         }
 
-        if (points > 0 && dice.getMythicDice()==null) {
+        if (points > 0 && dice.getMythicDice() == null) {
             SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
-            if(mode.equalsIgnoreCase("légendaire")){
-                surgeDice=new Dice(mA, mC, tools.toInt(settings.getString("legendary_dice",String.valueOf(mC.getResources().getInteger(R.integer.legendary_dice_def)))));
+            if (mode.equalsIgnoreCase("légendaire")) {
+                surgeDice = new Dice(mA, mC, tools.toInt(settings.getString("legendary_dice", String.valueOf(mC.getResources().getInteger(R.integer.legendary_dice_def)))));
                 pj.getAllResources().getResource("resource_legendary_points").spend(1);
             } else {
-                surgeDice=new Dice(mA, mC, tools.toInt(settings.getString("mythic_dice",String.valueOf(mC.getResources().getInteger(R.integer.mythic_dice_def)))));
+                surgeDice = new Dice(mA, mC, tools.toInt(settings.getString("mythic_dice", String.valueOf(mC.getResources().getInteger(R.integer.mythic_dice_def)))));
                 pj.getAllResources().getResource("resource_mythic_points").spend(1);
-                new PostData(mC,new PostDataElement("Surcharge mythique du d20","-1pt mythique"));
+                new PostData(mC, new PostDataElement("Surcharge mythique du d20", "-1pt mythique"));
             }
 
-            if (settings.getBoolean("switch_manual_diceroll",mC.getResources().getBoolean(R.bool.switch_manual_diceroll_def))){
+            if (settings.getBoolean("switch_manual_diceroll", mC.getResources().getBoolean(R.bool.switch_manual_diceroll_def))) {
                 surgeDice.rand(true);
                 surgeDice.setRefreshEventListener(new Dice.OnRefreshEventListener() {
                     @Override
@@ -136,10 +136,10 @@ public class ImgForDice {
                 toastResultDice();
                 newImgWithSurge();
             }
-        } else if (dice.getMythicDice()!=null) {
+        } else if (dice.getMythicDice() != null) {
             tools.customToast(mC, "Tu as déjà fais une montée en puissance sur ce dès", "center");
         } else {
-            tools.customToast(mC, "Tu n'as plus de point "+mode, "center");
+            tools.customToast(mC, "Tu n'as plus de point " + mode, "center");
         }
     }
 
@@ -174,6 +174,6 @@ public class ImgForDice {
     }
 
     public void canBeLegendarySurge() {
-        this.canBeLegendarySurge=true;
+        this.canBeLegendarySurge = true;
     }
 }

@@ -3,27 +3,27 @@
 
 
     <PreferenceScreen
-        android:key="show_equipment"
         android:icon="@drawable/ic_binoculars"
+        android:key="show_equipment"
         android:summary="On peut y intervertir les pièces d'équipment"
         android:title="Afficher l'équipement" />
 
     <PreferenceScreen
-        android:key="pref_inventory_equipment"
         android:icon="@drawable/ic_battle_gear"
+        android:key="pref_inventory_equipment"
         android:summary="Ajout/Suppression des objets équipable"
-        android:title="Gestion de l'équipement"   />
+        android:title="Gestion de l'équipement" />
 
     <PreferenceScreen
-        android:key="halda_pref_inventory_money"
         android:icon="@drawable/ic_cash"
+        android:key="halda_pref_inventory_money"
         android:summary="Gestion des pièces de platine, or, argent, cuivre"
         android:title="Monnaie" />
 
     <PreferenceScreen
-        android:key="pref_inventory_bag"
         android:icon="@drawable/ic_bag"
+        android:key="pref_inventory_bag"
         android:summary="Ajout/Suppression des objets non équipable"
-        android:title="Gestion des objets du sac"   />
+        android:title="Gestion des objets du sac" />
 
 </PreferenceScreen>

@@ -33,9 +33,8 @@ import stellarnear.wedge_companion.Rolls.RollList;
 import stellarnear.wedge_companion.Tools;
 
 public class PetActivityFragmentCombat extends Fragment {
+    public Perso pj = PersoManager.getCurrentPJ();
     private View mainPage;
-    public Perso pj= PersoManager.getCurrentPJ();
-
     private ImageButton fabAtk;
     private ImageButton fabDmg;
     private ImageButton fabDmgDet;
@@ -69,7 +68,7 @@ public class PetActivityFragmentCombat extends Fragment {
 
         mainPage = inflater.inflate(R.layout.fragment_main_attack, container, false);
 
-        ImageButton buttonMain = (ImageButton) mainPage.findViewById(R.id.button_frag_combat_to_main);
+        ImageButton buttonMain = mainPage.findViewById(R.id.button_frag_combat_to_main);
         animate(buttonMain);
         View.OnClickListener listnerBackToMain = new View.OnClickListener() {
             @Override
@@ -77,7 +76,7 @@ public class PetActivityFragmentCombat extends Fragment {
                 Fragment fragment = new PetActivityFragment();
                 FragmentManager fragmentManager = getActivity().getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.setCustomAnimations(R.animator.infadefrag,R.animator.outtobotfrag);
+                fragmentTransaction.setCustomAnimations(R.animator.infadefrag, R.animator.outtobotfrag);
                 fragmentTransaction.replace(R.id.fragment_main_frame_layout, fragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
@@ -93,7 +92,7 @@ public class PetActivityFragmentCombat extends Fragment {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
-                Animation anim = new ScaleAnimation(1f,1.25f,1f,1.25f,Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+                Animation anim = new ScaleAnimation(1f, 1.25f, 1f, 1.25f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
                 anim.setRepeatCount(1);
                 anim.setRepeatMode(Animation.REVERSE);
                 anim.setDuration(666);
@@ -105,7 +104,7 @@ public class PetActivityFragmentCombat extends Fragment {
     }
 
     public void setupScreen() {
-        mode="fullround";
+        mode = "fullround";
         firstDmgRoll = true;
         firstAtkRoll = true;
         mainPage.setOnTouchListener(new View.OnTouchListener() {
@@ -120,7 +119,7 @@ public class PetActivityFragmentCombat extends Fragment {
             @Override
             public void onClick(View view) {
                 if (firstAtkRoll) {
-                    mode="simple";
+                    mode = "simple";
                     startRandAtk();
                 } else {
                     new AlertDialog.Builder(getContext())
@@ -129,7 +128,7 @@ public class PetActivityFragmentCombat extends Fragment {
                             .setIcon(android.R.drawable.ic_menu_help)
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int whichButton) {
-                                    mode="simple";
+                                    mode = "simple";
                                     startRandAtk();
                                 }
                             })
@@ -138,7 +137,7 @@ public class PetActivityFragmentCombat extends Fragment {
             }
         });
 
-        if(pj.getAllCapacities().capacityIsActive("capacity_leap")) {
+        if (pj.getAllCapacities().capacityIsActive("capacity_leap")) {
             mainPage.findViewById(R.id.button_jump_attack).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -160,14 +159,16 @@ public class PetActivityFragmentCombat extends Fragment {
                     }
                 }
             });
-        } else {mainPage.findViewById(R.id.button_jump_attack).setVisibility(View.GONE);}
+        } else {
+            mainPage.findViewById(R.id.button_jump_attack).setVisibility(View.GONE);
+        }
 
 
-        fabAtk = (ImageButton) mainPage.findViewById(R.id.fabAtk);
+        fabAtk = mainPage.findViewById(R.id.fabAtk);
         setListenerFabAtk();
-        fabDmg = (ImageButton) mainPage.findViewById(R.id.fab_damage);
+        fabDmg = mainPage.findViewById(R.id.fab_damage);
         setListenerFabDmg();
-        fabDmgDet = (ImageButton) mainPage.findViewById(R.id.fab_damage_detail);
+        fabDmgDet = mainPage.findViewById(R.id.fab_damage_detail);
         setListenerFabDmgDet();
 
     }
@@ -177,7 +178,7 @@ public class PetActivityFragmentCombat extends Fragment {
             @Override
             public void onClick(View view) {
                 if (firstAtkRoll) {
-                    mode="fullround";
+                    mode = "fullround";
                     startRandAtk();
                 } else {
                     new AlertDialog.Builder(getContext())
@@ -186,7 +187,7 @@ public class PetActivityFragmentCombat extends Fragment {
                             .setIcon(android.R.drawable.ic_menu_help)
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int whichButton) {
-                                    mode="fullround";
+                                    mode = "fullround";
                                     startRandAtk();
                                 }
                             })
@@ -223,7 +224,7 @@ public class PetActivityFragmentCombat extends Fragment {
                     rangesAndProba.hideViews();
                 }
             case 4:
-                if (displayRolls == null || displayRolls.size()==0) {
+                if (displayRolls == null || displayRolls.size() == 0) {
                     fabDmgDet.setEnabled(false);
                 }
         }
@@ -231,7 +232,7 @@ public class PetActivityFragmentCombat extends Fragment {
 
     private void startPreRand() {
         clearStep(0);
-        this.rollList = new PetRollFactory(getActivity(),getContext(),mode).getRollList();
+        this.rollList = new PetRollFactory(getActivity(), getContext(), mode).getRollList();
         preRandValues = new PetPreRandValues(getContext(), mainPage, rollList);
         if (damages != null) {
             damages.hideViews();
@@ -284,20 +285,20 @@ public class PetActivityFragmentCombat extends Fragment {
     private void startDamage() {
         displayRolls = null;
         clearStep(2);
-        damages = new PetDamages(getActivity(),getContext(), mainPage, selectedRolls);  //calcul et affiche les degats
+        damages = new PetDamages(getActivity(), getContext(), mainPage, selectedRolls);  //calcul et affiche les degats
         if (selectedRolls.getDmgDiceList().getList().size() > 0) {
             rangesAndProba = new PetRangesAndProba(getContext(), mainPage, selectedRolls);
             fabDmgDet.setVisibility(View.VISIBLE);
             fabDmgDet.setEnabled(true);
         }
         postRandValues.refreshPostRandValues();
-        new PostData(getContext(),new PostDataElement(selectedRolls,"dmg"));
+        new PostData(getContext(), new PostDataElement(selectedRolls, "dmg"));
     }
 
     private void checkSelectedRolls() {
         selectedRolls = new RollList();
         for (Roll roll : rollList.getList()) {
-            if (roll.isInvalid() || (!roll.isHitConfirmed() && !roll.isMissed() )) {
+            if (roll.isInvalid() || (!roll.isHitConfirmed() && !roll.isMissed())) {
                 continue;
             }
             selectedRolls.add(roll);
@@ -308,7 +309,9 @@ public class PetActivityFragmentCombat extends Fragment {
         fabDmgDet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(displayRolls==null){displayRolls = new DisplayRolls(getActivity(), getContext(), selectedRolls);}
+                if (displayRolls == null) {
+                    displayRolls = new DisplayRolls(getActivity(), getContext(), selectedRolls);
+                }
                 displayRolls.showPopup();
             }
         });

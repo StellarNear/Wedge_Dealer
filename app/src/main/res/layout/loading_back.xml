@@ -2,21 +2,21 @@
     android:id="@+id/main_back"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/unloaded_back"
     android:clipChildren="false"
     android:gravity="center"
+    android:orientation="horizontal"
     android:paddingStart="@dimen/mini_quadrant_icons_margin"
-    android:background="@drawable/unloaded_back"
-    android:paddingEnd="@dimen/mini_quadrant_icons_margin"
-    android:orientation="horizontal" >
+    android:paddingEnd="@dimen/mini_quadrant_icons_margin">
 
     <ImageView
         android:id="@+id/main_back_img"
         android:layout_width="350dp"
         android:layout_height="350dp"
-        android:scaleType="fitXY"
-        android:background="@drawable/unloaded_back_img"
         android:layout_margin="@dimen/general_margin"
-        android:src="@drawable/wedge_unloaded"/>
+        android:background="@drawable/unloaded_back_img"
+        android:scaleType="fitXY"
+        android:src="@drawable/wedge_unloaded" />
 </LinearLayout>
 
 

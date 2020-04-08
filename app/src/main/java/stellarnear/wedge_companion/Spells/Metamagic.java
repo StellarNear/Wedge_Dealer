@@ -12,35 +12,35 @@ public class Metamagic {
     private String id;
     private String name;
     private String description;
-    private transient CheckBox check=null;
+    private transient CheckBox check = null;
     private transient OnCheckedChangeListener changeListener;
     private int uprank;
-    private boolean multicast=false;
+    private boolean multicast = false;
     private int nCast;
     private transient OnRefreshEventListener mListener;
 
-    public Metamagic(Metamagic meta){ //pour cloner
-        this.id=meta.id;
-        this.name=meta.name;
-        this.description=meta.description;
-        this.uprank=meta.uprank;
-        this.multicast=meta.multicast;
-        this.nCast=meta.nCast;
+    public Metamagic(Metamagic meta) { //pour cloner
+        this.id = meta.id;
+        this.name = meta.name;
+        this.description = meta.description;
+        this.uprank = meta.uprank;
+        this.multicast = meta.multicast;
+        this.nCast = meta.nCast;
     }
 
-    public Metamagic(String id,String name,String description,int uprank,boolean multicast){
-        this.id=id;
-        this.name=name;
-        this.description=description;
-        this.uprank=uprank;
-        this.multicast=multicast;
-        this.nCast=0;
+    public Metamagic(String id, String name, String description, int uprank, boolean multicast) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.uprank = uprank;
+        this.multicast = multicast;
+        this.nCast = 0;
     }
 
-    public CheckBox getCheckBox(final Activity mA,final Context mC){
-        if (check==null) {
+    public CheckBox getCheckBox(final Activity mA, final Context mC) {
+        if (check == null) {
             check = new CheckBox(mC);
-            check.setText(name +" (+"+uprank+")");
+            check.setText(name + " (+" + uprank + ")");
             setOnChangeListenr(mA);
             check.setOnCheckedChangeListener(changeListener);
         }
@@ -48,7 +48,7 @@ public class Metamagic {
     }
 
     private void setOnChangeListenr(final Activity mA) {
-        changeListener=new OnCheckedChangeListener() {
+        changeListener = new OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if (isChecked) {
@@ -62,21 +62,27 @@ public class Metamagic {
                                 .setPositiveButton("oui", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int whichButton) {
                                         check.setChecked(true);
-                                        if(mListener!=null){mListener.onEvent();}
+                                        if (mListener != null) {
+                                            mListener.onEvent();
+                                        }
                                     }
                                 })
                                 .setNegativeButton("non", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int whichButton) {
                                         check.setChecked(false);
                                         nCast = 0;
-                                        if(mListener!=null){mListener.onEvent();}
+                                        if (mListener != null) {
+                                            mListener.onEvent();
+                                        }
                                     }
                                 }).show();
                     } else {
                         nCast = 0;
                     }
                 }
-                if(mListener!=null){mListener.onEvent();}
+                if (mListener != null) {
+                    mListener.onEvent();
+                }
             }
         };
     }
@@ -97,7 +103,7 @@ public class Metamagic {
         return description;
     }
 
-    public boolean canBeMultiCast(){
+    public boolean canBeMultiCast() {
         return multicast;
     }
 
@@ -106,12 +112,12 @@ public class Metamagic {
     }
 
     public boolean isActive() {
-        return nCast>0;
+        return nCast > 0;
     }
 
     public void activateFromConversion() {
-        this.nCast=1;
-        if (!(check==null)) {
+        this.nCast = 1;
+        if (!(check == null)) {
             check.setOnClickListener(null);
             check.setOnCheckedChangeListener(null);
             check.setChecked(true);
@@ -120,22 +126,22 @@ public class Metamagic {
     }
 
     public void active() {
-        this.nCast=1;
-        if(mListener!=null){mListener.onEvent();}
+        this.nCast = 1;
+        if (mListener != null) {
+            mListener.onEvent();
+        }
     }
 
     public void desactive() {
         this.check.setChecked(false);
-        this.nCast=0;
-        if(mListener!=null){mListener.onEvent();}
+        this.nCast = 0;
+        if (mListener != null) {
+            mListener.onEvent();
+        }
     }
 
     public OnCheckedChangeListener getOnChangeListener() {
         return changeListener;
-    }
-
-    public interface OnRefreshEventListener {
-        void onEvent();
     }
 
     public OnRefreshEventListener getmListener() {
@@ -144,5 +150,9 @@ public class Metamagic {
 
     public void setRefreshEventListener(OnRefreshEventListener eventListener) {
         mListener = eventListener;
+    }
+
+    public interface OnRefreshEventListener {
+        void onEvent();
     }
 }

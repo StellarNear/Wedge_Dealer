@@ -28,16 +28,17 @@ import stellarnear.wedge_companion.Tools;
  */
 public class SaveSharedPreferencesActivity extends Activity {
 
-    private Tools tools=Tools.getTools();
+    private Tools tools = Tools.getTools();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String action=getIntent().getExtras().getString("ACTION_TYPE");
+        String action = getIntent().getExtras().getString("ACTION_TYPE");
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
-        tools.customToast(getApplicationContext(),"Selection du dossier cible");
-        if(action.equalsIgnoreCase("save")){
+        tools.customToast(getApplicationContext(), "Selection du dossier cible");
+        if (action.equalsIgnoreCase("save")) {
             startActivityForResult(intent, 42);
-        } else if(action.equalsIgnoreCase("load")) {
+        } else if (action.equalsIgnoreCase("load")) {
             startActivityForResult(intent, 666);
         } else {
             finish();
@@ -47,27 +48,27 @@ public class SaveSharedPreferencesActivity extends Activity {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
-        Log.i("SAVE_INF", "Request:"+requestCode+" "+"Result:"+resultCode);
-        if (requestCode == 42 && resultCode==Activity.RESULT_OK) {
+        Log.i("SAVE_INF", "Request:" + requestCode + " " + "Result:" + resultCode);
+        if (requestCode == 42 && resultCode == Activity.RESULT_OK) {
             Uri treeUri = resultData.getData();
 
             DocumentFile pickedDir = DocumentFile.fromTreeUri(this, treeUri);
 
-            DocumentFile previousSave=pickedDir.findFile(getString(R.string.app_name)+".sav");
-            if(previousSave==null){
+            DocumentFile previousSave = pickedDir.findFile(getString(R.string.app_name) + ".sav");
+            if (previousSave == null) {
                 writeFile(pickedDir);
             } else {
-                tools.customToast(getApplicationContext(),"Sauvegarde déjà présente !");
+                tools.customToast(getApplicationContext(), "Sauvegarde déjà présente !");
             }
             finish();
-        } else if(requestCode == 666 && resultCode==Activity.RESULT_OK){
+        } else if (requestCode == 666 && resultCode == Activity.RESULT_OK) {
             Uri treeUri = resultData.getData();
 
             DocumentFile pickedDir = DocumentFile.fromTreeUri(this, treeUri);
 
-            DocumentFile previousSave=pickedDir.findFile(getString(R.string.app_name)+".sav");
-            if(previousSave==null){
-                tools.customToast(getApplicationContext(),"Aucune Sauvegarde présente ...");
+            DocumentFile previousSave = pickedDir.findFile(getString(R.string.app_name) + ".sav");
+            if (previousSave == null) {
+                tools.customToast(getApplicationContext(), "Aucune Sauvegarde présente ...");
             } else {
                 loadFile(previousSave);
             }
@@ -79,11 +80,11 @@ public class SaveSharedPreferencesActivity extends Activity {
 
     private void writeFile(DocumentFile pickedDir) {
         try {
-            DocumentFile newFile = pickedDir.createFile("application/json", getString(R.string.app_name)+".sav");
+            DocumentFile newFile = pickedDir.createFile("application/json", getString(R.string.app_name) + ".sav");
             OutputStream out = this.getContentResolver().openOutputStream(newFile.getUri());
 
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-            Map<String,?> prefsMap = prefs.getAll();
+            Map<String, ?> prefsMap = prefs.getAll();
             Gson gson = new Gson();
             String jsonString = gson.toJson(prefsMap);
 
@@ -91,18 +92,18 @@ public class SaveSharedPreferencesActivity extends Activity {
             printStream.print(jsonString);
             printStream.close();
 
-            tools.customToast(getApplicationContext(),"Sauvegarde crée");
+            tools.customToast(getApplicationContext(), "Sauvegarde crée");
         } catch (Exception e) {
-            Log.e("SAVE_ERR",e.getMessage());
-            tools.customToast(getApplicationContext(),"Erreur:"+e.getStackTrace()[0]);
-            DocumentFile previousSave=pickedDir.findFile(getString(R.string.app_name)+".sav");
-            if(previousSave!=null){
+            Log.e("SAVE_ERR", e.getMessage());
+            tools.customToast(getApplicationContext(), "Erreur:" + e.getStackTrace()[0]);
+            DocumentFile previousSave = pickedDir.findFile(getString(R.string.app_name) + ".sav");
+            if (previousSave != null) {
                 previousSave.delete();
             }
         }
     }
 
-    private void loadFile(DocumentFile previousSave){
+    private void loadFile(DocumentFile previousSave) {
         try {
             InputStream in = this.getContentResolver().openInputStream(previousSave.getUri());
 
@@ -111,26 +112,26 @@ public class SaveSharedPreferencesActivity extends Activity {
 
             Gson gson = new Gson();
 
-            Map<String,?> savedMap = gson.fromJson(jsonString, Map.class);
+            Map<String, ?> savedMap = gson.fromJson(jsonString, Map.class);
 
 
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-            for(Map.Entry<String,?> entry : savedMap.entrySet()){
-                if (entry.getValue() instanceof String ){
-                    prefs.edit().putString(entry.getKey(),(String)entry.getValue()).apply();
-                } else  if (entry.getValue() instanceof Boolean ){
-                    prefs.edit().putBoolean(entry.getKey(),(Boolean) entry.getValue()).apply();
-                } else if (entry.getValue() instanceof Integer || entry.getValue() instanceof Double ){ //on a pas de double dans sharedPref mais ils sont store comme ca
-                    prefs.edit().putInt(entry.getKey(), (int)Math.round((Double)entry.getValue())).apply();
+            for (Map.Entry<String, ?> entry : savedMap.entrySet()) {
+                if (entry.getValue() instanceof String) {
+                    prefs.edit().putString(entry.getKey(), (String) entry.getValue()).apply();
+                } else if (entry.getValue() instanceof Boolean) {
+                    prefs.edit().putBoolean(entry.getKey(), (Boolean) entry.getValue()).apply();
+                } else if (entry.getValue() instanceof Integer || entry.getValue() instanceof Double) { //on a pas de double dans sharedPref mais ils sont store comme ca
+                    prefs.edit().putInt(entry.getKey(), (int) Math.round((Double) entry.getValue())).apply();
                 }
             }
 
             PersoManager.loadFromSaveAllPJs();
-            tools.customToast(getApplicationContext(),"Sauvegarde chargée");
+            tools.customToast(getApplicationContext(), "Sauvegarde chargée");
         } catch (Exception e) {
-            Log.e("LOAD_ERR",e.getMessage());
-            tools.customToast(getApplicationContext(),"Erreur:"+e.getStackTrace()[0]);
+            Log.e("LOAD_ERR", e.getMessage());
+            tools.customToast(getApplicationContext(), "Erreur:" + e.getStackTrace()[0]);
         }
     }
 

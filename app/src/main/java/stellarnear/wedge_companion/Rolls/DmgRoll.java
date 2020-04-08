@@ -29,16 +29,16 @@ public abstract class DmgRoll {
     protected Perso pj = PersoManager.getCurrentPJ();
 
     public DmgRoll(Activity mA, Context mC, Boolean critConfirmed, Boolean naturalCrit) {
-        this.mA=mA;
+        this.mA = mA;
         this.mC = mC;
         this.critConfirmed = critConfirmed;
-        this.naturalCrit=naturalCrit;
+        this.naturalCrit = naturalCrit;
         this.settings = PreferenceManager.getDefaultSharedPreferences(mC);
         this.manualDiceDmg = settings.getBoolean("switch_manual_diceroll_damage", mC.getResources().getBoolean(R.bool.switch_manual_diceroll_def));
     }
 
     public void setMode(String mode) {
-        this.mode=mode;
+        this.mode = mode;
     }
 
     public abstract void setDmgRand();

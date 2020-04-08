@@ -30,15 +30,15 @@ public class FormResultBuilder {
     private int spellColorId;
     private Context mC;
     private Activity mA;
-    private FormCalculationSpell calculationSpell =new FormCalculationSpell();
-    private DisplayedText displayedText=new DisplayedText();
-    private Tools tools=Tools.getTools();
+    private FormCalculationSpell calculationSpell = new FormCalculationSpell();
+    private DisplayedText displayedText = new DisplayedText();
+    private Tools tools = Tools.getTools();
 
 
-    public FormResultBuilder(Activity mA, Context mC, FormPower spell){
-        this.mA=mA;
-        this.mC=mC;
-        this.spell=spell;
+    public FormResultBuilder(Activity mA, Context mC, FormPower spell) {
+        this.mA = mA;
+        this.mC = mC;
+        this.spell = spell;
         setSpellColor();
     }
 
@@ -54,32 +54,34 @@ public class FormResultBuilder {
             resultTemplate.addView(txt_view);
         } else {
             final DiceList diceList = new DiceList();
-            List<Integer> listDiceAllowed = Arrays.asList(3,4,6,8,10);
-            if (listDiceAllowed.contains(calculationSpell.diceType(spell))){
-                for(int i = 1; i<= calculationSpell.nDice(spell); i++){
-                    diceList.add(new Dice(mA,mC, calculationSpell.diceType(spell),spell.getDmg_type()));
+            List<Integer> listDiceAllowed = Arrays.asList(3, 4, 6, 8, 10);
+            if (listDiceAllowed.contains(calculationSpell.diceType(spell))) {
+                for (int i = 1; i <= calculationSpell.nDice(spell); i++) {
+                    diceList.add(new Dice(mA, mC, calculationSpell.diceType(spell), spell.getDmg_type()));
                 }
-                for (Dice dice : diceList.getList()){
+                for (Dice dice : diceList.getList()) {
                     dice.rand(false);
                 }
             }
-            int sumDmg =diceList.getSum();
-            if(spell.getFlat_dmg()>0){sumDmg+=spell.getFlat_dmg();}
+            int sumDmg = diceList.getSum();
+            if (spell.getFlat_dmg() > 0) {
+                sumDmg += spell.getFlat_dmg();
+            }
 
-            ((TextView)resultTemplate.findViewById(R.id.damage)).setText(String.valueOf(sumDmg));
+            ((TextView) resultTemplate.findViewById(R.id.damage)).setText(String.valueOf(sumDmg));
             spell.setDmgResult(sumDmg);
 
-            ((TextView)resultTemplate.findViewById(R.id.damage)).setTextColor(spellColorId);
+            ((TextView) resultTemplate.findViewById(R.id.damage)).setTextColor(spellColorId);
 
             ProbaFromDiceRand probaFromDiceRand = new ProbaFromDiceRand(diceList);
-            ((TextView)resultTemplate.findViewById(R.id.damage_range)).setText(String.valueOf(probaFromDiceRand.getRange()));
-            ((TextView)resultTemplate.findViewById(R.id.damage_range)).setTextColor(spellColorId);
-            ((TextView)resultTemplate.findViewById(R.id.proba)).setText(String.valueOf(probaFromDiceRand.getProba()));
-            ((TextView)resultTemplate.findViewById(R.id.proba)).setTextColor(spellColorId);
-            ((FloatingActionButton)resultTemplate.findViewById(R.id.fab_detail)).setOnClickListener(new View.OnClickListener() {
+            ((TextView) resultTemplate.findViewById(R.id.damage_range)).setText(String.valueOf(probaFromDiceRand.getRange()));
+            ((TextView) resultTemplate.findViewById(R.id.damage_range)).setTextColor(spellColorId);
+            ((TextView) resultTemplate.findViewById(R.id.proba)).setText(String.valueOf(probaFromDiceRand.getProba()));
+            ((TextView) resultTemplate.findViewById(R.id.proba)).setTextColor(spellColorId);
+            resultTemplate.findViewById(R.id.fab_detail).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    DisplayRolls displayRolls=new DisplayRolls(mA,mC,diceList);
+                    DisplayRolls displayRolls = new DisplayRolls(mA, mC, diceList);
                     displayRolls.showPopup();
                 }
             });
@@ -90,9 +92,9 @@ public class FormResultBuilder {
     private void setSpellColor() {
         ElemsManager elemsManager = ElemsManager.getInstance(mC);
         try {
-            spellColorId= elemsManager.getColorIdDark(spell.getDmg_type());
+            spellColorId = elemsManager.getColorIdDark(spell.getDmg_type());
         } catch (Exception e) {
-            spellColorId=mC.getColor(R.color.aucun_dark);
+            spellColorId = mC.getColor(R.color.aucun_dark);
             e.printStackTrace();
         }
     }

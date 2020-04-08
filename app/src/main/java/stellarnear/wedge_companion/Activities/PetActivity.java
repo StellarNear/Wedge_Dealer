@@ -44,11 +44,11 @@ public class PetActivity extends AppCompatActivity {
     }
 
     private void buildMainPage() {
-        int themeId=getResources().getIdentifier("AppTheme"+PersoManager.getCurrentPJ().getID(), "style", getPackageName());
+        int themeId = getResources().getIdentifier("AppTheme" + PersoManager.getCurrentPJ().getID(), "style", getPackageName());
         setTheme(themeId);
         setContentView(R.layout.activity_pet);
         mainFrameFrag = findViewById(R.id.fragment_main_frame_layout);
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = findViewById(R.id.toolbar);
 
         toolbar.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -61,16 +61,15 @@ public class PetActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         getSupportActionBar().show();
-        toolbar.setTitle("Companion animal : "+PersoManager.getCurrentNamePJ());
-        int drawableId=getResources().getIdentifier("background_banner"+PersoManager.getCurrentPJ().getID(), "drawable", getPackageName());
+        toolbar.setTitle("Companion animal : " + PersoManager.getCurrentNamePJ());
+        int drawableId = getResources().getIdentifier("background_banner" + PersoManager.getCurrentPJ().getID(), "drawable", getPackageName());
         toolbar.setBackground(getDrawable(drawableId));
         Window window = getWindow();
         TypedValue typedValue = new TypedValue();
-        getTheme().resolveAttribute(R.attr.colorPrimaryDark,typedValue,true);
+        getTheme().resolveAttribute(R.attr.colorPrimaryDark, typedValue, true);
         window.setStatusBarColor(typedValue.data);
         startFragment();
     }
-
 
 
     @Override
@@ -95,7 +94,7 @@ public class PetActivity extends AppCompatActivity {
         Fragment fragment = new PetActivityFragment();
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(mainFrameFrag.getId(), fragment,"frag_main");
+        fragmentTransaction.replace(mainFrameFrag.getId(), fragment, "frag_main");
         fragmentTransaction.commit();
     }
 
@@ -119,7 +118,7 @@ public class PetActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             unlockOrient();
             Intent intent = new Intent(this, SettingsActivity.class);
-            intent.putExtra("fromActivity","PetActivity");
+            intent.putExtra("fromActivity", "PetActivity");
             startActivity(intent);
             finish();
             return true;

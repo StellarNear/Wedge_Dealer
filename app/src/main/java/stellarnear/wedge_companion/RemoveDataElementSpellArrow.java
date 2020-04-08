@@ -4,15 +4,15 @@ import stellarnear.wedge_companion.Perso.PersoManager;
 
 
 public class RemoveDataElementSpellArrow {
-    private String targetSheet= "spell_arrow";
-    private String date="-";
-    private String uuid ="-";
-    private String typeEvent="remove_arrow_spell";
-    private String caster=PersoManager.getCurrentNamePJ();
-    private String result="-";
+    private String targetSheet = "spell_arrow";
+    private String date = "-";
+    private String uuid = "-";
+    private String typeEvent = "remove_arrow_spell";
+    private String caster = PersoManager.getCurrentNamePJ();
+    private String result = "-";
 
     public RemoveDataElementSpellArrow(GetData.PairSpellUuid pairSpellUuid) {
-        this.uuid=pairSpellUuid.getUuid();
+        this.uuid = pairSpellUuid.getUuid();
     }
 
     public String getCaster() {

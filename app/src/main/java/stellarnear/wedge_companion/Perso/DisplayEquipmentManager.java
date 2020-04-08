@@ -25,18 +25,18 @@ public class DisplayEquipmentManager {
     private List<Equipment> listEquipments;
     private OnRefreshEventListener mListener;
     private OnSaveEventListener mListenerSave;
-    private Perso pj=PersoManager.getCurrentPJ();
+    private Perso pj = PersoManager.getCurrentPJ();
 
-    public DisplayEquipmentManager(Activity mA,Context mC, List<Equipment> listEquipments){
-        this.mA=mA;
-        this.mC=mC;
-        this.listEquipments=listEquipments;
+    public DisplayEquipmentManager(Activity mA, Context mC, List<Equipment> listEquipments) {
+        this.mA = mA;
+        this.mC = mC;
+        this.listEquipments = listEquipments;
     }
 
     public void showSlot(Activity mA, String slotId, Boolean editable) {
-        this.mA=mA;
-        this.editable=editable;
-        if (slotId.equalsIgnoreCase("other_slot")){
+        this.mA = mA;
+        this.editable = editable;
+        if (slotId.equalsIgnoreCase("other_slot")) {
             customInfo(getSlotListEquipment("other_slot"));
         } else {
             customInfo(getEquipmentsEquiped(slotId));
@@ -48,7 +48,7 @@ public class DisplayEquipmentManager {
         Equipment equiFind = null;
         for (Equipment equipment : listEquipments) {
             if (equipment.isEquiped() && equipment.getSlotId().equalsIgnoreCase(slot)) {
-                equiFind=equipment;
+                equiFind = equipment;
             }
         }
         return equiFind;
@@ -58,6 +58,7 @@ public class DisplayEquipmentManager {
         LayoutInflater inflater = mA.getLayoutInflater();
         View view = inflater.inflate(R.layout.custom_toast_info_equipment, (ViewGroup) mA.findViewById(R.id.toast_RelativeLayout));
         CustomAlertDialog ct = new CustomAlertDialog(mA, mC, view);
+        ct.setFill("width");
         ct.clickToHide(view.findViewById(R.id.toast_LinearLayout));
 
         ImageView img = view.findViewById(R.id.toast_image);
@@ -77,14 +78,14 @@ public class DisplayEquipmentManager {
             descr.setVisibility(View.GONE);
         }
         TextView stats = view.findViewById(R.id.toast_textStats);
-        String allAddStats="";
-        if (equi.getArmor()>0) {
+        String allAddStats = "";
+        if (equi.getArmor() > 0) {
             allAddStats += "\nArmure : +" + equi.getArmor();
         }
-        if (equi.getMapAbilityUp()!=null && equi.getMapAbilityUp().size()>0) {
+        if (equi.getMapAbilityUp() != null && equi.getMapAbilityUp().size() > 0) {
             allAddStats += "\nBonus Stats : " + makeStringLineFromMap(equi.getMapAbilityUp());
         }
-        if (equi.getMapSkillUp()!=null && equi.getMapSkillUp().size()>0) {
+        if (equi.getMapSkillUp() != null && equi.getMapSkillUp().size() > 0) {
             allAddStats += "\nBonus Compétence : " + makeStringLineFromMap(equi.getMapSkillUp());
         }
         if (!allAddStats.equalsIgnoreCase("")) {
@@ -93,7 +94,7 @@ public class DisplayEquipmentManager {
             stats.setVisibility(View.GONE);
         }
 
-        if(editable) {
+        if (editable) {
             List<Equipment> spareEquipments = getSpareEquipment(equi.getSlotId());
             if (spareEquipments.size() > 0) {
                 ImageView swap = view.findViewById(R.id.toast_info_swap);
@@ -107,12 +108,13 @@ public class DisplayEquipmentManager {
     }
 
     private String makeStringLineFromMap(Map<String, Integer> mapUp) {
-        String line="";
-        for(Map.Entry<String,Integer> entry : mapUp.entrySet()) {
+        String line = "";
+        for (Map.Entry<String, Integer> entry : mapUp.entrySet()) {
             try {
-                String nameUp = entry.getKey().contains("skill_")? pj.getAllSkills().getSkill(entry.getKey()).getName():pj.getAllAbilities().getAbi(entry.getKey()).getName();
-                line+="\n+"+entry.getValue()+" "+nameUp;
-            } catch (Exception e) {}
+                String nameUp = entry.getKey().contains("skill_") ? pj.getAllSkills().getSkill(entry.getKey()).getName() : pj.getAllAbilities().getAbi(entry.getKey()).getName();
+                line += "\n+" + entry.getValue() + " " + nameUp;
+            } catch (Exception e) {
+            }
         }
         return line;
     }
@@ -129,16 +131,16 @@ public class DisplayEquipmentManager {
     }
 
     public void showSpareList(List<Equipment> spareEquipments) {
-        customInfo(spareEquipments,true);
+        customInfo(spareEquipments, true);
     }
 
-    public void showSpareList(Activity mA,List<Equipment> spareEquipments,Boolean editable) {
-        this.mA=mA;
-        this.editable=editable;
-        customInfo(spareEquipments,true);
+    public void showSpareList(Activity mA, List<Equipment> spareEquipments, Boolean editable) {
+        this.mA = mA;
+        this.editable = editable;
+        customInfo(spareEquipments, true);
     }
 
-    private void setButtonToUnequip(ImageView unequip, final Equipment equi, final  CustomAlertDialog ct) {
+    private void setButtonToUnequip(ImageView unequip, final Equipment equi, final CustomAlertDialog ct) {
         unequip.setVisibility(View.VISIBLE);
         unequip.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,9 +153,13 @@ public class DisplayEquipmentManager {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 equi.setEquiped(false);
-                                if(mListenerSave!=null){ mListenerSave.onEvent();}
+                                if (mListenerSave != null) {
+                                    mListenerSave.onEvent();
+                                }
                                 ct.dismissAlert();
-                                if(mListener!=null){ mListener.onEvent();}
+                                if (mListener != null) {
+                                    mListener.onEvent();
+                                }
 
                             }
                         })
@@ -167,14 +173,16 @@ public class DisplayEquipmentManager {
         });
     }
 
-    private void customInfo(List<Equipment> equipmentsList,Boolean... selectToEquipBool) {
-        Boolean selectToEquip=selectToEquipBool.length > 0 ? selectToEquipBool[0] : false;
+    private void customInfo(List<Equipment> equipmentsList, Boolean... selectToEquipBool) {
+        Boolean selectToEquip = selectToEquipBool.length > 0 ? selectToEquipBool[0] : false;
         LayoutInflater inflater = mA.getLayoutInflater();
         View view = inflater.inflate(R.layout.custom_toast_list_info, null);
+        view.findViewById(R.id.toast_list_money).setVisibility(View.GONE); //c'est une lsite d'equipement pas le sac
         final CustomAlertDialog ca = new CustomAlertDialog(mA, mC, view);
         ca.setPermanent(true);
+        ca.setFill("width");
         ca.clickToHide(view.findViewById(R.id.toast_list_title_frame));
-        if(selectToEquip){
+        if (selectToEquip) {
             TextView title = view.findViewById(R.id.toast_list_title);
             title.setText("Rechanges possibles");
         }
@@ -200,13 +208,15 @@ public class DisplayEquipmentManager {
                 descr.setVisibility(View.GONE);
             }
 
-            if(selectToEquip && editable){
+            if (selectToEquip && editable) {
                 yourLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         equip(equi);
                         ca.dismissAlert();
-                        if(mListener!=null){ mListener.onEvent();}
+                        if (mListener != null) {
+                            mListener.onEvent();
+                        }
                     }
                 });
             }
@@ -216,13 +226,15 @@ public class DisplayEquipmentManager {
     }
 
     public void equip(Equipment equiToPut) {
-        for (Equipment equi: getSlotListEquipment(equiToPut.getSlotId())){
-            if(equi!=equiToPut){
+        for (Equipment equi : getSlotListEquipment(equiToPut.getSlotId())) {
+            if (equi != equiToPut) {
                 equi.setEquiped(false);
             }
         }
         equiToPut.setEquiped(true);
-        if(mListenerSave!=null){ mListenerSave.onEvent();}
+        if (mListenerSave != null) {
+            mListenerSave.onEvent();
+        }
     }
 
     public List<Equipment> getSpareEquipment(String slot) {
@@ -237,12 +249,16 @@ public class DisplayEquipmentManager {
 
     public void createEquipment(Equipment equi) {
         listEquipments.add(equi);
-        if(mListenerSave!=null){ mListenerSave.onEvent();}
+        if (mListenerSave != null) {
+            mListenerSave.onEvent();
+        }
     }
 
     public void remove(Equipment equi) {
         listEquipments.remove(equi);
-        if(mListenerSave!=null){ mListenerSave.onEvent();}
+        if (mListenerSave != null) {
+            mListenerSave.onEvent();
+        }
     }
 
     public List<Equipment> getSlotListEquipment(String slot) {
@@ -265,21 +281,20 @@ public class DisplayEquipmentManager {
         return list;
     }
 
+    public void setRefreshEventListener(OnRefreshEventListener eventListener) {
+        mListener = eventListener;
+    }
+
+    public void setSaveEventListener(OnSaveEventListener eventListener) {
+        mListenerSave = eventListener;
+    }
 
     public interface OnRefreshEventListener {
         void onEvent();
     }
 
-    public void setRefreshEventListener(OnRefreshEventListener eventListener) {
-        mListener = eventListener;
-    }
-
     public interface OnSaveEventListener {
         void onEvent();
-    }
-
-    public void setSaveEventListener(OnSaveEventListener eventListener) {
-        mListenerSave = eventListener;
     }
 
 }

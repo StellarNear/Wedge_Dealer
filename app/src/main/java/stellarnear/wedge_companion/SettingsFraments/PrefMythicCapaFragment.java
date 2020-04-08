@@ -25,20 +25,20 @@ public class PrefMythicCapaFragment {
 
     public void addMythicCapaList(PreferenceScreen screen) {
         Map<String, PreferenceCategory> map = buildCategoryList(screen);
-           for (MythicCapacity capacity : pj.getAllMythicCapacities().getAllMythicCapacitiesList()) {
-            addCapa(capacity,map.get(capacity.getType()));
+        for (MythicCapacity capacity : pj.getAllMythicCapacities().getAllMythicCapacitiesList()) {
+            addCapa(capacity, map.get(capacity.getType()));
         }
     }
 
     private Map<String, PreferenceCategory> buildCategoryList(PreferenceScreen screen) {
-        Map<String, PreferenceCategory> mapTypeCat=new HashMap<>();
+        Map<String, PreferenceCategory> mapTypeCat = new HashMap<>();
         for (MythicCapacity capacity : pj.getAllMythicCapacities().getAllMythicCapacitiesList()) {
-            if(mapTypeCat.get(capacity.getType())==null){
+            if (mapTypeCat.get(capacity.getType()) == null) {
                 PreferenceCategory newType = new PreferenceCategory(mC);
                 newType.setTitle(capacity.getType());
                 newType.setKey(capacity.getType());
                 screen.addPreference(newType);
-                mapTypeCat.put(capacity.getType(),newType);
+                mapTypeCat.put(capacity.getType(), newType);
             }
         }
         return mapTypeCat;
@@ -46,7 +46,7 @@ public class PrefMythicCapaFragment {
 
     private void addCapa(MythicCapacity capacity, PreferenceCategory category) {
         SwitchPreference switch_capa = new SwitchPreference(mC);
-        switch_capa.setKey("switch_"+capacity.getId()+pj.getID());
+        switch_capa.setKey("switch_" + capacity.getId() + pj.getID());
         switch_capa.setTitle(capacity.getName());
         switch_capa.setSummary(capacity.getDescr());
         switch_capa.setDefaultValue(true);

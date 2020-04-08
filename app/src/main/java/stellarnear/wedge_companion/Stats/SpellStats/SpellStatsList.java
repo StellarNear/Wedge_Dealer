@@ -8,11 +8,11 @@ import java.util.Locale;
 public class SpellStatsList {
     private List<SpellStat> listSpellStats = new ArrayList<>();
 
-    public SpellStatsList(){
-        this.listSpellStats =new ArrayList<SpellStat>();
+    public SpellStatsList() {
+        this.listSpellStats = new ArrayList<SpellStat>();
     }
 
-    public SpellStatsList(List<SpellStat> listSpellStats){
+    public SpellStatsList(List<SpellStat> listSpellStats) {
         this.listSpellStats = listSpellStats;
     }
 
@@ -29,26 +29,26 @@ public class SpellStatsList {
     }
 
     public int getNSpellHit() {
-        int tot=0;
-        for (SpellStat spellStat : listSpellStats){
-            tot+= spellStat.getListHit().size();
+        int tot = 0;
+        for (SpellStat spellStat : listSpellStats) {
+            tot += spellStat.getListHit().size();
         }
         return tot;
     }
 
     public int getNSpellMiss() {
-        int tot=0;
-        for (SpellStat spellStat : listSpellStats){
-            tot+= spellStat.getListMiss().size();
+        int tot = 0;
+        for (SpellStat spellStat : listSpellStats) {
+            tot += spellStat.getListMiss().size();
         }
         return tot;
     }
 
     public int getNSpellHitForRank(int rankSelectedForPieChart) {
-        int tot=0;
-        for (SpellStat spellStat : listSpellStats){
-            for (int rank : spellStat.getListHit()){
-                if(rank==rankSelectedForPieChart){
+        int tot = 0;
+        for (SpellStat spellStat : listSpellStats) {
+            for (int rank : spellStat.getListHit()) {
+                if (rank == rankSelectedForPieChart) {
                     tot++;
                 }
             }
@@ -57,10 +57,10 @@ public class SpellStatsList {
     }
 
     public int getNSpellMissForRank(int rankSelectedForPieChart) {
-        int tot=0;
-        for (SpellStat spellStat : listSpellStats){
-            for (int rank : spellStat.getListMiss()){
-                if(rank==rankSelectedForPieChart){
+        int tot = 0;
+        for (SpellStat spellStat : listSpellStats) {
+            for (int rank : spellStat.getListMiss()) {
+                if (rank == rankSelectedForPieChart) {
                     tot++;
                 }
             }
@@ -70,17 +70,17 @@ public class SpellStatsList {
 
 
     public int getNCrit() {
-        int tot=0;
-        for (SpellStat spellStat : listSpellStats){
-            tot+= spellStat.getListCrit().size();
+        int tot = 0;
+        for (SpellStat spellStat : listSpellStats) {
+            tot += spellStat.getListCrit().size();
         }
         return tot;
     }
 
     public SpellStat getLastStat() {
-        SpellStat res=null;
-        if (listSpellStats.size()>0){
-            res= listSpellStats.get(listSpellStats.size()-1);
+        SpellStat res = null;
+        if (listSpellStats.size() > 0) {
+            res = listSpellStats.get(listSpellStats.size() - 1);
         }
         return res;
     }
@@ -90,27 +90,27 @@ public class SpellStatsList {
     }
 
     public int getNContactMiss() {
-        int tot=0;
-        for (SpellStat spellStat : listSpellStats){
-            tot+= spellStat.getListContactMiss().size();
+        int tot = 0;
+        for (SpellStat spellStat : listSpellStats) {
+            tot += spellStat.getListContactMiss().size();
         }
         return tot;
     }
 
 
     public int getNResist() {
-        int tot=0;
-        for (SpellStat spellStat : listSpellStats){
-            tot+= spellStat.getListResist().size();
+        int tot = 0;
+        for (SpellStat spellStat : listSpellStats) {
+            tot += spellStat.getListResist().size();
         }
         return tot;
     }
 
     public int getNContactMissForRank(int selectedRank) {
-        int tot=0;
-        for (SpellStat spellStat : listSpellStats){
-            for (int rank : spellStat.getListContactMiss()){
-                if(rank==selectedRank){
+        int tot = 0;
+        for (SpellStat spellStat : listSpellStats) {
+            for (int rank : spellStat.getListContactMiss()) {
+                if (rank == selectedRank) {
                     tot++;
                 }
             }
@@ -119,10 +119,10 @@ public class SpellStatsList {
     }
 
     public int getNResistForRank(int selectedRank) {
-        int tot=0;
-        for (SpellStat spellStat : listSpellStats){
-            for (int rank : spellStat.getListResist()){
-                if(rank==selectedRank){
+        int tot = 0;
+        for (SpellStat spellStat : listSpellStats) {
+            for (int rank : spellStat.getListResist()) {
+                if (rank == selectedRank) {
                     tot++;
                 }
             }
@@ -131,10 +131,10 @@ public class SpellStatsList {
     }
 
     public int getNCritForRank(int selectedRank) {
-        int tot=0;
-        for (SpellStat spellStat : listSpellStats){
-            for (int rank : spellStat.getListCrit()){
-                if(rank==selectedRank){
+        int tot = 0;
+        for (SpellStat spellStat : listSpellStats) {
+            for (int rank : spellStat.getListCrit()) {
+                if (rank == selectedRank) {
                     tot++;
                 }
             }
@@ -143,26 +143,26 @@ public class SpellStatsList {
     }
 
     public int getNSpell() {
-        int tot=0;
-        for (SpellStat spellStat : listSpellStats){
-            tot+= spellStat.getListRank().size();
+        int tot = 0;
+        for (SpellStat spellStat : listSpellStats) {
+            tot += spellStat.getListRank().size();
         }
         return tot;
     }
 
     public int getNDamageSpell() {
-        int tot=0;
-        for (SpellStat spellStat : listSpellStats){
-            tot+= spellStat.getNDamageSpell();
+        int tot = 0;
+        for (SpellStat spellStat : listSpellStats) {
+            tot += spellStat.getNDamageSpell();
         }
         return tot;
     }
 
-    public SpellStatsList filterByDate(String dateFormated){
+    public SpellStatsList filterByDate(String dateFormated) {
         SpellStatsList res = new SpellStatsList();
         SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy", Locale.FRANCE);
-        for (SpellStat spellStat : listSpellStats){
-            if( formater.format(spellStat.getDate()).equalsIgnoreCase(dateFormated)){
+        for (SpellStat spellStat : listSpellStats) {
+            if (formater.format(spellStat.getDate()).equalsIgnoreCase(dateFormated)) {
                 res.add(spellStat);
             }
         }
@@ -170,24 +170,24 @@ public class SpellStatsList {
     }
 
     public DamagesShortList getDamageShortList() {
-        DamagesShortList damagesShortListAll= new DamagesShortList();
-        for(SpellStat spellStat : listSpellStats){
+        DamagesShortList damagesShortListAll = new DamagesShortList();
+        for (SpellStat spellStat : listSpellStats) {
             damagesShortListAll.add(spellStat.getDamageShortList());
         }
         return damagesShortListAll;
     }
 
     public DamagesShortList getDamageShortListForElem(String elem) {
-        DamagesShortList damagesShortListAll= new DamagesShortList();
-        for(SpellStat spellStat : listSpellStats){
+        DamagesShortList damagesShortListAll = new DamagesShortList();
+        for (SpellStat spellStat : listSpellStats) {
             damagesShortListAll.add(spellStat.getDamageShortList().filterByElem(elem));
         }
         return damagesShortListAll;
     }
 
     public int countSubElementOfType(String key) {
-        int val=0;
-        for(DamagesShortListElement subDamageIndivSpell : getDamageShortList().getDamageElementList()){
+        int val = 0;
+        for (DamagesShortListElement subDamageIndivSpell : getDamageShortList().getDamageElementList()) {
             String elementSpell = subDamageIndivSpell.getElement();
             if (key.equalsIgnoreCase(elementSpell)) {
                 val++;
@@ -197,9 +197,9 @@ public class SpellStatsList {
     }
 
     public int countSubElementOfTypeAndRank(String key, int rankSelectedForPieChart) {
-        int val=0;
-        for(DamagesShortListElement subDamageIndivSpell : getDamageShortList().getDamageElementList()){
-            if (key.equalsIgnoreCase(subDamageIndivSpell.getElement()) && subDamageIndivSpell.getRank()==rankSelectedForPieChart) {
+        int val = 0;
+        for (DamagesShortListElement subDamageIndivSpell : getDamageShortList().getDamageElementList()) {
+            if (key.equalsIgnoreCase(subDamageIndivSpell.getElement()) && subDamageIndivSpell.getRank() == rankSelectedForPieChart) {
                 val++;
             }
         }

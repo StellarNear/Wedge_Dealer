@@ -40,15 +40,15 @@ public class DSSFAtk {
 
     private Context mC;
     private View mainView;
-    private int infoTxtSize=12;
-    private int nthAtkSelectedForPieChart=0;
+    private int infoTxtSize = 12;
+    private int nthAtkSelectedForPieChart = 0;
 
     public DSSFAtk(View mainView, Context mC) {
-        this.mainView=mainView;
-        this.mC=mC;
+        this.mainView = mainView;
+        this.mC = mC;
 
         TextView nAtkTxt = mainView.findViewById(R.id.nAtkTxt);
-        nAtkTxt.setText(pj.getStats().getStatsList().getNAtksTot()+ " attaques");
+        nAtkTxt.setText(pj.getStats().getStatsList().getNAtksTot() + " attaques");
 
         initChart();
         buildChart();
@@ -90,7 +90,7 @@ public class DSSFAtk {
             public void onValueSelected(Entry e, Highlight h) {
                 resetPieChart();
                 resetPieChartCrit();
-                nthAtkSelectedForPieChart=(int) e.getX();
+                nthAtkSelectedForPieChart = (int) e.getX();
                 buildPieChart();
                 buildPieChartCrit();
             }
@@ -99,7 +99,7 @@ public class DSSFAtk {
             public void onNothingSelected() {
                 resetPieChart();
                 resetPieChartCrit();
-                nthAtkSelectedForPieChart=0;
+                nthAtkSelectedForPieChart = 0;
                 buildPieChart();
                 buildPieChartCrit();
             }
@@ -114,39 +114,41 @@ public class DSSFAtk {
     }
 
     private BarDataSet computeBarDataSet(String mode) {
-        Map<Integer,Integer> nthAtkCountHit = new HashMap<>();
-        int nAtkMax=0;
-        for (Stat stat : pj.getStats().getStatsList().asList()){
+        Map<Integer, Integer> nthAtkCountHit = new HashMap<>();
+        int nAtkMax = 0;
+        for (Stat stat : pj.getStats().getStatsList().asList()) {
             List<Integer> listNatk = new ArrayList<>();
-            if (mode.equalsIgnoreCase("hit")){
-                listNatk=stat.getListNthAtksHit();
-            } else  if (mode.equalsIgnoreCase("miss")){
-                listNatk=stat.getListNthAtksMiss();
+            if (mode.equalsIgnoreCase("hit")) {
+                listNatk = stat.getListNthAtksHit();
+            } else if (mode.equalsIgnoreCase("miss")) {
+                listNatk = stat.getListNthAtksMiss();
             }
-            for (int nAtk : listNatk){
+            for (int nAtk : listNatk) {
                 int count = 0;
-                if (nthAtkCountHit.get(nAtk) != null ) {
-                    count=nthAtkCountHit.get(nAtk);
+                if (nthAtkCountHit.get(nAtk) != null) {
+                    count = nthAtkCountHit.get(nAtk);
                 }
-                nthAtkCountHit.put(nAtk,count+1);
-                if(nAtk>nAtkMax){nAtkMax=nAtk;}
+                nthAtkCountHit.put(nAtk, count + 1);
+                if (nAtk > nAtkMax) {
+                    nAtkMax = nAtk;
+                }
             }
         }
         ArrayList<BarEntry> listVal = new ArrayList<>();
-        for (int i=1;i<=nAtkMax;i++){
+        for (int i = 1; i <= nAtkMax; i++) {
             int count = 0;
-            if (nthAtkCountHit.get(i) != null ) {
-                count=nthAtkCountHit.get(i);
+            if (nthAtkCountHit.get(i) != null) {
+                count = nthAtkCountHit.get(i);
             }
-            listVal.add(new BarEntry((int)i,(int)count));
+            listVal.add(new BarEntry(i, count));
         }
-        BarDataSet set = new BarDataSet(listVal,"");
-        String text="";
-        if (mode.equalsIgnoreCase("hit")){
-            text="attaque qui touche";
+        BarDataSet set = new BarDataSet(listVal, "");
+        String text = "";
+        if (mode.equalsIgnoreCase("hit")) {
+            text = "attaque qui touche";
             set.setColor(mC.getColor(R.color.hit_stat));
-        } else  if (mode.equalsIgnoreCase("miss")){
-            text="attaque qui rate";
+        } else if (mode.equalsIgnoreCase("miss")) {
+            text = "attaque qui rate";
             set.setColor(mC.getColor(R.color.miss_stat));
         }
         set.setLabel(text);
@@ -165,7 +167,7 @@ public class DSSFAtk {
         buildPieChart();
 
         pieChart.getLegend().setEnabled(false);
-        pieChart.animateXY(100,1000);
+        pieChart.animateXY(100, 1000);
         pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
@@ -189,26 +191,26 @@ public class DSSFAtk {
 
     private PieDataSet computePieDataSet() {
         ArrayList<PieEntry> entries = new ArrayList<>();
-        List<Integer> colorList= new ArrayList<>();
-        float hitVal,missVal,percent;
-        if(nthAtkSelectedForPieChart==0){
-            hitVal=pj.getStats().getStatsList().getNAtksHit();
-            missVal=pj.getStats().getStatsList().getNAtksMiss();
-            percent = 100f*(hitVal/(hitVal+missVal));
+        List<Integer> colorList = new ArrayList<>();
+        float hitVal, missVal, percent;
+        if (nthAtkSelectedForPieChart == 0) {
+            hitVal = pj.getStats().getStatsList().getNAtksHit();
+            missVal = pj.getStats().getStatsList().getNAtksMiss();
+            percent = 100f * (hitVal / (hitVal + missVal));
         } else {
-            hitVal=pj.getStats().getStatsList().getNAtksHitNthAtk(nthAtkSelectedForPieChart);
-            missVal=pj.getStats().getStatsList().getNAtksMissNthAtk(nthAtkSelectedForPieChart);
-            percent = 100f*(hitVal/(hitVal+missVal));
+            hitVal = pj.getStats().getStatsList().getNAtksHitNthAtk(nthAtkSelectedForPieChart);
+            missVal = pj.getStats().getStatsList().getNAtksMissNthAtk(nthAtkSelectedForPieChart);
+            percent = 100f * (hitVal / (hitVal + missVal));
         }
-        if(percent>0f) {
-            entries.add(new PieEntry(percent, "",  new LargeValueFormatter().getFormattedValue(1f*hitVal) + " coups touchés"));
+        if (percent > 0f) {
+            entries.add(new PieEntry(percent, "", new LargeValueFormatter().getFormattedValue(1f * hitVal) + " coups touchés"));
             colorList.add(mC.getColor(R.color.hit_stat));
         }
-        if(percent<100f){
-            entries.add(new PieEntry(100f-percent,"",new LargeValueFormatter().getFormattedValue(1f*missVal)+" coups ratés"));
+        if (percent < 100f) {
+            entries.add(new PieEntry(100f - percent, "", new LargeValueFormatter().getFormattedValue(1f * missVal) + " coups ratés"));
             colorList.add(mC.getColor(R.color.miss_stat));
         }
-        PieDataSet dataset = new PieDataSet(entries,"");
+        PieDataSet dataset = new PieDataSet(entries, "");
         dataset.setValueTextSize(infoTxtSize);
         dataset.setColors(colorList);
         dataset.setSliceSpace(3);
@@ -221,10 +223,10 @@ public class DSSFAtk {
         pieChartCrit.getDescription().setEnabled(false);
         pieChartCrit.getLegend().setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
         buildPieChartCrit();
-        pieChartCrit.setEntryLabelTextSize(infoTxtSize/1.33f);
+        pieChartCrit.setEntryLabelTextSize(infoTxtSize / 1.33f);
         pieChartCrit.setEntryLabelColor(Color.BLACK);
         pieChartCrit.getLegend().setEnabled(false);
-        pieChartCrit.animateXY(100,1000);
+        pieChartCrit.animateXY(100, 1000);
         pieChartCrit.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
@@ -247,34 +249,34 @@ public class DSSFAtk {
     }
 
     private PieDataSet computePieDataSetCrit() {
-        float nHit,nCrit,nCritNat;
-        if(nthAtkSelectedForPieChart==0){
-            nHit=pj.getStats().getStatsList().getNAtksHit();
-            nCrit=pj.getStats().getStatsList().getNCrit();
-            nCritNat=pj.getStats().getStatsList().getNCritNat();
+        float nHit, nCrit, nCritNat;
+        if (nthAtkSelectedForPieChart == 0) {
+            nHit = pj.getStats().getStatsList().getNAtksHit();
+            nCrit = pj.getStats().getStatsList().getNCrit();
+            nCritNat = pj.getStats().getStatsList().getNCritNat();
         } else {
-            nHit=pj.getStats().getStatsList().getNAtksHitNthAtk(nthAtkSelectedForPieChart);
-            nCrit=pj.getStats().getStatsList().getNCritNth(nthAtkSelectedForPieChart);
-            nCritNat=pj.getStats().getStatsList().getNCritNatNth(nthAtkSelectedForPieChart);
+            nHit = pj.getStats().getStatsList().getNAtksHitNthAtk(nthAtkSelectedForPieChart);
+            nCrit = pj.getStats().getStatsList().getNCritNth(nthAtkSelectedForPieChart);
+            nCritNat = pj.getStats().getStatsList().getNCritNatNth(nthAtkSelectedForPieChart);
         }
-        float normalPercent=100f*(nHit-nCrit)/nHit;
-        float critPercent=100f*(nCrit-nCritNat)/nHit;
-        float critNatPercent=100f*(nCritNat/nHit);
+        float normalPercent = 100f * (nHit - nCrit) / nHit;
+        float critPercent = 100f * (nCrit - nCritNat) / nHit;
+        float critNatPercent = 100f * (nCritNat / nHit);
         ArrayList<PieEntry> entries = new ArrayList<>();
-        List<Integer> colorList= new ArrayList<>();
-        if(normalPercent>0f){
-            entries.add(new PieEntry(normalPercent,"normal",new LargeValueFormatter().getFormattedValue(((int)(nHit-nCrit)))+" coups normaux"));
+        List<Integer> colorList = new ArrayList<>();
+        if (normalPercent > 0f) {
+            entries.add(new PieEntry(normalPercent, "normal", new LargeValueFormatter().getFormattedValue(((int) (nHit - nCrit))) + " coups normaux"));
             colorList.add(mC.getColor(R.color.hit_stat));
         }
-        if(critPercent>0f){
-            entries.add(new PieEntry(critPercent,"crit",new LargeValueFormatter().getFormattedValue(((int)(nCrit-nCritNat)))+" coups critiques"));
+        if (critPercent > 0f) {
+            entries.add(new PieEntry(critPercent, "crit", new LargeValueFormatter().getFormattedValue(((int) (nCrit - nCritNat))) + " coups critiques"));
             colorList.add(mC.getColor(R.color.crit_stat));
         }
-        if(critNatPercent>0f){
-            entries.add(new PieEntry(critNatPercent,"critNat",new LargeValueFormatter().getFormattedValue((int)nCritNat)+" coups critiques naturels"));
+        if (critNatPercent > 0f) {
+            entries.add(new PieEntry(critNatPercent, "critNat", new LargeValueFormatter().getFormattedValue((int) nCritNat) + " coups critiques naturels"));
             colorList.add(mC.getColor(R.color.crit_nat_stat));
         }
-        PieDataSet dataset = new PieDataSet(entries,"");
+        PieDataSet dataset = new PieDataSet(entries, "");
         dataset.setValueTextSize(infoTxtSize);
         dataset.setColors(colorList);
         dataset.setSliceSpace(3);
@@ -282,7 +284,7 @@ public class DSSFAtk {
     }
 
     public void reset() {
-        nthAtkSelectedForPieChart=0;
+        nthAtkSelectedForPieChart = 0;
         resetChart();
         resetPieChart();
         resetPieChartCrit();
@@ -296,11 +298,13 @@ public class DSSFAtk {
         chart.fitScreen();
         chart.highlightValue(null);
     }
+
     private void resetPieChart() {
         pieChart.invalidate();
         pieChart.setCenterText("");
         pieChart.highlightValue(null);
     }
+
     private void resetPieChartCrit() {
         pieChartCrit.invalidate();
         pieChartCrit.setCenterText("");

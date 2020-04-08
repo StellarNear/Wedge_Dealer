@@ -9,10 +9,10 @@
         android:id="@+id/sub_element_quadrant_mini_value_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
         android:gravity="center"
         android:text=" 16 "
-        android:textSize="@dimen/textSizeQuadrantFull"/>
+        android:textAlignment="center"
+        android:textSize="@dimen/textSizeQuadrantFull" />
 
 </LinearLayout>
 

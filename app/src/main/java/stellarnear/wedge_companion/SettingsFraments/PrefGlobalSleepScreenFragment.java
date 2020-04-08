@@ -38,15 +38,15 @@ public class PrefGlobalSleepScreenFragment extends Preference {
         super(context, attrs, defStyle);
 
     }
+
     public PrefGlobalSleepScreenFragment(Context context) {
         super(context);
     }
 
     @Override
-    protected View onCreateView(ViewGroup parent)
-    {
+    protected View onCreateView(ViewGroup parent) {
         super.onCreateView(parent);
-        this.mC=getContext();
+        this.mC = getContext();
         mainView = new View(getContext());
         final ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(parent.getWidth(), parent.getHeight());  //pour full screen
         mainView.setLayoutParams(params);
@@ -83,13 +83,13 @@ public class PrefGlobalSleepScreenFragment extends Preference {
 
     private void sleep() {
         final Tools tools = Tools.getTools();
-        new PostData(mC,new RemoveDataElementAllSpellArrow().forceCaster("Wedge"));
-        new PostData(mC,new RemoveDataElementAllSpellArrow().forceCaster("Halda"));
+        new PostData(mC, new RemoveDataElementAllSpellArrow().forceCaster("Wedge"));
+        new PostData(mC, new RemoveDataElementAllSpellArrow().forceCaster("Halda"));
 
-        new PostData(mC,new PostDataElement("Nuit de repos Globale","Recharge des ressources journalières et sorts").forceTargetSheet("Wedge"));
-        new PostData(mC,new PostDataElement("Nuit de repos Globale","Recharge des ressources journalières et sorts").forceTargetSheet("Halda"));
-        new PostData(mC,new PostDataElement("Nuit de repos Globale","Recharge des ressources journalières et sorts").forceTargetSheet("Sylphe"));
-        new PostData(mC,new PostDataElement("Nuit de repos Globale","Recharge des ressources journalières et sorts").forceTargetSheet("Ràna"));
+        new PostData(mC, new PostDataElement("Nuit de repos Globale", "Recharge des ressources journalières et sorts").forceTargetSheet("Wedge"));
+        new PostData(mC, new PostDataElement("Nuit de repos Globale", "Recharge des ressources journalières et sorts").forceTargetSheet("Halda"));
+        new PostData(mC, new PostDataElement("Nuit de repos Globale", "Recharge des ressources journalières et sorts").forceTargetSheet("Sylphe"));
+        new PostData(mC, new PostDataElement("Nuit de repos Globale", "Recharge des ressources journalières et sorts").forceTargetSheet("Ràna"));
 
         tools.customToast(mC, "Faites tous de beaux rêves !", "center");
         int time = 1000; // in milliseconds
@@ -99,7 +99,7 @@ public class PrefGlobalSleepScreenFragment extends Preference {
             public void run() {
                 PersoManager.allSleep();
                 resetGlobal();
-                PreparationSpellsAlertDialog popupPrepa = BuildPreparedSpellList.getInstance(mC).makePopupSelectSpellsToPrepare(mC,"sleep");
+                PreparationSpellsAlertDialog popupPrepa = BuildPreparedSpellList.getInstance(mC).makePopupSelectSpellsToPrepare(mC, "sleep");
                 popupPrepa.setAcceptEventListener(new PreparationSpellsAlertDialog.OnAcceptEventListener() {
                     @Override
                     public void onEvent() {
@@ -115,7 +115,7 @@ public class PrefGlobalSleepScreenFragment extends Preference {
     }
 
     private void resetGlobal() {
-        List<String> allTempList = Arrays.asList("bonus_global_dmg_temp","bonus_global_atk_temp","bonus_global_temp_ca","bonus_global_temp_save","bonus_global_temp_rm");
+        List<String> allTempList = Arrays.asList("bonus_global_dmg_temp", "bonus_global_atk_temp", "bonus_global_temp_ca", "bonus_global_temp_save", "bonus_global_temp_rm");
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getContext());
         for (String temp : allTempList) {
             settings.edit().putString(temp, "0").apply();
@@ -124,10 +124,10 @@ public class PrefGlobalSleepScreenFragment extends Preference {
 
     private void halfSleep() {
         final Tools tools = Tools.getTools();
-        new PostData(mC,new PostDataElement("Nuit de repos (sans sorts) Globale","Recharge des ressources journalières").forceTargetSheet("Wedge"));
-        new PostData(mC,new PostDataElement("Nuit de repos (sans sorts) Globale","Recharge des ressources journalières").forceTargetSheet("Halda"));
-        new PostData(mC,new PostDataElement("Nuit de repos (sans sorts) Globale","Recharge des ressources journalières").forceTargetSheet("Sylphe"));
-        new PostData(mC,new PostDataElement("Nuit de repos (sans sorts) Globale","Recharge des ressources journalières").forceTargetSheet("Ràna"));
+        new PostData(mC, new PostDataElement("Nuit de repos (sans sorts) Globale", "Recharge des ressources journalières").forceTargetSheet("Wedge"));
+        new PostData(mC, new PostDataElement("Nuit de repos (sans sorts) Globale", "Recharge des ressources journalières").forceTargetSheet("Halda"));
+        new PostData(mC, new PostDataElement("Nuit de repos (sans sorts) Globale", "Recharge des ressources journalières").forceTargetSheet("Sylphe"));
+        new PostData(mC, new PostDataElement("Nuit de repos (sans sorts) Globale", "Recharge des ressources journalières").forceTargetSheet("Ràna"));
         tools.customToast(mC, "Faites tous de beaux rêves !", "center");
         int time = 1000; // in milliseconds
         Handler h = new Handler();
@@ -136,7 +136,7 @@ public class PrefGlobalSleepScreenFragment extends Preference {
             public void run() {
                 PersoManager.allHalfSleep();
                 resetGlobal();
-                PreparationSpellsAlertDialog popupPrepa = BuildPreparedSpellList.getInstance(mC).makePopupSelectSpellsToPrepare(mC,"halfsleep");
+                PreparationSpellsAlertDialog popupPrepa = BuildPreparedSpellList.getInstance(mC).makePopupSelectSpellsToPrepare(mC, "halfsleep");
                 popupPrepa.setAcceptEventListener(new PreparationSpellsAlertDialog.OnAcceptEventListener() {
                     @Override
                     public void onEvent() {

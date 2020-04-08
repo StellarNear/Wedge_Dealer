@@ -8,49 +8,50 @@ import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Rolls.Dices.Dice;
 
 public class RangeAtkRoll extends AtkRoll {
-    private boolean lynxBoosted=false;
+    private boolean lynxBoosted = false;
     private int rangeMalus;
+
     public RangeAtkRoll(Activity mA, Context mC, Integer base) {
-        super( mA, mC, base);
+        super(mA, mC, base);
         this.atkDice.canBeLegendarySurge();
     }
 
     private int getBonusRangeAtk() {
-       int bonusAtkRange=0;
-        bonusAtkRange+= pj.getAbilityMod("ability_dexterite");
+        int bonusAtkRange = 0;
+        bonusAtkRange += pj.getAbilityMod("ability_dexterite");
 
-        if (  settings.getBoolean("thor_switch", mC.getResources().getBoolean(R.bool.thor_switch_def))) {
-            bonusAtkRange+= 3;
+        if (settings.getBoolean("thor_switch", mC.getResources().getBoolean(R.bool.thor_switch_def))) {
+            bonusAtkRange += 3;
         }
-        if ( pj.getAllFeats().featIsActive("feat_predil")) {
-            bonusAtkRange+= 1;
+        if (pj.getAllFeats().featIsActive("feat_predil")) {
+            bonusAtkRange += 1;
         }
-        if ( pj.getAllFeats().featIsActive("feat_predil_sup")) {
-            bonusAtkRange+= 1;
+        if (pj.getAllFeats().featIsActive("feat_predil_sup")) {
+            bonusAtkRange += 1;
         }
-        if ( pj.getAllFeats().featIsActive("feat_predil_epic")) {
-            bonusAtkRange+= 2;
+        if (pj.getAllFeats().featIsActive("feat_predil_epic")) {
+            bonusAtkRange += 2;
         }
-        if ( pj.getAllFeats().featIsActive("feat_nine_m")) {
-            bonusAtkRange+= 1;
+        if (pj.getAllFeats().featIsActive("feat_nine_m")) {
+            bonusAtkRange += 1;
         }
         if (settings.getBoolean("magic_arrow_switch", mC.getResources().getBoolean(R.bool.magic_arrow_switch_def))) {
-            bonusAtkRange+= tools.toInt(settings.getString("magic_val", String.valueOf(mC.getResources().getInteger(R.integer.magic_val_def))));
+            bonusAtkRange += tools.toInt(settings.getString("magic_val", String.valueOf(mC.getResources().getInteger(R.integer.magic_val_def))));
         }
-        if ( pj.getAllFeats().featIsActive("feat_aim")) {
-            bonusAtkRange-=tools.toInt(settings.getString("feat_aim_val", String.valueOf(mC.getResources().getInteger(R.integer.feat_aim_val_def))));
+        if (pj.getAllFeats().featIsActive("feat_aim")) {
+            bonusAtkRange -= tools.toInt(settings.getString("feat_aim_val", String.valueOf(mC.getResources().getInteger(R.integer.feat_aim_val_def))));
         }
         if (this.mode.equalsIgnoreCase("fullround") && pj.getAllFeats().featIsActive("feat_rapid_fire")) {
-            bonusAtkRange-=2;
+            bonusAtkRange -= 2;
         }
-        if(this.mode.equalsIgnoreCase("barrage_shot")){
-            bonusAtkRange+=tools.toInt(settings.getString("mythic_tier", String.valueOf(mC.getResources().getInteger(R.integer.mythic_tier_def))));
+        if (this.mode.equalsIgnoreCase("barrage_shot")) {
+            bonusAtkRange += tools.toInt(settings.getString("mythic_tier", String.valueOf(mC.getResources().getInteger(R.integer.mythic_tier_def))));
         }
-        if(lynxBoosted){
-            bonusAtkRange+=pj.getAllCapacities().getCapacity("capacity_lynx_eye").getValue();
+        if (lynxBoosted) {
+            bonusAtkRange += pj.getAllCapacities().getCapacity("capacity_lynx_eye").getValue();
         }
-        if(rangeMalus>0){
-            bonusAtkRange-=rangeMalus;
+        if (rangeMalus > 0) {
+            bonusAtkRange -= rangeMalus;
         }
         return bonusAtkRange;
     }
@@ -70,7 +71,9 @@ public class RangeAtkRoll extends AtkRoll {
                 public void onEvent() {
                     calculAtk();
                     setCritAndFail();
-                    if(mListener!=null){mListener.onEvent();}
+                    if (mListener != null) {
+                        mListener.onEvent();
+                    }
                 }
             });
         } else {
@@ -96,10 +99,10 @@ public class RangeAtkRoll extends AtkRoll {
     }
 
     public void lynxEyeBoost() {
-        lynxBoosted=true;
+        lynxBoosted = true;
     }
 
     public void rangeMalus(int malus) {
-        rangeMalus=malus;
+        rangeMalus = malus;
     }
 }

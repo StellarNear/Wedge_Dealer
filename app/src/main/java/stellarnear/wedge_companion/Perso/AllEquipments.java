@@ -31,25 +31,25 @@ public class AllEquipments {
     private Boolean editable;
     private Tools tools = Tools.getTools();
     private TinyDB tinyDB;
-    private String pjID="";
-    private DisplayEquipmentManager displayEquipmentManager=null;
+    private String pjID = "";
+    private DisplayEquipmentManager displayEquipmentManager = null;
 
 
-    public AllEquipments(Context mC,String pjID) {
+    public AllEquipments(Context mC, String pjID) {
         this.mC = mC;
-        this.pjID=pjID;
+        this.pjID = pjID;
         try {
             refreshEquipment();
         } catch (Exception e) {
             e.printStackTrace();
-            Log.d("Load_EQUIP","Error loading bag "+pjID+e.getMessage());
+            Log.d("Load_EQUIP", "Error loading bag " + pjID + e.getMessage());
             reset();
         }
     }
 
     private void refreshEquipment() {
         tinyDB = new TinyDB(mC);
-        List<Equipment> listDB = tinyDB.getListEquipments("localSaveListEquipments"+pjID);  //on save avec le pjID pour avoir une database differente pour halda
+        List<Equipment> listDB = tinyDB.getListEquipments("localSaveListEquipments" + pjID);  //on save avec le pjID pour avoir une database differente pour halda
         if (listDB.size() == 0) {
             buildList();
             saveLocalAllEquipments();
@@ -59,15 +59,15 @@ public class AllEquipments {
     }
 
     private void saveLocalAllEquipments() {
-        tinyDB.putListEquipments("localSaveListEquipments"+pjID, listEquipments); //on save avec le pjID pour avoir une database differente pour halda
+        tinyDB.putListEquipments("localSaveListEquipments" + pjID, listEquipments); //on save avec le pjID pour avoir une database differente pour halda
     }
 
     private void buildList() {
         listEquipments = new ArrayList<>();
-        displayEquipmentManager=null;
+        displayEquipmentManager = null;
         try {
-            String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
-            InputStream is = mC.getAssets().open("equipment"+extendID+".xml");
+            String extendID = pjID.equalsIgnoreCase("") ? "" : "_" + pjID;
+            InputStream is = mC.getAssets().open("equipment" + extendID + ".xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(is);
@@ -86,9 +86,11 @@ public class AllEquipments {
                             readValue("slotId", element2),
                             tools.toBool(readValue("equipped", element2)),
                             tools.toInt(readValue("armor", element2)));
-                    if(equi.getSlotId().equalsIgnoreCase("armor_slot")){setupCapDex(equi,element2);}  // pour les pieces d'armure
-                    equi.setAbilityUp( element2);
-                    equi.setSkillUp( element2);
+                    if (equi.getSlotId().equalsIgnoreCase("armor_slot")) {
+                        setupCapDex(equi, element2);
+                    }  // pour les pieces d'armure
+                    equi.setAbilityUp(element2);
+                    equi.setSkillUp(element2);
                     listEquipments.add(equi);
                 }
             }
@@ -103,10 +105,12 @@ public class AllEquipments {
         try {
             NodeList nodeList = element.getElementsByTagName("maxDexMod").item(0).getChildNodes();
             Node node = nodeList.item(0);
-            valMaxDexModTxt= node.getNodeValue();
-        } catch (Exception e) { valMaxDexModTxt="";}
+            valMaxDexModTxt = node.getNodeValue();
+        } catch (Exception e) {
+            valMaxDexModTxt = "";
+        }
 
-        if(!valMaxDexModTxt.equalsIgnoreCase("")){
+        if (!valMaxDexModTxt.equalsIgnoreCase("")) {
             equipment.setMaxDexMod(tools.toInt(valMaxDexModTxt));
         }
     }
@@ -123,7 +127,7 @@ public class AllEquipments {
 
     public DisplayEquipmentManager getDisplayManager() {
         if (displayEquipmentManager == null) {
-            displayEquipmentManager = new DisplayEquipmentManager(mA,mC,listEquipments);
+            displayEquipmentManager = new DisplayEquipmentManager(mA, mC, listEquipments);
             displayEquipmentManager.setSaveEventListener(new DisplayEquipmentManager.OnSaveEventListener() {
                 @Override
                 public void onEvent() {
@@ -135,10 +139,10 @@ public class AllEquipments {
     }
 
     public boolean testIfNameItemIsEquipped(String nameItem) {
-        boolean val=false;
-        for(Equipment equi:getListAllEquipmentsEquiped()){
-            if(equi.getName().equalsIgnoreCase(nameItem)){
-                val=true;
+        boolean val = false;
+        for (Equipment equi : getListAllEquipmentsEquiped()) {
+            if (equi.getName().equalsIgnoreCase(nameItem)) {
+                val = true;
             }
         }
         return val;
@@ -162,18 +166,18 @@ public class AllEquipments {
         Equipment equiFind = null;
         for (Equipment equipment : listEquipments) {
             if (equipment.isEquiped() && equipment.getSlotId().equalsIgnoreCase(slot)) {
-                equiFind=equipment;
+                equiFind = equipment;
             }
         }
         return equiFind;
     }
 
-    public boolean hasArmorDexLimitation(){
+    public boolean hasArmorDexLimitation() {
         Equipment armor = getEquipmentsEquiped("armor_slot");
-        boolean val=false;
+        boolean val = false;
         try { //les vieux objet n'ont pas le limited max def donc ca fera un test sur null
-            if(armor != null && armor.isLimitedMaxDex()){
-                val=true;
+            if (armor != null && armor.isLimitedMaxDex()) {
+                val = true;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -181,11 +185,11 @@ public class AllEquipments {
         return val;
     }
 
-    public int getArmorDexLimitation(){
+    public int getArmorDexLimitation() {
         Equipment armor = getEquipmentsEquiped("armor_slot");
-        int val=999; // pas limité
-        if(armor != null && armor.isLimitedMaxDex()){
-            val=armor.getMaxDexMod();
+        int val = 999; // pas limité
+        if (armor != null && armor.isLimitedMaxDex()) {
+            val = armor.getMaxDexMod();
         }
         return val;
     }
@@ -200,32 +204,34 @@ public class AllEquipments {
     }
 
     public int getArmorBonus() {
-        int val=0;
-        for(Equipment equi:getListAllEquipmentsEquiped()){
-            val+=equi.getArmor();
+        int val = 0;
+        for (Equipment equi : getListAllEquipmentsEquiped()) {
+            val += equi.getArmor();
         }
         return val;
     }
 
     public int getSkillBonus(String skillId) {
-        int val=0;
-        for (Equipment equipment : getListAllEquipmentsEquiped()){
+        int val = 0;
+        for (Equipment equipment : getListAllEquipmentsEquiped()) {
             try {
-                val+=equipment.getMapSkillUp().get(skillId);
-            } catch (Exception e) {  }    //pas de bonus pour la clef
+                val += equipment.getMapSkillUp().get(skillId);
+            } catch (Exception e) {
+            }    //pas de bonus pour la clef
         }
         return val;
     }
 
     public int getAbiBonus(String abiId) {
-        int val=0;
-        for (Equipment equipment : getListAllEquipmentsEquiped()){
+        int val = 0;
+        for (Equipment equipment : getListAllEquipmentsEquiped()) {
             try {
-                int valBonusEqui=equipment.getMapAbilityUp().get(abiId);
-                if(val<valBonusEqui){  //bonus d'altération max uniquement pas de cumul
-                    val=valBonusEqui;
+                int valBonusEqui = equipment.getMapAbilityUp().get(abiId);
+                if (val < valBonusEqui) {  //bonus d'altération max uniquement pas de cumul
+                    val = valBonusEqui;
                 }
-            } catch (Exception e) { }//pas de bonus pour la clef
+            } catch (Exception e) {
+            }//pas de bonus pour la clef
         }
         return val;
     }

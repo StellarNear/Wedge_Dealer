@@ -34,7 +34,6 @@
     <integer name="epic_save_def_sylphe">0</integer>
 
 
-
     <!--  Rank de maitrise des compétences  -->
     <integer name="skill_stealth_rankDEF_sylphe">1</integer>
     <integer name="skill_climb_rankDEF_sylphe">1</integer>

@@ -18,14 +18,15 @@ public class FormCapacityLauncher {
     private Activity mA;
     private Context mC;
     private FormCapacity capa;
-    private Perso pj= PersoManager.getCurrentPJ();
-    private Tools tools=Tools.getTools();
-    public FormCapacityLauncher(Activity mA, Context mC,FormCapacity capa){
-        this.mA=mA;
-        this.mC=mC;
-        this.capa=capa;
+    private Perso pj = PersoManager.getCurrentPJ();
+    private Tools tools = Tools.getTools();
+
+    public FormCapacityLauncher(Activity mA, Context mC, FormCapacity capa) {
+        this.mA = mA;
+        this.mC = mC;
+        this.capa = capa;
         if (capa.getSaveType().equalsIgnoreCase("dmd")) {
-            Ability bmo=pj.getAllAbilities().getAbi("ability_bmo");
+            Ability bmo = pj.getAllAbilities().getAbi("ability_bmo");
             final TestAlertDialog testAlertDialog = new TestAlertDialog(mA, mC, bmo);
             testAlertDialog.setRefreshEventListener(new TestAlertDialog.OnRefreshEventListener() {
                 @Override
@@ -61,7 +62,6 @@ public class FormCapacityLauncher {
     private void directDealDamage() {
         final FormCapacityAlertDialog tooltipAlert = new FormCapacityAlertDialog(mA, mC, capa);
     }
-
 
 
 }

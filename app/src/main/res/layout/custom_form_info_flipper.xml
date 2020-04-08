@@ -1,173 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/form_info_RelativeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:layout_margin="@dimen/general_margin"
-        android:id="@+id/form_info_RelativeLayout"
-        android:background="@drawable/background_border_dialog"
         android:layout_gravity="center"
+        android:layout_margin="@dimen/general_margin"
+        android:background="@drawable/background_border_dialog"
         android:gravity="center"
+        android:orientation="horizontal"
         android:weightSum="6">
 
         <ImageView
             android:id="@+id/form_info_image"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:src="@drawable/mire_test"
             android:layout_gravity="center"
-            android:scaleType="fitCenter"
             android:layout_margin="6dp"
             android:layout_weight="2"
-            />
+            android:scaleType="fitCenter"
+            android:src="@drawable/mire_test" />
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_gravity="center"
-            android:textAlignment="center"
-            android:gravity="center"
             android:layout_margin="@dimen/general_margin"
-            android:layout_weight="4">
+            android:layout_weight="4"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:textAlignment="center">
 
             <TextView
                 android:id="@+id/form_info_textName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top|center_horizontal"
-                android:textAlignment="center"
-                android:gravity="center"
                 android:layout_marginBottom="@dimen/general_margin"
+                android:gravity="center"
                 android:text="PM is here"
+                android:textAlignment="center"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@android:color/black"/>
+                android:textColor="@android:color/black" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                >
+                android:gravity="center">
+
                 <TextView
                     android:id="@+id/form_info_textType"
                     android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:layout_height="wrap_content"
-                    android:text="Type : blabla"/>
+                    android:text="Type : blabla" />
+
                 <TextView
                     android:id="@+id/form_info_textSize"
                     android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:layout_height="wrap_content"
-                    android:text="Taille : blabla"/>
+                    android:text="Taille : blabla" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_marginTop="@dimen/general_margin"
-                >
+                android:gravity="center">
+
                 <LinearLayout
                     android:id="@+id/form_info_layResi"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="match_parent"
-                        android:gravity="center"
                         android:layout_height="wrap_content"
-                        android:text="Résistance :"/>
-                <TextView
-                    android:id="@+id/form_info_textResi"
-                    android:layout_width="match_parent"
-                    android:gravity="center"
-                    android:layout_height="wrap_content"
-                    android:text="blabla"/>
+                        android:gravity="center"
+                        android:text="Résistance :" />
+
+                    <TextView
+                        android:id="@+id/form_info_textResi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="blabla" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/form_info_layVuln"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="match_parent"
-                        android:gravity="center"
                         android:layout_height="wrap_content"
-                        android:text="Vulnérabilité :"/>
-                <TextView
-                    android:id="@+id/form_info_textVuln"
-                    android:layout_width="match_parent"
-                    android:gravity="center"
-                    android:layout_height="wrap_content"
-                    android:text="blabla"/>
+                        android:gravity="center"
+                        android:text="Vulnérabilité :" />
+
+                    <TextView
+                        android:id="@+id/form_info_textVuln"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="blabla" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/form_info_layAtk"
-                android:layout_marginTop="@dimen/general_margin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/general_margin"
                 android:gravity="center"
-                android:orientation="horizontal"
-                >
-            <TextView
-                android:layout_width="wrap_content"
-                android:gravity="center"
-                android:layout_height="wrap_content"
-                android:text="Attaques : " />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Attaques : " />
+
                 <TextView
                     android:id="@+id/form_info_textAtk"
                     android:layout_width="wrap_content"
-                    android:gravity="center"
-                    android:textSize="12sp"
                     android:layout_height="wrap_content"
-                    android:text="balba (xd8) blabla2 (xd6)" />
+                    android:gravity="center"
+                    android:text="balba (xd8) blabla2 (xd6)"
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_marginTop="@dimen/general_margin"
-                >
+                android:gravity="center">
+
                 <LinearLayout
                     android:id="@+id/form_info_passiveCapasLinear"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:textSize="12sp"
                         android:layout_height="wrap_content"
-                        android:text="Capacités passives :"/>
+                        android:gravity="center"
+                        android:text="Capacités passives :"
+                        android:textSize="12sp" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/form_info_activesCapasLinear"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
-                        android:gravity="center"
                         android:layout_height="wrap_content"
-                        android:textSize="12sp"
-                        android:text="Capacités actives :"/>
+                        android:gravity="center"
+                        android:text="Capacités actives :"
+                        android:textSize="12sp" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

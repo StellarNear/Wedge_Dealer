@@ -17,8 +17,8 @@ public class FormAtkRoll extends AtkRoll {
     }
 
     private Integer getMeleeBonus() {
-        int bonusAtkMelee=0;
-        bonusAtkMelee+= pj.getAbilityMod("ability_force");
+        int bonusAtkMelee = 0;
+        bonusAtkMelee += pj.getAbilityMod("ability_force");
         return bonusAtkMelee;
     }
 }

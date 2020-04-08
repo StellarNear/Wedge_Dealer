@@ -1,0 +1,51 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/infos_dialog_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_border_dialog"
+    android:clipChildren="false"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/general_margin">
+
+
+        <FrameLayout
+            android:id="@+id/infos_dialog_main_title_frame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/infos_dialog_main_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/general_margin"
+                android:gravity="center_horizontal"
+                android:text="Informations annexes"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/black" />
+
+            <ImageView
+                android:id="@+id/infos_dialog_back_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|end"
+                android:layout_margin="@dimen/general_margin"
+                android:src="@drawable/ic_undo_black_24dp" />
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/infos_main_fill_lin"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"></LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

@@ -3,9 +3,9 @@
     android:layout_height="match_parent"
     android:clipChildren="false"
     android:gravity="center"
+    android:orientation="vertical"
     android:paddingTop="@dimen/full_quadrant_icons_margin"
-    android:paddingBottom="@dimen/full_quadrant_icons_margin"
-    android:orientation="vertical" />
+    android:paddingBottom="@dimen/full_quadrant_icons_margin" />
 
 
 

@@ -38,18 +38,18 @@ public class PetPostRandValues {
     }
 
     private void clearAllView() {
-        ((LinearLayout)mainView.findViewById(R.id.mainLinearAtkDices)).removeAllViews();
-        ((LinearLayout)mainView.findViewById(R.id.mainLinearPostRand)).removeAllViews();
+        ((LinearLayout) mainView.findViewById(R.id.mainLinearAtkDices)).removeAllViews();
+        ((LinearLayout) mainView.findViewById(R.id.mainLinearPostRand)).removeAllViews();
     }
 
     private void showViews() {
-        ((LinearLayout)mainView.findViewById(R.id.mainLinearAtkDices)).setVisibility(View.VISIBLE);
-        ((LinearLayout)mainView.findViewById(R.id.mainLinearPostRand)).setVisibility(View.VISIBLE);
+        mainView.findViewById(R.id.mainLinearAtkDices).setVisibility(View.VISIBLE);
+        mainView.findViewById(R.id.mainLinearPostRand).setVisibility(View.VISIBLE);
     }
 
     public void hideViews() {
-        ((LinearLayout)mainView.findViewById(R.id.mainLinearAtkDices)).setVisibility(View.GONE);
-        ((LinearLayout)mainView.findViewById(R.id.mainLinearPostRand)).setVisibility(View.GONE);
+        mainView.findViewById(R.id.mainLinearAtkDices).setVisibility(View.GONE);
+        mainView.findViewById(R.id.mainLinearPostRand).setVisibility(View.GONE);
     }
 
     private void addRandDices() {
@@ -65,14 +65,14 @@ public class PetPostRandValues {
                 }
             }
             LinearLayout diceBox = new LinearLayout(mC);
-            diceBox.setLayoutParams(new LinearLayout.LayoutParams( ViewGroup.LayoutParams.WRAP_CONTENT,0, 1));
+            diceBox.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 0, 1));
             diceBox.setGravity(Gravity.CENTER);
             if (diceImg.getParent() != null) {
-               ((ViewGroup) diceImg.getParent()).removeView(diceImg);
+                ((ViewGroup) diceImg.getParent()).removeView(diceImg);
             }
-            diceImg.setImageDrawable(tools.resize(mC,diceImg.getDrawable(),mC.getResources().getDimensionPixelSize(R.dimen.icon_main_dices_pet_size)));
+            diceImg.setImageDrawable(tools.resize(mC, diceImg.getDrawable(), mC.getResources().getDimensionPixelSize(R.dimen.icon_main_dices_pet_size)));
             diceBox.addView(diceImg);
-            ((LinearLayout)mainView.findViewById(R.id.mainLinearAtkDices)).addView(diceBox);
+            ((LinearLayout) mainView.findViewById(R.id.mainLinearAtkDices)).addView(diceBox);
 
             roll.getAtkRoll().getAtkDice().setMythicEventListener(new Dice.OnMythicEventListener() {
                 @Override
@@ -84,7 +84,7 @@ public class PetPostRandValues {
     }
 
     public void refreshPostRandValues() {
-        ((LinearLayout)mainView.findViewById(R.id.mainLinearPostRand)).removeAllViews();
+        ((LinearLayout) mainView.findViewById(R.id.mainLinearPostRand)).removeAllViews();
         addPostRandValues();
     }
 
@@ -92,7 +92,7 @@ public class PetPostRandValues {
     private void addPostRandValues() {
         for (Roll roll : rollList.getList()) {
             LinearLayout txtBox = new LinearLayout(mC);
-            txtBox.setLayoutParams(new LinearLayout.LayoutParams( LinearLayout.LayoutParams.WRAP_CONTENT,0, 1));
+            txtBox.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, 0, 1));
             txtBox.setGravity(Gravity.CENTER);
             TextView atkTxt = new TextView(mC);
             atkTxt.setGravity(Gravity.CENTER);
@@ -110,8 +110,8 @@ public class PetPostRandValues {
             atkTxt.setGravity(Gravity.CENTER);
             atkTxt.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
             txtBox.addView(atkTxt);
-            ((LinearLayout)mainView.findViewById(R.id.mainLinearPostRand)).addView(txtBox);
+            ((LinearLayout) mainView.findViewById(R.id.mainLinearPostRand)).addView(txtBox);
         }
-        new PostData(mC,new PostDataElement(rollList,"atk"));
+        new PostData(mC, new PostDataElement(rollList, "atk"));
     }
 }

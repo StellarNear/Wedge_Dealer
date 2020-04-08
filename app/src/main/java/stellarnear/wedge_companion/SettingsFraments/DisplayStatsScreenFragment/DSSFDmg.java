@@ -38,16 +38,16 @@ public class DSSFDmg {
     private Context mC;
     private View mainView;
     private ElemsManager elems;
-    private Map<String,CheckBox> mapElemCheckbox=new HashMap<>();
-    private StatsList selectedStats=new StatsList();
+    private Map<String, CheckBox> mapElemCheckbox = new HashMap<>();
+    private StatsList selectedStats = new StatsList();
     private int infoTxtSize = 12;
 
-    private Tools tools=Tools.getTools();
+    private Tools tools = Tools.getTools();
 
     public DSSFDmg(View mainView, Context mC) {
         this.mainView = mainView;
         this.mC = mC;
-        this.elems= ElemsManager.getInstance(mC);
+        this.elems = ElemsManager.getInstance(mC);
 
         TextView nAtkTxt = mainView.findViewById(R.id.nDmgTxt);
         nAtkTxt.setText(pj.getStats().getStatsList().getNDmgTot() + " jets de dégâts");
@@ -56,20 +56,20 @@ public class DSSFDmg {
         CheckBox checkFire = mainView.findViewById(R.id.dmg_type_fire);
         CheckBox checkShock = mainView.findViewById(R.id.dmg_type_shock);
         CheckBox checkFrost = mainView.findViewById(R.id.dmg_type_frost);
-        mapElemCheckbox.put("",checkPhy);
-        mapElemCheckbox.put("fire",checkFire);
-        mapElemCheckbox.put("shock",checkShock);
-        mapElemCheckbox.put("frost",checkFrost);
+        mapElemCheckbox.put("", checkPhy);
+        mapElemCheckbox.put("fire", checkFire);
+        mapElemCheckbox.put("shock", checkShock);
+        mapElemCheckbox.put("frost", checkFrost);
 
-        chartMaker = new DSSFDmgChartMaker((BarChart)mainView.findViewById(R.id.bar_chart_dmg),mapElemCheckbox,mC);
+        chartMaker = new DSSFDmgChartMaker((BarChart) mainView.findViewById(R.id.bar_chart_dmg), mapElemCheckbox, mC);
         setCheckboxListeners();
         initChartSelectEvent();
         initPieChart();
-        subManager=new DSSFDmgInfoManager(mainView,mapElemCheckbox,mC);
+        subManager = new DSSFDmgInfoManager(mainView, mapElemCheckbox, mC);
     }
 
     private void setCheckboxListeners() {
-        for(String elem : elems.getListKeysWedgeDamage()){
+        for (String elem : elems.getListKeysWedgeDamage()) {
             mapElemCheckbox.get(elem).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -88,15 +88,15 @@ public class DSSFDmg {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
                 resetPieChart();
-                selectedStats=chartMaker.getMapIStepSelectedListStat().get((int)e.getX());
+                selectedStats = chartMaker.getMapIStepSelectedListStat().get((int) e.getX());
                 buildPieChart();
-                subManager.setSubSelectionBracket(chartMaker.getLabels().get((int)e.getX()));
+                subManager.setSubSelectionBracket(chartMaker.getLabels().get((int) e.getX()));
                 subManager.addInfos(selectedStats);
             }
 
             @Override
             public void onNothingSelected() {
-                if(chartMaker.getChart().isFocusable()) {
+                if (chartMaker.getChart().isFocusable()) {
                     reset();
                     resetPieChart();
                     subManager.addInfos(null);
@@ -108,14 +108,14 @@ public class DSSFDmg {
 
     // Pie chart
 
-    private void initPieChart(){
+    private void initPieChart() {
         pieChart = mainView.findViewById(R.id.pie_chart_dmg_percent);
         pieChart.setUsePercentValues(true);
         pieChart.getDescription().setEnabled(false);
         pieChart.getLegend().setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
 
         buildPieChart();
-        pieChart.animateXY(100,1000);
+        pieChart.animateXY(100, 1000);
         pieChart.getLegend().setEnabled(false);
         pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
@@ -140,25 +140,25 @@ public class DSSFDmg {
 
     private PieDataSet computePieDataSet() {
         ArrayList<PieEntry> entries = new ArrayList<>();
-        List<Integer> colorList= new ArrayList<>();
+        List<Integer> colorList = new ArrayList<>();
 
         StatsList list;
-        if(selectedStats!=null && selectedStats.size()!=0){
-            list=selectedStats;
+        if (selectedStats != null && selectedStats.size() != 0) {
+            list = selectedStats;
         } else {
-            list=pj.getStats().getStatsList();
+            list = pj.getStats().getStatsList();
         }
-        int totalDmg=list.getSumDmgTot();
-        for(String elem : elems.getListKeysWedgeDamage()) {
+        int totalDmg = list.getSumDmgTot();
+        for (String elem : elems.getListKeysWedgeDamage()) {
             if (mapElemCheckbox.get(elem).isChecked()) {
                 float percent = 100f * (list.getSumDmgTotElem(elem) / (float) totalDmg);
                 if (percent > 0f) {
-                    entries.add(new PieEntry(percent, "", new LargeValueFormatter().getFormattedValue((int) list.getSumDmgTotElem(elem)) + " dégats " + elems.getName(elem)));
+                    entries.add(new PieEntry(percent, "", new LargeValueFormatter().getFormattedValue(list.getSumDmgTotElem(elem)) + " dégats " + elems.getName(elem)));
                     colorList.add(elems.getColorId(elem));
                 }
             }
         }
-        PieDataSet dataset = new PieDataSet(entries,"");
+        PieDataSet dataset = new PieDataSet(entries, "");
         dataset.setValueTextSize(infoTxtSize);
         dataset.setColors(colorList);
         dataset.setSliceSpace(3);
@@ -168,7 +168,7 @@ public class DSSFDmg {
     // Resets
 
     public void reset() {
-        for(String elem : elems.getListKeysWedgeDamage()){
+        for (String elem : elems.getListKeysWedgeDamage()) {
             mapElemCheckbox.get(elem).setChecked(true);
         }
         chartMaker.resetChart();
@@ -180,7 +180,7 @@ public class DSSFDmg {
 
 
     private void resetPieChart() {
-        selectedStats=new StatsList();
+        selectedStats = new StatsList();
         pieChart.invalidate();
         pieChart.setCenterText("");
         pieChart.highlightValue(null);

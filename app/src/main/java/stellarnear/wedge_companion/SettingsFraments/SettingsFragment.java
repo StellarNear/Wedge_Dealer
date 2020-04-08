@@ -67,10 +67,14 @@ public class SettingsFragment extends PreferenceFragment {
                     if (key.contains("highest_tier_spell")) {
                         prefSpellRankFragment.refresh();
                     }
-                    if (key.contains("spell_rank_")){
-                        if(pj.getAllResources().getRankManager()!=null){pj.getAllResources().getRankManager().refreshMax();}
+                    if (key.contains("spell_rank_")) {
+                        if (pj.getAllResources().getRankManager() != null) {
+                            pj.getAllResources().getRankManager().refreshMax();
+                        }
                     }
-                    if (key.contains("switch_capacity_")){pj.getAllResources().refreshCapaListResources();}
+                    if (key.contains("switch_capacity_")) {
+                        pj.getAllResources().refreshCapaListResources();
+                    }
                 }
             };
 
@@ -79,52 +83,50 @@ public class SettingsFragment extends PreferenceFragment {
         super.onCreate(savedInstanceState);
         this.settings = PreferenceManager.getDefaultSharedPreferences(getContext());
         settings.registerOnSharedPreferenceChangeListener(listener);
-        this.mA=getActivity();
-        this.mC=getContext();
+        this.mA = getActivity();
+        this.mC = getContext();
         try {
-            int xmlID = getResources().getIdentifier(PersoManager.getPJPrefix()+"pref", "xml", getContext().getPackageName());
+            int xmlID = getResources().getIdentifier(PersoManager.getPJPrefix() + "pref", "xml", getContext().getPackageName());
             addPreferencesFromResource(xmlID);
-            this.histoPrefKeys.add(PersoManager.getPJPrefix()+"pref");
+            this.histoPrefKeys.add(PersoManager.getPJPrefix() + "pref");
         } catch (Exception e) {
             e.printStackTrace();
             addPreferencesFromResource(R.xml.pref);
             this.histoPrefKeys.add("pref");
         }
 
-        findPreference(PersoManager.getPJPrefix()+"pref_stats").setSummary("Record actuel : "+settings.getString("highscore"+PersoManager.getPJSuffix(),"0"));
+        findPreference(PersoManager.getPJPrefix() + "pref_stats").setSummary("Record actuel : " + settings.getString("highscore" + PersoManager.getPJSuffix(), "0"));
 
         this.histoTitle.add("Paramètres");
-        this.prefAllInventoryFragment =new PrefAllInventoryFragment(mA,mC);
+        this.prefAllInventoryFragment = new PrefAllInventoryFragment(mA, mC);
         this.prefAllInventoryFragment.setRefreshEventListener(new PrefAllInventoryFragment.OnRefreshEventListener() {
             @Override
             public void onEvent() {
                 navigate();
             }
         });
-        this.prefXpFragment = new PrefXpFragment(mA,mC);
+        this.prefXpFragment = new PrefXpFragment(mA, mC);
         this.prefXpFragment.checkLevel(tools.toBigInt(settings.getString("current_xp", String.valueOf(getContext().getResources().getInteger(R.integer.current_xp_def)))));
-        this.prefInfoScreenFragment=new PrefInfoScreenFragment(mA,mC);
-        this.prefSpellgemScreenFragment=new PrefSpellgemScreenFragment(mA,mC);
-        this.prefSpellRankFragment=new PrefSpellRankFragment(mA,mC);
-        this.prefSkillFragment=new PrefSkillFragment(mA,mC);
-        this.prefFeatFragment=new PrefFeatFragment(mA,mC);
-        this.prefCapaFragment =new PrefCapaFragment(mA,mC);
-        this.prefMythicFeatFragment =new PrefMythicFeatFragment(mA,mC);
-        this.prefMythicCapaFragment =new PrefMythicCapaFragment(mA,mC);
+        this.prefInfoScreenFragment = new PrefInfoScreenFragment(mA, mC);
+        this.prefSpellgemScreenFragment = new PrefSpellgemScreenFragment(mA, mC);
+        this.prefSpellRankFragment = new PrefSpellRankFragment(mA, mC);
+        this.prefSkillFragment = new PrefSkillFragment(mA, mC);
+        this.prefFeatFragment = new PrefFeatFragment(mA, mC);
+        this.prefCapaFragment = new PrefCapaFragment(mA, mC);
+        this.prefMythicFeatFragment = new PrefMythicFeatFragment(mA, mC);
+        this.prefMythicCapaFragment = new PrefMythicCapaFragment(mA, mC);
     }
-
-
 
 
     // will be called by SettingsActivity (Host Activity)
     public void onUpButton() {
-        if (histoPrefKeys.get(histoPrefKeys.size() - 1).equalsIgnoreCase(PersoManager.getPJPrefix()+"pref") || histoPrefKeys.size() <= 1) // in top-level
+        if (histoPrefKeys.get(histoPrefKeys.size() - 1).equalsIgnoreCase(PersoManager.getPJPrefix() + "pref") || histoPrefKeys.size() <= 1) // in top-level
         {
             pj.refresh();
             Intent intent;
-            if(getActivity().getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_0){
+            if (getActivity().getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_0) {
                 intent = new Intent(mA, MainActivity.class);
-            } else if(getActivity().getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_180) {
+            } else if (getActivity().getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_180) {
                 intent = new Intent(mA, HelpActivity.class);
             } else {
                 intent = new Intent(mA, PetActivity.class);
@@ -133,8 +135,8 @@ public class SettingsFragment extends PreferenceFragment {
             mA.startActivity(intent);
         } else // in sub-level
         {
-            currentPageKey=histoPrefKeys.get(histoPrefKeys.size() - 2);
-            currentPageTitle=histoTitle.get(histoTitle.size() - 2);
+            currentPageKey = histoPrefKeys.get(histoPrefKeys.size() - 2);
+            currentPageTitle = histoTitle.get(histoTitle.size() - 2);
             navigate();
             histoPrefKeys.remove(histoPrefKeys.size() - 1);
             histoTitle.remove(histoTitle.size() - 1);
@@ -146,8 +148,8 @@ public class SettingsFragment extends PreferenceFragment {
         if (preference.getKey().contains("pref_")) {
             histoPrefKeys.add(preference.getKey());
             histoTitle.add(preference.getTitle().toString());
-            this.currentPageKey =preference.getKey();
-            this.currentPageTitle =preference.getTitle().toString();
+            this.currentPageKey = preference.getKey();
+            this.currentPageTitle = preference.getTitle().toString();
             navigate();
         } else {
             action(preference);
@@ -156,7 +158,7 @@ public class SettingsFragment extends PreferenceFragment {
     }
 
     private void navigate() {
-        if (currentPageKey.equalsIgnoreCase(PersoManager.getPJPrefix()+"pref")) {
+        if (currentPageKey.equalsIgnoreCase(PersoManager.getPJPrefix() + "pref")) {
             displayMainPage();
         } else if (currentPageKey.contains("pref_")) {
             loadPage();
@@ -164,7 +166,7 @@ public class SettingsFragment extends PreferenceFragment {
                 case "pref_inventory_equipment":
                     PreferenceCategory otherList = (PreferenceCategory) findPreference("other_slot_equipment_list_category");
                     PreferenceCategory spareList = (PreferenceCategory) findPreference("spare_equipment_list_category");
-                    prefAllInventoryFragment.addEditableEquipment(otherList,spareList);
+                    prefAllInventoryFragment.addEditableEquipment(otherList, spareList);
                     break;
                 case "pref_inventory_bag":
                     PreferenceCategory bagList = (PreferenceCategory) findPreference("bag_list_category");
@@ -188,7 +190,7 @@ public class SettingsFragment extends PreferenceFragment {
                     PreferenceCategory atk = (PreferenceCategory) findPreference("Attaque");
                     PreferenceCategory def = (PreferenceCategory) findPreference("Défense");
                     PreferenceCategory otherFeat = (PreferenceCategory) findPreference("Autre");
-                    prefFeatFragment.addFeatsList(magic,atk,def,otherFeat);
+                    prefFeatFragment.addFeatsList(magic, atk, def, otherFeat);
                     setHasOptionsMenu(true);
                     break;
                 case "pref_character_capa":
@@ -200,7 +202,7 @@ public class SettingsFragment extends PreferenceFragment {
                     PreferenceCategory atkMythFeat = (PreferenceCategory) findPreference("Attaque");
                     PreferenceCategory defMythFeat = (PreferenceCategory) findPreference("Défense");
                     PreferenceCategory otherMythFeat = (PreferenceCategory) findPreference("Autre");
-                    prefMythicFeatFragment.addMythicFeatsList(magicMythFeat,atkMythFeat,defMythFeat,otherMythFeat);
+                    prefMythicFeatFragment.addMythicFeatsList(magicMythFeat, atkMythFeat, defMythFeat, otherMythFeat);
                     setHasOptionsMenu(true);
                     break;
                 case "pref_mythic_capa":
@@ -210,7 +212,7 @@ public class SettingsFragment extends PreferenceFragment {
                 case "pref_character_skill":
                     PreferenceCategory rank = (PreferenceCategory) findPreference(getString(R.string.skill_mastery));
                     PreferenceCategory bonus = (PreferenceCategory) findPreference(getString(R.string.skill_bonus));
-                    prefSkillFragment.addSkillsList(rank,bonus);
+                    prefSkillFragment.addSkillsList(rank, bonus);
                     setHasOptionsMenu(true);
                     break;
             }
@@ -221,14 +223,14 @@ public class SettingsFragment extends PreferenceFragment {
         getPreferenceScreen().removeAll();
         int xmlID = R.xml.pref;
         try {
-            xmlID = getResources().getIdentifier(PersoManager.getPJPrefix()+"pref" , "xml", getContext().getPackageName());
+            xmlID = getResources().getIdentifier(PersoManager.getPJPrefix() + "pref", "xml", getContext().getPackageName());
         } catch (Exception e) {
             e.printStackTrace();
         }
         addPreferencesFromResource(xmlID);
 
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(currentPageTitle);
-        findPreference(PersoManager.getPJPrefix()+"pref_stats").setSummary("Record actuel : "+settings.getString("highscore"+PersoManager.getPJSuffix(),"0"));
+        findPreference(PersoManager.getPJPrefix() + "pref_stats").setSummary("Record actuel : " + settings.getString("highscore" + PersoManager.getPJSuffix(), "0"));
     }
 
     private void loadPage() {
@@ -256,9 +258,9 @@ public class SettingsFragment extends PreferenceFragment {
                     @Override
                     public boolean onPreferenceChange(Preference preference, Object o) {
                         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getContext());
-                        int idValGoldDef=  mC.getResources().getIdentifier("money_gold_def"+ PersoManager.getPJSuffix(), "integer", mC.getPackageName());
-                        int gold = tools.toInt(settings.getString("money_gold"+PersoManager.getPJSuffix(), String.valueOf(getContext().getResources().getInteger(idValGoldDef))));
-                        settings.edit().putString("money_gold"+PersoManager.getPJSuffix(), String.valueOf(gold + tools.toInt(o.toString()))).apply();
+                        int idValGoldDef = mC.getResources().getIdentifier("money_gold_def" + PersoManager.getPJSuffix(), "integer", mC.getPackageName());
+                        int gold = tools.toInt(settings.getString("money_gold" + PersoManager.getPJSuffix(), String.valueOf(getContext().getResources().getInteger(idValGoldDef))));
+                        settings.edit().putString("money_gold" + PersoManager.getPJSuffix(), String.valueOf(gold + tools.toInt(o.toString()))).apply();
                         settings.edit().putString("add_gold", String.valueOf(0)).apply();
                         getPreferenceScreen().removeAll();
                         addPreferencesFromResource(R.xml.pref_inventory_money); //pour refreshCalculations le current
@@ -335,7 +337,7 @@ public class SettingsFragment extends PreferenceFragment {
                 navigate();
                 break;
             case "spend_myth_point":
-                if( pj.getCurrentResourceValue("resource_mythic_points")>0) {
+                if (pj.getCurrentResourceValue("resource_mythic_points") > 0) {
                     new AlertDialog.Builder(mC)
                             .setTitle("Demande de confirmation")
                             .setMessage("Confirmes-tu la dépense d'un point mythique ?")
@@ -343,13 +345,13 @@ public class SettingsFragment extends PreferenceFragment {
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int whichButton) {
                                     pj.getAllResources().getResource("resource_mythic_points").spend(1);
-                                    new PostData(mC,new PostDataElement("Utilisation d'un pouvoir mythique","Dépense d' un point mythique"));
-                                    tools.customToast(mC,"Il te reste "+pj.getCurrentResourceValue("resource_mythic_points")+" point(s) mythique(s)","center");
+                                    new PostData(mC, new PostDataElement("Utilisation d'un pouvoir mythique", "Dépense d' un point mythique"));
+                                    tools.customToast(mC, "Il te reste " + pj.getCurrentResourceValue("resource_mythic_points") + " point(s) mythique(s)", "center");
                                 }
                             })
                             .setNegativeButton(android.R.string.no, null).show();
                 } else {
-                    tools.customToast(mC,"Tu n'as plus de point mythique","center");
+                    tools.customToast(mC, "Tu n'as plus de point mythique", "center");
                 }
                 break;
             case "spellgem":
@@ -363,7 +365,7 @@ public class SettingsFragment extends PreferenceFragment {
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 pj.reset();
-                                tools.customToast(mC,"Rafraîchissement éffectué","center");
+                                tools.customToast(mC, "Rafraîchissement éffectué", "center");
                             }
                         })
                         .setNegativeButton(android.R.string.no, null).show();
@@ -377,7 +379,7 @@ public class SettingsFragment extends PreferenceFragment {
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 pj.getInventory().getAllEquipments().reset();
                                 pj.getAllResources().reset();
-                                tools.customToast(mC,"Rafraîchissement éffectué","center");
+                                tools.customToast(mC, "Rafraîchissement éffectué", "center");
                             }
                         })
                         .setNegativeButton(android.R.string.no, null).show();
@@ -390,7 +392,7 @@ public class SettingsFragment extends PreferenceFragment {
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 pj.getInventory().getBag().reset();
-                                tools.customToast(mC,"Rafraîchissement éffectué","center");
+                                tools.customToast(mC, "Rafraîchissement éffectué", "center");
                             }
                         })
                         .setNegativeButton(android.R.string.no, null).show();
@@ -403,8 +405,8 @@ public class SettingsFragment extends PreferenceFragment {
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 pj.getStats().reset();
-                                settings.edit().putString("highscore"+PersoManager.getPJSuffix(),"0").apply();
-                                tools.customToast(mC,"Reset éffectué","center");
+                                settings.edit().putString("highscore" + PersoManager.getPJSuffix(), "0").apply();
+                                tools.customToast(mC, "Reset éffectué", "center");
                             }
                         })
                         .setNegativeButton(android.R.string.no, null).show();
@@ -417,20 +419,20 @@ public class SettingsFragment extends PreferenceFragment {
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 pj.getHallOfFame().reset();
-                                tools.customToast(mC,"Reset éffectué","center");
+                                tools.customToast(mC, "Reset éffectué", "center");
                             }
                         })
                         .setNegativeButton(android.R.string.no, null).show();
                 break;
             case "export_save":
                 Intent intentSave = new Intent(mC, SaveSharedPreferencesActivity.class);
-                intentSave.putExtra("ACTION_TYPE","SAVE");
+                intentSave.putExtra("ACTION_TYPE", "SAVE");
                 intentSave.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 mC.startActivity(intentSave);
                 break;
             case "import_save":
                 Intent intentLoad = new Intent(mC, SaveSharedPreferencesActivity.class);
-                intentLoad.putExtra("ACTION_TYPE","LOAD");
+                intentLoad.putExtra("ACTION_TYPE", "LOAD");
                 intentLoad.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 mC.startActivity(intentLoad);
                 break;
@@ -439,7 +441,7 @@ public class SettingsFragment extends PreferenceFragment {
     }
 
     private void resetGlobal() {
-        List<String> allTempList = Arrays.asList("bonus_global_dmg_temp","bonus_global_atk_temp","bonus_global_temp_ca","bonus_global_temp_save","bonus_global_temp_rm");
+        List<String> allTempList = Arrays.asList("bonus_global_dmg_temp", "bonus_global_atk_temp", "bonus_global_temp_ca", "bonus_global_temp_save", "bonus_global_temp_rm");
         for (String temp : allTempList) {
             settings.edit().putString(temp, "0").apply();
         }
@@ -456,6 +458,6 @@ public class SettingsFragment extends PreferenceFragment {
         super.onStop();
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mC);
         prefs.unregisterOnSharedPreferenceChangeListener(listener);
-        listener=null;
+        listener = null;
     }
 }

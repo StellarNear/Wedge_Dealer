@@ -2,6 +2,31 @@
 <records>
 
     <capacity>
+        <name>Classe de prédilection (Oracle)</name>
+        <type>Commun</type>
+        <descr>Chaque fois que le personnage gagne un niveau dans sa classe de prédilection, l’oracle apprend un sort d’oracle de plus. Ce sort doit être d’au moins un niveau de moins que le plus puissant qu’il connaît..</descr>
+    </capacity>
+
+    <capacity>
+        <name>Conduit sacré</name>
+        <type>Commun</type>
+        <descr>Trait : L’accouchement a été particulièrement douloureux et difficile pour la mère du personnage : de puissantes magies divines ont été nécessaires pour assurer la survie du bébé (la mère peut avoir survécu ou pas). Quoi qu’il en soit, la magie a touché le personnage dès son plus jeune âge. Il peut désormais canaliser de l’énergie divine plus facilement que les autres. Chaque fois qu’il canalise de l’énergie, il gagne un bonus de trait de +1 au DD de sa canalisation.</descr>
+    </capacity>
+
+    <capacity>
+        <name>Enfant de la lune</name>
+        <type>Commun</type>
+        <id>capacity_moon_child</id>
+        <descr>Trait : Le personnage est béni par la lune, une bénédiction qui se renforce lorsque celle-ci est pleine. Lors des jets de Discrétion le personnage gagne un bonus de trait de +1 à une de ces compétences. Ce bonus passe à +2 entre le premier et le troisième quartier de la lune, et à +4 lors d'une pleine lune.</descr>
+    </capacity>
+    <capacity>
+        <name>Compétent</name>
+        <type>Humain</type>
+        <id>capacity_human_skill</id>
+        <descr>Les humains obtiennent un point de compétence supplémentaire au niveau 1 et un point de compétence en plus chaque fois qu’ils gagnent un niveau.</descr>
+    </capacity>
+
+    <capacity>
         <name>Stimulant spirituel</name>
         <type>Révélation Vie</type>
         <descr>Quand l’oracle lance un sort qui remonte la vie de la cible au maximum, tout point en excès persiste pendant un round par niveau sous forme de point de vie temporaire (avec un maximum de points égal au niveau de l’oracle).</descr>
@@ -31,6 +56,7 @@
 
     <capacity>
         <name>Corp d'énérgie</name>
+        <type>Révélation Vie</type>
         <shortname>Corp</shortname>
         <dailyuse>lvl</dailyuse>
         <value>1d6+1/lvl</value>
@@ -48,7 +74,6 @@
         <descr>Trois fois par jour, par une action immédiate, quand l’oracle rate un jet de sauvegarde contre une maladie ou un poison, il peut en ignorer les effets pendant 1 heure par niveau.</descr>
     </capacity>
 
-
     <capacity>
         <name>Armure prophétique</name>
         <type>Révélation Lune</type>
@@ -59,7 +84,8 @@
     <capacity>
         <name>Écriture lunaire</name>
         <type>Révélation Lune</type>
-        <descr>Une fois par nuit, dans son sommeil, les mains de l'oracle produisent de mystérieux écrits qui appartiennent au futur. Au niveau 1, ces prophéties se manifestent sous la forme d’un sort d’augure avec 90% d’efficacité. Au niveau 5, c’est un sort de divination avec 90% d’efficacité. Au niveau 8, c’est un sort de communion qui ne nécessite pas de composante matérielle.</descr>
+        <id>capacity_revelation_moon_writing</id>
+        <descr>Une fois par nuit, dans son sommeil, les mains de l'oracle produisent de mystérieux écrits qui appartiennent au futur. Fonctionne comme le sort de communion qui ne nécessite pas de composante matérielle.</descr>
     </capacity>
 
     <capacity>
@@ -68,14 +94,12 @@
         <descr>L'oracle gagne les services d'un compagnon animal né de la nuit. Il doit s'agir d'un crocodile, loup, ours, requin, sanglier ou tigre. Le niveau de druide effectif pour ce pouvoir est égal au niveau de l'oracle.</descr>
     </capacity>
 
-
     <capacity>
         <name>Caresse de la lune</name>
         <type>Révélation Lune</type>
         <id>capacity_revelation_moon_touch</id>
         <descr>Les sorts de soins semblent de même plus efficaces, bien que leur efficacité soit partiellement chimérique. Il peut dépenser deux emplacements de sort en lançant un sort de soin pour lui appliquer les effets du don Extension d'effet sans augmenter son niveau, mais le sort confère des points de vie temporaires au lieu de soigner les blessures. Ces points de vie durent une minute par niveau d'oracle.</descr>
     </capacity>
-
 
     <capacity>
         <name>Fortune</name>
@@ -85,7 +109,6 @@
         <descr>Par une action immédiate, l’oracle peut refaire un jet de d20 qu’il vient de faire avant d’en connaître le résultat. Il doit conserver le résultat du second jet, même s’il est pire que le premier. Il peut utiliser ce pouvoir une fois par jour au niveau 5 et ensuite une fois de plus tous les six niveaux.</descr>
     </capacity>
 
-
     <capacity>
         <name>Mauvaise fortune</name>
         <shortname>Mauvaise</shortname>
@@ -94,7 +117,6 @@
         <dailyuse>infinite</dailyuse>
         <descr>Par une action immédiate, il peut obliger une créature située dans les 9 mètres à relancer un jet de d20 qu’il vient de faire avant d’en connaître le résultat. La cible doit conserver le résultat du second jet, même s’il est pire que le premier. Une fois qu’une créature a été affectée par la mauvaise fortune de l’oracle, elle ne peut plus en être victime pendant 1 jour.</descr>
     </capacity>
-
 
     <capacity>
         <name>Révélation finale</name>
@@ -106,7 +128,7 @@
         <name>Mystère révélé</name>
         <type>Oracle épique</type>
         <id>capacity_unraveled_mystery</id>
-        <descr>Les sort bonus issu du mystere de l’oracle se reforcent. Nimporte quel dons de métamagie peut etre appliqué sur ces sorts par une action libre. Le niveau d’auguementation du rang de l’emplacement de sort est réduit de 1 et les jet de resistance que les sorts pourraient engendrer auguemente de 1.</descr>
+        <descr>Les sort bonus issu du mystere de l’oracle se reforcent. Nimporte quel dons de métamagie peut etre appliqué sur ces sorts par une action libre. Le niveau d’auguementation du rang de l’emplacement de sort est réduit de 1 et les jet de resistance que les sorts pourraient engendrer augmente de 1.</descr>
         <value>(lvl-18)/3</value>
     </capacity>
 
@@ -123,7 +145,6 @@
         <id>capacity_epic_revelation_fortune</id>
         <descr>L'oracle séléctione une révélation (ici fortune). Cette révélation dure deux fois plus longtemps, la portée augemente de 50% sa zone d'effet augement de 3m, le DD de 1, tout les dégats ou soins de 4, les bonus à la CA BMO jet de reflexes ou initiative de 1, les bonus aus jets de compétence de 2.</descr>
     </capacity>
-
 
 
 </records>

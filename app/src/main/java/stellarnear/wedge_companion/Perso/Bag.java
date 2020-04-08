@@ -41,30 +41,30 @@ public class Bag {
     private Activity mA;
     private Boolean removable;
     private Context mC;
-    private Tools tools=Tools.getTools();
-    private String pjID="";
+    private Tools tools = Tools.getTools();
+    private String pjID = "";
     private TinyDB tinyDB;
 
-    public Bag(Context mC,String pjID){
+    public Bag(Context mC, String pjID) {
         this.mC = mC;
-        this.pjID=pjID;
+        this.pjID = pjID;
         settings = PreferenceManager.getDefaultSharedPreferences(mC);
         try {
             refreshBag();
         } catch (Exception e) {
             e.printStackTrace();
-            Log.d("Load_BAG","Error loading bag"+pjID+e.getMessage());
+            Log.d("Load_BAG", "Error loading bag" + pjID + e.getMessage());
             reset();
         }
     }
 
     private void saveLocalBag() {
-        tinyDB.putListEquipments("localSaveListBag"+pjID, listBag);
+        tinyDB.putListEquipments("localSaveListBag" + pjID, listBag);
     }  //on save avec le pjID pour avoir une database differente pour halda
 
-    private void refreshBag(){
+    private void refreshBag() {
         tinyDB = new TinyDB(mC);
-        List<Equipment> listDB = tinyDB.getListEquipments("localSaveListBag"+pjID); //on save avec le pjID pour avoir une database differente pour halda
+        List<Equipment> listDB = tinyDB.getListEquipments("localSaveListBag" + pjID); //on save avec le pjID pour avoir une database differente pour halda
         if (listDB.size() == 0) {
             buildBag();
             saveLocalBag();
@@ -75,16 +75,20 @@ public class Bag {
     }
 
 
-
     private void buildBag() {
         listBag = new ArrayList<>();
         listTags = new ArrayList<>();
         String rawToParse = readXMLBag();
         for (String line : rawToParse.split("\n")) {
             String lineTrim = line.trim();
-            String name = "";   String descr = "";     String value = "";      String tags = "";
+            String name = "";
+            String descr = "";
+            String value = "";
+            String tags = "";
 
-            int indexFirstKeyDescr = 999;  int indexFirstKeyVal = 999;    int indexFirstKeyTag = 999;
+            int indexFirstKeyDescr = 999;
+            int indexFirstKeyVal = 999;
+            int indexFirstKeyTag = 999;
             try {
                 descr = lineTrim.substring(lineTrim.indexOf("(") + 1, lineTrim.indexOf(")"));
                 indexFirstKeyDescr = lineTrim.indexOf("(");
@@ -100,7 +104,7 @@ public class Bag {
 
             try {
                 tags = lineTrim.substring(lineTrim.indexOf("{") + 1, lineTrim.indexOf("}"));
-                for(String tag:tags.split(",")) {
+                for (String tag : tags.split(",")) {
                     if (!listBag.contains(tag)) {
                         listTags.add(tag);
                     }
@@ -125,8 +129,8 @@ public class Bag {
     private String readXMLBag() {
         String rawBagXML = "";
         try {
-            String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
-            InputStream is = mC.getAssets().open("equipment"+extendID+".xml");
+            String extendID = pjID.equalsIgnoreCase("") ? "" : "_" + pjID;
+            InputStream is = mC.getAssets().open("equipment" + extendID + ".xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(is);
@@ -142,8 +146,8 @@ public class Bag {
 
     private void refreshTags() {
         listTags = new ArrayList<>();
-        for (Equipment equi : listBag){
-            for(String tag:equi.getTags()) {
+        for (Equipment equi : listBag) {
+            for (String tag : equi.getTags()) {
                 if (!listTags.contains(tag)) {
                     listTags.add(tag);
                 }
@@ -152,39 +156,39 @@ public class Bag {
     }
 
     private String getMoney(String key) {
-        String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
-        int money_defID = mC.getResources().getIdentifier(key+"_def"+extendID, "integer", mC.getPackageName());
+        String extendID = pjID.equalsIgnoreCase("") ? "" : "_" + pjID;
+        int money_defID = mC.getResources().getIdentifier(key + "_def" + extendID, "integer", mC.getPackageName());
         int money_def_val = 0;
         try {
             money_def_val = mC.getResources().getInteger(money_defID);
         } catch (Resources.NotFoundException e) {
             e.printStackTrace();
         }
-        long money = tools.toLong(settings.getString(key+extendID,String.valueOf(money_def_val)));
-        String moneyTxt=getAppedix(money);
+        long money = tools.toLong(settings.getString(key + extendID, String.valueOf(money_def_val)));
+        String moneyTxt = getAppedix(money);
         return moneyTxt;
     }
 
     private String getAppedix(long money) {
-        String appendix ="";
-        if (money>=1000000000){
-            money = money/1000000000;
-            appendix+="G";
+        String appendix = "";
+        if (money >= 1000000000) {
+            money = money / 1000000000;
+            appendix += "G";
         }
-        if (money>=1000000){
-            money = money/1000000;
-            appendix+="M";
+        if (money >= 1000000) {
+            money = money / 1000000;
+            appendix += "M";
         }
-        if (money>=1000){
-            money = money/1000;
-            appendix+="k";
+        if (money >= 1000) {
+            money = money / 1000;
+            appendix += "k";
         }
-        String moneyTxt = String.valueOf(money)+appendix;
+        String moneyTxt = money + appendix;
         return moneyTxt;
     }
 
     private void calculateTagsSums(LinearLayout tagMain) {
-        List<String> displayedTags=new ArrayList<>();
+        List<String> displayedTags = new ArrayList<>();
         if (listTags.size() > 0) {
             tagMain.removeAllViews();
             tagMain.setVisibility(View.VISIBLE);
@@ -219,9 +223,9 @@ public class Bag {
         try {
             String numberTxt = value.substring(0, value.indexOf("p"));
             if (value.contains("po")) {
-                po = tools.toInt(numberTxt.trim().replace(" ",""));
+                po = tools.toInt(numberTxt.trim().replace(" ", ""));
             } else if (value.contains("pp")) {
-                po = 10 * tools.toInt(numberTxt.trim().replace(" ",""));
+                po = 10 * tools.toInt(numberTxt.trim().replace(" ", ""));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -237,7 +241,7 @@ public class Bag {
         return listTags;
     }
 
-    public int getBagSize(){
+    public int getBagSize() {
         return listBag.size();
     }
 
@@ -251,10 +255,10 @@ public class Bag {
         saveLocalBag();
     }
 
-    public void showBag(Activity mA,Boolean removable){
+    public void showBag(Activity mA, Boolean removable) {
         refreshBag();
-        this.mA=mA;
-        this.removable=removable;
+        this.mA = mA;
+        this.removable = removable;
         customInfo();
     }
 
@@ -262,6 +266,7 @@ public class Bag {
         LayoutInflater inflater = mA.getLayoutInflater();
         View view = inflater.inflate(R.layout.custom_toast_list_info, null);
         final CustomAlertDialog ca = new CustomAlertDialog(mA, mC, view);
+        ca.setFill("width");
         ca.setPermanent(true);
         ca.clickToHide(view.findViewById(R.id.toast_list_title_frame));
 
@@ -294,17 +299,17 @@ public class Bag {
             } else {
                 descr.setVisibility(View.GONE);
             }
-            if(removable){
+            if (removable) {
                 ImageView trash = yourLayout.findViewById(R.id.toast_info_element_trash);
                 trash.setVisibility(View.VISIBLE);
-                setButtonToDeleteFromBag(trash,equi,ca);
+                setButtonToDeleteFromBag(trash, equi, ca);
             }
             scrollLin.addView(yourLayout);
         }
         ca.showAlert();
     }
 
-    private void setButtonToDeleteFromBag(ImageView trash, final Equipment equi,final CustomAlertDialog ca) {
+    private void setButtonToDeleteFromBag(ImageView trash, final Equipment equi, final CustomAlertDialog ca) {
         trash.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

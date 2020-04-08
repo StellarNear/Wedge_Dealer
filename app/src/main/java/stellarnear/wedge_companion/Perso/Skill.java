@@ -18,16 +18,16 @@ public class Skill {
     private int rank;
     private int bonus;
     private Context mC;
-    private String pjID="";
-    private Tools tools=Tools.getTools();
+    private String pjID = "";
+    private Tools tools = Tools.getTools();
 
-    public Skill(String name, String abilityDependence, String descr, String id, Context mC,String pjID){
-        this.name=name;
+    public Skill(String name, String abilityDependence, String descr, String id, Context mC, String pjID) {
+        this.name = name;
         this.abilityDependence = abilityDependence;
-        this.descr=descr;
-        this.id=id;
-        this.mC=mC;
-        this.pjID=pjID;
+        this.descr = descr;
+        this.id = id;
+        this.mC = mC;
+        this.pjID = pjID;
         refreshVals();
     }
 
@@ -52,7 +52,6 @@ public class Skill {
     }
 
 
-
     public String getAbilityDependence() {
         return this.abilityDependence;
     }
@@ -63,32 +62,34 @@ public class Skill {
     }
 
     private void refreshRank() {
-        int valDef=0;
+        int valDef = 0;
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
-        String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
+        String extendID = pjID.equalsIgnoreCase("") ? "" : "_" + pjID;
         try {
-            int valDefId = mC.getResources().getIdentifier(this.id+"_rankDEF"+extendID, "integer", mC.getPackageName());
+            int valDefId = mC.getResources().getIdentifier(this.id + "_rankDEF" + extendID, "integer", mC.getPackageName());
             valDef = mC.getResources().getInteger(valDefId);
-        } catch ( Exception e) {}
-        this.rank = tools.toInt(settings.getString(this.id+"_rank"+extendID, String.valueOf(valDef)));
+        } catch (Exception e) {
+        }
+        this.rank = tools.toInt(settings.getString(this.id + "_rank" + extendID, String.valueOf(valDef)));
     }
 
-    public int getRank(){
+    public int getRank() {
         return this.rank;
     }
 
     private void refreshBonus() {
-        int bonusDef=0;
+        int bonusDef = 0;
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
-        String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
+        String extendID = pjID.equalsIgnoreCase("") ? "" : "_" + pjID;
         try {
-            int bonusDefId = mC.getResources().getIdentifier(this.id+"_bonusDEF"+extendID, "integer", mC.getPackageName());
+            int bonusDefId = mC.getResources().getIdentifier(this.id + "_bonusDEF" + extendID, "integer", mC.getPackageName());
             bonusDef = mC.getResources().getInteger(bonusDefId);
-        } catch ( Exception e) {}
-        this.bonus= tools.toInt(settings.getString(this.id+"_bonus"+extendID, String.valueOf(bonusDef)));
+        } catch (Exception e) {
+        }
+        this.bonus = tools.toInt(settings.getString(this.id + "_bonus" + extendID, String.valueOf(bonusDef)));
     }
 
-    public int getBonus(){
+    public int getBonus() {
         return this.bonus;
     }
 }

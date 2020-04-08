@@ -5,23 +5,24 @@
     android:id="@+id/frag_main_constraint"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clipChildren="false"
     android:background="?attr/colorBackground"
+    android:clipChildren="false"
     tools:context="stellarnear.wedge_companion.Activities.MainActivityFragment">
 
 
     <LinearLayout
-        app:layout_constraintTop_toTopOf="parent"
-        android:baselineAligned="false"
-        android:layout_margin="@dimen/general_margin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/general_margin"
+        android:baselineAligned="false"
         android:clipChildren="false"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
+
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:clipChildren="false"
             android:gravity="center"
             android:orientation="vertical">
@@ -40,19 +41,19 @@
                 android:id="@+id/textSkillActionTooltip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
                 android:text="compétences"
-                android:textSize="@dimen/size_text_main_actions" />
+                android:textSize="@dimen/size_text_main_actions"
+                android:visibility="gone" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linear_frag_to_combat"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clipChildren="false"
             android:gravity="center"
             android:orientation="vertical"
-            android:clipChildren="false"
             android:visibility="gone">
 
             <ImageButton
@@ -69,19 +70,20 @@
                 android:id="@+id/textCombatActionTooltip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
                 android:text="combat"
-                android:textSize="@dimen/size_text_main_actions" />
+                android:textSize="@dimen/size_text_main_actions"
+                android:visibility="gone" />
 
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/linear_frag_to_canal"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clipChildren="false"
             android:gravity="center"
             android:orientation="vertical"
-            android:clipChildren="false"
             android:visibility="gone">
 
             <ImageButton
@@ -98,20 +100,20 @@
                 android:id="@+id/textCanalActionTooltip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
                 android:text="canalisation"
-                android:textSize="@dimen/size_text_main_actions" />
+                android:textSize="@dimen/size_text_main_actions"
+                android:visibility="gone" />
 
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linear_frag_to_form"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clipChildren="false"
             android:gravity="center"
             android:orientation="vertical"
-            android:clipChildren="false"
             android:visibility="gone">
 
             <ImageButton
@@ -128,19 +130,19 @@
                 android:id="@+id/textFormActionTooltip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
                 android:text="formes"
-                android:textSize="@dimen/size_text_main_actions" />
+                android:textSize="@dimen/size_text_main_actions"
+                android:visibility="gone" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clipChildren="false"
             android:gravity="center"
-            android:orientation="vertical"
-            android:clipChildren="false">
+            android:orientation="vertical">
 
             <ImageButton
                 android:id="@+id/button_frag_to_spell"
@@ -156,9 +158,9 @@
                 android:id="@+id/textSpellActionTooltip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
                 android:text="sorts"
-                android:textSize="@dimen/size_text_main_actions" />
+                android:textSize="@dimen/size_text_main_actions"
+                android:visibility="gone" />
 
 
         </LinearLayout>
@@ -168,8 +170,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:clipChildren="false"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -179,30 +181,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/general_margin"
-            android:visibility="gone"
             android:gravity="center"
             android:text="@string/quadrantGeneralTitle"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/black"
+            android:visibility="gone" />
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clipChildren="false">
+
             <ViewSwitcher
                 android:id="@+id/viewSwitcherQuadrant"
-                android:clipChildren="false"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                app:layout_constraintDimensionRatio="h,1:1"
-                app:layout_constraintBottom_toBottomOf="parent">
+                android:clipChildren="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="h,1:1">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="@dimen/general_margin"
-                    android:orientation="vertical"
                     android:clipChildren="false"
+                    android:orientation="vertical"
                     android:weightSum="2">
 
                     <LinearLayout
@@ -210,8 +213,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:gravity="center"
                         android:clipChildren="false"
+                        android:gravity="center"
                         android:orientation="horizontal"
                         android:weightSum="2">
 
@@ -221,10 +224,10 @@
                             android:layout_height="match_parent"
                             android:layout_margin="@dimen/general_margin"
                             android:layout_weight="1"
-                            android:visibility="gone"
                             android:background="@drawable/quadrant_basic_gradient"
                             android:gravity="center"
-                            android:orientation="vertical"/>
+                            android:orientation="vertical"
+                            android:visibility="gone" />
 
                         <LinearLayout
                             android:id="@+id/main_frag_stats_quadrant2"
@@ -232,11 +235,11 @@
                             android:layout_height="match_parent"
                             android:layout_margin="@dimen/general_margin"
                             android:layout_weight="1"
-                            android:visibility="gone"
                             android:animateLayoutChanges="true"
                             android:background="@drawable/quadrant_basic_gradient"
                             android:gravity="center"
-                            android:orientation="vertical"/>
+                            android:orientation="vertical"
+                            android:visibility="gone" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -244,8 +247,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:gravity="center"
                         android:clipChildren="false"
+                        android:gravity="center"
                         android:orientation="horizontal"
                         android:weightSum="2"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -257,11 +260,11 @@
                             android:layout_height="match_parent"
                             android:layout_margin="@dimen/general_margin"
                             android:layout_weight="1"
-                            android:visibility="gone"
                             android:animateLayoutChanges="true"
                             android:background="@drawable/quadrant_basic_gradient"
                             android:gravity="center"
-                            android:orientation="vertical"/>
+                            android:orientation="vertical"
+                            android:visibility="gone" />
 
                         <LinearLayout
                             android:id="@+id/main_frag_stats_quadrant4"
@@ -269,11 +272,11 @@
                             android:layout_height="match_parent"
                             android:layout_margin="@dimen/general_margin"
                             android:layout_weight="1"
-                            android:visibility="gone"
                             android:animateLayoutChanges="true"
                             android:background="@drawable/quadrant_basic_gradient"
                             android:gravity="center"
-                            android:orientation="vertical"/>
+                            android:orientation="vertical"
+                            android:visibility="gone" />
 
                     </LinearLayout>
 

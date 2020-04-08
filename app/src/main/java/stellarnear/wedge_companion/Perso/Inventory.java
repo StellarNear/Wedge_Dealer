@@ -22,23 +22,24 @@ public class Inventory {
     private CustomAlertDialog equipWindow;
     private boolean editable;
 
-    public Inventory(Context mC,String pjID) {
-        this.bag = new Bag(mC,pjID);
-        this.allEquipments = new AllEquipments(mC,pjID);
+    public Inventory(Context mC, String pjID) {
+        this.bag = new Bag(mC, pjID);
+        this.allEquipments = new AllEquipments(mC, pjID);
     }
 
-    public void showEquipment(Activity mA,Context mC, Boolean... canDelete) {
+    public void showEquipment(Activity mA, Context mC, Boolean... canDelete) {
         editable = canDelete.length > 0 ? canDelete[0] : false;  //parametre optionnel pour editer le contenu de l'invertaire
         LayoutInflater inflater = mA.getLayoutInflater();
         View inventoryView = inflater.inflate(R.layout.equipment_dialog, null);
         equipWindow = new CustomAlertDialog(mA, mC, inventoryView);
+        equipWindow.setFill("width");
         equipWindow.setPermanent(true);
         equipWindow.clickToHide(inventoryView.findViewById(R.id.equipment_dialog_main_title_frame));
-        setImageOnDialog(mA,mC,inventoryView);
+        setImageOnDialog(mA, mC, inventoryView);
         equipWindow.showAlert();
     }
 
-    private void setImageOnDialog(final Activity mA,final Context mC, View inventoryView) {
+    private void setImageOnDialog(final Activity mA, final Context mC, View inventoryView) {
 
         float[] mat = new float[]
                 {
@@ -60,7 +61,7 @@ public class Inventory {
         ColorMatrixColorFilter matrixBlue = new ColorMatrixColorFilter(mat2);
         if (bag.getBagSize() > 0) {
             int resID = mC.getResources().getIdentifier("bag", "id", mC.getPackageName());
-            ImageView img = (ImageView) inventoryView.findViewById(resID);
+            ImageView img = inventoryView.findViewById(resID);
             img.getDrawable().mutate().setColorFilter(matrixGreen);
             img.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -73,7 +74,7 @@ public class Inventory {
         for (final Equipment equi : allEquipments.getListAllEquipmentsEquiped()) {
             try {
                 int resID = mC.getResources().getIdentifier(equi.getSlotId(), "id", mC.getPackageName());
-                ImageView img = (ImageView) inventoryView.findViewById(resID);
+                ImageView img = inventoryView.findViewById(resID);
                 img.getDrawable().mutate().setColorFilter(matrixGreen);
                 img.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -100,17 +101,17 @@ public class Inventory {
                 try {
                     if (allEquipments.getEquipmentsEquiped(equi.getSlotId()) == null) {
                         int resID = mC.getResources().getIdentifier(equi.getSlotId(), "id", mC.getPackageName());
-                        ImageView img = (ImageView) inventoryView.findViewById(resID);
+                        ImageView img = inventoryView.findViewById(resID);
                         img.getDrawable().mutate().setColorFilter(matrixBlue);
                         img.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                allEquipments.getDisplayManager().showSpareList(mA,allEquipments.getDisplayManager().getSpareEquipment(equi.getSlotId()),editable);
+                                allEquipments.getDisplayManager().showSpareList(mA, allEquipments.getDisplayManager().getSpareEquipment(equi.getSlotId()), editable);
                                 allEquipments.getDisplayManager().setRefreshEventListener(new DisplayEquipmentManager.OnRefreshEventListener() {
                                     @Override
                                     public void onEvent() {
                                         equipWindow.dismissAlert();
-                                        showEquipment(mA,mC, editable);
+                                        showEquipment(mA, mC, editable);
                                     }
                                 });
 

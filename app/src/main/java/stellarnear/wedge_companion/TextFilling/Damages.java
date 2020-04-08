@@ -31,12 +31,12 @@ public class Damages {
 
     private Tools tools = Tools.getTools();
 
-    public Damages(Activity mA,Context mC, View mainView, RollList selectedRolls) {
+    public Damages(Activity mA, Context mC, View mainView, RollList selectedRolls) {
         this.mA = mA;
         this.mC = mC;
         this.mainView = mainView;
         this.selectedRolls = selectedRolls;
-        this.elems= ElemsManager.getInstance(mC);
+        this.elems = ElemsManager.getInstance(mC);
 
         clearAllViews();
         addDamage();
@@ -46,17 +46,17 @@ public class Damages {
     }
 
     public void hideViews() {
-        ((View) mainView.findViewById(R.id.bar_sep)).setVisibility(View.GONE);
-        ((TextView) mainView.findViewById(R.id.mainLinearDmgTitle)).setVisibility(View.GONE);
-        ((LinearLayout) mainView.findViewById(R.id.mainLinearLogoDmg)).setVisibility(View.GONE);
-        ((LinearLayout) mainView.findViewById(R.id.mainLinearSumDmg)).setVisibility(View.GONE);
+        mainView.findViewById(R.id.bar_sep).setVisibility(View.GONE);
+        mainView.findViewById(R.id.mainLinearDmgTitle).setVisibility(View.GONE);
+        mainView.findViewById(R.id.mainLinearLogoDmg).setVisibility(View.GONE);
+        mainView.findViewById(R.id.mainLinearSumDmg).setVisibility(View.GONE);
     }
 
     private void showViews() {
-        ((View) mainView.findViewById(R.id.bar_sep)).setVisibility(View.VISIBLE);
-        ((TextView) mainView.findViewById(R.id.mainLinearDmgTitle)).setVisibility(View.VISIBLE);
-        ((LinearLayout) mainView.findViewById(R.id.mainLinearLogoDmg)).setVisibility(View.VISIBLE);
-        ((LinearLayout) mainView.findViewById(R.id.mainLinearSumDmg)).setVisibility(View.VISIBLE);
+        mainView.findViewById(R.id.bar_sep).setVisibility(View.VISIBLE);
+        mainView.findViewById(R.id.mainLinearDmgTitle).setVisibility(View.VISIBLE);
+        mainView.findViewById(R.id.mainLinearLogoDmg).setVisibility(View.VISIBLE);
+        mainView.findViewById(R.id.mainLinearSumDmg).setVisibility(View.VISIBLE);
     }
 
     private void clearAllViews() {
@@ -77,14 +77,14 @@ public class Damages {
             }
         }
 
-        if (totalSum>0){
+        if (totalSum > 0) {
             //if(pj.getAllForms()==null || !pj.getAllForms().hasActiveForm() ){pj.getStats().storeStatsFromRolls(selectedRolls);}       //storing results
             showViews();
-            ((TextView) mainView.findViewById(R.id.mainLinearDmgTitle)).setText("Dégâts : "+String.valueOf(totalSum));
+            ((TextView) mainView.findViewById(R.id.mainLinearDmgTitle)).setText("Dégâts : " + totalSum);
             checkHighscore();
         } else {
-            ((View) mainView.findViewById(R.id.bar_sep)).setVisibility(View.VISIBLE);
-            ((TextView) mainView.findViewById(R.id.mainLinearDmgTitle)).setVisibility(View.VISIBLE);
+            mainView.findViewById(R.id.bar_sep).setVisibility(View.VISIBLE);
+            mainView.findViewById(R.id.mainLinearDmgTitle).setVisibility(View.VISIBLE);
             ((TextView) mainView.findViewById(R.id.mainLinearDmgTitle)).setText("Aucun dégât");
         }
     }
@@ -125,14 +125,14 @@ public class Damages {
 
     private void checkHighscore() {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
-        int currentHigh = Tools.getTools().toInt(settings.getString("highscore"+PersoManager.getPJSuffix(), "0"));
+        int currentHigh = Tools.getTools().toInt(settings.getString("highscore" + PersoManager.getPJSuffix(), "0"));
         if (currentHigh < totalSum) {
-            if (!settings.getBoolean("switch_demo_mode",mC.getResources().getBoolean(R.bool.switch_demo_mode_def))) {
+            if (!settings.getBoolean("switch_demo_mode", mC.getResources().getBoolean(R.bool.switch_demo_mode_def))) {
                 settings.edit().putString("highscore" + PersoManager.getPJSuffix(), String.valueOf(totalSum)).apply();
             }
             Tools tools = Tools.getTools();
-            tools.playVideo(mA,mC,"/raw/explosion");
-            tools.customToast(mC, String.valueOf(totalSum) + " dégats !\nC'est un nouveau record !", "center");
+            tools.playVideo(mA, mC, "/raw/explosion");
+            tools.customToast(mC, totalSum + " dégats !\nC'est un nouveau record !", "center");
         }
     }
 

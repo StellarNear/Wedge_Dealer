@@ -130,10 +130,9 @@ Dispense le porteur du besoin de manger boire et respirer.</descr>
 
 En cas de 20 naturel le mutiplicateur de dégat augemente de deux rangs
 
-A chaque fois qu'un enneemi fait un echec critique, attaque simple possible en réponse.
+A chaque fois qu'un ennemi fait un echec critique, attaque simple possible en réponse.
 
 Lors de la premiere attaque ajoute bonus de dégat égal au jet d'initiative.</descr>
-
         <imgId>equipped_isillirit</imgId>
         <slotId>offhand_slot</slotId>
         <equipped>true</equipped>

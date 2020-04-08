@@ -2,7 +2,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <stellarnear.wedge_companion.SettingsFraments.PrefHallOfFameFragment
-        android:key="null"
-        android:focusable="true"/>
+        android:focusable="true"
+        android:key="null" />
 
 </PreferenceScreen>

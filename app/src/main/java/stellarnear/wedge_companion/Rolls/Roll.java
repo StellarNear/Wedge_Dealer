@@ -17,41 +17,36 @@ import stellarnear.wedge_companion.Tools;
 
 public abstract class Roll {
     protected AtkRoll atkRoll;
-    protected List<DmgRoll> dmgRollList=new ArrayList<>(); //on peut avoir plusieurs fleches de degat par jet d'attaque
+    protected List<DmgRoll> dmgRollList = new ArrayList<>(); //on peut avoir plusieurs fleches de degat par jet d'attaque
     protected int nthAtkRoll;
     protected Activity mA;
     protected Context mC;
     protected SharedPreferences settings;
-    protected Tools tools=Tools.getTools();
+    protected Tools tools = Tools.getTools();
     protected Perso pj = PersoManager.getCurrentPJ();
     protected String mode;
-    protected boolean biteBoosted=false;
+    protected boolean biteBoosted = false;
 
     public Roll(Activity mA, Context mC, Integer atkBase) {
-        this.mA=mA;
-        this.mC=mC;
+        this.mA = mA;
+        this.mC = mC;
         settings = PreferenceManager.getDefaultSharedPreferences(mC);
     }
 
-    public AtkRoll getAtkRoll(){
+    public AtkRoll getAtkRoll() {
         return this.atkRoll;
-    }
-
-    public void setNthAtkRoll(int nthAtkRoll) {
-        this.nthAtkRoll = nthAtkRoll;
     }
 
     public void setMode(String mode) {
         atkRoll.setMode(mode);
-        this.mode=mode; //les dmgroll sont pas encore présent
+        this.mode = mode; //les dmgroll sont pas encore présent
     }
 
     public abstract void setDmgRand(); //defini dans les deux sous type
 
-    public List<DmgRoll> getDmgRollList(){
+    public List<DmgRoll> getDmgRollList() {
         return this.dmgRollList;
     }
-
 
     public Boolean isInvalid() {
         return atkRoll.isInvalid();
@@ -76,21 +71,27 @@ public abstract class Roll {
     public boolean isCritConfirmed() {
         return atkRoll.isCritConfirmed();
     }
+
     public Integer getPreRandValue() {
         return atkRoll.getPreRandValue();
     }
+
     public Dice getAtkDice() {
         return atkRoll.getAtkDice();
     }
+
     public ImageView getImgAtk() {
         return atkRoll.getImgAtk();
     }
+
     public int getAtkValue() {
         return atkRoll.getValue();
     }
+
     public CheckBox getHitCheckbox() {
         return atkRoll.getHitCheckbox();
     }
+
     public CheckBox getCritCheckbox() {
         return atkRoll.getCritCheckbox();
     }
@@ -99,19 +100,19 @@ public abstract class Roll {
         atkRoll.isDelt();
     }
 
-    //partie dégat
-
     public DiceList getDmgDiceListFromNface(int nFace) {
-        DiceList diceList=new DiceList();
-        for(DmgRoll dmgRoll:this.dmgRollList){
+        DiceList diceList = new DiceList();
+        for (DmgRoll dmgRoll : this.dmgRollList) {
             diceList.add(dmgRoll.getDmgDiceList().filterWithNface(nFace));
         }
         return diceList;
     }
 
+    //partie dégat
+
     public DiceList getDmgDiceList() {
-        DiceList diceList=new DiceList();
-        for(DmgRoll dmgRoll:this.dmgRollList){
+        DiceList diceList = new DiceList();
+        for (DmgRoll dmgRoll : this.dmgRollList) {
             diceList.add(dmgRoll.getDmgDiceList());
         }
         return diceList;
@@ -119,10 +120,10 @@ public abstract class Roll {
 
     public int getDmgSum(String... elementArg) {
         String element = elementArg.length > 0 ? elementArg[0] : "";
-        Integer sum=0;
-        for(DmgRoll dmgRoll:this.dmgRollList){
-            if(biteBoosted){
-                sum += 2*dmgRoll.getSumDmg(element);
+        Integer sum = 0;
+        for (DmgRoll dmgRoll : this.dmgRollList) {
+            if (biteBoosted) {
+                sum += 2 * dmgRoll.getSumDmg(element);
             } else {
                 sum += dmgRoll.getSumDmg(element);
             }
@@ -132,12 +133,12 @@ public abstract class Roll {
 
     public int getMaxDmg(String... elementArg) {
         String element = elementArg.length > 0 ? elementArg[0] : "";
-        Integer sum=0;
-        for(DmgRoll dmgRoll:this.dmgRollList){
-            if(biteBoosted){
-                sum+=2*dmgRoll.getMaxDmg(element);
+        Integer sum = 0;
+        for (DmgRoll dmgRoll : this.dmgRollList) {
+            if (biteBoosted) {
+                sum += 2 * dmgRoll.getMaxDmg(element);
             } else {
-                sum+=dmgRoll.getMaxDmg(element);
+                sum += dmgRoll.getMaxDmg(element);
             }
 
         }
@@ -146,12 +147,12 @@ public abstract class Roll {
 
     public int getMinDmg(String... elementArg) {
         String element = elementArg.length > 0 ? elementArg[0] : "";
-        Integer sum=0;
-        for(DmgRoll dmgRoll:this.dmgRollList){
-            if(biteBoosted){
-                sum+=2*dmgRoll.getMinDmg(element);
+        Integer sum = 0;
+        for (DmgRoll dmgRoll : this.dmgRollList) {
+            if (biteBoosted) {
+                sum += 2 * dmgRoll.getMinDmg(element);
             } else {
-                sum+=dmgRoll.getMinDmg(element);
+                sum += dmgRoll.getMinDmg(element);
             }
         }
 
@@ -166,11 +167,15 @@ public abstract class Roll {
         return nthAtkRoll;
     }
 
+    public void setNthAtkRoll(int nthAtkRoll) {
+        this.nthAtkRoll = nthAtkRoll;
+    }
+
     public abstract void rangeMalus(int malus);
 
     public abstract void lynxEyeBoost();
 
-    public void makeBiteBoosted(){
-        this.biteBoosted=true;
+    public void makeBiteBoosted() {
+        this.biteBoosted = true;
     }
 }

@@ -3,11 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="stellarnear.wedge_companion.Activities.MainActivity"
     android:fitsSystemWindows="true"
-
     android:padding="@dimen/general_margin"
-    android:transitionName="transition">
+
+    android:transitionName="transition"
+    tools:context="stellarnear.wedge_companion.Activities.MainActivity">
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_damage_detail_ondetlay"
         android:layout_width="match_parent"
@@ -17,29 +18,31 @@
         app:backgroundTint="@android:color/darker_gray"
         app:srcCompat="@drawable/ic_more_horiz_black_24dp" />
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/background_border_infos"
-    android:layout_marginBottom="75dp"
-    android:padding="@dimen/general_margin_display_det">
-    <HorizontalScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <ScrollView
-            android:id="@+id/scroll"
-            android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="75dp"
+        android:background="@drawable/background_border_infos"
+        android:padding="@dimen/general_margin_display_det">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <LinearLayout
-
-                android:id="@+id/scroll_linear"
+            <ScrollView
+                android:id="@+id/scroll"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"/>
-        </ScrollView>
-    </HorizontalScrollView>
-</LinearLayout>
+                android:layout_height="match_parent">
+
+                <LinearLayout
+
+                    android:id="@+id/scroll_linear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </ScrollView>
+        </HorizontalScrollView>
+    </LinearLayout>
 
 
 </android.support.design.widget.CoordinatorLayout>

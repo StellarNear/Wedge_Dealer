@@ -23,22 +23,21 @@ import javax.xml.parsers.DocumentBuilderFactory;
 public class AllMythicCapacities {
     private Context mC;
     private List<MythicCapacity> allMythicCapacities = new ArrayList<>();
-    private Map<String,MythicCapacity> mapIdMythiccapacity =new HashMap<>();
-    private String pjID="";
+    private Map<String, MythicCapacity> mapIdMythiccapacity = new HashMap<>();
+    private String pjID = "";
 
-    public AllMythicCapacities(Context mC,String pjID)
-    {
+    public AllMythicCapacities(Context mC, String pjID) {
         this.mC = mC;
-        this.pjID=pjID;
+        this.pjID = pjID;
         buildCapacitiesList();
     }
 
     private void buildCapacitiesList() {
         allMythicCapacities = new ArrayList<>();
-        mapIdMythiccapacity =new HashMap<>();
+        mapIdMythiccapacity = new HashMap<>();
         try {
-            String extendID = pjID.equalsIgnoreCase("") ? "" : "_"+pjID;
-            InputStream is = mC.getAssets().open("mythiccapacities"+extendID+".xml");
+            String extendID = pjID.equalsIgnoreCase("") ? "" : "_" + pjID;
+            InputStream is = mC.getAssets().open("mythiccapacities" + extendID + ".xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(is);
@@ -53,15 +52,15 @@ public class AllMythicCapacities {
                 Node node = nList.item(i);
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element element2 = (Element) node;
-                    MythicCapacity MythicCapacity=new MythicCapacity(
+                    MythicCapacity mythicCapacity = new MythicCapacity(
                             readValue("name", element2),
                             readValue("type", element2),
                             readValue("descr", element2),
                             readValue("id", element2),
                             mC,
                             pjID);
-                    allMythicCapacities.add(MythicCapacity);
-                    mapIdMythiccapacity.put(MythicCapacity.getId(),MythicCapacity);
+                    allMythicCapacities.add(mythicCapacity);
+                    mapIdMythiccapacity.put(mythicCapacity.getId(), mythicCapacity);
                 }
             }
             is.close();
@@ -70,15 +69,17 @@ public class AllMythicCapacities {
         }
     }
 
-    public List<MythicCapacity> getAllMythicCapacitiesList(){
+    public List<MythicCapacity> getAllMythicCapacitiesList() {
         return allMythicCapacities;
     }
 
     public MythicCapacity getMythiccapacity(String mythiccapacitytId) {
         MythicCapacity selectedMythicCapacity;
         try {
-            selectedMythicCapacity= mapIdMythiccapacity.get(mythiccapacitytId);
-        } catch (Exception e){  selectedMythicCapacity=null;  }
+            selectedMythicCapacity = mapIdMythiccapacity.get(mythiccapacitytId);
+        } catch (Exception e) {
+            selectedMythicCapacity = null;
+        }
         return selectedMythicCapacity;
     }
 
@@ -87,7 +88,7 @@ public class AllMythicCapacities {
             NodeList nodeList = element.getElementsByTagName(tag).item(0).getChildNodes();
             Node node = nodeList.item(0);
             return node.getNodeValue();
-        } catch (Exception e){
+        } catch (Exception e) {
             return "";
         }
     }
@@ -97,9 +98,9 @@ public class AllMythicCapacities {
     }
 
     public boolean mythicCapacityIsActive(String id) {
-        boolean val=false;
+        boolean val = false;
         try {
-            val= getMythiccapacity(id).isActive();
+            val = getMythiccapacity(id).isActive();
         } catch (Exception e) {
             e.printStackTrace();
         }

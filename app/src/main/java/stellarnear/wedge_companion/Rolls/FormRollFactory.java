@@ -19,25 +19,25 @@ public class FormRollFactory {
     private String mode;
     private RollList rollList;
     private SharedPreferences settings;
-    private Tools tools=Tools.getTools();
+    private Tools tools = Tools.getTools();
     private Perso pj = PersoManager.getCurrentPJ();
-    private Form currentForm= pj.getAllForms()!=null?pj.getAllForms().getCurrentForm():null;
+    private Form currentForm = pj.getAllForms() != null ? pj.getAllForms().getCurrentForm() : null;
 
-    public FormRollFactory(Activity mA, Context mC, String mode){
-        this.mA=mA;
-        this.mC=mC;
-        this.mode=mode;
+    public FormRollFactory(Activity mA, Context mC, String mode) {
+        this.mA = mA;
+        this.mC = mC;
+        this.mode = mode;
         this.settings = PreferenceManager.getDefaultSharedPreferences(mC);
         buildRollList();
     }
 
-    private void buildRollList(){
+    private void buildRollList() {
         this.rollList = new RollList();
-        int baseAtk=new CalculationAtk(mC).getBaseAtk();
+        int baseAtk = new CalculationAtk(mC).getBaseAtk();
         if (this.mode.equalsIgnoreCase("fullround")) {
 
-            for(Attack atk : currentForm.getAllAtks()){
-                Roll roll = new FormRoll(mA, mC, baseAtk,atk);
+            for (Attack atk : currentForm.getAllAtks()) {
+                Roll roll = new FormRoll(mA, mC, baseAtk, atk);
                 this.rollList.add(roll);
             }
 
@@ -49,7 +49,7 @@ public class FormRollFactory {
             }
              */
         } else {
-            Roll roll = new FormRoll(mA, mC, baseAtk,currentForm.getAllAtks().get(0));
+            Roll roll = new FormRoll(mA, mC, baseAtk, currentForm.getAllAtks().get(0));
             this.rollList.add(roll);
         }
     }

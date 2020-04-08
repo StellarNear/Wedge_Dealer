@@ -11,8 +11,8 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/general_margin"
         android:layout_marginStart="@dimen/general_margin"
+        android:layout_marginTop="@dimen/general_margin"
         android:clipChildren="false"
         android:gravity="center"
         android:orientation="vertical"
@@ -33,18 +33,18 @@
             android:id="@+id/textSkillActionTooltip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
             android:text="compétences"
-            android:textSize="@dimen/size_text_main_actions" />
+            android:textSize="@dimen/size_text_main_actions"
+            android:visibility="gone" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/general_margin"
+        android:clipChildren="false"
         android:gravity="center"
         android:orientation="vertical"
-        android:clipChildren="false"
-        android:layout_marginTop="@dimen/general_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,17 +64,17 @@
             android:id="@+id/textCombatActionTooltip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
             android:text="combat"
-            android:textSize="@dimen/size_text_main_actions" />
+            android:textSize="@dimen/size_text_main_actions"
+            android:visibility="gone" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:clipChildren="false"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -84,76 +84,75 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/general_margin"
-            android:visibility="gone"
             android:gravity="center"
             android:text="@string/quadrantGeneralTitle"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/black"
+            android:visibility="gone" />
 
         <ViewSwitcher
             android:id="@+id/viewSwitcherQuadrant"
-            android:clipChildren="false"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:clipChildren="false">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/pet_main_frag_stats_heigh_quadrant"
                 android:layout_margin="@dimen/general_margin"
-                android:orientation="horizontal"
-                android:clipChildren="false">
+                android:clipChildren="false"
+                android:orientation="horizontal">
 
 
+                <LinearLayout
+                    android:id="@+id/main_frag_stats_quadrant1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/general_margin"
+                    android:layout_weight="1"
+                    android:background="@drawable/quadrant_basic_gradient"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="gone" />
 
-                    <LinearLayout
-                        android:id="@+id/main_frag_stats_quadrant1"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="@dimen/general_margin"
-                        android:layout_weight="1"
-                        android:visibility="gone"
-                        android:background="@drawable/quadrant_basic_gradient"
-                        android:gravity="center"
-                        android:orientation="vertical"/>
-
-                    <LinearLayout
-                        android:id="@+id/main_frag_stats_quadrant2"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="@dimen/general_margin"
-                        android:layout_weight="1"
-                        android:visibility="gone"
-                        android:animateLayoutChanges="true"
-                        android:background="@drawable/quadrant_basic_gradient"
-                        android:gravity="center"
-                        android:orientation="vertical"/>
+                <LinearLayout
+                    android:id="@+id/main_frag_stats_quadrant2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/general_margin"
+                    android:layout_weight="1"
+                    android:animateLayoutChanges="true"
+                    android:background="@drawable/quadrant_basic_gradient"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="gone" />
 
 
-                    <LinearLayout
-                        android:id="@+id/main_frag_stats_quadrant3"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="@dimen/general_margin"
-                        android:layout_weight="1"
-                        android:visibility="gone"
-                        android:animateLayoutChanges="true"
-                        android:background="@drawable/quadrant_basic_gradient"
-                        android:gravity="center"
-                        android:orientation="vertical"/>
+                <LinearLayout
+                    android:id="@+id/main_frag_stats_quadrant3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/general_margin"
+                    android:layout_weight="1"
+                    android:animateLayoutChanges="true"
+                    android:background="@drawable/quadrant_basic_gradient"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="gone" />
 
-                    <LinearLayout
-                        android:id="@+id/main_frag_stats_quadrant4"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="@dimen/general_margin"
-                        android:layout_weight="1"
-                        android:visibility="gone"
-                        android:animateLayoutChanges="true"
-                        android:background="@drawable/quadrant_basic_gradient"
-                        android:gravity="center"
-                        android:orientation="vertical"/>
+                <LinearLayout
+                    android:id="@+id/main_frag_stats_quadrant4"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/general_margin"
+                    android:layout_weight="1"
+                    android:animateLayoutChanges="true"
+                    android:background="@drawable/quadrant_basic_gradient"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="gone" />
 
-                </LinearLayout>
+            </LinearLayout>
 
         </ViewSwitcher>
     </LinearLayout>

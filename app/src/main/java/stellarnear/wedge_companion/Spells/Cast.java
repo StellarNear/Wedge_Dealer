@@ -5,23 +5,23 @@ public class Cast {  //objet fait pour detecter des cast entre spell binded
     private boolean failed;
     private boolean rmPassed;
 
-    public Cast(){
-        cast=false;
+    public Cast() {
+        cast = false;
     }
 
-    public void cast(){
-        this.cast=true;
+    public void cast() {
+        this.cast = true;
     }
 
-    public void setFailed(){
-        this.failed=true;
+    public void setFailed() {
+        this.failed = true;
     }
 
-    public void setRmPassed(){
-        this.rmPassed=true;
+    public void setRmPassed() {
+        this.rmPassed = true;
     }
 
-    public boolean hasPassedRM(){
+    public boolean hasPassedRM() {
         return this.rmPassed;
     }
 
@@ -29,5 +29,7 @@ public class Cast {  //objet fait pour detecter des cast entre spell binded
         return cast;
     }
 
-    public boolean isFailed(){ return failed;}
+    public boolean isFailed() {
+        return failed;
+    }
 }

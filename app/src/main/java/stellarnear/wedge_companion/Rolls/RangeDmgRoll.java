@@ -9,15 +9,15 @@ import stellarnear.wedge_companion.Rolls.Dices.Dice;
 
 public class RangeDmgRoll extends DmgRoll {
 
-    private int nthAtkRoll=0;
-    private int nthDmgRoll=0;
-    private boolean isilliritInitBoost=false;
+    private int nthAtkRoll = 0;
+    private int nthDmgRoll = 0;
+    private boolean isilliritInitBoost = false;
 
     public RangeDmgRoll(Activity mA, Context mC, Boolean critConfirmed, Boolean naturalCrit, int nthAtkRoll, int nthDmgRoll) {
         super(mA, mC, critConfirmed, naturalCrit);
 
-        this.nthAtkRoll=nthAtkRoll;
-        this.nthDmgRoll=nthDmgRoll;
+        this.nthAtkRoll = nthAtkRoll;
+        this.nthDmgRoll = nthDmgRoll;
     }
 
     public void setDmgRand() {
@@ -176,20 +176,20 @@ public class RangeDmgRoll extends DmgRoll {
         }
         if (pj.getAllFeats().featIsActive("feat_hammer_gap")) {
             int multiVal = tools.toInt(settings.getString("feat_manyshot_suprem_val", String.valueOf(mC.getResources().getInteger(R.integer.feat_manyshot_suprem_val_def))));
-            calcBonusDmg += ((nthAtkRoll-1)*multiVal)+nthDmgRoll-1;
+            calcBonusDmg += ((nthAtkRoll - 1) * multiVal) + nthDmgRoll - 1;
         }
 
-        if(isilliritInitBoost){
+        if (isilliritInitBoost) {
             calcBonusDmg += settings.getInt("last_initiative_score", 0);
         }
 
         calcBonusDmg += tools.toInt(settings.getString("epic_dmg_val", String.valueOf(mC.getResources().getInteger(R.integer.attack_dmg_epic_DEF))));
         calcBonusDmg += tools.toInt(settings.getString("bonus_global_dmg_temp", String.valueOf(0)));
-        calcBonusDmg += tools.toInt(settings.getString("bonus_dmg_temp"+ PersoManager.getPJSuffix(), String.valueOf(0)));
+        calcBonusDmg += tools.toInt(settings.getString("bonus_dmg_temp" + PersoManager.getPJSuffix(), String.valueOf(0)));
         return calcBonusDmg;
     }
 
-    public void makeIsilliritInitBoosted(){
-        this.isilliritInitBoost=true;
+    public void makeIsilliritInitBoosted() {
+        this.isilliritInitBoost = true;
     }
 }

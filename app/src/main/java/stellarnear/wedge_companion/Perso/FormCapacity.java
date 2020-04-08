@@ -22,22 +22,22 @@ public class FormCapacity {
     private String cooldown;
 
     private String powerId;
-    private List<FormPower> powerList=new ArrayList<>();
+    private List<FormPower> powerList = new ArrayList<>();
     private String damage;
     private String saveType;
 
-    public FormCapacity(String name, String shortname, String type, String descr, String id, int dailyUse, String cooldown,String damage,String saveType,String powerid, Context mC){
-        this.name=name;
-        this.shortname=shortname;
-        this.type=type;
-        this.descr=descr;
-        this.dailyUse=dailyUse;
-        this.cooldown=cooldown;
-        this.damage=damage;
-        this.saveType=saveType;
-        this.powerId=powerid;
-        this.id=id;
-        this.mC=mC;
+    public FormCapacity(String name, String shortname, String type, String descr, String id, int dailyUse, String cooldown, String damage, String saveType, String powerid, Context mC) {
+        this.name = name;
+        this.shortname = shortname;
+        this.type = type;
+        this.descr = descr;
+        this.dailyUse = dailyUse;
+        this.cooldown = cooldown;
+        this.damage = damage;
+        this.saveType = saveType;
+        this.powerId = powerid;
+        this.id = id;
+        this.mC = mC;
     }
 
 
@@ -65,12 +65,12 @@ public class FormCapacity {
         return dailyUse;
     }
 
-    public boolean hasPowerID(){
+    public boolean hasPowerID() {
         return !powerId.equalsIgnoreCase("");
     }
 
-    public boolean hasPower(){
-        return powerList.size()>0;
+    public boolean hasPower() {
+        return powerList.size() > 0;
     }
 
     public String getCooldown() {
@@ -85,7 +85,7 @@ public class FormCapacity {
         return powerId;
     }
 
-    public boolean hasDamage(){
+    public boolean hasDamage() {
         return !damage.equalsIgnoreCase("");
     }
 

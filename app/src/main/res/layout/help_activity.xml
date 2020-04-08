@@ -34,36 +34,41 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:visibility="gone">
+
             <TextView
                 android:id="@+id/help_activity_title_category_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
                 android:text="Cat Title"
                 android:textColor="@android:color/black"
-                android:textStyle="bold"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"/>
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
             <ImageButton
                 android:id="@+id/help_activity_button_category_exit"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_alignParentEnd="true"
                 android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
                 android:backgroundTint="@android:color/transparent"
                 android:scaleType="fitXY"
                 app:srcCompat="@drawable/back_arrow" />
         </RelativeLayout>
+
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center">
+
             <LinearLayout
                 android:id="@+id/help_activity_button_linear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" />
         </HorizontalScrollView>
+
         <ViewFlipper
             android:id="@+id/help_activity_flipper"
             android:layout_width="match_parent"

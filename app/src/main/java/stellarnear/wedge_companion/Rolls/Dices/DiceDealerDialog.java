@@ -24,12 +24,12 @@ public class DiceDealerDialog {
 
     private Context mC;
 
-    public DiceDealerDialog(Context mC, final Dice dice){
-        this.mC=mC;
+    public DiceDealerDialog(Context mC, final Dice dice) {
+        this.mC = mC;
         LayoutInflater inflater = LayoutInflater.from(mC);
         View dialogViewWheelPicker = inflater.inflate(R.layout.custom_dialog_wheel_picker, null);
         RelativeLayout relativeCenter = dialogViewWheelPicker.findViewById(R.id.relative_custom_dialog_center);
-        final WheelDicePicker wheelPicker = new WheelDicePicker(relativeCenter, dice , mC);
+        final WheelDicePicker wheelPicker = new WheelDicePicker(relativeCenter, dice, mC);
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(mC, R.style.CustomDialog);
         dialogBuilder.setView(dialogViewWheelPicker);
         dialogBuilder.setPositiveButton("Valider", new DialogInterface.OnClickListener() {

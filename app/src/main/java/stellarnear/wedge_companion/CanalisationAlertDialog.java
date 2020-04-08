@@ -28,18 +28,14 @@ public class CanalisationAlertDialog {
     private CanalisationCapacity canal;
     private View dialogView;
     private OnRefreshEventListener mListener;
-    private Tools tools=Tools.getTools();
+    private Tools tools = Tools.getTools();
 
     public CanalisationAlertDialog(Activity mA, Context mC, CanalisationCapacity canal) {
-        this.mA=mA;
-        this.mC=mC;
+        this.mA = mA;
+        this.mC = mC;
         this.canal = canal;
         buildAlertDialog();
         showAlertDialog();
-    }
-
-    public interface OnRefreshEventListener {
-        void onEvent();
     }
 
     public void setRefreshEventListener(OnRefreshEventListener eventListener) {
@@ -49,7 +45,7 @@ public class CanalisationAlertDialog {
     private void buildAlertDialog() {
         LayoutInflater inflater = mA.getLayoutInflater();
         dialogView = inflater.inflate(R.layout.custom_canalisation_alert_dialog, null);
-        ((TextView)dialogView.findViewById(R.id.customDialogCanalSummary)).setText("Détails "+ canal.getName());
+        ((TextView) dialogView.findViewById(R.id.customDialogCanalSummary)).setText("Détails " + canal.getName());
         dialogView.findViewById(R.id.customDialogCanalSummary).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,7 +54,7 @@ public class CanalisationAlertDialog {
         });
 
         Button diceroll = dialogView.findViewById(R.id.button_customDialog_launch);
-        diceroll.setOnClickListener( new View.OnClickListener() {
+        diceroll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startRoll();
@@ -66,22 +62,24 @@ public class CanalisationAlertDialog {
         });
 
 
-        AlertDialog.Builder dialogBuilder  = new AlertDialog.Builder(mA, R.style.CustomDialog);
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(mA, R.style.CustomDialog);
         dialogBuilder.setView(dialogView);
         dialogBuilder.setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                if(mListener!=null){mListener.onEvent();}
+                if (mListener != null) {
+                    mListener.onEvent();
+                }
             }
         });
         alertDialog = dialogBuilder.create();
     }
 
-    private void popupLongTooltip(){
+    private void popupLongTooltip() {
         View tooltip = mA.getLayoutInflater().inflate(R.layout.custom_toast_longtooltip, null);
         final CustomAlertDialog tooltipAlert = new CustomAlertDialog(mA, mC, tooltip);
         tooltipAlert.setPermanent(true);
-        ((TextView)tooltip.findViewById(R.id.toast_textName)).setText(canal.getName());
-        ((TextView)tooltip.findViewById(R.id.toast_textDescr)).setText(canal.getDescr());
+        ((TextView) tooltip.findViewById(R.id.toast_textName)).setText(canal.getName());
+        ((TextView) tooltip.findViewById(R.id.toast_textDescr)).setText(canal.getDescr());
         tooltipAlert.clickToHide(tooltip.findViewById(R.id.toast_LinearLayout));
         tooltipAlert.showAlert();
     }
@@ -89,54 +87,59 @@ public class CanalisationAlertDialog {
     private void startRoll() {
         dialogView.findViewById(R.id.button_customDialog_launch).setVisibility(View.GONE);
         spendAndEvent();
-        int sum=0;
+        int sum = 0;
         FrameLayout fram = dialogView.findViewById(R.id.customDialogCanalResultDice);
         fram.removeAllViews();
-        LinearLayout allLines =new LinearLayout(mC);allLines.setOrientation(LinearLayout.VERTICAL);
+        LinearLayout allLines = new LinearLayout(mC);
+        allLines.setOrientation(LinearLayout.VERTICAL);
         fram.addView(allLines);
-        LinearLayout line = new LinearLayout(mC); line.setGravity(Gravity.CENTER);
+        LinearLayout line = new LinearLayout(mC);
+        line.setGravity(Gravity.CENTER);
         allLines.addView(line);
 
-        int nDice= 1+(pj.getAbilityScore("ability_lvl")-1)/2;
-        int nthDice=0;
-        for (int i=1;i<=nDice;i++){
+        int nDice = 1 + (pj.getAbilityScore("ability_lvl") - 1) / 2;
+        int nthDice = 0;
+        for (int i = 1; i <= nDice; i++) {
             nthDice++;
-            if(nthDice>5){
-                line = new LinearLayout(mC); line.setGravity(Gravity.CENTER);
+            if (nthDice > 5) {
+                line = new LinearLayout(mC);
+                line.setGravity(Gravity.CENTER);
                 allLines.addView(line);
-                nthDice=1;
+                nthDice = 1;
             }
-            Dice dice=new Dice(mA,mC,6);
+            Dice dice = new Dice(mA, mC, 6);
             dice.rand(false);
             line.addView(dice.getImg());
-            sum+=dice.getRandValue();
+            sum += dice.getRandValue();
         }
-        if(pj.getAllCapacities().capacityIsActive("capacity_epic_revelation_canal")){
-            int flatDmg=4;
-            TextView flat=new TextView(mC); flat.setTextSize(20); flat.setTextColor(mC.getColor(R.color.colorPrimaryDark));
-            flat.setText("+"+flatDmg);
+        if (pj.getAllCapacities().capacityIsActive("capacity_epic_revelation_canal")) {
+            int flatDmg = 4;
+            TextView flat = new TextView(mC);
+            flat.setTextSize(20);
+            flat.setTextColor(mC.getColor(R.color.colorPrimaryDark));
+            flat.setText("+" + flatDmg);
             line.addView(flat);
-            sum+=flatDmg;
+            sum += flatDmg;
         }
         endSkillCalculation(sum);
 
     }
 
     private void spendAndEvent() {
-        new PostData(mC,new PostDataElement(canal));
+        new PostData(mC, new PostDataElement(canal));
         pj.getAllResources().getResource("resource_canalisation").spend(1);
     }
 
-    public void showAlertDialog(){
+    public void showAlertDialog() {
         alertDialog.show();
         Display display = mA.getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        Float factor = mC.getResources().getInteger(R.integer.percent_fullscreen_customdialog)/100f;
-        alertDialog.getWindow().setLayout((int) (factor*size.x), (int)(factor*size.y));
+        Float factor = mC.getResources().getInteger(R.integer.percent_fullscreen_customdialog) / 100f;
+        alertDialog.getWindow().setLayout((int) (factor * size.x), (int) (factor * size.y));
         Button onlyButton = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
         LinearLayout.LayoutParams onlyButtonLL = (LinearLayout.LayoutParams) onlyButton.getLayoutParams();
-        onlyButtonLL.width=ViewGroup.LayoutParams.WRAP_CONTENT;
+        onlyButtonLL.width = ViewGroup.LayoutParams.WRAP_CONTENT;
         onlyButton.setLayoutParams(onlyButtonLL);
         onlyButton.setTextColor(mC.getColor(R.color.colorBackground));
         onlyButton.setBackground(mC.getDrawable(R.drawable.button_cancel_gradient));
@@ -155,8 +158,12 @@ public class CanalisationAlertDialog {
         TextView result = dialogView.findViewById(R.id.customDialogCanalResult);
         result.setText(String.valueOf(sumResult));
         callToAction.setText("Fin de la canalisation");
-        new PostData(mC,new PostDataElement(canal,sumResult));
+        new PostData(mC, new PostDataElement(canal, sumResult));
 
 
+    }
+
+    public interface OnRefreshEventListener {
+        void onEvent();
     }
 }

@@ -3,7 +3,7 @@ package stellarnear.wedge_companion.Spells;
 public class SelectedSpells {
 
     private static SelectedSpells instance = new SelectedSpells();
-    private SpellList selectedSpells =new SpellList();
+    private SpellList selectedSpells = new SpellList();
 
     private SelectedSpells() {
     }
@@ -17,6 +17,6 @@ public class SelectedSpells {
     }
 
     public void setSelection(SpellList selectedSpells) {
-        this.selectedSpells=selectedSpells;
+        this.selectedSpells = selectedSpells;
     }
 }

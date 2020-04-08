@@ -10,22 +10,22 @@ import stellarnear.wedge_companion.Tools;
 public class Attack {
 
     private String name;
-    private int diceType=0;
-    private int nDice=0;
-    private int flatDmg=0;
+    private int diceType = 0;
+    private int nDice = 0;
+    private int flatDmg = 0;
     private String damageTxt;
-    private List<FormCapacity> capacityList =new ArrayList<>();
-    private Tools tools=Tools.getTools();
+    private List<FormCapacity> capacityList = new ArrayList<>();
+    private Tools tools = Tools.getTools();
 
-    public Attack( String name, String damageTxt){
-        this.name=name;
-        this.damageTxt=damageTxt;
-        if(damageTxt.contains("d")){
-            this.nDice=tools.toInt(damageTxt.split("d")[0]);
-            this.diceType=tools.toInt(damageTxt.split("d")[1]);
+    public Attack(String name, String damageTxt) {
+        this.name = name;
+        this.damageTxt = damageTxt;
+        if (damageTxt.contains("d")) {
+            this.nDice = tools.toInt(damageTxt.split("d")[0]);
+            this.diceType = tools.toInt(damageTxt.split("d")[1]);
         }
-        if(damageTxt.contains("+")){
-            this.flatDmg=tools.toInt(damageTxt.split("\\+")[1]);
+        if (damageTxt.contains("+")) {
+            this.flatDmg = tools.toInt(damageTxt.split("\\+")[1]);
         }
     }
 
@@ -58,7 +58,7 @@ public class Attack {
     }
 
     public boolean hasPower() {
-        return capacityList !=null && capacityList.size()>0;
+        return capacityList != null && capacityList.size() > 0;
     }
 }
 

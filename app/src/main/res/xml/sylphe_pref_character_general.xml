@@ -2,21 +2,21 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceScreen
-        android:key="sylphe_pref_character_general_base"
         android:icon="@drawable/ic_dna1"
-        android:title="Caractéristiques de base"
-        android:summary="Statistiques de base du personnage"/>
+        android:key="sylphe_pref_character_general_base"
+        android:summary="Statistiques de base du personnage"
+        android:title="Caractéristiques de base" />
 
     <PreferenceScreen
-        android:key="sylphe_pref_character_general_ressource"
         android:icon="@drawable/ic_heart_bottle"
-        android:title="Ressources du personnage"
-        android:summary="Points de vie/regen et points héroiques"/>
+        android:key="sylphe_pref_character_general_ressource"
+        android:summary="Points de vie/regen et points héroiques"
+        android:title="Ressources du personnage" />
 
     <PreferenceScreen
-        android:key="sylphe_pref_character_general_save"
         android:icon="@drawable/ic_dodging"
-        android:title="Jets de sauvegarde"
-        android:summary="Tout ce qui modifie : Reflexe, Vigeur et Volonté" />
+        android:key="sylphe_pref_character_general_save"
+        android:summary="Tout ce qui modifie : Reflexe, Vigeur et Volonté"
+        android:title="Jets de sauvegarde" />
 
 </PreferenceScreen>

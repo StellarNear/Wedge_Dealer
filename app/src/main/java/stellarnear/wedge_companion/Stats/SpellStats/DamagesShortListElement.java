@@ -12,19 +12,19 @@ public class DamagesShortListElement {
     private int rank;
     private boolean mythic;
 
-    public DamagesShortListElement(Spell spell){
-        this.element=spell.getDmg_type();
-        this.dmgSum=spell.getDmgResult();
-        this.rank=new CalculationSpell().currentRank(spell);
-        this.nMeta=calculateNMeta(spell);
-        this.mythic=spell.isMyth();
+    public DamagesShortListElement(Spell spell) {
+        this.element = spell.getDmg_type();
+        this.dmgSum = spell.getDmgResult();
+        this.rank = new CalculationSpell().currentRank(spell);
+        this.nMeta = calculateNMeta(spell);
+        this.mythic = spell.isMyth();
     }
 
     private int calculateNMeta(Spell spell) {
-        int nMeta=0;
-        for(Metamagic meta : spell.getMetaList().asList()){
-            if(meta.isActive()){
-                nMeta+=meta.getnCast()*meta.getUprank();
+        int nMeta = 0;
+        for (Metamagic meta : spell.getMetaList().asList()) {
+            if (meta.isActive()) {
+                nMeta += meta.getnCast() * meta.getUprank();
             }
         }
         return nMeta;
@@ -51,6 +51,6 @@ public class DamagesShortListElement {
     }
 
     public void addBindedSpell(Spell spell) {
-        this.dmgSum+=spell.getDmgResult();
+        this.dmgSum += spell.getDmgResult();
     }
 }

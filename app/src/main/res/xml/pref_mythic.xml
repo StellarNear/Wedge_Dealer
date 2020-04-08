@@ -2,33 +2,28 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceScreen
-        android:key="pref_mythic_tier"
         android:icon="@drawable/ic_upgrade"
-        android:title="Grade"
+        android:key="pref_mythic_tier"
         android:summary="Grade du personnage mythique"
-        />
+        android:title="Grade" />
 
     <PreferenceScreen
-        android:key="pref_mythic_feat"
         android:icon="@drawable/ic_playlist_add_check_black_24dp"
-        android:title="Dons mythiques actifs"
+        android:key="pref_mythic_feat"
         android:summary="Ensemble des dons mythiques connus et/ou actifs"
-        />
+        android:title="Dons mythiques actifs" />
 
     <PreferenceScreen
-        android:key="pref_mythic_capa"
         android:icon="@drawable/ic_flash_on_black_24dp"
-        android:title="Capacités mythiques actives"
+        android:key="pref_mythic_capa"
         android:summary="Ensemble des capacités mythiques connues et/ou actives"
-        />
+        android:title="Capacités mythiques actives" />
 
     <PreferenceScreen
-        android:key="spend_myth_point"
         android:icon="@drawable/ic_exposure_neg_1_black_24dp"
-        android:title="Dépense hors attaque"
+        android:key="spend_myth_point"
         android:summary="Dépenser un point mythique"
-        />
-
+        android:title="Dépense hors attaque" />
 
 
 </PreferenceScreen>

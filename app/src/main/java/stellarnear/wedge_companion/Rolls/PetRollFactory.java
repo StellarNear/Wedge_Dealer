@@ -17,23 +17,23 @@ public class PetRollFactory {
     private String mode;
     private RollList rollList;
     private SharedPreferences settings;
-    private Tools tools=Tools.getTools();
+    private Tools tools = Tools.getTools();
     private Perso pj = PersoManager.getCurrentPJ();
 
-    public PetRollFactory(Activity mA, Context mC, String mode){
-        this.mA=mA;
-        this.mC=mC;
-        this.mode=mode;
+    public PetRollFactory(Activity mA, Context mC, String mode) {
+        this.mA = mA;
+        this.mC = mC;
+        this.mode = mode;
         this.settings = PreferenceManager.getDefaultSharedPreferences(mC);
         buildRollList();
     }
 
-    private void buildRollList(){
+    private void buildRollList() {
         this.rollList = new RollList();
 
-        int baseAtk=new CalculationAtk(mC).getBaseAtk();
+        int baseAtk = new CalculationAtk(mC).getBaseAtk();
         if (this.mode.equalsIgnoreCase("fullround")) {
-            if(pj.getID().equalsIgnoreCase("sylphe")) {
+            if (pj.getID().equalsIgnoreCase("sylphe")) {
                 Roll roll1 = new PetRoll(mA, mC, baseAtk);
                 roll1.setMode("claw");
                 this.rollList.add(roll1);
@@ -61,12 +61,12 @@ public class PetRollFactory {
                 this.rollList.add(roll3);
             }
 
-            int nCount=1;
-            for (Roll roll : this.rollList.getList()){
+            int nCount = 1;
+            for (Roll roll : this.rollList.getList()) {
                 roll.setNthAtkRoll(nCount);
                 nCount++;
             }
-        } else if(this.mode.equalsIgnoreCase("leap") && pj.getAllCapacities().capacityIsActive("capacity_leap")) {
+        } else if (this.mode.equalsIgnoreCase("leap") && pj.getAllCapacities().capacityIsActive("capacity_leap")) {
             Roll roll1 = new PetRoll(mA, mC, baseAtk);
             roll1.setMode("leapclaw");
             this.rollList.add(roll1);

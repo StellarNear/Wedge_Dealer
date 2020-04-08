@@ -23,19 +23,18 @@ import javax.xml.parsers.DocumentBuilderFactory;
 public class AllSkills {
     private Context mC;
     private List<Skill> allSkillsList = new ArrayList<>();
-    private Map<String,Skill> mapIdSkill=new HashMap<>();
-    private String pjID="";
+    private Map<String, Skill> mapIdSkill = new HashMap<>();
+    private String pjID = "";
 
-    public AllSkills(Context mC,String pjID)
-    {
+    public AllSkills(Context mC, String pjID) {
         this.mC = mC;
-        this.pjID=pjID;
+        this.pjID = pjID;
         buildSkillsList();
     }
 
     private void buildSkillsList() {
         allSkillsList = new ArrayList<>();
-        mapIdSkill=new HashMap<>();
+        mapIdSkill = new HashMap<>();
         try {
             InputStream is = mC.getAssets().open("skills.xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -52,7 +51,7 @@ public class AllSkills {
                 Node node = nList.item(i);
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element element2 = (Element) node;
-                    Skill skill=new Skill(
+                    Skill skill = new Skill(
                             readValue("name", element2),
                             readValue("abilityDependence", element2),
                             readValue("descr", element2),
@@ -60,7 +59,7 @@ public class AllSkills {
                             mC,
                             pjID);
                     allSkillsList.add(skill);
-                    mapIdSkill.put(skill.getId(),skill);
+                    mapIdSkill.put(skill.getId(), skill);
                 }
             }
             is.close();
@@ -69,15 +68,17 @@ public class AllSkills {
         }
     }
 
-    public List<Skill> getSkillsList(){
+    public List<Skill> getSkillsList() {
         return allSkillsList;
     }
 
     public Skill getSkill(String skillId) {
         Skill selectedSkill;
         try {
-            selectedSkill=mapIdSkill.get(skillId);
-        } catch (Exception e){  selectedSkill=null;  }
+            selectedSkill = mapIdSkill.get(skillId);
+        } catch (Exception e) {
+            selectedSkill = null;
+        }
         return selectedSkill;
     }
 
@@ -86,13 +87,13 @@ public class AllSkills {
             NodeList nodeList = element.getElementsByTagName(tag).item(0).getChildNodes();
             Node node = nodeList.item(0);
             return node.getNodeValue();
-        } catch (Exception e){
+        } catch (Exception e) {
             return "";
         }
     }
 
     public void refreshAllVals() {
-        for (Skill skill : allSkillsList){
+        for (Skill skill : allSkillsList) {
             skill.refreshVals();
         }
     }

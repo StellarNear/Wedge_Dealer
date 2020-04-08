@@ -30,7 +30,7 @@ public class PrefHallOfFameFragment extends Preference {
     private Context mC;
     private View mainView;
     private LinearLayout fameList;
-    private Tools tools=Tools.getTools();
+    private Tools tools = Tools.getTools();
 
     public PrefHallOfFameFragment(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -41,15 +41,15 @@ public class PrefHallOfFameFragment extends Preference {
         super(context, attrs, defStyle);
 
     }
+
     public PrefHallOfFameFragment(Context context) {
         super(context);
     }
 
     @Override
-    protected View onCreateView(ViewGroup parent)
-    {
+    protected View onCreateView(ViewGroup parent) {
         super.onCreateView(parent);
-        this.mC=getContext();
+        this.mC = getContext();
 
         LayoutInflater inflater = LayoutInflater.from(getContext());
         mainView = inflater.inflate(R.layout.hall_of_fame, null);
@@ -62,7 +62,7 @@ public class PrefHallOfFameFragment extends Preference {
 
 
     private void setSave() {
-        ((LinearLayout)mainView.findViewById(R.id.hall_of_fame_save)).setOnClickListener(new View.OnClickListener() {
+        mainView.findViewById(R.id.hall_of_fame_save).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 saveLast();
@@ -72,21 +72,21 @@ public class PrefHallOfFameFragment extends Preference {
     }
 
     private void refreshHall() {
-        fameList=(LinearLayout)mainView.findViewById(R.id.hall_of_frame_list);
+        fameList = mainView.findViewById(R.id.hall_of_frame_list);
         fameList.removeAllViews();
-        for(final FameEntry fame : pj.getHallOfFame().getHallOfFameList()){
+        for (final FameEntry fame : pj.getHallOfFame().getHallOfFameList()) {
             LinearLayout statLine = new LinearLayout(mC);
             statLine.setOrientation(LinearLayout.HORIZONTAL);
             statLine.setGravity(Gravity.CENTER_VERTICAL);
 
-            LinearLayout.LayoutParams para =new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
-            para.setMargins(10,10,10,10);
-            para.gravity=Gravity.CENTER;
+            LinearLayout.LayoutParams para = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            para.setMargins(10, 10, 10, 10);
+            para.gravity = Gravity.CENTER;
             statLine.setLayoutParams(para);
             statLine.setMinimumHeight(150);
             statLine.setBackground(mC.getDrawable(R.drawable.background_border_fame));
 
-            statLine.addView(newTextInfo(fame.getSumDmg()+" dégâts"));
+            statLine.addView(newTextInfo(fame.getSumDmg() + " dégâts"));
             statLine.addView(newTextInfo(fame.getFoeName()));
             statLine.addView(newTextInfo(fame.getLocation()));
 
@@ -94,7 +94,7 @@ public class PrefHallOfFameFragment extends Preference {
                 @Override
                 public void onClick(View view) {
                     SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy", Locale.FRANCE);
-                    tools.customToast(mC,formater.format(fame.getStat().getDate())+"\n"+fame.getDetails(),"center");
+                    tools.customToast(mC, formater.format(fame.getStat().getDate()) + "\n" + fame.getDetails(), "center");
                 }
             });
 
@@ -106,26 +106,26 @@ public class PrefHallOfFameFragment extends Preference {
                 }
             });
 
-            fameList.addView(statLine,0);
+            fameList.addView(statLine, 0);
         }
     }
 
     private TextView newTextInfo(String txt) {
         TextView text = new TextView(mC);
-        text.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT,1));
+        text.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1));
         text.setGravity(Gravity.CENTER);
         text.setText(txt);
         text.setTextColor(Color.DKGRAY);
         text.setGravity(Gravity.CENTER);
         text.setTypeface(null, Typeface.BOLD);
-        text.setPadding(10,10,10,10);
+        text.setPadding(10, 10, 10, 10);
         return text;
     }
 
 
     private void saveLast() {
         Stat lastStat = pj.getStats().getStatsList().getLastStat();
-        if(lastStat==null){
+        if (lastStat == null) {
             tools.customToast(mC, "Aucune attaque à enregistrer...", "center");
         } else {
             if (pj.getHallOfFame().containsStat(lastStat)) {
@@ -151,13 +151,13 @@ public class PrefHallOfFameFragment extends Preference {
                 String foeName = ((EditText) addHallEntry.findViewById(R.id.hall_of_fame_foe_name)).getText().toString();
                 String location = ((EditText) addHallEntry.findViewById(R.id.hall_of_fame_location)).getText().toString();
                 String details = ((EditText) addHallEntry.findViewById(R.id.hall_of_fame_details)).getText().toString();
-                pj.getHallOfFame().addToHallOfFame(new FameEntry(lastStat,foeName,location,details));
-                tools.customToast(mC,  "Entrée ajoutée !");
+                pj.getHallOfFame().addToHallOfFame(new FameEntry(lastStat, foeName, location, details));
+                tools.customToast(mC, "Entrée ajoutée !");
                 refreshHall();
             }
         });
         creationItemAlert.showAlert();
-        final EditText foe = ((EditText) addHallEntry.findViewById(R.id.hall_of_fame_foe_name));
+        final EditText foe = addHallEntry.findViewById(R.id.hall_of_fame_foe_name);
         foe.post(new Runnable() {
             public void run() {
                 foe.setFocusableInTouchMode(true);
@@ -187,14 +187,14 @@ public class PrefHallOfFameFragment extends Preference {
                 String foeName = ((EditText) addHallEntry.findViewById(R.id.hall_of_fame_foe_name)).getText().toString();
                 String location = ((EditText) addHallEntry.findViewById(R.id.hall_of_fame_location)).getText().toString();
                 String details = ((EditText) addHallEntry.findViewById(R.id.hall_of_fame_details)).getText().toString();
-                fame.updateInfos(foeName,location,details);
+                fame.updateInfos(foeName, location, details);
                 pj.getHallOfFame().refreshSave();
-                tools.customToast(mC,  "Entrée changée !");
+                tools.customToast(mC, "Entrée changée !");
                 refreshHall();
             }
         });
         creationItemAlert.showAlert();
-        final EditText foe = ((EditText) addHallEntry.findViewById(R.id.hall_of_fame_foe_name));
+        final EditText foe = addHallEntry.findViewById(R.id.hall_of_fame_foe_name);
         foe.post(new Runnable() {
             public void run() {
                 foe.setFocusableInTouchMode(true);

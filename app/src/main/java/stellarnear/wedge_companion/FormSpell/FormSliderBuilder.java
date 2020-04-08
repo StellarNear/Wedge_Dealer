@@ -17,21 +17,21 @@ public class FormSliderBuilder {
     private Context mC;
     private OnCastEventListener mListener;
     private SeekBar seek;
-    private Tools tools=Tools.getTools();
+    private Tools tools = Tools.getTools();
 
-    public FormSliderBuilder(Context mC, FormPower spell){
-        this.mC=mC;
-        this.spell=spell;
+    public FormSliderBuilder(Context mC, FormPower spell) {
+        this.mC = mC;
+        this.spell = spell;
     }
 
-    public void setSlider(final SeekBar seek){
-        this.seek=seek;
+    public void setSlider(final SeekBar seek) {
+        this.seek = seek;
         seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 if (seekBar.getProgress() > 75) {
                     seekBar.setProgress(100);
-                        startCasting();
+                    startCasting();
                 } else {
                     seekBar.setProgress(1);
                 }
@@ -61,17 +61,17 @@ public class FormSliderBuilder {
     }
 
     public void spendCast() {
-        if(!spell.isCast()) {
+        if (!spell.isCast()) {
             spell.cast();
-            new PostData(mC,new PostDataElement(spell)); // pour les sous sorts on peut avoir un sous sort pas lancé mais pas posté
+            new PostData(mC, new PostDataElement(spell)); // pour les sous sorts on peut avoir un sous sort pas lancé mais pas posté
         }
-    }
-
-    public interface OnCastEventListener {
-        void onEvent();
     }
 
     public void setCastEventListener(OnCastEventListener eventListener) {
         mListener = eventListener;
+    }
+
+    public interface OnCastEventListener {
+        void onEvent();
     }
 }

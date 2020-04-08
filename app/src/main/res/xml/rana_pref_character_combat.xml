@@ -1,7 +1,6 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-
     <stellarnear.wedge_companion.EditTextPreference
         android:defaultValue="@string/jet_att_def_rana"
         android:key="jet_att_rana"
@@ -9,7 +8,6 @@
         android:singleLine="true"
         android:summary="Valeurs : %s"
         android:title="@string/jet_att" />
-
 
 
 </PreferenceScreen>

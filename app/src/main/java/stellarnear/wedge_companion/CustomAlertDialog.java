@@ -18,36 +18,45 @@ public class CustomAlertDialog {
     private AlertDialog alert;
     private Activity mA;
     private Context mC;
-    private boolean permanent=false;
-    private boolean positiveButton=false;
-    private boolean cancelButton=false;
-    private String mode="";
+    private boolean permanent = false;
+    private boolean positiveButton = false;
+    private boolean cancelButton = false;
+    private String mode = "";
     private OnAcceptEventListener mListener;
 
     public CustomAlertDialog(Activity mA, Context mC, View view) {
         // Set the toast and duration
-        this.mA=mA;
-        this.mC=mC;
-        if(mA!=null){ dialogBuilder  = new AlertDialog.Builder(mA, R.style.CustomDialog); }
-        else { dialogBuilder  = new AlertDialog.Builder(mC, R.style.CustomDialog);  }
+        this.mA = mA;
+        this.mC = mC;
+        if (mA != null) {
+            dialogBuilder = new AlertDialog.Builder(mA, R.style.CustomDialog);
+        } else {
+            dialogBuilder = new AlertDialog.Builder(mC, R.style.CustomDialog);
+        }
         dialogBuilder.setView(view);
     }
 
     public void showAlert() {
-        if(alert==null){alert = dialogBuilder.create();}
+        if (alert == null) {
+            alert = dialogBuilder.create();
+        }
         alert.show();
-        if(positiveButton){applyStyleToOkButton();}
-        if(cancelButton){applyStyleToCancelButton();}
+        if (positiveButton) {
+            applyStyleToOkButton();
+        }
+        if (cancelButton) {
+            applyStyleToCancelButton();
+        }
         setTimer();
-        int height=LinearLayout.LayoutParams.WRAP_CONTENT;
-        int width=LinearLayout.LayoutParams.WRAP_CONTENT;
-        if(mode.contains("width")){
-            width=LinearLayout.LayoutParams.MATCH_PARENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        if (mode.contains("width")) {
+            width = LinearLayout.LayoutParams.MATCH_PARENT;
         }
-        if(mode.contains("height")){
-            height=LinearLayout.LayoutParams.MATCH_PARENT;
+        if (mode.contains("height")) {
+            height = LinearLayout.LayoutParams.MATCH_PARENT;
         }
-        alert.getWindow().setLayout(width,height);
+        alert.getWindow().setLayout(width, height);
         alert.getWindow().setGravity(Gravity.CENTER);
     }
 
@@ -55,8 +64,8 @@ public class CustomAlertDialog {
     private void applyStyleToOkButton() {
         Button button = alert.getButton(AlertDialog.BUTTON_POSITIVE);
         LinearLayout.LayoutParams positiveButtonLL = (LinearLayout.LayoutParams) button.getLayoutParams();
-        positiveButtonLL.width= ViewGroup.LayoutParams.WRAP_CONTENT;
-        positiveButtonLL.setMargins(mC.getResources().getDimensionPixelSize(R.dimen.general_margin),0,0,0);
+        positiveButtonLL.width = ViewGroup.LayoutParams.WRAP_CONTENT;
+        positiveButtonLL.setMargins(mC.getResources().getDimensionPixelSize(R.dimen.general_margin), 0, 0, 0);
         button.setLayoutParams(positiveButtonLL);
         button.setTextColor(mC.getColor(R.color.colorBackground));
         button.setBackground(mC.getDrawable(R.drawable.button_ok_gradient));
@@ -65,7 +74,7 @@ public class CustomAlertDialog {
     private void applyStyleToCancelButton() {
         Button button = alert.getButton(AlertDialog.BUTTON_NEGATIVE);
         LinearLayout.LayoutParams negativeButtonLL = (LinearLayout.LayoutParams) button.getLayoutParams();
-        negativeButtonLL.width= ViewGroup.LayoutParams.WRAP_CONTENT;
+        negativeButtonLL.width = ViewGroup.LayoutParams.WRAP_CONTENT;
         button.setLayoutParams(negativeButtonLL);
         button.setTextColor(mC.getColor(R.color.colorBackground));
         button.setBackground(mC.getDrawable(R.drawable.button_cancel_gradient));
@@ -74,7 +83,7 @@ public class CustomAlertDialog {
 
     private void setTimer() {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
-        if (settings.getBoolean("switch_autoclose_dialog",mC.getResources().getBoolean(R.bool.switch_autoclose_dialog_DEF)) && !permanent){
+        if (settings.getBoolean("switch_autoclose_dialog", mC.getResources().getBoolean(R.bool.switch_autoclose_dialog_DEF)) && !permanent) {
             int duration = Tools.getTools().toInt(settings.getString("custom_alert_long_duration", String.valueOf(mC.getResources().getInteger(R.integer.custom_alert_long_duration_DEF))));
             Handler h = new Handler();
             h.postDelayed(new Runnable() {
@@ -100,18 +109,18 @@ public class CustomAlertDialog {
     }
 
     public void setPermanent(boolean b) {
-        this.permanent=b;
+        this.permanent = b;
     }
 
     public void addConfirmButton(String txt) {
         dialogBuilder.setPositiveButton(txt, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                if(mListener!=null) {
+                if (mListener != null) {
                     mListener.onEvent();
                 }
             }
         });
-        positiveButton=true;
+        positiveButton = true;
     }
 
     public void addCancelButton(String txt) {
@@ -120,18 +129,18 @@ public class CustomAlertDialog {
                 dismissAlert();
             }
         });
-        cancelButton=true;
+        cancelButton = true;
     }
 
     public void setFill(String fill) {
-        this.mode+=fill;
-    }
-
-    public interface OnAcceptEventListener {
-        void onEvent();
+        this.mode += fill;
     }
 
     public void setAcceptEventListener(OnAcceptEventListener eventListener) {
         mListener = eventListener;
+    }
+
+    public interface OnAcceptEventListener {
+        void onEvent();
     }
 }

@@ -20,17 +20,17 @@ import stellarnear.wedge_companion.Spells.Spell;
 
 
 public class PostDataElement {
-    private String targetSheet= PersoManager.getCurrentNamePJ();
-    private String date="-";
-    private String detail ="-";
-    private String typeEvent="-";
-    private String result="-";
+    private String targetSheet = PersoManager.getCurrentNamePJ();
+    private String date = "-";
+    private String detail = "-";
+    private String typeEvent = "-";
+    private String result = "-";
 
-    private Spell arrowSpell=null; //pour les fleches avec sort
+    private Spell arrowSpell = null; //pour les fleches avec sort
 
     /* jet  attaque et jet degat de l'attaque  */
     public PostDataElement(RollList rolls, String mode) {
-        if(mode.equalsIgnoreCase("atk")) {
+        if (mode.equalsIgnoreCase("atk")) {
             initAtk(rolls);
         } else {
             initDmg(rolls);
@@ -38,171 +38,76 @@ public class PostDataElement {
     }
 
 
-    public PostDataElement forceTargetSheet(String forcedSheet){
-        targetSheet=forcedSheet;
-        return this;
-    }
-
-
-    private void initAtk(RollList atkRolls){
-        SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.FRANCE);
-        this.date=formater.format(new Date());
-
-        this.typeEvent="Jets d'attaques";
-        String detailTxt="";
-        for (Roll roll : atkRolls.getList()) {
-            if (!detailTxt.equalsIgnoreCase("")) {
-                detailTxt += " / ";
-            }
-
-            if(roll.isInvalid()){
-                detailTxt +="-";
-            } else if(roll.isCrit()) {
-                detailTxt += "crit";
-            } else  if(roll.isFailed()) {
-                detailTxt += "fail";
-            } else {
-                detailTxt += "normal";
-            }
-            if(!roll.isInvalid()){
-                detailTxt += "("+roll.getAtkDice().getRandValue();
-                if(roll.getAtkDice().getMythicDice()!=null){detailTxt +=","+roll.getAtkDice().getMythicDice().getRandValue();}
-                detailTxt +=")";
-            }
-        }
-
-        this.detail=detailTxt;
-        String resultTxt="";
-
-        for (Roll roll : atkRolls.getList()) {
-            if (!resultTxt.equalsIgnoreCase("")) {
-                resultTxt += " / ";
-            }
-            int resultAtk=roll.getAtkValue();
-            if(roll.getAtkDice().getMythicDice()!=null){
-                resultAtk+=roll.getAtkDice().getMythicDice().getRandValue();
-            }
-            resultTxt += resultAtk;
-        }
-        this.result=resultTxt;
-    }
-
-    /* dégat d'une attaque */
-    private void initDmg(RollList atkRolls){
-        SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.FRANCE);
-        this.date=formater.format(new Date());
-
-        this.typeEvent="Dégats de l'attaque";
-
-        String detailTxt="";
-        int nAtk=0;
-        int nCrit=0;
-        for (Roll roll : atkRolls.getList()) {
-            if(roll.isHitConfirmed()){
-                nAtk++;
-                if (roll.isCritConfirmed()){
-                    nCrit++;
-                }
-            }
-        }
-        detailTxt=nAtk+" hits, "+nCrit+" crits";
-        this.detail=detailTxt;
-
-        String resultTxt="";
-
-        int totalSum = 0;
-        ElemsManager elems = ElemsManager.getInstance();
-        if(elems!=null) {
-            for (String elem : elems.getListKeysWedgeDamage()) {
-                int sumElem = atkRolls.getDmgSumFromType(elem);
-                if (sumElem > 0) {
-                    if (!resultTxt.equalsIgnoreCase("")) {
-                        resultTxt += ", ";
-                    }
-                    totalSum += sumElem;
-                    resultTxt += sumElem + " " + elems.getName(elem);
-                }
-            }
-            if (!resultTxt.equalsIgnoreCase("")) {
-                resultTxt += " || ";
-            }
-            if (totalSum > 0) {
-                resultTxt += "Total:" + totalSum;
-            } else {
-                resultTxt="-";
-            }
-            this.result = resultTxt;
-        }
-    }
-
     /* autre posts */
-    public PostDataElement(String typeEvent,int result){
+    public PostDataElement(String typeEvent, int result) {
         SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.FRANCE);
-        this.date=formater.format(new Date());
-        this.typeEvent=typeEvent;
-        this.result=String.valueOf(result);
-    }
-
-    public PostDataElement(String typeEvent,String resultTxt){
-        SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.FRANCE);
-        this.date=formater.format(new Date());
-        this.typeEvent=typeEvent;
-        this.result=resultTxt;
+        this.date = formater.format(new Date());
+        this.typeEvent = typeEvent;
+        this.result = String.valueOf(result);
     }
 
 
-    public PostDataElement(String typeEvent,String detail,String resultTxt){
+    public PostDataElement(String typeEvent, String resultTxt) {
         SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.FRANCE);
-        this.date=formater.format(new Date());
-        this.typeEvent=typeEvent;
-        this.detail=detail;
-        this.result=resultTxt;
+        this.date = formater.format(new Date());
+        this.typeEvent = typeEvent;
+        this.result = resultTxt;
     }
 
-    public PostDataElement(String typeEvent, Dice oriDice, int result){
+    public PostDataElement(String typeEvent, String detail, String resultTxt) {
         SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.FRANCE);
-        this.date=formater.format(new Date());
+        this.date = formater.format(new Date());
+        this.typeEvent = typeEvent;
+        this.detail = detail;
+        this.result = resultTxt;
+    }
 
-        this.typeEvent=typeEvent;
-        this.result=String.valueOf(result);
+    public PostDataElement(String typeEvent, Dice oriDice, int result) {
+        SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.FRANCE);
+        this.date = formater.format(new Date());
+
+        this.typeEvent = typeEvent;
+        this.result = String.valueOf(result);
 
         String detailTxt = String.valueOf(oriDice.getRandValue());
-        if(oriDice.getMythicDice()!=null){detailTxt +=","+oriDice.getMythicDice().getRandValue();}
-        this.detail =detailTxt;
+        if (oriDice.getMythicDice() != null) {
+            detailTxt += "," + oriDice.getMythicDice().getRandValue();
+        }
+        this.detail = detailTxt;
     }
 
     /* lancement d'un sort */
-    public PostDataElement(Spell spell){
+    public PostDataElement(Spell spell) {
         SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.FRANCE);
-        this.date=formater.format(new Date());
+        this.date = formater.format(new Date());
 
-        this.typeEvent="Lancement sort "+spell.getName() +" (rang de base:"+spell.getRank()+")";
+        this.typeEvent = "Lancement sort " + spell.getName() + " (rang de base:" + spell.getRank() + ")";
 
-        if(spell.getMetaList().hasAnyMetaActive()){
-            this.detail="Métamagies:";
-            int nRank=0;
-            for(Metamagic meta : spell.getMetaList().getAllActivesMetas().asList()){
-                this.detail+=meta.getName()+"(+"+meta.getUprank()*meta.getnCast()+")";
-                nRank+=meta.getnCast()*meta.getUprank();
+        if (spell.getMetaList().hasAnyMetaActive()) {
+            this.detail = "Métamagies:";
+            int nRank = 0;
+            for (Metamagic meta : spell.getMetaList().getAllActivesMetas().asList()) {
+                this.detail += meta.getName() + "(+" + meta.getUprank() * meta.getnCast() + ")";
+                nRank += meta.getnCast() * meta.getUprank();
             }
-            this.typeEvent+=" (+"+nRank+" rangs métamagies)";
-            if(spell.getMetaList().metaIdIsActive("meta_arrow")){
-                this.arrowSpell=spell;
+            this.typeEvent += " (+" + nRank + " rangs métamagies)";
+            if (spell.getMetaList().metaIdIsActive("meta_arrow")) {
+                this.arrowSpell = spell;
             }
         }
-        if(spell.isFailed()||spell.contactFailed()){
-            String failPostData="-";
-            if(spell.isFailed()){
-                failPostData="Test de RM raté";
-            } else if(spell.contactFailed()){
-                failPostData="Test de contact raté";
+        if (spell.isFailed() || spell.contactFailed()) {
+            String failPostData = "-";
+            if (spell.isFailed()) {
+                failPostData = "Test de RM raté";
+            } else if (spell.contactFailed()) {
+                failPostData = "Test de contact raté";
             }
-            this.result=failPostData;
+            this.result = failPostData;
         } else {
-            if(spell.getDmg_type().equalsIgnoreCase("")){
-                this.result="Lancé !";
+            if (spell.getDmg_type().equalsIgnoreCase("")) {
+                this.result = "Lancé !";
             } else {
-                if(spell.getDmg_type().equalsIgnoreCase("heal")){
+                if (spell.getDmg_type().equalsIgnoreCase("heal")) {
                     this.result = "Soins : " + spell.getDmgResult();
                 } else {
                     this.result = "Dégâts : " + spell.getDmgResult();
@@ -214,33 +119,33 @@ public class PostDataElement {
 
     public PostDataElement(GetData.PairSpellUuid pairSpellUuid) { //constructeur où on appelle pas à nouveau le store arrow
         SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.FRANCE);
-        this.date=formater.format(new Date());
-        Spell spell=pairSpellUuid.getSpell();
+        this.date = formater.format(new Date());
+        Spell spell = pairSpellUuid.getSpell();
 
-        this.typeEvent="Lancement sort "+spell.getName() +" (rang de base:"+spell.getRank()+")";
+        this.typeEvent = "Lancement sort " + spell.getName() + " (rang de base:" + spell.getRank() + ")";
 
-        if(spell.getMetaList().hasAnyMetaActive()){
-            this.detail="Métamagies:";
-            int nRank=0;
-            for(Metamagic meta : spell.getMetaList().getAllActivesMetas().asList()){
-                this.detail+=meta.getName()+"(+"+meta.getUprank()*meta.getnCast()+")";
-                nRank+=meta.getnCast()*meta.getUprank();
+        if (spell.getMetaList().hasAnyMetaActive()) {
+            this.detail = "Métamagies:";
+            int nRank = 0;
+            for (Metamagic meta : spell.getMetaList().getAllActivesMetas().asList()) {
+                this.detail += meta.getName() + "(+" + meta.getUprank() * meta.getnCast() + ")";
+                nRank += meta.getnCast() * meta.getUprank();
             }
-            this.typeEvent+=" (+"+nRank+" rangs métamagies)";
+            this.typeEvent += " (+" + nRank + " rangs métamagies)";
         }
-        if(spell.isFailed()||spell.contactFailed()){
-            String failPostData="-";
-            if(spell.isFailed()){
-                failPostData="Test de RM raté";
-            } else if(spell.contactFailed()){
-                failPostData="Test de contact raté";
+        if (spell.isFailed() || spell.contactFailed()) {
+            String failPostData = "-";
+            if (spell.isFailed()) {
+                failPostData = "Test de RM raté";
+            } else if (spell.contactFailed()) {
+                failPostData = "Test de contact raté";
             }
-            this.result=failPostData;
+            this.result = failPostData;
         } else {
-            if(spell.getDmg_type().equalsIgnoreCase("")){
-                this.result="Lancé !";
+            if (spell.getDmg_type().equalsIgnoreCase("")) {
+                this.result = "Lancé !";
             } else {
-                if(spell.getDmg_type().equalsIgnoreCase("heal")){
+                if (spell.getDmg_type().equalsIgnoreCase("heal")) {
                     this.result = "Soins : " + spell.getDmgResult();
                 } else {
                     this.result = "Dégâts : " + spell.getDmgResult();
@@ -249,12 +154,12 @@ public class PostDataElement {
         }
     }
 
-    public PostDataElement(Form form){
+    public PostDataElement(Form form) {
         SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.FRANCE);
-        this.date=formater.format(new Date());
-        if(form==null){
+        this.date = formater.format(new Date());
+        if (form == null) {
             this.typeEvent = "Retour à la forme normale";
-            this.result = "Druide Archer-sylvestre !" ;
+            this.result = "Druide Archer-sylvestre !";
         } else {
             this.typeEvent = "Changement de forme en " + form.getName();
             Perso pj = PersoManager.getCurrentPJ();
@@ -290,57 +195,154 @@ public class PostDataElement {
 
     public PostDataElement(Capacity capa) {
         SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.FRANCE);
-        this.date=formater.format(new Date());
-        this.typeEvent="Lancement capacité "+capa.getName();
-        this.detail=capa.getDescr();
-        if(capa.getValue()>0) {
+        this.date = formater.format(new Date());
+        this.typeEvent = "Lancement capacité " + capa.getName();
+        this.detail = capa.getDescr();
+        if (capa.getValue() > 0) {
             this.result = "Valeur : " + capa.getValue();
         }
     }
 
+
     public PostDataElement(FormCapacity capa, int sumResult) {
         SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.FRANCE);
-        this.date=formater.format(new Date());
-        this.typeEvent="Lancement capacité "+capa.getName();
-        this.detail=capa.getDescr();
-        this.result="Dégâts : "+sumResult;
+        this.date = formater.format(new Date());
+        this.typeEvent = "Lancement capacité " + capa.getName();
+        this.detail = capa.getDescr();
+        this.result = "Dégâts : " + sumResult;
     }
 
-    public PostDataElement(FormPower spell){
+    public PostDataElement(FormPower spell) {
         SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.FRANCE);
-        this.date=formater.format(new Date());
-        this.typeEvent="Lancement sort de forme animale "+spell.getName();
-        this.detail=spell.getDescr();
-        if(spell.getDmg_type().equalsIgnoreCase("")){
-            this.result="Lancé !";
+        this.date = formater.format(new Date());
+        this.typeEvent = "Lancement sort de forme animale " + spell.getName();
+        this.detail = spell.getDescr();
+        if (spell.getDmg_type().equalsIgnoreCase("")) {
+            this.result = "Lancé !";
         } else {
-            this.result="Dégâts : "+spell.getDmgResult();
+            this.result = "Dégâts : " + spell.getDmgResult();
         }
     }
 
-
     public PostDataElement(CanalisationCapacity canalCapaSelected) {
         SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.FRANCE);
-        this.date=formater.format(new Date());
-        this.typeEvent="Lancement capacité d'energie "+canalCapaSelected.getName();
-        this.detail="Cout : "+canalCapaSelected.getCost()+" canalisation";
-        this.result=canalCapaSelected.getShortdescr();
-        if(PersoManager.getCurrentPJ().getAllCapacities().capacityIsActive("capacity_epic_revelation_canal")){
-            this.result=result.replace("9m","13m");
+        this.date = formater.format(new Date());
+        this.typeEvent = "Lancement capacité d'energie " + canalCapaSelected.getName();
+        this.detail = "Cout : " + canalCapaSelected.getCost() + " canalisation";
+        this.result = canalCapaSelected.getShortdescr();
+        if (PersoManager.getCurrentPJ().getAllCapacities().capacityIsActive("capacity_epic_revelation_canal")) {
+            this.result = result.replace("9m", "13m");
         }
     }
 
     public PostDataElement(CanalisationCapacity canal, int sumResult) {
         SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.FRANCE);
-        this.date=formater.format(new Date());
-        this.typeEvent="Lancement capacité "+canal.getName();
-        this.detail=canal.getShortdescr();
-        if(PersoManager.getCurrentPJ().getAllCapacities().capacityIsActive("capacity_epic_revelation_canal")){
-            this.detail=detail.replace("9m","13m");
+        this.date = formater.format(new Date());
+        this.typeEvent = "Lancement capacité " + canal.getName();
+        this.detail = canal.getShortdescr();
+        if (PersoManager.getCurrentPJ().getAllCapacities().capacityIsActive("capacity_epic_revelation_canal")) {
+            this.detail = detail.replace("9m", "13m");
         }
-        this.result="Résultat : "+sumResult;
+        this.result = "Résultat : " + sumResult;
     }
 
+    public PostDataElement forceTargetSheet(String forcedSheet) {
+        targetSheet = forcedSheet;
+        return this;
+    }
+
+    private void initAtk(RollList atkRolls) {
+        SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.FRANCE);
+        this.date = formater.format(new Date());
+
+        this.typeEvent = "Jets d'attaques";
+        String detailTxt = "";
+        for (Roll roll : atkRolls.getList()) {
+            if (!detailTxt.equalsIgnoreCase("")) {
+                detailTxt += " / ";
+            }
+
+            if (roll.isInvalid()) {
+                detailTxt += "-";
+            } else if (roll.isCrit()) {
+                detailTxt += "crit";
+            } else if (roll.isFailed()) {
+                detailTxt += "fail";
+            } else {
+                detailTxt += "normal";
+            }
+            if (!roll.isInvalid()) {
+                detailTxt += "(" + roll.getAtkDice().getRandValue();
+                if (roll.getAtkDice().getMythicDice() != null) {
+                    detailTxt += "," + roll.getAtkDice().getMythicDice().getRandValue();
+                }
+                detailTxt += ")";
+            }
+        }
+
+        this.detail = detailTxt;
+        String resultTxt = "";
+
+        for (Roll roll : atkRolls.getList()) {
+            if (!resultTxt.equalsIgnoreCase("")) {
+                resultTxt += " / ";
+            }
+            int resultAtk = roll.getAtkValue();
+            if (roll.getAtkDice().getMythicDice() != null) {
+                resultAtk += roll.getAtkDice().getMythicDice().getRandValue();
+            }
+            resultTxt += resultAtk;
+        }
+        this.result = resultTxt;
+    }
+
+    /* dégat d'une attaque */
+    private void initDmg(RollList atkRolls) {
+        SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.FRANCE);
+        this.date = formater.format(new Date());
+
+        this.typeEvent = "Dégats de l'attaque";
+
+        String detailTxt = "";
+        int nAtk = 0;
+        int nCrit = 0;
+        for (Roll roll : atkRolls.getList()) {
+            if (roll.isHitConfirmed()) {
+                nAtk++;
+                if (roll.isCritConfirmed()) {
+                    nCrit++;
+                }
+            }
+        }
+        detailTxt = nAtk + " hits, " + nCrit + " crits";
+        this.detail = detailTxt;
+
+        String resultTxt = "";
+
+        int totalSum = 0;
+        ElemsManager elems = ElemsManager.getInstance();
+        if (elems != null) {
+            for (String elem : elems.getListKeysWedgeDamage()) {
+                int sumElem = atkRolls.getDmgSumFromType(elem);
+                if (sumElem > 0) {
+                    if (!resultTxt.equalsIgnoreCase("")) {
+                        resultTxt += ", ";
+                    }
+                    totalSum += sumElem;
+                    resultTxt += sumElem + " " + elems.getName(elem);
+                }
+            }
+            if (!resultTxt.equalsIgnoreCase("")) {
+                resultTxt += " || ";
+            }
+            if (totalSum > 0) {
+                resultTxt += "Total:" + totalSum;
+            } else {
+                resultTxt = "-";
+            }
+            this.result = resultTxt;
+        }
+    }
 
     public String getDetail() {
         return detail;

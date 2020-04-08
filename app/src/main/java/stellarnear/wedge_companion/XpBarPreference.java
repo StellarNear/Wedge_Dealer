@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 
 public class XpBarPreference extends Preference {
-    private Tools tools=Tools.getTools();
+    private Tools tools = Tools.getTools();
 
     public XpBarPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -24,13 +24,13 @@ public class XpBarPreference extends Preference {
         super(context, attrs, defStyle);
 
     }
+
     public XpBarPreference(Context context) {
         super(context);
     }
 
     @Override
-    protected View onCreateView(ViewGroup parent )
-    {
+    protected View onCreateView(ViewGroup parent) {
         super.onCreateView(parent);
         final SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getContext());
         LayoutInflater inflater = LayoutInflater.from(getContext());
@@ -41,7 +41,7 @@ public class XpBarPreference extends Preference {
             public void run() {
                 TextView percent = mainBar.findViewById(R.id.xp_bar_percent);
                 ImageView backgroundBar = mainBar.findViewById(R.id.xp_bar_background);
-                ViewGroup.LayoutParams para = (ViewGroup.LayoutParams) backgroundBar.getLayoutParams();
+                ViewGroup.LayoutParams para = backgroundBar.getLayoutParams();
                 ImageView overlayBar = mainBar.findViewById(R.id.xp_bar_overlay);
                 int oriWidth = overlayBar.getMeasuredWidth();
                 int oriHeight = overlayBar.getMeasuredHeight();
@@ -55,7 +55,7 @@ public class XpBarPreference extends Preference {
                 if (coef > 1d) {
                     coef = 1d;
                 }
-                percent.setText(String.valueOf((int) (100 * coef)) + "%");
+                percent.setText((int) (100 * coef) + "%");
                 para.width = (int) (coef * oriWidth);
                 para.height = oriHeight;
                 backgroundBar.setLayoutParams(para);

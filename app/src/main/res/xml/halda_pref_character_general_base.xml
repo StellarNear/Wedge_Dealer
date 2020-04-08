@@ -2,129 +2,132 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
-        android:title="Valeur caractéristique de base\n(hors equipement et augmentations permanentes)"
         android:summary=""
-        >
-        <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+        android:title="Valeur caractéristique de base\n(hors equipement et augmentations permanentes)">
+        <Preference
+            android:layout="@layout/divider_pref"
+            android:selectable="false" />
         <stellarnear.wedge_companion.EditTextPreference
             android:defaultValue="@integer/ability_force_base_def_halda"
+            android:inputType="number"
             android:key="ability_force_base_halda"
-            android:title="Valeur Force (de base)"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:inputType="number"
-            android:summary="Valeur : %s"/>
+            android:summary="Valeur : %s"
+            android:title="Valeur Force (de base)" />
         <stellarnear.wedge_companion.EditTextPreference
             android:defaultValue="@integer/ability_dexterite_base_def_halda"
+            android:inputType="number"
             android:key="ability_dexterite_base_halda"
-            android:title="Valeur Dexterité (de base)"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:inputType="number"
-            android:summary="Valeur : %s"/>
+            android:summary="Valeur : %s"
+            android:title="Valeur Dexterité (de base)" />
         <stellarnear.wedge_companion.EditTextPreference
             android:defaultValue="@integer/ability_constitution_base_def_halda"
+            android:inputType="number"
             android:key="ability_constitution_base_halda"
-            android:title="Valeur Constitution (de base)"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:inputType="number"
-            android:summary="Valeur : %s"/>
+            android:summary="Valeur : %s"
+            android:title="Valeur Constitution (de base)" />
         <stellarnear.wedge_companion.EditTextPreference
             android:defaultValue="@integer/ability_intelligence_base_def_halda"
+            android:inputType="number"
             android:key="ability_intelligence_base_halda"
-            android:title="Valeur Intelligence (de base)"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:inputType="number"
-            android:summary="Valeur : %s"/>
+            android:summary="Valeur : %s"
+            android:title="Valeur Intelligence (de base)" />
         <stellarnear.wedge_companion.EditTextPreference
             android:defaultValue="@integer/ability_sagesse_base_def_halda"
+            android:inputType="number"
             android:key="ability_sagesse_base_halda"
-            android:title="Valeur Sagesse (de base)"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:inputType="number"
-            android:summary="Valeur : %s"/>
+            android:summary="Valeur : %s"
+            android:title="Valeur Sagesse (de base)" />
         <stellarnear.wedge_companion.EditTextPreference
             android:defaultValue="@integer/ability_charisme_base_def_halda"
+            android:inputType="number"
             android:key="ability_charisme_base_halda"
-            android:title="Valeur Charisme (de base)"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:inputType="number"
-            android:summary="Valeur : %s"/>
+            android:summary="Valeur : %s"
+            android:title="Valeur Charisme (de base)" />
 
     </PreferenceCategory>
 
-    <PreferenceCategory
-        android:title="Augmentation permanente de caractéristique"
-        >
-        <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+    <PreferenceCategory android:title="Augmentation permanente de caractéristique">
+        <Preference
+            android:layout="@layout/divider_pref"
+            android:selectable="false" />
         <stellarnear.wedge_companion.EditTextPreference
             android:defaultValue="@integer/ability_force_augment_def_halda"
+            android:inputType="number"
             android:key="ability_force_augment_halda"
-            android:title="Valeur augmentation Force"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:inputType="number"
-            android:summary="Valeur : %s"/>
+            android:summary="Valeur : %s"
+            android:title="Valeur augmentation Force" />
         <stellarnear.wedge_companion.EditTextPreference
             android:defaultValue="@integer/ability_dexterite_augment_def_halda"
+            android:inputType="number"
             android:key="ability_dexterite_augment_halda"
-            android:title="Valeur augmentation Dexterité"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:inputType="number"
-            android:summary="Valeur : %s"/>
+            android:summary="Valeur : %s"
+            android:title="Valeur augmentation Dexterité" />
         <stellarnear.wedge_companion.EditTextPreference
             android:defaultValue="@integer/ability_constitution_augment_def_halda"
+            android:inputType="number"
             android:key="ability_constitution_augment_halda"
-            android:title="Valeur augmentation Constitution"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:inputType="number"
-            android:summary="Valeur : %s"/>
+            android:summary="Valeur : %s"
+            android:title="Valeur augmentation Constitution" />
         <stellarnear.wedge_companion.EditTextPreference
             android:defaultValue="@integer/ability_intelligence_augment_def_halda"
+            android:inputType="number"
             android:key="ability_intelligence_augment_halda"
-            android:title="Valeur augmentation Intelligence"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:inputType="number"
-            android:summary="Valeur : %s"/>
+            android:summary="Valeur : %s"
+            android:title="Valeur augmentation Intelligence" />
         <stellarnear.wedge_companion.EditTextPreference
             android:defaultValue="@integer/ability_sagesse_augment_def_halda"
+            android:inputType="number"
             android:key="ability_sagesse_augment_halda"
-            android:title="Valeur augmentation Sagesse"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:inputType="number"
-            android:summary="Valeur : %s"/>
+            android:summary="Valeur : %s"
+            android:title="Valeur augmentation Sagesse" />
         <stellarnear.wedge_companion.EditTextPreference
             android:defaultValue="@integer/ability_charisme_augment_def_halda"
+            android:inputType="number"
             android:key="ability_charisme_augment_halda"
-            android:title="Valeur augmentation Charisme"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:inputType="number"
-            android:summary="Valeur : %s"/>
+            android:summary="Valeur : %s"
+            android:title="Valeur augmentation Charisme" />
 
     </PreferenceCategory>
 
-    <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
-    <PreferenceCategory
-        android:title="Autres caractéristiques"
-        >
-        <Preference android:layout="@layout/divider_pref" android:selectable="false"/>
+    <Preference
+        android:layout="@layout/divider_pref"
+        android:selectable="false" />
+    <PreferenceCategory android:title="Autres caractéristiques">
+        <Preference
+            android:layout="@layout/divider_pref"
+            android:selectable="false" />
         <stellarnear.wedge_companion.EditTextPreference
             android:defaultValue="@integer/ability_ms_def_halda"
+            android:inputType="number"
             android:key="ability_ms_halda"
-            android:title="Vitesse de déplacement"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:inputType="number"
-            android:summary="Valeur : %s m"/>
+            android:summary="Valeur : %s m"
+            android:title="Vitesse de déplacement" />
 
     </PreferenceCategory>
 

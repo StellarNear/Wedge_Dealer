@@ -31,13 +31,13 @@ public class PrefAllInventoryFragment {
     private Inventory inventory;
     private Activity mA;
     private Context mC;
-    private Tools tools=Tools.getTools();
+    private Tools tools = Tools.getTools();
     private OnRefreshEventListener mListener;
-    private Perso pj =PersoManager.getCurrentPJ();
+    private Perso pj = PersoManager.getCurrentPJ();
 
-    public PrefAllInventoryFragment(Activity mA,Context mC){
-        this.mA=mA;
-        this.mC=mC;
+    public PrefAllInventoryFragment(Activity mA, Context mC) {
+        this.mA = mA;
+        this.mC = mC;
         this.inventory = pj.getInventory();
     }
 
@@ -95,13 +95,13 @@ public class PrefAllInventoryFragment {
             if (!equi.getSlotId().equalsIgnoreCase("")) {
                 txt += "\nEmplacement : " + translateSlotName(equi.getSlotId());
             }
-            if (equi.getArmor()>0) {
+            if (equi.getArmor() > 0) {
                 txt += "\nArmure : +" + equi.getArmor();
             }
-            if (equi.getMapAbilityUp()!=null && equi.getMapAbilityUp().size()>0) {
+            if (equi.getMapAbilityUp() != null && equi.getMapAbilityUp().size() > 0) {
                 txt += "\nBonus Stats : " + makeStringLineFromMap(equi.getMapAbilityUp());
             }
-            if (equi.getMapSkillUp()!=null && equi.getMapSkillUp().size()>0) {
+            if (equi.getMapSkillUp() != null && equi.getMapSkillUp().size() > 0) {
                 txt += "\nBonus Compétence : " + makeStringLineFromMap(equi.getMapSkillUp());
             }
             if (!equi.getDescr().equalsIgnoreCase("")) {
@@ -136,12 +136,13 @@ public class PrefAllInventoryFragment {
     }
 
     private String makeStringLineFromMap(Map<String, Integer> mapUp) {
-        String line="";
-        for(Map.Entry<String,Integer> entry : mapUp.entrySet()) {
+        String line = "";
+        for (Map.Entry<String, Integer> entry : mapUp.entrySet()) {
             try {
-                String nameUp = entry.getKey().contains("skill_")? pj.getAllSkills().getSkill(entry.getKey()).getName():pj.getAllAbilities().getAbi(entry.getKey()).getName();
-                line+="\n+"+entry.getValue()+" "+nameUp;
-            } catch (Exception e) {}
+                String nameUp = entry.getKey().contains("skill_") ? pj.getAllSkills().getSkill(entry.getKey()).getName() : pj.getAllAbilities().getAbi(entry.getKey()).getName();
+                line += "\n+" + entry.getValue() + " " + nameUp;
+            } catch (Exception e) {
+            }
         }
         return line;
     }
@@ -166,7 +167,7 @@ public class PrefAllInventoryFragment {
             pref.setKey("bag_" + equi.getName());
             pref.setTitle(equi.getName());
             String txt = "Valeur : " + equi.getValue();
-            if (equi.getTags().size()>0) {
+            if (equi.getTags().size() > 0) {
                 txt += "\nTags : " + TextUtils.join(",", equi.getTags());
             }
             if (!equi.getDescr().equalsIgnoreCase("")) {
@@ -222,7 +223,7 @@ public class PrefAllInventoryFragment {
             }
         });
         creationItemAlert.showAlert();
-        final EditText editName = ((EditText) creationView.findViewById(R.id.name_item_creation));
+        final EditText editName = creationView.findViewById(R.id.name_item_creation);
         editName.post(new Runnable() {
             public void run() {
                 editName.setFocusableInTouchMode(true);
@@ -239,12 +240,12 @@ public class PrefAllInventoryFragment {
         ((TextView) selectItem.findViewById(R.id.equipment_dialog_main_title)).setText("Selectionnes l'emplacement");
         selectItem.findViewById(R.id.bag).setVisibility(View.GONE);
         selectItem.findViewById(R.id.equipment_dialog_back_arrow).setVisibility(View.GONE);
-        final CustomAlertDialog selectItemAlert = new CustomAlertDialog(mA,mC, selectItem);
+        final CustomAlertDialog selectItemAlert = new CustomAlertDialog(mA, mC, selectItem);
         selectItemAlert.setPermanent(true);
         selectItemAlert.addCancelButton("Annuler");
         for (final String slot : mC.getResources().getStringArray(R.array.slot_choice_val)) {
             int resID = mC.getResources().getIdentifier(slot, "id", mC.getPackageName());
-            ImageView img = (ImageView) selectItem.findViewById(resID);
+            ImageView img = selectItem.findViewById(resID);
             img.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -259,13 +260,13 @@ public class PrefAllInventoryFragment {
     private void createEquipment(final String slot) {
         LayoutInflater inflater = mA.getLayoutInflater();
         final View creationView = inflater.inflate(R.layout.custom_toast_equipment_creation, null);
-        CustomAlertDialog creationEquipmentAlert = new CustomAlertDialog(mA,mC, creationView);
+        CustomAlertDialog creationEquipmentAlert = new CustomAlertDialog(mA, mC, creationView);
 
-        LinearLayout buttonAddAbi = (LinearLayout)creationView.findViewById(R.id.add_ability_create_item);
-        LinearLayout buttonAddSkill = (LinearLayout)creationView.findViewById(R.id.add_skill_create_item);
-        LinearLayout listAbi = (LinearLayout)creationView.findViewById(R.id.list_added_ability_create_item);
-        LinearLayout listSkill = (LinearLayout)creationView.findViewById(R.id.list_added_skill_create_item);
-        final PrefAllInventoryFragmentAddSelection prefSelectAdd = new PrefAllInventoryFragmentAddSelection(mA,mC,buttonAddAbi,buttonAddSkill,listAbi,listSkill);
+        LinearLayout buttonAddAbi = creationView.findViewById(R.id.add_ability_create_item);
+        LinearLayout buttonAddSkill = creationView.findViewById(R.id.add_skill_create_item);
+        LinearLayout listAbi = creationView.findViewById(R.id.list_added_ability_create_item);
+        LinearLayout listSkill = creationView.findViewById(R.id.list_added_skill_create_item);
+        final PrefAllInventoryFragmentAddSelection prefSelectAdd = new PrefAllInventoryFragmentAddSelection(mA, mC, buttonAddAbi, buttonAddSkill, listAbi, listSkill);
 
         creationView.findViewById(R.id.add_skill_create_item);
         creationEquipmentAlert.setPermanent(true);
@@ -283,9 +284,13 @@ public class PrefAllInventoryFragment {
                 String descr = ((EditText) creationView.findViewById(R.id.descr_equipment_creation)).getText().toString();
                 int armor = tools.toInt(((EditText) creationView.findViewById(R.id.armor_item_creation)).getText().toString());
 
-                Equipment equi = new Equipment(name, descr, value, "equipment_" + slot + "_def", slot, equiped,armor);
-                if(prefSelectAdd.getAbiMap()!=null){equi.addMapAbilityUp(prefSelectAdd.getAbiMap());}
-                if(prefSelectAdd.getSkillMap()!=null){equi.addMapSkillUp(prefSelectAdd.getSkillMap());}
+                Equipment equi = new Equipment(name, descr, value, "equipment_" + slot + "_def", slot, equiped, armor);
+                if (prefSelectAdd.getAbiMap() != null) {
+                    equi.addMapAbilityUp(prefSelectAdd.getAbiMap());
+                }
+                if (prefSelectAdd.getSkillMap() != null) {
+                    equi.addMapSkillUp(prefSelectAdd.getSkillMap());
+                }
                 inventory.getAllEquipments().getDisplayManager().createEquipment(equi);
                 mListener.onEvent();
                 tools.customToast(mC, equi.getName() + " ajouté !");
@@ -294,7 +299,7 @@ public class PrefAllInventoryFragment {
         creationEquipmentAlert.showAlert();
 
 
-        final EditText editName = ((EditText) creationView.findViewById(R.id.name_equipment_creation));
+        final EditText editName = creationView.findViewById(R.id.name_equipment_creation);
         editName.post(new Runnable() {
             public void run() {
                 editName.setFocusableInTouchMode(true);
@@ -305,11 +310,11 @@ public class PrefAllInventoryFragment {
         });
     }
 
-    public interface OnRefreshEventListener {
-        void onEvent();
-    }
-
     public void setRefreshEventListener(OnRefreshEventListener eventListener) {
         mListener = eventListener;
+    }
+
+    public interface OnRefreshEventListener {
+        void onEvent();
     }
 }

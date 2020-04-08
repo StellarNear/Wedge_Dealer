@@ -47,21 +47,21 @@ public class DSSFSpell {
     private BarChart chart;
     private PieChart pieChart;
     private PieChart pieChartDetails;
-    private int nRankMax=-1;
-    private Map<String,TextView> mapElemTextView =new HashMap<>();
+    private int nRankMax = -1;
+    private Map<String, TextView> mapElemTextView = new HashMap<>();
     private ElemsManager elems;
     private Context mC;
     private View mainView;
-    private int infoTxtSize=12;
-    private int rankSelectedForPieChart =-1;
-    private Tools tools=Tools.getTools();
+    private int infoTxtSize = 12;
+    private int rankSelectedForPieChart = -1;
+    private Tools tools = Tools.getTools();
 
     public DSSFSpell(View mainView, Context mC) {
-        this.mainView=mainView;
-        this.mC=mC;
-        this.elems= ElemsManager.getInstance();
+        this.mainView = mainView;
+        this.mC = mC;
+        this.elems = ElemsManager.getInstance();
         TextView nAtkTxt = mainView.findViewById(R.id.nSpell);
-        nAtkTxt.setText(pj.getSpellStats().getSpellStatsList().getNSpell()+ " sorts");
+        nAtkTxt.setText(pj.getSpellStats().getSpellStatsList().getNSpell() + " sorts");
         determineElemsPresents();
         refreshNumbersSpellsElements();
         initChartsAndPies();
@@ -69,11 +69,11 @@ public class DSSFSpell {
 
     private void determineElemsPresents() {
         SpellStatsList allStats = pj.getSpellStats().getSpellStatsList();
-        mapElemTextView =new HashMap<>();
-        for(SpellStat spellStat :allStats.asList()) {
-            for(DamagesShortListElement subDamageIndivSpell : spellStat.getDamageShortList().getDamageElementList()){
+        mapElemTextView = new HashMap<>();
+        for (SpellStat spellStat : allStats.asList()) {
+            for (DamagesShortListElement subDamageIndivSpell : spellStat.getDamageShortList().getDamageElementList()) {
                 String elementSpell = subDamageIndivSpell.getElement();
-                if (mapElemTextView.get(elementSpell)==null) { // pour les degat on ignore les spell utils
+                if (mapElemTextView.get(elementSpell) == null) { // pour les degat on ignore les spell utils
                     mapElemTextView.put(elementSpell, addTextView(elementSpell));
                 }
             }
@@ -82,7 +82,7 @@ public class DSSFSpell {
 
     private TextView addTextView(String elementSpell) {
         LinearLayout line = new LinearLayout(mC);
-        line.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT,1));
+        line.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1));
         line.setGravity(Gravity.CENTER);
         TextView text = new TextView(mC);
         text.setTextSize(22);
@@ -92,24 +92,26 @@ public class DSSFSpell {
         Drawable drawable;
         try {
             drawable = mC.getDrawable(elems.getDrawableId(elementSpell));
-            if(elementSpell.equalsIgnoreCase("")){drawable = mC.getDrawable(R.drawable.nodmg_logo);} //l'element "" est pour dégat physique sur le sdamage roll mais en sort c'est un utilitaire
+            if (elementSpell.equalsIgnoreCase("")) {
+                drawable = mC.getDrawable(R.drawable.nodmg_logo);
+            } //l'element "" est pour dégat physique sur le sdamage roll mais en sort c'est un utilitaire
         } catch (Exception e) {
             drawable = mC.getDrawable(R.drawable.mire_test);
             e.printStackTrace();
         }
         ImageView logo = new ImageView(mC);
-        logo.setImageDrawable(tools.resize(mC,drawable,80));
+        logo.setImageDrawable(tools.resize(mC, drawable, 80));
         line.addView(logo);
-        ((LinearLayout)mainView.findViewById(R.id.first_panel_elems_list_numbers)).addView(line);
+        ((LinearLayout) mainView.findViewById(R.id.first_panel_elems_list_numbers)).addView(line);
         return text;
     }
 
     private void refreshNumbersSpellsElements() {
-        for(Map.Entry<String,TextView> entry: mapElemTextView.entrySet()){
-            if(rankSelectedForPieChart==-1){
+        for (Map.Entry<String, TextView> entry : mapElemTextView.entrySet()) {
+            if (rankSelectedForPieChart == -1) {
                 entry.getValue().setText(String.valueOf(pj.getSpellStats().getSpellStatsList().countSubElementOfType(entry.getKey())));
             } else {
-                entry.getValue().setText(String.valueOf(pj.getSpellStats().getSpellStatsList().countSubElementOfTypeAndRank(entry.getKey(),rankSelectedForPieChart)));
+                entry.getValue().setText(String.valueOf(pj.getSpellStats().getSpellStatsList().countSubElementOfTypeAndRank(entry.getKey(), rankSelectedForPieChart)));
             }
 
         }
@@ -157,7 +159,7 @@ public class DSSFSpell {
             public void onValueSelected(Entry e, Highlight h) {
                 resetPieChart();
                 resetPieChartCrit();
-                rankSelectedForPieChart =(int) e.getX();
+                rankSelectedForPieChart = (int) e.getX();
                 buildPieChart();
                 buildPieChartDetails();
                 refreshNumbersSpellsElements();
@@ -167,7 +169,7 @@ public class DSSFSpell {
             public void onNothingSelected() {
                 resetPieChart();
                 resetPieChartCrit();
-                rankSelectedForPieChart =-1;
+                rankSelectedForPieChart = -1;
                 buildPieChart();
                 buildPieChartDetails();
                 refreshNumbersSpellsElements();
@@ -180,11 +182,11 @@ public class DSSFSpell {
         data.addDataSet(computeBarDataSet("hit"));
         data.addDataSet(computeBarDataSet("miss"));
         chart.setData(data);
-        chart.getXAxis().setLabelCount(nRankMax+1);
+        chart.getXAxis().setLabelCount(nRankMax + 1);
     }
 
     private BarDataSet computeBarDataSet(String mode) {
-        Map<Integer,Integer> rankCountHit = new HashMap<>();
+        Map<Integer, Integer> rankCountHit = new HashMap<>();
 
         DamagesShortList damagesShortList;/*
         if(elemsSelected.equalsIgnoreCase("all")){
@@ -193,37 +195,39 @@ public class DSSFSpell {
             damagesShortList= pj.getSpellStats().getSpellStatsList().getDamageShortListForElem(elemsSelected);
         }
         */
-        for (SpellStat spellStat : pj.getSpellStats().getSpellStatsList().asList()){
+        for (SpellStat spellStat : pj.getSpellStats().getSpellStatsList().asList()) {
             List<Integer> listRank = new ArrayList<>();
-            if (mode.equalsIgnoreCase("hit")){
-                listRank= spellStat.getListHit();
-            } else  if (mode.equalsIgnoreCase("miss")){
-                listRank= spellStat.getListMiss();
+            if (mode.equalsIgnoreCase("hit")) {
+                listRank = spellStat.getListHit();
+            } else if (mode.equalsIgnoreCase("miss")) {
+                listRank = spellStat.getListMiss();
             }
-            for (int rank : listRank){
+            for (int rank : listRank) {
                 int count = 0;
-                if (rankCountHit.get(rank) != null ) {
-                    count=rankCountHit.get(rank);
+                if (rankCountHit.get(rank) != null) {
+                    count = rankCountHit.get(rank);
                 }
-                rankCountHit.put(rank,count+1);
-                if(rank>nRankMax){nRankMax=rank;}
+                rankCountHit.put(rank, count + 1);
+                if (rank > nRankMax) {
+                    nRankMax = rank;
+                }
             }
         }
         ArrayList<BarEntry> listVal = new ArrayList<>();
-        for (int i=0;i<=nRankMax;i++){
+        for (int i = 0; i <= nRankMax; i++) {
             int count = 0;
-            if (rankCountHit.get(i) != null ) {
-                count=rankCountHit.get(i);
+            if (rankCountHit.get(i) != null) {
+                count = rankCountHit.get(i);
             }
-            listVal.add(new BarEntry((int)i,(int)count));
+            listVal.add(new BarEntry(i, count));
         }
-        BarDataSet set = new BarDataSet(listVal,"");
-        String text="";
-        if (mode.equalsIgnoreCase("hit")){
-            text="sort qui touche";
+        BarDataSet set = new BarDataSet(listVal, "");
+        String text = "";
+        if (mode.equalsIgnoreCase("hit")) {
+            text = "sort qui touche";
             set.setColor(mC.getColor(R.color.hit_stat));
-        } else  if (mode.equalsIgnoreCase("miss")){
-            text="sort qui rate";
+        } else if (mode.equalsIgnoreCase("miss")) {
+            text = "sort qui rate";
             set.setColor(mC.getColor(R.color.miss_stat));
         }
         set.setLabel(text);
@@ -242,7 +246,7 @@ public class DSSFSpell {
         buildPieChart();
 
         pieChart.getLegend().setEnabled(false);
-        pieChart.animateXY(100,1000);
+        pieChart.animateXY(100, 1000);
         pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
@@ -266,26 +270,26 @@ public class DSSFSpell {
 
     private PieDataSet computePieDataSet() {
         ArrayList<PieEntry> entries = new ArrayList<>();
-        List<Integer> colorList= new ArrayList<>();
-        float hitVal,missVal,percent;
-        if(rankSelectedForPieChart ==-1){
-            hitVal= pj.getSpellStats().getSpellStatsList().getNSpellHit();
-            missVal= pj.getSpellStats().getSpellStatsList().getNSpellMiss();
-            percent = 100f*(hitVal/(hitVal+missVal));
+        List<Integer> colorList = new ArrayList<>();
+        float hitVal, missVal, percent;
+        if (rankSelectedForPieChart == -1) {
+            hitVal = pj.getSpellStats().getSpellStatsList().getNSpellHit();
+            missVal = pj.getSpellStats().getSpellStatsList().getNSpellMiss();
+            percent = 100f * (hitVal / (hitVal + missVal));
         } else {
-            hitVal= pj.getSpellStats().getSpellStatsList().getNSpellHitForRank(rankSelectedForPieChart);
-            missVal= pj.getSpellStats().getSpellStatsList().getNSpellMissForRank(rankSelectedForPieChart);
-            percent = 100f*(hitVal/(hitVal+missVal));
+            hitVal = pj.getSpellStats().getSpellStatsList().getNSpellHitForRank(rankSelectedForPieChart);
+            missVal = pj.getSpellStats().getSpellStatsList().getNSpellMissForRank(rankSelectedForPieChart);
+            percent = 100f * (hitVal / (hitVal + missVal));
         }
-        if(percent>0f) {
-            entries.add(new PieEntry(percent, "",  new LargeValueFormatter().getFormattedValue(1f*hitVal) + " sorts lancés"));
+        if (percent > 0f) {
+            entries.add(new PieEntry(percent, "", new LargeValueFormatter().getFormattedValue(1f * hitVal) + " sorts lancés"));
             colorList.add(mC.getColor(R.color.hit_stat));
         }
-        if(percent<100f){
-            entries.add(new PieEntry(100f-percent,"",new LargeValueFormatter().getFormattedValue(1f*missVal)+" sorts ratés"));
+        if (percent < 100f) {
+            entries.add(new PieEntry(100f - percent, "", new LargeValueFormatter().getFormattedValue(1f * missVal) + " sorts ratés"));
             colorList.add(mC.getColor(R.color.miss_stat));
         }
-        PieDataSet dataset = new PieDataSet(entries,"");
+        PieDataSet dataset = new PieDataSet(entries, "");
         dataset.setValueTextSize(infoTxtSize);
         dataset.setColors(colorList);
         dataset.setSliceSpace(3);
@@ -301,7 +305,7 @@ public class DSSFSpell {
         pieChartDetails.setEntryLabelTextSize(infoTxtSize); //ici full size car on mets directement els valeur dans le label
         pieChartDetails.setEntryLabelColor(Color.BLACK);
         pieChartDetails.getLegend().setEnabled(false);
-        pieChartDetails.animateXY(100,1000);
+        pieChartDetails.animateXY(100, 1000);
         pieChartDetails.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
@@ -325,45 +329,45 @@ public class DSSFSpell {
     }
 
     private PieDataSet computePieDataSetDetails() {
-        float nNormal,nCrit,nContactMiss,nResist;
-        if(rankSelectedForPieChart ==-1){
-            nCrit= pj.getSpellStats().getSpellStatsList().getNCrit();
-            nContactMiss= pj.getSpellStats().getSpellStatsList().getNContactMiss();
-            nResist= pj.getSpellStats().getSpellStatsList().getNResist();
-            nNormal= pj.getSpellStats().getSpellStatsList().getNSpellHit()-nCrit;
+        float nNormal, nCrit, nContactMiss, nResist;
+        if (rankSelectedForPieChart == -1) {
+            nCrit = pj.getSpellStats().getSpellStatsList().getNCrit();
+            nContactMiss = pj.getSpellStats().getSpellStatsList().getNContactMiss();
+            nResist = pj.getSpellStats().getSpellStatsList().getNResist();
+            nNormal = pj.getSpellStats().getSpellStatsList().getNSpellHit() - nCrit;
         } else {
-            nCrit= pj.getSpellStats().getSpellStatsList().getNCritForRank(rankSelectedForPieChart);
-            nContactMiss= pj.getSpellStats().getSpellStatsList().getNContactMissForRank(rankSelectedForPieChart);
-            nResist= pj.getSpellStats().getSpellStatsList().getNResistForRank(rankSelectedForPieChart);
-            nNormal= pj.getSpellStats().getSpellStatsList().getNSpellHitForRank(rankSelectedForPieChart)-nCrit;
+            nCrit = pj.getSpellStats().getSpellStatsList().getNCritForRank(rankSelectedForPieChart);
+            nContactMiss = pj.getSpellStats().getSpellStatsList().getNContactMissForRank(rankSelectedForPieChart);
+            nResist = pj.getSpellStats().getSpellStatsList().getNResistForRank(rankSelectedForPieChart);
+            nNormal = pj.getSpellStats().getSpellStatsList().getNSpellHitForRank(rankSelectedForPieChart) - nCrit;
         }
-        float nTot=nNormal+nCrit+nContactMiss+nResist;
-        float normalPercent=100f*(nNormal/nTot);
-        float critPercent=100f*(nCrit/nTot);
-        float contactMissPercent=100f*(nContactMiss/nTot);
-        float resistPercent=100f*(nResist/nTot);
+        float nTot = nNormal + nCrit + nContactMiss + nResist;
+        float normalPercent = 100f * (nNormal / nTot);
+        float critPercent = 100f * (nCrit / nTot);
+        float contactMissPercent = 100f * (nContactMiss / nTot);
+        float resistPercent = 100f * (nResist / nTot);
 
         ArrayList<PieEntry> entries = new ArrayList<>();
-        List<Integer> colorList= new ArrayList<>();
+        List<Integer> colorList = new ArrayList<>();
         /*
         if(normalPercent>0f){
             entries.add(new PieEntry(normalPercent,"normal",new LargeValueFormatter().getFormattedValue(((int)(nNormal)))+" sorts normaux"));
             colorList.add(mC.getColor(R.color.hit_stat));
         }*/
-        if(critPercent>0f){
-            entries.add(new PieEntry(critPercent,new PercentFormatter().getFormattedValue(critPercent)+" crit",new LargeValueFormatter().getFormattedValue(((int)(nCrit)))+" sorts critiques"));
+        if (critPercent > 0f) {
+            entries.add(new PieEntry(critPercent, new PercentFormatter().getFormattedValue(critPercent) + " crit", new LargeValueFormatter().getFormattedValue(((int) (nCrit))) + " sorts critiques"));
             colorList.add(mC.getColor(R.color.crit_stat));
         }
-        if(contactMissPercent>0f){
-            entries.add(new PieEntry(contactMissPercent,new PercentFormatter().getFormattedValue(contactMissPercent)+" miss",new LargeValueFormatter().getFormattedValue(((int)(nContactMiss)))+" sorts ratés"));
+        if (contactMissPercent > 0f) {
+            entries.add(new PieEntry(contactMissPercent, new PercentFormatter().getFormattedValue(contactMissPercent) + " miss", new LargeValueFormatter().getFormattedValue(((int) (nContactMiss))) + " sorts ratés"));
             colorList.add(mC.getColor(R.color.contact_miss_stat));
         }
-        if(resistPercent>0f){
-            entries.add(new PieEntry(resistPercent,new PercentFormatter().getFormattedValue(resistPercent)+" resist",new LargeValueFormatter().getFormattedValue(((int)(nResist)))+" sorts résistés"));
+        if (resistPercent > 0f) {
+            entries.add(new PieEntry(resistPercent, new PercentFormatter().getFormattedValue(resistPercent) + " resist", new LargeValueFormatter().getFormattedValue(((int) (nResist))) + " sorts résistés"));
             colorList.add(mC.getColor(R.color.resist_stat));
         }
 
-        PieDataSet dataset = new PieDataSet(entries,"");
+        PieDataSet dataset = new PieDataSet(entries, "");
         dataset.setValueTextSize(infoTxtSize);
         dataset.setColors(colorList);
         dataset.setSliceSpace(3);
@@ -371,7 +375,7 @@ public class DSSFSpell {
     }
 
     public void reset() {
-        rankSelectedForPieChart =-1;
+        rankSelectedForPieChart = -1;
         resetChart();
         resetPieChart();
         resetPieChartCrit();
@@ -385,11 +389,13 @@ public class DSSFSpell {
         chart.fitScreen();
         chart.highlightValue(null);
     }
+
     private void resetPieChart() {
         pieChart.invalidate();
         pieChart.setCenterText("");
         pieChart.highlightValue(null);
     }
+
     private void resetPieChartCrit() {
         pieChartDetails.invalidate();
         pieChartDetails.setCenterText("");

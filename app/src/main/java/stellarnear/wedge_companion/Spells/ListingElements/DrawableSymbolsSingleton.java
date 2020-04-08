@@ -8,15 +8,7 @@ import stellarnear.wedge_companion.Tools;
 
 public class DrawableSymbolsSingleton {
 
-    public static DrawableSymbolsSingleton instance=null;
-
-    public static DrawableSymbolsSingleton getInstance(Context mC) {  //pour eviter de relire le xml à chaque fois
-        if (instance==null) {
-            instance = new DrawableSymbolsSingleton(mC);
-        }
-        return instance;
-    }
-
+    public static DrawableSymbolsSingleton instance = null;
     private Drawable mystSymbol;
     private Drawable utilSymbol;
     private Drawable buffSymbol;
@@ -24,26 +16,32 @@ public class DrawableSymbolsSingleton {
     private Drawable healSymbol;
     private Drawable dmgSymbol;
     private Drawable debuffSymbol;
-
     private Drawable contactRange;
     private Drawable shortRange;
     private Drawable averageRange;
     private Drawable longRange;
+    private Tools tools = Tools.getTools();
 
-    private Tools tools =Tools.getTools();
-    private DrawableSymbolsSingleton(Context mC){
-        mystSymbol=tools.resize(mC, R.drawable.ic_myst_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
-        utilSymbol=tools.resize(mC, R.drawable.ic_util_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
-        buffSymbol=tools.resize(mC, R.drawable.ic_buff_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
-        combatBuffSymbol=tools.resize(mC, R.drawable.ic_combat_buff_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
-        healSymbol=tools.resize(mC, R.drawable.ic_heal_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
-        dmgSymbol=tools.resize(mC, R.drawable.ic_dmg_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
-        debuffSymbol=tools.resize(mC, R.drawable.ic_debuff_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
+    private DrawableSymbolsSingleton(Context mC) {
+        mystSymbol = tools.resize(mC, R.drawable.ic_myst_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
+        utilSymbol = tools.resize(mC, R.drawable.ic_util_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
+        buffSymbol = tools.resize(mC, R.drawable.ic_buff_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
+        combatBuffSymbol = tools.resize(mC, R.drawable.ic_combat_buff_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
+        healSymbol = tools.resize(mC, R.drawable.ic_heal_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
+        dmgSymbol = tools.resize(mC, R.drawable.ic_dmg_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
+        debuffSymbol = tools.resize(mC, R.drawable.ic_debuff_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
 
-        contactRange=tools.resize(mC, R.drawable.ic_contact_range_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
-        shortRange=tools.resize(mC, R.drawable.ic_short_range_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
-        averageRange=tools.resize(mC, R.drawable.ic_average_range_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
-        longRange=tools.resize(mC, R.drawable.ic_long_range_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
+        contactRange = tools.resize(mC, R.drawable.ic_contact_range_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
+        shortRange = tools.resize(mC, R.drawable.ic_short_range_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
+        averageRange = tools.resize(mC, R.drawable.ic_average_range_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
+        longRange = tools.resize(mC, R.drawable.ic_long_range_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
+    }
+
+    public static DrawableSymbolsSingleton getInstance(Context mC) {  //pour eviter de relire le xml à chaque fois
+        if (instance == null) {
+            instance = new DrawableSymbolsSingleton(mC);
+        }
+        return instance;
     }
 
     public Drawable getMystSymbol() {
