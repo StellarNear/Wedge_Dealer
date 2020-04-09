@@ -36,4 +36,10 @@
         <hide>true</hide>
         <id>resource_heroic_recovery</id>
     </resource>
+    <resource>
+        <name>Canalisation d'énergie</name>
+        <descr>L’oracle canalise l’énergie positive comme un prêtre en utilisant son niveau d’oracle comme niveau. Chaque jour, il peut utiliser ce pouvoir un nombre de fois égal à 1 + modificateur de Charisme.</descr>
+        <id>resource_canalisation</id>
+        <hide>true</hide>
+    </resource>
 </records>

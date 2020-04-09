@@ -452,13 +452,6 @@ public class Perso {
                             dailyUse = 1 + (mainPJlvl - 5) / 6;
                         }
                         break;
-                    case "1+CHA":
-                        if (allCapacities.capacityIsActive("capacity_epic_revelation_canal")) {
-                            dailyUse = 2 * (1 + getAbilityMod("ability_charisme"));
-                        } else {
-                            dailyUse = 1 + getAbilityMod("ability_charisme");
-                        }
-                        break;
                 }
             } else {
                 dailyUse = tools.toInt(cap.getDailyUseString());

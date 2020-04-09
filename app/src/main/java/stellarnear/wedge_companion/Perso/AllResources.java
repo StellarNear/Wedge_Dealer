@@ -202,6 +202,17 @@ public class AllResources {
             }
         } else if (pjID.equalsIgnoreCase("halda")) {
             hpMythPerGrad = 4; //hierophante mythique
+            try {
+                int maxCanal=0;
+                if (allCapacities.capacityIsActive("capacity_epic_revelation_canal")) {
+                     maxCanal = 2 * (1 + allAbilities.getAbi("ability_charisme").getMod());
+                } else {
+                    maxCanal = 1 + allAbilities.getAbi("ability_charisme").getMod();
+                }
+                getResource("resource_canalisation").setMax(maxCanal);
+            } catch (Exception e) {
+            }
+
         }
         if (allFeats.featIsActive("feat_robust")) {
             hpPool += 3 + allAbilities.getAbi("ability_lvl").getValue();

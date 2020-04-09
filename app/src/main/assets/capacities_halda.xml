@@ -47,14 +47,6 @@
     </capacity>
 
     <capacity>
-        <shortname>Canal</shortname>
-        <name>Canalisation d'énergie</name>
-        <dailyuse>1+CHA</dailyuse>
-        <descr>L’oracle canalise l’énergie positive comme un prêtre en utilisant son niveau d’oracle comme niveau. Chaque jour, il peut utiliser ce pouvoir un nombre de fois égal à 1 + modificateur de Charisme.</descr>
-        <id>capacity_canalisation</id>
-    </capacity>
-
-    <capacity>
         <name>Corp d'énérgie</name>
         <type>Révélation Vie</type>
         <shortname>Corp</shortname>
@@ -145,6 +137,20 @@
         <id>capacity_epic_revelation_fortune</id>
         <descr>L'oracle séléctione une révélation (ici fortune). Cette révélation dure deux fois plus longtemps, la portée augemente de 50% sa zone d'effet augement de 3m, le DD de 1, tout les dégats ou soins de 4, les bonus à la CA BMO jet de reflexes ou initiative de 1, les bonus aus jets de compétence de 2.</descr>
     </capacity>
+
+    <capacity>
+        <name>Modification d'apparence</name>
+        <shortdescr>Apparence</shortdescr>
+        <type>Aasimar</type>
+        <dailyuse>1</dailyuse>
+        <id>capacity_aasimar_power_appearance</id>
+        <descr>Dure 1min/lvl. Peut prendre la forme de n’importe quelle créature humanoïde de taille P ou M. Si cette créature possède l’une des aptitudes suivantes : vision dans le noir à 18 m, vision nocturne, odorat et nage 9 m, le personnage en dispose aussi.
+
+Créature P : Sous cette forme, le personnage gagne un bonus de taille de +2 à la Dextérité.
+
+Créature M : Sous cette forme, le personnage gagne un bonus de taille de +2 à la Force.</descr>
+    </capacity>
+
 
 
 </records>
