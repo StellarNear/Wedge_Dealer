@@ -1,8 +1,9 @@
 package stellarnear.wedge_companion.Spells;
 
 import android.content.Context;
-import android.support.design.widget.Snackbar;
 import android.widget.SeekBar;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;

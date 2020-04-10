@@ -2,11 +2,11 @@
 <records>
     <info>
         <name>Nom</name>
-        <value>Sylphe</value>
+        <value>Ràna</value>
     </info>
     <info>
         <name>Type</name>
-        <value>Tigre</value>
+        <value>Grizzli</value>
     </info>
     <info>
         <name>Espace</name>
@@ -18,12 +18,17 @@
     </info>
     <info>
         <name>Poids</name>
-        <value>350</value>
+        <value>514kg</value>
     </info>
 
     <info>
         <name>Vision</name>
         <value>vision nocturne, pistage olfactif</value>
+    </info>
+
+    <info>
+        <type>capacity</type>
+        <value>capacity_leap</value>
     </info>
 
 </records>

@@ -1,7 +1,7 @@
-package stellarnear.wedge_companion;
+package stellarnear.wedge_companion.VersionCheck;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
@@ -23,30 +23,31 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import stellarnear.wedge_companion.Spells.Spell;
+import stellarnear.wedge_companion.BuildConfig;
+import stellarnear.wedge_companion.R;
+import stellarnear.wedge_companion.Tools;
 
 
-public class GetData {
+public class GetVersionData {
     private ProgressDialog dialog;
-    private Context mC;
+    private Activity mA;
     private Tools tools = Tools.getTools();
-    private List<PairSpellUuid> listPairSpellUuidList = new ArrayList<>();
+    private List<VersionData> versionDataList;
     private OnDataRecievedEventListener mListener;
 
-    public GetData(Context mC) {
-        this.mC = mC;
-        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
-        if (settings.getBoolean("switch_shadow_link", mC.getResources().getBoolean(R.bool.switch_shadow_link_def))
-                && !settings.getBoolean("switch_demo_mode", mC.getResources().getBoolean(R.bool.switch_demo_mode_def))) {
+    public GetVersionData(Activity mA) {
+        this.mA = mA;
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mA);
+        if (settings.getBoolean("switch_shadow_link", mA.getResources().getBoolean(R.bool.switch_shadow_link_def))) {
+            String googleSheetTargetId = "18yDl6Fd72H2lJbdw9Ivgqdn83LDZdeQtFba6B0hk0Ps";
+            String sheetName = BuildConfig.APPLICATION_ID.replace("stellarnear.","");
 
-            String googleSheetTarget = "1AmQOsFXgWBb9ipxhnKEj_JfKZUMt1bUJiBeNVNhH6oc";
-            String sheetTarget = "spell_arrow";
-            new JsonTask().execute("https://script.google.com/macros/s/AKfycbxOLElujQcy1-ZUer1KgEvK16gkTLUqYftApjNCM_IRTL3HSuDk/exec?id="+googleSheetTarget+"&sheet="+sheetTarget);
+            new JsonTask().execute("https://script.google.com/macros/s/AKfycbxOLElujQcy1-ZUer1KgEvK16gkTLUqYftApjNCM_IRTL3HSuDk/exec?id="+googleSheetTargetId+"&sheet="+sheetName);
         }
     }
 
-    public List<PairSpellUuid> getListPairSpellUuidList() {
-        return listPairSpellUuidList;
+    public List<VersionData> getVersionDataList() {
+        return versionDataList;
     }
 
     public void setOnDataRecievedEventListener(OnDataRecievedEventListener eventListener) {
@@ -61,8 +62,8 @@ public class GetData {
 
         protected void onPreExecute() {
             super.onPreExecute();
-            dialog = new ProgressDialog(mC);
-            dialog.setMessage("Récupération des sorts naturalisés...");
+            dialog = new ProgressDialog(mA);
+            dialog.setMessage("Verification de MAJ disponible...");
             dialog.setCancelable(false);
             dialog.show();
         }
@@ -74,7 +75,7 @@ public class GetData {
             try {
                 URL url = new URL(params[0]);
                 connection = (HttpURLConnection) url.openConnection();
-                connection.setConnectTimeout(30000);
+                connection.setConnectTimeout(5000);
                 connection.connect();
 
 
@@ -121,39 +122,20 @@ public class GetData {
 
             try {
                 JSONObject allObjs = new JSONObject(result);
-                JSONArray spellsJsonArray = (JSONArray) allObjs.get("spell_arrow");
+                JSONArray listVersionData = (JSONArray) allObjs.get(BuildConfig.APPLICATION_ID.replace("stellarnear.",""));
+
 
                 Gson gson = new Gson();
-                listPairSpellUuidList = new ArrayList<>();
-                for (int i = 0; i < spellsJsonArray.length(); i++) {
-                    GetDataElement dataElement = gson.fromJson(spellsJsonArray.get(i).toString(), GetDataElement.class);
-                    listPairSpellUuidList.add(new PairSpellUuid(gson.fromJson(dataElement.getSpelljson(), Spell.class), dataElement.getUuid()));
+                versionDataList = new ArrayList<>();
+                for (int i = 0; i < listVersionData.length(); i++) {
+                    versionDataList.add(gson.fromJson(listVersionData.get(i).toString(), VersionData.class));
                 }
                 if (mListener != null) {
                     mListener.onEvent();
                 }
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }
-    }
-
-    public class PairSpellUuid {
-        private Spell spell;
-        private String uuid;
-
-        private PairSpellUuid(Spell spell, String uuid) {
-            this.spell = spell;
-            this.uuid = uuid;
-        }
-
-        public Spell getSpell() {
-            return spell;
-        }
-
-        public String getUuid() {
-            return uuid;
         }
     }
 }

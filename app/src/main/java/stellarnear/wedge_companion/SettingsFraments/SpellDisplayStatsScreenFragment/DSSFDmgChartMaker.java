@@ -4,8 +4,9 @@ package stellarnear.wedge_companion.SettingsFraments.SpellDisplayStatsScreenFrag
 import android.content.Context;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.v4.content.ContextCompat;
 import android.widget.CheckBox;
+
+import androidx.core.content.ContextCompat;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Legend;

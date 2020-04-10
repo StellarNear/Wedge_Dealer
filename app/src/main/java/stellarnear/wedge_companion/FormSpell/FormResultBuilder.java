@@ -2,7 +2,6 @@ package stellarnear.wedge_companion.FormSpell;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.design.widget.FloatingActionButton;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;

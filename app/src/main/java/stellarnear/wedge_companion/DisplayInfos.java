@@ -39,17 +39,17 @@ public class DisplayInfos {
     private void fillMainLin() {
         mainLin.removeAllViews();
         for (final AllAdditionalsInfos.Info info : pj.getAllInfos().getListInfos()) {
-            LinearLayout line = (LinearLayout) mA.getLayoutInflater().inflate(R.layout.quadrant_sub_element_full_line, null);
+            LinearLayout line = (LinearLayout) mA.getLayoutInflater().inflate(R.layout.additional_info_full_line, null);
 
             line.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1));
             line.setWeightSum(10);
             if (info.getType().equalsIgnoreCase("capacity")) {
-                View subValue = mA.getLayoutInflater().inflate(R.layout.quadrant_sub_element_mini_value, null);
+                View subValue = mA.getLayoutInflater().inflate(R.layout.additional_info_value, null);
                 subValue.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 10));
 
                 final Capacity capa = pj.getAllCapacities().getCapacity(info.getValue());
-                ((TextView) subValue.findViewById(R.id.sub_element_quadrant_mini_value_text)).setText(capa.getName());
-                ((TextView) subValue.findViewById(R.id.sub_element_quadrant_mini_value_text)).setTextColor(mC.getColor(R.color.darker_gray));
+                ((TextView) subValue.findViewById(R.id.additional_info_value_text)).setText(capa.getName());
+                ((TextView) subValue.findViewById(R.id.additional_info_value_text)).setTextColor(mC.getColor(R.color.darker_gray));
 
                 subValue.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -60,17 +60,17 @@ public class DisplayInfos {
 
                 line.addView(subValue);
             } else {
-                View subLabel = mA.getLayoutInflater().inflate(R.layout.quadrant_sub_element_full_label, null);
+                View subLabel = mA.getLayoutInflater().inflate(R.layout.additional_info_label, null);
                 subLabel.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 3));
-                subLabel.findViewById(R.id.sub_element_quadrant_mini_label_icon).setVisibility(View.GONE);
-                ((TextView) subLabel.findViewById(R.id.sub_element_quadrant_mini_label_text)).setText(info.getName() + " : ");
-                ((TextView) subLabel.findViewById(R.id.sub_element_quadrant_mini_label_text)).setTextColor(mC.getColor(R.color.darker_gray));
+                subLabel.findViewById(R.id.additional_info_label_icon).setVisibility(View.GONE);
+                ((TextView) subLabel.findViewById(R.id.additional_info_label_text)).setText(info.getName() + " : ");
+                ((TextView) subLabel.findViewById(R.id.additional_info_label_text)).setTextColor(mC.getColor(R.color.darker_gray));
                 line.addView(subLabel);
 
-                View subValue = mA.getLayoutInflater().inflate(R.layout.quadrant_sub_element_mini_value, null);
+                View subValue = mA.getLayoutInflater().inflate(R.layout.additional_info_value, null);
                 subValue.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 7));
-                ((TextView) subValue.findViewById(R.id.sub_element_quadrant_mini_value_text)).setText(info.getValue());
-                ((TextView) subValue.findViewById(R.id.sub_element_quadrant_mini_value_text)).setTextColor(mC.getColor(R.color.darker_gray));
+                ((TextView) subValue.findViewById(R.id.additional_info_value_text)).setText(info.getValue());
+                ((TextView) subValue.findViewById(R.id.additional_info_value_text)).setTextColor(mC.getColor(R.color.darker_gray));
                 line.addView(subValue);
             }
             mainLin.addView(line);

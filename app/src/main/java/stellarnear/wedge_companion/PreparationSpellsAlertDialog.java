@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AlertDialog;
 import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
 import android.util.TypedValue;
@@ -18,6 +17,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AlertDialog;
 
 import java.util.HashMap;
 import java.util.Map;

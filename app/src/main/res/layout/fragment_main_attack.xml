@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -460,31 +460,34 @@
 
     </LinearLayout>
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_damage_detail"
         android:layout_width="60dp"
         android:layout_height="60dp"
+        app:fabCustomSize="60dp"
         android:layout_gravity="bottom|center"
         android:layout_marginBottom="10dp"
         android:visibility="gone"
         app:backgroundTint="@android:color/darker_gray"
         app:srcCompat="@drawable/ic_more_horiz_black_24dp" />
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_damage"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_gravity="bottom|center"
         android:layout_marginBottom="10dp"
+        app:fabCustomSize="60dp"
         app:backgroundTint="@android:color/holo_red_light"
         app:srcCompat="@drawable/ic_flare_black_24dp" />
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAtk"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_gravity="bottom|center"
         android:layout_marginBottom="10dp"
+        app:fabCustomSize="60dp"
         app:backgroundTint="@android:color/white"
         app:srcCompat="@drawable/ic_filter_center_focus_black_24dp" />
 
@@ -521,4 +524,4 @@
         android:scaleType="fitXY"
         android:src="@drawable/combat_back"
         tools:ignore="ContentDescription" />
-</android.support.design.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

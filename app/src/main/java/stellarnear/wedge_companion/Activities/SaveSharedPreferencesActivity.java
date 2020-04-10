@@ -6,8 +6,9 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.provider.DocumentFile;
 import android.util.Log;
+
+import androidx.documentfile.provider.DocumentFile;
 
 import com.google.gson.Gson;
 
@@ -23,9 +24,6 @@ import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Tools;
 
-/**
- * A placeholder fragment containing a simple view.
- */
 public class SaveSharedPreferencesActivity extends Activity {
 
     private Tools tools = Tools.getTools();

@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="version">"v1.5.1"</string>
     <string name="time_spend">170h</string>
     <string name="basic_infos">"Application développée pour gagner un temps considérable fin 2017."</string>
-
     <string name="patch_list">"----------------------------------------------------------------------------------
+Patch note v2.0
+-migrate to android X
+-add the smart check for new version !
+-fix additonal info (switch rana sylphe + correct display for pets)
+----------------------------------------------------------------------------------
 Patch note v1.5.1
 -fix capa changement d'apparence
 -fix resource duplicata capacité canalisation

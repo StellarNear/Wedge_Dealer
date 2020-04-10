@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AlertDialog;
 import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
 import android.view.Display;
@@ -20,6 +19,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AlertDialog;
 
 import java.util.Arrays;
 import java.util.List;

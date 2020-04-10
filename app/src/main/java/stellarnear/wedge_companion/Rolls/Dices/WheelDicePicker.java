@@ -1,12 +1,13 @@
 package stellarnear.wedge_companion.Rolls.Dices;
 
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.OvershootInterpolator;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Tools;

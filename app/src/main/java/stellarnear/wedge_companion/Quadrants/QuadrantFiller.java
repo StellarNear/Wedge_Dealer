@@ -147,18 +147,18 @@ public class QuadrantFiller {
         }
 
         line.setWeightSum(10);
-        TextView text = subLabel.findViewById(R.id.sub_element_quadrant_mini_label_text);
+        TextView text = subLabel.findViewById(R.id.additional_info_label_text);
         if (mode.equalsIgnoreCase("mini")) {
             text.setText(abi.getShortname() + " : ");
         } else {
             text.setText(abi.getName() + " : ");
         }
-        ((ImageView) subLabel.findViewById(R.id.sub_element_quadrant_mini_label_icon)).setImageDrawable(abi.getImg());
+        ((ImageView) subLabel.findViewById(R.id.additional_info_label_icon)).setImageDrawable(abi.getImg());
 
         line.addView(subLabel);
 
         View subValue = inflater.inflate(R.layout.quadrant_sub_element_mini_value, null);
-        TextView text2 = subValue.findViewById(R.id.sub_element_quadrant_mini_value_text);
+        TextView text2 = subValue.findViewById(R.id.additional_info_value_text);
         float textSize;
         if (mode.equalsIgnoreCase("mini")) {
             textSize = mC.getResources().getDimension(R.dimen.textSizeQuadrantMini);
@@ -216,7 +216,7 @@ public class QuadrantFiller {
             subLabel = inflater.inflate(R.layout.quadrant_sub_element_full_label, null);
         }
         line.setWeightSum(10);
-        TextView text = subLabel.findViewById(R.id.sub_element_quadrant_mini_label_text);
+        TextView text = subLabel.findViewById(R.id.additional_info_label_text);
         if (mode.equalsIgnoreCase("mini")) {
             text.setText(res.getShortname() + " : ");
         } else {
@@ -226,11 +226,11 @@ public class QuadrantFiller {
             }
             text.setText(column1txt);
         }
-        ((ImageView) subLabel.findViewById(R.id.sub_element_quadrant_mini_label_icon)).setImageDrawable(res.getImg());
+        ((ImageView) subLabel.findViewById(R.id.additional_info_label_icon)).setImageDrawable(res.getImg());
         line.addView(subLabel);
 
         View subValue = inflater.inflate(R.layout.quadrant_sub_element_mini_value, null);
-        TextView text2 = subValue.findViewById(R.id.sub_element_quadrant_mini_value_text);
+        TextView text2 = subValue.findViewById(R.id.additional_info_value_text);
         float textSize;
         if (mode.equalsIgnoreCase("mini")) {
             textSize = mC.getResources().getDimension(R.dimen.textSizeQuadrantMini);

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
-import android.support.design.widget.FloatingActionButton;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +12,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ViewFlipper;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Tools;

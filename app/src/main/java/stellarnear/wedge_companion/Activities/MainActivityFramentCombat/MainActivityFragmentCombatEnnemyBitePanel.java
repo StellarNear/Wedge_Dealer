@@ -3,7 +3,6 @@ package stellarnear.wedge_companion.Activities.MainActivityFramentCombat;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Typeface;
-import android.support.v7.app.AlertDialog;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +12,8 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AlertDialog;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,7 +1,8 @@
 package stellarnear.wedge_companion.Spells;
 
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

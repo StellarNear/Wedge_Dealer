@@ -7,7 +7,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Rolls.Roll;

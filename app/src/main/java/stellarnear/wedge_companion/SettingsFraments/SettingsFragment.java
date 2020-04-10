@@ -13,11 +13,12 @@ import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
-import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.view.Surface;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.math.BigInteger;
 import java.util.ArrayList;

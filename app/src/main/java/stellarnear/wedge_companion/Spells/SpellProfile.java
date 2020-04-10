@@ -7,7 +7,6 @@ import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.GridLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import stellarnear.wedge_companion.CustomAlertDialog;

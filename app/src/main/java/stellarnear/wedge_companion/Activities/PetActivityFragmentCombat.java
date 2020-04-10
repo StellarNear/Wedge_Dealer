@@ -6,7 +6,6 @@ import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,6 +14,8 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageButton;
+
+import androidx.appcompat.app.AlertDialog;
 
 import stellarnear.wedge_companion.DisplayRolls;
 import stellarnear.wedge_companion.Perso.Perso;

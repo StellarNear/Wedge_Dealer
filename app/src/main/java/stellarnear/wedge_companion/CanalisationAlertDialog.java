@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Point;
-import android.support.v7.app.AlertDialog;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -14,6 +13,8 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AlertDialog;
 
 import stellarnear.wedge_companion.Perso.CanalisationCapacity;
 import stellarnear.wedge_companion.Perso.Perso;

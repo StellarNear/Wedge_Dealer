@@ -7,7 +7,6 @@ import android.preference.PreferenceManager;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import stellarnear.wedge_companion.Perso.PersoManager;

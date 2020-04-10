@@ -3,7 +3,6 @@ package stellarnear.wedge_companion.Rolls.Dices;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Point;
-import android.support.v7.app.AlertDialog;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +11,8 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+
+import androidx.appcompat.app.AlertDialog;
 
 import stellarnear.wedge_companion.R;
 
