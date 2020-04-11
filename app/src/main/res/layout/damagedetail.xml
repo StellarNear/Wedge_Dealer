@@ -11,8 +11,9 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_damage_detail_ondetlay"
-        android:layout_width="match_parent"
+        android:layout_width="60dp"
         android:layout_height="60dp"
+        app:fabCustomSize="60dp"
         android:layout_gravity="bottom|center"
         android:layout_marginBottom="10dp"
         app:backgroundTint="@android:color/darker_gray"

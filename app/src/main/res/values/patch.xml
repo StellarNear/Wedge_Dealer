@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="time_spend">170h</string>
+    <string name="time_spend">178h</string>
     <string name="basic_infos">"Application développée pour gagner un temps considérable fin 2017."</string>
     <string name="patch_list">"----------------------------------------------------------------------------------
+Patch note v2.1
+-android X without rescale based on bitmap (heavy changes in all the app)
+-add heal dices resources
+-fix spell logos size
+-fix manual dices (will never be used...)
+-fix surge dices images
+-fix shadowlink during checking version
+-fix infos inversion Rana and Sylphe capacities
+----------------------------------------------------------------------------------
 Patch note v2.0
 -migrate to android X
 -add the smart check for new version !

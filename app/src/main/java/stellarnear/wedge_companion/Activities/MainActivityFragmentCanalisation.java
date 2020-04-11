@@ -6,7 +6,6 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -19,6 +18,7 @@ import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -106,22 +106,32 @@ public class MainActivityFragmentCanalisation extends Fragment {
             lineCapa.setGravity(Gravity.CENTER);
             lineCapa.setBackground(getResources().getDrawable(R.drawable.canal_bar_gradient));
 
-            TextView nameTxt = new TextView(getContext());
+            LinearLayout linearIconNameVerti = new LinearLayout(getContext());
             TextView nameTitle = returnFragView.findViewById(R.id.canalNameTitle);
-            nameTxt.setLayoutParams(nameTitle.getLayoutParams());
-            nameTxt.setText(canalCapa.getName());
+            linearIconNameVerti.setGravity(Gravity.CENTER);
+            linearIconNameVerti.setLayoutParams(nameTitle.getLayoutParams());
+            linearIconNameVerti.setOrientation(LinearLayout.VERTICAL);
 
-            int imgId = getResources().getIdentifier(canalCapa.getId(), "drawable", getContext().getPackageName());
+            ImageView icon = new ImageView(getContext());
+            int imgId = R.drawable.mire_test;
             try {
-                nameTxt.setCompoundDrawablesWithIntrinsicBounds(null, tools.resize(getContext(), getContext().getDrawable(imgId), getResources().getDimensionPixelSize(R.dimen.icon_canalcapacities_list)), null, null);
-            } catch (Resources.NotFoundException e) {
-                nameTxt.setCompoundDrawablesWithIntrinsicBounds(null, tools.resize(getContext(), getContext().getDrawable(R.drawable.mire_test), getResources().getDimensionPixelSize(R.dimen.icon_canalcapacities_list)), null, null);
+                imgId = getResources().getIdentifier(canalCapa.getId(), "drawable", getContext().getPackageName());
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-            nameTxt.setPadding(getResources().getDimensionPixelSize(R.dimen.general_margin), 0, 0, 0);
+            icon.setImageDrawable(getContext().getDrawable(imgId));
+            tools.resize(icon,(int) (getResources().getDimensionPixelSize(R.dimen.icon_canalcapacities_list)));
+
+
+            linearIconNameVerti.addView(icon);
+
+            TextView nameTxt = new TextView(getContext());
+            nameTxt.setText(canalCapa.getName());
             nameTxt.setGravity(Gravity.CENTER);
 
-            lineCapa.addView(nameTxt);
+            linearIconNameVerti.addView(nameTxt);
+
+            lineCapa.addView(linearIconNameVerti);
 
             TextView summary = new TextView(getContext());
             TextView summaryTitle = returnFragView.findViewById(R.id.canalEffectTitle);

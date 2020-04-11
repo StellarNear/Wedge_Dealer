@@ -2,11 +2,9 @@ package stellarnear.wedge_companion.Rolls.Dices;
 
 import android.app.Activity;
 import android.content.Context;
-import android.widget.ImageView;
+import android.view.View;
 
 import java.util.Random;
-
-import stellarnear.wedge_companion.Tools;
 
 public class Dice {
     private int nFace;
@@ -19,7 +17,7 @@ public class Dice {
     private boolean delt = false;
     private boolean canCrit = false;
     private boolean canBeLegendarySurge = false;
-    private Tools tools = Tools.getTools();
+    private boolean manual = false;
 
     private Dice mythicDice; //si c'est un d20 il a un dés mythic attaché
 
@@ -46,6 +44,9 @@ public class Dice {
     public void setRand(int randFromWheel) { // le retour depuis wheelpicker
         this.randValue = randFromWheel;
         this.rolled = true;
+        if(this.imgForDice!=null){
+            this.imgForDice.getImg();
+        }//will refresh img
         if (mListenerRefresh != null) {
             mListenerRefresh.onEvent();
         }
@@ -67,7 +68,7 @@ public class Dice {
         return nFace;
     }
 
-    public ImageView getImg() {
+    public View getImg() {
         if (imgForDice == null) {
             imgForDice = new ImgForDice(this, mA, mC);
         }
@@ -115,6 +116,13 @@ public class Dice {
         if (mListenerMythic != null) {
             mListenerMythic.onEvent();
         }
+    }
+
+    public void invalidate() {
+        if (imgForDice == null) {
+            imgForDice = new ImgForDice(this, mA, mC);
+        }
+        this.imgForDice.invalidateImg();
     }
 
     public interface OnRefreshEventListener {

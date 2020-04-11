@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/surged_dice_frame"
+    android:minHeight="@dimen/icon_main_dices_combat_launcher_size"
+    android:minWidth="@dimen/icon_main_dices_combat_launcher_size"
+    android:layout_width="@dimen/icon_main_dices_combat_launcher_size"
+    android:layout_height="@dimen/icon_main_dices_combat_launcher_size">
+
+
+    <FrameLayout
+        android:id="@+id/main_dice"
+        android:layout_width="@dimen/icon_main_dices_combat_launcher_size_double_dice_sub"
+        android:layout_height="@dimen/icon_main_dices_combat_launcher_size_double_dice_sub"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+
+    <FrameLayout
+        android:id="@+id/second_dice"
+        android:layout_width="@dimen/icon_main_dices_combat_launcher_size_double_dice_sub"
+        android:layout_height="@dimen/icon_main_dices_combat_launcher_size_double_dice_sub"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

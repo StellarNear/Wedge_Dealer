@@ -372,6 +372,7 @@ public class MainActivityFragmentCombat extends Fragment {
                 damages.refreshDisplay();
                 rangesAndProba = new RangesAndProba(getContext(), mainPage, selectedRolls);
                 pj.getStats().removeLast();
+                tools.customToast(getContext(),"Remplacement de la derniere attaque sauvegardée","center");
                 saveRollStats();
                 new PostData(getContext(), new PostDataElement(selectedRolls, "dmg"));
             }

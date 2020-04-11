@@ -2,14 +2,13 @@ package stellarnear.wedge_companion;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -91,39 +90,6 @@ public class Tools {
         return value;
     }
 
-    public Drawable resize(Context mC, Drawable image, int pixelSizeIcon) {
-        Drawable draw = mC.getDrawable(R.drawable.mire_test);
-        try {
-            Bitmap b = ((BitmapDrawable) image).getBitmap();
-            Bitmap bitmapResized = Bitmap.createScaledBitmap(b, pixelSizeIcon, pixelSizeIcon, false);
-            draw = new BitmapDrawable(mC.getResources(), bitmapResized);
-        } catch (Exception e) {
-            draw = mC.getDrawable(R.drawable.mire_test);
-            Bitmap b = ((BitmapDrawable) draw).getBitmap();
-            Bitmap bitmapResized = Bitmap.createScaledBitmap(b, pixelSizeIcon, pixelSizeIcon, false);
-            draw = new BitmapDrawable(mC.getResources(), bitmapResized);
-            e.printStackTrace();
-        }
-        return draw;
-    }
-
-    public Drawable resize(Context mC, int imageId, int pixel_size_icon) {
-        Drawable image = mC.getDrawable(R.drawable.mire_test);
-        try {
-            image = mC.getDrawable(imageId);
-            Bitmap b = ((BitmapDrawable) image).getBitmap();
-            Bitmap bitmapResized = Bitmap.createScaledBitmap(b, pixel_size_icon, pixel_size_icon, false);
-            image = new BitmapDrawable(mC.getResources(), bitmapResized);
-        } catch (Exception e) {
-            Bitmap b = ((BitmapDrawable) image).getBitmap();
-            Bitmap bitmapResized = Bitmap.createScaledBitmap(b, pixel_size_icon, pixel_size_icon, false);
-            image = new BitmapDrawable(mC.getResources(), bitmapResized);
-            e.printStackTrace();
-        }
-        return image;
-    }
-
-
     public void customToast(Context mC, String txt, String... modeInput) {
         // Set the toast and duration
         String mode = modeInput.length > 0 ? modeInput[0] : "";
@@ -163,5 +129,7 @@ public class Tools {
         customVideo.showAlert();
     }
 
-
+    public void resize(ImageView img, int dimensionPixelSize) {
+        img.setLayoutParams(new LinearLayout.LayoutParams(dimensionPixelSize,dimensionPixelSize)); //note that it don't work with relative layout para
+    }
 }

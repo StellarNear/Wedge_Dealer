@@ -5,11 +5,12 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
 import android.preference.PreferenceManager;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -25,11 +26,12 @@ import stellarnear.wedge_companion.Tools;
 public class ImgForDice {
     private Activity mA;
     private Context mC;
-    private Dice dice;
-    private Dice surgeDice;
-    private ImageView img;
+    private Dice dice;       //todo reflechir au fait que Dice contient un autre IMGDice qui contient un dice etc
+    private Dice surgeDice;  //todo reflechir au fait que Dice contient un autre IMGDice qui contient un dice etc
+    private View img;
     private Tools tools = Tools.getTools();
     private Perso pj = PersoManager.getCurrentPJ();
+
     private boolean wasRand = false;
     private boolean canBeLegendarySurge = false;
 
@@ -39,7 +41,7 @@ public class ImgForDice {
         this.dice = dice;
     }
 
-    public ImageView getImg() {
+    public View getImg() {
         if (!wasRand) {
             int drawableId;
             if (dice.getRandValue() > 0) {
@@ -48,8 +50,17 @@ public class ImgForDice {
             } else {
                 drawableId = mC.getResources().getIdentifier("d" + dice.getnFace() + "_main", "drawable", mC.getPackageName());
             }
-            this.img = new ImageView(mC);
-            this.img.setImageDrawable(tools.resize(mC, drawableId, mC.getResources().getDimensionPixelSize(R.dimen.icon_main_dices_wheel_size)));
+            ImageView imgDice  = new ImageView(mC);
+            imgDice.setImageDrawable(mC.getDrawable(drawableId));
+            tools.resize(imgDice, mC.getResources().getDimensionPixelSize(R.dimen.icon_main_dices_wheel_size));
+
+            if (this.img !=null && this.img.getParent() != null) { //on le remplace là où il était
+                ViewGroup parent = ((ViewGroup) this.img.getParent());
+                parent.removeView(this.img);
+                parent.addView(imgDice);
+            }
+
+            this.img=imgDice;
 
             if (dice.getnFace() == 20) {
                 if (pj.getAllResources().getResource("resource_mythic_points") != null && pj.getAllResources().getResource("resource_mythic_points").getMax() > 0) {
@@ -58,6 +69,19 @@ public class ImgForDice {
             }
         }
         return this.img;
+    }
+
+    public void invalidateImg() {
+        ImageView imgDice  = new ImageView(mC);
+        imgDice.setImageDrawable(mC.getDrawable(R.drawable.d20_fail));
+        tools.resize(imgDice, mC.getResources().getDimensionPixelSize(R.dimen.icon_main_dices_wheel_size));
+        if (this.img !=null && this.img.getParent() != null) { //on le remplace là où il était
+            ViewGroup parent = ((ViewGroup) this.img.getParent());
+            parent.removeView(this.img);
+            parent.addView(imgDice);
+        }
+        wasRand=true;
+        this.img=imgDice;
     }
 
       /*
@@ -144,16 +168,26 @@ public class ImgForDice {
     }
 
     private void newImgWithSurge() {
-        int subSize = mC.getResources().getDimensionPixelSize(R.dimen.icon_main_dices_combat_launcher_size_double_dice_sub);
-        LayerDrawable finalDrawable = new LayerDrawable(new Drawable[]{tools.resize(mC, this.img.getDrawable(), subSize), tools.resize(mC, surgeDice.getImg().getDrawable(), subSize)});
+        LayoutInflater inflater = LayoutInflater.from(mC);
+        View surgedView = inflater.inflate(R.layout.surged_dice, null);
 
-        int splitSize = mC.getResources().getDimensionPixelSize(R.dimen.icon_main_dices_combat_launcher_size_double_dice_split);
-        finalDrawable.setLayerInsetTop(1, splitSize);
-        finalDrawable.setLayerInsetStart(1, splitSize);
-        finalDrawable.setLayerGravity(0, Gravity.START | Gravity.TOP);
-        finalDrawable.setLayerGravity(1, Gravity.END | Gravity.BOTTOM);
+        int drawableMainId = mC.getResources().getIdentifier("d" + dice.getnFace() + "_" + dice.getRandValue() + (dice.getElement().equalsIgnoreCase("none") ? "" : dice.getElement()), "drawable", mC.getPackageName());
+        ImageView newMain = new ImageView(mC);
+        newMain.setImageDrawable(mC.getDrawable(drawableMainId));
+        ((FrameLayout)surgedView.findViewById(R.id.main_dice)).addView(newMain);
 
-        this.img.setImageDrawable(finalDrawable);
+
+        ImageView surge = new ImageView(mC);
+        int drawableSubId = mC.getResources().getIdentifier("d" + surgeDice.getnFace() + "_" + surgeDice.getRandValue() + (surgeDice.getElement().equalsIgnoreCase("none") ? "" : surgeDice.getElement()), "drawable", mC.getPackageName());
+        surge.setImageDrawable(mC.getDrawable(drawableSubId));
+        ((FrameLayout)surgedView.findViewById(R.id.second_dice)).addView(surge);
+
+        if (this.img.getParent() != null) { //on le remplace là où il était
+            ViewGroup parent = ((ViewGroup) this.img.getParent());
+            parent.removeView(this.img);
+            parent.addView(surgedView);
+        }
+        this.img=surgedView;
     }
 
     private void toastResultDice() {

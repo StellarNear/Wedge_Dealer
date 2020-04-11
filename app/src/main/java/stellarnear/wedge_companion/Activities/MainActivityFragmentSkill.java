@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -87,13 +88,23 @@ public class MainActivityFragmentSkill extends Fragment {
         line.setBackground(getResources().getDrawable(R.drawable.skill_bar_gradient));
         setNameListnerRollSkill(line, skill);
 
+
+        ImageView icon = new ImageView(getContext());
+        int imgId = R.drawable.mire_test;
+        try {
+            imgId = getResources().getIdentifier(skill.getId(), "drawable", getContext().getPackageName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        icon.setImageDrawable(getContext().getDrawable(imgId));
+        tools.resize(icon,(int) (getResources().getDimensionPixelSize(R.dimen.icon_skills_list_height) * 0.8));
+        LinearLayout.LayoutParams para = (LinearLayout.LayoutParams) icon.getLayoutParams();
+        para.setMarginStart(getResources().getDimensionPixelSize(R.dimen.general_margin));
+
         TextView nameTxt = new TextView(getContext());
         TextView nameTitle = returnFragView.findViewById(R.id.skillNameTitle);
         nameTxt.setLayoutParams(nameTitle.getLayoutParams());
         nameTxt.setText(skill.getName());
-        int imgId = getResources().getIdentifier(skill.getId(), "drawable", getContext().getPackageName());
-        nameTxt.setCompoundDrawablesWithIntrinsicBounds(tools.resize(getContext(), getContext().getDrawable(imgId), (int) (getResources().getDimensionPixelSize(R.dimen.icon_skills_list_height) * 0.8)), null, null, null);
-        nameTxt.setPadding(getResources().getDimensionPixelSize(R.dimen.general_margin), 0, 0, 0);
         nameTxt.setGravity(Gravity.CENTER);
 
         TextView totalTxt = new TextView(getContext());
@@ -128,6 +139,7 @@ public class MainActivityFragmentSkill extends Fragment {
         bonusTxt.setText(String.valueOf(pj.getSkillBonus(skill.getId())));
         bonusTxt.setGravity(Gravity.CENTER);
 
+        line.addView(icon);
         line.addView(nameTxt);
         line.addView(totalTxt);
         line.addView(abiTxt);

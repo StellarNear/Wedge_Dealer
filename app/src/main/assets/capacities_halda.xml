@@ -140,7 +140,7 @@
 
     <capacity>
         <name>Modification d'apparence</name>
-        <shortdescr>Apparence</shortdescr>
+        <shortname>Apparence</shortname>
         <type>Aasimar</type>
         <dailyuse>1</dailyuse>
         <id>capacity_aasimar_power_appearance</id>

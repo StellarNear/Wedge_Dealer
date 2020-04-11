@@ -4,7 +4,7 @@ public class VersionData {
     private String version_name;
     private Integer version_code;
     private String release_date;
-    private String dl_link;
+    private String dl_link; // from direct https://filetransfer.io/
     private String patch_note;
 
     public VersionData(){

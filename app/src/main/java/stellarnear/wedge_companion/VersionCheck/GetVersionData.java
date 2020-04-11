@@ -2,9 +2,7 @@ package stellarnear.wedge_companion.VersionCheck;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -24,7 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import stellarnear.wedge_companion.BuildConfig;
-import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Tools;
 
 
@@ -37,13 +34,10 @@ public class GetVersionData {
 
     public GetVersionData(Activity mA) {
         this.mA = mA;
-        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mA);
-        if (settings.getBoolean("switch_shadow_link", mA.getResources().getBoolean(R.bool.switch_shadow_link_def))) {
-            String googleSheetTargetId = "18yDl6Fd72H2lJbdw9Ivgqdn83LDZdeQtFba6B0hk0Ps";
-            String sheetName = BuildConfig.APPLICATION_ID.replace("stellarnear.","");
+        String googleSheetTargetId = "18yDl6Fd72H2lJbdw9Ivgqdn83LDZdeQtFba6B0hk0Ps";
+        String sheetName = BuildConfig.APPLICATION_ID.replace("stellarnear.","");
 
-            new JsonTask().execute("https://script.google.com/macros/s/AKfycbxOLElujQcy1-ZUer1KgEvK16gkTLUqYftApjNCM_IRTL3HSuDk/exec?id="+googleSheetTargetId+"&sheet="+sheetName);
-        }
+        new JsonTask().execute("https://script.google.com/macros/s/AKfycbxOLElujQcy1-ZUer1KgEvK16gkTLUqYftApjNCM_IRTL3HSuDk/exec?id="+googleSheetTargetId+"&sheet="+sheetName);
     }
 
     public List<VersionData> getVersionDataList() {
@@ -77,7 +71,6 @@ public class GetVersionData {
                 connection = (HttpURLConnection) url.openConnection();
                 connection.setConnectTimeout(5000);
                 connection.connect();
-
 
                 InputStream stream = connection.getInputStream();
 

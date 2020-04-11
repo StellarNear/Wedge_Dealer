@@ -23,18 +23,19 @@ public class DrawableSymbolsSingleton {
     private Tools tools = Tools.getTools();
 
     private DrawableSymbolsSingleton(Context mC) {
-        mystSymbol = tools.resize(mC, R.drawable.ic_myst_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
-        utilSymbol = tools.resize(mC, R.drawable.ic_util_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
-        buffSymbol = tools.resize(mC, R.drawable.ic_buff_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
-        combatBuffSymbol = tools.resize(mC, R.drawable.ic_combat_buff_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
-        healSymbol = tools.resize(mC, R.drawable.ic_heal_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
-        dmgSymbol = tools.resize(mC, R.drawable.ic_dmg_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
-        debuffSymbol = tools.resize(mC, R.drawable.ic_debuff_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
+        //, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
+        mystSymbol = mC.getDrawable(R.drawable.ic_myst_symbol);
+        utilSymbol = mC.getDrawable(R.drawable.ic_util_symbol);
+        buffSymbol = mC.getDrawable(R.drawable.ic_buff_symbol);
+        combatBuffSymbol = mC.getDrawable(R.drawable.ic_combat_buff_symbol);
+        healSymbol = mC.getDrawable(R.drawable.ic_heal_symbol);
+        dmgSymbol = mC.getDrawable(R.drawable.ic_dmg_symbol);
+        debuffSymbol = mC.getDrawable(R.drawable.ic_debuff_symbol);
 
-        contactRange = tools.resize(mC, R.drawable.ic_contact_range_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
-        shortRange = tools.resize(mC, R.drawable.ic_short_range_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
-        averageRange = tools.resize(mC, R.drawable.ic_average_range_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
-        longRange = tools.resize(mC, R.drawable.ic_long_range_symbol, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
+        contactRange = mC.getDrawable(R.drawable.ic_contact_range_symbol);
+        shortRange = mC.getDrawable(R.drawable.ic_short_range_symbol);
+        averageRange = mC.getDrawable(R.drawable.ic_average_range_symbol);
+        longRange = mC.getDrawable(R.drawable.ic_long_range_symbol);
     }
 
     public static DrawableSymbolsSingleton getInstance(Context mC) {  //pour eviter de relire le xml à chaque fois

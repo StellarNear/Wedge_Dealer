@@ -8,7 +8,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.SpannableString;
@@ -56,18 +55,6 @@ public class MainActivityFragmentSpell extends Fragment {
 
     private Tools tools = Tools.getTools();
 
-    private Drawable mystSymbol;
-    private Drawable utilSymbol;
-    private Drawable buffSymbol;
-    private Drawable combatBuffSymbol;
-    private Drawable healSymbol;
-
-    private Drawable contactRange;
-    private Drawable shortRange;
-    private Drawable averageRange;
-    private Drawable longRange;
-
-
     public MainActivityFragmentSpell() {
     }
 
@@ -80,17 +67,6 @@ public class MainActivityFragmentSpell extends Fragment {
         }
 
         returnFragView = inflater.inflate(R.layout.fragment_main_cast, container, false);
-
-        mystSymbol = tools.resize(getContext(), R.drawable.ic_myst_symbol, getContext().getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
-        utilSymbol = tools.resize(getContext(), R.drawable.ic_util_symbol, getContext().getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
-        buffSymbol = tools.resize(getContext(), R.drawable.ic_buff_symbol, getContext().getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
-        combatBuffSymbol = tools.resize(getContext(), R.drawable.ic_combat_buff_symbol, getContext().getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
-        healSymbol = tools.resize(getContext(), R.drawable.ic_heal_symbol, getContext().getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
-
-        contactRange = tools.resize(getContext(), R.drawable.ic_contact_range_symbol, getContext().getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
-        shortRange = tools.resize(getContext(), R.drawable.ic_short_range_symbol, getContext().getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
-        averageRange = tools.resize(getContext(), R.drawable.ic_average_range_symbol, getContext().getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
-        longRange = tools.resize(getContext(), R.drawable.ic_long_range_symbol, getContext().getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
 
         buildPage1();
 

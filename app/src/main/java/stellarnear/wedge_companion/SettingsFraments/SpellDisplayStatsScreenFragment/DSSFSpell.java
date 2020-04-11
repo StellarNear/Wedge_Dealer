@@ -100,7 +100,8 @@ public class DSSFSpell {
             e.printStackTrace();
         }
         ImageView logo = new ImageView(mC);
-        logo.setImageDrawable(tools.resize(mC, drawable, 80));
+        logo.setImageDrawable(drawable);
+        tools.resize(logo, 80);
         line.addView(logo);
         ((LinearLayout) mainView.findViewById(R.id.first_panel_elems_list_numbers)).addView(line);
         return text;

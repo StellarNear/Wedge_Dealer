@@ -20,8 +20,8 @@ import java.io.PrintStream;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import stellarnear.wedge_companion.BuildConfig;
 import stellarnear.wedge_companion.Perso.PersoManager;
-import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Tools;
 
 public class SaveSharedPreferencesActivity extends Activity {
@@ -52,7 +52,7 @@ public class SaveSharedPreferencesActivity extends Activity {
 
             DocumentFile pickedDir = DocumentFile.fromTreeUri(this, treeUri);
 
-            DocumentFile previousSave = pickedDir.findFile(getString(R.string.app_name) + ".sav");
+            DocumentFile previousSave = pickedDir.findFile(BuildConfig.APPLICATION_ID+ ".sav");
             if (previousSave == null) {
                 writeFile(pickedDir);
             } else {
@@ -64,7 +64,7 @@ public class SaveSharedPreferencesActivity extends Activity {
 
             DocumentFile pickedDir = DocumentFile.fromTreeUri(this, treeUri);
 
-            DocumentFile previousSave = pickedDir.findFile(getString(R.string.app_name) + ".sav");
+            DocumentFile previousSave = pickedDir.findFile(BuildConfig.APPLICATION_ID + ".sav");
             if (previousSave == null) {
                 tools.customToast(getApplicationContext(), "Aucune Sauvegarde présente ...");
             } else {
@@ -78,7 +78,7 @@ public class SaveSharedPreferencesActivity extends Activity {
 
     private void writeFile(DocumentFile pickedDir) {
         try {
-            DocumentFile newFile = pickedDir.createFile("application/json", getString(R.string.app_name) + ".sav");
+            DocumentFile newFile = pickedDir.createFile("application/json", BuildConfig.APPLICATION_ID + ".sav");
             OutputStream out = this.getContentResolver().openOutputStream(newFile.getUri());
 
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -94,7 +94,7 @@ public class SaveSharedPreferencesActivity extends Activity {
         } catch (Exception e) {
             Log.e("SAVE_ERR", e.getMessage());
             tools.customToast(getApplicationContext(), "Erreur:" + e.getStackTrace()[0]);
-            DocumentFile previousSave = pickedDir.findFile(getString(R.string.app_name) + ".sav");
+            DocumentFile previousSave = pickedDir.findFile(BuildConfig.APPLICATION_ID+ ".sav");
             if (previousSave != null) {
                 previousSave.delete();
             }

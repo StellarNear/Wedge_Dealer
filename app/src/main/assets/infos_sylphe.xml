@@ -25,4 +25,15 @@
         <name>Vision</name>
         <value>vision nocturne, pistage olfactif</value>
     </info>
+
+    <info>
+        <type>capacity</type>
+        <value>capacity_grip</value>
+    </info>
+
+    <info>
+        <type>capacity</type>
+        <value>capacity_leap</value>
+    </info>
+
 </records>

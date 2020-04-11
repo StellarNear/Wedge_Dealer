@@ -7,7 +7,6 @@ import android.preference.PreferenceManager;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -56,7 +55,6 @@ public class PetPostRandValues {
         Boolean fail = false;
         for (Roll roll : rollList.getList()) {
             roll.getAtkRoll().setAtkRand();
-            ImageView diceImg = roll.getImgAtk();
             if (fail) {
                 roll.invalidated();
             } else {
@@ -64,13 +62,14 @@ public class PetPostRandValues {
                     fail = true;
                 }
             }
+            View diceImg = roll.getImgAtk();
             LinearLayout diceBox = new LinearLayout(mC);
             diceBox.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 0, 1));
             diceBox.setGravity(Gravity.CENTER);
             if (diceImg.getParent() != null) {
                 ((ViewGroup) diceImg.getParent()).removeView(diceImg);
             }
-            diceImg.setImageDrawable(tools.resize(mC, diceImg.getDrawable(), mC.getResources().getDimensionPixelSize(R.dimen.icon_main_dices_pet_size)));
+            diceImg.setLayoutParams(new LinearLayout.LayoutParams(mC.getResources().getDimensionPixelSize(R.dimen.icon_main_dices_pet_size),mC.getResources().getDimensionPixelSize(R.dimen.icon_main_dices_pet_size)));
             diceBox.addView(diceImg);
             ((LinearLayout) mainView.findViewById(R.id.mainLinearAtkDices)).addView(diceBox);
 

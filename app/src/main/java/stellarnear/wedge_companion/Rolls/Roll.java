@@ -4,8 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.view.View;
 import android.widget.CheckBox;
-import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,7 +80,7 @@ public abstract class Roll {
         return atkRoll.getAtkDice();
     }
 
-    public ImageView getImgAtk() {
+    public View getImgAtk() {
         return atkRoll.getImgAtk();
     }
 

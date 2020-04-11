@@ -7,7 +7,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -69,7 +68,7 @@ public class DisplayRolls {
                 line.setGravity(Gravity.CENTER_VERTICAL);
 
                 for (Dice dice : dmgRoll.getDmgDiceList().getList()) {
-                    ImageView diceImg = dice.getImg();
+                    View diceImg = dice.getImg();
                     line.addView(diceImg);
                 }
 

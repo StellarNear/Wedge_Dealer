@@ -100,7 +100,8 @@ public class Damages {
         logoBox.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
         logoBox.setGravity(Gravity.CENTER);
         ImageView logo = new ImageView(mC);
-        logo.setImageDrawable(tools.resize(mC, elems.getDrawableId(elem), mC.getResources().getDimensionPixelSize(R.dimen.logo_element)));
+        logo.setImageDrawable(mC.getDrawable(elems.getDrawableId(elem)));
+        tools.resize(logo, mC.getResources().getDimensionPixelSize(R.dimen.logo_element));
         if (logo.getParent() != null) {
             ((ViewGroup) logo.getParent()).removeView(logo);
         }

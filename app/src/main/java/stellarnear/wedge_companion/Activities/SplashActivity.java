@@ -53,7 +53,7 @@ public class SplashActivity extends AppCompatActivity {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         Boolean internetOk =  activeNetworkInfo != null && activeNetworkInfo.isConnected();
-        if(internetOk){
+        if(internetOk && settings.getBoolean("switch_shadow_link", getApplicationContext().getResources().getBoolean(R.bool.switch_shadow_link_def))){
             final GetVersionData getDataVersion;
             try {
                 getDataVersion = new GetVersionData(SplashActivity.this);

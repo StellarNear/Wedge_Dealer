@@ -726,6 +726,7 @@
                 android:id="@+id/fab_stat_atk"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                app:fabCustomSize="50dp"
                 app:backgroundTint="@android:color/white"
                 app:srcCompat="@drawable/ic_filter_center_focus_black_24dp" />
         </LinearLayout>
@@ -741,6 +742,7 @@
                 android:id="@+id/fab_stat_graph"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                app:fabCustomSize="50dp"
                 app:backgroundTint="@android:color/darker_gray"
                 app:srcCompat="@drawable/ic_timeline_black_24dp" />
         </LinearLayout>
@@ -756,6 +758,7 @@
                 android:id="@+id/fab_stat_time"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                app:fabCustomSize="50dp"
                 app:backgroundTint="@color/information"
                 app:srcCompat="@drawable/ic_date_range_black_24dp" />
         </LinearLayout>
@@ -770,6 +773,7 @@
                 android:id="@+id/fab_stat_dmg"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                app:fabCustomSize="50dp"
                 app:backgroundTint="@android:color/holo_red_light"
                 app:srcCompat="@drawable/ic_flare_black_24dp" />
 

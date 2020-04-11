@@ -44,21 +44,22 @@ public class DisplayInfos {
             line.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1));
             line.setWeightSum(10);
             if (info.getType().equalsIgnoreCase("capacity")) {
-                View subValue = mA.getLayoutInflater().inflate(R.layout.additional_info_value, null);
-                subValue.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 10));
-
                 final Capacity capa = pj.getAllCapacities().getCapacity(info.getValue());
-                ((TextView) subValue.findViewById(R.id.additional_info_value_text)).setText(capa.getName());
-                ((TextView) subValue.findViewById(R.id.additional_info_value_text)).setTextColor(mC.getColor(R.color.darker_gray));
+                if(capa!=null) {
+                    View subValue = mA.getLayoutInflater().inflate(R.layout.additional_info_value, null);
+                    subValue.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 10));
+                    ((TextView) subValue.findViewById(R.id.additional_info_value_text)).setText(capa.getName());
+                    ((TextView) subValue.findViewById(R.id.additional_info_value_text)).setTextColor(mC.getColor(R.color.darker_gray));
 
-                subValue.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        popupLongTooltip(capa);
-                    }
-                });
+                    subValue.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            popupLongTooltip(capa);
+                        }
+                    });
 
-                line.addView(subValue);
+                    line.addView(subValue);
+                }
             } else {
                 View subLabel = mA.getLayoutInflater().inflate(R.layout.additional_info_label, null);
                 subLabel.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 3));

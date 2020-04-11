@@ -7,7 +7,6 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.ImageView;
 
 import stellarnear.wedge_companion.CritConfirmAlertDialog;
 import stellarnear.wedge_companion.Perso.Perso;
@@ -112,7 +111,7 @@ public abstract class AtkRoll {
         return this.atkDice;
     }
 
-    public ImageView getImgAtk() {
+    public View getImgAtk() {
         return atkDice.getImg();
     }
 
@@ -173,7 +172,7 @@ public abstract class AtkRoll {
 
     public void invalidated() {
         this.invalid = true;
-        atkDice.getImg().setImageDrawable(tools.resize(mC, R.drawable.d20_fail, mC.getResources().getDimensionPixelSize(R.dimen.icon_main_dices_combat_launcher_size)));
+        atkDice.invalidate();
         atkDice.getImg().setOnClickListener(null);
     }
 

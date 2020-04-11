@@ -148,10 +148,11 @@ public class MainActivityFragmentCombatEnnemyBitePanel {
             if (dmgTot > 0) {
                 ImageView img = new ImageView(mC);
                 if (roll.isCritConfirmed()) {
-                    img.setImageDrawable(tools.resize(mC, mC.getDrawable(R.drawable.critical_hit), 100));
+                    img.setImageDrawable(mC.getDrawable(R.drawable.critical_hit));
                 } else {
-                    img.setImageDrawable(tools.resize(mC, mC.getDrawable(R.drawable.simple_atk), 100));
+                    img.setImageDrawable(mC.getDrawable(R.drawable.simple_atk));
                 }
+                tools.resize(img,100);
                 line.addView(img, 0);
 
                 final CheckBox check = new CheckBox(mC);

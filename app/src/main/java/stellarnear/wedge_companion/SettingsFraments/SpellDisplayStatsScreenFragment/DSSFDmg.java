@@ -93,7 +93,8 @@ public class DSSFDmg {
         }
         ((LinearLayout) mainView.findViewById(R.id.fourth_panel_elems_checkboxes)).addView(checkBox);
         ImageView logo = new ImageView(mC);
-        logo.setImageDrawable(tools.resize(mC, drawable, 80));
+        logo.setImageDrawable(drawable);
+        tools.resize(logo, 80);
         ((LinearLayout) mainView.findViewById(R.id.fourth_panel_elems_checkboxes)).addView(logo);
         checkBox.setChecked(true);
         return checkBox;
