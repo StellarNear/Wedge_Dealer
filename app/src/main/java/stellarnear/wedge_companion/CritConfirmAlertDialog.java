@@ -21,6 +21,7 @@ import androidx.appcompat.app.AlertDialog;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.Rolls.Dices.Dice;
+import stellarnear.wedge_companion.Rolls.Dices.Dice20;
 
 
 public class CritConfirmAlertDialog {
@@ -32,7 +33,7 @@ public class CritConfirmAlertDialog {
 
     private int sumScore;
 
-    private Dice dice;
+    private Dice20 dice;
 
     private Perso pj = PersoManager.getCurrentPJ();
 
@@ -68,11 +69,9 @@ public class CritConfirmAlertDialog {
             summaryDetail += "\nBonus don pour les critiques (+4)";
         }
 
-
         summaryDetail += "\nTotal : +" + sumScore;
         TextView summary = dialogView.findViewById(R.id.customDialogTestSummary);
         summary.setText(summaryDetail);
-
 
         Button focus = dialogView.findViewById(R.id.button_customDialog_test_focus);
         focus.setVisibility(View.GONE);
@@ -128,18 +127,18 @@ public class CritConfirmAlertDialog {
     private void startRoll() {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
 
-        dice = new Dice(mA, mC, 20);
+        dice = new Dice20(mA, mC);
         if (settings.getBoolean("switch_manual_diceroll", mC.getResources().getBoolean(R.bool.switch_manual_diceroll_def))) {
             dice.rand(true);
             dice.setRefreshEventListener(new Dice.OnRefreshEventListener() {
                 @Override
                 public void onEvent() {
-                    endSkillCalculation(dice);
+                    endSkillCalculation();
                 }
             });
         } else {
             dice.rand(false);
-            endSkillCalculation(dice);
+            endSkillCalculation();
         }
     }
 
@@ -167,7 +166,7 @@ public class CritConfirmAlertDialog {
         alertDialog.getWindow().setLayout((int) (factor * size.x), (int) (factor * size.y));
     }
 
-    private void endSkillCalculation(final Dice dice) {
+    private void endSkillCalculation() {
         FrameLayout resultDice = dialogView.findViewById(R.id.customDialogTestResultDice);
         resultDice.removeAllViews();
         resultDice.addView(dice.getImg());
@@ -186,7 +185,7 @@ public class CritConfirmAlertDialog {
         final TextView result = dialogView.findViewById(R.id.customDialogTestResult);
         result.setText(String.valueOf(sumResult));
 
-        dice.setMythicEventListener(new Dice.OnMythicEventListener() {
+        dice.setMythicEventListener(new Dice20.OnMythicEventListener() {
             @Override
             public void onEvent() {
                 int sumResult = dice.getRandValue() + sumScore;

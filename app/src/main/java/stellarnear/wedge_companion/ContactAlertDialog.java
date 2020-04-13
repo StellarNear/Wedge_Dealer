@@ -21,6 +21,7 @@ import androidx.appcompat.app.AlertDialog;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.Rolls.Dices.Dice;
+import stellarnear.wedge_companion.Rolls.Dices.Dice20;
 import stellarnear.wedge_companion.Rolls.Dices.WheelDicePicker;
 import stellarnear.wedge_companion.Spells.CalculationSpell;
 import stellarnear.wedge_companion.Spells.Spell;
@@ -37,7 +38,7 @@ public class ContactAlertDialog {
     private CalculationSpell calculationSpell;
     private int sumScore;
     private Spell spell;
-    private Dice dice;
+    private Dice20 dice;
 
     private Perso pj = PersoManager.getCurrentPJ();
 
@@ -136,18 +137,18 @@ public class ContactAlertDialog {
 
     private void startRoll() {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
-        dice = new Dice(mA, mC, 20);
+        dice = new Dice20(mA, mC);
         if (settings.getBoolean("switch_manual_diceroll", mC.getResources().getBoolean(R.bool.switch_manual_diceroll_def))) {
             dice.rand(true);
             dice.setRefreshEventListener(new Dice.OnRefreshEventListener() {
                 @Override
                 public void onEvent() {
-                    endSkillCalculation(dice);
+                    endSkillCalculation();
                 }
             });
         } else {
             dice.rand(false);
-            endSkillCalculation(dice);
+            endSkillCalculation();
         }
     }
 
@@ -175,7 +176,7 @@ public class ContactAlertDialog {
         alertDialog.getWindow().setLayout((int) (factor * size.x), (int) (factor * size.y));
     }
 
-    private void endSkillCalculation(final Dice dice) {
+    private void endSkillCalculation() {
         FrameLayout resultDice = dialogView.findViewById(R.id.customDialogTestResultDice);
         resultDice.removeAllViews();
         resultDice.addView(dice.getImg());
@@ -194,7 +195,7 @@ public class ContactAlertDialog {
         final TextView result = dialogView.findViewById(R.id.customDialogTestResult);
         result.setText(String.valueOf(sumResult));
 
-        dice.setMythicEventListener(new Dice.OnMythicEventListener() {
+        dice.setMythicEventListener(new Dice20.OnMythicEventListener() {
             @Override
             public void onEvent() {
                 int sumResult = dice.getRandValue() + sumScore;

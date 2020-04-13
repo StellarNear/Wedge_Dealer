@@ -108,7 +108,7 @@ public class CanalisationAlertDialog {
                 allLines.addView(line);
                 nthDice = 1;
             }
-            Dice dice = new Dice(mA, mC, 6);
+            Dice dice = new Dice(mA, mC, 6,"heal");
             dice.rand(false);
             line.addView(dice.getImg());
             sum += dice.getRandValue();

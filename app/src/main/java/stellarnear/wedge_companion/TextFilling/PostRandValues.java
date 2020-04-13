@@ -15,7 +15,7 @@ import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.PostData;
 import stellarnear.wedge_companion.PostDataElement;
 import stellarnear.wedge_companion.R;
-import stellarnear.wedge_companion.Rolls.Dices.Dice;
+import stellarnear.wedge_companion.Rolls.Dices.Dice20;
 import stellarnear.wedge_companion.Rolls.Roll;
 import stellarnear.wedge_companion.Rolls.RollList;
 
@@ -76,7 +76,7 @@ public class PostRandValues {
             diceBox.addView(diceImg);
             ((LinearLayout) mainView.findViewById(R.id.mainLinearAtkDices)).addView(diceBox);
 
-            roll.getAtkRoll().getAtkDice().setMythicEventListener(new Dice.OnMythicEventListener() {
+            roll.getAtkRoll().getAtkDice().setMythicEventListener(new Dice20.OnMythicEventListener() {
                 @Override
                 public void onEvent() {
                     refreshPostRandValues();

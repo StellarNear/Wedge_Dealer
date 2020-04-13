@@ -13,10 +13,11 @@ import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Rolls.Dices.Dice;
+import stellarnear.wedge_companion.Rolls.Dices.Dice20;
 import stellarnear.wedge_companion.Tools;
 
 public abstract class AtkRoll {
-    protected Dice atkDice;
+    protected Dice20 atkDice;
 
     protected Integer preRandValue = 0;
     protected Integer atk = 0;
@@ -47,7 +48,7 @@ public abstract class AtkRoll {
         this.mA = mA;
         this.mC = mC;
         this.base = base;
-        this.atkDice = new Dice(mA, mC, 20);
+        this.atkDice = new Dice20(mA, mC);
         settings = PreferenceManager.getDefaultSharedPreferences(mC);
         manualDice = settings.getBoolean("switch_manual_diceroll", mC.getResources().getBoolean(R.bool.switch_manual_diceroll_def));
         constructCheckboxes();
@@ -107,7 +108,7 @@ public abstract class AtkRoll {
     }
 
     //getters
-    public Dice getAtkDice() {
+    public Dice20 getAtkDice() {
         return this.atkDice;
     }
 

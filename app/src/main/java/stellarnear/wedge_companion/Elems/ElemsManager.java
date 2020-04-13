@@ -22,7 +22,7 @@ public class ElemsManager {
         listElems.add(new Elem("shock", "foudre", mC.getColor(R.color.foudre), mC.getColor(R.color.foudre_dark), R.drawable.shock_logo));
         listElems.add(new Elem("frost", "froid", mC.getColor(R.color.frost), mC.getColor(R.color.recent_frost), R.drawable.frost_logo));
         listElems.add(new Elem("sound", "son", mC.getColor(R.color.aucun), mC.getColor(R.color.aucun_dark)));
-        listElems.add(new Elem("heal", "soin", mC.getColor(R.color.colorPrimaryhalda), mC.getColor(R.color.colorPrimaryDarkhalda), R.drawable.ic_heal_symbol));
+        listElems.add(new Elem("heal", "soin", mC.getColor(R.color.colorPrimaryhalda), mC.getColor(R.color.colorPrimaryDarkhalda), R.drawable.ic_heal_symbol_draw));
     }
 
     public static ElemsManager getInstance(Context context) {

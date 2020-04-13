@@ -136,6 +136,29 @@ public class LinearLineSpell {
     }
 
     private void addSpellTypeIcons() {
+        ImageView range = new ImageView(mC);
+        switch (spell.getRange()) {
+            case "contact":
+                range.setImageDrawable(drawableSymbolsSingleton.getContactRange());
+                break;
+            case "courte":
+                range.setImageDrawable(drawableSymbolsSingleton.getShortRange());
+                break;
+            case "moyenne":
+                range.setImageDrawable(drawableSymbolsSingleton.getAverageRange());
+                break;
+            case "longue":
+                range.setImageDrawable(drawableSymbolsSingleton.getLongRange());
+                break;
+            default:
+                range = null;
+                break;
+        }
+        if (range != null) {
+            spellLine.addView(range);
+        }
+
+
         ImageView logo = new ImageView(mC);
         switch (spell.getType()) {
             case "heal":
@@ -162,28 +185,6 @@ public class LinearLineSpell {
         }
         if (logo != null) {
             spellLine.addView(logo);
-        }
-
-        ImageView range = new ImageView(mC);
-        switch (spell.getRange()) {
-            case "contact":
-                range.setImageDrawable(drawableSymbolsSingleton.getContactRange());
-                break;
-            case "courte":
-                range.setImageDrawable(drawableSymbolsSingleton.getShortRange());
-                break;
-            case "moyenne":
-                range.setImageDrawable(drawableSymbolsSingleton.getAverageRange());
-                break;
-            case "longue":
-                range.setImageDrawable(drawableSymbolsSingleton.getLongRange());
-                break;
-            default:
-                range = null;
-                break;
-        }
-        if (range != null) {
-            spellLine.addView(range);
         }
 
         if (spell.isFromMystery()) {

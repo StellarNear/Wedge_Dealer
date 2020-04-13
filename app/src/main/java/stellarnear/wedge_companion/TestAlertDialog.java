@@ -30,6 +30,7 @@ import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.Perso.Skill;
 import stellarnear.wedge_companion.Rolls.Dices.Dice;
+import stellarnear.wedge_companion.Rolls.Dices.Dice20;
 
 public class TestAlertDialog {
     String mode;
@@ -155,7 +156,7 @@ public class TestAlertDialog {
         passive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Dice dice = new Dice(mA, mC, 20);
+                Dice20 dice = new Dice20(mA, mC);
                 dice.setRand(10);
                 endSkillCalculation(dice);
             }
@@ -165,7 +166,7 @@ public class TestAlertDialog {
         focus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Dice dice = new Dice(mA, mC, 20);
+                Dice20 dice = new Dice20(mA, mC);
                 dice.setRand(20);
                 endSkillCalculation(dice);
             }
@@ -190,7 +191,7 @@ public class TestAlertDialog {
 
     private void startRoll() {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
-        final Dice dice = new Dice(mA, mC, 20);
+        final Dice20 dice = new Dice20(mA, mC);
         if (settings.getBoolean("switch_manual_diceroll", mC.getResources().getBoolean(R.bool.switch_manual_diceroll_def))) {
             dice.rand(true);
             dice.setRefreshEventListener(new Dice.OnRefreshEventListener() {
@@ -220,7 +221,7 @@ public class TestAlertDialog {
         onlyButton.setBackground(mC.getDrawable(R.drawable.button_cancel_gradient));
     }
 
-    private void endSkillCalculation(final Dice dice) {
+    private void endSkillCalculation(final Dice20 dice) {
         List<String> listSave = Arrays.asList("ability_ref", "ability_vig", "ability_vol");
         if (abi != null && listSave.contains(abi.getId()) && pj.getID().equalsIgnoreCase("halda")) { //y a que la cape d'halda qui marche sur les jet de save
             dice.canBeLegendarySurge();
@@ -234,7 +235,7 @@ public class TestAlertDialog {
         onlyButton.setText("Ok");
         onlyButton.setBackground(mC.getDrawable(R.drawable.button_ok_gradient));
         displayResult(dice);
-        dice.setMythicEventListener(new Dice.OnMythicEventListener() {
+        dice.setMythicEventListener(new Dice20.OnMythicEventListener() {
             @Override
             public void onEvent() {
                 displayResult(dice);
@@ -242,7 +243,7 @@ public class TestAlertDialog {
         });
     }
 
-    private void displayResult(Dice dice) {
+    private void displayResult(Dice20 dice) {
         String modePostData;
         int sumResultPostData;
         TextView resultTitle = dialogView.findViewById(R.id.customDialogTitleResult);

@@ -7,11 +7,8 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,74 +20,92 @@ import stellarnear.wedge_companion.PostDataElement;
 import stellarnear.wedge_companion.R;
 import stellarnear.wedge_companion.Tools;
 
-public class ImgForDice {
+public class Dice20 {
     private Activity mA;
     private Context mC;
-    private Dice dice;       //todo reflechir au fait que Dice contient un autre IMGDice qui contient un dice etc
-    private Dice surgeDice;  //todo reflechir au fait que Dice contient un autre IMGDice qui contient un dice etc
+    private Dice mainDice20;
+    private Dice surgedDice=null;
+    private Boolean canBeLegendarySurge=false;
     private View img;
-    private Tools tools = Tools.getTools();
+
     private Perso pj = PersoManager.getCurrentPJ();
+    private OnMythicEventListener mListenerMythic;
 
-    private boolean wasRand = false;
-    private boolean canBeLegendarySurge = false;
+    private Tools tools = Tools.getTools();
 
-    public ImgForDice(Dice dice, Activity mA, Context mC) {
-        this.mA = mA;
-        this.mC = mC;
-        this.dice = dice;
+    public Dice20(Activity mA, Context mC) {
+        this.mA=mA;
+        this.mC=mC;
+        this.mainDice20 = new Dice(mA,mC,20);
+    }
+
+    public void rand(Boolean manual) {
+        mainDice20.rand(manual);
+    }
+
+    public void setRand(int randFromWheel) { // le retour depuis wheelpicker
+        mainDice20.setRand(randFromWheel);
+    }
+
+    public void canBeLegendarySurge() {
+        this.canBeLegendarySurge=true;
+    }
+
+    public void setRefreshEventListener(Dice.OnRefreshEventListener eventListener) {
+        mainDice20.setRefreshEventListener(eventListener);
+    }
+
+    public int getnFace() {
+        return mainDice20.getnFace();
     }
 
     public View getImg() {
-        if (!wasRand) {
-            int drawableId;
-            if (dice.getRandValue() > 0) {
-                drawableId = mC.getResources().getIdentifier("d" + dice.getnFace() + "_" + dice.getRandValue() + (dice.getElement().equalsIgnoreCase("none") ? "" : dice.getElement()), "drawable", mC.getPackageName());
-                wasRand = true;
-            } else {
-                drawableId = mC.getResources().getIdentifier("d" + dice.getnFace() + "_main", "drawable", mC.getPackageName());
-            }
-            ImageView imgDice  = new ImageView(mC);
-            imgDice.setImageDrawable(mC.getDrawable(drawableId));
-            tools.resize(imgDice, mC.getResources().getDimensionPixelSize(R.dimen.icon_main_dices_wheel_size));
+        if(this.img == null ){
+            ImgFactoryForDice20 facto20 = new ImgFactoryForDice20(mainDice20,surgedDice, mC);
+            this.img=facto20.getImg();
 
-            if (this.img !=null && this.img.getParent() != null) { //on le remplace là où il était
-                ViewGroup parent = ((ViewGroup) this.img.getParent());
-                parent.removeView(this.img);
-                parent.addView(imgDice);
-            }
-
-            this.img=imgDice;
-
-            if (dice.getnFace() == 20) {
-                if (pj.getAllResources().getResource("resource_mythic_points") != null && pj.getAllResources().getResource("resource_mythic_points").getMax() > 0) {
-                    setMythicSurge(); //on assigne un lsitener pour creer le des mythique si clic sur l'image du dès
-                }
+            setRefreshImg();
+            if (pj.getAllResources().getResource("resource_mythic_points") != null && pj.getAllResources().getResource("resource_mythic_points").getMax() > 0) {
+                setRefreshMythicSurge(); //on assigne un lsitener pour creer le des mythique si clic sur l'image du dès
             }
         }
         return this.img;
     }
 
-    public void invalidateImg() {
-        ImageView imgDice  = new ImageView(mC);
-        imgDice.setImageDrawable(mC.getDrawable(R.drawable.d20_fail));
-        tools.resize(imgDice, mC.getResources().getDimensionPixelSize(R.dimen.icon_main_dices_wheel_size));
-        if (this.img !=null && this.img.getParent() != null) { //on le remplace là où il était
-            ViewGroup parent = ((ViewGroup) this.img.getParent());
-            parent.removeView(this.img);
-            parent.addView(imgDice);
-        }
-        wasRand=true;
-        this.img=imgDice;
+    private void setRefreshImg() {
+        mainDice20.setRefreshEventListener(new Dice.OnRefreshEventListener() {
+            @Override
+            public void onEvent() {
+                refreshImg();
+            }
+        });
     }
 
-      /*
+    private void refreshImg() {
+        View newImg =  new ImgFactoryForDice20(mainDice20,surgedDice,mC).getImg();
+        if(this.img != null) {
+            ViewGroup parent = ((ViewGroup) this.img.getParent());
+            if (parent != null) {
+                parent.removeView(this.img);
+                parent.addView(newImg);
+            }
+        }
+        if(mListenerMythic!=null){
+            mListenerMythic.onEvent();
+        }
+        this.img = newImg;
+        if (pj.getAllResources().getResource("resource_mythic_points") != null && pj.getAllResources().getResource("resource_mythic_points").getMax() > 0) {
+            setRefreshMythicSurge(); //on assigne un lsitener pour creer le des mythique si clic sur l'image du dès
+        }
+    }
+
+          /*
 
     Partie Mythique !
 
      */
 
-    private void setMythicSurge() {
+    private void setRefreshMythicSurge() {
         this.img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -133,61 +148,34 @@ public class ImgForDice {
             points = pj.getCurrentResourceValue("resource_mythic_points");
         }
 
-        if (points > 0 && dice.getMythicDice() == null) {
+        if (points > 0 && surgedDice == null) {
             SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
             if (mode.equalsIgnoreCase("légendaire")) {
-                surgeDice = new Dice(mA, mC, tools.toInt(settings.getString("legendary_dice", String.valueOf(mC.getResources().getInteger(R.integer.legendary_dice_def)))));
+                surgedDice = new Dice(mA, mC, tools.toInt(settings.getString("legendary_dice", String.valueOf(mC.getResources().getInteger(R.integer.legendary_dice_def)))));
                 pj.getAllResources().getResource("resource_legendary_points").spend(1);
             } else {
-                surgeDice = new Dice(mA, mC, tools.toInt(settings.getString("mythic_dice", String.valueOf(mC.getResources().getInteger(R.integer.mythic_dice_def)))));
+                surgedDice = new Dice(mA, mC, tools.toInt(settings.getString("mythic_dice", String.valueOf(mC.getResources().getInteger(R.integer.mythic_dice_def)))));
                 pj.getAllResources().getResource("resource_mythic_points").spend(1);
                 new PostData(mC, new PostDataElement("Surcharge mythique du d20", "-1pt mythique"));
             }
 
             if (settings.getBoolean("switch_manual_diceroll", mC.getResources().getBoolean(R.bool.switch_manual_diceroll_def))) {
-                surgeDice.rand(true);
-                surgeDice.setRefreshEventListener(new Dice.OnRefreshEventListener() {
+                surgedDice.rand(true);
+                surgedDice.setRefreshEventListener(new Dice.OnRefreshEventListener() {
                     @Override
                     public void onEvent() {
-                        dice.setMythicDice(surgeDice);
-                        toastResultDice();
                         newImgWithSurge();
                     }
                 });
             } else {
-                surgeDice.rand(false);
-                dice.setMythicDice(surgeDice);
-                toastResultDice();
+                surgedDice.rand(false);
                 newImgWithSurge();
             }
-        } else if (dice.getMythicDice() != null) {
+        } else if (surgedDice != null) {
             tools.customToast(mC, "Tu as déjà fais une montée en puissance sur ce dès", "center");
         } else {
             tools.customToast(mC, "Tu n'as plus de point " + mode, "center");
         }
-    }
-
-    private void newImgWithSurge() {
-        LayoutInflater inflater = LayoutInflater.from(mC);
-        View surgedView = inflater.inflate(R.layout.surged_dice, null);
-
-        int drawableMainId = mC.getResources().getIdentifier("d" + dice.getnFace() + "_" + dice.getRandValue() + (dice.getElement().equalsIgnoreCase("none") ? "" : dice.getElement()), "drawable", mC.getPackageName());
-        ImageView newMain = new ImageView(mC);
-        newMain.setImageDrawable(mC.getDrawable(drawableMainId));
-        ((FrameLayout)surgedView.findViewById(R.id.main_dice)).addView(newMain);
-
-
-        ImageView surge = new ImageView(mC);
-        int drawableSubId = mC.getResources().getIdentifier("d" + surgeDice.getnFace() + "_" + surgeDice.getRandValue() + (surgeDice.getElement().equalsIgnoreCase("none") ? "" : surgeDice.getElement()), "drawable", mC.getPackageName());
-        surge.setImageDrawable(mC.getDrawable(drawableSubId));
-        ((FrameLayout)surgedView.findViewById(R.id.second_dice)).addView(surge);
-
-        if (this.img.getParent() != null) { //on le remplace là où il était
-            ViewGroup parent = ((ViewGroup) this.img.getParent());
-            parent.removeView(this.img);
-            parent.addView(surgedView);
-        }
-        this.img=surgedView;
     }
 
     private void toastResultDice() {
@@ -200,14 +188,45 @@ public class ImgForDice {
         TextView text = new TextView(mC);
         text.setText("Résultat du dès :");
         linear.addView(text);
-        linear.addView(surgeDice.getImg());
+        linear.addView(surgedDice.getImg());
         Toast toast = new Toast(mC);
         toast.setView(linear);
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.show();
     }
 
-    public void canBeLegendarySurge() {
-        this.canBeLegendarySurge = true;
+
+    private void newImgWithSurge() {
+        toastResultDice();
+        refreshImg();
     }
+
+    /*
+
+        OTHER
+
+     */
+
+    public int getRandValue() {
+        return mainDice20.getRandValue();
+    }
+
+    public Dice getMythicDice() {
+        return this.surgedDice;
+    }
+
+    public void invalidate() {
+        ImgFactoryForDice20 facto20 = new ImgFactoryForDice20(mainDice20,surgedDice, mC);
+        facto20.invalidateImg();
+        this.img = facto20.getImg();
+    }
+
+    public void setMythicEventListener(OnMythicEventListener eventListener) {
+        mListenerMythic = eventListener;
+    }
+
+    public interface OnMythicEventListener {
+        void onEvent();
+    }
+
 }

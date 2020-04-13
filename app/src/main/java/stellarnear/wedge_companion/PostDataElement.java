@@ -12,7 +12,7 @@ import stellarnear.wedge_companion.Perso.Form;
 import stellarnear.wedge_companion.Perso.FormCapacity;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
-import stellarnear.wedge_companion.Rolls.Dices.Dice;
+import stellarnear.wedge_companion.Rolls.Dices.Dice20;
 import stellarnear.wedge_companion.Rolls.Roll;
 import stellarnear.wedge_companion.Rolls.RollList;
 import stellarnear.wedge_companion.Spells.Metamagic;
@@ -62,7 +62,7 @@ public class PostDataElement {
         this.result = resultTxt;
     }
 
-    public PostDataElement(String typeEvent, Dice oriDice, int result) {
+    public PostDataElement(String typeEvent, Dice20 oriDice, int result) {
         SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.FRANCE);
         this.date = formater.format(new Date());
 

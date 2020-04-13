@@ -20,6 +20,7 @@ import androidx.appcompat.app.AlertDialog;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.Rolls.Dices.Dice;
+import stellarnear.wedge_companion.Rolls.Dices.Dice20;
 import stellarnear.wedge_companion.Spells.CalculationSpell;
 import stellarnear.wedge_companion.Spells.Spell;
 
@@ -34,7 +35,7 @@ public class TestRMAlertDialog {
     private int sumScore;
     private OnRefreshEventListener mListener;
     private Perso pj = PersoManager.getCurrentPJ();
-    private Dice dice;
+    private Dice20 dice;
 
     private Tools tools = Tools.getTools();
 
@@ -125,7 +126,7 @@ public class TestRMAlertDialog {
     }
 
     private void startRoll() {
-        dice = new Dice(mA, mC, 20);
+        dice = new Dice20(mA, mC);
 
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
         if (settings.getBoolean("switch_manual_diceroll", mC.getResources().getBoolean(R.bool.switch_manual_diceroll_def))) {
@@ -203,7 +204,7 @@ public class TestRMAlertDialog {
         final TextView result = dialogView.findViewById(R.id.customDialogTestResult);
         result.setText(String.valueOf(sumResult));
 
-        dice.setMythicEventListener(new Dice.OnMythicEventListener() {
+        dice.setMythicEventListener(new Dice20.OnMythicEventListener() {
             @Override
             public void onEvent() {
                 endSkillCalculation();

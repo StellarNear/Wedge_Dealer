@@ -24,18 +24,18 @@ public class DrawableSymbolsSingleton {
 
     private DrawableSymbolsSingleton(Context mC) {
         //, mC.getResources().getDimensionPixelSize(R.dimen.logo_spell_type));
-        mystSymbol = mC.getDrawable(R.drawable.ic_myst_symbol);
-        utilSymbol = mC.getDrawable(R.drawable.ic_util_symbol);
-        buffSymbol = mC.getDrawable(R.drawable.ic_buff_symbol);
-        combatBuffSymbol = mC.getDrawable(R.drawable.ic_combat_buff_symbol);
-        healSymbol = mC.getDrawable(R.drawable.ic_heal_symbol);
-        dmgSymbol = mC.getDrawable(R.drawable.ic_dmg_symbol);
-        debuffSymbol = mC.getDrawable(R.drawable.ic_debuff_symbol);
+        mystSymbol = mC.getDrawable(R.drawable.ic_myst_symbol_draw);
+        utilSymbol = mC.getDrawable(R.drawable.ic_util_symbol_draw);
+        buffSymbol = mC.getDrawable(R.drawable.ic_buff_symbol_draw);
+        combatBuffSymbol = mC.getDrawable(R.drawable.ic_combatbuff_symbol_draw);
+        healSymbol = mC.getDrawable(R.drawable.ic_heal_symbol_draw);
+        dmgSymbol = mC.getDrawable(R.drawable.ic_dmg_symbol_draw);
+        debuffSymbol = mC.getDrawable(R.drawable.ic_debuff_symbol_draw);
 
-        contactRange = mC.getDrawable(R.drawable.ic_contact_range_symbol);
-        shortRange = mC.getDrawable(R.drawable.ic_short_range_symbol);
-        averageRange = mC.getDrawable(R.drawable.ic_average_range_symbol);
-        longRange = mC.getDrawable(R.drawable.ic_long_range_symbol);
+        contactRange = mC.getDrawable(R.drawable.ic_contact_range_symbol_draw);
+        shortRange = mC.getDrawable(R.drawable.ic_short_range_symbol_draw);
+        averageRange = mC.getDrawable(R.drawable.ic_average_range_symbol_draw);
+        longRange = mC.getDrawable(R.drawable.ic_long_range_symbol_draw);
     }
 
     public static DrawableSymbolsSingleton getInstance(Context mC) {  //pour eviter de relire le xml à chaque fois

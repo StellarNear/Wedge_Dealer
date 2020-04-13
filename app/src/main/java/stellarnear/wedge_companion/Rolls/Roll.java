@@ -12,7 +12,7 @@ import java.util.List;
 
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
-import stellarnear.wedge_companion.Rolls.Dices.Dice;
+import stellarnear.wedge_companion.Rolls.Dices.Dice20;
 import stellarnear.wedge_companion.Tools;
 
 public abstract class Roll {
@@ -76,7 +76,7 @@ public abstract class Roll {
         return atkRoll.getPreRandValue();
     }
 
-    public Dice getAtkDice() {
+    public Dice20 getAtkDice() {
         return atkRoll.getAtkDice();
     }
 
