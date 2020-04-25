@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Handler;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
@@ -99,10 +100,14 @@ public class PrefGlobalSleepScreenFragment extends Preference {
             public void run() {
                 PersoManager.allSleep();
                 resetGlobal();
+                final Resources.Theme oldTheme = mC.getTheme();
+                int themeId = mC.getResources().getIdentifier("AppTheme" , "style", mC.getPackageName());
+                mC.setTheme(themeId);
                 PreparationSpellsAlertDialog popupPrepa = BuildPreparedSpellList.getInstance(mC).makePopupSelectSpellsToPrepare(mC, "sleep");
                 popupPrepa.setAcceptEventListener(new PreparationSpellsAlertDialog.OnAcceptEventListener() {
                     @Override
                     public void onEvent() {
+                        mC.getTheme().setTo(oldTheme);
                         Intent intent = new Intent(mC, MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         mC.startActivity(intent);
@@ -136,10 +141,14 @@ public class PrefGlobalSleepScreenFragment extends Preference {
             public void run() {
                 PersoManager.allHalfSleep();
                 resetGlobal();
+                final Resources.Theme oldTheme = mC.getTheme();
+                int themeId = mC.getResources().getIdentifier("AppTheme" , "style", mC.getPackageName());
+                mC.setTheme(themeId);
                 PreparationSpellsAlertDialog popupPrepa = BuildPreparedSpellList.getInstance(mC).makePopupSelectSpellsToPrepare(mC, "halfsleep");
                 popupPrepa.setAcceptEventListener(new PreparationSpellsAlertDialog.OnAcceptEventListener() {
                     @Override
                     public void onEvent() {
+                        mC.getTheme().setTo(oldTheme);
                         Intent intent = new Intent(mC, MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         mC.startActivity(intent);

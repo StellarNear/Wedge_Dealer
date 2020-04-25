@@ -16,13 +16,13 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import stellarnear.wedge_companion.Tools;
 
-public class BuildMetaList {
+public class BuildPreparedMetaList {
 
-    private static BuildMetaList instance = null;
+    private static BuildPreparedMetaList instance = null;
     private MetaList metaList;
     private Tools tools = Tools.getTools();
 
-    private BuildMetaList(Context mC) {
+    private BuildPreparedMetaList(Context mC) {
         metaList = new MetaList();
         //construire la liste complete regarder xml parser
         try {
@@ -58,9 +58,9 @@ public class BuildMetaList {
 
     }
 
-    public static BuildMetaList getInstance(Context mC) {  //pour eviter de relire le xml à chaque fois
+    public static BuildPreparedMetaList getInstance(Context mC) {  //pour eviter de relire le xml à chaque fois
         if (instance == null) {
-            instance = new BuildMetaList(mC);
+            instance = new BuildPreparedMetaList(mC);
         }
         return instance;
     }

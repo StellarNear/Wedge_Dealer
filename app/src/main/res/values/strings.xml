@@ -106,5 +106,6 @@
 
     <string name="skill_mastery">Rang de maîtrise</string>
     <string name="skill_bonus">Bonus divers</string>
+    <string name="title_activity_saving">Sauvegarde</string>
 
 </resources>

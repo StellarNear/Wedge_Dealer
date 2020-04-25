@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="stellarnear.wedge_companion"
-    android:versionCode="6"
-    android:versionName="2.2">
+    android:versionCode="7"
+    android:versionName="2.3">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/wedge_icon"
@@ -27,7 +28,6 @@
             </intent-filter>
         </activity>
 
-
         <activity
             android:name="stellarnear.wedge_companion.Activities.MainActivity"
             android:configChanges="orientation|screenSize"
@@ -44,7 +44,6 @@
             android:configChanges="orientation|screenSize"
             android:theme="@style/AppTheme.NoActionBarHelp"/>
 
-
         <activity
             android:name="stellarnear.wedge_companion.Activities.SettingsActivity"
             android:configChanges="orientation|screenSize"
@@ -54,9 +53,8 @@
         <activity
             android:name="stellarnear.wedge_companion.Activities.SaveSharedPreferencesActivity"
             android:configChanges="orientation|screenSize"
-            android:label="@string/title_activity_settings"
-            android:theme="@style/AppTheme.NoActionBar"
-  />
+            android:label="@string/title_activity_saving"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 

@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<records>
+    <metamagic>
+        <id>meta_guardian</id>
+        <name>Sort Gardien</name>
+        <descr>Un sort gardien reste inactif jusqu'au moment où les conditions formulées lors du lancement du sort sont présentes. Le déclenchement peut même interrompre des actions en cours pour peu que cela ait été formulé en condition d'activation.</descr>
+        <uprank>6</uprank>
+    </metamagic>
+    <metamagic>
+        <id>meta_quicken</id>
+        <name>Incantation rapide</name>
+        <descr>L’incantation du sort ne prend qu’une action rapide. Si le temps d’incantation du sort est supérieur à un round, on ne peut pas l’accélérer avec ce don. Un sort à incantation rapide nécessite un emplacement de sort de quatre niveaux de plus que son niveau réel.</descr>
+        <uprank>4</uprank>
+    </metamagic>
+
+
+    <metamagic>
+        <id>meta_echo</id>
+        <name>Écho magique</name>
+        <descr>Peut le lancer le sort une seconde fois dans la même journée. Aucun effet permettant au personnage de préparer à nouveau ou de relancer un sort n'est utilisable avec Écho magique. La seconde incantation ne nécessite pas de dépenser un emplacement de sort utilisable. Un écho magique utilise un emplacement de sort de trois niveaux de plus que le niveau réel du sort.</descr>
+        <uprank>3</uprank>
+    </metamagic>
+
+    <metamagic>
+        <id>meta_max</id>
+        <name>Quintessence des sorts</name>
+        <descr>Tous les effets numériques aléatoires de la quintessence d’un sort prennent automatiquement leur valeur maximale. Les jets de sauvegarde et les jets opposés ne sont pas affectés, pas plus que les sorts sans données numériques et aléatoires. La quintessence d’un sort nécessite un emplacement de sort de trois niveaux de plus que son niveau réel.</descr>
+        <uprank>3</uprank>
+    </metamagic>
+    <metamagic>
+        <id>meta_moon</id>
+        <name>Caresse de la Lune</name>
+        <descr>Toutes les variables numériques et aléatoires d’un sort bénéficiant d'une extension d’effet augmentent de 50%. Les jets de sauvegarde et les jets opposés ne sont pas affectés, ni les sorts sans variable numérique aléatoire. Un sort à extension d’effet nécessite un emplacement de sort de deux niveaux de plus que son niveau réel. Et les soins donnes des points de vies temporaires</descr>
+        <uprank>2</uprank>
+    </metamagic>
+    <metamagic>
+        <id>meta_arrow</id>
+        <name>Flêche naturalisée</name>
+        <descr>Place un sort sur une flêche de l'archer-sylvestre (Wedge + Tenshi ftw). Tout sort placé sur une flèche de cette manière est alors considéré comme lancé. Les flèches naturalisées restent actives 24h. Utiliser ce pouvoir est une action complexe et nécéssite un emplacement de sort de deux niveaux de plus que son niveau réel.</descr>
+        <uprank>2</uprank>
+    </metamagic>
+
+    <metamagic>
+        <id>meta_bolstering</id>
+        <name>Sort de soutien</name>
+        <descr>Donne un bouclier de 2 points de vie / niveau de lanceur de sort. Dure 1min/niveau. Chaque cible ne peut avoir qu'un bouclier de soutien actif en même temps.</descr>
+        <uprank>2</uprank>
+    </metamagic>
+
+    <metamagic>
+        <id>meta_range</id>
+        <name>Sort éloigné</name>
+        <descr>Ce don permet d’augmenter la portée d'un sort (selon l’ordre « contact », « courte », « moyenne », « longue »). Un sort éloigné occupe un emplacement de sort d’un niveau de plus que le niveau normal du sort pour chaque augmentation de catégorie. Si le sort de base nécessite des attaques de contact au corps à corps, la version modifiée par ce don utilise des attaques de contact à distance.</descr>
+        <uprank>1</uprank>
+        <multicast>true</multicast>
+    </metamagic>
+
+    <metamagic>
+        <id>meta_silent</id>
+        <name>Sort silencieux</name>
+        <descr>Un sort à incantation silencieuse ne nécessite pas de composante verbale. Les sorts sans composante verbale ne sont donc pas affectés. Un sort à incantation silencieuse nécessite un emplacement de sort d’un niveau de plus que son niveau réel.</descr>
+        <uprank>1</uprank>
+    </metamagic>
+
+    <metamagic>
+        <id>meta_static</id>
+        <name>Sort statique</name>
+        <descr>Un sort à incantation statique ne nécessite pas de composante gestuelle. Les sorts sans composante gestuelle ne sont pas affectés. Un sort à incantation statique nécessite un emplacement de sort d’un niveau de plus que son niveau réel.</descr>
+        <uprank>1</uprank>
+    </metamagic>
+
+
+
+
+</records>

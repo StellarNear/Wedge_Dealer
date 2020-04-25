@@ -6,8 +6,6 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.widget.CheckBox;
 
-import androidx.core.content.ContextCompat;
-
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.LimitLine;
@@ -204,7 +202,7 @@ public class DSSFDmgChartMaker {
         String labelSet = elemsSelected.equalsIgnoreCase("all") ? "tout" : elems.getName(elemsSelected);
         BarDataSet set = new BarDataSet(listVal, labelSet);
         if (elemsSelected.equalsIgnoreCase("all")) {
-            set.setColor(ContextCompat.getColor(mC, R.color.all_stat));
+            set.setColor(mC.getColor(R.color.all_stat));
         } else {
             set.setColor(elems.getColorIdDark(elemsSelected));
         }
@@ -267,7 +265,7 @@ public class DSSFDmgChartMaker {
 
         int lineColor;
         if (elem.equalsIgnoreCase("all")) {
-            lineColor = ContextCompat.getColor(mC, R.color.all_recent_stat);
+            lineColor = mC.getColor(R.color.all_recent_stat);
         } else {
             lineColor = elems.getColorId(elem);
         }

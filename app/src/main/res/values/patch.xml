@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="time_spend">186h</string>
+    <string name="time_spend">189h</string>
     <string name="basic_infos">"Application développée pour gagner un temps considérable fin 2017."</string>
     <string name="patch_list">"----------------------------------------------------------------------------------
+Patch note v2.3
+-Add total damage per date in stats
+-Gestion des métamagie séparement pour Wedge et Halda
+-Changement de theme pour prepa liste Wedge quand on dort
+-Nouveau menu de rechargement des rangs de sort à partir de gemmes
+        -Visibilité des rangs actuellement disponibles
+        -Plus de possibilité de perdre des rangs en dépassant le maximum
+        -Aide au calcul des rangs restants à dépenser
+----------------------------------------------------------------------------------
 Patch note v2.2
 -Rework assets symbols spells
 -New ImageFactoryForDices

@@ -1,8 +1,6 @@
 package stellarnear.wedge_companion.Perso;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -42,7 +40,6 @@ public class AllCapacities {
         mapIdcapacity = new HashMap<>();
         try {
             String extendID = pjID.equalsIgnoreCase("") ? "" : "_" + pjID;
-            SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mC);
             InputStream is = mC.getAssets().open("capacities" + extendID + ".xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -54,7 +51,6 @@ public class AllCapacities {
             NodeList nList = doc.getElementsByTagName("capacity");
 
             for (int i = 0; i < nList.getLength(); i++) {
-
                 Node node = nList.item(i);
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element element2 = (Element) node;

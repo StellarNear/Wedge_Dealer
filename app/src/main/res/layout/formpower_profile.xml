@@ -72,7 +72,7 @@
                     android:layout_height="4px"
                     android:layout_marginStart="@dimen/bordure_spell_background"
                     android:layout_marginEnd="@dimen/bordure_spell_background"
-                    android:background="@color/gray" />
+                    android:background="@color/gray50" />
 
 
                 <LinearLayout

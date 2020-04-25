@@ -52,6 +52,13 @@ public class SplashActivity extends AppCompatActivity {
             final GetVersionData getDataVersion;
             try {
                 getDataVersion = new GetVersionData(SplashActivity.this);
+                getDataVersion.setOnDataFailEventListener(new GetVersionData.OnDataFailEventListener() {
+                    @Override
+                    public void onEvent() {
+                        startMainActivity();
+                    }
+                });
+
                 getDataVersion.setOnDataRecievedEventListener(new GetVersionData.OnDataRecievedEventListener() {
                     @Override
                     public void onEvent() {

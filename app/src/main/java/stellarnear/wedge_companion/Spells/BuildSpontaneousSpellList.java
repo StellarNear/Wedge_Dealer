@@ -88,6 +88,7 @@ public class BuildSpontaneousSpellList extends AppCompatActivity {
                             getValue("rm", element2),
                             getValue("save_type", element2),
                             tools.toInt(getValue("rank", element2)),
+                            BuildSpontaneousMetaList.getInstance(mC).getMetaList(),
                             mC));
                 }
             }

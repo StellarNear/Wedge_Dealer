@@ -83,7 +83,7 @@
                     android:layout_height="4px"
                     android:layout_marginStart="@dimen/bordure_spell_background"
                     android:layout_marginEnd="@dimen/bordure_spell_background"
-                    android:background="@color/gray" />
+                    android:background="@color/gray50" />
 
 
                 <LinearLayout
@@ -162,7 +162,7 @@
                         android:id="@+id/sr_test_sepa"
                         android:layout_width="4px"
                         android:layout_height="match_parent"
-                        android:background="@color/gray"
+                        android:background="@color/gray50"
                         android:orientation="vertical" />
 
                     <ImageView
@@ -180,7 +180,7 @@
                     android:layout_height="4px"
                     android:layout_marginStart="@dimen/bordure_spell_background"
                     android:layout_marginEnd="@dimen/bordure_spell_background"
-                    android:background="@color/gray" />
+                    android:background="@color/gray50" />
 
                 <LinearLayout
                     android:id="@+id/metamagic"

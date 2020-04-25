@@ -374,6 +374,30 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical">
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    >
+                    <RadioButton
+                        android:id="@+id/time_graph_sum_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:checked="true"
+                        android:text="Somme"
+                        />
+                    <RadioButton
+                        android:layout_marginStart="50dp"
+                        android:id="@+id/time_graph_moy_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:text="Moyenne"
+                        />
+
+                </RadioGroup>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -381,11 +405,12 @@
                     android:gravity="center">
 
                     <TextView
+                        android:id="@+id/time_graph_time_dmg_y_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/general_margin"
                         android:gravity="center"
-                        android:text="dmgMoy"
+                        android:text="sumMoy"
                         android:textColor="@color/black"
                         android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"

@@ -98,6 +98,7 @@ public class BuildPreparedSpellList extends AppCompatActivity {
                             getValue("rm", element2),
                             getValue("save_type", element2),
                             tools.toInt(getValue("rank", element2)),
+                            BuildPreparedMetaList.getInstance(mC).getMetaList(),
                             mC));
                 }
             }

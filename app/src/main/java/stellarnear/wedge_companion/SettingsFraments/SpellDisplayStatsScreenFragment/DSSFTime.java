@@ -9,8 +9,6 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import androidx.core.content.ContextCompat;
-
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
@@ -245,7 +243,7 @@ public class DSSFTime {
         }
         if (listVal.size() > 0) {
             LineDataSet elemSet = new LineDataSet(listVal, "tout");
-            setLinePara(elemSet, ContextCompat.getColor(mC, R.color.all_stat));
+            setLinePara(elemSet, mC.getColor(R.color.all_stat));
             data.addDataSet(elemSet);
         }
     }
@@ -312,7 +310,7 @@ public class DSSFTime {
 
         if (listVal.size() > 0) {
             LineDataSet elemSet = new LineDataSet(listVal, "tout");
-            setLinePara(elemSet, ContextCompat.getColor(mC, R.color.all_stat));
+            setLinePara(elemSet, mC.getColor(R.color.all_stat));
             data.addDataSet(elemSet);
         }
     }

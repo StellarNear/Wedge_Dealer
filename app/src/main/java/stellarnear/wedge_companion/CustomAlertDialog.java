@@ -24,6 +24,7 @@ public class CustomAlertDialog {
     private boolean cancelButton = false;
     private String mode = "";
     private OnAcceptEventListener mListener;
+    private Tools tools=Tools.getTools();
 
     public CustomAlertDialog(Activity mA, Context mC, View view) {
         // Set the toast and duration
@@ -139,6 +140,10 @@ public class CustomAlertDialog {
 
     public void setAcceptEventListener(OnAcceptEventListener eventListener) {
         mListener = eventListener;
+    }
+
+    public View getConfirmButton() {
+        return alert.getButton(DialogInterface.BUTTON_POSITIVE);
     }
 
     public interface OnAcceptEventListener {

@@ -62,7 +62,7 @@ public class CalculationSpell {
         for (Metamagic meta : spell.getMetaList().filterActive().asList()) {
             //une méta peut etre gratuite venant de conversion arcanique ou de perfectin magique
             boolean metaFreePerfect = spell.getPerfectMetaId().equalsIgnoreCase(meta.getId());
-            if (!metaFreePerfect && !(meta.getId().equalsIgnoreCase("meta_arrow") && pj.getID().equalsIgnoreCase(""))) { //la meta arrow est gratuite pour wedge
+            if (!metaFreePerfect) {
                 upRankFromMeta += meta.getUprank() * meta.getnCast();
             }
         }

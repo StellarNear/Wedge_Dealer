@@ -3,6 +3,7 @@ package stellarnear.wedge_companion.SettingsFraments.DisplayStatsScreenFragment;
 import android.content.Context;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
@@ -44,6 +45,7 @@ public class DSSFTime {
     private int infoTxtSize = 10;
     private LineChart chartAtk;
     private LineChart chartDmg;
+    private DmgMode dmgMode = DmgMode.SUM;
     private Tools tools = Tools.getTools();
 
     public DSSFTime(View mainView, Context mC) {
@@ -56,15 +58,12 @@ public class DSSFTime {
         CheckBox checkShock = mainView.findViewById(R.id.line_type_time_shock);
         CheckBox checkFrost = mainView.findViewById(R.id.line_type_time_frost);
 
-        mapElemCheckbox.put("", checkPhy);
-        mapElemCheckbox.put("fire", checkFire);
-        mapElemCheckbox.put("shock", checkShock);
-        mapElemCheckbox.put("frost", checkFrost);
-        setCheckboxListeners();
+        mapElemCheckbox.put("", checkPhy);  mapElemCheckbox.put("fire", checkFire);  mapElemCheckbox.put("shock", checkShock);  mapElemCheckbox.put("frost", checkFrost);
+        setListeners();
         initLineCharts();
     }
 
-    private void setCheckboxListeners() {
+    private void setListeners() {
         for (String elem : elems.getListKeysWedgeDamage()) {
             mapElemCheckbox.get(elem).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -75,6 +74,24 @@ public class DSSFTime {
                 }
             });
         }
+        mainView.findViewById(R.id.time_graph_moy_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dmgMode=DmgMode.MOY;
+                ((TextView)mainView.findViewById(R.id.time_graph_time_dmg_y_label)).setText("dmgMoy");
+                resetChartDmg();
+                setDmgData();
+            }
+        });
+        mainView.findViewById(R.id.time_graph_sum_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dmgMode=DmgMode.SUM;
+                ((TextView)mainView.findViewById(R.id.time_graph_time_dmg_y_label)).setText("dmgSum");
+                resetChartDmg();
+                setDmgData();
+            }
+        });
     }
 
     private void initLineCharts() {
@@ -130,13 +147,11 @@ public class DSSFTime {
     private void initLineChartDmg() {
         chartDmg = mainView.findViewById(R.id.line_chart_time_dmg);
         setChartPara(chartDmg);
-
         chartDmg.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
                 tools.customToast(mC, e.getData().toString(), "center");
             }
-
             @Override
             public void onNothingSelected() {
                 resetChartDmg();
@@ -214,7 +229,6 @@ public class DSSFTime {
         chartAtk.setData(data);
     }
 
-
     private void setDmgData() {
         LineData data;
         if (elemsSelected.size() == 4) {
@@ -227,14 +241,19 @@ public class DSSFTime {
     }
 
     private LineData getDmgDataSolo() {
-        ArrayList<Entry> listValDmgMoy = new ArrayList<>();
+        ArrayList<Entry> listValDmg = new ArrayList<>();
         int index = 0;
         for (String key : mapDatetxtStatslist.keySet()) {
-            int dmgMoy = mapDatetxtStatslist.get(key).getMoyDmg();
-            listValDmgMoy.add(new Entry(index, dmgMoy, dmgMoy + " dégâts en moyenne le " + key));
+            if(dmgMode == DmgMode.MOY) {
+                int dmg = mapDatetxtStatslist.get(key).getMoyDmg();
+                listValDmg.add(new Entry(index, dmg, dmg + " dégâts en moyenne le " + key));
+            } else {
+                int dmg = mapDatetxtStatslist.get(key).getSumDmgTot();
+                listValDmg.add(new Entry(index, dmg, dmg + " dégâts au total le " + key));
+            }
             index++;
         }
-        LineDataSet setHit = new LineDataSet(listValDmgMoy, "tout");
+        LineDataSet setHit = new LineDataSet(listValDmg, "tout");
         setLinePara(setHit, mC.getColor(R.color.dmg_stat));
         LineData data = new LineData();
         data.addDataSet(setHit);
@@ -244,14 +263,19 @@ public class DSSFTime {
     private LineData getDmgDataElems() {
         LineData data = new LineData();
         for (String elem : elemsSelected) {
-            ArrayList<Entry> listDmgMoy = new ArrayList<>();
+            ArrayList<Entry> listDmg = new ArrayList<>();
             int index = 0;
             for (String key : mapDatetxtStatslist.keySet()) {
-                int dmgMoy = mapDatetxtStatslist.get(key).getMoyDmgElem(elem);
-                listDmgMoy.add(new Entry(index, dmgMoy, dmgMoy + " dégâts de " + elems.getName(elem) + " en moyenne le " + key));
+                if(dmgMode == DmgMode.MOY) {
+                    int dmg = mapDatetxtStatslist.get(key).getMoyDmgElem(elem);
+                    listDmg.add(new Entry(index, dmg, dmg + " dégâts de " + elems.getName(elem) + " en moyenne le " + key));
+                } else {
+                    int dmg = mapDatetxtStatslist.get(key).getSumDmgTotElem(elem);
+                    listDmg.add(new Entry(index, dmg, dmg + " dégâts de " + elems.getName(elem) + " au total le " + key));
+                }
                 index++;
             }
-            LineDataSet setVal = new LineDataSet(listDmgMoy, elems.getName(elem));
+            LineDataSet setVal = new LineDataSet(listDmg, elems.getName(elem));
             setLinePara(setVal, elems.getColorId(elem));
             data.addDataSet(setVal);
         }
@@ -287,6 +311,12 @@ public class DSSFTime {
         chartDmg.invalidate();
         chartDmg.fitScreen();
         chartDmg.highlightValue(null);
+    }
+
+    //object
+    public enum DmgMode {
+        SUM,
+        MOY
     }
 }
 

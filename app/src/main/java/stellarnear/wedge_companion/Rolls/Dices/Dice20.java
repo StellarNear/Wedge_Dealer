@@ -66,7 +66,7 @@ public class Dice20 {
 
             setRefreshImg();
             if (pj.getAllResources().getResource("resource_mythic_points") != null && pj.getAllResources().getResource("resource_mythic_points").getMax() > 0) {
-                setRefreshMythicSurge(); //on assigne un lsitener pour creer le des mythique si clic sur l'image du dès
+                setRefreshMythicSurge(); //on assigne un listener pour creer le des mythique si clic sur l'image du dès
             }
         }
         return this.img;

@@ -5,13 +5,11 @@
         android:key="infos"
         android:summary="Résumé d'informations sur l'application"
         android:title="Infos" />
-
     <PreferenceScreen
         android:icon="@drawable/ic_build_black_24dp"
         android:key="pref_appli_para"
         android:summary="Options de application"
         android:title="Paramètres de l'application" />
-
     <PreferenceScreen
         android:icon="@drawable/ic_undo_black_24dp"
         android:key="pref_appli_reset"
@@ -22,7 +20,6 @@
         android:key="import_save"
         android:summary="Charge les informations"
         android:title="Charger" />
-
     <PreferenceScreen
         android:icon="@drawable/ic_file_download_black_24dp"
         android:key="export_save"

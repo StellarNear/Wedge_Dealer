@@ -22,15 +22,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import stellarnear.wedge_companion.BuildConfig;
-import stellarnear.wedge_companion.Tools;
 
 
 public class GetVersionData {
     private ProgressDialog dialog;
     private Activity mA;
-    private Tools tools = Tools.getTools();
     private List<VersionData> versionDataList;
     private OnDataRecievedEventListener mListener;
+    private OnDataFailEventListener mListenerFail;
 
     public GetVersionData(Activity mA) {
         this.mA = mA;
@@ -49,6 +48,14 @@ public class GetVersionData {
     }
 
     public interface OnDataRecievedEventListener {
+        void onEvent();
+    }
+
+    public void setOnDataFailEventListener(OnDataFailEventListener eventListener) {
+        mListenerFail = eventListener;
+    }
+
+    public interface OnDataFailEventListener {
         void onEvent();
     }
 
@@ -128,6 +135,9 @@ public class GetVersionData {
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
+                if (mListenerFail != null) {
+                    mListenerFail.onEvent();
+                }
             }
         }
     }

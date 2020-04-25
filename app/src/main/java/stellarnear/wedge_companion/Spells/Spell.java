@@ -100,7 +100,7 @@ public class Spell {
         this.cast = new Cast();
     }
 
-    public Spell(String id, boolean mythic, boolean fromMystery, boolean fromMysteryBonus, String normalSpellId, String name, String descr, String shortDescr, String type, Integer n_sub_spell, String dice_type, Double n_dice_per_lvl, int cap_dice, String dmg_type, String flat_dmg, int flat_cap, String range, String contact, String area, String cast_time, String duration, String compo, String compoM, String rm, String save_type, int rank, Context mC) {
+    public Spell(String id, boolean mythic, boolean fromMystery, boolean fromMysteryBonus, String normalSpellId, String name, String descr, String shortDescr, String type, Integer n_sub_spell, String dice_type, Double n_dice_per_lvl, int cap_dice, String dmg_type, String flat_dmg, int flat_cap, String range, String contact, String area, String cast_time, String duration, String compo, String compoM, String rm, String save_type, int rank, MetaList metaList, Context mC) {
         if (id.equalsIgnoreCase("")) {
             this.id = name;
         } else {
@@ -137,7 +137,7 @@ public class Spell {
                 this.perfect = true;
             }
         }
-        this.metaList = BuildMetaList.getInstance(mC).getMetaList();
+        this.metaList = metaList;
         this.cast = new Cast();
     }
 

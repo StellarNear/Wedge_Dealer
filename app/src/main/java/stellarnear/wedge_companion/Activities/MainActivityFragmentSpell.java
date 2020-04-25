@@ -5,7 +5,6 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -75,7 +74,7 @@ public class MainActivityFragmentSpell extends Fragment {
             @Override
             public void onClick(View view) {
                 if (!selectedSpells.isEmpty()) {
-                    testSpellSelection();
+                    setCastingSpellsAndGoCast();
                 } else {
                     Toast toast = Toast.makeText(getContext(), "Sélectionnes au moins un sort ...", Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER, 0, 0);
@@ -105,7 +104,6 @@ public class MainActivityFragmentSpell extends Fragment {
     }
 
     private void animate(final ImageButton buttonMain) {
-
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
@@ -117,8 +115,6 @@ public class MainActivityFragmentSpell extends Fragment {
                 buttonMain.startAnimation(anim);
             }
         }, getResources().getInteger(R.integer.translationFragDuration));
-
-
     }
 
     private void buildPage1() {
@@ -167,19 +163,12 @@ public class MainActivityFragmentSpell extends Fragment {
             side_txt.setGravity(Gravity.CENTER);
             side_txt.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, 0, 1));
 
-            int orientation = getResources().getConfiguration().orientation;  //1 pour portrait et 2 paysage
+
             side_txt.setTextColor(Color.DKGRAY);
-            if (orientation == 1) {
                 side_txt.setText("T" + i + "\n(" + pj.getCurrentResourceValue("spell_rank_" + i) + ")");
                 if (i == 0) {
                     side_txt.setText("T" + i + "\n(" + DecimalFormatSymbols.getInstance().getInfinity() + ")");
                 }
-            } else {
-                side_txt.setText("T" + i + " (" + pj.getCurrentResourceValue("spell_rank_" + i) + ")");
-                if (i == 0) {
-                    side_txt.setText("T" + i + " (" + DecimalFormatSymbols.getInstance().getInfinity() + ")");
-                }
-            }
 
             side_txt.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -401,16 +390,12 @@ public class MainActivityFragmentSpell extends Fragment {
         }
     }
 
-    private void testSpellSelection() {
-        if (!selectedSpells.isEmpty()) {
+    private void setCastingSpellsAndGoCast() {
             SelectedSpells.getInstance().setSelection(selectedSpells);
-            buildPage2();
-        } else {
-            startActivity(new Intent(getContext(), MainActivityFragmentSpell.class));
-        }
+            startCasting();
     }
 
-    private void buildPage2() {
+    private void startCasting() {
         FragmentManager fragmentManager = getActivity().getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.setCustomAnimations(R.animator.infromrightfrag, R.animator.outfadefrag);
