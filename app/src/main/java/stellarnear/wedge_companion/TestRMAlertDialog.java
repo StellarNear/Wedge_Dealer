@@ -175,14 +175,7 @@ public class TestRMAlertDialog {
     private void endSkillCalculation() {
         LinearLayout resultDice = dialogView.findViewById(R.id.customDialogTestResultDice);
         resultDice.removeAllViews();
-
-
-        ViewGroup parentImg = (ViewGroup) dice.getImg().getParent();
-        if (parentImg != null) {
-            parentImg.removeView(dice.getImg());
-        }
         resultDice.addView(dice.getImg());
-
 
         TextView resultTitle = dialogView.findViewById(R.id.customDialogTitleResult);
         TextView callToAction = dialogView.findViewById(R.id.customDialogTestCallToAction);
@@ -192,28 +185,7 @@ public class TestRMAlertDialog {
         successButton.setVisibility(View.VISIBLE);
 
         resultTitle.setText("Résultat du test de niveau de lanceur de sort :");
-
-        int valDice = dice.getRandValue();
-        if (dice.getMythicDice() != null) {
-            valDice += dice.getMythicDice().getRandValue();
-        }
-
-        int sumResult = valDice + sumScore;
-
-
-        final TextView result = dialogView.findViewById(R.id.customDialogTestResult);
-        result.setText(String.valueOf(sumResult));
-
-        dice.setMythicEventListener(new Dice20.OnMythicEventListener() {
-            @Override
-            public void onEvent() {
-                endSkillCalculation();
-            }
-        });
-
-
         callToAction.setText("Fin du test de\nniveau de lanceur de sort.");
-
         Button failButton = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
         failButton.setText("Raté");
         failButton.setOnClickListener(new View.OnClickListener() {
@@ -227,6 +199,27 @@ public class TestRMAlertDialog {
                 alertDialog.dismiss();
             }
         });
+
+        dice.setMythicEventListener(new Dice20.OnMythicEventListener() {
+            @Override
+            public void onEvent() {
+                displayResult();
+            }
+        });
+        displayResult();
+    }
+
+    private void displayResult(){
+        int valDice = dice.getRandValue();
+        if (dice.getMythicDice() != null) {
+            valDice += dice.getMythicDice().getRandValue();
+        }
+
+        int sumResult = valDice + sumScore;
+
+        final TextView result = dialogView.findViewById(R.id.customDialogTestResult);
+        result.setText(String.valueOf(sumResult));
+
         new PostData(mC, new PostDataElement("Test contre RM " + spell.getName(), dice, sumResult));
     }
 

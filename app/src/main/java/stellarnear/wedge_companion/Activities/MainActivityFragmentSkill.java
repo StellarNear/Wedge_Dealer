@@ -84,10 +84,15 @@ public class MainActivityFragmentSkill extends Fragment {
         LinearLayout line = new LinearLayout(getContext());
         line.setOrientation(LinearLayout.HORIZONTAL);
         line.setGravity(Gravity.CENTER);
-        line.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, getResources().getDimensionPixelSize(R.dimen.icon_skills_list_height)));
+        line.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,getResources().getDimensionPixelSize(R.dimen.icon_skills_list_height)));
         line.setBackground(getResources().getDrawable(R.drawable.skill_bar_gradient));
         setNameListnerRollSkill(line, skill);
 
+        LinearLayout iconAndName = new LinearLayout(getContext());
+        iconAndName.setOrientation(LinearLayout.HORIZONTAL);
+        iconAndName.setGravity(Gravity.CENTER_VERTICAL);
+        TextView nameTitle = returnFragView.findViewById(R.id.skillNameTitle);
+        iconAndName.setLayoutParams(nameTitle.getLayoutParams());
 
         ImageView icon = new ImageView(getContext());
         int imgId = R.drawable.mire_test;
@@ -100,17 +105,18 @@ public class MainActivityFragmentSkill extends Fragment {
         tools.resize(icon,(int) (getResources().getDimensionPixelSize(R.dimen.icon_skills_list_height) * 0.8));
         LinearLayout.LayoutParams para = (LinearLayout.LayoutParams) icon.getLayoutParams();
         para.setMarginStart(getResources().getDimensionPixelSize(R.dimen.general_margin));
+        iconAndName.addView(icon);
 
         TextView nameTxt = new TextView(getContext());
-        TextView nameTitle = returnFragView.findViewById(R.id.skillNameTitle);
-        nameTxt.setLayoutParams(nameTitle.getLayoutParams());
+        nameTxt.setLayoutParams(new LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.WRAP_CONTENT,1));
         nameTxt.setText(skill.getName());
         nameTxt.setGravity(Gravity.CENTER);
+        iconAndName.addView(nameTxt);
 
         TextView totalTxt = new TextView(getContext());
         TextView totalTitle = returnFragView.findViewById(R.id.skillTotalTitle);
         totalTxt.setLayoutParams(totalTitle.getLayoutParams());
-        int total = pj.getAbilityMod(skill.getAbilityDependence()) + pj.getSkillRank(skill.getId()) + pj.getSkillBonus(skill.getId());
+        int total = pj.getAbilityMod(skill.getAbilityDependence())+skill.getRank()+pj.getSkillBonus(skill.getId());
         totalTxt.setText(String.valueOf(total));
         totalTxt.setTypeface(null, Typeface.BOLD);
         totalTxt.setGravity(Gravity.CENTER);
@@ -119,18 +125,18 @@ public class MainActivityFragmentSkill extends Fragment {
         TextView abiTitle = returnFragView.findViewById(R.id.skillAbiTitle);
         abiTxt.setLayoutParams(abiTitle.getLayoutParams());
         String abScore;
-        if (pj.getAbilityMod(skill.getAbilityDependence()) >= 0) {
-            abScore = "+" + pj.getAbilityMod(skill.getAbilityDependence());
+        if(pj.getAbilityMod(skill.getAbilityDependence())>=0){
+            abScore = "+"+pj.getAbilityMod(skill.getAbilityDependence());
         } else {
             abScore = String.valueOf(pj.getAbilityMod(skill.getAbilityDependence()));
         }
-        abiTxt.setText(skill.getAbilityDependence().substring(8, 11) + " : " + abScore);  //la clef de l'id etant ability_x
+        abiTxt.setText(skill.getAbilityDependence().substring(8,11) + " : " +abScore );  //la clef de l'id etant ability_x
         abiTxt.setGravity(Gravity.CENTER);
 
         TextView rankTxt = new TextView(getContext());
         TextView rankTitle = returnFragView.findViewById(R.id.skillRankTitle);
         rankTxt.setLayoutParams(rankTitle.getLayoutParams());
-        rankTxt.setText(String.valueOf(pj.getSkillRank(skill.getId())));
+        rankTxt.setText(String.valueOf(skill.getRank()));
         rankTxt.setGravity(Gravity.CENTER);
 
         TextView bonusTxt = new TextView(getContext());
@@ -139,15 +145,13 @@ public class MainActivityFragmentSkill extends Fragment {
         bonusTxt.setText(String.valueOf(pj.getSkillBonus(skill.getId())));
         bonusTxt.setGravity(Gravity.CENTER);
 
-        line.addView(icon);
-        line.addView(nameTxt);
+        line.addView(iconAndName);
         line.addView(totalTxt);
         line.addView(abiTxt);
         line.addView(rankTxt);
         line.addView(bonusTxt);
 
         linearSkillScroll.addView(line);
-
     }
 
     private void setNameListnerRollSkill(LinearLayout line, final Skill skill) {
