@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="time_spend">191h</string>
+    <string name="time_spend">192h</string>
     <string name="basic_infos">"Application développée pour gagner un temps considérable fin 2017."</string>
     <string name="patch_list">"----------------------------------------------------------------------------------
-Patch note v2.4
--Migration android X rescale image
+Patch note v2.3.1
+-fix entete layout skill
+-fix test RM dice img
+-catch bug images dices (si pas de resource)
 ----------------------------------------------------------------------------------
 Patch note v2.3
 -Add total damage per date in stats

@@ -31,20 +31,24 @@ public class ImgFactoryForDice20 {
 
     private void makeImg(){
         ImageView imgDice  = null;
-            int drawableId;
-            if (dice.getRandValue() > 0) {
-                drawableId = mC.getResources().getIdentifier("d" + dice.getnFace() + "_" + dice.getRandValue() + (dice.getElement().equalsIgnoreCase("none") ? "" : dice.getElement()), "drawable", mC.getPackageName());
-            } else {
-                drawableId = mC.getResources().getIdentifier("d" + dice.getnFace() + "_main", "drawable", mC.getPackageName());
-            }
-            imgDice  = new ImageView(mC);
+        int drawableId;
+        if (dice.getRandValue() > 0) {
+            drawableId = mC.getResources().getIdentifier("d" + dice.getnFace() + "_" + dice.getRandValue() + (dice.getElement().equalsIgnoreCase("none") ? "" : dice.getElement()), "drawable", mC.getPackageName());
+        } else {
+            drawableId = mC.getResources().getIdentifier("d" + dice.getnFace() + "_main", "drawable", mC.getPackageName());
+        }
+        imgDice  = new ImageView(mC);
+        if(drawableId!=0) {
             imgDice.setImageDrawable(mC.getDrawable(drawableId));
-            tools.resize(imgDice, mC.getResources().getDimensionPixelSize(R.dimen.icon_main_dices_wheel_size));
+        } else {
+            imgDice.setImageDrawable(mC.getDrawable(R.drawable.mire_test));
+        }
+        tools.resize(imgDice, mC.getResources().getDimensionPixelSize(R.dimen.icon_main_dices_wheel_size));
         this.img= imgDice;
     }
 
     public View getImg() {
-       return this.img;
+        return this.img;
     }
 
     public void invalidateImg() {
