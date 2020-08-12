@@ -20,6 +20,7 @@ import stellarnear.wedge_companion.CustomAlertDialog;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;
+import stellarnear.wedge_companion.Spells.DisplayedText;
 import stellarnear.wedge_companion.Spells.Spell;
 import stellarnear.wedge_companion.Tools;
 
@@ -131,8 +132,32 @@ public class LinearLineSpell {
         tooltipAlert.setPermanent(true);
         ((TextView) tooltip.findViewById(R.id.toast_textName)).setText(spell.getName());
         ((TextView) tooltip.findViewById(R.id.toast_textDescr)).setText(spell.getDescr());
+        if(!primaryInfos().equalsIgnoreCase("")) {
+            ((TextView) tooltip.findViewById(R.id.toast_textPrimaryInfos)).setText(primaryInfos());
+        } else { tooltip.findViewById(R.id.toast_textPrimaryInfos).setVisibility(View.GONE);}
         tooltipAlert.clickToHide(tooltip.findViewById(R.id.toast_LinearLayout));
         tooltipAlert.showAlert();
+    }
+
+    private String primaryInfos() {
+        String infos="";
+        DisplayedText displayText=new DisplayedText();
+        if (!spell.getRange().equals("")) {
+            infos+="Portée:" + displayText.rangeTxt(spell);
+        }
+        if (!spell.getArea().equals("")) {
+            if(!infos.equalsIgnoreCase("")){
+                infos+="\t";
+            }
+            infos+="Zone:" + spell.getArea();
+        }
+        if (!spell.getDuration().equals("") && !spell.getDuration().equalsIgnoreCase("instant")) {
+            if(!infos.equalsIgnoreCase("")){
+                infos+="\t";
+            }
+            infos+="Durée:" + displayText.durationTxt(spell);
+        }
+        return infos;
     }
 
     private void addSpellTypeIcons() {

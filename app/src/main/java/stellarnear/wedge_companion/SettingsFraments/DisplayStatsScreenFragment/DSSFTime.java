@@ -83,6 +83,15 @@ public class DSSFTime {
                 setDmgData();
             }
         });
+        mainView.findViewById(R.id.time_graph_moy_single_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dmgMode=DmgMode.MOY_SINGLE;
+                ((TextView)mainView.findViewById(R.id.time_graph_time_dmg_y_label)).setText("dmgMoy");
+                resetChartDmg();
+                setDmgData();
+            }
+        });
         mainView.findViewById(R.id.time_graph_sum_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -244,9 +253,12 @@ public class DSSFTime {
         ArrayList<Entry> listValDmg = new ArrayList<>();
         int index = 0;
         for (String key : mapDatetxtStatslist.keySet()) {
-            if(dmgMode == DmgMode.MOY) {
+            if(dmgMode == DmgMode.MOY_SINGLE) {
+                int dmg = mapDatetxtStatslist.get(key).getSumDmgTot()/mapDatetxtStatslist.get(key).getNAtksTot();
+                listValDmg.add(new Entry(index, dmg, dmg + " dégâts en moyenne par flêche le " + key));
+            } else if(dmgMode == DmgMode.MOY) {
                 int dmg = mapDatetxtStatslist.get(key).getMoyDmg();
-                listValDmg.add(new Entry(index, dmg, dmg + " dégâts en moyenne le " + key));
+                listValDmg.add(new Entry(index, dmg, dmg + " dégâts en moyenne par cible le " + key));
             } else {
                 int dmg = mapDatetxtStatslist.get(key).getSumDmgTot();
                 listValDmg.add(new Entry(index, dmg, dmg + " dégâts au total le " + key));
@@ -266,9 +278,12 @@ public class DSSFTime {
             ArrayList<Entry> listDmg = new ArrayList<>();
             int index = 0;
             for (String key : mapDatetxtStatslist.keySet()) {
-                if(dmgMode == DmgMode.MOY) {
+                if(dmgMode == DmgMode.MOY_SINGLE) {
+                    int dmg = mapDatetxtStatslist.get(key).getSumDmgTotElem(elem)/mapDatetxtStatslist.get(key).getNAtksTot();
+                    listDmg.add(new Entry(index, dmg, dmg + " dégâts de " + elems.getName(elem) + " en moyenne par flêche le " + key));
+                } else if(dmgMode == DmgMode.MOY) {
                     int dmg = mapDatetxtStatslist.get(key).getMoyDmgElem(elem);
-                    listDmg.add(new Entry(index, dmg, dmg + " dégâts de " + elems.getName(elem) + " en moyenne le " + key));
+                    listDmg.add(new Entry(index, dmg, dmg + " dégâts de " + elems.getName(elem) + " en moyenne par cible le " + key));
                 } else {
                     int dmg = mapDatetxtStatslist.get(key).getSumDmgTotElem(elem);
                     listDmg.add(new Entry(index, dmg, dmg + " dégâts de " + elems.getName(elem) + " au total le " + key));
@@ -316,6 +331,7 @@ public class DSSFTime {
     //object
     public enum DmgMode {
         SUM,
+        MOY_SINGLE,
         MOY
     }
 }

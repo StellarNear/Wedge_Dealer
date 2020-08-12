@@ -384,7 +384,7 @@
                         android:id="@+id/time_graph_sum_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         android:checked="true"
                         android:text="Somme"
                         />
@@ -393,8 +393,16 @@
                         android:id="@+id/time_graph_moy_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="16sp"
-                        android:text="Moyenne"
+                        android:textSize="14sp"
+                        android:text="Moy Cible"
+                        />
+                    <RadioButton
+                        android:layout_marginStart="50dp"
+                        android:id="@+id/time_graph_moy_single_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:text="Moy Flêche"
                         />
 
                 </RadioGroup>

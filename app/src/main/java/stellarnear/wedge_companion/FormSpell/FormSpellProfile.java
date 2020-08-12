@@ -3,9 +3,11 @@ package stellarnear.wedge_companion.FormSpell;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.GridLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import stellarnear.wedge_companion.Elems.ElemsManager;
@@ -25,6 +27,7 @@ public class FormSpellProfile {
     private OnRefreshEventListener mListener;
     private Perso pj = PersoManager.getCurrentPJ();
     private Tools tools = Tools.getTools();
+    private int nInfos;
 
     public FormSpellProfile(FormPower spell) {
         this.spell = spell;
@@ -102,19 +105,22 @@ public class FormSpellProfile {
     }
 
     private void printInfo() {
-        GridLayout grid = profile.findViewById(R.id.infos);
-        grid.removeAllViews();
+        ((LinearLayout)profile.findViewById(R.id.infos_col1)).removeAllViews();
+        ((LinearLayout)profile.findViewById(R.id.infos_col2)).removeAllViews();
+        ((LinearLayout)profile.findViewById(R.id.infos_col3)).removeAllViews();
+
+        nInfos=0;
         if (calculationSpell.nDice(spell) > 0 || spell.getFlat_dmg() > 0) {
-            grid.addView(infoElement("Dégats:" + displayText.damageTxt(spell)));
+            addInfoToGrid(infoElement("Dégats:" + displayText.damageTxt(spell)));
         }
         if (!spell.getDmg_type().equals("")) {
-            grid.addView(infoElement("Type:" + ElemsManager.getInstance(mC).getName(spell.getDmg_type())));
+            addInfoToGrid(infoElement("Type:" + ElemsManager.getInstance(mC).getName(spell.getDmg_type())));
         }
         if (!spell.getRange().equals("")) {
-            grid.addView(infoElement("Portée:" + displayText.rangeTxt(spell)));
+            addInfoToGrid(infoElement("Portée:" + displayText.rangeTxt(spell)));
         }
         if (!spell.getArea().equals("")) {
-            grid.addView(infoElement("Zone:" + spell.getArea()));
+            addInfoToGrid(infoElement("Zone:" + spell.getArea()));
         }
         String resistance;
         if (spell.getSave_type().equals("none") || spell.getSave_type().equals("")) {
@@ -124,18 +130,31 @@ public class FormSpellProfile {
             resistance = spell.getSave_type() + "(" + valDD + ")";
         }
         if (!resistance.equals("")) {
-            grid.addView(infoElement("Sauv:" + resistance));
+            addInfoToGrid(infoElement("Sauv:" + resistance));
         }
+    }
+
+    private void addInfoToGrid(TextView infoElement) {
+        LinearLayout line=null;
+        nInfos++;
+        if((nInfos % 3 )== 0){
+            line = ((LinearLayout)profile.findViewById(R.id.infos_col3));
+        } else if ((nInfos % 2 )== 0) {
+            line = ((LinearLayout)profile.findViewById(R.id.infos_col2));
+        }else {
+            line = ((LinearLayout)profile.findViewById(R.id.infos_col1));
+        }
+        line.addView(infoElement);
     }
 
     private TextView infoElement(String txt) {
         TextView textview = new TextView(mC);
         textview.setText(txt);
         textview.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        GridLayout.LayoutParams para = new GridLayout.LayoutParams();
-        para.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f);
-        para.rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f);
-        textview.setLayoutParams(para);
+        textview.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+        textview.setMarqueeRepeatLimit(-1);
+        textview.setSingleLine(true);
+        textview.setSelected(true);
         return textview;
     }
 

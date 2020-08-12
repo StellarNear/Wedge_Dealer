@@ -30,7 +30,7 @@
     <metamagic>
         <id>meta_moon</id>
         <name>Caresse de la Lune</name>
-        <descr>Toutes les variables numériques et aléatoires d’un sort bénéficiant d'une extension d’effet augmentent de 50%. Les jets de sauvegarde et les jets opposés ne sont pas affectés, ni les sorts sans variable numérique aléatoire. Un sort à extension d’effet nécessite un emplacement de sort de deux niveaux de plus que son niveau réel. Et les soins donnes des points de vies temporaires</descr>
+        <descr>Toutes les variables numériques et aléatoires d’un sort bénéficiant d'une extension d’effet augmentent de 50%. Les jets de sauvegarde et les jets opposés ne sont pas affectés, ni les sorts sans variable numérique aléatoire. Un sort à extension d’effet nécessite un emplacement de sort de deux niveaux de plus que son niveau réel. Et les soins donnes des points de vies temporaires. Ces points de vie durent une minute par niveau d'oracle.</descr>
         <uprank>2</uprank>
     </metamagic>
     <metamagic>

@@ -311,7 +311,7 @@ public class Perso {
                 int valDefId = mC.getResources().getIdentifier("epic_save_def" + suffix, "integer", mC.getPackageName());
                 abiScore += tools.toInt(prefs.getString("epic_save" + suffix, String.valueOf(mC.getResources().getInteger(valDefId))));
                 int valDefPermaId = mC.getResources().getIdentifier("switch_perma_resi_DEF" + suffix, "bool", mC.getPackageName());
-                if (prefs.getBoolean("switch_perma_resi" + suffix, mC.getResources().getBoolean(valDefPermaId))) {
+                if ((inventory.getAllEquipments().getAbiBonus(abiId) == 0)  &&  prefs.getBoolean("switch_perma_resi" + suffix, mC.getResources().getBoolean(valDefPermaId))) {
                     abiScore += 1;
                 }
 

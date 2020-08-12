@@ -93,70 +93,35 @@
                     android:minHeight="50dp"
                     android:orientation="horizontal">
 
-                    <GridLayout
+                    <LinearLayout
                         android:id="@+id/infos"
+                        android:gravity="center"
+                        android:orientation="horizontal"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="6"
-                        android:columnCount="3">
-
-                        <TextView
-                            android:layout_rowWeight="1"
-                            android:layout_columnWeight="1"
+                        android:layout_weight="6">
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:id="@+id/infos_col1"
                             android:gravity="center"
-                            android:text="Dégats:3d10"
-                            android:textAlignment="center" />
-
-                        <TextView
-                            android:layout_rowWeight="1"
-                            android:layout_columnWeight="1"
-                            android:gravity="center"
-                            android:text="Type:feu"
-                            android:textAlignment="center" />
-
-                        <TextView
-                            android:layout_rowWeight="1"
-                            android:layout_columnWeight="1"
-                            android:gravity="center"
-                            android:text="Portée:3m"
-                            android:textAlignment="center" />
-
-                        <TextView
-                            android:layout_rowWeight="1"
-                            android:layout_columnWeight="1"
-                            android:gravity="center"
-                            android:text="Range:3m"
-                            android:textAlignment="center" />
-
-                        <TextView
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_rowWeight="1"
-                            android:layout_columnWeight="1"
+                            android:layout_weight="1"/>
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:id="@+id/infos_col2"
                             android:gravity="center"
-                            android:text="Compos:V,G"
-                            android:textAlignment="center" />
-
-                        <TextView
-                            android:layout_rowWeight="1"
-                            android:layout_columnWeight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:id="@+id/infos_col3"
                             android:gravity="center"
-                            android:text="Durée:26min"
-                            android:textAlignment="center" />
-
-                        <TextView
-                            android:layout_rowWeight="1"
-                            android:layout_columnWeight="1"
-                            android:gravity="center"
-                            android:text="RM:non"
-                            android:textAlignment="center" />
-
-                        <TextView
-                            android:layout_rowWeight="1"
-                            android:layout_columnWeight="1"
-                            android:gravity="center"
-                            android:text="Save:ref[annule](21)"
-                            android:textAlignment="center" />
-                    </GridLayout>
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/sr_test_sepa"

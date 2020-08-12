@@ -110,6 +110,7 @@ public class SplashActivity extends AppCompatActivity {
         new AlertDialog.Builder(SplashActivity.this)
                 .setTitle("Update de l'application")
                 .setView(popupView)
+                .setCancelable(false)
                 .setIcon(android.R.drawable.ic_menu_help)
                 .setPositiveButton("oui", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
