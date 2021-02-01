@@ -25,6 +25,10 @@
         android:key="export_save"
         android:summary="Sauvegarde les informations"
         android:title="Sauvegarder" />
-
+    <PreferenceScreen
+        android:icon="@drawable/ic_baseline_bug_report_24"
+        android:key="send_report"
+        android:summary="Envoi un mail avec le rapport d'erreur"
+        android:title="Rapport d'erreur" />
 
 </PreferenceScreen>

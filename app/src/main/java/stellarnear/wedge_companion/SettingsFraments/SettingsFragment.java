@@ -38,7 +38,7 @@ import stellarnear.wedge_companion.Spells.BuildSpontaneousMetaList;
 import stellarnear.wedge_companion.Spells.BuildSpontaneousSpellList;
 import stellarnear.wedge_companion.Tools;
 
-public class SettingsFragment extends PreferenceFragment {
+public class SettingsFragment extends CustomPreferenceFragment {
     private Activity mA;
     private Context mC;
     private List<String> histoPrefKeys = new ArrayList<>();
@@ -80,8 +80,7 @@ public class SettingsFragment extends PreferenceFragment {
             };
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreateFragment() {
         this.settings = PreferenceManager.getDefaultSharedPreferences(getContext());
         settings.registerOnSharedPreferenceChangeListener(listener);
         this.mA = getActivity();
@@ -145,7 +144,7 @@ public class SettingsFragment extends PreferenceFragment {
     }
 
     @Override
-    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+    protected void onPreferenceTreeClickFragment(PreferenceScreen preferenceScreen, Preference preference) throws Exception {
         if (preference.getKey().contains("pref_")) {
             histoPrefKeys.add(preference.getKey());
             histoTitle.add(preference.getTitle().toString());
@@ -155,7 +154,11 @@ public class SettingsFragment extends PreferenceFragment {
         } else {
             action(preference);
         }
-        return true;
+    }
+
+    @Override
+    protected void onDestroyFragment() {
+        settings.unregisterOnSharedPreferenceChangeListener(listener);
     }
 
     private void navigate() {
@@ -246,7 +249,7 @@ public class SettingsFragment extends PreferenceFragment {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(currentPageTitle);
     }
 
-    private void action(Preference preference) {
+    private void action(Preference preference) throws Exception {
         switch (preference.getKey()) {
             case "infos":
                 prefInfoScreenFragment.showInfo();
@@ -437,6 +440,8 @@ public class SettingsFragment extends PreferenceFragment {
                 intentLoad.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 mC.startActivity(intentLoad);
                 break;
+            case "send_report":
+                log.sendReport(getActivity());
         }
 
     }
@@ -446,19 +451,5 @@ public class SettingsFragment extends PreferenceFragment {
         for (String temp : allTempList) {
             settings.edit().putString(temp, "0").apply();
         }
-    }
-
-    /*
-    // Top level PreferenceScreen
-    if (key.equals("top_key_0")) {         changePrefScreen(R.xml.pref_general, preference.getTitle().toString()); // descend into second level    }
-
-    // Second level PreferenceScreens
-    if (key.equals("second_level_key_0")) {        // do something...    }       */
-    @Override
-    public void onStop() {
-        super.onStop();
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mC);
-        prefs.unregisterOnSharedPreferenceChangeListener(listener);
-        listener = null;
     }
 }

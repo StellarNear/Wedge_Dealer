@@ -3,6 +3,10 @@
     <string name="time_spend">193h</string>
     <string name="basic_infos">"Application développée pour gagner un temps considérable fin 2017."</string>
     <string name="patch_list">"----------------------------------------------------------------------------------
+Patch note v2.5
+-Téléchargement automatique des mises à jour ultérieures ET installation automatique
+-Info de version android envoyé au apk versioning
+----------------------------------------------------------------------------------
 Patch note v2.4
 -Ajout de display graph par fleche indiv
 -Fix perma resist + stuff don't stack

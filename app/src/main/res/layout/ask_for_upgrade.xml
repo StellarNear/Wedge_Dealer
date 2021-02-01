@@ -31,13 +31,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Version disponible :"/>
-        <TextView
-            android:id="@+id/ask_upgrade_new"
+
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="@color/colorPrimary"
-            android:text="v1.1.1"/>
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/ask_upgrade_new"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/colorPrimary"
+                android:text="v1.1.1"/>
+
+            <ImageView
+                android:id="@+id/ask_upgrade_link"
+                android:layout_marginStart="@dimen/general_margin"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_insert_link_24dp"/>
+        </LinearLayout>
         <TextView
             android:id="@+id/ask_upgrade_new_sub"
             android:layout_width="wrap_content"
@@ -55,7 +70,7 @@
             android:textColor="@android:color/holo_blue_dark"
             android:textStyle="bold"
             android:text="Quoi de neuf ?"
-/>
+            />
 
 
 
