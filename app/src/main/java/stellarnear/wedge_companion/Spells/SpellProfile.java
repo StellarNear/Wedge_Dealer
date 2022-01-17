@@ -7,12 +7,10 @@ import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import stellarnear.wedge_companion.CustomAlertDialog;
-import stellarnear.wedge_companion.Elems.ElemsManager;
 import stellarnear.wedge_companion.Perso.Perso;
 import stellarnear.wedge_companion.Perso.PersoManager;
 import stellarnear.wedge_companion.R;

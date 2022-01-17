@@ -2,15 +2,15 @@
 <records>
     <!-- feat_magic -->
 
+    <feat>
+        <name>Connaissances magiques (mythique)</name>
+        <type>feat_magic</type>
+        <descr>Le personnage peut apprendre un nombre de sorts mythiques égal à son grade et peut dépenser du pouvoir mythique lorsqu’il les lance pour augmenter leurs effets. Chaque fois qu’il gagne un nouveau grade, il peut choisir un sort mythique supplémentaire.</descr>
+        <id>mythicfeat_crit_science</id>
+    </feat>
 
     <!-- feat_atk -->
 
-    <feat>
-        <name>Science du critique (mythique)</name>
-        <type>feat_atk</type>
-        <descr>Le multiplicateur de critique que le personnage applique lorsqu’il manipule l’arme choisie augmente de 1.</descr>
-        <id>mythicfeat_crit_science</id>
-    </feat>
 
 
 

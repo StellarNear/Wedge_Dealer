@@ -15,9 +15,9 @@ public class VersionComparator {
         String olderVersionName = olderVersion == null ? BuildConfig.VERSION_NAME.replace("v", "") : olderVersion.getVersion_name().replace("v", "");
         String[] olderParts = olderVersionName.split("\\.");
 
-        Integer olderMaj=0;
-        Integer olderMed=0;
-        Integer olderMin=0;
+        Integer olderMaj=null;
+        Integer olderMed=null;
+        Integer olderMin=null;
         switch (olderParts.length) {
             case 3:
                 olderMin =  tools.toInt(olderParts[2]);
@@ -39,9 +39,9 @@ public class VersionComparator {
         String versionToTestName = versionToTest.getVersion_name().replace("v", "");
         String[] toTestParts = versionToTestName.split("\\.");
 
-        Integer testMaj=0;
-        Integer testMed=0;
-        Integer testMin=0;
+        Integer testMaj=null;
+        Integer testMed=null;
+        Integer testMin=null;
         switch (toTestParts.length) {
             case 3:
                 testMin =  tools.toInt(toTestParts[2]);
@@ -59,14 +59,14 @@ public class VersionComparator {
                 break;
         }
 
-        if(testMaj>olderMaj){
-            isNewer=true;
-        } else if(testMaj!=0 && testMaj==olderMaj){
-            if(testMed>olderMed){
-                isNewer=true;
-            } else if(testMed!=0 && testMed==olderMed) {
-                if(testMin>olderMin){
-                    isNewer=true;
+        if (testMaj != null && olderMaj != null && testMaj > olderMaj) {
+            isNewer = true;
+        } else if (testMaj != null && testMaj == olderMaj) {
+            if (testMed != null && olderMed != null && testMed > olderMed) {
+                isNewer = true;
+            } else if (testMed != null && testMed == olderMed) {
+                if (testMin != null && olderMin != null && testMin > olderMin) {
+                    isNewer = true;
                 }
             }
         }

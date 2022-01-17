@@ -6,7 +6,6 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
-import android.util.Log;
 
 import org.json.JSONObject;
 

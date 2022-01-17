@@ -27,10 +27,13 @@ import stellarnear.wedge_companion.Tools;
 public class SaveSharedPreferencesActivity extends Activity {
 
     private Tools tools = Tools.getTools();
+    private String saveNamePath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        saveNamePath = BuildConfig.APPLICATION_ID+ "_save";
+
         String action = getIntent().getExtras().getString("ACTION_TYPE");
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
         tools.customToast(getApplicationContext(), "Selection du dossier cible");
@@ -52,7 +55,7 @@ public class SaveSharedPreferencesActivity extends Activity {
 
             DocumentFile pickedDir = DocumentFile.fromTreeUri(this, treeUri);
 
-            DocumentFile previousSave = pickedDir.findFile(BuildConfig.APPLICATION_ID+ ".sav");
+            DocumentFile previousSave = pickedDir.findFile(saveNamePath+".json");
             if (previousSave == null) {
                 writeFile(pickedDir);
             } else {
@@ -64,7 +67,7 @@ public class SaveSharedPreferencesActivity extends Activity {
 
             DocumentFile pickedDir = DocumentFile.fromTreeUri(this, treeUri);
 
-            DocumentFile previousSave = pickedDir.findFile(BuildConfig.APPLICATION_ID + ".sav");
+            DocumentFile previousSave = pickedDir.findFile(saveNamePath + ".json");
             if (previousSave == null) {
                 tools.customToast(getApplicationContext(), "Aucune Sauvegarde présente ...");
             } else {
@@ -78,7 +81,7 @@ public class SaveSharedPreferencesActivity extends Activity {
 
     private void writeFile(DocumentFile pickedDir) {
         try {
-            DocumentFile newFile = pickedDir.createFile("application/json", BuildConfig.APPLICATION_ID + ".sav");
+            DocumentFile newFile = pickedDir.createFile("application/json", saveNamePath);
             OutputStream out = this.getContentResolver().openOutputStream(newFile.getUri());
 
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -94,7 +97,7 @@ public class SaveSharedPreferencesActivity extends Activity {
         } catch (Exception e) {
             Log.e("SAVE_ERR", e.getMessage());
             tools.customToast(getApplicationContext(), "Erreur:" + e.getStackTrace()[0]);
-            DocumentFile previousSave = pickedDir.findFile(BuildConfig.APPLICATION_ID+ ".sav");
+            DocumentFile previousSave = pickedDir.findFile(saveNamePath+ ".json");
             if (previousSave != null) {
                 previousSave.delete();
             }
@@ -137,6 +140,4 @@ public class SaveSharedPreferencesActivity extends Activity {
     public void onBackPressed() {
         //ne rien faire il faut finir cette activité !
     }
-
-
 }

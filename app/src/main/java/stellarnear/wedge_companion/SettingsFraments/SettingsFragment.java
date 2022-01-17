@@ -7,10 +7,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
-import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceCategory;
-import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.text.InputType;
@@ -48,7 +46,6 @@ public class SettingsFragment extends CustomPreferenceFragment {
     private String currentPageTitle;
 
     private Tools tools = Tools.getTools();
-    private SharedPreferences settings;
     private PrefAllInventoryFragment prefAllInventoryFragment;
     private PrefXpFragment prefXpFragment;
     private PrefInfoScreenFragment prefInfoScreenFragment;
@@ -81,7 +78,6 @@ public class SettingsFragment extends CustomPreferenceFragment {
 
     @Override
     protected void onCreateFragment() {
-        this.settings = PreferenceManager.getDefaultSharedPreferences(getContext());
         settings.registerOnSharedPreferenceChangeListener(listener);
         this.mA = getActivity();
         this.mC = getContext();
