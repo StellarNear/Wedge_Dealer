@@ -3,6 +3,9 @@
     <string name="time_spend">193h</string>
     <string name="basic_infos">"Application développée pour gagner un temps considérable fin 2017."</string>
     <string name="patch_list">"----------------------------------------------------------------------------------
+Patch note v2.5.1
+-Fix catch on missing google script disabled from a long time...
+----------------------------------------------------------------------------------
 Patch note v2.5
 -Téléchargement automatique des mises à jour ultérieures ET installation automatique
 -Info de version android envoyé au apk versioning
